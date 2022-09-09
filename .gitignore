@@ -1,0 +1,12 @@
+node_modules/
+.expo/
+
+Xplore/node_modules/
+Xplore/npm-debug.log
+Xplore/yarn-error.log
+Xplore/.expo/
+Xplore/web-build
+Xplore/bare-apps
+
+# macOS
+.DS_Store
