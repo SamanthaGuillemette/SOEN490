@@ -10,7 +10,7 @@ import {
   useColorScheme as _useColorScheme,
 } from "react-native";
 
-export default function useColorScheme(): NonNullable<ColorSchemeName> {
+export function useColorScheme(): NonNullable<ColorSchemeName> {
   // const [colorScheme, setColorScheme] =
   //   useState<NonNullable<ColorSchemeName>>("light");
 
