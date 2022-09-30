@@ -7,6 +7,7 @@ Xplore/yarn-error.log
 Xplore/.expo/
 Xplore/web-build
 Xplore/bare-apps
+Xplore/package-lock.json
 
 # macOS
 .DS_Store
