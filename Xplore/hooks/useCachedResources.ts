@@ -1,3 +1,10 @@
+/**
+ *  This hook allows us to asynchronously load the resources in the background (and check if
+ *  the loading process is completed) while the splash screen is shown
+ *
+ *  Usage: const isLoadingComplete = useCachedResources();
+ */
+
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
