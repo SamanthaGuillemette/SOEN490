@@ -7,7 +7,7 @@
  *
  */
 
-import colors from "../constants/colors";
+import { colors } from "../constants";
 import { useColorScheme } from "./useColorScheme";
 
 export function useThemeColor(

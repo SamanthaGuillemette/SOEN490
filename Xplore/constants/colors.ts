@@ -13,7 +13,7 @@ const grays = {
   black: "#000",
 };
 
-export default {
+export const colors = {
   light: {
     primary,
     text: grays.gray900,

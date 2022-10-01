@@ -7,7 +7,7 @@ interface HomeProps {}
 const Home = ({}: HomeProps) => {
   return (
     <View>
-      <Text style={{ color: "white" }}>Hello Poppins</Text>
+      <Text variant="h1">Hello Poppins</Text>
     </View>
   );
 };
