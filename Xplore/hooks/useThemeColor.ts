@@ -10,16 +10,22 @@
 import { colors } from "../constants";
 import { useColorScheme } from "./useColorScheme";
 
+type themeColorType = keyof typeof colors.light & keyof typeof colors.dark;
+type customColorsType = { light?: string; dark?: string };
+
 export function useThemeColor(
-  themeColor: keyof typeof colors.light & keyof typeof colors.dark,
-  customColor?: { light: string; dark: string }
+  themeColor: themeColorType,
+  customColors: customColorsType = {} // Give default param as an empty object
 ) {
   // Get the current device's theme: light | dark
   const theme = useColorScheme();
 
-  // If custom color is provided, use it
-  if (customColor) {
-    return customColor[theme];
+  // Select a SINGLE color from provided colors based on theme dark/light
+  const selectedCustomColor = customColors[theme];
+
+  // If the selected custom color is valid, use it
+  if (selectedCustomColor) {
+    return selectedCustomColor;
   } else {
     return colors[theme][themeColor];
   }
@@ -42,23 +48,32 @@ export function useThemeColor(
 //     background: "dark",
 //   },
 // };
-
+//
+// type themeColorType = keyof typeof colors.light & keyof typeof colors.dark;
+// type customColorsType = { light?: string; dark?: string };
+//
 // function useThemeColor(
-//   themeColor: keyof typeof colors.light & keyof typeof colors.dark,
-//   customColor?: { light: string; dark: string }
+//   themeColor: themeColorType,
+//   customColors: customColorsType = {} // Give default param as an empty object
 // ) {
-//  // Manually change this value (light | dark) to simulate device's theme changing
+//   // Manually change this value (light | dark) to simulate device's theme changing
 //   const theme = "light";
-
-//   console.log("=====> current theme: ", theme);
-//   console.log("=====> themeColor: ", themeColor);
-
-//   if (customColor) {
-//     return customColor[theme];
+//
+//   // Select a SINGLE color from provided colors based on theme dark/light
+//   const selectedCustomColor = customColors[theme];
+//
+//   console.log("1 =====> selectedCustomColor: ", selectedCustomColor);
+//
+//   // If the selected custom color is valid, use it
+//   if (selectedCustomColor) {
+//     return selectedCustomColor;
 //   } else {
 //     return colors[theme][themeColor];
 //   }
 // }
-
-// const result = useThemeColor("background", { dark: '#6b4630', light: '#62fc9b' });
-// console.log("=====> RESULT: ", result);
+//
+// const result1 = useThemeColor("text", {light: "customLightColor", dark: "customDarkColor"});
+// console.log("2 =====> RESULT with custom colors: ", result1);
+//
+// const result2 = useThemeColor("text");
+// console.log("3 =====> RESULT with no custom colors: ", result2);

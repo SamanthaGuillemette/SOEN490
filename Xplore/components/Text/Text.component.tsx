@@ -1,10 +1,10 @@
-import { Text as RNText } from "react-native";
-import { useThemeColor } from "../../hooks/useThemeColor";
+import { Text as RNText, View as RNView } from "react-native";
+import { useThemeColor } from "../../hooks";
 import styles from "./Text.styles";
 
 interface TextProps {
   children: React.ReactNode;
-  variant:
+  variant?:
     | "h1"
     | "h2"
     | "h3"
@@ -14,13 +14,24 @@ interface TextProps {
     | "label"
     | "smLabel"
     | "link";
+  lightColor?: string;
+  darkColor?: string;
+  style?: RNView["props"];
 }
 
-export const Text = ({ children, variant = "body" }: TextProps) => {
-  const textColor = useThemeColor("text");
+export const Text = (props: TextProps) => {
+  // Destructure all the properties we need from "props"
+  const { children, variant = "body", lightColor, darkColor, style } = props;
+
+  const textColor = useThemeColor("text", {
+    light: lightColor,
+    dark: darkColor,
+  });
   const dymamicTextStyle = styles[variant];
 
   return (
-    <RNText style={[dymamicTextStyle, { color: textColor }]}>{children}</RNText>
+    <RNText style={[dymamicTextStyle, { color: textColor }, style]}>
+      {children}
+    </RNText>
   );
 };

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { fonts, fontSizes } from "../../constants/fonts";
+import { fonts, fontSizes } from "../../constants";
 
 export default StyleSheet.create({
   h1: {
