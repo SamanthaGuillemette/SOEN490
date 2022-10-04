@@ -51,16 +51,10 @@ const SignUp = ({}: SignUpProps) => {
           />
         </View>
         <TouchableOpacity
-          style={styles.login_button}
+          style={styles.signup_button}
           //onPress={() => navigation.navigate("UserGuide")}
         >
-          <Text style={styles.inputTextStyle}>SIGN IN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.forgot_button}
-          //onPress={() => navigation.navigate("UserGuide")}
-        >
-          <Text style={styles.inputTextStyleDark}>FORGOT PASSWORD</Text>
+          <Text style={styles.inputTextStyle}>SIGN UP</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -74,7 +68,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   inputsContainer: {
-    marginTop: 50,
+    marginTop: 20,
   },
   inputWrapper: {
     flexDirection: "row",
@@ -90,32 +84,15 @@ const styles = StyleSheet.create({
     height: 24,
     marginRight: 10,
   },
-  login_button: {
+  signup_button: {
     backgroundColor: "#463FB0",
-    marginTop: 50,
+    marginTop: 40,
     width: 250,
     paddingVertical: 16,
     borderRadius: 25,
     shadowColor: "#463FB0",
     shadowOpacity: 0.3,
     elevation: 5,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-  },
-  forgot_button: {
-    width: 250,
-    marginTop: 15,
-    marginBottom: 45,
-    paddingVertical: 16,
-    borderRadius: 25,
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "#463FB0",
-    shadowColor: "#463FB0",
-    shadowOpacity: 0.1,
-    elevation: 3,
     shadowOffset: {
       width: 0,
       height: 0,

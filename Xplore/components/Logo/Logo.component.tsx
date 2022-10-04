@@ -1,8 +1,8 @@
 import { StyleSheet, View, Image } from "react-native";
 
-interface SolganProps {}
+interface LogoProps {}
 
-export const Solgan = ({}: SolganProps) => {
+export const Logo = ({}: LogoProps) => {
   return (
     <View style={styles.logo_container}>
       <Image style={styles.logo} source={require("../../assets/logo.png")} />

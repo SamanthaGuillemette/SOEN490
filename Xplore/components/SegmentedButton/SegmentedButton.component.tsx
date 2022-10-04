@@ -2,39 +2,39 @@ import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 
-interface SegmentedButtonProps {}
+interface SegmentedButtonProps {
+  labels: String[];
+}
 
-export const SegmentedButton = ({}: SegmentedButtonProps) => {
+export const SegmentedButton = ({ labels }: SegmentedButtonProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  function handleSingleIndexSelect(index: number) {
-    if (selectedIndex == 0) {
-      setSelectedIndex(1);
-    } else {
-      setSelectedIndex(0);
-    }
+  function handleIndexSelect(index: number) {
+    setSelectedIndex(index);
   }
   return (
     <View style={styles.container}>
       <SegmentedControlTab
-        values={["SIGN IN", "SIGN UP"]}
+        values={labels}
         selectedIndex={selectedIndex}
-        onTabPress={handleSingleIndexSelect}
-        borderRadius={20}
+        onTabPress={handleIndexSelect}
+        borderRadius={30}
         tabsContainerStyle={{
           height: 30,
-          minWidth: 150,
+          minWidth: 180,
           backgroundColor: "#C4C4C4",
-          borderRadius: 20,
+          borderRadius: 30,
         }}
         tabStyle={{
           backgroundColor: "#C4C4C4",
           borderColor: "#C4C4C4",
+          margin: 1,
+          padding: 1,
         }}
         activeTabStyle={{
           backgroundColor: "white",
           borderColor: "#463FB0",
-          borderRadius: 20,
+          borderRadius: 30,
         }}
         tabTextStyle={{
           color: "white",
