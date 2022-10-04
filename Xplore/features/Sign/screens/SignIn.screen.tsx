@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   inputsContainer: {
-    marginTop: 100,
+    marginTop: 50,
   },
   inputWrapper: {
     flexDirection: "row",
