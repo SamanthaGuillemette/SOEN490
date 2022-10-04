@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
     height: 100,
   },
   logo_container: {
-    marginTop: 85,
+    marginTop: 65,
     marginBottom: 5,
     borderRadius: 8,
     backgroundColor: "white",
-    // shadowColor: globalTheme.colors.primary,
+    shadowColor: "#463FB0",
     shadowOpacity: 0.1,
     shadowOffset: {
       width: 0,

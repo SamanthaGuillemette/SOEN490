@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, SafeAreaView, View, Image } from "react-native";
+import { StyleSheet, SafeAreaView, View } from "react-native";
 import { Solgan } from "../../../components/Solgan";
 import { SegmentedButton } from "../../../components/SegmentedButton";
 import SignIn from "./SignIn.screen";
@@ -28,6 +28,5 @@ const styles = StyleSheet.create({
   sign_container: {
     alignItems: "center",
     height: "100%",
-    //backgroundColor: globalTheme.colors.screenBackground,
   },
 });
