@@ -20,21 +20,21 @@ export const SegmentedButton = ({}: SegmentedButtonProps) => {
         values={["SIGN IN", "SIGN UP"]}
         selectedIndex={selectedIndex}
         onTabPress={handleSingleIndexSelect}
-        borderRadius={15}
+        borderRadius={20}
         tabsContainerStyle={{
           height: 30,
-          minWidth: 170,
+          minWidth: 150,
           backgroundColor: "#C4C4C4",
-          borderColor: "#463FB0",
           borderRadius: 20,
         }}
         tabStyle={{
           backgroundColor: "#C4C4C4",
-          borderColor: "#463FB0",
+          borderColor: "#C4C4C4",
         }}
         activeTabStyle={{
           backgroundColor: "white",
           borderColor: "#463FB0",
+          borderRadius: 20,
         }}
         tabTextStyle={{
           color: "white",

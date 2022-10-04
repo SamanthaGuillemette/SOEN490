@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   login_button: {
     backgroundColor: "#463FB0",
-    marginTop: 30,
+    marginTop: 50,
     width: 250,
     paddingVertical: 16,
     borderRadius: 25,

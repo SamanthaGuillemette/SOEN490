@@ -27,6 +27,5 @@ const styles = StyleSheet.create({
   },
   sign_container: {
     alignItems: "center",
-    height: "100%",
   },
 });
