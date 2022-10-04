@@ -33,7 +33,6 @@ export const SegmentedButton = ({ labels }: SegmentedButtonProps) => {
         }}
         activeTabStyle={{
           backgroundColor: "white",
-          borderColor: "#463FB0",
           borderRadius: 30,
         }}
         tabTextStyle={{

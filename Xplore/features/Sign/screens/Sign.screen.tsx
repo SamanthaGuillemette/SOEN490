@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { StyleSheet, SafeAreaView, ScrollView, View } from "react-native";
 import { Logo } from "../../../components/Logo";
 import { SegmentedButton } from "../../../components/SegmentedButton";
@@ -7,14 +7,15 @@ import SignUp from "./SignUp.screen";
 interface SignProps {}
 
 const Sign = ({}: SignProps) => {
+  const [screen, setScreen] = useState(0);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.sign_container}>
           <Logo />
-          <SegmentedButton labels={["SIGN IN", "SIGN UP", "SIGN"]} />
-
-          <SignUp />
+          <SegmentedButton labels={["SIGN IN", "SIGN UP"]} />
+          {screen === 0 && <SignIn />}
+          {screen === 1 && <SignUp />}
         </View>
       </ScrollView>
     </SafeAreaView>
