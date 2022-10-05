@@ -8,9 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-interface SignUpProps {}
-
-const SignUp = ({}: SignUpProps) => {
+const SignUp = () => {
   return (
     <View style={styles.container}>
       <View style={styles.inputsContainer}>

@@ -4,14 +4,17 @@ import SegmentedControlTab from "react-native-segmented-control-tab";
 
 interface SegmentedButtonProps {
   labels: String[];
+  setIndex: any;
 }
 
-export const SegmentedButton = ({ labels }: SegmentedButtonProps) => {
+export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   function handleIndexSelect(index: number) {
     setSelectedIndex(index);
+    setIndex(index);
   }
+
   return (
     <View style={styles.container}>
       <SegmentedControlTab

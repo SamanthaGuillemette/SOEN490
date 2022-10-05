@@ -8,9 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-interface SignInProps {}
-
-const SignIn = ({}: SignInProps) => {
+const SignIn = () => {
   return (
     <View style={styles.container}>
       <View style={styles.inputsContainer}>
@@ -89,7 +87,6 @@ const styles = StyleSheet.create({
   forgot_button: {
     width: 250,
     marginTop: 15,
-    marginBottom: 5,
     paddingVertical: 16,
     borderRadius: 25,
     backgroundColor: "white",

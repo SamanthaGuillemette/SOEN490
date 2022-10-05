@@ -4,16 +4,19 @@ import { Logo } from "../../../components/Logo";
 import { SegmentedButton } from "../../../components/SegmentedButton";
 import SignIn from "./SignIn.screen";
 import SignUp from "./SignUp.screen";
-interface SignProps {}
 
-const Sign = ({}: SignProps) => {
+const Sign = () => {
   const [screen, setScreen] = useState(0);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.sign_container}>
           <Logo />
-          <SegmentedButton labels={["SIGN IN", "SIGN UP"]} />
+          <SegmentedButton
+            labels={["SIGN IN", "SIGN UP"]}
+            setIndex={setScreen}
+          />
           {screen === 0 && <SignIn />}
           {screen === 1 && <SignUp />}
         </View>
