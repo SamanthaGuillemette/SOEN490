@@ -1,8 +1,6 @@
 import { StyleSheet, View, Image } from "react-native";
 
-interface LogoProps {}
-
-export const Logo = ({}: LogoProps) => {
+export const Logo = () => {
   return (
     <View style={styles.logo_container}>
       <Image style={styles.logo} source={require("../../assets/logo.png")} />
