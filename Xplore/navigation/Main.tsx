@@ -6,7 +6,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ColorSchemeName } from "react-native";
 import Home from "../features/Dashboard/screens/Home.screen";
-
+import Profile from "../features/Profile/screens/Profile.screen";
 const Stack = createNativeStackNavigator();
 
 interface MainProps {
@@ -18,10 +18,15 @@ const Main = ({ colorScheme }: MainProps) => {
     <NavigationContainer
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
+      <Stack.Navigator initialRouteName="Profile">
+        {/* <Stack.Screen
           name="Home"
           component={Home}
+          options={{ headerShown: false }}
+        /> */}
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

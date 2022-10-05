@@ -40,9 +40,4 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     paddingHorizontal: 20,
   },
-  todayStats: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
 });
