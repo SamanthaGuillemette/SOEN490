@@ -1,4 +1,4 @@
-import { Text as RNText, View as RNView } from "react-native";
+import { StyleProp, Text as RNText, TextStyle } from "react-native";
 import { useThemeColor } from "../../hooks";
 import styles from "./Text.styles";
 
@@ -16,7 +16,7 @@ interface TextProps {
     | "link";
   lightColor?: string;
   darkColor?: string;
-  style?: RNView["props"];
+  style?: StyleProp<TextStyle>;
 }
 
 export const Text = (props: TextProps) => {

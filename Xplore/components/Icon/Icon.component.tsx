@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { StyleProp, ViewStyle } from "react-native";
 import { colors } from "../../constants";
 import { useThemeColor } from "../../hooks";
 
@@ -6,7 +7,7 @@ interface IconProps {
   name: keyof typeof Feather.glyphMap;
   size?: "small" | "medium" | "large";
   color: keyof typeof colors.light & keyof typeof colors.dark;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const Icon = ({ name, size = "large", color, style }: IconProps) => {
