@@ -17,6 +17,7 @@ const images: string[] = [
 const {width} = Dimensions.get('screen');
 
 const OnboardingPage: FunctionComponent = () => {
+  const animatedValue = useRef(new Animated.Value(0)).current;
 
   return (
     <View style={style.container}>
@@ -25,6 +26,10 @@ const OnboardingPage: FunctionComponent = () => {
           data={images}
           horizontal
           showsHorizontalScrollIndicator={false}
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {x: animatedValue}}}],
+            {useNativeDriver: false},
+          )}
           pagingEnabled={true}
           keyExtractor={(_, index) => index.toString()}
           renderItem={({item}) => {
@@ -47,14 +52,35 @@ const OnboardingPage: FunctionComponent = () => {
               index * width,
               (index + 1) * width,
             ];
+            const colorRange = ['#000', 'grey', '#000'];
+            const scaleRange = [1, 2, 1];
+            const dotScale = animatedValue.interpolate({
+              inputRange,
+              outputRange: scaleRange,
+              extrapolate: 'clamp',
+            });
+            const color = animatedValue.interpolate({
+              inputRange,
+              outputRange: colorRange,
+              extrapolate: 'clamp',
+            });
             return (
-              <View>
+              <View style={style.dotContainer}>
+                <PagingDot color={color} scale={dotScale} />
               </View>
             );
           }}
         />
       </View>
     </View>
+  );
+};
+
+const PagingDot: FunctionComponent<{scale: any; color: any}> = ({scale, color}) => {
+  return (
+    <Animated.View
+      style={[style.pagingDot, {backgroundColor: color, transform: [{scale}]}]}
+    />
   );
 };
 
@@ -73,7 +99,7 @@ const style = StyleSheet.create({
   },
   imageContainer: {
     justifyContent: 'flex-end',
-    paddingBottom: 80,
+    paddingBottom: 50,
     alignItems: 'center',
     width,
   },
@@ -81,6 +107,18 @@ const style = StyleSheet.create({
     width: width - 80,
     height: 300,
     borderRadius: 40,
+  },
+  pagingDot: {
+    width: 10,
+    height: 10,
+    backgroundColor: 'grey',
+    borderRadius: 7,
+    borderWidth: 1,
+    borderColor: 'grey',
+  },
+  dotContainer: {
+    width: 30,
+    padding: 10,
   },
 });
 
