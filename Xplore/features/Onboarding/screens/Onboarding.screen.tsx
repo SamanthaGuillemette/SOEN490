@@ -6,6 +6,8 @@ import {
   Image,
   StyleSheet,
   View,
+  Pressable,
+  Text,
 } from "react-native";
 
 const images: string[] = [
@@ -16,11 +18,16 @@ const images: string[] = [
 
 const { width } = Dimensions.get("screen");
 
-const OnboardingPage: FunctionComponent = () => {
+const OnboardingPage: FunctionComponent = (props: any) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
+
+  const { onPress, title = "Save" } = props;
 
   return (
     <View style={style.container}>
+      <Pressable style={style.button} onPress={onPress}>
+        <Text style={style.text}>{title}</Text>
+      </Pressable>
       <View style={style.topContainer}>
         <Animated.FlatList
           data={images}
@@ -95,7 +102,7 @@ const style = StyleSheet.create({
     flex: 3,
   },
   topContainer: {
-    flex: 2,
+    flex: 2.2,
   },
   bottomContainer: {
     flex: 1,
@@ -118,14 +125,21 @@ const style = StyleSheet.create({
     width: 10,
     height: 10,
     backgroundColor: "grey",
-    borderRadius: 7,
+    borderRadius: 10,
     borderWidth: 1,
     borderColor: "grey",
   },
   dotContainer: {
     width: 30,
     padding: 10,
+    top: 115,
   },
+  button: {
+    backgroundColor: "red",
+    zIndex: 0.5,
+    opacity: 0.2,
+  },
+  text: {},
 });
 
 export default OnboardingPage;
