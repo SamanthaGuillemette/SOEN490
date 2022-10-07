@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useRef} from 'react';
+import React, { FunctionComponent, useRef } from "react";
 import {
   Animated,
   Dimensions,
@@ -6,15 +6,15 @@ import {
   Image,
   StyleSheet,
   View,
-} from 'react-native';
+} from "react-native";
 
 const images: string[] = [
-  'https://img.freepik.com/premium-vector/business-project-process-start-up-idea-launching-project-management-start-up-launch-teamwork_566886-1849.jpg?w=2000',
-  'https://vectorforfree.com/wp-content/uploads/2020/02/Project_Teamwork_VectorForFree.png',
-  'https://static.vecteezy.com/system/resources/previews/005/283/048/original/teamwork-concept-in-3d-isometric-design-colleagues-work-together-on-project-team-building-and-collaboration-business-development-web-template-with-people-scene-illustration-for-webpage-vector.jpg',
+  "https://img.freepik.com/premium-vector/business-project-process-start-up-idea-launching-project-management-start-up-launch-teamwork_566886-1849.jpg?w=2000",
+  "https://vectorforfree.com/wp-content/uploads/2020/02/Project_Teamwork_VectorForFree.png",
+  "https://static.vecteezy.com/system/resources/previews/005/283/048/original/teamwork-concept-in-3d-isometric-design-colleagues-work-together-on-project-team-building-and-collaboration-business-development-web-template-with-people-scene-illustration-for-webpage-vector.jpg",
 ];
 
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get("screen");
 
 const OnboardingPage: FunctionComponent = () => {
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -27,15 +27,15 @@ const OnboardingPage: FunctionComponent = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           onScroll={Animated.event(
-            [{nativeEvent: {contentOffset: {x: animatedValue}}}],
-            {useNativeDriver: false},
+            [{ nativeEvent: { contentOffset: { x: animatedValue } } }],
+            { useNativeDriver: false }
           )}
           pagingEnabled={true}
           keyExtractor={(_, index) => index.toString()}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             return (
               <View style={style.imageContainer}>
-                <Image style={style.image} source={{uri: item}} />
+                <Image style={style.image} source={{ uri: item }} />
               </View>
             );
           }}
@@ -46,23 +46,23 @@ const OnboardingPage: FunctionComponent = () => {
           horizontal
           data={images}
           keyExtractor={(_, index) => index.toString()}
-          renderItem={({index}) => {
+          renderItem={({ index }) => {
             const inputRange = [
               (index - 1) * width,
               index * width,
               (index + 1) * width,
             ];
-            const colorRange = ['#000', 'grey', '#000'];
+            const colorRange = ["#000", "grey", "#000"];
             const scaleRange = [1, 2, 1];
             const dotScale = animatedValue.interpolate({
               inputRange,
               outputRange: scaleRange,
-              extrapolate: 'clamp',
+              extrapolate: "clamp",
             });
             const color = animatedValue.interpolate({
               inputRange,
               outputRange: colorRange,
-              extrapolate: 'clamp',
+              extrapolate: "clamp",
             });
             return (
               <View style={style.dotContainer}>
@@ -76,10 +76,16 @@ const OnboardingPage: FunctionComponent = () => {
   );
 };
 
-const PagingDot: FunctionComponent<{scale: any; color: any}> = ({scale, color}) => {
+const PagingDot: FunctionComponent<{ scale: any; color: any }> = ({
+  scale,
+  color,
+}) => {
   return (
     <Animated.View
-      style={[style.pagingDot, {backgroundColor: color, transform: [{scale}]}]}
+      style={[
+        style.pagingDot,
+        { backgroundColor: color, transform: [{ scale }] },
+      ]}
     />
   );
 };
@@ -94,13 +100,13 @@ const style = StyleSheet.create({
   bottomContainer: {
     flex: 1,
     width,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   imageContainer: {
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
     paddingBottom: 50,
-    alignItems: 'center',
+    alignItems: "center",
     width,
   },
   image: {
@@ -111,10 +117,10 @@ const style = StyleSheet.create({
   pagingDot: {
     width: 10,
     height: 10,
-    backgroundColor: 'grey',
+    backgroundColor: "grey",
     borderRadius: 7,
     borderWidth: 1,
-    borderColor: 'grey',
+    borderColor: "grey",
   },
   dotContainer: {
     width: 30,
