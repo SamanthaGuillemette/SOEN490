@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { Icon, Text } from "../../../components";
 
 const StatBoxLarge = () => {
@@ -15,6 +15,7 @@ export default StatBoxLarge;
 
 const styles = StyleSheet.create({
   container: {
+    // padding: Platform.OS === "ios" ? "12%" : 15,
     padding: 15,
     backgroundColor: "white",
     borderRadius: 8,
