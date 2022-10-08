@@ -1,5 +1,5 @@
-import { Platform, StyleSheet, View } from "react-native";
-import { Icon, Text } from "../../../components";
+import { Platform, StyleSheet } from "react-native";
+import { Icon, Text, View } from "../../../components";
 
 const StatBoxLarge = () => {
   return (

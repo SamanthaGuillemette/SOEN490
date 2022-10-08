@@ -1,11 +1,30 @@
-import { View as RNView } from "react-native";
+import { StyleProp, View as RNView, ViewStyle } from "react-native";
+import { colors } from "../../constants";
+import { useThemeColor } from "../../hooks";
 
 interface ViewProps {
   children: React.ReactNode;
+  backgroundColor?: keyof typeof colors.light & keyof typeof colors.dark;
+  lightColor?: string;
+  darkColor?: string;
+  style?: StyleProp<ViewStyle>;
 }
 
-const View = (props: ViewProps) => {
-  return <RNView>{props.children}</RNView>;
-};
+export const View = (props: ViewProps) => {
+  const {
+    children,
+    backgroundColor = "background",
+    lightColor,
+    darkColor,
+    style,
+  } = props;
 
-export default View;
+  const bgColor = useThemeColor(backgroundColor, {
+    light: lightColor,
+    dark: darkColor,
+  });
+
+  return (
+    <RNView style={[style, { backgroundColor: bgColor }]}>{children}</RNView>
+  );
+};

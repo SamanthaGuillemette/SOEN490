@@ -1,6 +1,6 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-paper";
-import { Text } from "../../../components";
+import { Text, View } from "../../../components";
 
 const HomeHeader = () => {
   return (
