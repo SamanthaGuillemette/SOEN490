@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     padding: 30,
-    backgroundColor: "lightblue",
   },
   linkButton: {
     marginTop: 5,
