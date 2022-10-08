@@ -1,13 +1,13 @@
 import { Platform, StyleSheet } from "react-native";
-import { Icon, Text, View } from "../../../components";
+import { Icon, ShadowView, Text } from "../../../components";
 
 const StatBoxLarge = () => {
   return (
-    <View style={styles.container}>
+    <ShadowView style={styles.container}>
       <Icon name="refresh-ccw" color="primary" />
       <Text variant="h3">In Progress</Text>
       <Text variant="body">3 Projects</Text>
-    </View>
+    </ShadowView>
   );
 };
 

@@ -1,15 +1,15 @@
 import { Platform, StyleSheet } from "react-native";
-import { Icon, Text, View } from "../../../components";
+import { Icon, ShadowView, Text, View } from "../../../components";
 
 const StatBoxSmall = () => {
   return (
-    <View style={styles.container}>
+    <ShadowView style={styles.container}>
       <View style={styles.title}>
         <Text variant="h3">Completed</Text>
         <Icon name="check-circle" color="primary" style={styles.titleIcon} />
       </View>
       <Text variant="body">20 Tasks</Text>
-    </View>
+    </ShadowView>
   );
 };
 
