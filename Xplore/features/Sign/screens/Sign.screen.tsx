@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { StyleSheet, SafeAreaView, ScrollView, View } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { Logo } from "../../../components/Logo";
 import { SegmentedButton } from "../../../components/SegmentedButton";
-import SignIn from "./SignIn.screen";
-import SignUp from "./SignUp.screen";
+import styles from "./Sign.styles";
+import SignIn from "./SignIn/SignIn.screen";
+import SignUp from "./SignUp/SignUp.screen";
 
 const Sign = () => {
   const [screen, setScreen] = useState(0);
@@ -26,13 +27,3 @@ const Sign = () => {
 };
 
 export default Sign;
-
-const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    marginTop: 20,
-  },
-  sign_container: {
-    alignItems: "center",
-  },
-});
