@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
-import { StyleProp, ViewStyle } from "react-native";
-import { colors } from "../../constants";
+import { Platform, StyleProp, ViewStyle } from "react-native";
+import { colors, multiplier } from "../../constants";
 import { useThemeColor } from "../../hooks";
 
 interface IconProps {
@@ -13,16 +13,16 @@ interface IconProps {
 export const Icon = ({ name, size = "large", color, style }: IconProps) => {
   const iconColor = useThemeColor(color);
 
-  let iconSize: number = 24;
+  let iconSize: number;
   switch (size) {
     case "small":
-      iconSize = 15;
+      iconSize = Platform.OS === "ios" ? 15 * multiplier : 15;
       break;
     case "medium":
-      iconSize = 18;
+      iconSize = Platform.OS === "ios" ? 18 * multiplier : 18;
       break;
     case "large":
-      iconSize = 24;
+      iconSize = Platform.OS === "ios" ? 24 * multiplier : 24;
       break;
   }
 

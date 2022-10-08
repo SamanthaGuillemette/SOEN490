@@ -1,5 +1,5 @@
 import { Platform, StyleSheet } from "react-native";
-import { fonts, fontSizes, lineHeights } from "../../constants";
+import { fonts, fontSizes, lineHeights, multiplier } from "../../constants";
 
 /**
  *
@@ -13,8 +13,6 @@ import { fonts, fontSizes, lineHeights } from "../../constants";
  *  ==> Fonts in iOS have to be multiplied with: 3 / 2.75 = 1.09  to look the same size as on Android
  *
  */
-
-const multiplier = 3 / 2.75;
 
 export default StyleSheet.create({
   h1: {

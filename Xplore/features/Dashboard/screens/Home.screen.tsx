@@ -1,11 +1,5 @@
 import * as React from "react";
-import {
-  PixelRatio,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  View,
-} from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { Text } from "../../../components/";
 import HomeHeader from "../components/HomeHeader.component";
 import StatBoxLarge from "../components/StatBoxLarge.component";
@@ -30,11 +24,6 @@ const Home = ({}: HomeProps) => {
             <StatBoxLarge />
           </View>
         </View>
-
-        <Text variant="h2">Current ratio is: {PixelRatio.get()}</Text>
-        <Text variant="h2">
-          Current font ratio is: {PixelRatio.getFontScale()}
-        </Text>
       </View>
     </SafeAreaView>
   );

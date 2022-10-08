@@ -15,8 +15,7 @@ export default StatBoxLarge;
 
 const styles = StyleSheet.create({
   container: {
-    // padding: Platform.OS === "ios" ? "12%" : 15,
-    padding: 15,
+    padding: Platform.OS === "ios" ? 18 : 15,
     backgroundColor: "white",
     borderRadius: 8,
     marginBottom: 20,
