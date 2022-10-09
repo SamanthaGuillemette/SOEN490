@@ -1,15 +1,48 @@
 import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import Onboarding from "../../Onboarding/screens/Onboarding.screen";
+import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import { Text } from "../../../components/";
+import HomeHeader from "../components/HomeHeader.component";
+import StatBoxLarge from "../components/StatBoxLarge.component";
+import StatBoxSmall from "../components/StatBoxSmall.component";
 
 interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
   return (
-    <NavigationContainer independent={true}>
-      <Onboarding />
-    </NavigationContainer>
+    <SafeAreaView style={styles.safeAreaStyle}>
+      <HomeHeader />
+
+      <View style={styles.mainScreen}>
+        <Text variant="h2">Today</Text>
+        <View style={styles.todayStats}>
+          <View>
+            <StatBoxLarge />
+            <StatBoxSmall />
+          </View>
+          <View>
+            <StatBoxSmall />
+            <StatBoxLarge />
+          </View>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default Home;
+
+const styles = StyleSheet.create({
+  safeAreaStyle: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight ?? 0,
+  },
+  mainScreen: {
+    paddingTop: 25,
+    paddingHorizontal: 20,
+  },
+  todayStats: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+});
