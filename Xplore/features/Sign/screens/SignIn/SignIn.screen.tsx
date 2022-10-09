@@ -1,6 +1,11 @@
 import * as React from "react";
-import { Text, TextInput, TouchableOpacity } from "react-native";
-import { View, Icon } from "../../../../components";
+import { TextInput } from "react-native";
+import {
+  View,
+  Icon,
+  PrimaryButton,
+  SecondaryButton,
+} from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./SignIn.styles";
 
@@ -21,12 +26,8 @@ const SignIn = () => {
             placeholder="Password"
           />
         </View>
-        <TouchableOpacity style={styles.login_button}>
-          <Text style={styles.inputTextStyle}>SIGN IN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.forgot_button}>
-          <Text style={styles.inputTextStyleDark}>FORGOT PASSWORD</Text>
-        </TouchableOpacity>
+        <PrimaryButton label="SIGN IN" style={{ marginTop: 40 }} />
+        <SecondaryButton label="FORGOT PASSWORD" style={{ marginTop: 15 }} />
       </View>
     </View>
   );

@@ -5,3 +5,5 @@ export * from "./LinkButton";
 export * from "./ShadowView";
 export * from "./Logo";
 export * from "./SegmentedButton";
+export * from "./PrimaryButton";
+export * from "./SecondaryButton";

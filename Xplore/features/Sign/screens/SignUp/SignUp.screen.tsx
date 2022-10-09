@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Text, TextInput, TouchableOpacity } from "react-native";
-import { View, Icon } from "../../../../components";
+import { TextInput } from "react-native";
+import { PrimaryButton, View, Icon } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./SignUp.styles";
 
@@ -33,9 +33,7 @@ const SignUp = () => {
             placeholder="Confirm Password"
           />
         </View>
-        <TouchableOpacity style={styles.signup_button}>
-          <Text style={styles.inputTextStyle}>SIGN UP</Text>
-        </TouchableOpacity>
+        <PrimaryButton label="SIGN UP" style={{ marginTop: 40 }} />
       </View>
     </View>
   );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import SegmentedControlTab from "react-native-segmented-control-tab";
+import { useThemeColor } from "../../hooks";
 
 interface SegmentedButtonProps {
   labels: String[];
@@ -8,6 +9,8 @@ interface SegmentedButtonProps {
 }
 
 export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
+  const primary = useThemeColor("primary");
+
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   function handleIndexSelect(index: number) {
@@ -25,12 +28,12 @@ export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
         tabsContainerStyle={{
           height: 30,
           minWidth: 180,
-          backgroundColor: "#C4C4C4",
+          backgroundColor: primary,
           borderRadius: 30,
         }}
         tabStyle={{
-          backgroundColor: "#C4C4C4",
-          borderColor: "#C4C4C4",
+          backgroundColor: primary,
+          borderColor: primary,
           margin: 1,
           padding: 1,
         }}
@@ -42,8 +45,8 @@ export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
           color: "white",
         }}
         activeTabTextStyle={{
-          borderColor: "#463FB0",
-          color: "#463FB0",
+          borderColor: primary,
+          color: primary,
         }}
       />
     </View>

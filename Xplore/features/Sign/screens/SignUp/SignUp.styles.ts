@@ -20,19 +20,4 @@ export default StyleSheet.create({
         height: 24,
         marginRight: 10,
       },
-      signup_button: {
-        backgroundColor: "#463FB0",
-        marginTop: 40,
-        width: 250,
-        paddingVertical: 16,
-        borderRadius: 25,
-      },
-      inputTextStyle: {
-        textAlign: "center",
-        color: "white",
-      },
-      inputTextStyleDark: {
-        textAlign: "center",
-        color: "#463FB0",
-      },
 });
