@@ -9,9 +9,14 @@ interface SecondaryButton {
 
 export const SecondaryButton = ({ label, style }: SecondaryButton) => {
   const primary = useThemeColor("primary");
+  const bg = useThemeColor("backgroundSecondary");
   return (
     <TouchableOpacity
-      style={[style, styles.button, { backgroundColor: "white" }]}
+      style={[
+        style,
+        styles.button,
+        { backgroundColor: bg, borderColor: primary },
+      ]}
     >
       <Text style={[styles.textStyle, { color: primary }]}>{label}</Text>
     </TouchableOpacity>

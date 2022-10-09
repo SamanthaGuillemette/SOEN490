@@ -10,6 +10,7 @@ interface SegmentedButtonProps {
 
 export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
   const primary = useThemeColor("primary");
+  const bg = useThemeColor("backgroundSecondary");
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -28,25 +29,25 @@ export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
         tabsContainerStyle={{
           height: 30,
           minWidth: 180,
-          backgroundColor: primary,
+          backgroundColor: bg,
           borderRadius: 30,
         }}
         tabStyle={{
-          backgroundColor: primary,
-          borderColor: primary,
+          backgroundColor: bg,
+          borderColor: bg,
           margin: 1,
           padding: 1,
         }}
         activeTabStyle={{
-          backgroundColor: "white",
+          backgroundColor: primary,
           borderRadius: 30,
         }}
         tabTextStyle={{
-          color: "white",
+          color: primary,
         }}
         activeTabTextStyle={{
-          borderColor: primary,
-          color: primary,
+          borderColor: bg,
+          color: "white",
         }}
       />
     </View>
