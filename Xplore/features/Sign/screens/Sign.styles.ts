@@ -8,4 +8,9 @@ export default StyleSheet.create({
       sign_container: {
         alignItems: "center",
       },
+      logo_container: {
+        marginTop: 65,
+        marginBottom: 5,
+        borderRadius: 8,
+      },
 });

@@ -30,6 +30,14 @@ export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
           height: 30,
           minWidth: 180,
           backgroundColor: bg,
+          shadowColor: primary,
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowOpacity: 0.1,
+          shadowRadius: 5,
+          elevation: 4,
           borderRadius: 30,
         }}
         tabStyle={{

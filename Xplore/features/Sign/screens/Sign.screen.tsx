@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
-import { View, Logo } from "../../../components";
+import { View, Logo, ShadowView } from "../../../components";
 import { SegmentedButton } from "../../../components/SegmentedButton";
 import styles from "./Sign.styles";
 import SignIn from "./SignIn/SignIn.screen";
@@ -13,7 +13,9 @@ const Sign = () => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.sign_container}>
-          <Logo />
+          <ShadowView style={styles.logo_container}>
+            <Logo />
+          </ShadowView>
           <SegmentedButton
             labels={["SIGN IN", "SIGN UP"]}
             setIndex={setScreen}
