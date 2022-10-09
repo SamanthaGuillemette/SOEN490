@@ -6,12 +6,19 @@ import { useThemeColor } from "../../hooks";
 interface IconProps {
   name: keyof typeof Feather.glyphMap;
   size?: "small" | "medium" | "large";
-  color: keyof typeof colors.light & keyof typeof colors.dark;
+  color?: keyof typeof colors.light & keyof typeof colors.dark;
+  customColor?: string;
   style?: StyleProp<ViewStyle>;
 }
 
-export const Icon = ({ name, size = "large", color, style }: IconProps) => {
-  const iconColor = useThemeColor(color);
+export const Icon = (props: IconProps) => {
+  const { name, size = "large", color = "primary", customColor, style } = props;
+
+  let iconColor = useThemeColor(color);
+  // If customColor is provided, use that instead
+  if (customColor) {
+    iconColor = customColor;
+  }
 
   let iconSize: number;
   switch (size) {

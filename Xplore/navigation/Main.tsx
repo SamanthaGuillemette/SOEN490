@@ -5,7 +5,8 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ColorSchemeName } from "react-native";
-import Home from "../features/Dashboard/screens/Home.screen";
+import Completion from "../features/Completion/screens/Completion.component";
+import BottomTabNavigator from "./BottomTabNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,12 +19,12 @@ const Main = ({ colorScheme }: MainProps) => {
     <NavigationContainer
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
+          name="BottomTabNavigator"
+          component={BottomTabNavigator}
         />
+        <Stack.Screen name="Completion" component={Completion} />
       </Stack.Navigator>
     </NavigationContainer>
   );
