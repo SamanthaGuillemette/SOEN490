@@ -1,6 +1,6 @@
 import * as React from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { Icon } from "../../../../components/Icon";
+import { Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Icon } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./SignIn.styles";
 
@@ -9,11 +9,11 @@ const SignIn = () => {
   return (
     <View style={styles.container}>
       <View style={styles.inputsContainer}>
-        <View style={styles.inputWrapper}>
+        <View style={[styles.inputWrapper, { borderBottomColor: gray77 }]}>
           <Icon name="user" color="gray77" style={styles.textInputIcon} />
           <TextInput placeholderTextColor={gray77} placeholder="Username" />
         </View>
-        <View style={styles.inputWrapper}>
+        <View style={[styles.inputWrapper, { borderBottomColor: gray77 }]}>
           <Icon name="lock" color="gray77" style={styles.textInputIcon} />
           <TextInput
             placeholderTextColor={gray77}

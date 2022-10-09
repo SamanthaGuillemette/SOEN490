@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
-import { Logo } from "../../../components/Logo";
+import { SafeAreaView, ScrollView } from "react-native";
+import { View, Logo } from "../../../components";
 import { SegmentedButton } from "../../../components/SegmentedButton";
 import styles from "./Sign.styles";
 import SignIn from "./SignIn/SignIn.screen";
@@ -10,7 +10,7 @@ const Sign = () => {
   const [screen, setScreen] = useState(0);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView>
         <View style={styles.sign_container}>
           <Logo />
@@ -22,7 +22,7 @@ const Sign = () => {
           {screen === 1 && <SignUp />}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

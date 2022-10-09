@@ -4,7 +4,7 @@ import styles from "./Text.styles";
 
 interface TextProps {
   children: React.ReactNode;
-  color?: "gray100" | "gray200" | "gray300" | "gray400" | "linkText";
+  color?: "gray77" | "gray100" | "gray200" | "gray300" | "gray400" | "linkText";
   variant?:
     | "h1"
     | "h2"
