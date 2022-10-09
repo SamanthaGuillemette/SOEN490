@@ -1,8 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider as PaperProvider } from "react-native-paper";
-import { useColorScheme } from "./hooks/useColorScheme";
-import { useCachedResources } from "./hooks/useCachedResources";
+import { useCachedResources, useColorScheme } from "./hooks";
 import Main from "./navigation/Main";
 
 const App = () => {
