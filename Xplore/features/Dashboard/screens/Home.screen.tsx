@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
+    backgroundColor: "pink",
   },
   mainScreen: {
     paddingTop: 25,
