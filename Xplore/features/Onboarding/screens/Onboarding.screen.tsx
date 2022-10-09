@@ -6,9 +6,10 @@ import {
   Image,
   StyleSheet,
   View,
-  Pressable,
-  Text,
+  TouchableOpacity, 
+  Text
 } from "react-native";
+import { colors } from "../../../constants";
 
 const images: string[] = [
   "https://img.freepik.com/premium-vector/business-project-process-start-up-idea-launching-project-management-start-up-launch-teamwork_566886-1849.jpg?w=2000",
@@ -21,13 +22,9 @@ const { width } = Dimensions.get("screen");
 const OnboardingPage: FunctionComponent = (props: any) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
-  const { onPress, title = "Save" } = props;
 
   return (
     <View style={style.container}>
-      <Pressable style={style.button} onPress={onPress}>
-        <Text style={style.text}>{title}</Text>
-      </Pressable>
       <View style={style.topContainer}>
         <Animated.FlatList
           data={images}
@@ -78,7 +75,9 @@ const OnboardingPage: FunctionComponent = (props: any) => {
             );
           }}
         />
+        <TouchableOpacity><Text style={style.skipButton}>SKIP</Text></TouchableOpacity>
       </View>
+      
     </View>
   );
 };
@@ -122,24 +121,23 @@ const style = StyleSheet.create({
     borderRadius: 40,
   },
   pagingDot: {
-    width: 10,
-    height: 10,
+    width: 7,
+    height: 7,
     backgroundColor: "grey",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "grey",
   },
   dotContainer: {
-    width: 30,
+    width: 25,
     padding: 10,
     top: 115,
   },
-  button: {
-    backgroundColor: "red",
-    zIndex: 0.5,
-    opacity: 0.2,
+  skipButton: {
+    color: colors.light.gray500,
+    top: -95,
+    marginLeft: 220,
   },
-  text: {},
 });
 
 export default OnboardingPage;
