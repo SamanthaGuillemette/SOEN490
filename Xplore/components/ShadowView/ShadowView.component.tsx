@@ -5,6 +5,7 @@ import styles from "./ShadowView.styles";
 
 interface ShadowViewProps {
   children: React.ReactNode;
+  shadowOffset?: number;
   backgroundColor?: keyof typeof colors.light & keyof typeof colors.dark;
   lightColor?: string;
   darkColor?: string;
@@ -14,7 +15,8 @@ interface ShadowViewProps {
 export const ShadowView = (props: ShadowViewProps) => {
   const {
     children,
-    backgroundColor = "background",
+    shadowOffset = 0,
+    backgroundColor = "backgroundSecondary",
     lightColor,
     darkColor,
     style,
@@ -32,7 +34,11 @@ export const ShadowView = (props: ShadowViewProps) => {
       style={[
         style,
         styles.shadow,
-        { backgroundColor: bgColor, shadowColor: customShadowColor },
+        {
+          backgroundColor: bgColor,
+          shadowColor: customShadowColor,
+          shadowOffset: { height: shadowOffset, width: 0 },
+        },
       ]}
     >
       {children}

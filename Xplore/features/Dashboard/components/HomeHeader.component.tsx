@@ -4,7 +4,11 @@ import { LinkButton, ShadowView, Text, View } from "../../../components";
 
 const HomeHeader = () => {
   return (
-    <ShadowView style={styles.homeHeaderBar}>
+    <ShadowView
+      shadowOffset={4}
+      backgroundColor="backgroundSecondary"
+      style={styles.homeHeaderBar}
+    >
       <View>
         <Text variant="h1">Hi Josh,</Text>
         <Text>Ready for a new challenge?</Text>
@@ -27,6 +31,12 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     padding: 30,
+    marginBottom: -20,
+    zIndex: 1,
+    position: "relative",
+    top: 0,
+    left: 0,
+    right: 0,
   },
   linkButton: {
     marginTop: 5,

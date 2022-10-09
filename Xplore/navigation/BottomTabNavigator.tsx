@@ -62,7 +62,7 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
-              name="trending-up"
+              name="bar-chart-2"
               customColor={color}
               style={styles.tabBarIcon}
             />

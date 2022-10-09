@@ -1,29 +1,25 @@
 import * as React from "react";
-import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
-import { Text } from "../../../components/";
+import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import { Text, View } from "../../../components/";
+import { useThemeColor } from "../../../hooks";
 import HomeHeader from "../components/HomeHeader.component";
 import StatBoxLarge from "../components/StatBoxLarge.component";
 import StatBoxSmall from "../components/StatBoxSmall.component";
+import TodayStats from "../components/TodayStats.component";
 
 interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
+  const homeBackground = useThemeColor("backgroundSecondary");
+
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
+    <SafeAreaView
+      style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
+    >
       <HomeHeader />
 
-      <View style={styles.mainScreen}>
-        <Text variant="h2">Today</Text>
-        <View style={styles.todayStats}>
-          <View>
-            <StatBoxLarge />
-            <StatBoxSmall />
-          </View>
-          <View>
-            <StatBoxSmall />
-            <StatBoxLarge />
-          </View>
-        </View>
+      <View backgroundColor="background" style={styles.mainScreen}>
+        <TodayStats />
       </View>
     </SafeAreaView>
   );
@@ -35,15 +31,10 @@ const styles = StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
-    backgroundColor: "pink",
   },
   mainScreen: {
-    paddingTop: 25,
+    paddingTop: 45,
     paddingHorizontal: 20,
-  },
-  todayStats: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flex: 1,
   },
 });
