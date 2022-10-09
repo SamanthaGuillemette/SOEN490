@@ -27,13 +27,6 @@ export default StyleSheet.create({
         width: 250,
         paddingVertical: 16,
         borderRadius: 25,
-        shadowColor: "#463FB0",
-        shadowOpacity: 0.3,
-        elevation: 5,
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
       },
       forgot_button: {
         width: 250,
@@ -43,13 +36,6 @@ export default StyleSheet.create({
         backgroundColor: "white",
         borderWidth: 1,
         borderColor: "#463FB0",
-        shadowColor: "#463FB0",
-        shadowOpacity: 0.1,
-        elevation: 3,
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
       },
       inputTextStyle: {
         textAlign: "center",

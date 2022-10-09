@@ -27,13 +27,6 @@ export default StyleSheet.create({
         width: 250,
         paddingVertical: 16,
         borderRadius: 25,
-        shadowColor: "#463FB0",
-        shadowOpacity: 0.3,
-        elevation: 5,
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
       },
       inputTextStyle: {
         textAlign: "center",

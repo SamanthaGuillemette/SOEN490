@@ -1,51 +1,39 @@
 import * as React from "react";
-import { View, Text, TextInput, Image, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { Icon } from "../../../../components/Icon";
+import { useThemeColor } from "../../../../hooks";
 import styles from "./SignUp.styles";
 
 const SignUp = () => {
+  const gray77 = useThemeColor("gray77");
   return (
     <View style={styles.container}>
       <View style={styles.inputsContainer}>
         <View style={styles.inputWrapper}>
-          <Image
-            style={styles.textInputIcon}
-            source={require("../../../assets/icons/UserIcon.png")}
-          />
-          <TextInput placeholderTextColor={"#C4C4C4"} placeholder="Username" />
+          <Icon name="user" color="gray77" style={styles.textInputIcon} />
+          <TextInput placeholderTextColor={gray77} placeholder="Username" />
         </View>
         <View style={styles.inputWrapper}>
-          <Image
-            style={styles.textInputIcon}
-            source={require("../../../assets/icons/email.png")}
-          />
-          <TextInput placeholderTextColor={"#C4C4C4"} placeholder="Email" />
+          <Icon name="mail" color="gray77" style={styles.textInputIcon} />
+          <TextInput placeholderTextColor={gray77} placeholder="Email" />
         </View>
         <View style={styles.inputWrapper}>
-          <Image
-            style={styles.textInputIcon}
-            source={require("../../../assets/icons/Password.png")}
-          />
+          <Icon name="lock" color="gray77" style={styles.textInputIcon} />
           <TextInput
-            placeholderTextColor={"#C4C4C4"}
+            placeholderTextColor={gray77}
             secureTextEntry={true}
             placeholder="Password"
           />
         </View>
         <View style={styles.inputWrapper}>
-          <Image
-            style={styles.textInputIcon}
-            source={require("../../../assets/icons/Password.png")}
-          />
+          <Icon name="lock" color="gray77" style={styles.textInputIcon} />
           <TextInput
-            placeholderTextColor={"#C4C4C4"}
+            placeholderTextColor={gray77}
             secureTextEntry={true}
             placeholder="Confirm Password"
           />
         </View>
-        <TouchableOpacity
-          style={styles.signup_button}
-          //onPress={() => navigation.navigate("UserGuide")}
-        >
+        <TouchableOpacity style={styles.signup_button}>
           <Text style={styles.inputTextStyle}>SIGN UP</Text>
         </TouchableOpacity>
       </View>
