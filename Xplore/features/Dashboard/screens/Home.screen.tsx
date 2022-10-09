@@ -1,10 +1,9 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import { Text, View } from "../../../components/";
+import { View } from "../../../components/";
 import { useThemeColor } from "../../../hooks";
+import ExploreProjects from "../components/ExploreProjects.component";
 import HomeHeader from "../components/HomeHeader.component";
-import StatBoxLarge from "../components/StatBoxLarge.component";
-import StatBoxSmall from "../components/StatBoxSmall.component";
 import TodayStats from "../components/TodayStats.component";
 
 interface HomeProps {}
@@ -20,6 +19,7 @@ const Home = ({}: HomeProps) => {
 
       <View backgroundColor="background" style={styles.mainScreen}>
         <TodayStats />
+        <ExploreProjects />
       </View>
     </SafeAreaView>
   );
