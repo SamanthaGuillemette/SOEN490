@@ -27,7 +27,10 @@ const SignIn = () => {
           />
         </View>
         <PrimaryButton label="SIGN IN" style={{ marginTop: 40 }} />
-        <SecondaryButton label="FORGOT PASSWORD" style={{ marginTop: 15 }} />
+        <SecondaryButton
+          label="FORGOT PASSWORD"
+          style={{ marginVertical: 25 }}
+        />
       </View>
     </View>
   );

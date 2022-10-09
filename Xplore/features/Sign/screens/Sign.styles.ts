@@ -7,10 +7,11 @@ export default StyleSheet.create({
       },
       sign_container: {
         alignItems: "center",
+        marginTop: 40,
       },
       logo_container: {
-        marginTop: 65,
-        marginBottom: 5,
+        marginTop: 40,
+        marginBottom: 40,
         borderRadius: 8,
       },
 });

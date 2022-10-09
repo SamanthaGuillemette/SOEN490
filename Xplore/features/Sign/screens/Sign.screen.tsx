@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SafeAreaView, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import { View, Logo, ShadowView } from "../../../components";
 import { SegmentedButton } from "../../../components/SegmentedButton";
 import styles from "./Sign.styles";

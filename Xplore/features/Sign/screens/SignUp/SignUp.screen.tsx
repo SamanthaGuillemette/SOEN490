@@ -33,7 +33,7 @@ const SignUp = () => {
             placeholder="Confirm Password"
           />
         </View>
-        <PrimaryButton label="SIGN UP" style={{ marginTop: 40 }} />
+        <PrimaryButton label="SIGN UP" style={{ marginVertical: 40 }} />
       </View>
     </View>
   );
