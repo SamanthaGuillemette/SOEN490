@@ -19,15 +19,19 @@ const Onboarding: FunctionComponent = (props: any) => {
   const images = [
     {
       img: require("../../../assets/Onboarding1.png"),
-      message: "Xplore helps you find like minded partners",
+      message: "Xplore is an application that facilitates learning programming technologies using project-based learning.",
     },
     {
       img: require("../../../assets/Onboarding2.png"),
-      message: "Hello, it's me",
+      message: "This application allows a user to explore or start new projects which can later be shared within the community.",
     },
     {
-      img: require("../../../assets/Onboarding1.png"),
-      message: "Yo",
+      img: require("../../../assets/Onboarding3.png"),
+      message: "The application also enables users to chat with people working on the same project or with other members on the platform.",
+    },
+    {
+      img: require("../../../assets/Onboarding3.png"),
+      message: "Upon project completion, users will accumulate points and/or new badges for participating in new projects and for finishing them.",
     },
   ];
 
@@ -49,7 +53,7 @@ const Onboarding: FunctionComponent = (props: any) => {
               <View style={style.imageContainer}>
                 <Image style={style.image} source={item.img} key={index} />
                 <Text variant="onboarding" color="gray100">
-                  {item.message}
+                  {'\n'}{'\n'}{item.message}
                 </Text>
               </View>
             );
@@ -113,7 +117,7 @@ const style = StyleSheet.create({
     flex: 3,
   },
   topContainer: {
-    flex: 2.2,
+    flex: 2.6,
   },
   bottomContainer: {
     flex: 1,
@@ -123,7 +127,6 @@ const style = StyleSheet.create({
   },
   imageContainer: {
     justifyContent: "flex-end",
-    paddingBottom: 50,
     alignItems: "center",
     width,
   },
@@ -141,7 +144,7 @@ const style = StyleSheet.create({
     borderColor: "grey",
   },
   dotContainer: {
-    width: 25,
+    width: 21,
     padding: 10,
     top: 115,
   },

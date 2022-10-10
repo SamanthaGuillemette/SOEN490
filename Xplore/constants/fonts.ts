@@ -13,7 +13,7 @@ export const fontSizes = {
   label: 12,
   smLabel: 9,
   link: 12,
-  onboarding: 18,
+  onboarding: 19,
 };
 
 export const lineHeights = {
