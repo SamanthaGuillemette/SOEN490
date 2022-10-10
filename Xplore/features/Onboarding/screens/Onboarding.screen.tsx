@@ -19,19 +19,23 @@ const Onboarding: FunctionComponent = (props: any) => {
   const images = [
     {
       img: require("../../../assets/Onboarding1.png"),
-      message: "Xplore is an application which facilitates learning programming technologies using project-based learning.",
+      message:
+        "Xplore is an application which facilitates learning programming technologies using project-based learning.",
     },
     {
       img: require("../../../assets/Onboarding2.png"),
-      message: "This application allows a user to explore or start new projects which can later be shared within the community.",
+      message:
+        "This application allows a user to explore or start new projects which can later be shared within the community.",
     },
     {
       img: require("../../../assets/Onboarding3.png"),
-      message: "The application also enables users to chat with people working on the same project or with other members on the platform.",
+      message:
+        "The application also enables users to chat with people working on the same project or with other members on the platform.",
     },
     {
       img: require("../../../assets/Onboarding4.png"),
-      message: "Upon project completion, users will accumulate points and/or new badges for participating in new projects and for finishing them.",
+      message:
+        "Upon project completion, users will accumulate points and/or new badges for participating in new projects and for finishing them.",
     },
   ];
 
@@ -53,7 +57,9 @@ const Onboarding: FunctionComponent = (props: any) => {
               <View style={style.imageContainer}>
                 <Image style={style.image} source={item.img} key={index} />
                 <Text style={style.onboardingText} variant="onboarding">
-                  {'\n'}{'\n'}{item.message}
+                  {"\n"}
+                  {"\n"}
+                  {item.message}
                 </Text>
               </View>
             );
@@ -146,6 +152,7 @@ const style = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "grey",
+    flexDirection: "row",
   },
   dotContainer: {
     width: 21,
@@ -154,8 +161,9 @@ const style = StyleSheet.create({
   },
   skipButton: {
     color: colors.light.gray500,
-    top: -95,
+    top: -90,
     marginLeft: 220,
+    flexDirection: "row",
   },
 });
 
