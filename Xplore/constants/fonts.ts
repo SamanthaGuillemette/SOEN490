@@ -26,5 +26,5 @@ export const lineHeights = {
   label: 18,
   smLabel: 13,
   link: 18,
-  onboarding: 22,
+  onboarding: 28,
 };

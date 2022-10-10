@@ -54,13 +54,18 @@ const Onboarding: FunctionComponent = (props: any) => {
           keyExtractor={(_, index) => index.toString()}
           renderItem={({ item, index }) => {
             return (
-              <View style={style.imageContainer}>
-                <Image style={style.image} source={item.img} key={index} />
-                <Text style={style.onboardingText} variant="onboarding">
-                  {"\n"}
-                  {"\n"}
-                  {item.message}
-                </Text>
+              <View style={style.skipContainer}>
+                <TouchableOpacity>
+                  <RNText style={style.skipButton}>SKIP</RNText>
+                </TouchableOpacity>
+                <View style={style.imageContainer}>
+                  <Image style={style.image} source={item.img} key={index} />
+                  <Text style={style.onboardingText} variant="onboarding">
+                    {"\n"}
+                    {"\n"}
+                    {item.message}
+                  </Text>
+                </View>
               </View>
             );
           }}
@@ -96,9 +101,6 @@ const Onboarding: FunctionComponent = (props: any) => {
             );
           }}
         />
-        <TouchableOpacity>
-          <RNText style={style.skipButton}>SKIP</RNText>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -123,7 +125,7 @@ const style = StyleSheet.create({
     flex: 3,
   },
   topContainer: {
-    flex: 2.6,
+    flex: 4,
   },
   bottomContainer: {
     flex: 1,
@@ -131,10 +133,14 @@ const style = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
+  skipContainer: {
+    justifyContent: "flex-end",
+    alignItems: 'flex-end'
+  },
   imageContainer: {
     justifyContent: "flex-end",
-    alignItems: "center",
     width,
+    alignItems: "center",
   },
   image: {
     width: width - 80,
@@ -152,18 +158,16 @@ const style = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "grey",
-    flexDirection: "row",
   },
   dotContainer: {
     width: 21,
     padding: 10,
-    top: 115,
+    top: 60,
   },
   skipButton: {
     color: colors.light.gray500,
-    top: -90,
-    marginLeft: 220,
-    flexDirection: "row",
+    padding: 47,
+
   },
 });
 
