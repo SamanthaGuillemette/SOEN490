@@ -12,7 +12,7 @@ import {
 import { colors } from "../../../constants";
 
 const images: string[] = [
-  "https://img.freepik.com/premium-vector/business-project-process-start-up-idea-launching-project-management-start-up-launch-teamwork_566886-1849.jpg?w=2000",
+  "../assets/Onboarding1.png",
   "https://vectorforfree.com/wp-content/uploads/2020/02/Project_Teamwork_VectorForFree.png",
   "https://static.vecteezy.com/system/resources/previews/005/283/048/original/teamwork-concept-in-3d-isometric-design-colleagues-work-together-on-project-team-building-and-collaboration-business-development-web-template-with-people-scene-illustration-for-webpage-vector.jpg",
 ];
