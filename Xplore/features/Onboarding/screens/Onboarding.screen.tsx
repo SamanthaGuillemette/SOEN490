@@ -18,15 +18,15 @@ const Onboarding: FunctionComponent = (props: any) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
   const images = [
     {
-      img: require("../assets/Onboarding1.png"),
-      message: "Xplore helps you find like minded partners",
+      img: require("../../../assets/Onboarding1.png"),
+      message: "Xplore helps you find like minded people",
     },
     {
-      img: require("../assets/Onboarding2.png"),
+      img: require("../../../assets/Onboarding2.png"),
       message: "Hello, it's me",
     },
     {
-      img: require("../assets/Onboarding3.png"),
+      img: require("../../../assets/Onboarding3.png"),
       message: "Yo",
     },
   ];
@@ -49,7 +49,7 @@ const Onboarding: FunctionComponent = (props: any) => {
               <View style={style.imageContainer}>
                 <Image style={style.image} source={item.img} key={index} />
                 <Text variant="h2" color="gray100">
-                  {item.message}
+                  {'\n'}{item.message}
                 </Text>
               </View>
             );
