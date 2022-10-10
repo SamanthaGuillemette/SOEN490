@@ -14,7 +14,8 @@ interface TextProps {
     | "smBody"
     | "label"
     | "smLabel"
-    | "link";
+    | "link"
+    | "onboarding";
   lightColor?: string;
   darkColor?: string;
   style?: StyleProp<TextStyle>;

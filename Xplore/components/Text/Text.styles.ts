@@ -82,4 +82,15 @@ export default StyleSheet.create({
     lineHeight:
       Platform.OS === "ios" ? lineHeights.link * multiplier : lineHeights.link,
   },
+  onboarding: {
+    fontFamily: fonts.defaultBold,
+    fontSize:
+      Platform.OS === "ios"
+        ? fontSizes.onboarding * multiplier
+        : fontSizes.onboarding,
+    lineHeight:
+      Platform.OS === "ios"
+        ? lineHeights.onboarding * multiplier
+        : lineHeights.onboarding,
+  },
 });
