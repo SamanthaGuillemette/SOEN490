@@ -3,16 +3,19 @@ import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { Text } from "../../../components";
 import ProfileInfo from "../components/ProfileInfo";
 import Badges from "../components/Badges";
+import Projects from "../components/Projects";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface ProfileProps {}
 
 const Profile = ({}: ProfileProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
-      <ProfileInfo />
-      <View>
+      <ScrollView>
+        <ProfileInfo />
         <Badges />
-      </View>
+        <Projects />
+      </ScrollView>
     </SafeAreaView>
   );
 };

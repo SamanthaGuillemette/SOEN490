@@ -36,7 +36,7 @@ const ProfileInfo = () => {
             <Text variant="body">
               980/1000 <Text variant="h3">XP</Text>
             </Text>
-            <View style={styles.Des}>
+            <View>
               <Text variant="body">
                 980/1000 <Text variant="h3">XP</Text>
               </Text>
@@ -154,8 +154,6 @@ const styles = StyleSheet.create({
   },
   Description: {
     flexDirection: "row",
-  },
-  Des: {
-    marginLeft: 120,
+    justifyContent: "space-between",
   },
 });

@@ -7,9 +7,7 @@ const Badges = () => {
     <View>
       <View style={styles.BadgeText}>
         <Text variant="h4">Badges</Text>
-        <View style={styles.Des}>
-          <Text variant="body">View all</Text>
-        </View>
+        <Text variant="body">View all</Text>
       </View>
       <View style={styles.Badges}>
         <Avatar.Image
@@ -56,9 +54,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "white",
     padding: 10,
-    fontColor: "red",
-  },
-  Des: {
-    marginLeft: 280,
+    justifyContent: "space-between",
   },
 });
