@@ -19,7 +19,7 @@ const Onboarding: FunctionComponent = (props: any) => {
   const images = [
     {
       img: require("../../../assets/Onboarding1.png"),
-      message: "Xplore is an application that facilitates learning programming technologies using project-based learning.",
+      message: "Xplore is an application which facilitates learning programming technologies using project-based learning.",
     },
     {
       img: require("../../../assets/Onboarding2.png"),
@@ -52,7 +52,7 @@ const Onboarding: FunctionComponent = (props: any) => {
             return (
               <View style={style.imageContainer}>
                 <Image style={style.image} source={item.img} key={index} />
-                <Text variant="onboarding" color="gray100">
+                <Text style={style.onboardingText} variant="onboarding">
                   {'\n'}{'\n'}{item.message}
                 </Text>
               </View>
@@ -134,6 +134,10 @@ const style = StyleSheet.create({
     width: width - 80,
     height: 300,
     borderRadius: 40,
+  },
+  onboardingText: {
+    width: width - 80,
+    color: colors.light.gray200,
   },
   pagingDot: {
     width: 7,
