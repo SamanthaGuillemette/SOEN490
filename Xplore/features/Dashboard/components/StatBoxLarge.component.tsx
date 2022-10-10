@@ -1,13 +1,13 @@
-import { StyleSheet, View } from "react-native";
-import { Icon, Text } from "../../../components";
+import { Platform, StyleSheet } from "react-native";
+import { Icon, ShadowView, Text } from "../../../components";
 
 const StatBoxLarge = () => {
   return (
-    <View style={styles.container}>
-      <Icon name="refresh-ccw" color="primary" />
+    <ShadowView style={styles.container}>
+      <Icon name="refresh-ccw" color="primary" style={styles.statIcon} />
       <Text variant="h3">In Progress</Text>
       <Text variant="body">3 Projects</Text>
-    </View>
+    </ShadowView>
   );
 };
 
@@ -15,9 +15,11 @@ export default StatBoxLarge;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
-    backgroundColor: "white",
+    padding: Platform.OS === "ios" ? 18 : 15,
     borderRadius: 8,
     marginBottom: 20,
+  },
+  statIcon: {
+    marginBottom: 24,
   },
 });

@@ -1,9 +1,10 @@
-import { Text as RNText, View as RNView } from "react-native";
+import { StyleProp, Text as RNText, TextStyle } from "react-native";
 import { useThemeColor } from "../../hooks";
 import styles from "./Text.styles";
 
 interface TextProps {
   children: React.ReactNode;
+  color?: "gray100" | "gray200" | "gray300" | "gray400" | "linkText";
   variant?:
     | "h1"
     | "h2"
@@ -16,14 +17,21 @@ interface TextProps {
     | "link";
   lightColor?: string;
   darkColor?: string;
-  style?: RNView["props"];
+  style?: StyleProp<TextStyle>;
 }
 
 export const Text = (props: TextProps) => {
-  // Destructure all the properties we need from "props"
-  const { children, variant = "body", lightColor, darkColor, style } = props;
+  // Destructure all the properties we need from "props". Give some default values.
+  const {
+    children,
+    color = "gray100",
+    variant = "body",
+    lightColor,
+    darkColor,
+    style,
+  } = props;
 
-  const textColor = useThemeColor("text", {
+  const textColor = useThemeColor(color, {
     light: lightColor,
     dark: darkColor,
   });
