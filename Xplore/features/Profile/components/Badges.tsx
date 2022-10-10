@@ -7,28 +7,36 @@ const Badges = () => {
   return (
     <View>
       <View style={styles.BadgeText}>
-        <Text variant="h4">Badges</Text>
-        <Text variant="body">View all</Text>
+        <Text
+          variant="h3"
+          lightColor={colors.light.primary}
+          style={{ marginLeft: 18 }}
+        >
+          BADGES
+        </Text>
+        <Text variant="body" color="linkText" style={{ marginRight: 18 }}>
+          View all
+        </Text>
       </View>
       <View style={styles.Badges}>
         <Avatar.Image
           style={styles.Badge}
-          size={90}
+          size={75}
           source={require("../../../assets/badge1.png")}
         />
         <Avatar.Image
           style={styles.Badge}
-          size={90}
+          size={75}
           source={require("../../../assets/badge2.png")}
         />
         <Avatar.Image
           style={styles.Badge}
-          size={90}
+          size={75}
           source={require("../../../assets/badge3.png")}
         />
         <Avatar.Image
           style={styles.Badge}
-          size={90}
+          size={75}
           source={require("../../../assets/badge4.png")}
         />
       </View>
@@ -42,14 +50,15 @@ const styles = StyleSheet.create({
   Badges: {
     flexDirection: "row",
     justifyContent: "center",
-    padding: 30,
+    paddingBottom: 35,
+    paddingTop: 15,
     backgroundColor: colors.light.backgroundSecondary,
   },
   Badge: {
-    marginHorizontal: 5,
+    marginHorizontal: 10,
   },
   BadgeText: {
-    marginTop: 5,
+    marginTop: 2,
     flexDirection: "row",
     backgroundColor: colors.light.backgroundSecondary,
     padding: 10,

@@ -17,6 +17,7 @@ export const colors = {
     linkText: "#6587FF",
     bodyText: "#8A8C93",
     icon: "#C4C4C4",
+    titleTextColor: "#091235",
   },
   dark: {
     primary: "#0074FF",
@@ -36,5 +37,6 @@ export const colors = {
     linkText: "#6587FF",
     bodyText: "#8A8C93",
     icon: "#C4C4C4",
+    titleTextColor: "#091235",
   },
 };
