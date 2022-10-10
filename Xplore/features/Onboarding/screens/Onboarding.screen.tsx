@@ -30,7 +30,7 @@ const Onboarding: FunctionComponent = (props: any) => {
       message: "The application also enables users to chat with people working on the same project or with other members on the platform.",
     },
     {
-      img: require("../../../assets/Onboarding3.png"),
+      img: require("../../../assets/Onboarding4.png"),
       message: "Upon project completion, users will accumulate points and/or new badges for participating in new projects and for finishing them.",
     },
   ];
