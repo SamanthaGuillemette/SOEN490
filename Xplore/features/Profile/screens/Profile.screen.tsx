@@ -4,7 +4,7 @@ import { Text } from "../../../components";
 import ProfileInfo from "../components/ProfileInfo";
 import Badges from "../components/Badges";
 import Projects from "../components/Projects";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 
 interface ProfileProps {}
 

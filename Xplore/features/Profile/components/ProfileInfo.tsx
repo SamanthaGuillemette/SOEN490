@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { Avatar } from "react-native-paper";
 import { Text } from "../../../components";
 import { Icon } from "../../../components";
+import { colors } from "../../../constants";
 
 const ProfileInfo = () => {
   return (
@@ -38,7 +39,7 @@ const ProfileInfo = () => {
             </Text>
             <View>
               <Text variant="body">
-                980/1000 <Text variant="h3">XP</Text>
+                <Text variant="h3">30 XP</Text> to level up
               </Text>
             </View>
           </View>
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     padding: 30,
-    backgroundColor: "white",
+    backgroundColor: colors.light.backgroundSecondary,
     marginTop: 120,
     paddingTop: 40,
   },
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     marginTop: 80,
     borderRadius: 100,
     borderWidth: 10,
-    borderColor: "white",
+    borderColor: colors.light.backgroundSecondary,
   },
   ProfileIcons: {
     flexDirection: "row",
@@ -109,14 +110,14 @@ const styles = StyleSheet.create({
   },
   BiggerRectangle: {
     width: 300,
-    height: 10,
-    backgroundColor: "lightgrey",
+    height: 6,
+    backgroundColor: colors.light.background,
     borderRadius: 100,
   },
   Rectangle: {
     width: 100 * 2,
-    height: 10,
-    backgroundColor: "blue",
+    height: 6,
+    backgroundColor: colors.light.primary,
     borderRadius: 100,
   },
 
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 110,
     height: 80,
-    backgroundColor: "lightgrey",
+    backgroundColor: colors.light.background,
     borderRadius: 8,
     marginHorizontal: 10,
   },
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
   EditContainer: {
     width: 30,
     height: 30,
-    backgroundColor: "white",
+    backgroundColor: colors.light.backgroundSecondary,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 50,

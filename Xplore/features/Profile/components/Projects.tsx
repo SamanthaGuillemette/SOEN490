@@ -1,6 +1,7 @@
 import { StyleSheet, View, Image } from "react-native";
 import { Avatar } from "react-native-paper";
 import { Text } from "../../../components";
+import { colors } from "../../../constants";
 
 const Projects = () => {
   return (
@@ -14,8 +15,8 @@ const Projects = () => {
       <View style={styles.ProjectImage}>
         <Image
           style={{
-            height: 100,
-            width: 100,
+            height: 200,
+            width: 200,
           }}
           source={require("../../../assets/SnakeRobot.png")}
         />
@@ -29,8 +30,7 @@ export default Projects;
 const styles = StyleSheet.create({
   Projects: {
     marginTop: 5,
-
-    backgroundColor: "white",
+    backgroundColor: colors.light.backgroundSecondary,
     padding: 50,
   },
   ProjectImage: {

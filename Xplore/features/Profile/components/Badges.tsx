@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { Avatar } from "react-native-paper";
 import { Text } from "../../../components";
+import { colors } from "../../../constants";
 
 const Badges = () => {
   return (
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     padding: 30,
-    backgroundColor: "white",
+    backgroundColor: colors.light.backgroundSecondary,
     TextColor: "red",
   },
   Badge: {
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   BadgeText: {
     marginTop: 5,
     flexDirection: "row",
-    backgroundColor: "white",
+    backgroundColor: colors.light.backgroundSecondary,
     padding: 10,
     justifyContent: "space-between",
   },
