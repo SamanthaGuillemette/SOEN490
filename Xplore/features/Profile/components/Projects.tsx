@@ -1,5 +1,4 @@
 import { StyleSheet, View, Image } from "react-native";
-import { Avatar } from "react-native-paper";
 import { Text } from "../../../components";
 import { colors } from "../../../constants";
 

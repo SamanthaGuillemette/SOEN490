@@ -1,7 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { Avatar } from "react-native-paper";
-import { Text } from "../../../components";
-import { Icon } from "../../../components";
+import { Text, Icon } from "../../../components";
 import { colors } from "../../../constants";
 
 const ProfileInfo = () => {
@@ -12,7 +11,7 @@ const ProfileInfo = () => {
           <Icon
             name="moon"
             color="primary"
-            size="medium"
+            size="large"
             style={styles.Darkmode}
           />
         </View>
@@ -22,11 +21,11 @@ const ProfileInfo = () => {
       <View style={styles.ProfileInfo}>
         <Text variant="h1">Josh Lewis</Text>
         <Text>
-          <Icon name="map-pin" color="primary" />
+          <Icon name="map-pin" color="icon" />
           Montreal, Quebec
         </Text>
         <Text>
-          <Icon name="zap" color="primary" />
+          <Icon name="zap" color="icon" />
           103,597 XP
         </Text>
         <View style={styles.Rec}>
@@ -47,15 +46,15 @@ const ProfileInfo = () => {
 
         <View style={styles.Boxes}>
           <View style={styles.Box}>
-            <Text variant="h3">5 </Text>
+            <Text variant="h2">5</Text>
             <Text variant="body">Levels</Text>
           </View>
           <View style={styles.Box}>
-            <Text variant="h3">8 </Text>
+            <Text variant="h2">8</Text>
             <Text variant="body">Badges</Text>
           </View>
           <View style={styles.Box}>
-            <Text variant="h3">12 </Text>
+            <Text variant="h2">12</Text>
             <Text variant="body">Projects</Text>
           </View>
         </View>
@@ -90,6 +89,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     marginTop: 80,
     borderRadius: 100,
+    backgroundColor: colors.light.backgroundSecondary,
     borderWidth: 10,
     borderColor: colors.light.backgroundSecondary,
   },
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   IconContainer: {
     width: 40,
     height: 40,
-    backgroundColor: "grey",
+    backgroundColor: colors.light.icon,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 50,

@@ -44,11 +44,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 30,
     backgroundColor: colors.light.backgroundSecondary,
-    TextColor: "red",
   },
   Badge: {
     marginHorizontal: 5,
-    color: "red",
   },
   BadgeText: {
     marginTop: 5,

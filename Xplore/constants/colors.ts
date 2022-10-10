@@ -16,6 +16,7 @@ export const colors = {
     gray400: "#E8E8E8",
     linkText: "#6587FF",
     bodyText: "#8A8C93",
+    icon: "#C4C4C4",
   },
   dark: {
     primary: "#0074FF",
@@ -34,5 +35,6 @@ export const colors = {
     gray400: "#313131",
     linkText: "#6587FF",
     bodyText: "#8A8C93",
+    icon: "#C4C4C4",
   },
 };
