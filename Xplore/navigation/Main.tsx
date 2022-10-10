@@ -6,6 +6,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ColorSchemeName } from "react-native";
 import Home from "../features/Dashboard/screens/Home.screen";
+import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,10 +19,16 @@ const Main = ({ colorScheme }: MainProps) => {
     <NavigationContainer
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
+      <Stack.Navigator initialRouteName="Onboarding">
+        {/* <Stack.Screen
           name="Home"
           component={Home}
+          options={{ headerShown: false }}
+        /> */}
+
+        <Stack.Screen
+          name="Onboarding"
+          component={Onboarding}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

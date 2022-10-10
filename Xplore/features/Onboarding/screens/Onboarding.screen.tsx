@@ -6,8 +6,8 @@ import {
   Image,
   StyleSheet,
   View,
-  TouchableOpacity, 
-  Text
+  TouchableOpacity,
+  Text as RNText,
 } from "react-native";
 import { colors } from "../../../constants";
 
@@ -19,9 +19,8 @@ const images: string[] = [
 
 const { width } = Dimensions.get("screen");
 
-const OnboardingPage: FunctionComponent = (props: any) => {
+const Onboarding: FunctionComponent = (props: any) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
-
 
   return (
     <View style={style.container}>
@@ -75,9 +74,10 @@ const OnboardingPage: FunctionComponent = (props: any) => {
             );
           }}
         />
-        <TouchableOpacity><Text style={style.skipButton}>SKIP</Text></TouchableOpacity>
+        <TouchableOpacity>
+          <RNText style={style.skipButton}>SKIP</RNText>
+        </TouchableOpacity>
       </View>
-      
     </View>
   );
 };
@@ -140,4 +140,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default OnboardingPage;
+export default Onboarding;
