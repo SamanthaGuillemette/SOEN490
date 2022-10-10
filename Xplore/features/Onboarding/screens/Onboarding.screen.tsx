@@ -2,24 +2,34 @@ import React, { FunctionComponent, useRef, useState } from "react";
 import {
   Animated,
   Dimensions,
-  FlatList,
   Image,
   StyleSheet,
   View,
   TouchableOpacity,
   Text as RNText,
+  FlatList,
 } from "react-native";
 import { colors } from "../../../constants";
+import { Text } from "../../../components";
 
 const { width } = Dimensions.get("screen");
 
 const Onboarding: FunctionComponent = (props: any) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
-  const [images, setimages] = useState([
-    require("../assets/Onboarding1.png"),
-    require("../assets/Onboarding2.png"),
-    require("../assets/Onboarding3.png"),
-  ]);
+  const images = [
+    {
+      img: require("../assets/Onboarding1.png"),
+      message: "Xplore helps you find like minded partners",
+    },
+    {
+      img: require("../assets/Onboarding2.png"),
+      message: "Hello, it's me",
+    },
+    {
+      img: require("../assets/Onboarding3.png"),
+      message: "Yo",
+    },
+  ];
 
   return (
     <View style={style.container}>
@@ -37,7 +47,10 @@ const Onboarding: FunctionComponent = (props: any) => {
           renderItem={({ item, index }) => {
             return (
               <View style={style.imageContainer}>
-                <Image style={style.image} source={item} key={index} />
+                <Image style={style.image} source={item.img} key={index} />
+                <Text variant="h2" color="gray100">
+                  {item.message}
+                </Text>
               </View>
             );
           }}
