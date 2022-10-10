@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef } from "react";
+import React, { FunctionComponent, useRef, useState } from "react";
 import {
   Animated,
   Dimensions,
@@ -11,16 +11,15 @@ import {
 } from "react-native";
 import { colors } from "../../../constants";
 
-const images: string[] = [
-  "../assets/Onboarding1.png",
-  "https://vectorforfree.com/wp-content/uploads/2020/02/Project_Teamwork_VectorForFree.png",
-  "https://static.vecteezy.com/system/resources/previews/005/283/048/original/teamwork-concept-in-3d-isometric-design-colleagues-work-together-on-project-team-building-and-collaboration-business-development-web-template-with-people-scene-illustration-for-webpage-vector.jpg",
-];
-
 const { width } = Dimensions.get("screen");
 
 const Onboarding: FunctionComponent = (props: any) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
+  const [images, setimages] = useState([
+    require("../assets/Onboarding1.png"),
+    require("../assets/Onboarding2.png"),
+    require("../assets/Onboarding3.png"),
+  ]);
 
   return (
     <View style={style.container}>
@@ -35,10 +34,10 @@ const Onboarding: FunctionComponent = (props: any) => {
           )}
           pagingEnabled={true}
           keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item }) => {
+          renderItem={({ item, index }) => {
             return (
               <View style={style.imageContainer}>
-                <Image style={style.image} source={{ uri: item }} />
+                <Image style={style.image} source={item} key={index} />
               </View>
             );
           }}
