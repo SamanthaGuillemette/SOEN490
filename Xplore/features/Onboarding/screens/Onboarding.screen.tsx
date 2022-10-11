@@ -74,7 +74,7 @@ const Onboarding = (props: OnboardingProps) => {
           }}
         />
       </View>
-      <View style={style.bottomContainer}>
+      <View style={[style.bottomContainer, { right: 130, top: 50 }]}>
         <FlatList
           horizontal
           data={images}
