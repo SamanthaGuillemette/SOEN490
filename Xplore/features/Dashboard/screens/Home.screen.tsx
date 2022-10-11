@@ -32,10 +32,10 @@ const Home = (props: HomeProps) => {
             <StatBoxSmall />
             <StatBoxLarge />
           </View>
-          <TouchableOpacity onPress={toOnboarding}>
-            <Text variant="h2">TO ONBOARDING</Text>
-          </TouchableOpacity>
         </View>
+        <TouchableOpacity onPress={toOnboarding}>
+          <Text variant="h2">TO ONBOARDING</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
