@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light.backgroundSecondary,
   },
   Badge: {
-    marginHorizontal: 10,
+    marginHorizontal: 20,
   },
   BadgeText: {
     marginTop: 2,
