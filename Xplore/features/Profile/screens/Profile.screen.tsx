@@ -1,6 +1,5 @@
 import * as React from "react";
-import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
-import { Text } from "../../../components";
+import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import ProfileInfo from "../components/ProfileInfo";
 import Badges from "../components/Badges";
 import Projects from "../components/Projects";
