@@ -14,8 +14,13 @@ import { Text } from "../../../components";
 
 const { width } = Dimensions.get("screen");
 
-const Onboarding: FunctionComponent = (props: any) => {
+interface OnboardingProps {
+  navigation: any;
+}
+
+const Onboarding = (props: OnboardingProps) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
+  const toHome = () => props.navigation.navigate("Home");
   const images = [
     {
       img: require("../../../assets/Onboarding1.png"),
@@ -55,7 +60,7 @@ const Onboarding: FunctionComponent = (props: any) => {
           renderItem={({ item, index }) => {
             return (
               <View style={style.skipContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={toHome}>
                   <RNText style={style.skipButton}>SKIP</RNText>
                 </TouchableOpacity>
                 <View style={style.imageContainer}>
@@ -135,7 +140,7 @@ const style = StyleSheet.create({
   },
   skipContainer: {
     justifyContent: "flex-end",
-    alignItems: 'flex-end'
+    alignItems: "flex-end",
   },
   imageContainer: {
     justifyContent: "flex-end",
@@ -167,7 +172,6 @@ const style = StyleSheet.create({
   skipButton: {
     color: colors.light.gray500,
     padding: 47,
-
   },
 });
 

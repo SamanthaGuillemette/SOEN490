@@ -20,17 +20,18 @@ const Main = ({ colorScheme }: MainProps) => {
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <Stack.Navigator initialRouteName="Onboarding">
-        {/* <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        /> */}
-
         <Stack.Screen
           name="Onboarding"
           component={Onboarding}
           options={{ headerShown: false }}
         />
+        {
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );
