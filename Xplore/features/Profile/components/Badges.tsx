@@ -22,7 +22,7 @@ const Badges = () => {
       <View style={styles.Badges}>
         <ScrollView horizontal={true}>
           <Avatar.Image
-            style={(styles.Badge, { marginLeft: 25 })}
+            style={{ marginLeft: 25 }}
             size={75}
             source={require("../../../assets/badge1.png")}
           />
