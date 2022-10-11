@@ -66,8 +66,6 @@ const Onboarding = (props: OnboardingProps) => {
                 <View style={style.imageContainer}>
                   <Image style={style.image} source={item.img} key={index} />
                   <Text style={style.onboardingText} variant="onboarding">
-                    {"\n"}
-                    {"\n"}
                     {item.message}
                   </Text>
                 </View>

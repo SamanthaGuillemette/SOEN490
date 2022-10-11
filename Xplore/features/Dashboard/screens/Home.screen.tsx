@@ -1,13 +1,22 @@
 import * as React from "react";
-import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { Text } from "../../../components/";
 import HomeHeader from "../components/HomeHeader.component";
 import StatBoxLarge from "../components/StatBoxLarge.component";
 import StatBoxSmall from "../components/StatBoxSmall.component";
 
-interface HomeProps {}
+interface HomeProps {
+  navigation: any;
+}
+const Home = (props: HomeProps) => {
+  const toOnboarding = () => props.navigation.navigate("Onboarding");
 
-const Home = ({}: HomeProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <HomeHeader />
@@ -23,6 +32,9 @@ const Home = ({}: HomeProps) => {
             <StatBoxSmall />
             <StatBoxLarge />
           </View>
+          <TouchableOpacity onPress={toOnboarding}>
+            <Text variant="h2">TO ONBOARDING</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
