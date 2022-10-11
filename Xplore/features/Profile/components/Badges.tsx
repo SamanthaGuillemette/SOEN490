@@ -22,7 +22,7 @@ const Badges = () => {
       <View style={styles.Badges}>
         <ScrollView horizontal={true}>
           <Avatar.Image
-            style={styles.Badge}
+            style={(styles.Badge, { marginLeft: 25 })}
             size={75}
             source={require("../../../assets/badge1.png")}
           />
@@ -32,7 +32,6 @@ const Badges = () => {
             source={require("../../../assets/badge2.png")}
           />
           <Avatar.Image
-            style={styles.Badge}
             size={75}
             source={require("../../../assets/badge3.png")}
           />
@@ -42,7 +41,6 @@ const Badges = () => {
             source={require("../../../assets/badge4.png")}
           />
           <Avatar.Image
-            style={styles.Badge}
             size={75}
             source={require("../../../assets/badge1.png")}
           />
@@ -52,7 +50,6 @@ const Badges = () => {
             source={require("../../../assets/badge2.png")}
           />
           <Avatar.Image
-            style={styles.Badge}
             size={75}
             source={require("../../../assets/badge3.png")}
           />

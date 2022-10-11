@@ -21,35 +21,78 @@ const Projects = () => {
       <View style={styles.Projects}>
         <ScrollView horizontal={true}>
           <Image
-            style={{
-              marginVertical: 15,
-              height: 200,
-              width: 270,
-              borderRadius: 7,
-              opacity: 0.6,
-            }}
+            style={[styles.SideProject, { marginLeft: 25 }]}
             source={require("../../../assets/SnakeRobot.png")}
           />
+          <View
+            style={[styles.Overlay, styles.SideProject, { marginLeft: 25 }]}
+          ></View>
+          <Text
+            variant="smLabel"
+            style={[styles.CompletedProject, { bottom: 90, left: 50 }]}
+          >
+            Completed
+          </Text>
+          <Text
+            variant="h3"
+            style={[styles.OverlayText, { bottom: 60, left: 50 }]}
+          >
+            Snake robot
+          </Text>
+          <Text
+            variant="smBody"
+            style={[styles.OverlayText, { bottom: 45, left: 50 }]}
+          >
+            Unique soft robot
+          </Text>
+
           <Image
-            style={{
-              height: 230,
-              width: 300,
-              borderRadius: 7,
-              opacity: 0.6,
-              marginHorizontal: 15,
-            }}
+            style={styles.MiddleProject}
             source={require("../../../assets/SnakeRobot.png")}
           />
+          <View style={[styles.Overlay, styles.MiddleProject, { left: 310 }]} />
+          <Text
+            variant="smLabel"
+            style={[styles.CompletedProject, { bottom: 84, left: 335 }]}
+          >
+            Completed
+          </Text>
+          <Text
+            variant="h3"
+            style={[styles.OverlayText, { bottom: 54, left: 335 }]}
+          >
+            Snake robot
+          </Text>
+          <Text
+            variant="smBody"
+            style={[styles.OverlayText, { bottom: 39, left: 335 }]}
+          >
+            Unique soft robot
+          </Text>
+
           <Image
-            style={{
-              marginVertical: 15,
-              height: 200,
-              width: 270,
-              borderRadius: 7,
-              opacity: 0.6,
-            }}
+            style={styles.SideProject}
             source={require("../../../assets/SnakeRobot.png")}
           />
+          <View style={[styles.Overlay, styles.SideProject, { left: 610 }]} />
+          <Text
+            variant="smLabel"
+            style={[styles.CompletedProject, { bottom: 90, left: 660 }]}
+          >
+            Completed
+          </Text>
+          <Text
+            variant="h3"
+            style={[styles.OverlayText, { bottom: 60, left: 660 }]}
+          >
+            Snake robot
+          </Text>
+          <Text
+            variant="smBody"
+            style={[styles.OverlayText, { bottom: 45, left: 660 }]}
+          >
+            Unique soft robot
+          </Text>
         </ScrollView>
       </View>
     </View>
@@ -66,8 +109,34 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
-  Project: {
-    marginHorizontal: 10,
+  MiddleProject: {
+    height: 230,
+    width: 300,
+    borderRadius: 7,
+  },
+  SideProject: {
+    height: 200,
+    width: 270,
+    borderRadius: 7,
+    marginVertical: 15,
+    marginHorizontal: 15,
+  },
+  Overlay: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    position: "absolute",
+  },
+  CompletedProject: {
+    color: colors.light.backgroundSecondary,
+    position: "absolute",
+    backgroundColor: colors.light.success,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 3,
+    letterSpacing: 0.2,
+  },
+  OverlayText: {
+    color: colors.light.backgroundSecondary,
+    position: "absolute",
   },
   ProjectText: {
     marginTop: 2,
