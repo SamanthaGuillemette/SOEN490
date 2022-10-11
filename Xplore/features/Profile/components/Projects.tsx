@@ -1,6 +1,7 @@
 import { StyleSheet, View, Image } from "react-native";
 import { Text } from "../../../components";
 import { colors } from "../../../constants";
+import { ScrollView } from "react-native";
 
 const Projects = () => {
   return (
@@ -18,36 +19,38 @@ const Projects = () => {
         </Text>
       </View>
       <View style={styles.Projects}>
-        <Image
-          style={{
-            marginVertical: 15,
-            height: 200,
-            width: 270,
-            borderRadius: 7,
-            opacity: 0.6,
-          }}
-          source={require("../../../assets/SnakeRobot.png")}
-        />
-        <Image
-          style={{
-            height: 230,
-            width: 300,
-            borderRadius: 7,
-            opacity: 0.6,
-            marginHorizontal: 15,
-          }}
-          source={require("../../../assets/SnakeRobot.png")}
-        />
-        <Image
-          style={{
-            marginVertical: 15,
-            height: 200,
-            width: 270,
-            borderRadius: 7,
-            opacity: 0.6,
-          }}
-          source={require("../../../assets/SnakeRobot.png")}
-        />
+        <ScrollView horizontal={true}>
+          <Image
+            style={{
+              marginVertical: 15,
+              height: 200,
+              width: 270,
+              borderRadius: 7,
+              opacity: 0.6,
+            }}
+            source={require("../../../assets/SnakeRobot.png")}
+          />
+          <Image
+            style={{
+              height: 230,
+              width: 300,
+              borderRadius: 7,
+              opacity: 0.6,
+              marginHorizontal: 15,
+            }}
+            source={require("../../../assets/SnakeRobot.png")}
+          />
+          <Image
+            style={{
+              marginVertical: 15,
+              height: 200,
+              width: 270,
+              borderRadius: 7,
+              opacity: 0.6,
+            }}
+            source={require("../../../assets/SnakeRobot.png")}
+          />
+        </ScrollView>
       </View>
     </View>
   );

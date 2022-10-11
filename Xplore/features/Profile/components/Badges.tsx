@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { Avatar } from "react-native-paper";
 import { Text } from "../../../components";
 import { colors } from "../../../constants";
+import { ScrollView } from "react-native";
 
 const Badges = () => {
   return (
@@ -19,26 +20,48 @@ const Badges = () => {
         </Text>
       </View>
       <View style={styles.Badges}>
-        <Avatar.Image
-          style={styles.Badge}
-          size={75}
-          source={require("../../../assets/badge1.png")}
-        />
-        <Avatar.Image
-          style={styles.Badge}
-          size={75}
-          source={require("../../../assets/badge2.png")}
-        />
-        <Avatar.Image
-          style={styles.Badge}
-          size={75}
-          source={require("../../../assets/badge3.png")}
-        />
-        <Avatar.Image
-          style={styles.Badge}
-          size={75}
-          source={require("../../../assets/badge4.png")}
-        />
+        <ScrollView horizontal={true}>
+          <Avatar.Image
+            style={styles.Badge}
+            size={75}
+            source={require("../../../assets/badge1.png")}
+          />
+          <Avatar.Image
+            style={styles.Badge}
+            size={75}
+            source={require("../../../assets/badge2.png")}
+          />
+          <Avatar.Image
+            style={styles.Badge}
+            size={75}
+            source={require("../../../assets/badge3.png")}
+          />
+          <Avatar.Image
+            style={styles.Badge}
+            size={75}
+            source={require("../../../assets/badge4.png")}
+          />
+          <Avatar.Image
+            style={styles.Badge}
+            size={75}
+            source={require("../../../assets/badge1.png")}
+          />
+          <Avatar.Image
+            style={styles.Badge}
+            size={75}
+            source={require("../../../assets/badge2.png")}
+          />
+          <Avatar.Image
+            style={styles.Badge}
+            size={75}
+            source={require("../../../assets/badge3.png")}
+          />
+          <Avatar.Image
+            style={styles.Badge}
+            size={75}
+            source={require("../../../assets/badge4.png")}
+          />
+        </ScrollView>
       </View>
     </View>
   );
