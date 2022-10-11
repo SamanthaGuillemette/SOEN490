@@ -2,12 +2,12 @@ import { StyleProp, ViewStyle, TouchableOpacity, Text } from "react-native";
 import { useThemeColor } from "../../hooks";
 import styles from "./PrimaryButton.styles";
 
-interface PrimaryButton {
+interface PrimaryButtonProps {
   label: String;
   style?: StyleProp<ViewStyle>;
 }
 
-export const PrimaryButton = ({ label, style }: PrimaryButton) => {
+export const PrimaryButton = ({ label, style }: PrimaryButtonProps) => {
   const primary = useThemeColor("primary");
   return (
     <TouchableOpacity

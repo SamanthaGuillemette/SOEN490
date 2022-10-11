@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { useThemeColor } from "../../hooks";
+import styles from "./SegmentedButton.styles";
 
 interface SegmentedButtonProps {
   labels: String[];
@@ -26,43 +27,15 @@ export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
         selectedIndex={selectedIndex}
         onTabPress={handleIndexSelect}
         borderRadius={30}
-        tabsContainerStyle={{
-          height: 30,
-          minWidth: 180,
-          backgroundColor: bg,
-          shadowColor: primary,
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          shadowOpacity: 0.1,
-          shadowRadius: 5,
-          elevation: 4,
-          borderRadius: 30,
-        }}
-        tabStyle={{
-          backgroundColor: bg,
-          borderColor: bg,
-          margin: 1,
-          padding: 1,
-        }}
-        activeTabStyle={{
-          backgroundColor: primary,
-          borderRadius: 30,
-        }}
-        tabTextStyle={{
-          color: primary,
-        }}
-        activeTabTextStyle={{
-          borderColor: bg,
-          color: "white",
-        }}
+        tabsContainerStyle={[
+          styles.tabsContainerStyle,
+          { backgroundColor: bg, shadowColor: primary },
+        ]}
+        tabStyle={[styles.tabStyle, { backgroundColor: bg, borderColor: bg }]}
+        activeTabStyle={[styles.activeTabStyle, { backgroundColor: primary }]}
+        tabTextStyle={{ color: primary }}
+        activeTabTextStyle={[styles.activeTabStyle, { borderColor: bg }]}
       />
     </View>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    marginVertical: 30,
-  },
-});

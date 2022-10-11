@@ -1,4 +1,5 @@
 export * from "./Text";
+export * from "./TextInput";
 export * from "./Icon";
 export * from "./View";
 export * from "./LinkButton";

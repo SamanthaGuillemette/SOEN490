@@ -3,8 +3,8 @@ import { ScrollView } from "react-native";
 import { View, Logo, ShadowView } from "../../../components";
 import { SegmentedButton } from "../../../components/SegmentedButton";
 import styles from "./Sign.styles";
-import SignIn from "./SignIn/SignIn.screen";
-import SignUp from "./SignUp/SignUp.screen";
+import SignIn from "../components/SignIn/SignIn.screen";
+import SignUp from "../components/SignUp/SignUp.screen";
 
 const Sign = () => {
   const [screen, setScreen] = useState(0);

@@ -2,12 +2,12 @@ import { StyleProp, ViewStyle, TouchableOpacity, Text } from "react-native";
 import { useThemeColor } from "../../hooks";
 import styles from "./SecondaryButton.styles";
 
-interface SecondaryButton {
+interface SecondaryButtonProps {
   label: String;
   style?: StyleProp<ViewStyle>;
 }
 
-export const SecondaryButton = ({ label, style }: SecondaryButton) => {
+export const SecondaryButton = ({ label, style }: SecondaryButtonProps) => {
   const primary = useThemeColor("primary");
   const bg = useThemeColor("backgroundSecondary");
   return (
