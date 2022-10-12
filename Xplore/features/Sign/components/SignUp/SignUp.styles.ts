@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   inputsContainer: {
-    marginTop: 20,
+    marginTop: 50,
   },
   PrimaryButton: {
     marginVertical: 40,

@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+import { Platform } from "react-native";
+import { multiplier } from "../../constants";
 
 export default StyleSheet.create({
   container: {
@@ -13,7 +15,7 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     padding: 5,
     marginBottom: 35,
-    width: 250,
+    width: Platform.OS === "ios" ? 250 * multiplier : 250,
   },
   textInputIcon: {
     width: 24,

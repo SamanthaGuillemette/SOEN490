@@ -1,12 +1,14 @@
 import { StyleSheet } from "react-native";
+import { Platform } from "react-native";
+import { multiplier } from "../../constants";
 
 export default StyleSheet.create({
   container: {
-    marginVertical: 30,
+    marginVertical: 20,
   },
   tabsContainerStyle: {
-    height: 30,
-    minWidth: 180,
+    height: Platform.OS === "ios" ? 30 * multiplier : 30,
+    minWidth: Platform.OS === "ios" ? 180 * multiplier : 180,
     borderRadius: 30,
     shadowOffset: {
       width: 0,
@@ -17,8 +19,7 @@ export default StyleSheet.create({
     elevation: 4,
   },
   tabStyle: {
-    margin: 1,
-    padding: 1,
+    padding: 3,
   },
   activeTabStyle: {
     borderRadius: 30,
