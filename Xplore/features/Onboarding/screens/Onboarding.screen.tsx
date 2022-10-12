@@ -61,7 +61,9 @@ const Onboarding = (props: OnboardingProps) => {
             return (
               <View style={style.skipContainer}>
                 <TouchableOpacity onPress={toHome}>
-                  <RNText style={style.skipButton}>SKIP</RNText>
+                  <Text variant="onboarding" style={style.skipButton}>
+                    SKIP
+                  </Text>
                 </TouchableOpacity>
                 <View style={style.imageContainer}>
                   <Image style={style.image} source={item.img} key={index} />
