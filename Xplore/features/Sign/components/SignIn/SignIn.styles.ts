@@ -7,19 +7,6 @@ export default StyleSheet.create({
   inputsContainer: {
     marginTop: 50,
   },
-  inputWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderBottomWidth: 1,
-    padding: 5,
-    marginBottom: 35,
-    width: 250,
-  },
-  textInputIcon: {
-    width: 24,
-    height: 24,
-    marginRight: 10,
-  },
   PrimaryButton: {
     marginTop: 40,
   },
