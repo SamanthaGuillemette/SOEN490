@@ -16,8 +16,14 @@ const ProfileInfo = () => {
           />
         </View>
 
-        <Icon name="bell" color="primary" size="large" style={styles.Bell} />
+        <Icon
+          name="bell"
+          color="primary"
+          size="large"
+          style={styles.Bell}
+        ></Icon>
       </View>
+      <View style={styles.RedDot}></View>
       <View style={styles.ProfileInfo}>
         <Text
           variant="h2"
@@ -185,5 +191,14 @@ const styles = StyleSheet.create({
   Description: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  RedDot: {
+    flexDirection: "row",
+    width: 9,
+    height: 9,
+    backgroundColor: "red",
+    borderRadius: 50,
+    marginLeft: 366,
+    marginTop: -29,
   },
 });
