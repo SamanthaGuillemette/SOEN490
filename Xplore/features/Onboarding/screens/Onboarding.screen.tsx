@@ -61,13 +61,16 @@ const Onboarding = (props: OnboardingProps) => {
             return (
               <View style={style.skipContainer}>
                 <TouchableOpacity onPress={toHome}>
-                  <Text variant="onboarding" style={style.skipButton}>
+                  <Text variant="body" style={style.skipButton}>
                     SKIP
                   </Text>
                 </TouchableOpacity>
-                <View style={style.imageContainer}>
+                <View style={[style.imageContainer, { bottom: 20 }]}>
                   <Image style={style.image} source={item.img} key={index} />
-                  <Text style={style.onboardingText} variant="onboarding">
+                  <Text
+                    style={[style.onboardingText, { top: 10 }]}
+                    variant="onboarding"
+                  >
                     {item.message}
                   </Text>
                 </View>
@@ -172,6 +175,7 @@ const style = StyleSheet.create({
   skipButton: {
     color: colors.light.gray500,
     padding: 47,
+    fontWeight: "bold",
   },
 });
 
