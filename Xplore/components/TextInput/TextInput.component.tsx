@@ -8,12 +8,14 @@ interface TextInputProps {
   PlaceHolder: any;
   IconName: keyof typeof Feather.glyphMap;
   SecureTextEntry?: boolean;
+  onChangeText?: (text: string) => void;
 }
 
 export const TextInput = ({
   PlaceHolder,
   IconName,
   SecureTextEntry,
+  onChangeText,
 }: TextInputProps) => {
   const gray77 = useThemeColor("gray77");
   const primary = useThemeColor("primary");
@@ -25,6 +27,7 @@ export const TextInput = ({
         placeholder={PlaceHolder}
         secureTextEntry={SecureTextEntry}
         selectionColor={primary}
+        onChangeText={onChangeText}
       />
     </View>
   );
