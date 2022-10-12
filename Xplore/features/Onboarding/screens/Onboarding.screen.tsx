@@ -65,12 +65,14 @@ const Onboarding = (props: OnboardingProps) => {
                     SKIP
                   </Text>
                 </TouchableOpacity>
-                <View style={[style.imageContainer, { bottom: 20 }]}>
+                <View style={style.imageContainer}>
                   <Image style={style.image} source={item.img} key={index} />
                   <Text
-                    style={[style.onboardingText, { top: 10 }]}
+                    style={style.onboardingText}
                     variant="onboarding"
                   >
+                    {"\n"}
+                    {"\n"}
                     {item.message}
                   </Text>
                 </View>
@@ -79,7 +81,7 @@ const Onboarding = (props: OnboardingProps) => {
           }}
         />
       </View>
-      <View style={[style.bottomContainer, { right: 130, top: 50 }]}>
+      <View style={style.bottomContainer}>
         <FlatList
           horizontal
           data={images}
@@ -130,16 +132,15 @@ const PagingDot: FunctionComponent<{ scale: any; color: any }> = ({
 
 const style = StyleSheet.create({
   container: {
-    flex: 3,
+    flex: 4,
   },
   topContainer: {
-    flex: 4,
+    flex: 4.5,
   },
   bottomContainer: {
     flex: 1,
-    width,
-    justifyContent: "flex-start",
-    alignItems: "center",
+    justifyContent: "flex-end",
+    marginLeft: 40,
   },
   skipContainer: {
     justifyContent: "flex-end",
@@ -149,6 +150,7 @@ const style = StyleSheet.create({
     justifyContent: "flex-end",
     width,
     alignItems: "center",
+    bottom: 15
   },
   image: {
     width: width - 80,
@@ -158,6 +160,7 @@ const style = StyleSheet.create({
   onboardingText: {
     width: width - 80,
     color: colors.light.gray200,
+    textAlign: 'center'
   },
   pagingDot: {
     width: 7,
