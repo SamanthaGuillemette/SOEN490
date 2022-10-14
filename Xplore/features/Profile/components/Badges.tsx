@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
-import { Avatar } from "react-native-paper";
-import { Text } from "../../../components";
+import { Avatar, Button } from "react-native-paper";
+import { LinkButton, Text } from "../../../components";
 import { colors } from "../../../constants";
 import { ScrollView } from "react-native";
 
@@ -15,9 +15,8 @@ const Badges = () => {
         >
           BADGES
         </Text>
-        <Text variant="body" color="linkText" style={{ marginRight: 18 }}>
-          View all
-        </Text>
+
+        <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
       </View>
       <View style={styles.Badges}>
         <ScrollView horizontal={true}>
