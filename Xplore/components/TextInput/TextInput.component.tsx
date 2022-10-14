@@ -6,15 +6,15 @@ import { useThemeColor } from "../../hooks";
 import styles from "./TextInput.styles";
 
 interface TextInputProps {
-  PlaceHolder: any;
-  IconName: keyof typeof Feather.glyphMap;
-  SecureTextEntry?: boolean;
+  placeHolder: any;
+  iconName: keyof typeof Feather.glyphMap;
+  secureTextEntry?: boolean;
 }
 
 export const TextInput = ({
-  PlaceHolder,
-  IconName,
-  SecureTextEntry,
+  placeHolder,
+  iconName,
+  secureTextEntry,
 }: TextInputProps) => {
   const gray77 = useThemeColor("gray77");
   const gray100 = useThemeColor("gray100");
@@ -37,7 +37,7 @@ export const TextInput = ({
       ]}
     >
       <Feather
-        name={IconName}
+        name={iconName}
         size={IconSize}
         color={isFocused ? primary : gray77}
         style={styles.textInputIcon}
@@ -46,8 +46,8 @@ export const TextInput = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         placeholderTextColor={gray77}
-        placeholder={PlaceHolder}
-        secureTextEntry={SecureTextEntry}
+        placeholder={placeHolder}
+        secureTextEntry={secureTextEntry}
         style={{ color: gray100 }}
       />
     </View>

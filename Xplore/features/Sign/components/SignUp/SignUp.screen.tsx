@@ -5,21 +5,19 @@ import styles from "./SignUp.styles";
 const SignUp = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.inputsContainer}>
-        <TextInput PlaceHolder={"Username"} IconName={"user"} />
-        <TextInput PlaceHolder={"Email"} IconName={"mail"} />
-        <TextInput
-          PlaceHolder={"Password"}
-          IconName={"lock"}
-          SecureTextEntry={true}
-        />
-        <TextInput
-          PlaceHolder={"Confirm Password"}
-          IconName={"lock"}
-          SecureTextEntry={true}
-        />
-        <PrimaryButton label="SIGN UP" style={styles.PrimaryButton} />
-      </View>
+      <TextInput placeHolder={"Username"} iconName={"user"} />
+      <TextInput placeHolder={"Email"} iconName={"mail"} />
+      <TextInput
+        placeHolder={"Password"}
+        iconName={"lock"}
+        secureTextEntry={true}
+      />
+      <TextInput
+        placeHolder={"Confirm Password"}
+        iconName={"lock"}
+        secureTextEntry={true}
+      />
+      <PrimaryButton label="SIGN UP" style={styles.PrimaryButton} />
     </View>
   );
 };

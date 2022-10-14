@@ -10,19 +10,10 @@ import styles from "./SignIn.styles";
 const SignIn = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.inputsContainer}>
-        <TextInput PlaceHolder={"Username"} IconName={"user"} />
-        <TextInput
-          PlaceHolder={"Password"}
-          IconName={"lock"}
-          SecureTextEntry={true}
-        />
-        <PrimaryButton label="SIGN IN" style={styles.PrimaryButton} />
-        <SecondaryButton
-          label="FORGOT PASSWORD"
-          style={styles.SecondaryButton}
-        />
-      </View>
+      <TextInput placeHolder="Username" iconName="user" />
+      <TextInput placeHolder="Password" iconName="lock" secureTextEntry />
+      <PrimaryButton label="SIGN IN" style={styles.PrimaryButton} />
+      <SecondaryButton label="FORGOT PASSWORD" style={styles.SecondaryButton} />
     </View>
   );
 };

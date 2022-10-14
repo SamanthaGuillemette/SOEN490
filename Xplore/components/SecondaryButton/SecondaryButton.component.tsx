@@ -1,5 +1,6 @@
-import { StyleProp, ViewStyle, TouchableOpacity, Text } from "react-native";
+import { StyleProp, ViewStyle, TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../hooks";
+import { Text } from "../Text";
 import styles from "./SecondaryButton.styles";
 
 interface SecondaryButtonProps {
@@ -18,7 +19,9 @@ export const SecondaryButton = ({ label, style }: SecondaryButtonProps) => {
         { backgroundColor: bg, borderColor: primary },
       ]}
     >
-      <Text style={[styles.textStyle, { color: primary }]}>{label}</Text>
+      <Text variant="label" style={[styles.textStyle, { color: primary }]}>
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 };

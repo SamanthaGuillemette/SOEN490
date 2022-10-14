@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { View } from "react-native";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { useThemeColor } from "../../hooks";
+import { ShadowView } from "../ShadowView";
 import styles from "./SegmentedButton.styles";
 
 interface SegmentedButtonProps {
   labels: String[];
-  setIndex: any;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
@@ -21,7 +21,7 @@ export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
   }
 
   return (
-    <View style={styles.container}>
+    <ShadowView style={styles.container}>
       <SegmentedControlTab
         values={labels}
         selectedIndex={selectedIndex}
@@ -36,6 +36,6 @@ export const SegmentedButton = ({ labels, setIndex }: SegmentedButtonProps) => {
         tabTextStyle={{ color: primary }}
         activeTabTextStyle={[styles.activeTabStyle, { borderColor: bg }]}
       />
-    </View>
+    </ShadowView>
   );
 };

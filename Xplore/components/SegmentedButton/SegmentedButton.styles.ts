@@ -1,30 +1,29 @@
 import { StyleSheet } from "react-native";
 import { Platform } from "react-native";
-import { multiplier } from "../../constants";
+import { fontSizes, multiplier } from "../../constants";
 
 export default StyleSheet.create({
   container: {
     marginVertical: 20,
+    borderRadius: 30,
   },
   tabsContainerStyle: {
-    height: Platform.OS === "ios" ? 30 * multiplier : 30,
-    minWidth: Platform.OS === "ios" ? 180 * multiplier : 180,
+    height: Platform.OS === "ios" ? 38 * multiplier : 38,
+    minWidth: Platform.OS === "ios" ? 200 * multiplier : 200,
     borderRadius: 30,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 4,
   },
   tabStyle: {
-    padding: 3,
+    margin: 1,
+  },
+  lastTabStyle: {
+    marginHorizontal: 20,
   },
   activeTabStyle: {
     borderRadius: 30,
   },
   activeTabTextStyle: {
     color: "white",
+    fontSize:
+      Platform.OS === "ios" ? fontSizes.label * multiplier : fontSizes.label,
   },
 });
