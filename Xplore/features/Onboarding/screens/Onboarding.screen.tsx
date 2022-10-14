@@ -1,15 +1,15 @@
-import React, { FunctionComponent, useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   Animated,
   Dimensions,
   Image,
   View,
   TouchableOpacity,
-  Text as RNText,
   FlatList,
 } from "react-native";
 import { Text } from "../../../components";
 import styles from "./Onboarding.styles";
+import PagingDot from "../components/PagingDot.component"
 
 const { width } = Dimensions.get("screen");
 
@@ -110,20 +110,6 @@ const Onboarding = (props: OnboardingProps) => {
         />
       </View>
     </View>
-  );
-};
-
-const PagingDot: FunctionComponent<{ scale: any; color: any }> = ({
-  scale,
-  color,
-}) => {
-  return (
-    <Animated.View
-      style={[
-        styles.pagingDot,
-        { backgroundColor: color, transform: [{ scale }] },
-      ]}
-    />
   );
 };
 

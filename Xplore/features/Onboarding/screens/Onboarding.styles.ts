@@ -36,14 +36,6 @@ export default StyleSheet.create({
         color: colors.light.gray200,
         textAlign: 'center'
     },
-    pagingDot: {
-        width: 7,
-        height: 7,
-        backgroundColor: "grey",
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: "grey"
-    },
     dotContainer: {
         width: 21,
         padding: 10,
