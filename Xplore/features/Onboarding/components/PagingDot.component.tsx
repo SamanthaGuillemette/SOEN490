@@ -1,29 +1,20 @@
 import React, { FunctionComponent } from "react";
 import { Animated, StyleSheet } from "react-native";
+import styles from "../screens/Onboarding.styles";
 
-const PagingDot: FunctionComponent<{ scale: any; color: any }> = ({
-    scale,
-    color,
-}) => {
-    return (
-        <Animated.View
-            style={[
-            styles.pagingDot,
-            { backgroundColor: color, transform: [{ scale }] },
-            ]}
-        />
-    );
+interface PagingProps {
+  scale: any;
+  color: any;
+}
+const PagingDot = (props: PagingProps) => {
+  return (
+    <Animated.View
+      style={[
+        styles.pagingDot,
+        { backgroundColor: props.color, transform: [{ scale: props.scale }] },
+      ]}
+    />
+  );
 };
 
 export default PagingDot;
-
-const styles = StyleSheet.create({
-    pagingDot: {
-        width: 7,
-        height: 7,
-        backgroundColor: "grey",
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: "grey"
-    }
-});
