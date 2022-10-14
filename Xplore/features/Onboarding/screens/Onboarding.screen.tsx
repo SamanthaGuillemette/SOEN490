@@ -3,14 +3,13 @@ import {
   Animated,
   Dimensions,
   Image,
-  StyleSheet,
   View,
   TouchableOpacity,
   Text as RNText,
   FlatList,
 } from "react-native";
-import { colors } from "../../../constants";
 import { Text } from "../../../components";
+import styles from "./Onboarding.styles";
 
 const { width } = Dimensions.get("screen");
 
@@ -45,8 +44,8 @@ const Onboarding = (props: OnboardingProps) => {
   ];
 
   return (
-    <View style={style.container}>
-      <View style={style.topContainer}>
+    <View style={styles.container}>
+      <View style={styles.topContainer}>
         <Animated.FlatList
           data={images}
           horizontal
@@ -59,16 +58,16 @@ const Onboarding = (props: OnboardingProps) => {
           keyExtractor={(_, index) => index.toString()}
           renderItem={({ item, index }) => {
             return (
-              <View style={style.skipContainer}>
+              <View style={styles.skipContainer}>
                 <TouchableOpacity onPress={toHome}>
-                  <Text variant="body" style={style.skipButton}>
+                  <Text variant="body" style={styles.skipButton}>
                     SKIP
                   </Text>
                 </TouchableOpacity>
-                <View style={style.imageContainer}>
-                  <Image style={style.image} source={item.img} key={index} />
+                <View style={styles.imageContainer}>
+                  <Image style={styles.image} source={item.img} key={index} />
                   <Text
-                    style={style.onboardingText}
+                    style={styles.onboardingText}
                     variant="onboarding"
                   >
                     {"\n"}
@@ -81,7 +80,7 @@ const Onboarding = (props: OnboardingProps) => {
           }}
         />
       </View>
-      <View style={style.bottomContainer}>
+      <View style={styles.bottomContainer}>
         <FlatList
           horizontal
           data={images}
@@ -105,7 +104,7 @@ const Onboarding = (props: OnboardingProps) => {
               extrapolate: "clamp",
             });
             return (
-              <View style={style.dotContainer}>
+              <View style={styles.dotContainer}>
                 <PagingDot color={color} scale={dotScale} />
               </View>
             );
@@ -123,63 +122,11 @@ const PagingDot: FunctionComponent<{ scale: any; color: any }> = ({
   return (
     <Animated.View
       style={[
-        style.pagingDot,
+        styles.pagingDot,
         { backgroundColor: color, transform: [{ scale }] },
       ]}
     />
   );
 };
-
-const style = StyleSheet.create({
-  container: {
-    flex: 4,
-  },
-  topContainer: {
-    flex: 4.5,
-  },
-  bottomContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    marginLeft: 40,
-  },
-  skipContainer: {
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-  },
-  imageContainer: {
-    justifyContent: "flex-end",
-    width,
-    alignItems: "center",
-    bottom: 15
-  },
-  image: {
-    width: width - 80,
-    height: 300,
-    borderRadius: 40,
-  },
-  onboardingText: {
-    width: width - 80,
-    color: colors.light.gray200,
-    textAlign: 'center'
-  },
-  pagingDot: {
-    width: 7,
-    height: 7,
-    backgroundColor: "grey",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "grey",
-  },
-  dotContainer: {
-    width: 21,
-    padding: 10,
-    top: 60,
-  },
-  skipButton: {
-    color: colors.light.gray500,
-    padding: 47,
-    fontWeight: "bold",
-  },
-});
 
 export default Onboarding;
