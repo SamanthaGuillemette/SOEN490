@@ -14,7 +14,6 @@ export const colors = {
     gray200: "#585757",
     gray300: "#969696",
     gray400: "#E8E8E8",
-    gray500: "#8A8C93",
     linkText: "#6587FF",
   },
   dark: {

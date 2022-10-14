@@ -50,7 +50,7 @@ export default StyleSheet.create({
         top: 90
     },
     skipButton: {
-        color: colors.light.gray500,
+        color: colors.light.gray300,
         padding: 47,
         fontWeight: "bold"
     },
