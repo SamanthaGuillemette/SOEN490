@@ -5,19 +5,19 @@ const { width } = Dimensions.get("screen");
 
 export default StyleSheet.create({
     container: {
-        flex: 4,
+        flex: 3,
     },
     topContainer: {
-        flex: 4.5,
+        flex: 3.1,
     },
     bottomContainer: {
         flex: 1,
         justifyContent: "flex-end",
-        marginLeft: 40,
+        marginLeft: 40
     },
     skipContainer: {
         justifyContent: "flex-end",
-        alignItems: "flex-end",
+        alignItems: "flex-end"
     },
     imageContainer: {
         justifyContent: "flex-end",
@@ -31,6 +31,7 @@ export default StyleSheet.create({
         borderRadius: 40,
     },
     onboardingText: {
+        paddingTop: 43,
         width: width - 80,
         color: colors.light.gray200,
         textAlign: 'center'
@@ -41,16 +42,16 @@ export default StyleSheet.create({
         backgroundColor: "grey",
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: "grey",
+        borderColor: "grey"
     },
     dotContainer: {
         width: 21,
         padding: 10,
-        top: 60,
+        top: 90
     },
     skipButton: {
         color: colors.light.gray500,
         padding: 47,
-        fontWeight: "bold",
+        fontWeight: "bold"
     },
 });

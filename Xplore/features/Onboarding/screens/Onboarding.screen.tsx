@@ -24,7 +24,7 @@ const Onboarding = (props: OnboardingProps) => {
     {
       img: require("../../../assets/Onboarding1.png"),
       message:
-        "Xplore is an application which facilitates learning programming technologies using project-based learning.",
+        "Xplore is an application that facilitates learning programming technologies using project-based learning.",
     },
     {
       img: require("../../../assets/Onboarding2.png"),
@@ -39,7 +39,7 @@ const Onboarding = (props: OnboardingProps) => {
     {
       img: require("../../../assets/Onboarding4.png"),
       message:
-        "Upon project completion, users will accumulate points and/or new badges for participating in new projects and for finishing them.",
+        "Upon project completion, users will accumulate points and/or badges for participating in new projects and for finishing them.",
     },
   ];
 
@@ -68,10 +68,8 @@ const Onboarding = (props: OnboardingProps) => {
                   <Image style={styles.image} source={item.img} key={index} />
                   <Text
                     style={styles.onboardingText}
-                    variant="onboarding"
+                    variant="h3"
                   >
-                    {"\n"}
-                    {"\n"}
                     {item.message}
                   </Text>
                 </View>
