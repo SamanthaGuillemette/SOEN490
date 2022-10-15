@@ -14,24 +14,27 @@ import { account } from "../../../../assets/appwrite/appwrite";
 //    ** email is valid (xyz@gmail.com)
 //  ** getting a name
 
+const handleSignUp = (username: string, email: string, password: string) => {
+  const promise = account.create(username, email, password, username);
+  promise.then(
+    function (result: any) {
+      console.log("result: \n");
+      console.log(result);
+
+      // TODO Redirect if all good to dashboard
+    },
+    function (err: any) {
+      console.log("error: \n");
+      console.log(err);
+    }
+  );
+};
+
 const SignUp = () => {
   const [username, setUserName] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
-  function SignUpFunction() {
-    const promise = account.create(username, email, password, username);
-    promise.then(
-      function (result: any) {
-        console.log("result: \n");
-        console.log(result);
-        // TODO Redirect if all good to dashboard
-      },
-      function (err: any) {
-        console.log("error: \n");
-        console.log(err);
-      }
-    );
-  }
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -58,7 +61,12 @@ const SignUp = () => {
       <PrimaryButton
         label="SIGN UP"
         style={styles.PrimaryButton}
-        onPress={SignUpFunction}
+        onPress={() => {
+          handleSignUp(username, email, password);
+          setEmail("");
+          setUserName("");
+          setPassword("");
+        }}
       />
     </View>
   );
