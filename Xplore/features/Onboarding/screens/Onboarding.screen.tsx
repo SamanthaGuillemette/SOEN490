@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import { Text } from "../../../components";
+import { Text, SkipButton } from "../../../components";
 import styles from "./Onboarding.styles";
-import PagingDot from "../components/PagingDot.component"
+import PagingDot from "../components/PagingDot.component";
 
 const { width } = Dimensions.get("screen");
 
@@ -59,17 +59,12 @@ const Onboarding = (props: OnboardingProps) => {
           renderItem={({ item, index }) => {
             return (
               <View style={styles.skipContainer}>
-                <TouchableOpacity onPress={toHome}>
-                  <Text variant="body" style={styles.skipButton}>
-                    SKIP
-                  </Text>
-                </TouchableOpacity>
+                <SkipButton style={styles.skipButton} navigation={toHome}>
+                  SKIP
+                </SkipButton>
                 <View style={styles.imageContainer}>
                   <Image style={styles.image} source={item.img} key={index} />
-                  <Text
-                    style={styles.onboardingText}
-                    variant="h3"
-                  >
+                  <Text style={styles.onboardingText} variant="h3">
                     {item.message}
                   </Text>
                 </View>
