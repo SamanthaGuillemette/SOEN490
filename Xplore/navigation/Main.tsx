@@ -5,10 +5,8 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ColorSchemeName } from "react-native";
-import Home from "../features/Dashboard/screens/Home.screen";
-import Profile from "../features/Profile/screens/Profile.screen";
+import Settings from "../features/Settings/screens/Settings.screen";
 import Completion from "../features/Completion/screens/Completion.component";
-import BottomTabNavigator from "./BottomTabNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,8 +26,8 @@ const Main = ({ colorScheme }: MainProps) => {
           options={{ headerShown: false }}
         /> */}
         <Stack.Screen
-          name="Profile"
-          component={Profile}
+          name="Settings"
+          component={Settings}
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Completion" component={Completion} />
