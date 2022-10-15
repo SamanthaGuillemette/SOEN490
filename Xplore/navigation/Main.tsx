@@ -1,4 +1,4 @@
-import { useState } from "react";
+//import { useState } from "react";
 import {
   DarkTheme,
   DefaultTheme,
@@ -6,8 +6,9 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ColorSchemeName } from "react-native";
-import Sign from "../features/Sign/screens/Sign.screen";
-import Home from "../features/Dashboard/screens/Home.screen";
+// import Sign from "../features/Sign/screens/Sign.screen";
+// import Home from "../features/Dashboard/screens/Home.screen";
+import ForgotPassword from "../features/Sign/components/ForgotPassword/ForgotPassword.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,14 +18,14 @@ interface MainProps {
 
 const Main = ({ colorScheme }: MainProps) => {
   // Fake login, switch state to true to login
-  const [isLoggedIn] = useState(false);
+  //const [isLoggedIn] = useState(false);
 
   return (
     <NavigationContainer
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <Stack.Navigator initialRouteName="Home">
-        {isLoggedIn ? (
+        {/* {isLoggedIn ? (
           <Stack.Screen
             name="Home"
             component={Home}
@@ -36,7 +37,12 @@ const Main = ({ colorScheme }: MainProps) => {
             name="Sign"
             component={Sign}
           />
-        )}
+        )} */}
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPassword}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
