@@ -2,14 +2,24 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 60,
+    paddingTop: "20%",
+    alignItems: "center",
+    paddingHorizontal: "10%",
+  },
+  textItems: {
+    marginVertical: "20%",
+    alignItems: "center",
   },
   PrimaryButton: {
-    marginTop: 60,
+    marginTop: "20%",
+    marginBottom: "10%",
+  },
+  loginLink: {
+    marginBottom: "20%",
+    color: "#6587FF",
   },
   profilePicture: {
-    borderRadius: 100,
+    borderRadius: 10,
     height: 150,
     width: 150,
     marginBottom: 25,
