@@ -46,6 +46,11 @@ const Onboarding = (props: OnboardingProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
+        <View style={styles.skipContainer}>
+          <SkipButton style={styles.skipButton} navigation={toHome}>
+            SKIP
+          </SkipButton>
+        </View>
         <Animated.FlatList
           data={images}
           horizontal
@@ -58,16 +63,11 @@ const Onboarding = (props: OnboardingProps) => {
           keyExtractor={(_, index) => index.toString()}
           renderItem={({ item, index }) => {
             return (
-              <View style={styles.skipContainer}>
-                <SkipButton style={styles.skipButton} navigation={toHome}>
-                  SKIP
-                </SkipButton>
-                <View style={styles.imageContainer}>
-                  <Image style={styles.image} source={item.img} key={index} />
-                  <Text style={styles.onboardingText} variant="h3">
-                    {item.message}
-                  </Text>
-                </View>
+              <View style={styles.imageContainer}>
+                <Image style={styles.image} source={item.img} key={index} />
+                <Text style={styles.onboardingText} variant="h3">
+                  {item.message}
+                </Text>
               </View>
             );
           }}

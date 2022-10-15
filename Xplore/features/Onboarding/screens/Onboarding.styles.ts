@@ -18,6 +18,7 @@ export default StyleSheet.create({
   skipContainer: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
+    top: 100,
   },
   imageContainer: {
     justifyContent: "flex-end",
@@ -45,5 +46,5 @@ export default StyleSheet.create({
     color: colors.light.gray300,
     padding: 47,
     fontWeight: "bold",
-  }
+  },
 });
