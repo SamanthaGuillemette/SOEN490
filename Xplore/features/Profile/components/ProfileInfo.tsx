@@ -7,24 +7,18 @@ const ProfileInfo = () => {
   return (
     <View>
       <View style={styles.ProfileIcons}>
-        <View style={styles.IconContainer}>
+        <View style={styles.Settings}>
+          <Icon name="settings" color="primary" size="large" />
+        </View>
+        <View>
           <Icon
-            name="moon"
+            name="bell"
             color="primary"
             size="large"
-            style={styles.Darkmode}
-          />
+            style={styles.Bell}
+          ></Icon>
+          <View style={styles.RedDot}></View>
         </View>
-
-        <Icon
-          name="bell"
-          color="primary"
-          size="large"
-          style={styles.Bell}
-        ></Icon>
-      </View>
-      <View>
-        <View style={styles.RedDot}></View>
       </View>
 
       <View style={styles.ProfileInfo}>
@@ -133,7 +127,7 @@ const styles = StyleSheet.create({
   Avatar: {
     alignSelf: "center",
     position: "absolute",
-    marginTop: 40,
+    marginTop: 30,
     borderRadius: 100,
     backgroundColor: colors.light.backgroundSecondary,
     borderWidth: 8,
@@ -142,13 +136,12 @@ const styles = StyleSheet.create({
   ProfileIcons: {
     flexDirection: "row",
     marginTop: 10,
+    justifyContent: "space-between",
   },
-  Darkmode: {
-    marginLeft: 2,
-  },
+
   Bell: {
     flexDirection: "row",
-    marginLeft: 270,
+    marginRight: 50,
   },
 
   Rec: {
@@ -180,15 +173,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 10,
   },
-  IconContainer: {
+  Settings: {
     flexDirection: "row",
-    width: 40,
-    height: 40,
-    backgroundColor: colors.light.icon,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 50,
-    marginLeft: 40,
+    marginLeft: 50,
   },
   EditContainer: {
     width: 30,
@@ -211,8 +198,8 @@ const styles = StyleSheet.create({
     height: 9,
     backgroundColor: "red",
     borderRadius: 50,
-    marginLeft: 366,
-    marginTop: -29,
+    marginLeft: 15,
+    marginTop: -18,
   },
   Shadow: {
     hadowOpacity: 0.1,
