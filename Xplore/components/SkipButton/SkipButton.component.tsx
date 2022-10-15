@@ -5,7 +5,6 @@ import {
   ViewStyle,
 } from "react-native";
 import { Text } from "../Text";
-import { View } from "../View";
 
 interface SkipButtonProps {
   children: string;
@@ -14,7 +13,7 @@ interface SkipButtonProps {
 }
 
 export const SkipButton = (props: SkipButtonProps) => {
-  const { children, style, navigation } = props;
+  const { children, navigation } = props;
 
   return (
     <TouchableOpacity onPress={navigation}>

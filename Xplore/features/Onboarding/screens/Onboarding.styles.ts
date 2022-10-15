@@ -8,7 +8,7 @@ export default StyleSheet.create({
     flex: 3,
   },
   topContainer: {
-    flex: 3.1,
+    flex: 3.5,
   },
   bottomContainer: {
     flex: 1,
@@ -18,13 +18,13 @@ export default StyleSheet.create({
   skipContainer: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    top: 100,
+    top: 97,
   },
   imageContainer: {
     justifyContent: "flex-end",
     width,
     alignItems: "center",
-    bottom: 15,
+    bottom: 25,
   },
   image: {
     width: width - 80,
@@ -34,17 +34,11 @@ export default StyleSheet.create({
   onboardingText: {
     paddingTop: 43,
     width: width - 80,
-    color: colors.light.gray200,
     textAlign: "center",
   },
   dotContainer: {
     width: 21,
     padding: 10,
-    top: 90,
-  },
-  skipButton: {
-    color: colors.light.gray300,
-    padding: 47,
-    fontWeight: "bold",
-  },
+    top: 85,
+  }
 });

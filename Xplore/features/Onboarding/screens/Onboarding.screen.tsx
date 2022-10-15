@@ -4,15 +4,13 @@ import {
   Dimensions,
   Image,
   View,
-  TouchableOpacity,
-  FlatList,
+  FlatList
 } from "react-native";
 import { Text, SkipButton } from "../../../components";
 import styles from "./Onboarding.styles";
 import PagingDot from "../components/PagingDot.component";
 
 const { width } = Dimensions.get("screen");
-
 interface OnboardingProps {
   navigation: any;
 }
@@ -24,22 +22,27 @@ const Onboarding = (props: OnboardingProps) => {
     {
       img: require("../../../assets/Onboarding1.png"),
       message:
-        "Xplore is an application that facilitates learning programming technologies using project-based learning.",
+        "Xplore is an application that focuses on project-based learning.",
     },
     {
       img: require("../../../assets/Onboarding2.png"),
       message:
-        "This application allows a user to explore or start new projects which can later be shared within the community.",
+        "This application allows a user to explore or start new exciting projects.",
     },
     {
       img: require("../../../assets/Onboarding3.png"),
       message:
-        "The application also enables users to chat with people working on the same project or with other members on the platform.",
+        "The application also enables users to chat with other users on the platform.",
     },
     {
       img: require("../../../assets/Onboarding4.png"),
       message:
-        "Upon project completion, users will accumulate points and/or badges for participating in new projects and for finishing them.",
+        "Upon project completion, users will accumulate points and/or badges.",
+    },
+    {
+      img: require("../../../assets/Onboarding5.png"),
+      message:
+        "A leaderboard featuring the top users who have contributed to the most projects will be shown.",
     },
   ];
 
@@ -47,7 +50,7 @@ const Onboarding = (props: OnboardingProps) => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.skipContainer}>
-          <SkipButton style={styles.skipButton} navigation={toHome}>
+          <SkipButton navigation={toHome}>
             SKIP
           </SkipButton>
         </View>
@@ -65,7 +68,7 @@ const Onboarding = (props: OnboardingProps) => {
             return (
               <View style={styles.imageContainer}>
                 <Image style={styles.image} source={item.img} key={index} />
-                <Text style={styles.onboardingText} variant="h3">
+                <Text style={styles.onboardingText} variant="h3" color="gray200">
                   {item.message}
                 </Text>
               </View>
