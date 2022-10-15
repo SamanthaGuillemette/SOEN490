@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { Avatar } from "react-native-paper";
-import { Text, Icon } from "../../../components";
+import { ShadowView, Text, Icon } from "../../../components";
 import { colors } from "../../../constants";
 
 const ProfileInfo = () => {
@@ -97,7 +97,17 @@ const ProfileInfo = () => {
       </View>
 
       <View style={styles.Avatar}>
-        <Avatar.Image size={140} source={require("../../../assets/Josh.png")} />
+        <ShadowView
+          shadowOffset={12}
+          backgroundColor={"backgroundSecondary"}
+          style={styles.Shadow}
+        >
+          <Avatar.Image
+            size={140}
+            source={require("../../../assets/Josh.png")}
+          />
+        </ShadowView>
+
         <View style={styles.EditContainer}>
           <Icon name="edit" color="primary" size="large" />
         </View>
@@ -203,5 +213,11 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginLeft: 366,
     marginTop: -29,
+  },
+  Shadow: {
+    hadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 4,
+    borderRadius: 200,
   },
 });
