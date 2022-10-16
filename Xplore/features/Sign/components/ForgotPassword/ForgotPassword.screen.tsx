@@ -1,17 +1,22 @@
-import * as React from "react";
+import { useRef } from "react";
 import { View, PrimaryButton, TextInput, Text } from "../../../../components";
 import styles from "./ForgotPassword.styles";
-import { Image, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import { Link } from "@react-navigation/native";
+import LottieView from "lottie-react-native";
 
 const ForgotPassword = () => {
+  const animation = useRef(null);
+
   return (
     <ScrollView>
       <View style={styles.container}>
         <View>
-          <Image
-            source={require("../../../../assets/profilePicturePlaceholder.jpg")}
-            style={styles.profilePicture}
+          <LottieView
+            autoPlay
+            ref={animation}
+            source={require("../../../../assets/lottieFiles/forgotPassword.json")}
+            style={styles.forgotPasswordImage}
           />
         </View>
         <View style={styles.textItems}>

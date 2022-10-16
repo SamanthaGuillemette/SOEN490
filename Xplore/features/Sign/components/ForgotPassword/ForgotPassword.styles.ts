@@ -1,8 +1,8 @@
-import { StyleSheet } from "react-native";
+import { PixelRatio, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    paddingTop: "20%",
+    paddingTop: "25%",
     alignItems: "center",
     paddingHorizontal: "10%",
   },
@@ -18,10 +18,8 @@ export default StyleSheet.create({
     marginBottom: "20%",
     color: "#6587FF",
   },
-  profilePicture: {
-    borderRadius: 10,
-    height: 150,
-    width: 150,
-    marginBottom: 25,
+  forgotPasswordImage: {
+    width: PixelRatio.getPixelSizeForLayoutSize(60),
+    height: PixelRatio.getPixelSizeForLayoutSize(60),
   },
 });
