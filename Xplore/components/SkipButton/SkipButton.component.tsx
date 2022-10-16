@@ -3,8 +3,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   ViewStyle,
+  Platform
 } from "react-native";
 import { Text } from "../Text";
+import { multiplier } from "../../constants";
 
 interface SkipButtonProps {
   children: string;
@@ -28,7 +30,7 @@ export default SkipButton;
 
 const styles = StyleSheet.create({
   skipButtonText: {
-    padding: 47,
-    fontWeight: "bold",
+    paddingRight: 48,
+    paddingTop: Platform.OS === "ios" ? 42 * multiplier : 30,
   },
 });
