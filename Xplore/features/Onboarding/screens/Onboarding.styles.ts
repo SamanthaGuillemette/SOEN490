@@ -19,6 +19,7 @@ export default StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "flex-end",
     top: 97,
+    zIndex: 10,
   },
   imageContainer: {
     justifyContent: "flex-end",
@@ -40,5 +41,5 @@ export default StyleSheet.create({
     width: 21,
     padding: 10,
     top: 85,
-  }
+  },
 });
