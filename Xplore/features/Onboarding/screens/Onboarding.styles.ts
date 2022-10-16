@@ -30,7 +30,7 @@ export default StyleSheet.create({
   },
   image: {
     width: Platform.OS === "ios" ? width - 80 * multiplier : width - 80,
-    height: Platform.OS === "ios" ? 350 * multiplier : 350,
+    height: Platform.OS === "ios" ? 285 * multiplier : 350,
     borderRadius: 40,
   },
   onboardingText: {

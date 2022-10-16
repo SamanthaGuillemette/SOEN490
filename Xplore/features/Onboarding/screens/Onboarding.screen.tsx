@@ -35,7 +35,7 @@ const Onboarding = (props: OnboardingProps) => {
     },
     {
       img: require("../../../assets/Onboarding5.png"),
-      message: "A leaderboard featuring the top contributors will be shown.",
+      message: "A leaderboard featuring the top contributing users will be displayed.",
     },
   ];
 
