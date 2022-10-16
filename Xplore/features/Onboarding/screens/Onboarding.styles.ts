@@ -1,5 +1,6 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, Platform, StyleSheet } from "react-native";
 import { colors } from "../../../constants";
+import { multiplier } from "../../../constants";
 
 const { width } = Dimensions.get("screen");
 
@@ -18,7 +19,7 @@ export default StyleSheet.create({
   skipContainer: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    top: 97,
+    top: 100,
     zIndex: 10,
   },
   imageContainer: {
@@ -28,8 +29,8 @@ export default StyleSheet.create({
     bottom: 25,
   },
   image: {
-    width: width - 80,
-    height: 300,
+    width: Platform.OS === "ios" ? width - 80 * multiplier : width - 80,
+    height: Platform.OS === "ios" ? 350 * multiplier : 350,
     borderRadius: 40,
   },
   onboardingText: {

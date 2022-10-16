@@ -1,11 +1,5 @@
 import React, { useRef } from "react";
-import {
-  Animated,
-  Dimensions,
-  Image,
-  View,
-  FlatList
-} from "react-native";
+import { Animated, Dimensions, Image, View, FlatList } from "react-native";
 import { Text, SkipButton } from "../../../components";
 import styles from "./Onboarding.styles";
 import PagingDot from "../components/PagingDot.component";
@@ -41,8 +35,7 @@ const Onboarding = (props: OnboardingProps) => {
     },
     {
       img: require("../../../assets/Onboarding5.png"),
-      message:
-        "A leaderboard featuring the top users who have contributed to the most projects will be shown.",
+      message: "A leaderboard featuring the top contributors will be shown.",
     },
   ];
 
@@ -50,9 +43,7 @@ const Onboarding = (props: OnboardingProps) => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.skipContainer}>
-          <SkipButton navigation={toHome}>
-            SKIP
-          </SkipButton>
+          <SkipButton navigation={toHome}>SKIP</SkipButton>
         </View>
         <Animated.FlatList
           data={images}
@@ -68,7 +59,11 @@ const Onboarding = (props: OnboardingProps) => {
             return (
               <View style={styles.imageContainer}>
                 <Image style={styles.image} source={item.img} key={index} />
-                <Text style={styles.onboardingText} variant="h3" color="gray200">
+                <Text
+                  style={styles.onboardingText}
+                  variant="h3"
+                  color="gray200"
+                >
                   {item.message}
                 </Text>
               </View>
