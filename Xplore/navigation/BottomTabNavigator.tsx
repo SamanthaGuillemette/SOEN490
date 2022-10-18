@@ -2,6 +2,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "../components";
 import Home from "../features/Dashboard/screens/Home.screen";
+import Chats from "../features/Chat/screens/Chats.screen";
 import { useThemeColor } from "../hooks";
 import styles from "./BottomTabNavigator.styles";
 
@@ -45,7 +46,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="Home3"
-        component={Home}
+        component={Chats}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
