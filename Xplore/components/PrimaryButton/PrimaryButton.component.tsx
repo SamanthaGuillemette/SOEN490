@@ -2,10 +2,10 @@ import {
   StyleProp,
   ViewStyle,
   TouchableOpacity,
-  Text,
   GestureResponderEvent,
 } from "react-native";
 import { useThemeColor } from "../../hooks";
+import { Text } from "../Text";
 import styles from "./PrimaryButton.styles";
 
 interface PrimaryButtonProps {
@@ -25,7 +25,9 @@ export const PrimaryButton = ({
       style={[style, styles.button, { backgroundColor: primary }]}
       onPress={onPress}
     >
-      <Text style={styles.textStyle}>{label}</Text>
+      <Text variant="label" style={styles.textStyle}>
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 };

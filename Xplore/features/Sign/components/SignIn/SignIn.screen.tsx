@@ -12,10 +12,10 @@ const handleSignIn = (username: string, password: string) => {
   const promise = account.createEmailSession(username, password);
 
   promise.then(
-    function (response) {
+    function (response: any) {
       console.log(response); // Success
     },
-    function (error) {
+    function (error: any) {
       console.log(error); // Failure
     }
   );
@@ -26,32 +26,27 @@ const SignIn = () => {
   const [password, setPassword] = React.useState("");
   return (
     <View style={styles.container}>
-      <View style={styles.inputsContainer}>
-        <TextInput
-          PlaceHolder={"Email"}
-          IconName={"mail"}
-          onChangeText={(thisEmail: string) => setEmail(thisEmail)}
-        />
-        <TextInput
-          PlaceHolder={"Password"}
-          IconName={"lock"}
-          SecureTextEntry={true}
-          onChangeText={(thisPassword: string) => setPassword(thisPassword)}
-        />
-        <PrimaryButton
-          label="SIGN IN"
-          style={styles.PrimaryButton}
-          onPress={() => {
-            handleSignIn(email, password);
-            setEmail("");
-            setPassword("");
-          }}
-        />
-        <SecondaryButton
-          label="FORGOT PASSWORD"
-          style={styles.SecondaryButton}
-        />
-      </View>
+      <TextInput
+        placeHolder={"Username"}
+        iconName={"user"}
+        onChangeText={(thisEmail: string) => setEmail(thisEmail)}
+      />
+      <TextInput
+        placeHolder={"Password"}
+        iconName={"lock"}
+        secureTextEntry={true}
+        onChangeText={(thisPassword: string) => setPassword(thisPassword)}
+      />
+      <PrimaryButton
+        label="SIGN IN"
+        style={styles.PrimaryButton}
+        onPress={() => {
+          handleSignIn(email, password);
+          setEmail("");
+          setPassword("");
+        }}
+      />
+      <SecondaryButton label="FORGOT PASSWORD" style={styles.SecondaryButton} />
     </View>
   );
 };

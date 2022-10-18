@@ -38,25 +38,25 @@ const SignUp = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        PlaceHolder={"Username"}
-        IconName={"user"}
+        placeHolder={"Username"}
+        iconName={"user"}
         onChangeText={(thisUsername: string) => setUserName(thisUsername)}
       />
       <TextInput
-        PlaceHolder={"Email"}
-        IconName={"mail"}
+        placeHolder={"Email"}
+        iconName={"mail"}
         onChangeText={(thisEmail: string) => setEmail(thisEmail)}
       />
       <TextInput
-        PlaceHolder={"Password"}
-        IconName={"lock"}
-        SecureTextEntry={true}
+        placeHolder={"Password"}
+        iconName={"lock"}
+        secureTextEntry={true}
         onChangeText={(thisPassword: string) => setPassword(thisPassword)}
       />
       <TextInput
-        PlaceHolder={"Confirm Password"}
-        IconName={"lock"}
-        SecureTextEntry={true}
+        placeHolder={"Confirm Password"}
+        iconName={"lock"}
+        secureTextEntry={true}
       />
       <PrimaryButton
         label="SIGN UP"
