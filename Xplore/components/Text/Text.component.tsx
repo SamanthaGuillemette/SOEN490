@@ -1,8 +1,14 @@
-import { StyleProp, Text as RNText, TextStyle } from "react-native";
+import {
+  StyleProp,
+  Text as RNText,
+  TextProps as RNTextProps,
+  TextStyle,
+} from "react-native";
 import { useThemeColor } from "../../hooks";
 import styles from "./Text.styles";
 
-interface TextProps {
+// Extends the React Native's TextProps to have their props autocomplete + our own props
+interface TextProps extends RNTextProps {
   children: React.ReactNode;
   color?: "titleText" | "bodyText" | "smallText" | "generalGray" | "linkText";
   variant?:
@@ -29,6 +35,7 @@ export const Text = (props: TextProps) => {
     lightColor,
     darkColor,
     style,
+    ...otherProps // This is the rest of the props from the original <Text /> component
   } = props;
 
   const textColor = useThemeColor(color, {
@@ -38,7 +45,10 @@ export const Text = (props: TextProps) => {
   const dymamicTextStyle = styles[variant];
 
   return (
-    <RNText style={[dymamicTextStyle, { color: textColor }, style]}>
+    <RNText
+      {...otherProps}
+      style={[dymamicTextStyle, { color: textColor }, style]}
+    >
       {children}
     </RNText>
   );

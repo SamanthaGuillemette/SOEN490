@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from "react-native";
 import { View } from "../../../components/";
 import { useThemeColor } from "../../../hooks";
 import { HomeHeader, ExploreProjects, TodayStats } from "../components";
@@ -8,17 +8,20 @@ interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
   const homeBackground = useThemeColor("backgroundSecondary");
+  const scrollViewBackground = useThemeColor("background");
 
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
-      <HomeHeader />
+      <ScrollView style={{ backgroundColor: scrollViewBackground }}>
+        <HomeHeader />
 
-      <View backgroundColor="background" style={styles.mainScreen}>
-        <TodayStats />
-        <ExploreProjects />
-      </View>
+        <View backgroundColor="background" style={styles.mainScreen}>
+          <TodayStats />
+          <ExploreProjects />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
