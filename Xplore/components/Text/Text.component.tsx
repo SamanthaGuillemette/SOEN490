@@ -4,7 +4,7 @@ import styles from "./Text.styles";
 
 interface TextProps {
   children: React.ReactNode;
-  color?: "gray100" | "gray200" | "gray300" | "gray400" | "linkText";
+  color?: "titleText" | "bodyText" | "smallText" | "generalGray" | "linkText";
   variant?:
     | "h1"
     | "h2"
@@ -24,7 +24,7 @@ export const Text = (props: TextProps) => {
   // Destructure all the properties we need from "props". Give some default values.
   const {
     children,
-    color = "gray100",
+    color = "bodyText",
     variant = "body",
     lightColor,
     darkColor,
