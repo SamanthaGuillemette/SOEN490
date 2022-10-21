@@ -2,9 +2,7 @@ import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { View } from "../../../components/";
 import { useThemeColor } from "../../../hooks";
-import ExploreProjects from "../components/ExploreProjects.component";
-import HomeHeader from "../components/HomeHeader.component";
-import TodayStats from "../components/TodayStats.component";
+import { HomeHeader, ExploreProjects, TodayStats } from "../components";
 
 interface HomeProps {}
 

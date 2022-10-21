@@ -1,9 +1,9 @@
-import { Text, View } from "../../../components";
-import StatBoxLarge from "./StatBoxLarge.component";
-import StatBoxSmall from "./StatBoxSmall.component";
+import { Text, View } from "../../../../components";
+import { StatBoxLarge } from "../StatBoxLarge";
+import { StatBoxSmall } from "../StatBoxSmall";
 import styles from "./TodayStats.styles";
 
-const TodayStats = () => {
+export const TodayStats = () => {
   return (
     <View backgroundColor="background" style={styles.container}>
       <Text variant="h2" style={styles.todayTitle}>

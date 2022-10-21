@@ -1,7 +1,7 @@
-import { LinkButton, Text, View } from "../../../components";
+import { LinkButton, Text, View } from "../../../../components";
 import styles from "./ExploreProjects.styles";
 
-const ExploreProjects = () => {
+export const ExploreProjects = () => {
   return (
     <View backgroundColor="background">
       <Text variant="h2">Explore</Text>
