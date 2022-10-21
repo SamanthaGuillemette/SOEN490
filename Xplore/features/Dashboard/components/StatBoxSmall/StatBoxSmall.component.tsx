@@ -5,10 +5,14 @@ export const StatBoxSmall = () => {
   return (
     <ShadowView style={styles.container}>
       <View style={styles.title}>
-        <Text variant="h3">Completed</Text>
-        <Icon name="check-circle" color="primary" style={styles.titleIcon} />
+        <Text variant="h3" color="titleText">
+          Completed
+        </Text>
+        <Icon name="check-circle" color="primary" />
       </View>
-      <Text variant="body">20 Tasks</Text>
+      <Text variant="body" color="bodyText">
+        20 Tasks
+      </Text>
     </ShadowView>
   );
 };

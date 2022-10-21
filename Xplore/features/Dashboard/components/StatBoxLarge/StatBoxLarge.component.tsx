@@ -5,8 +5,12 @@ export const StatBoxLarge = () => {
   return (
     <ShadowView style={styles.container}>
       <Icon name="refresh-ccw" color="primary" style={styles.statIcon} />
-      <Text variant="h3">In Progress</Text>
-      <Text variant="body">3 Projects</Text>
+      <Text variant="h3" color="titleText">
+        In Progress
+      </Text>
+      <Text variant="body" color="bodyText">
+        3 Projects
+      </Text>
     </ShadowView>
   );
 };

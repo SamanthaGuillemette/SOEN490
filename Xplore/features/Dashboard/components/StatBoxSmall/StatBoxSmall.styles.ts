@@ -12,7 +12,4 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  titleIcon: {
-    marginLeft: 20,
-  },
 });

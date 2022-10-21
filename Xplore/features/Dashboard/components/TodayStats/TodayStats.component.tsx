@@ -10,11 +10,11 @@ export const TodayStats = () => {
         Today
       </Text>
       <View backgroundColor="background" style={styles.todayStats}>
-        <View backgroundColor="background">
+        <View backgroundColor="background" style={styles.leftPanel}>
           <StatBoxLarge />
           <StatBoxSmall />
         </View>
-        <View backgroundColor="background">
+        <View backgroundColor="background" style={styles.rightPanel}>
           <StatBoxSmall />
           <StatBoxLarge />
         </View>

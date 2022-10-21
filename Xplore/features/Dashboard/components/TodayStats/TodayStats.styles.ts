@@ -12,4 +12,12 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  leftPanel: {
+    flex: 1,
+    marginRight: 10,
+  },
+  rightPanel: {
+    flex: 1,
+    marginLeft: 10,
+  },
 });
