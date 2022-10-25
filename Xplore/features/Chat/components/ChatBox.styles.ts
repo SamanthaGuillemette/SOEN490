@@ -1,15 +1,27 @@
 import { StyleSheet } from "react-native";
+import { Platform } from "react-native";
+import { multiplier } from "../../../constants";
 
 export default StyleSheet.create({
   chatBox_container: {
-    backgroundColor: "white",
-    paddingHorizontal: 15,
-    paddingVertical: 20,
-    marginHorizontal: 10,
-    marginBottom: 15,
-    marginTop: 30,
+    paddingHorizontal: Platform.OS === "ios" ? 15 * multiplier : 15,
+    paddingVertical: Platform.OS === "ios" ? 20 * multiplier : 20,
+    marginHorizontal: Platform.OS === "ios" ? 10 * multiplier : 10,
+    marginTop: Platform.OS === "ios" ? 15 * multiplier : 15,
     borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
+  },
+  chatBox_avatar: {
+    marginRight: Platform.OS === "ios" ? 20 * multiplier : 20,
+  },
+  chatBox_username: { marginBottom: 3 },
+  chatBox_lastText: {
+    maxWidth: Platform.OS === "ios" ? 250 * multiplier : 250,
+  },
+  chatBox_time: {
+    position: "absolute",
+    top: 30,
+    right: 20,
   },
 });
