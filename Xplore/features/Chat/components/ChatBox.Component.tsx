@@ -1,5 +1,4 @@
-import { ShadowView } from "../../../components";
-import { Avatar } from "react-native-paper";
+import { ShadowView, Avatar } from "../../../components";
 import { TouchableOpacity } from "react-native";
 import styles from "../components/ChatBox.styles";
 
@@ -9,7 +8,7 @@ const ChatBox = ({}: ChatBoxProps) => {
   return (
     <TouchableOpacity>
       <ShadowView style={styles.chatBox_container}>
-        <Avatar.Text size={40} label="JS" />
+        <Avatar image={require("../../../assets/users/josh.jpg")} />
       </ShadowView>
     </TouchableOpacity>
   );
