@@ -1,7 +1,12 @@
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  safeAreaStyle: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight ?? 0,
+  },
   chat_container: {
-    marginVertical: 50,
+    paddingTop: 45,
+    flex: 1,
   },
 });
