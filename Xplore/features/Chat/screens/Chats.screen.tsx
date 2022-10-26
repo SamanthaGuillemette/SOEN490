@@ -1,7 +1,7 @@
 import { ScrollView, SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../hooks";
 import ChatBox from "../components/ChatBox.Component";
-import ChatsHeader from "../components/ChatsHeader.Component";
+import TopHeader from "../../../navigation/TopHeader.Component";
 import styles from "./Chats.styles";
 interface ChatsProps {}
 
@@ -12,7 +12,7 @@ const Chats = ({}: ChatsProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
-      <ChatsHeader />
+      <TopHeader screenName={"Messages"} />
       <ScrollView
         style={[styles.chat_container, { backgroundColor: background }]}
       >
