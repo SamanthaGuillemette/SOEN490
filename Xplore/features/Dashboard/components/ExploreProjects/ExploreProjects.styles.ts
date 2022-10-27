@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  exploreContainer: {
+    marginBottom: 30,
+  },
   exploreSubTitleContainer: {
     flexDirection: "row",
     alignItems: "center",

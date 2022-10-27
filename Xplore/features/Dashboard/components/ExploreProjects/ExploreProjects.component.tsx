@@ -67,7 +67,7 @@ export const ExploreProjects = () => {
   };
 
   return (
-    <View backgroundColor="background">
+    <View backgroundColor="background" style={styles.exploreContainer}>
       <Text variant="h2" color="titleText">
         Explore
       </Text>
