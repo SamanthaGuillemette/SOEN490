@@ -6,7 +6,7 @@ import styles from "./TodayStats.styles";
 export const TodayStats = () => {
   return (
     <View backgroundColor="background" style={styles.container}>
-      <Text variant="h2" style={styles.todayTitle}>
+      <Text variant="h2" color="titleText" style={styles.todayTitle}>
         Today
       </Text>
       <View backgroundColor="background" style={styles.todayStats}>

@@ -5,13 +5,15 @@ import styles from "./ProjectCardSmall.styles";
 interface ProjectCardSmallProps {
   projectName: string;
   imageURL: string;
+  index: number;
 }
 
 export const ProjectCardSmall = (props: ProjectCardSmallProps) => {
-  const { projectName, imageURL } = props;
+  const { projectName, imageURL, index } = props;
+  const dynamicMargin = index === 0 ? 20 : 0;
 
   return (
-    <ShadowView style={styles.container}>
+    <ShadowView style={[styles.container, { marginLeft: dynamicMargin }]}>
       <View style={styles.projectImageContainer}>
         <Image
           source={{

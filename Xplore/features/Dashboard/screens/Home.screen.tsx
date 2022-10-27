@@ -1,8 +1,9 @@
 import * as React from "react";
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import { View } from "../../../components/";
 import { useThemeColor } from "../../../hooks";
 import { HomeHeader, ExploreProjects, TodayStats } from "../components";
+import styles from "./Home.styles";
 
 interface HomeProps {}
 
@@ -27,15 +28,3 @@ const Home = ({}: HomeProps) => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  safeAreaStyle: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight ?? 0,
-  },
-  mainScreen: {
-    paddingTop: 45,
-    paddingHorizontal: 20,
-    flex: 1,
-  },
-});
