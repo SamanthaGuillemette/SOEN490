@@ -17,7 +17,7 @@ export default StyleSheet.create({
   },
   chatBox_username: { marginBottom: 3 },
   chatBox_lastText: {
-    maxWidth: Platform.OS === "ios" ? 250 * multiplier : 250,
+    maxWidth: Platform.OS === "ios" ? 245 * multiplier : 245,
   },
   chatBox_time: {
     position: "absolute",
