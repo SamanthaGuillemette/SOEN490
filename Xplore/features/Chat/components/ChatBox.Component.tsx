@@ -27,13 +27,13 @@ const ChatBox = ({ image, username, lastText, time }: ChatBoxProps) => {
           </Text>
           <Text
             variant="smBody"
-            color="gray300"
+            color="smallText"
             style={styles.chatBox_lastText}
           >
             {lastText}
           </Text>
         </View>
-        <Text variant="smLabel" color="gray300" style={styles.chatBox_time}>
+        <Text variant="smLabel" color="smallText" style={styles.chatBox_time}>
           {time}
         </Text>
       </ShadowView>
