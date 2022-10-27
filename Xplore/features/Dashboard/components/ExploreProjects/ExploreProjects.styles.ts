@@ -1,15 +1,16 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
+  exploreContainer: {
     marginBottom: 30,
   },
-  todayTitle: {
-    marginBottom: 6,
-  },
-  todayStats: {
+  exploreSubTitleContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  flatListStyle: {
+    marginHorizontal: -20,
   },
 });
