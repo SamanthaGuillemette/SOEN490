@@ -10,13 +10,14 @@ export default StyleSheet.create({
     marginVertical: "20%",
     alignItems: "center",
   },
-  PrimaryButton: {
-    marginTop: "20%",
-    marginBottom: "20%",
+  subTitleText: {
+    textAlign: "center",
+    paddingHorizontal: "10%",
+    marginTop: 10,
   },
-  loginLink: {
-    marginBottom: "20%",
-    color: "#6587FF",
+  primaryButton: {
+    marginTop: "20%",
+    marginBottom: 25,
   },
   forgotPasswordImage: {
     width: PixelRatio.getPixelSizeForLayoutSize(60),

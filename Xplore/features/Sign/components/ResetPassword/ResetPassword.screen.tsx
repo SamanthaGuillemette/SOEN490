@@ -18,12 +18,14 @@ const ResetPassword = () => {
             style={styles.forgotPasswordImage}
           />
         </View>
+
         <View style={styles.textItems}>
           <Text variant="h2">Reset password</Text>
-          <Text variant="body" color="gray300">
+          <Text variant="body" color="gray300" style={styles.subTitleText}>
             Enter a new password below
           </Text>
         </View>
+
         <TextInput placeHolder="Password" iconName="lock" secureTextEntry />
         <TextInput
           placeHolder="Re-enter password"
@@ -31,7 +33,7 @@ const ResetPassword = () => {
           secureTextEntry
         />
 
-        <PrimaryButton label="RESET PASSWORD" style={styles.PrimaryButton} />
+        <PrimaryButton label="RESET PASSWORD" style={styles.primaryButton} />
       </View>
     </ScrollView>
   );

@@ -26,7 +26,7 @@ const Main = ({ colorScheme }: MainProps) => {
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <Stack.Navigator initialRouteName="Home">
-        {isLoggedIn ? (
+        {/* {isLoggedIn ? (
           <Stack.Screen
             name="Home"
             component={Home}
@@ -38,12 +38,12 @@ const Main = ({ colorScheme }: MainProps) => {
             name="Sign"
             component={Sign}
           />
-        )}
-        <Stack.Screen
+        )} */}
+        {/* <Stack.Screen
           name="ForgotPassword"
           component={ForgotPassword}
           options={{ headerShown: false }}
-        />
+        /> */}
         <Stack.Screen
           name="ResetPassword"
           component={ResetPassword}
