@@ -3,13 +3,12 @@ import {
   Animated,
   Dimensions,
   Image,
-  FlatList,
   ScrollView,
   SafeAreaView,
 } from "react-native";
 import { Text, View, TextButton } from "../../../components";
 import styles from "./Onboarding.styles";
-import PagingDot from "../components/PagingDot.component";
+import { PagingDot } from "../components/PagingDot.component";
 import { NavigationProp } from "@react-navigation/native";
 import { useThemeColor } from "../../../hooks";
 
@@ -77,7 +76,11 @@ const Onboarding = (props: OnboardingProps) => {
           )}
         >
           {onboardingImages.map((item, index) => (
-            <View key={index} style={styles.singleSlide}>
+            <View
+              backgroundColor="backgroundSecondary"
+              key={index}
+              style={styles.singleSlide}
+            >
               <Image source={item.img} style={styles.image} />
               <Text variant="h2" style={styles.onboardingText}>
                 {item.message}
@@ -86,68 +89,22 @@ const Onboarding = (props: OnboardingProps) => {
           ))}
         </ScrollView>
 
+        <View backgroundColor="backgroundSecondary" style={styles.dotContainer}>
+          {onboardingImages.map((_, index) => (
+            <PagingDot
+              color="primary"
+              translateX={translateX}
+              isActive={false}
+              key={index}
+            />
+          ))}
+          <PagingDot color="primary" translateX={translateX} isActive={true} />
+        </View>
+
         <TextButton onPress={() => navigation.navigate("Home")}>
           SKIP
         </TextButton>
-
-        {/* <Animated.FlatList
-          data={onboardingImages}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { x: animatedValue } } }],
-            { useNativeDriver: false }
-          )}
-          pagingEnabled={true}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item, index }) => {
-            return (
-              <View style={styles.imageContainer}>
-                <Image style={styles.image} source={item.img} key={index} />
-                <Text
-                  style={styles.onboardingText}
-                  variant="h3"
-                  color="gray200"
-                >
-                  {item.message}
-                </Text>
-              </View>
-            );
-          }}
-        /> */}
       </View>
-
-      {/* <View style={styles.bottomContainer}>
-        <FlatList
-          horizontal
-          data={onboardingImages}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({ index }) => {
-            const inputRange = [
-              (index - 1) * width,
-              index * width,
-              (index + 1) * width,
-            ];
-            const colorRange = ["#000", "grey", "#000"];
-            const scaleRange = [1, 2, 1];
-            const dotScale = animatedValue.interpolate({
-              inputRange,
-              outputRange: scaleRange,
-              extrapolate: "clamp",
-            });
-            const color = animatedValue.interpolate({
-              inputRange,
-              outputRange: colorRange,
-              extrapolate: "clamp",
-            });
-            return (
-              <View style={styles.dotContainer}>
-                <PagingDot color={color} scale={dotScale} />
-              </View>
-            );
-          }}
-        />
-      </View> */}
     </SafeAreaView>
   );
 };
