@@ -1,19 +1,21 @@
 import { Animated } from "react-native";
+import { colors } from "../../../constants";
 import styles from "./PagingDot.styles";
 
 interface PagingProps {
-  scale: any;
-  color: any;
+  translateX: number;
+  color: keyof typeof colors.light & keyof typeof colors.dark;
 }
-const PagingDot = (props: PagingProps) => {
+
+export const PagingDot = (props: PagingProps) => {
+  const { translateX, color } = props;
+
   return (
     <Animated.View
       style={[
         styles.pagingDot,
-        { backgroundColor: props.color, transform: [{ scale: props.scale }] },
+        { backgroundColor: color, transform: [{ translateX }] },
       ]}
     />
   );
 };
-
-export default PagingDot;
