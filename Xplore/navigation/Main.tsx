@@ -8,6 +8,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ColorSchemeName } from "react-native";
 import Sign from "../features/Sign/screens/Sign.screen";
 import Home from "../features/Dashboard/screens/Home.screen";
+import ForgotPassword from "../features/Sign/components/ForgotPassword/ForgotPassword.screen";
+import ResetPassword from "../features/Sign/components/ResetPassword/ResetPassword.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,16 @@ const Main = ({ colorScheme }: MainProps) => {
             component={Sign}
           />
         )}
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPassword}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ResetPassword"
+          component={ResetPassword}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
