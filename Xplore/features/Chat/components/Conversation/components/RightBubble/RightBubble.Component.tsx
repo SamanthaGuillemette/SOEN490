@@ -1,4 +1,4 @@
-import { View, ShadowView, Text, Avatar } from "../../../../components";
+import { View, ShadowView, Text, Avatar } from "../../../../../../components";
 import styles from "./RightBubble.styles";
 
 interface RightBubbleProps {

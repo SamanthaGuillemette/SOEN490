@@ -1,4 +1,4 @@
-import { Text, View } from "../../../../components";
+import { Text, View } from "../../../../../../components";
 import styles from "./ChatDate.styles";
 
 interface ChatDateProps {
