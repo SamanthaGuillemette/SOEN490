@@ -5,7 +5,7 @@ interface TopHeaderProps {
   screenName: String;
 }
 
-const TopHeader = ({ screenName }: TopHeaderProps) => {
+const TopHeader = (props: TopHeaderProps) => {
   return (
     <ShadowView
       shadowOffset={4}
@@ -16,7 +16,7 @@ const TopHeader = ({ screenName }: TopHeaderProps) => {
         <TouchableOpacity>
           <Icon style={styles.arrowIcon} name="chevron-left" />
         </TouchableOpacity>
-        <Text variant="h2">{screenName}</Text>
+        <Text variant="h2">{props.screenName}</Text>
       </View>
       <TouchableOpacity>
         <Icon name="search" />

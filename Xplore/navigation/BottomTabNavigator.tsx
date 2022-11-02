@@ -2,7 +2,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "../components";
 import Home from "../features/Dashboard/screens/Home.screen";
-import Chats from "../features/Chat/screens/Chats.screen";
+import Chats from "../features/Chat/screens/Chats/Chats.screen";
 import { useThemeColor } from "../hooks";
 import styles from "./BottomTabNavigator.styles";
 

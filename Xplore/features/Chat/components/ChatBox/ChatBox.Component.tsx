@@ -1,19 +1,26 @@
 import { TouchableOpacity } from "react-native";
-import { ShadowView, Avatar, View, Text } from "../../../components";
-import { useThemeColor } from "../../../hooks";
-import styles from "../components/ChatBox.styles";
+import { ShadowView, Avatar, View, Text } from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
+import styles from "./ChatBox.styles";
 
 interface ChatBoxProps {
   image: any;
   username: String;
   lastText?: String;
   time?: String;
+  onPress?: any;
 }
 
-const ChatBox = ({ image, username, lastText, time }: ChatBoxProps) => {
+const ChatBox = ({
+  image,
+  username,
+  lastText,
+  time,
+  ...restOfProps
+}: ChatBoxProps) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <TouchableOpacity>
+    <TouchableOpacity {...restOfProps}>
       <ShadowView
         style={[
           styles.chatBox_container,

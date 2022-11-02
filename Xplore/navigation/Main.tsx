@@ -6,7 +6,8 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ColorSchemeName } from "react-native";
 import Completion from "../features/Completion/screens/Completion.component";
-import Chats from "../features/Chat/screens/Chats.screen";
+import Chats from "../features/Chat/screens/Chats/Chats.screen";
+import ChatDetails from "../features/Chat/screens/ChatDetails/ChatDetails.screen";
 import BottomTabNavigator from "./BottomTabNavigator";
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ const Main = ({ colorScheme }: MainProps) => {
         />
         <Stack.Screen name="Completion" component={Completion} />
         <Stack.Screen name="Chats" component={Chats} />
+        <Stack.Screen name="ChatDetails" component={ChatDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
