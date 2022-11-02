@@ -2,6 +2,7 @@ import { NavigationProp } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { SafeAreaView, ScrollView } from "react-native";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
+import ChatDate from "../../components/ChatDate/ChatDate.Component";
 import ChatDetailsHeader from "../../components/ChatDetailsHeader/ChatDetailsHeader.Comonent";
 import LeftBubble from "../../components/LeftBubble/LeftBubble.Component";
 import RightBubble from "../../components/RightBubble/RightBubble.Component";
@@ -23,6 +24,7 @@ const ChatDetails = (props: ChatDetailsProps) => {
       <ScrollView
         style={[styles.messages_container, { backgroundColor: background }]}
       >
+        <ChatDate date={"Jun 25, 2022"} />
         <LeftBubble
           text="hello"
           image={require("../../../../assets/users/josh.jpg")}
@@ -48,7 +50,7 @@ const ChatDetails = (props: ChatDetailsProps) => {
           image={require("../../../../assets/users/josh.jpg")}
         />
         <LeftBubble
-          text="Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur..."
+          text="OHH"
           image={require("../../../../assets/users/josh.jpg")}
         />
       </ScrollView>
