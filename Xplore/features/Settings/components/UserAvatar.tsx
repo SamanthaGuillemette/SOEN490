@@ -3,7 +3,7 @@ import { Avatar } from "react-native-paper";
 import { Icon } from "../../../components";
 import { colors } from "../../../constants";
 
-const User_Avatar = () => {
+const UserAvatar = () => {
   return (
     <View>
       <View style={styles.ProfileIcons}>
@@ -33,7 +33,7 @@ const User_Avatar = () => {
   );
 };
 
-export default User_Avatar;
+export default UserAvatar;
 
 const styles = StyleSheet.create({
   Avatar: {
