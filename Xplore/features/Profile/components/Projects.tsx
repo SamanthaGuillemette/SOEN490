@@ -9,7 +9,7 @@ const Projects = () => {
       <View style={styles.ProjectText}>
         <Text
           variant="h3"
-          lightColor={colors.light.primary}
+          lightColor={colors.light.titleTextColor}
           style={{ marginLeft: 18 }}
         >
           PROJECTS

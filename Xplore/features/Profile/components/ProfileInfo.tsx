@@ -29,10 +29,11 @@ const ProfileInfo = () => {
         >
           Josh Lewis
         </Text>
-        <Text lightColor={colors.light.bodyText}>
+        <Text variant="body" lightColor={colors.light.bodyText}>
           <Icon name="map-pin" color="icon" size="medium" /> Montreal, Quebec
         </Text>
         <Text
+          variant="smBody"
           lightColor={colors.light.bodyText}
           style={{ marginTop: 5, marginBottom: 20 }}
         >
@@ -44,7 +45,7 @@ const ProfileInfo = () => {
           </View>
           <View style={styles.Description}>
             <Text
-              variant="body"
+              variant="smBody"
               lightColor={colors.light.bodyText}
               style={{ marginTop: 5 }}
             >
@@ -70,19 +71,25 @@ const ProfileInfo = () => {
 
         <View style={styles.Boxes}>
           <View style={styles.Box}>
-            <Text variant="h2">5</Text>
+            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+              5
+            </Text>
             <Text variant="smBody" lightColor={colors.light.bodyText}>
               Levels
             </Text>
           </View>
           <View style={styles.Box}>
-            <Text variant="h2">8</Text>
+            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+              8
+            </Text>
             <Text variant="smBody" lightColor={colors.light.bodyText}>
               Badges
             </Text>
           </View>
           <View style={styles.Box}>
-            <Text variant="h2">12</Text>
+            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+              12
+            </Text>
             <Text variant="smBody" lightColor={colors.light.bodyText}>
               Projects
             </Text>
@@ -97,14 +104,10 @@ const ProfileInfo = () => {
           style={styles.Shadow}
         >
           <Avatar.Image
-            size={140}
+            size={135}
             source={require("../../../assets/Josh.png")}
           />
         </ShadowView>
-
-        <View style={styles.EditContainer}>
-          <Icon name="edit" color="primary" size="large" />
-        </View>
       </View>
     </View>
   );
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     borderRadius: 100,
     backgroundColor: colors.light.backgroundSecondary,
-    borderWidth: 8,
+    borderWidth: 2,
     borderColor: colors.light.backgroundSecondary,
   },
   ProfileIcons: {
@@ -141,20 +144,20 @@ const styles = StyleSheet.create({
 
   Bell: {
     flexDirection: "row",
-    marginRight: 50,
+    marginRight: 29,
   },
 
   Rec: {
     marginTop: 20,
   },
   BiggerRectangle: {
-    width: 350,
+    width: 330,
     height: 5,
     backgroundColor: colors.light.background,
     borderRadius: 100,
   },
   Rectangle: {
-    width: 100 * 2,
+    width: 286,
     height: 5,
     backgroundColor: colors.light.primary,
     borderRadius: 100,
@@ -175,19 +178,7 @@ const styles = StyleSheet.create({
   },
   Settings: {
     flexDirection: "row",
-    marginLeft: 50,
-  },
-  EditContainer: {
-    width: 30,
-    height: 30,
-    backgroundColor: colors.light.backgroundSecondary,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 70,
-    borderWidth: 4,
-    borderColor: colors.light.backgroundSecondary,
-    marginTop: -30,
-    marginLeft: 105,
+    marginLeft: 30,
   },
   Description: {
     flexDirection: "row",
@@ -199,7 +190,7 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     borderRadius: 50,
     marginLeft: 15,
-    marginTop: -18,
+    marginTop: -22,
   },
   Shadow: {
     hadowOpacity: 0.1,
