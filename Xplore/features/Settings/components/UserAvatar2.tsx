@@ -1,9 +1,10 @@
 import { StyleSheet, View } from "react-native";
-import { Avatar } from "react-native-paper";
-import { Icon } from "../../../components";
+//import { Avatar } from "react-native-paper";
+import { Icon, UserAvatar } from "../../../components";
 import { colors } from "../../../constants";
+import { Avatar } from "react-native-paper";
 
-const UserAvatar = () => {
+const UserAvatar2 = () => {
   return (
     <View>
       <View style={styles.ProfileIcons}>
@@ -18,34 +19,17 @@ const UserAvatar = () => {
         <Icon name="bell" color="primary" size="large" style={styles.Bell} />
       </View>
 
-      <View style={styles.Avatar}>
-        <View style={styles.Image}>
-          <Avatar.Image
-            size={140}
-            source={require("../../../assets/Josh.png")}
-          />
-        </View>
-        <View style={styles.EditContainer}>
-          <Icon name="edit" color="primary" size="medium" />
-        </View>
+      <UserAvatar imageName={"Josh"} />
+      <View style={styles.EditContainer}>
+        <Icon name="edit" color="primary" size="medium" />
       </View>
     </View>
   );
 };
 
-export default UserAvatar;
+export default UserAvatar2;
 
 const styles = StyleSheet.create({
-  Avatar: {
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  Image: {
-    borderRadius: 200,
-    borderWidth: 6,
-    borderColor: colors.light.backgroundSecondary,
-  },
   ProfileIcons: {
     flexDirection: "row",
     marginTop: 10,
