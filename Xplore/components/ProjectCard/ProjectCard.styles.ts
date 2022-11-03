@@ -1,8 +1,5 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
-/* eslint-disable */
 import { Platform, StyleSheet } from "react-native";
 import { multiplier } from "../../constants";
-
 
 export default StyleSheet.create({
   cardContainer: {
@@ -11,7 +8,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     padding: 20,
     display: "flex",
-    flexDirection: "row", 
+    flexDirection: "row",
   },
   projectInformationContainer: {
     width: "60%",
@@ -19,12 +16,7 @@ export default StyleSheet.create({
   taskContainer: {
     marginTop: 10,
     flexDirection: "row",
-    
   },
-  "taskContainer > *": {
-    margin: 5
-  },
-
   conversationsContainer: {
     marginTop: 5,
     flexDirection: "row",
@@ -33,6 +25,6 @@ export default StyleSheet.create({
     width: "40%",
   },
   icon: {
-    marginRight: 5
-  }
+    marginRight: 5,
+  },
 });
