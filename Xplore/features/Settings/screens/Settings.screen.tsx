@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import EditBoxes from "../components/EditBoxes";
-import UserAvatar2 from "../components/UserAvatar2";
+import EditAvatar from "../components/EditAvatar";
 import { ScrollView } from "react-native";
 
 interface ProfileProps {}
@@ -10,7 +10,7 @@ const Settings = ({}: ProfileProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView>
-        <UserAvatar2 />
+        <EditAvatar />
         <EditBoxes />
       </ScrollView>
     </SafeAreaView>

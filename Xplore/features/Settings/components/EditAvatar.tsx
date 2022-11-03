@@ -1,10 +1,8 @@
 import { StyleSheet, View } from "react-native";
-//import { Avatar } from "react-native-paper";
 import { Icon, UserAvatar } from "../../../components";
 import { colors } from "../../../constants";
-import { Avatar } from "react-native-paper";
 
-const UserAvatar2 = () => {
+const EditAvatar = () => {
   return (
     <View>
       <View style={styles.ProfileIcons}>
@@ -27,7 +25,7 @@ const UserAvatar2 = () => {
   );
 };
 
-export default UserAvatar2;
+export default EditAvatar;
 
 const styles = StyleSheet.create({
   ProfileIcons: {
