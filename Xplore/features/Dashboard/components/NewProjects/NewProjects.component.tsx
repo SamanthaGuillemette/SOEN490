@@ -8,7 +8,7 @@ import {
   View as RNView,
   StyleSheet,
 } from "react-native";
-import { LinkButton, ShadowView, Text, View } from "../../../../components";
+import { LinkButton, Text, View } from "../../../../components";
 import styles from "./NewProjects.styles";
 
 const { width } = Dimensions.get("window");
@@ -37,6 +37,7 @@ export const NewProjects = () => {
           pagingEnabled
           decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={32}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { x: scrollValue } } }],
             { useNativeDriver: false }
