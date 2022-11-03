@@ -53,7 +53,7 @@
       "js",
       "jsx"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/coverage/**",
