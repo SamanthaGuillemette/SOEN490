@@ -33,5 +33,3 @@ export const ProjectCardSmall = (props: ProjectCardSmallProps) => {
     </ShadowView>
   );
 };
-
-export default ProjectCardSmall;

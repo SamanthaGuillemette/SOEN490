@@ -1,18 +1,18 @@
 import { ShadowView } from "../ShadowView";
 import { Avatar as _Avatar } from "react-native-paper";
-import { AvatarImageSource } from "react-native-paper/lib/typescript/components/Avatar/AvatarImage";
+// import { AvatarImageSource } from "react-native-paper/lib/typescript/components/Avatar/AvatarImage";
 import { useThemeColor } from "../../hooks";
 import styles from "./Avatar.styles";
 
 interface AvatarProps {
   name: string;
-  image?: AvatarImageSource;
+  imageURL?: string;
   size?: "small" | "medium" | "large" | "xlarge";
 }
 
 export const Avatar = (props: AvatarProps) => {
   // Default size to "large"
-  const { size = "large", name, image } = props;
+  const { size = "large", name, imageURL } = props;
 
   const textAvatarBackground = useThemeColor("primary");
   const avatarDisplayName = name.charAt(0).toUpperCase();
@@ -27,8 +27,8 @@ export const Avatar = (props: AvatarProps) => {
 
   return (
     <ShadowView style={styles.avatarContainer}>
-      {image ? (
-        <_Avatar.Image source={image} size={avatarSize} />
+      {imageURL ? (
+        <_Avatar.Image source={{ uri: `${imageURL}` }} size={avatarSize} />
       ) : (
         <_Avatar.Text
           label={avatarDisplayName}
