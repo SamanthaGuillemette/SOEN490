@@ -2,11 +2,14 @@ import { StyleSheet, View } from "react-native";
 import { LinkButton, Text, Badge } from "../../../components";
 import { colors } from "../../../constants";
 import { ScrollView } from "react-native";
+import { useThemeColor } from "../../../hooks";
 
 const Badges = () => {
+  const whiteBackground = useThemeColor("backgroundSecondary");
+
   return (
     <View>
-      <View style={styles.BadgeText}>
+      <View style={[styles.BadgeText, , { backgroundColor: whiteBackground }]}>
         <Text
           variant="h3"
           lightColor={colors.light.titleTextColor}
@@ -17,7 +20,7 @@ const Badges = () => {
 
         <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
       </View>
-      <View style={styles.Badges}>
+      <View style={[styles.Badges, , { backgroundColor: whiteBackground }]}>
         <ScrollView horizontal={true}>
           <Badge index={0} />
           <Badge index={1} />
