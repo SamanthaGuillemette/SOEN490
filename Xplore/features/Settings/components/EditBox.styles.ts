@@ -24,7 +24,7 @@ export default StyleSheet.create({
   },
   SaveBtn: {
     height: 31,
-    width: 85,
+    width: 101,
     borderRadius: 25,
   },
   SaveBtnView: {
