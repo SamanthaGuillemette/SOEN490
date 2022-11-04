@@ -23,12 +23,7 @@ const ProfileInfo = () => {
           <Icon name="settings" color="primary" size="large" />
         </View>
         <View>
-          <Icon
-            name="bell"
-            color="primary"
-            size="large"
-            style={styles.Bell}
-          ></Icon>
+          <Icon name="bell" color="primary" size="large" style={styles.Bell} />
           <View style={styles.RedDot}></View>
         </View>
       </View>
