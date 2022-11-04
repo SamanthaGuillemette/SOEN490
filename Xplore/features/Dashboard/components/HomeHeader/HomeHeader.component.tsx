@@ -1,5 +1,10 @@
-import { Avatar } from "react-native-paper";
-import { LinkButton, ShadowView, Text, View } from "../../../../components";
+import {
+  Avatar,
+  LinkButton,
+  ShadowView,
+  Text,
+  View,
+} from "../../../../components";
 import styles from "./HomeHeader.styles";
 
 export const HomeHeader = () => {
@@ -19,7 +24,13 @@ export const HomeHeader = () => {
         <LinkButton style={styles.linkButton}>View your projects</LinkButton>
       </View>
       <View>
-        <Avatar.Text size={40} label="JS" />
+        <Avatar
+          name="Josh"
+          image={{
+            uri: "https://picsum.photos/200",
+          }}
+          size="large"
+        />
       </View>
     </ShadowView>
   );

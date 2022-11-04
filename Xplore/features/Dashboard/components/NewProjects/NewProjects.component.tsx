@@ -11,7 +11,7 @@ const data = ["brown", "orange", "red", "blue", "green"];
 export const NewProjects = () => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const translateX = scrollValue.interpolate({
-    inputRange: [0, deviceScreenWidth],
+    inputRange: [0, deviceScreenWidth - 40],
     outputRange: [0, 20],
   });
 
