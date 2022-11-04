@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { Avatar } from "react-native-paper";
-import { ShadowView, Text, Icon } from "../../../components";
+import { ShadowView, Text, Icon, ProgressBar } from "../../../components";
 import { colors } from "../../../constants";
 
 const ProfileInfo = () => {
@@ -39,10 +39,9 @@ const ProfileInfo = () => {
         >
           <Icon name="zap" color="icon" size="medium" /> 103,597 XP
         </Text>
+
         <View style={styles.Rec}>
-          <View style={styles.BiggerRectangle}>
-            <View style={styles.Rectangle} />
-          </View>
+          <ProgressBar completionPercentage={90} barColor="success" />
           <View style={styles.Description}>
             <Text
               variant="smBody"
@@ -146,22 +145,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginRight: 29,
   },
-
-  Rec: {
-    marginTop: 20,
-  },
-  BiggerRectangle: {
-    width: 330,
-    height: 5,
-    backgroundColor: colors.light.background,
-    borderRadius: 100,
-  },
-  Rectangle: {
-    width: 286,
-    height: 5,
-    backgroundColor: colors.light.primary,
-    borderRadius: 100,
-  },
   Boxes: {
     flexDirection: "row",
     paddingTop: 30,
@@ -179,6 +162,9 @@ const styles = StyleSheet.create({
   Settings: {
     flexDirection: "row",
     marginLeft: 30,
+  },
+  Rec: {
+    marginTop: 20,
   },
   Description: {
     flexDirection: "row",

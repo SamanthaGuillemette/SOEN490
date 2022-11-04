@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
-import { Avatar, Button } from "react-native-paper";
-import { LinkButton, Text } from "../../../components";
+import { Avatar } from "react-native-paper";
+import { LinkButton, Text, Badge } from "../../../components";
 import { colors } from "../../../constants";
 import { ScrollView } from "react-native";
 
@@ -20,43 +20,14 @@ const Badges = () => {
       </View>
       <View style={styles.Badges}>
         <ScrollView horizontal={true}>
-          <Avatar.Image
-            style={{ marginLeft: 25 }}
-            size={75}
-            source={require("../../../assets/badge1.png")}
-          />
-          <Avatar.Image
-            style={styles.Badge}
-            size={75}
-            source={require("../../../assets/badge2.png")}
-          />
-          <Avatar.Image
-            size={75}
-            source={require("../../../assets/badge3.png")}
-          />
-          <Avatar.Image
-            style={styles.Badge}
-            size={75}
-            source={require("../../../assets/badge4.png")}
-          />
-          <Avatar.Image
-            size={75}
-            source={require("../../../assets/badge1.png")}
-          />
-          <Avatar.Image
-            style={styles.Badge}
-            size={75}
-            source={require("../../../assets/badge2.png")}
-          />
-          <Avatar.Image
-            size={75}
-            source={require("../../../assets/badge3.png")}
-          />
-          <Avatar.Image
-            style={styles.Badge}
-            size={75}
-            source={require("../../../assets/badge4.png")}
-          />
+          <Badge index={0} />
+          <Badge index={1} />
+          <Badge index={2} />
+          <Badge index={3} />
+          <Badge index={0} />
+          <Badge index={1} />
+          <Badge index={2} />
+          <Badge index={3} />
         </ScrollView>
       </View>
     </View>
@@ -72,9 +43,6 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
     paddingTop: 15,
     backgroundColor: colors.light.backgroundSecondary,
-  },
-  Badge: {
-    marginHorizontal: 20,
   },
   BadgeText: {
     marginTop: 2,
