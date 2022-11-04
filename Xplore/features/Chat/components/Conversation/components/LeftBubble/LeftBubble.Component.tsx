@@ -10,11 +10,13 @@ interface LeftBubbleProps {
 const LeftBubble = ({ text, image }: LeftBubbleProps) => {
   return (
     <View backgroundColor="background" style={styles.bubbleContainer}>
+      <View backgroundColor="background">
+        <Avatar image={image} style={styles.leftBubbleAvatar} />
+      </View>
       <ShadowView style={styles.leftBubble}>
         <Text variant="body">{text}</Text>
         <MessageTime time={"11:11 PM"} style={styles.msgTime} />
       </ShadowView>
-      <Avatar image={image} style={styles.leftBubbleAvatar} />
     </View>
   );
 };

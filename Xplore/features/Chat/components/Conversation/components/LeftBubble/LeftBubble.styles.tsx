@@ -4,7 +4,7 @@ export default StyleSheet.create({
   bubbleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
     marginVertical: 15,
   },
   leftBubble: {

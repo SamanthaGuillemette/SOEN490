@@ -22,7 +22,7 @@ const Chats = (props: ChatsProps) => {
         <ChatBox
           image={require("../../../../assets/users/josh.jpg")}
           username={"Josh Lewis"}
-          lastText={"Lorem ipsum dolor sit amet consectetur..."}
+          lastText={"Lorem ipsum dolor sit amet consectetur... "}
           time={"5 min ago"}
           onPress={() =>
             props.navigation.navigate("ChatDetails", { name: "Josh Lewis" })

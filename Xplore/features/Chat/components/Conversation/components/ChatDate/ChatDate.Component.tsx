@@ -8,7 +8,7 @@ interface ChatDateProps {
 const ChatDate = ({ date }: ChatDateProps) => {
   return (
     <View backgroundColor="background" style={styles.chatDateContainer}>
-      <Text color="linkText" variant="body">
+      <Text color="titleText" variant="body">
         {date}
       </Text>
     </View>
