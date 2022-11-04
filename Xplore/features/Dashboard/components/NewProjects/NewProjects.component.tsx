@@ -1,23 +1,17 @@
 // TODO: Need refactoring
 
 import { useRef } from "react";
-import {
-  Animated,
-  Dimensions,
-  ScrollView,
-  View as RNView,
-  StyleSheet,
-} from "react-native";
+import { Animated, ScrollView, View as RNView, StyleSheet } from "react-native";
 import { LinkButton, Text, View } from "../../../../components";
+import { deviceScreenWidth } from "../../../../constants";
 import styles from "./NewProjects.styles";
 
-const { width } = Dimensions.get("window");
 const data = ["brown", "orange", "red", "blue", "green"];
 
 export const NewProjects = () => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const translateX = scrollValue.interpolate({
-    inputRange: [0, width],
+    inputRange: [0, deviceScreenWidth],
     outputRange: [0, 20],
   });
 
@@ -69,10 +63,8 @@ function Indicator() {
 
 const theme = StyleSheet.create({
   card: {
-    width: width - 40,
+    width: deviceScreenWidth - 40,
     height: 200,
-    // marginRight: 10,
-    // marginLeft: 10,
     borderRadius: 8,
   },
   indicatorConatiner: {
