@@ -6,14 +6,22 @@ import { StyleSheet } from "react-native";
 interface ProgressBarProps {
   completionPercentage: number;
   barColor: keyof typeof colors.light & keyof typeof colors.dark;
+  width: number;
 }
 
 export const ProgressBar = (props: ProgressBarProps) => {
-  const { completionPercentage, barColor } = props;
+  const { completionPercentage, barColor, width } = props;
 
   return (
-    <View style={[styles.BiggerRectangle, { backgroundColor: barColor }]}>
-      <View style={[styles.Rectangle, { width: 0.98 * 330 }]} />
+    <View
+      style={[
+        styles.BiggerRectangle,
+        { backgroundColor: barColor, width: width },
+      ]}
+    >
+      <View
+        style={[styles.Rectangle, { width: completionPercentage * width }]}
+      ></View>
     </View>
   );
 };
@@ -22,7 +30,6 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   BiggerRectangle: {
-    width: 330,
     height: 5,
     borderRadius: 100,
   },
