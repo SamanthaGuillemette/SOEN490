@@ -1,13 +1,12 @@
 import { View } from "react-native";
 import { Text } from "../../../components";
 import { colors } from "../../../constants";
-import { ScrollView } from "react-native";
-import { InputField } from "../../../components";
+import { InputField, ShadowView } from "../../../components";
 import styles from "./EditBox.styles";
 
 const ChangePassBox = () => {
   return (
-    <View style={[styles.Box, { height: 203, width: 325 }]}>
+    <ShadowView style={[styles.Box, { height: 203, width: 325 }]}>
       <Text variant="h4" lightColor={colors.light.gray100}>
         Change Password
       </Text>
@@ -25,6 +24,7 @@ const ChangePassBox = () => {
           </InputField>
         </View>
       </View>
+
       <View style={{ flexDirection: "row", top: 60, left: 5 }}>
         <View>
           <Text variant="smLabel" lightColor={colors.light.gray300}>
@@ -54,7 +54,7 @@ const ChangePassBox = () => {
           </View>
         </View>
       </View>
-    </View>
+    </ShadowView>
   );
 };
 

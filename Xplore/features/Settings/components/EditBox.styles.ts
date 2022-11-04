@@ -19,8 +19,8 @@ export default StyleSheet.create({
     width: 85,
     borderRadius: 25,
     position: "absolute",
-    top: 70,
-    left: 70,
+    top: 60,
+    left: 25,
   },
   SaveBtn: {
     height: 31,

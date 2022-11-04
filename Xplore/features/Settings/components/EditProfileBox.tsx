@@ -1,12 +1,12 @@
 import { View } from "react-native";
 import { Text } from "../../../components";
 import { colors } from "../../../constants";
-import { InputField } from "../../../components";
+import { InputField, ShadowView } from "../../../components";
 import styles from "./EditBox.styles";
 
 const EditProfileBox = () => {
   return (
-    <View style={[styles.Box, { height: 203, width: 325 }]}>
+    <ShadowView style={[styles.Box, { height: 203, width: 325 }]}>
       <Text variant="h4" lightColor={colors.light.gray100}>
         Edit Profile
       </Text>
@@ -53,7 +53,7 @@ const EditProfileBox = () => {
           </InputField>
         </View>
       </View>
-    </View>
+    </ShadowView>
   );
 };
 

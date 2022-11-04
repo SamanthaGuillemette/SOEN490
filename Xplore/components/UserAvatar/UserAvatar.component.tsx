@@ -1,6 +1,7 @@
 import { Avatar } from "react-native-paper";
 import { View } from "../View";
 import styles from "./UserAvatar.styles";
+import { ShadowView } from "../ShadowView";
 
 interface UserAvatarProps {
   imageName: string;
@@ -16,11 +17,11 @@ export const UserAvatar = (props: UserAvatarProps) => {
   }
 
   return (
-    <View style={styles.Avatar}>
+    <ShadowView style={styles.Avatar}>
       <View style={styles.Image}>
         <Avatar.Image size={140} source={image} />
       </View>
-    </View>
+    </ShadowView>
   );
 };
 
