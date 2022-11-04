@@ -53,7 +53,11 @@ const ProfileInfo = () => {
         </Text>
 
         <View style={styles.Rec}>
-          <ProgressBar completionPercentage={90} barColor="success" />
+          <ProgressBar
+            completionPercentage={0.9}
+            barColor="success"
+            width={330}
+          />
           <View style={styles.Description}>
             <Text
               variant="smBody"
