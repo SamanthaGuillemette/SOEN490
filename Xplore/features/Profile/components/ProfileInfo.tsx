@@ -10,8 +10,11 @@ import {
 import { colors } from "../../../constants";
 import { ScrollView } from "react-native";
 import Badges from "./Badges";
+import { useThemeColor } from "../../../hooks";
 
 const ProfileInfo = () => {
+  const whiteBackground = useThemeColor("backgroundSecondary");
+  const badgeBackground = useThemeColor("background");
 
   return (
     <View>
@@ -30,7 +33,7 @@ const ProfileInfo = () => {
         </View>
       </View>
 
-      <View style={styles.ProfileInfo}>
+      <View style={[styles.ProfileInfo, { backgroundColor: whiteBackground }]}>
         <Text
           variant="h2"
           style={{ marginTop: 40 }}
@@ -78,7 +81,7 @@ const ProfileInfo = () => {
         </View>
 
         <View style={styles.Boxes}>
-          <View style={styles.Box}>
+          <View style={[styles.Box, , { backgroundColor: badgeBackground }]}>
             <Text variant="h2" lightColor={colors.light.titleTextColor}>
               5
             </Text>
@@ -86,7 +89,7 @@ const ProfileInfo = () => {
               Levels
             </Text>
           </View>
-          <View style={styles.Box}>
+          <View style={[styles.Box, , { backgroundColor: badgeBackground }]}>
             <Text variant="h2" lightColor={colors.light.titleTextColor}>
               8
             </Text>
@@ -94,7 +97,7 @@ const ProfileInfo = () => {
               Badges
             </Text>
           </View>
-          <View style={styles.Box}>
+          <View style={[styles.Box, , { backgroundColor: badgeBackground }]}>
             <Text variant="h2" lightColor={colors.light.titleTextColor}>
               12
             </Text>
@@ -121,7 +124,9 @@ const ProfileInfo = () => {
       <Badges />
 
       <View>
-        <View style={styles.ProjectText}>
+        <View
+          style={[styles.ProjectText, , { backgroundColor: whiteBackground }]}
+        >
           <Text
             variant="h3"
             lightColor={colors.light.titleTextColor}
@@ -131,7 +136,7 @@ const ProfileInfo = () => {
           </Text>
           <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
         </View>
-        <View style={styles.Projects}>
+        <View style={[styles.Projects, , { backgroundColor: whiteBackground }]}>
           <ScrollView horizontal={true}>
             <Image
               style={[styles.SideProject, { marginLeft: 25 }]}
