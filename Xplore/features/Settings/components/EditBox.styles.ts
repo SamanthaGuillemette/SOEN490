@@ -4,7 +4,7 @@ import { colors } from "../../../constants";
 export default StyleSheet.create({
   Box: {
     borderRadius: 8,
-    marginTop: 10,
+    marginTop: 13,
     backgroundColor: colors.light.backgroundSecondary,
     paddingTop: 20,
     paddingLeft: 25,
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     borderRadius: 25,
   },
   SaveBtnView: {
-    marginTop: 10,
+    marginTop: 13,
     alignItems: "center",
   },
 });

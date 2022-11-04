@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { StyleProp, ViewStyle } from "react-native";
 import { colors } from "../../constants";
 import { Text } from "../Text";
+import { ShadowView } from "../ShadowView";
 import { View } from "../View";
 
 interface InputFieldProps {
@@ -15,11 +16,13 @@ export const InputField = (props: InputFieldProps) => {
   const { children, backgroundColor, textColor, style } = props;
 
   return (
-    <View backgroundColor={backgroundColor} style={[style, styles.InputField]}>
-      <Text color={textColor} variant="smBody" style={styles.Text}>
-        {children}
-      </Text>
-    </View>
+    <ShadowView style={[style, styles.ShadowView]}>
+      <View backgroundColor={backgroundColor} style={styles.InputField}>
+        <Text color={textColor} variant="smBody" style={styles.Text}>
+          {children}
+        </Text>
+      </View>
+    </ShadowView>
   );
 };
 
@@ -29,8 +32,10 @@ const styles = StyleSheet.create({
   Text: {
     marginLeft: 10,
   },
+  ShadowView: {
+    borderRadius: 4,
+  },
   InputField: {
-    backgroundColor: colors.light.primaryBackground,
     borderWidth: 1,
     borderColor: "#FFFFFF",
     borderRadius: 4,

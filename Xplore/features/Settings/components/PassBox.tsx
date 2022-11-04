@@ -4,7 +4,7 @@ import { colors } from "../../../constants";
 import { InputField, ShadowView } from "../../../components";
 import styles from "./EditBox.styles";
 
-const ChangePassBox = () => {
+const PassBox = () => {
   return (
     <ShadowView style={[styles.Box, { height: 203, width: 325 }]}>
       <Text variant="h4" lightColor={colors.light.gray100}>
@@ -58,4 +58,4 @@ const ChangePassBox = () => {
   );
 };
 
-export default ChangePassBox;
+export default PassBox;

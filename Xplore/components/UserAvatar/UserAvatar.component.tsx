@@ -17,11 +17,11 @@ export const UserAvatar = (props: UserAvatarProps) => {
   }
 
   return (
-    <ShadowView style={styles.Avatar}>
-      <View style={styles.Image}>
+    <View style={styles.Avatar}>
+      <ShadowView style={styles.Image}>
         <Avatar.Image size={140} source={image} />
-      </View>
-    </ShadowView>
+      </ShadowView>
+    </View>
   );
 };
 

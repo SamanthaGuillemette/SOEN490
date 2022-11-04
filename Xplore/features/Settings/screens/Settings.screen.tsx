@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import EditProfileBox from "../components/EditProfileBox";
-import ChangePassBox from "../components/ChangePassBox";
+import PassBox from "../components/PassBox";
 import SaveButton from "../components/SaveButton";
 import TopicBox from "../components/TopicBox";
 import EditAvatar from "../components/EditAvatar";
@@ -15,7 +15,7 @@ const Settings = ({}: ProfileProps) => {
       <ScrollView>
         <EditAvatar />
         <EditProfileBox />
-        <ChangePassBox />
+        <PassBox />
         <TopicBox />
         <SaveButton />
       </ScrollView>
