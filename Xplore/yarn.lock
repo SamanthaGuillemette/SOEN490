@@ -1133,6 +1133,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.20.1":
+  version "7.20.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.1.tgz#1148bb33ab252b165a06698fde7576092a78b4a9"
+  integrity sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==
+  dependencies:
+    regenerator-runtime "^0.13.10"
+
 "@babel/template@^7.0.0", "@babel/template@^7.18.10", "@babel/template@^7.3.3":
   version "7.18.10"
   resolved "https://registry.npmjs.org/@babel/template/-/template-7.18.10.tgz"
@@ -7981,6 +7988,11 @@ react-native-screens@~3.15.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-segmented-control-tab@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-segmented-control-tab/-/react-native-segmented-control-tab-4.0.0.tgz#e52a5638dda1a217e1f2308dcb8a935a7812edc2"
+  integrity sha512-Iyxabn5T7HGFGjLAvOWUL6K/o0r+UglAUDDQzMgqlHcz3tCnK9C6QUgZaAkzMTSgB/2JO9yLgk3XROPmb8064A==
+
 react-native-slider@^0.11.0:
   version "0.11.0"
   resolved "https://registry.npmjs.org/react-native-slider/-/react-native-slider-0.11.0.tgz"
@@ -8170,6 +8182,11 @@ regenerate@^1.4.2:
   version "1.4.2"
   resolved "https://registry.npmjs.org/regenerate/-/regenerate-1.4.2.tgz"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
+
+regenerator-runtime@^0.13.10:
+  version "0.13.10"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.10.tgz#ed07b19616bcbec5da6274ebc75ae95634bfc2ee"
+  integrity sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==
 
 regenerator-runtime@^0.13.2, regenerator-runtime@^0.13.4:
   version "0.13.9"

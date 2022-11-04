@@ -10,7 +10,7 @@ interface IconProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const Icon = ({ name, size = "large", color, style }: IconProps) => {
+const Icon = ({ name, size = "large", color, style }: IconProps) => {
   const iconColor = useThemeColor(color);
 
   let iconSize: number;
@@ -30,3 +30,5 @@ export const Icon = ({ name, size = "large", color, style }: IconProps) => {
     <Feather name={name} size={iconSize} color={iconColor} style={style} />
   );
 };
+
+export default Icon;
