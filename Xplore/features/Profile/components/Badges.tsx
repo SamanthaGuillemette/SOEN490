@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import { Avatar } from "react-native-paper";
 import { LinkButton, Text, Badge } from "../../../components";
 import { colors } from "../../../constants";
 import { ScrollView } from "react-native";

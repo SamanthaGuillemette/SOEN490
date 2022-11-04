@@ -9,8 +9,10 @@ import {
 } from "../../../components";
 import { colors } from "../../../constants";
 import { ScrollView } from "react-native";
+import Badges from "./Badges";
 
 const ProfileInfo = () => {
+
   return (
     <View>
       <View style={styles.ProfileIcons}>
@@ -116,60 +118,7 @@ const ProfileInfo = () => {
         </ShadowView>
       </View>
 
-      <View>
-        <View style={styles.BadgeText}>
-          <Text
-            variant="h3"
-            lightColor={colors.light.titleTextColor}
-            style={{ marginLeft: 18 }}
-          >
-            BADGES
-          </Text>
-
-          <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
-        </View>
-        <View style={styles.Badges}>
-          <ScrollView horizontal={true}>
-            <Avatar.Image
-              style={{ marginLeft: 25 }}
-              size={75}
-              source={require("../../../assets/badge1.png")}
-            />
-            <Avatar.Image
-              style={styles.Badge}
-              size={75}
-              source={require("../../../assets/badge2.png")}
-            />
-            <Avatar.Image
-              size={75}
-              source={require("../../../assets/badge3.png")}
-            />
-            <Avatar.Image
-              style={styles.Badge}
-              size={75}
-              source={require("../../../assets/badge4.png")}
-            />
-            <Avatar.Image
-              size={75}
-              source={require("../../../assets/badge1.png")}
-            />
-            <Avatar.Image
-              style={styles.Badge}
-              size={75}
-              source={require("../../../assets/badge2.png")}
-            />
-            <Avatar.Image
-              size={75}
-              source={require("../../../assets/badge3.png")}
-            />
-            <Avatar.Image
-              style={styles.Badge}
-              size={75}
-              source={require("../../../assets/badge4.png")}
-            />
-          </ScrollView>
-        </View>
-      </View>
+      <Badges />
 
       <View>
         <View style={styles.ProjectText}>

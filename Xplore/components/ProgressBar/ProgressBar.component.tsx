@@ -3,12 +3,12 @@ import { View } from "../View";
 import { StyleSheet } from "react-native";
 //import styles from "./ProgressBar.styles";
 
-interface LinkButtonProps {
+interface ProgressBarProps {
   completionPercentage: number;
   barColor: keyof typeof colors.light & keyof typeof colors.dark;
 }
 
-export const ProgressBar = (props: LinkButtonProps) => {
+export const ProgressBar = (props: ProgressBarProps) => {
   const { completionPercentage, barColor } = props;
 
   return (
