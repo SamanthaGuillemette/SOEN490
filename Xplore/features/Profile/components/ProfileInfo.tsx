@@ -1,7 +1,8 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { Avatar } from "react-native-paper";
-import { ShadowView, Text, Icon } from "../../../components";
+import { LinkButton, ShadowView, Text, Icon } from "../../../components";
 import { colors } from "../../../constants";
+import { ScrollView } from "react-native";
 
 const ProfileInfo = () => {
   return (
@@ -109,6 +110,153 @@ const ProfileInfo = () => {
           />
         </ShadowView>
       </View>
+
+      <View>
+        <View style={styles.BadgeText}>
+          <Text
+            variant="h3"
+            lightColor={colors.light.titleTextColor}
+            style={{ marginLeft: 18 }}
+          >
+            BADGES
+          </Text>
+
+          <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
+        </View>
+        <View style={styles.Badges}>
+          <ScrollView horizontal={true}>
+            <Avatar.Image
+              style={{ marginLeft: 25 }}
+              size={75}
+              source={require("../../../assets/badge1.png")}
+            />
+            <Avatar.Image
+              style={styles.Badge}
+              size={75}
+              source={require("../../../assets/badge2.png")}
+            />
+            <Avatar.Image
+              size={75}
+              source={require("../../../assets/badge3.png")}
+            />
+            <Avatar.Image
+              style={styles.Badge}
+              size={75}
+              source={require("../../../assets/badge4.png")}
+            />
+            <Avatar.Image
+              size={75}
+              source={require("../../../assets/badge1.png")}
+            />
+            <Avatar.Image
+              style={styles.Badge}
+              size={75}
+              source={require("../../../assets/badge2.png")}
+            />
+            <Avatar.Image
+              size={75}
+              source={require("../../../assets/badge3.png")}
+            />
+            <Avatar.Image
+              style={styles.Badge}
+              size={75}
+              source={require("../../../assets/badge4.png")}
+            />
+          </ScrollView>
+        </View>
+      </View>
+
+      <View>
+        <View style={styles.ProjectText}>
+          <Text
+            variant="h3"
+            lightColor={colors.light.titleTextColor}
+            style={{ marginLeft: 18 }}
+          >
+            PROJECTS
+          </Text>
+          <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
+        </View>
+        <View style={styles.Projects}>
+          <ScrollView horizontal={true}>
+            <Image
+              style={[styles.SideProject, { marginLeft: 25 }]}
+              source={require("../../../assets/SnakeRobot.png")}
+            />
+            <View
+              style={[styles.Overlay, styles.SideProject, { marginLeft: 25 }]}
+            ></View>
+            <Text
+              variant="smLabel"
+              style={[styles.CompletedProject, { bottom: 90, left: 50 }]}
+            >
+              Completed
+            </Text>
+            <Text
+              variant="h3"
+              style={[styles.OverlayText, { bottom: 60, left: 50 }]}
+            >
+              Snake robot
+            </Text>
+            <Text
+              variant="smBody"
+              style={[styles.OverlayText, { bottom: 45, left: 50 }]}
+            >
+              Unique soft robot
+            </Text>
+
+            <Image
+              style={styles.MiddleProject}
+              source={require("../../../assets/SnakeRobot.png")}
+            />
+            <View
+              style={[styles.Overlay, styles.MiddleProject, { left: 310 }]}
+            />
+            <Text
+              variant="smLabel"
+              style={[styles.CompletedProject, { bottom: 84, left: 335 }]}
+            >
+              Completed
+            </Text>
+            <Text
+              variant="h3"
+              style={[styles.OverlayText, { bottom: 54, left: 335 }]}
+            >
+              Snake robot
+            </Text>
+            <Text
+              variant="smBody"
+              style={[styles.OverlayText, { bottom: 39, left: 335 }]}
+            >
+              Unique soft robot
+            </Text>
+
+            <Image
+              style={styles.SideProject}
+              source={require("../../../assets/SnakeRobot.png")}
+            />
+            <View style={[styles.Overlay, styles.SideProject, { left: 610 }]} />
+            <Text
+              variant="smLabel"
+              style={[styles.CompletedProject, { bottom: 90, left: 660 }]}
+            >
+              Completed
+            </Text>
+            <Text
+              variant="h3"
+              style={[styles.OverlayText, { bottom: 60, left: 660 }]}
+            >
+              Snake robot
+            </Text>
+            <Text
+              variant="smBody"
+              style={[styles.OverlayText, { bottom: 45, left: 660 }]}
+            >
+              Unique soft robot
+            </Text>
+          </ScrollView>
+        </View>
+      </View>
     </View>
   );
 };
@@ -197,5 +345,67 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 4,
     borderRadius: 200,
+  },
+
+  Badges: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingBottom: 35,
+    paddingTop: 15,
+    backgroundColor: colors.light.backgroundSecondary,
+  },
+  Badge: {
+    marginHorizontal: 20,
+  },
+  BadgeText: {
+    marginTop: 2,
+    flexDirection: "row",
+    backgroundColor: colors.light.backgroundSecondary,
+    padding: 10,
+    justifyContent: "space-between",
+  },
+
+  Projects: {
+    backgroundColor: colors.light.backgroundSecondary,
+    paddingBottom: 50,
+    paddingTop: 15,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  MiddleProject: {
+    height: 230,
+    width: 300,
+    borderRadius: 7,
+  },
+  SideProject: {
+    height: 200,
+    width: 270,
+    borderRadius: 7,
+    marginVertical: 15,
+    marginHorizontal: 15,
+  },
+  Overlay: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    position: "absolute",
+  },
+  CompletedProject: {
+    color: colors.light.backgroundSecondary,
+    position: "absolute",
+    backgroundColor: colors.light.success,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 3,
+    letterSpacing: 0.2,
+  },
+  OverlayText: {
+    color: colors.light.backgroundSecondary,
+    position: "absolute",
+  },
+  ProjectText: {
+    marginTop: 2,
+    flexDirection: "row",
+    backgroundColor: colors.light.backgroundSecondary,
+    padding: 10,
+    justifyContent: "space-between",
   },
 });
