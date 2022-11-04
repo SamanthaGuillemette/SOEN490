@@ -6,7 +6,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import { Text, View, TextButton } from "../../../components";
+import { Text, View, TextButton, LinkButton } from "../../../components";
 import styles from "./Onboarding.styles";
 import { PagingDot } from "../components/PagingDot.component";
 import { NavigationProp } from "@react-navigation/native";
@@ -51,17 +51,18 @@ interface OnboardingProps {
 }
 
 const Onboarding = (props: OnboardingProps) => {
-  const scrollValue = useRef(new Animated.Value(0)).current;
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
+
+  const scrollValue = useRef(new Animated.Value(0)).current;
   const translateX = scrollValue.interpolate({
     inputRange: [0, screenWidth],
-    outputRange: [0, 20],
+    outputRange: [0, 18], // 18 = margin + width of dot = (5+5) + 8
   });
 
   return (
     <SafeAreaView
-      style={[styles.container, { backgroundColor: whiteBackground }]}
+      style={[styles.safeAreaContainer, { backgroundColor: whiteBackground }]}
     >
       <View backgroundColor="backgroundSecondary" style={styles.mainContainer}>
         <ScrollView
@@ -85,25 +86,50 @@ const Onboarding = (props: OnboardingProps) => {
               <Text variant="h2" style={styles.onboardingText}>
                 {item.message}
               </Text>
+
+              {/* If it's the last slide, show the "Get Started" button. NOTE: will be replaced with primary button */}
+              {index === onboardingImages.length - 1 && (
+                <View
+                  backgroundColor="backgroundSecondary"
+                  style={styles.getStartedButton}
+                >
+                  <LinkButton>Get Started</LinkButton>
+                </View>
+              )}
             </View>
           ))}
         </ScrollView>
 
-        <View backgroundColor="backgroundSecondary" style={styles.dotContainer}>
-          {onboardingImages.map((_, index) => (
+        <View
+          backgroundColor="backgroundSecondary"
+          style={styles.bottomContainer}
+        >
+          <View backgroundColor="backgroundSecondary">
+            <View
+              backgroundColor="backgroundSecondary"
+              style={styles.dotContainer}
+            >
+              {onboardingImages.map((_, index) => (
+                <PagingDot
+                  color="gray400"
+                  translateX={translateX}
+                  key={index}
+                />
+              ))}
+            </View>
+
             <PagingDot
               color="primary"
               translateX={translateX}
-              isActive={false}
-              key={index}
+              isActive={true}
+              style={styles.activeDot}
             />
-          ))}
-          <PagingDot color="primary" translateX={translateX} isActive={true} />
-        </View>
+          </View>
 
-        <TextButton onPress={() => navigation.navigate("Home")}>
-          SKIP
-        </TextButton>
+          <TextButton onPress={() => navigation.navigate("Home")}>
+            SKIP
+          </TextButton>
+        </View>
       </View>
     </SafeAreaView>
   );
