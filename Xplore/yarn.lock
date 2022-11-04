@@ -8533,6 +8533,11 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
+sonarqube@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/sonarqube/-/sonarqube-0.0.1.tgz#7d9bee56bbcd13f1c2f1b35000a8fe7c8aac370f"
+  integrity sha512-VohuYExr2bkTUjXmuMcuS7hOSBEsJ2SbZq492Ti2mgYJWxyUFETSyTWOyIF3suCvnVbmDoIZiGwyIyLPTABchw==
+
 source-map-resolve@^0.5.0:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.3.tgz#190866bece7553e1f8f267a2ee82c606b5509a1a"
