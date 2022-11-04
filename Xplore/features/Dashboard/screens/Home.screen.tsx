@@ -1,3 +1,4 @@
+// import { NavigationProp } from "@react-navigation/native";
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { Text } from "../../../components/";
@@ -5,9 +6,12 @@ import HomeHeader from "../components/HomeHeader.component";
 import StatBoxLarge from "../components/StatBoxLarge.component";
 import StatBoxSmall from "../components/StatBoxSmall.component";
 
-interface HomeProps {}
+// interface HomeProps {
+//   navigation: NavigationProp<any>;
+// }
+const Home = () => {
+  // const toOnboarding = () => props.navigation.navigate("Onboarding");
 
-const Home = ({}: HomeProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <HomeHeader />

@@ -10,6 +10,7 @@ import Sign from "../features/Sign/screens/Sign.screen";
 import Home from "../features/Dashboard/screens/Home.screen";
 import ForgotPassword from "../features/Sign/components/ForgotPassword/ForgotPassword.screen";
 import ResetPassword from "../features/Sign/components/ResetPassword/ResetPassword.screen";
+import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,11 @@ const Main = ({ colorScheme }: MainProps) => {
         <Stack.Screen
           name="ResetPassword"
           component={ResetPassword}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Onboarding"
+          component={Onboarding}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
