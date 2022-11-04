@@ -10,9 +10,12 @@ export default StyleSheet.create({
   leftBubble: {
     maxWidth: 230,
     borderRadius: 10,
-    padding: 10,
+    padding: 12,
   },
   leftBubbleAvatar: {
     marginHorizontal: 12,
+  },
+  msgTime: {
+    alignSelf: "flex-end",
   },
 });

@@ -15,4 +15,7 @@ export default StyleSheet.create({
   rightBubbleAvatar: {
     marginHorizontal: 12,
   },
+  msgTime: {
+    alignSelf: "flex-end",
+  },
 });
