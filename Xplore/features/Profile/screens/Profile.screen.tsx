@@ -1,19 +1,19 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import ProfileInfo from "../components/ProfileInfo";
-import Badges from "../components/Badges";
-import Projects from "../components/Projects";
 import { ScrollView } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
+import { Button } from "react-native-paper";
 
-interface ProfileProps {}
+interface ProfileProps {
+  navigation: NavigationProp<any>;
+}
 
-const Profile = ({}: ProfileProps) => {
+const Profile = (props: ProfileProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView>
         <ProfileInfo />
-        <Badges />
-        <Projects />
       </ScrollView>
     </SafeAreaView>
   );
