@@ -1,5 +1,6 @@
 import { NavigationProp } from "@react-navigation/native";
 import { ScrollView } from "react-native";
+import { useRef } from "react";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
 import ChatDate from "../../components/Conversation/components/ChatDate/ChatDate.Component";
 import LeftBubble from "../../components/Conversation/components/LeftBubble/LeftBubble.Component";
@@ -11,9 +12,14 @@ interface ConversationProps {
 
 const Conversation = ({}: ConversationProps) => {
   const background = useThemeColor("background");
+  const scrollViewRef: any = useRef();
   return (
     <ScrollView
       style={[styles.messages_container, { backgroundColor: background }]}
+      ref={scrollViewRef}
+      onContentSizeChange={() =>
+        scrollViewRef.current.scrollToEnd({ animated: true })
+      }
     >
       <ChatDate date={"Jun 25, 2022"} />
       <LeftBubble
