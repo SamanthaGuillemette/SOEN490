@@ -1,6 +1,9 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import EditBoxes from "../components/EditBoxes";
+import EditProfileBox from "../components/EditProfileBox";
+import ChangePassBox from "../components/ChangePassBox";
+import SaveButton from "../components/SaveButton";
+import TopicBox from "../components/TopicBox";
 import EditAvatar from "../components/EditAvatar";
 import { ScrollView } from "react-native";
 
@@ -11,7 +14,10 @@ const Settings = ({}: ProfileProps) => {
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView>
         <EditAvatar />
-        <EditBoxes />
+        <EditProfileBox />
+        <ChangePassBox />
+        <TopicBox />
+        <SaveButton />
       </ScrollView>
     </SafeAreaView>
   );

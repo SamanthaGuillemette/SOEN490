@@ -5,3 +5,4 @@ export * from "./LinkButton";
 export * from "./ShadowView";
 export * from "./InputField";
 export * from "./UserAvatar";
+export * from "./Button";
