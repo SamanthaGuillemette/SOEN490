@@ -39,7 +39,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: scrollViewBackground }}
         onScroll={onScroll}
-        scrollEventThrottle={16}
+        scrollEventThrottle={32}
       >
         <HomeHeader />
 
