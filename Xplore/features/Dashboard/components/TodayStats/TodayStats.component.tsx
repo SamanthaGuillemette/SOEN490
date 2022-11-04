@@ -11,12 +11,20 @@ export const TodayStats = () => {
       </Text>
       <View backgroundColor="background" style={styles.todayStats}>
         <View backgroundColor="background" style={styles.leftPanel}>
-          <StatBoxLarge />
-          <StatBoxSmall />
+          <StatBoxLarge
+            title="In Progress"
+            subTitle="3 Projects"
+            iconName="refresh-ccw"
+          />
+          <StatBoxSmall
+            title="Completed"
+            subTitle="20 Tasks"
+            iconName="check-circle"
+          />
         </View>
         <View backgroundColor="background" style={styles.rightPanel}>
-          <StatBoxSmall />
-          <StatBoxLarge />
+          <StatBoxSmall title="Active" subTitle="15 Tasks" iconName="zap" />
+          <StatBoxLarge title="Overdue" subTitle="6 Tasks" iconName="clock" />
         </View>
       </View>
     </View>

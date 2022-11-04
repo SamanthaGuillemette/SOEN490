@@ -1,17 +1,26 @@
 import { Icon, ShadowView, Text, View } from "../../../../components";
+import { Feather } from "@expo/vector-icons";
 import styles from "./StatBoxSmall.styles";
 
-export const StatBoxSmall = () => {
+interface StatBoxSmallProps {
+  title: string;
+  subTitle: string;
+  iconName: keyof typeof Feather.glyphMap;
+}
+
+export const StatBoxSmall = (props: StatBoxSmallProps) => {
+  const { title, subTitle, iconName } = props;
+
   return (
     <ShadowView style={styles.container}>
       <View style={styles.title}>
         <Text variant="h3" color="titleText">
-          Completed
+          {title}
         </Text>
-        <Icon name="check-circle" color="primary" />
+        <Icon name={iconName} color="primary" />
       </View>
       <Text variant="body" color="bodyText">
-        20 Tasks
+        {subTitle}
       </Text>
     </ShadowView>
   );
