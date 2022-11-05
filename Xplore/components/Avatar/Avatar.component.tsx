@@ -1,6 +1,5 @@
 import { ShadowView } from "../ShadowView";
 import { Avatar as _Avatar } from "react-native-paper";
-// import { AvatarImageSource } from "react-native-paper/lib/typescript/components/Avatar/AvatarImage";
 import { useThemeColor } from "../../hooks";
 import styles from "./Avatar.styles";
 
@@ -26,7 +25,10 @@ export const Avatar = (props: AvatarProps) => {
       : 135;
 
   return (
-    <ShadowView style={styles.avatarContainer}>
+    <ShadowView
+      backgroundColor="backgroundSecondary"
+      style={styles.avatarContainer}
+    >
       {imageURL ? (
         <_Avatar.Image source={{ uri: `${imageURL}` }} size={avatarSize} />
       ) : (

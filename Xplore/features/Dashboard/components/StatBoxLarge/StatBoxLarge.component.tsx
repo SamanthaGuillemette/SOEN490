@@ -12,7 +12,7 @@ export const StatBoxLarge = (props: StatBoxLargeProps) => {
   const { title, subTitle, iconName } = props;
 
   return (
-    <ShadowView style={styles.container}>
+    <ShadowView backgroundColor="backgroundSecondary" style={styles.container}>
       <Icon name={iconName} color="primary" style={styles.statIcon} />
       <Text variant="h3" color="titleText">
         {title}

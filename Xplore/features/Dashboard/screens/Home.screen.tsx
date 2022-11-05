@@ -43,7 +43,7 @@ const Home = () => {
       >
         <HomeHeader />
 
-        <View backgroundColor="background" style={styles.mainScreen}>
+        <View style={styles.mainScreen}>
           <TodayStats />
           <ExploreProjects />
           <NewProjects />

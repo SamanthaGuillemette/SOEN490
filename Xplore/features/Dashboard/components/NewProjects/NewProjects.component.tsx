@@ -16,16 +16,16 @@ export const NewProjects = () => {
   });
 
   return (
-    <View backgroundColor="background" style={styles.container}>
+    <View style={styles.container}>
       <Text variant="h2" color="titleText">
         Just launched
       </Text>
-      <View backgroundColor="background" style={styles.subTitleContainer}>
+      <View style={styles.subTitleContainer}>
         <Text variant="body">Fresh new ideas just arrived</Text>
-        <LinkButton backgroundColor="background">View all</LinkButton>
+        <LinkButton>View all</LinkButton>
       </View>
 
-      <View backgroundColor="background">
+      <View>
         <ScrollView
           horizontal
           pagingEnabled
