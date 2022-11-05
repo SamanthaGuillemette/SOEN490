@@ -1,4 +1,10 @@
-import { StyleSheet, View, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  ScrollView,
+  Image,
+} from "react-native";
 import { Avatar } from "react-native-paper";
 import {
   LinkButton,
@@ -8,20 +14,27 @@ import {
   ProgressBar,
 } from "../../../components";
 import { colors } from "../../../constants";
-import { ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Badges from "./Badges";
 import { useThemeColor } from "../../../hooks";
 
 const ProfileInfo = () => {
   const whiteBackground = useThemeColor("backgroundSecondary");
   const badgeBackground = useThemeColor("background");
+  const primary = useThemeColor("primary");
+  const success = useThemeColor("success");
+  const navigation = useNavigation();
 
   return (
     <View>
       <View style={styles.ProfileIcons}>
-        <View style={styles.Settings}>
-          <Icon name="settings" color="primary" size="large" />
-        </View>
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate("Settings" as never, {} as never)}
+        >
+          <View style={styles.Settings}>
+            <Icon name="settings" color="primary" size="large" />
+          </View>
+        </TouchableWithoutFeedback>
         <View>
           <Icon name="bell" color="primary" size="large" style={styles.Bell} />
           <View style={styles.RedDot}></View>
@@ -32,19 +45,20 @@ const ProfileInfo = () => {
         <Text
           variant="h2"
           style={{ marginTop: 40 }}
-          lightColor={colors.light.titleTextColor}
+          darkColor={colors.light.backgroundSecondary}
+          lightColor={colors.dark.background}
         >
           Josh Lewis
         </Text>
-        <Text variant="body" lightColor={colors.light.bodyText}>
-          <Icon name="map-pin" color="icon" size="medium" /> Montreal, Quebec
+        <Text variant="body" color="gray200">
+          <Icon name="map-pin" color="gray300" size="medium" /> Montreal, Quebec
         </Text>
         <Text
           variant="smBody"
-          lightColor={colors.light.bodyText}
+          color="gray200"
           style={{ marginTop: 5, marginBottom: 20 }}
         >
-          <Icon name="zap" color="icon" size="medium" /> 103,597 XP
+          <Icon name="zap" color="gray300" size="medium" /> 103,597 XP
         </Text>
 
         <View style={styles.Rec}>
@@ -59,30 +73,22 @@ const ProfileInfo = () => {
                 styles.Rectangle,
                 {
                   width: 0.9 * 330,
-                  backgroundColor: colors.light.success,
+                  backgroundColor: primary,
                 },
               ]}
             ></View>
           </View>
 
           <View style={styles.Description}>
-            <Text
-              variant="smBody"
-              lightColor={colors.light.bodyText}
-              style={{ marginTop: 5 }}
-            >
-              980/1000{" "}
-              <Text variant="h4" lightColor={colors.light.bodyText}>
+            <Text variant="smBody" color="gray200" style={{ marginTop: 5 }}>
+              970/1000{" "}
+              <Text variant="h4" color="gray200">
                 XP
               </Text>
             </Text>
             <View>
-              <Text
-                variant="body"
-                lightColor={colors.light.bodyText}
-                style={{ marginTop: 5 }}
-              >
-                <Text variant="h4" lightColor={colors.light.bodyText}>
+              <Text variant="body" color="gray200" style={{ marginTop: 5 }}>
+                <Text variant="h4" color="gray200">
                   30 XP
                 </Text>{" "}
                 to level up
@@ -93,26 +99,38 @@ const ProfileInfo = () => {
 
         <View style={styles.Boxes}>
           <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
-            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+            <Text
+              variant="h2"
+              darkColor={colors.light.backgroundSecondary}
+              lightColor={colors.dark.background}
+            >
               5
             </Text>
-            <Text variant="smBody" lightColor={colors.light.bodyText}>
+            <Text variant="smBody" color="gray200">
               Levels
             </Text>
           </View>
           <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
-            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+            <Text
+              variant="h2"
+              darkColor={colors.light.backgroundSecondary}
+              lightColor={colors.dark.background}
+            >
               8
             </Text>
-            <Text variant="smBody" lightColor={colors.light.bodyText}>
+            <Text variant="smBody" color="gray200">
               Badges
             </Text>
           </View>
           <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
-            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+            <Text
+              variant="h2"
+              darkColor={colors.light.backgroundSecondary}
+              lightColor={colors.dark.background}
+            >
               12
             </Text>
-            <Text variant="smBody" lightColor={colors.light.bodyText}>
+            <Text variant="smBody" color="gray200">
               Projects
             </Text>
           </View>
@@ -140,7 +158,8 @@ const ProfileInfo = () => {
         >
           <Text
             variant="h3"
-            lightColor={colors.light.titleTextColor}
+            darkColor={colors.light.backgroundSecondary}
+            lightColor={colors.dark.background}
             style={{ marginLeft: 18 }}
           >
             PROJECTS
@@ -158,18 +177,25 @@ const ProfileInfo = () => {
             ></View>
             <Text
               variant="smLabel"
-              style={[styles.CompletedProject, { bottom: 90, left: 50 }]}
+              style={[
+                styles.CompletedProject,
+                { backgroundColor: success, bottom: 90, left: 50 },
+              ]}
+              darkColor={colors.dark.backgroundSecondary}
+              lightColor={colors.light.backgroundSecondary}
             >
               Completed
             </Text>
             <Text
               variant="h3"
+              color="gray400"
               style={[styles.OverlayText, { bottom: 60, left: 50 }]}
             >
               Snake robot
             </Text>
             <Text
               variant="smBody"
+              color="gray400"
               style={[styles.OverlayText, { bottom: 45, left: 50 }]}
             >
               Unique soft robot
@@ -184,18 +210,25 @@ const ProfileInfo = () => {
             />
             <Text
               variant="smLabel"
-              style={[styles.CompletedProject, { bottom: 84, left: 335 }]}
+              style={[
+                styles.CompletedProject,
+                { backgroundColor: success, bottom: 84, left: 335 },
+              ]}
+              darkColor={colors.dark.backgroundSecondary}
+              lightColor={colors.light.backgroundSecondary}
             >
               Completed
             </Text>
             <Text
               variant="h3"
+              color="gray400"
               style={[styles.OverlayText, { bottom: 54, left: 335 }]}
             >
               Snake robot
             </Text>
             <Text
               variant="smBody"
+              color="gray400"
               style={[styles.OverlayText, { bottom: 39, left: 335 }]}
             >
               Unique soft robot
@@ -208,19 +241,26 @@ const ProfileInfo = () => {
             <View style={[styles.Overlay, styles.SideProject, { left: 610 }]} />
             <Text
               variant="smLabel"
-              style={[styles.CompletedProject, { bottom: 90, left: 660 }]}
+              style={[
+                styles.CompletedProject,
+                { backgroundColor: success, bottom: 90, left: 660 },
+              ]}
+              darkColor={colors.dark.backgroundSecondary}
+              lightColor={colors.light.backgroundSecondary}
             >
               Completed
             </Text>
             <Text
               variant="h3"
               style={[styles.OverlayText, { bottom: 60, left: 660 }]}
+              color="gray400"
             >
               Snake robot
             </Text>
             <Text
               variant="smBody"
               style={[styles.OverlayText, { bottom: 45, left: 660 }]}
+              color="gray400"
             >
               Unique soft robot
             </Text>
@@ -235,13 +275,13 @@ export default ProfileInfo;
 
 const styles = StyleSheet.create({
   BiggerRectangle: {
-    height: 5,
+    height: 8,
     borderRadius: 100,
   },
   Rectangle: {
-    height: 3,
+    height: 4,
     borderRadius: 100,
-    marginTop: 1,
+    marginTop: 2,
   },
   ProfileInfo: {
     flexDirection: "column",
@@ -268,7 +308,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     justifyContent: "space-between",
   },
-
   Bell: {
     flexDirection: "row",
     marginRight: 29,
@@ -283,7 +322,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 105,
     height: 70,
-    backgroundColor: colors.light.background,
     borderRadius: 8,
     marginHorizontal: 10,
   },
@@ -318,7 +356,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 35,
     paddingTop: 15,
-    backgroundColor: colors.light.backgroundSecondary,
   },
   Badge: {
     marginHorizontal: 20,
@@ -326,13 +363,11 @@ const styles = StyleSheet.create({
   BadgeText: {
     marginTop: 2,
     flexDirection: "row",
-    backgroundColor: colors.light.backgroundSecondary,
     padding: 10,
     justifyContent: "space-between",
   },
 
   Projects: {
-    backgroundColor: colors.light.backgroundSecondary,
     paddingBottom: 50,
     paddingTop: 15,
     flexDirection: "row",
@@ -355,22 +390,18 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   CompletedProject: {
-    color: colors.light.backgroundSecondary,
     position: "absolute",
-    backgroundColor: colors.light.success,
     paddingVertical: 4,
     paddingHorizontal: 8,
     borderRadius: 3,
     letterSpacing: 0.2,
   },
   OverlayText: {
-    color: colors.light.backgroundSecondary,
     position: "absolute",
   },
   ProjectText: {
     marginTop: 2,
     flexDirection: "row",
-    backgroundColor: colors.light.backgroundSecondary,
     padding: 10,
     justifyContent: "space-between",
   },
