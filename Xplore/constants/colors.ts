@@ -18,6 +18,7 @@ export const colors = {
     bodyText: "#8A8C93",
     icon: "#C4C4C4",
     titleTextColor: "#091235",
+    primaryBackgroundOpaque: "rgba(2, 64, 137, 0.10)",
   },
   dark: {
     primary: "#0074FF",

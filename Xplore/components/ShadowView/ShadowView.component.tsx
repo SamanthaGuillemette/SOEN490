@@ -2,6 +2,7 @@ import { StyleProp, View as RNView, ViewStyle } from "react-native";
 import { colors } from "../../constants";
 import { useThemeColor } from "../../hooks";
 import styles from "./ShadowView.styles";
+import InsetShadow from "react-native-inset-shadow";
 
 interface ShadowViewProps {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ interface ShadowViewProps {
   lightColor?: string;
   darkColor?: string;
   style?: StyleProp<ViewStyle>;
+  isInnerShadow: boolean;
 }
 
 export const ShadowView = (props: ShadowViewProps) => {
@@ -20,6 +22,7 @@ export const ShadowView = (props: ShadowViewProps) => {
     lightColor,
     darkColor,
     style,
+    isInnerShadow,
   } = props;
 
   const bgColor = useThemeColor(backgroundColor, {
@@ -29,7 +32,7 @@ export const ShadowView = (props: ShadowViewProps) => {
 
   const customShadowColor = useThemeColor("primary");
 
-  return (
+  return !isInnerShadow ? (
     <RNView
       style={[
         style,
@@ -43,5 +46,13 @@ export const ShadowView = (props: ShadowViewProps) => {
     >
       {children}
     </RNView>
+  ) : (
+    <InsetShadow
+      shadowColor={customShadowColor}
+      containerStyle={[style, { backgroundColor: bgColor }]}
+      shadowOffset={shadowOffset}
+    >
+      <RNView>{children}</RNView>
+    </InsetShadow>
   );
 };

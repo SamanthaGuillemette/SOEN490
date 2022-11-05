@@ -144,8 +144,8 @@ const ProfileInfo = (props: ProfileInfoProps) => {
       <View style={styles.Avatar}>
         <ShadowView
           shadowOffset={12}
-          backgroundColor={"backgroundSecondary"}
           style={styles.Shadow}
+          isInnerShadow={false}
         >
           <Avatar.Image
             size={135}

@@ -2,17 +2,13 @@ import { View } from "react-native";
 import { Text } from "../../../components";
 import { InputField, ShadowView } from "../../../components";
 import styles from "./EditBox.styles";
-import { useThemeColor } from "../../../hooks";
+import { colors } from "../../../constants";
 
 const EditProfileBox = () => {
-  const whiteBackground = useThemeColor("backgroundSecondary");
-
   return (
     <ShadowView
-      style={[
-        styles.Box,
-        { height: 203, width: 325, backgroundColor: whiteBackground },
-      ]}
+      style={[styles.Box, { height: 203, width: 325 }]}
+      isInnerShadow={false}
     >
       <Text variant="h4" color={"gray100"}>
         Edit Profile
@@ -23,9 +19,9 @@ const EditProfileBox = () => {
             USERNAME
           </Text>
           <InputField
-            backgroundColor={"primaryBackground"}
-            textColor={"gray100"}
+            textColor={"background"}
             style={styles.InputField}
+            lightBorderColor={colors.light.backgroundSecondary}
           >
             JoshLewis123
           </InputField>
@@ -37,9 +33,9 @@ const EditProfileBox = () => {
               LOCATION
             </Text>
             <InputField
-              backgroundColor={"primaryBackground"}
-              textColor={"gray100"}
+              textColor={"background"}
               style={styles.InputField}
+              lightBorderColor={colors.light.backgroundSecondary}
             >
               Montréal, Qc
             </InputField>
@@ -52,9 +48,9 @@ const EditProfileBox = () => {
             EMAIL
           </Text>
           <InputField
-            backgroundColor={"primaryBackground"}
-            textColor={"gray100"}
+            textColor={"background"}
             style={styles.InputField}
+            lightBorderColor={colors.light.backgroundSecondary}
           >
             example@...
           </InputField>

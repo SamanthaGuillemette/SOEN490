@@ -17,7 +17,10 @@ export const UserAvatar = (props: UserAvatarProps) => {
 
   return (
     <View style={styles.Avatar}>
-      <ShadowView style={[styles.Image, { borderColor: whiteBackground }]}>
+      <ShadowView
+        style={[styles.Image, { borderColor: whiteBackground }]}
+        isInnerShadow={false}
+      >
         <Avatar.Image size={size} source={image} />
       </ShadowView>
     </View>

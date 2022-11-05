@@ -2,17 +2,13 @@ import { View } from "react-native";
 import { Text } from "../../../components";
 import { InputField, ShadowView } from "../../../components";
 import styles from "./EditBox.styles";
-import { useThemeColor } from "../../../hooks";
+import { colors } from "../../../constants";
 
 const PassBox = () => {
-  const whiteBackground = useThemeColor("backgroundSecondary");
-
   return (
     <ShadowView
-      style={[
-        styles.Box,
-        { height: 203, width: 325, backgroundColor: whiteBackground },
-      ]}
+      style={[styles.Box, { height: 203, width: 325 }]}
+      isInnerShadow={false}
     >
       <Text variant="h4" color={"gray100"}>
         Change Password
@@ -23,9 +19,9 @@ const PassBox = () => {
             OLD PASSWORD
           </Text>
           <InputField
-            backgroundColor={"primaryBackground"}
-            textColor={"gray100"}
+            textColor={"background"}
             style={styles.InputField}
+            lightBorderColor={colors.light.backgroundSecondary}
           >
             ********...
           </InputField>
@@ -38,9 +34,9 @@ const PassBox = () => {
             NEW PASSWORD
           </Text>
           <InputField
-            backgroundColor={"primaryBackground"}
-            textColor={"gray100"}
+            textColor={"background"}
             style={styles.InputField}
+            lightBorderColor={colors.light.backgroundSecondary}
           >
             ********...
           </InputField>
@@ -52,9 +48,9 @@ const PassBox = () => {
               CONFIRM PASSWORD
             </Text>
             <InputField
-              backgroundColor={"primaryBackground"}
-              textColor={"gray100"}
+              textColor={"background"}
               style={styles.InputField}
+              lightBorderColor={colors.light.backgroundSecondary}
             >
               ********...
             </InputField>

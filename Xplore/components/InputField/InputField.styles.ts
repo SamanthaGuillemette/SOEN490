@@ -8,7 +8,7 @@ export default StyleSheet.create({
     borderRadius: 4,
   },
   InputField: {
-    borderWidth: 1,
+    padding: 1,
     borderRadius: 4,
   },
 });
