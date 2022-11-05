@@ -29,7 +29,8 @@
     "react-native-screens": "~3.15.0",
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-web": "~0.18.7",
-    "react-test-renderer": "18.0.0"
+    "react-test-renderer": "18.0.0",
+    "sonarqube": "^0.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
