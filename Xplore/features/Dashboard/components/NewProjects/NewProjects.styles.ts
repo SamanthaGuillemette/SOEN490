@@ -10,4 +10,7 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 10,
   },
+  projectSlideContainer: {
+    marginHorizontal: -20,
+  },
 });

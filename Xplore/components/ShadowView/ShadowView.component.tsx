@@ -16,7 +16,7 @@ export const ShadowView = (props: ShadowViewProps) => {
   const {
     children,
     shadowOffset = 0,
-    backgroundColor = "transparent",
+    backgroundColor = "backgroundSecondary",
     lightColor,
     darkColor,
     style,
