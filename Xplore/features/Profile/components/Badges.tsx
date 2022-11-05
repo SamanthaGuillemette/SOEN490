@@ -12,7 +12,8 @@ const Badges = () => {
       <View style={[styles.BadgeText, , { backgroundColor: whiteBackground }]}>
         <Text
           variant="h3"
-          lightColor={colors.light.titleTextColor}
+          darkColor={colors.light.backgroundSecondary}
+          lightColor={colors.dark.background}
           style={{ marginLeft: 18 }}
         >
           BADGES
@@ -44,12 +45,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 35,
     paddingTop: 15,
-    backgroundColor: colors.light.backgroundSecondary,
   },
   BadgeText: {
     marginTop: 2,
     flexDirection: "row",
-    backgroundColor: colors.light.backgroundSecondary,
     padding: 10,
     justifyContent: "space-between",
   },
