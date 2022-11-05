@@ -48,11 +48,22 @@ const ProfileInfo = () => {
         </Text>
 
         <View style={styles.Rec}>
-          <ProgressBar
-            completionPercentage={0.9}
-            barColor="success"
-            width={330}
-          />
+          <View
+            style={[
+              styles.BiggerRectangle,
+              { backgroundColor: badgeBackground, width: 330 },
+            ]}
+          >
+            <View
+              style={[
+                styles.Rectangle,
+                {
+                  width: 0.9 * 330,
+                  backgroundColor: colors.light.success,
+                },
+              ]}
+            ></View>
+          </View>
 
           <View style={styles.Description}>
             <Text
@@ -81,7 +92,7 @@ const ProfileInfo = () => {
         </View>
 
         <View style={styles.Boxes}>
-          <View style={[styles.Box, , { backgroundColor: badgeBackground }]}>
+          <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
             <Text variant="h2" lightColor={colors.light.titleTextColor}>
               5
             </Text>
@@ -89,7 +100,7 @@ const ProfileInfo = () => {
               Levels
             </Text>
           </View>
-          <View style={[styles.Box, , { backgroundColor: badgeBackground }]}>
+          <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
             <Text variant="h2" lightColor={colors.light.titleTextColor}>
               8
             </Text>
@@ -97,7 +108,7 @@ const ProfileInfo = () => {
               Badges
             </Text>
           </View>
-          <View style={[styles.Box, , { backgroundColor: badgeBackground }]}>
+          <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
             <Text variant="h2" lightColor={colors.light.titleTextColor}>
               12
             </Text>
@@ -125,7 +136,7 @@ const ProfileInfo = () => {
 
       <View>
         <View
-          style={[styles.ProjectText, , { backgroundColor: whiteBackground }]}
+          style={[styles.ProjectText, { backgroundColor: whiteBackground }]}
         >
           <Text
             variant="h3"
@@ -136,7 +147,7 @@ const ProfileInfo = () => {
           </Text>
           <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
         </View>
-        <View style={[styles.Projects, , { backgroundColor: whiteBackground }]}>
+        <View style={[styles.Projects, { backgroundColor: whiteBackground }]}>
           <ScrollView horizontal={true}>
             <Image
               style={[styles.SideProject, { marginLeft: 25 }]}
@@ -223,6 +234,15 @@ const ProfileInfo = () => {
 export default ProfileInfo;
 
 const styles = StyleSheet.create({
+  BiggerRectangle: {
+    height: 5,
+    borderRadius: 100,
+  },
+  Rectangle: {
+    height: 3,
+    borderRadius: 100,
+    marginTop: 1,
+  },
   ProfileInfo: {
     flexDirection: "column",
     alignItems: "center",
