@@ -12,13 +12,13 @@ interface ProgressBarProps {
 
 export const ProgressBar = (props: ProgressBarProps) => {
   const { completionPercentage, barColor, width } = props;
-  const whiteBackground = useThemeColor("backgroundSecondary");
+  const greyBackground = useThemeColor("background");
 
   return (
     <View
       style={[
         styles.BiggerRectangle,
-        { backgroundColor: barColor, width: width },
+        { backgroundColor: greyBackground, width: width },
       ]}
     >
       <View
@@ -26,7 +26,7 @@ export const ProgressBar = (props: ProgressBarProps) => {
           styles.Rectangle,
           {
             width: completionPercentage * width,
-            backgroundColor: whiteBackground,
+            backgroundColor: barColor,
           },
         ]}
       ></View>
@@ -44,5 +44,6 @@ const styles = StyleSheet.create({
   Rectangle: {
     height: 3,
     borderRadius: 100,
+    marginTop: 1,
   },
 });

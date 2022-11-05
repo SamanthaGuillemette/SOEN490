@@ -53,6 +53,7 @@ const ProfileInfo = () => {
             barColor="success"
             width={330}
           />
+
           <View style={styles.Description}>
             <Text
               variant="smBody"
