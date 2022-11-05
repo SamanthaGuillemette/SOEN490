@@ -7,7 +7,7 @@ const TopicBox = () => {
       style={[styles.Box, { height: 119, width: 325 }]}
       isInnerShadow={false}
     >
-      <Text variant="h4" color={"gray100"}>
+      <Text variant="h4" color={"titleText"}>
         Topics of Interests
       </Text>
 

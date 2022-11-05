@@ -10,16 +10,16 @@ const EditProfileBox = () => {
       style={[styles.Box, { height: 203, width: 325 }]}
       isInnerShadow={false}
     >
-      <Text variant="h4" color={"gray100"}>
+      <Text variant="h4" color={"titleText"}>
         Edit Profile
       </Text>
       <View style={{ flexDirection: "row", top: 30, left: 5 }}>
         <View>
-          <Text variant="smLabel" color={"gray300"}>
+          <Text variant="smLabel" color={"smallText"}>
             USERNAME
           </Text>
           <InputField
-            textColor={"background"}
+            lightTextColor={"titleText"}
             style={styles.InputField}
             lightBorderColor={colors.light.backgroundSecondary}
           >
@@ -29,11 +29,11 @@ const EditProfileBox = () => {
 
         <View style={{ left: 40 }}>
           <View>
-            <Text variant="smLabel" color={"gray300"}>
+            <Text variant="smLabel" color={"smallText"}>
               LOCATION
             </Text>
             <InputField
-              textColor={"background"}
+              lightTextColor={"titleText"}
               style={styles.InputField}
               lightBorderColor={colors.light.backgroundSecondary}
             >
@@ -44,11 +44,11 @@ const EditProfileBox = () => {
       </View>
       <View style={{ top: 60, left: 5 }}>
         <View>
-          <Text variant="smLabel" color={"gray300"}>
+          <Text variant="smLabel" color={"smallText"}>
             EMAIL
           </Text>
           <InputField
-            textColor={"background"}
+            lightTextColor={"titleText"}
             style={styles.InputField}
             lightBorderColor={colors.light.backgroundSecondary}
           >

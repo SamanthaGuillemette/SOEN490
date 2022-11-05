@@ -10,16 +10,16 @@ const PassBox = () => {
       style={[styles.Box, { height: 203, width: 325 }]}
       isInnerShadow={false}
     >
-      <Text variant="h4" color={"gray100"}>
+      <Text variant="h4" color={"titleText"}>
         Change Password
       </Text>
       <View style={{ top: 30, left: 5 }}>
         <View>
-          <Text variant="smLabel" color={"gray300"}>
+          <Text variant="smLabel" color={"smallText"}>
             OLD PASSWORD
           </Text>
           <InputField
-            textColor={"background"}
+            lightTextColor={"titleText"}
             style={styles.InputField}
             lightBorderColor={colors.light.backgroundSecondary}
           >
@@ -30,11 +30,11 @@ const PassBox = () => {
 
       <View style={{ flexDirection: "row", top: 60, left: 5 }}>
         <View>
-          <Text variant="smLabel" color={"gray300"}>
+          <Text variant="smLabel" color={"smallText"}>
             NEW PASSWORD
           </Text>
           <InputField
-            textColor={"background"}
+            lightTextColor={"titleText"}
             style={styles.InputField}
             lightBorderColor={colors.light.backgroundSecondary}
           >
@@ -44,11 +44,11 @@ const PassBox = () => {
 
         <View style={{ left: 40 }}>
           <View>
-            <Text variant="smLabel" color={"gray300"}>
+            <Text variant="smLabel" color={"smallText"}>
               CONFIRM PASSWORD
             </Text>
             <InputField
-              textColor={"background"}
+              lightTextColor={"titleText"}
               style={styles.InputField}
               lightBorderColor={colors.light.backgroundSecondary}
             >

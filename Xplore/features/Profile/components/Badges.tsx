@@ -1,6 +1,5 @@
 import { StyleSheet, View } from "react-native";
 import { LinkButton, Text, Badge } from "../../../components";
-import { colors } from "../../../constants";
 import { ScrollView } from "react-native";
 import { useThemeColor } from "../../../hooks";
 
@@ -10,12 +9,7 @@ const Badges = () => {
   return (
     <View>
       <View style={[styles.BadgeText, , { backgroundColor: whiteBackground }]}>
-        <Text
-          variant="h3"
-          darkColor={colors.light.backgroundSecondary}
-          lightColor={colors.dark.background}
-          style={{ marginLeft: 18 }}
-        >
+        <Text variant="h3" color="titleText" style={{ marginLeft: 18 }}>
           BADGES
         </Text>
 
