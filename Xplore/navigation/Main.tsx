@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   DarkTheme,
   DefaultTheme,
@@ -17,6 +18,9 @@ interface MainProps {
 }
 
 const Main = ({ colorScheme }: MainProps) => {
+  // Fake login, switch state to true to login
+  const [isLoggedIn] = useState(false);
+
   return (
     <NavigationContainer
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
