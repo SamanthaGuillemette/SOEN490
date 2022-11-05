@@ -38,12 +38,12 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   BiggerRectangle: {
-    height: 5,
+    height: 8,
     borderRadius: 100,
   },
   Rectangle: {
-    height: 3,
+    height: 4,
     borderRadius: 100,
-    marginTop: 1,
+    marginTop: 2,
   },
 });
