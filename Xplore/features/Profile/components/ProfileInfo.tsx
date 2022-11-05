@@ -1,20 +1,27 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
 import { Avatar } from "react-native-paper";
 import { Text, Icon } from "../../../components";
 import { colors } from "../../../constants";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileInfo = () => {
+  const navigation = useNavigation();
+
   return (
     <View>
       <View style={styles.ProfileIcons}>
-        <View style={styles.IconContainer}>
-          <Icon
-            name="moon"
-            color="primary"
-            size="large"
-            style={styles.Darkmode}
-          />
-        </View>
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate("Settings" as never, {} as never)}
+        >
+          <View style={styles.IconContainer}>
+            <Icon
+              name="moon"
+              color="primary"
+              size="large"
+              style={styles.Darkmode}
+            />
+          </View>
+        </TouchableWithoutFeedback>
 
         <Icon name="bell" color="primary" size="large" style={styles.Bell} />
       </View>

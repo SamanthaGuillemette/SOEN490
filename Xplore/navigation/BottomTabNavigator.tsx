@@ -4,6 +4,7 @@ import { Icon } from "../components";
 import Home from "../features/Dashboard/screens/Home.screen";
 import { useThemeColor } from "../hooks";
 import styles from "./BottomTabNavigator.styles";
+import Profile from "../features/Profile/screens/Profile.screen";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -70,8 +71,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Home5"
-        component={Home}
+        name="Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="user" customColor={color} style={styles.tabBarIcon} />
