@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  ScrollView,
-  Image,
-} from "react-native";
+import { StyleSheet, View, ScrollView, Image } from "react-native";
 import { Avatar } from "react-native-paper";
 import {
   LinkButton,
@@ -14,7 +8,6 @@ import {
   ProgressBar,
 } from "../../../components";
 import { colors } from "../../../constants";
-import { useNavigation } from "@react-navigation/native";
 import Badges from "./Badges";
 import { useThemeColor } from "../../../hooks";
 
@@ -23,18 +16,13 @@ const ProfileInfo = () => {
   const badgeBackground = useThemeColor("background");
   const primary = useThemeColor("primary");
   const success = useThemeColor("success");
-  const navigation = useNavigation();
 
   return (
     <View>
       <View style={styles.ProfileIcons}>
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("Settings" as never, {} as never)}
-        >
-          <View style={styles.Settings}>
-            <Icon name="settings" color="primary" size="large" />
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.Settings}>
+          <Icon name="settings" color="primary" size="large" />
+        </View>
         <View>
           <Icon name="bell" color="primary" size="large" style={styles.Bell} />
           <View style={styles.RedDot}></View>
