@@ -4,19 +4,21 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
+import { colors } from "../../constants";
 import { Text } from "../Text";
 import { View } from "../View";
 
 interface LinkButtonProps {
   children: string;
+  backgroundColor?: keyof typeof colors.light & keyof typeof colors.dark;
   style?: StyleProp<ViewStyle>;
 }
 
 export const LinkButton = (props: LinkButtonProps) => {
-  const { children, style } = props;
+  const { children, backgroundColor, style } = props;
 
   return (
-    <View style={style}>
+    <View backgroundColor={backgroundColor} style={style}>
       <TouchableOpacity>
         <Text variant="link" color="linkText" style={styles.linkButtonText}>
           {children}

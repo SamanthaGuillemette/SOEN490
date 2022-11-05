@@ -1,48 +1,66 @@
-import * as React from "react";
-import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
-import { Text } from "../../../components/";
-import HomeHeader from "../components/HomeHeader.component";
-import StatBoxLarge from "../components/StatBoxLarge.component";
-import StatBoxSmall from "../components/StatBoxSmall.component";
+import { useState } from "react";
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
+import { AnimatedFAB } from "react-native-paper";
+import { View } from "../../../components/";
+import { useThemeColor } from "../../../hooks";
+import { HomeHeader, ExploreProjects, TodayStats } from "../components";
+import styles from "./Home.styles";
 
-interface HomeProps {}
+const Home = () => {
+  const homeBackground = useThemeColor("backgroundSecondary");
+  const scrollViewBackground = useThemeColor("background");
+  const [isButtonExpanded, setIsButtonExpanded] = useState(true);
 
-const Home = ({}: HomeProps) => {
+  const onScroll = ({
+    nativeEvent,
+  }: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const currentScrollPosition =
+      Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
+
+    setIsButtonExpanded(currentScrollPosition <= 0);
+  };
+
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
-      <HomeHeader />
+    <SafeAreaView
+      style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
+    >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ backgroundColor: scrollViewBackground }}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+      >
+        <HomeHeader />
 
-      <View style={styles.mainScreen}>
-        <Text variant="h2">Today</Text>
-        <View style={styles.todayStats}>
-          <View>
-            <StatBoxLarge />
-            <StatBoxSmall />
-          </View>
-          <View>
-            <StatBoxSmall />
-            <StatBoxLarge />
-          </View>
+        <View backgroundColor="background" style={styles.mainScreen}>
+          <TodayStats />
+          <ExploreProjects />
+          <ExploreProjects />
         </View>
-      </View>
+      </ScrollView>
+
+      <AnimatedFAB
+        icon={"plus"}
+        label={"New Project"}
+        extended={isButtonExpanded}
+        onPress={() => console.log("Pressed")}
+        visible={true}
+        animateFrom={"right"}
+        iconMode={"dynamic"}
+        theme={{ roundness: 10 }}
+        style={{
+          position: "absolute",
+          bottom: 120,
+          right: 16,
+        }}
+      />
     </SafeAreaView>
   );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  safeAreaStyle: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight ?? 0,
-  },
-  mainScreen: {
-    paddingTop: 25,
-    paddingHorizontal: 20,
-  },
-  todayStats: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-});
