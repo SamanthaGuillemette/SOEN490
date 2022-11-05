@@ -6,14 +6,18 @@ import SaveButton from "../components/SaveButton";
 import TopicBox from "../components/TopicBox";
 import EditAvatar from "../components/EditAvatar";
 import { ScrollView } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
 
-interface ProfileProps {}
+interface ProfileProps {
+  navigation: NavigationProp<any>;
+}
 
-const Settings = ({}: ProfileProps) => {
+const Settings = (props: ProfileProps) => {
+  const { navigation } = props;
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView>
-        <EditAvatar />
+        <EditAvatar onPress={() => navigation.navigate("Profile")} />
         <EditProfileBox />
         <PassBox />
         <TopicBox />

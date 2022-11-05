@@ -1,18 +1,26 @@
-import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  TouchableWithoutFeedbackProps,
+  StyleProp,
+  ViewStyle,
+} from "react-native";
 import { Icon, UserAvatar } from "../../../components";
 import { useThemeColor } from "../../../hooks";
 import { useNavigation } from "@react-navigation/native";
 
-const EditAvatar = () => {
+interface EditAvatarProps extends TouchableWithoutFeedbackProps {
+  style?: StyleProp<ViewStyle>;
+}
+const EditAvatar = (props: EditAvatarProps) => {
   const whiteBackground = useThemeColor("backgroundSecondary");
-  const navigation = useNavigation();
+  const { ...restOfProps } = props;
 
   return (
     <View>
       <View style={styles.ProfileIcons}>
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("Profile" as never, {} as never)}
-        >
+        <TouchableWithoutFeedback {...restOfProps}>
           <View style={styles.Arrow_Left}>
             <Icon name="arrow-left" color="primary" size="large" />
           </View>
