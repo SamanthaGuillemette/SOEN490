@@ -10,10 +10,11 @@ interface ProfileProps {
 }
 
 const Profile = (props: ProfileProps) => {
+  const { navigation } = props;
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView>
-        <ProfileInfo />
+        <ProfileInfo onPress={() => navigation.navigate("Settings")} />
       </ScrollView>
     </SafeAreaView>
   );

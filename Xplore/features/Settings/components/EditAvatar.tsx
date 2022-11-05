@@ -8,11 +8,11 @@ import {
 } from "react-native";
 import { Icon, UserAvatar } from "../../../components";
 import { useThemeColor } from "../../../hooks";
-import { useNavigation } from "@react-navigation/native";
 
 interface EditAvatarProps extends TouchableWithoutFeedbackProps {
   style?: StyleProp<ViewStyle>;
 }
+
 const EditAvatar = (props: EditAvatarProps) => {
   const whiteBackground = useThemeColor("backgroundSecondary");
   const { ...restOfProps } = props;

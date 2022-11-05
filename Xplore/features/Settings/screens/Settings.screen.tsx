@@ -8,11 +8,11 @@ import EditAvatar from "../components/EditAvatar";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 
-interface ProfileProps {
+interface SettingsProps {
   navigation: NavigationProp<any>;
 }
 
-const Settings = (props: ProfileProps) => {
+const Settings = (props: SettingsProps) => {
   const { navigation } = props;
   return (
     <SafeAreaView style={styles.safeAreaStyle}>

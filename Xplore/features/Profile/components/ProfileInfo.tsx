@@ -1,7 +1,10 @@
 import {
   StyleSheet,
   View,
+  TouchableWithoutFeedbackProps,
   TouchableWithoutFeedback,
+  StyleProp,
+  ViewStyle,
   ScrollView,
   Image,
 } from "react-native";
@@ -14,21 +17,22 @@ import {
   ProgressBar,
 } from "../../../components";
 import { colors } from "../../../constants";
-import { useNavigation } from "@react-navigation/native";
 import Badges from "./Badges";
 import { useThemeColor } from "../../../hooks";
 
-const ProfileInfo = () => {
+interface ProfileInfoProps extends TouchableWithoutFeedbackProps {
+  style?: StyleProp<ViewStyle>;
+}
+
+const ProfileInfo = (props: ProfileInfoProps) => {
   const whiteBackground = useThemeColor("backgroundSecondary");
   const badgeBackground = useThemeColor("background");
-  const navigation = useNavigation();
+  const { ...restOfProps } = props;
 
   return (
     <View>
       <View style={styles.ProfileIcons}>
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("Settings" as never, {} as never)}
-        >
+        <TouchableWithoutFeedback {...restOfProps}>
           <View style={styles.Settings}>
             <Icon name="settings" color="primary" size="large" />
           </View>
