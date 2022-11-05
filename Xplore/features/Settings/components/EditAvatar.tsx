@@ -19,7 +19,7 @@ const EditAvatar = () => {
         <Icon name="bell" color="primary" size="large" style={styles.Bell} />
       </View>
 
-      <UserAvatar imageName={"Josh"} />
+      <UserAvatar index={0} size={135} />
       <View
         style={[styles.EditContainer, { backgroundColor: whiteBackground }]}
       >

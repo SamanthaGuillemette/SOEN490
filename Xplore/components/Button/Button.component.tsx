@@ -6,8 +6,8 @@ import styles from "./Button.styles";
 import { useThemeColor } from "../../hooks";
 interface ButtonProps {
   children: string;
-  backgroundColor?: keyof typeof colors.light & keyof typeof colors.dark;
-  textColor?: keyof typeof colors.light & keyof typeof colors.dark;
+  backgroundColor: keyof typeof colors.light & keyof typeof colors.dark;
+  textColor: keyof typeof colors.light & keyof typeof colors.dark;
   style?: StyleProp<ViewStyle>;
 }
 

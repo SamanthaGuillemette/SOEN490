@@ -8,8 +8,8 @@ import { useThemeColor } from "../../hooks";
 
 interface InputFieldProps {
   children: string;
-  backgroundColor?: keyof typeof colors.light & keyof typeof colors.dark;
-  textColor?: keyof typeof colors.light & keyof typeof colors.dark;
+  backgroundColor: keyof typeof colors.light & keyof typeof colors.dark;
+  textColor: keyof typeof colors.light & keyof typeof colors.dark;
   style?: StyleProp<ViewStyle>;
 }
 
