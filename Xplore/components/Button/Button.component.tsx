@@ -7,7 +7,12 @@ import { useThemeColor } from "../../hooks";
 interface ButtonProps {
   children: string;
   backgroundColor: keyof typeof colors.light & keyof typeof colors.dark;
-  textColor: keyof typeof colors.light & keyof typeof colors.dark;
+  textColor:
+    | "titleText"
+    | "bodyText"
+    | "smallText"
+    | "generalGray"
+    | "linkText";
   style?: StyleProp<ViewStyle>;
 }
 

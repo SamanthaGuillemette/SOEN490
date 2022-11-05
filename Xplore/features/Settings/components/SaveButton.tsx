@@ -8,7 +8,7 @@ const SaveButton = () => {
       <Button
         style={styles.SaveBtn}
         backgroundColor="primary"
-        textColor="backgroundSecondary"
+        textColor="generalGray"
       >
         SAVE
       </Button>
