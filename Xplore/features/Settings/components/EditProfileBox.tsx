@@ -1,18 +1,25 @@
 import { View } from "react-native";
 import { Text } from "../../../components";
-import { colors } from "../../../constants";
 import { InputField, ShadowView } from "../../../components";
 import styles from "./EditBox.styles";
+import { useThemeColor } from "../../../hooks";
 
 const EditProfileBox = () => {
+  const whiteBackground = useThemeColor("backgroundSecondary");
+
   return (
-    <ShadowView style={[styles.Box, { height: 203, width: 325 }]}>
-      <Text variant="h4" lightColor={colors.light.gray100}>
+    <ShadowView
+      style={[
+        styles.Box,
+        { height: 203, width: 325, backgroundColor: whiteBackground },
+      ]}
+    >
+      <Text variant="h4" color={"gray100"}>
         Edit Profile
       </Text>
       <View style={{ flexDirection: "row", top: 30, left: 5 }}>
         <View>
-          <Text variant="smLabel" lightColor={colors.light.gray300}>
+          <Text variant="smLabel" color={"gray300"}>
             USERNAME
           </Text>
           <InputField
@@ -26,7 +33,7 @@ const EditProfileBox = () => {
 
         <View style={{ left: 40 }}>
           <View>
-            <Text variant="smLabel" lightColor={colors.light.gray300}>
+            <Text variant="smLabel" color={"gray300"}>
               LOCATION
             </Text>
             <InputField
@@ -41,7 +48,7 @@ const EditProfileBox = () => {
       </View>
       <View style={{ top: 60, left: 5 }}>
         <View>
-          <Text variant="smLabel" lightColor={colors.light.gray300}>
+          <Text variant="smLabel" color={"gray300"}>
             EMAIL
           </Text>
           <InputField

@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../constants";
 
 export default StyleSheet.create({
   Avatar: {
@@ -10,6 +9,5 @@ export default StyleSheet.create({
   Image: {
     borderRadius: 200,
     borderWidth: 2,
-    borderColor: colors.light.backgroundSecondary,
   },
 });

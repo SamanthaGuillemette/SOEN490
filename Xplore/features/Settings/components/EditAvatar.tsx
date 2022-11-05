@@ -1,8 +1,10 @@
 import { StyleSheet, View } from "react-native";
 import { Icon, UserAvatar } from "../../../components";
-import { colors } from "../../../constants";
+import { useThemeColor } from "../../../hooks";
 
 const EditAvatar = () => {
+  const whiteBackground = useThemeColor("backgroundSecondary");
+
   return (
     <View>
       <View style={styles.ProfileIcons}>
@@ -18,7 +20,9 @@ const EditAvatar = () => {
       </View>
 
       <UserAvatar imageName={"Josh"} />
-      <View style={styles.EditContainer}>
+      <View
+        style={[styles.EditContainer, { backgroundColor: whiteBackground }]}
+      >
         <Icon name="edit" color="primary" size="medium" />
       </View>
     </View>
@@ -47,7 +51,6 @@ const styles = StyleSheet.create({
   EditContainer: {
     width: 30,
     height: 30,
-    backgroundColor: colors.light.backgroundSecondary,
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",

@@ -1,11 +1,9 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../../constants";
 
 export default StyleSheet.create({
   Box: {
     borderRadius: 8,
     marginTop: 13,
-    backgroundColor: colors.light.backgroundSecondary,
     paddingTop: 20,
     paddingLeft: 25,
     left: 43,
