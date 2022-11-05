@@ -13,16 +13,14 @@ const EditAvatar = () => {
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate("Profile" as never, {} as never)}
         >
-          <View style={styles.IconContainer}>
-            <Icon
-              name="arrow-left"
-              color="primary"
-              size="large"
-              style={{ marginLeft: 2 }}
-            />
+          <View style={styles.Arrow_Left}>
+            <Icon name="arrow-left" color="primary" size="large" />
           </View>
         </TouchableWithoutFeedback>
-        <Icon name="bell" color="primary" size="large" style={styles.Bell} />
+        <View>
+          <Icon name="bell" color="primary" size="large" style={styles.Bell} />
+          <View style={styles.RedDot}></View>
+        </View>
       </View>
 
       <UserAvatar index={0} size={135} />
@@ -41,18 +39,15 @@ const styles = StyleSheet.create({
   ProfileIcons: {
     flexDirection: "row",
     marginTop: 10,
+    justifyContent: "space-between",
   },
   Bell: {
     flexDirection: "row",
-    marginLeft: 270,
+    marginRight: 29,
   },
-  IconContainer: {
-    width: 40,
-    height: 40,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 50,
-    marginLeft: 40,
+  Arrow_Left: {
+    flexDirection: "row",
+    marginLeft: 30,
   },
   EditContainer: {
     width: 30,
@@ -63,5 +58,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     bottom: 8,
     right: 140,
+  },
+  RedDot: {
+    width: 9,
+    height: 9,
+    backgroundColor: "red",
+    borderRadius: 50,
+    marginLeft: 15,
+    marginTop: -22,
   },
 });
