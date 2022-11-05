@@ -1,10 +1,26 @@
-import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  ScrollView,
+  Image,
+} from "react-native";
 import { Avatar } from "react-native-paper";
-import { Text, Icon } from "../../../components";
+import {
+  LinkButton,
+  ShadowView,
+  Text,
+  Icon,
+  ProgressBar,
+} from "../../../components";
 import { colors } from "../../../constants";
 import { useNavigation } from "@react-navigation/native";
+import Badges from "./Badges";
+import { useThemeColor } from "../../../hooks";
 
 const ProfileInfo = () => {
+  const whiteBackground = useThemeColor("backgroundSecondary");
+  const badgeBackground = useThemeColor("background");
   const navigation = useNavigation();
 
   return (
@@ -13,19 +29,17 @@ const ProfileInfo = () => {
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate("Settings" as never, {} as never)}
         >
-          <View style={styles.IconContainer}>
-            <Icon
-              name="moon"
-              color="primary"
-              size="large"
-              style={styles.Darkmode}
-            />
+          <View style={styles.Settings}>
+            <Icon name="settings" color="primary" size="large" />
           </View>
         </TouchableWithoutFeedback>
-
-        <Icon name="bell" color="primary" size="large" style={styles.Bell} />
+        <View>
+          <Icon name="bell" color="primary" size="large" style={styles.Bell} />
+          <View style={styles.RedDot}></View>
+        </View>
       </View>
-      <View style={styles.ProfileInfo}>
+
+      <View style={[styles.ProfileInfo, { backgroundColor: whiteBackground }]}>
         <Text
           variant="h2"
           style={{ marginTop: 40 }}
@@ -33,22 +47,38 @@ const ProfileInfo = () => {
         >
           Josh Lewis
         </Text>
-        <Text lightColor={colors.light.bodyText}>
+        <Text variant="body" lightColor={colors.light.bodyText}>
           <Icon name="map-pin" color="icon" size="medium" /> Montreal, Quebec
         </Text>
         <Text
+          variant="smBody"
           lightColor={colors.light.bodyText}
           style={{ marginTop: 5, marginBottom: 20 }}
         >
           <Icon name="zap" color="icon" size="medium" /> 103,597 XP
         </Text>
+
         <View style={styles.Rec}>
-          <View style={styles.BiggerRectangle}>
-            <View style={styles.Rectangle} />
+          <View
+            style={[
+              styles.BiggerRectangle,
+              { backgroundColor: badgeBackground, width: 330 },
+            ]}
+          >
+            <View
+              style={[
+                styles.Rectangle,
+                {
+                  width: 0.9 * 330,
+                  backgroundColor: colors.light.success,
+                },
+              ]}
+            ></View>
           </View>
+
           <View style={styles.Description}>
             <Text
-              variant="body"
+              variant="smBody"
               lightColor={colors.light.bodyText}
               style={{ marginTop: 5 }}
             >
@@ -73,20 +103,26 @@ const ProfileInfo = () => {
         </View>
 
         <View style={styles.Boxes}>
-          <View style={styles.Box}>
-            <Text variant="h2">5</Text>
+          <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
+            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+              5
+            </Text>
             <Text variant="smBody" lightColor={colors.light.bodyText}>
               Levels
             </Text>
           </View>
-          <View style={styles.Box}>
-            <Text variant="h2">8</Text>
+          <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
+            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+              8
+            </Text>
             <Text variant="smBody" lightColor={colors.light.bodyText}>
               Badges
             </Text>
           </View>
-          <View style={styles.Box}>
-            <Text variant="h2">12</Text>
+          <View style={[styles.Box, { backgroundColor: badgeBackground }]}>
+            <Text variant="h2" lightColor={colors.light.titleTextColor}>
+              12
+            </Text>
             <Text variant="smBody" lightColor={colors.light.bodyText}>
               Projects
             </Text>
@@ -95,9 +131,111 @@ const ProfileInfo = () => {
       </View>
 
       <View style={styles.Avatar}>
-        <Avatar.Image size={140} source={require("../../../assets/Josh.png")} />
-        <View style={styles.EditContainer}>
-          <Icon name="edit" color="primary" size="large" />
+        <ShadowView
+          shadowOffset={12}
+          backgroundColor={"backgroundSecondary"}
+          style={styles.Shadow}
+        >
+          <Avatar.Image
+            size={135}
+            source={require("../../../assets/Josh.png")}
+          />
+        </ShadowView>
+      </View>
+
+      <Badges />
+
+      <View>
+        <View
+          style={[styles.ProjectText, { backgroundColor: whiteBackground }]}
+        >
+          <Text
+            variant="h3"
+            lightColor={colors.light.titleTextColor}
+            style={{ marginLeft: 18 }}
+          >
+            PROJECTS
+          </Text>
+          <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
+        </View>
+        <View style={[styles.Projects, { backgroundColor: whiteBackground }]}>
+          <ScrollView horizontal={true}>
+            <Image
+              style={[styles.SideProject, { marginLeft: 25 }]}
+              source={require("../../../assets/SnakeRobot.png")}
+            />
+            <View
+              style={[styles.Overlay, styles.SideProject, { marginLeft: 25 }]}
+            ></View>
+            <Text
+              variant="smLabel"
+              style={[styles.CompletedProject, { bottom: 90, left: 50 }]}
+            >
+              Completed
+            </Text>
+            <Text
+              variant="h3"
+              style={[styles.OverlayText, { bottom: 60, left: 50 }]}
+            >
+              Snake robot
+            </Text>
+            <Text
+              variant="smBody"
+              style={[styles.OverlayText, { bottom: 45, left: 50 }]}
+            >
+              Unique soft robot
+            </Text>
+
+            <Image
+              style={styles.MiddleProject}
+              source={require("../../../assets/SnakeRobot.png")}
+            />
+            <View
+              style={[styles.Overlay, styles.MiddleProject, { left: 310 }]}
+            />
+            <Text
+              variant="smLabel"
+              style={[styles.CompletedProject, { bottom: 84, left: 335 }]}
+            >
+              Completed
+            </Text>
+            <Text
+              variant="h3"
+              style={[styles.OverlayText, { bottom: 54, left: 335 }]}
+            >
+              Snake robot
+            </Text>
+            <Text
+              variant="smBody"
+              style={[styles.OverlayText, { bottom: 39, left: 335 }]}
+            >
+              Unique soft robot
+            </Text>
+
+            <Image
+              style={styles.SideProject}
+              source={require("../../../assets/SnakeRobot.png")}
+            />
+            <View style={[styles.Overlay, styles.SideProject, { left: 610 }]} />
+            <Text
+              variant="smLabel"
+              style={[styles.CompletedProject, { bottom: 90, left: 660 }]}
+            >
+              Completed
+            </Text>
+            <Text
+              variant="h3"
+              style={[styles.OverlayText, { bottom: 60, left: 660 }]}
+            >
+              Snake robot
+            </Text>
+            <Text
+              variant="smBody"
+              style={[styles.OverlayText, { bottom: 45, left: 660 }]}
+            >
+              Unique soft robot
+            </Text>
+          </ScrollView>
         </View>
       </View>
     </View>
@@ -107,6 +245,15 @@ const ProfileInfo = () => {
 export default ProfileInfo;
 
 const styles = StyleSheet.create({
+  BiggerRectangle: {
+    height: 5,
+    borderRadius: 100,
+  },
+  Rectangle: {
+    height: 3,
+    borderRadius: 100,
+    marginTop: 1,
+  },
   ProfileInfo: {
     flexDirection: "column",
     alignItems: "center",
@@ -121,38 +268,20 @@ const styles = StyleSheet.create({
   Avatar: {
     alignSelf: "center",
     position: "absolute",
-    marginTop: 40,
+    marginTop: 30,
     borderRadius: 100,
     backgroundColor: colors.light.backgroundSecondary,
-    borderWidth: 8,
+    borderWidth: 2,
     borderColor: colors.light.backgroundSecondary,
   },
   ProfileIcons: {
     flexDirection: "row",
     marginTop: 10,
-  },
-  Darkmode: {
-    marginLeft: 2,
+    justifyContent: "space-between",
   },
   Bell: {
     flexDirection: "row",
-    marginLeft: 270,
-  },
-
-  Rec: {
-    marginTop: 20,
-  },
-  BiggerRectangle: {
-    width: 350,
-    height: 5,
-    backgroundColor: colors.light.background,
-    borderRadius: 100,
-  },
-  Rectangle: {
-    width: 100 * 2,
-    height: 5,
-    backgroundColor: colors.light.primary,
-    borderRadius: 100,
+    marginRight: 29,
   },
   Boxes: {
     flexDirection: "row",
@@ -168,29 +297,91 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 10,
   },
-  IconContainer: {
-    width: 40,
-    height: 40,
-    backgroundColor: colors.light.icon,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 50,
-    marginLeft: 40,
+  Settings: {
+    flexDirection: "row",
+    marginLeft: 30,
   },
-  EditContainer: {
-    width: 30,
-    height: 30,
-    backgroundColor: colors.light.backgroundSecondary,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 70,
-    borderWidth: 4,
-    borderColor: colors.light.backgroundSecondary,
-    marginTop: -30,
-    marginLeft: 105,
+  Rec: {
+    marginTop: 20,
   },
   Description: {
     flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  RedDot: {
+    width: 9,
+    height: 9,
+    backgroundColor: "red",
+    borderRadius: 50,
+    marginLeft: 15,
+    marginTop: -22,
+  },
+  Shadow: {
+    hadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 4,
+    borderRadius: 200,
+  },
+
+  Badges: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingBottom: 35,
+    paddingTop: 15,
+    backgroundColor: colors.light.backgroundSecondary,
+  },
+  Badge: {
+    marginHorizontal: 20,
+  },
+  BadgeText: {
+    marginTop: 2,
+    flexDirection: "row",
+    backgroundColor: colors.light.backgroundSecondary,
+    padding: 10,
+    justifyContent: "space-between",
+  },
+
+  Projects: {
+    backgroundColor: colors.light.backgroundSecondary,
+    paddingBottom: 50,
+    paddingTop: 15,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  MiddleProject: {
+    height: 230,
+    width: 300,
+    borderRadius: 7,
+  },
+  SideProject: {
+    height: 200,
+    width: 270,
+    borderRadius: 7,
+    marginVertical: 15,
+    marginHorizontal: 15,
+  },
+  Overlay: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    position: "absolute",
+  },
+  CompletedProject: {
+    color: colors.light.backgroundSecondary,
+    position: "absolute",
+    backgroundColor: colors.light.success,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 3,
+    letterSpacing: 0.2,
+  },
+  OverlayText: {
+    color: colors.light.backgroundSecondary,
+    position: "absolute",
+  },
+  ProjectText: {
+    marginTop: 2,
+    flexDirection: "row",
+    backgroundColor: colors.light.backgroundSecondary,
+    padding: 10,
     justifyContent: "space-between",
   },
 });

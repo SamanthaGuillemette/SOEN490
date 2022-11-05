@@ -6,3 +6,5 @@ export * from "./ShadowView";
 export * from "./InputField";
 export * from "./UserAvatar";
 export * from "./Button";
+export * from "./ProgressBar";
+export * from "./Badge";

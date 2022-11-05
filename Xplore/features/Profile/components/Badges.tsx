@@ -1,63 +1,35 @@
 import { StyleSheet, View } from "react-native";
-import { Avatar } from "react-native-paper";
-import { Text } from "../../../components";
+import { LinkButton, Text, Badge } from "../../../components";
 import { colors } from "../../../constants";
 import { ScrollView } from "react-native";
+import { useThemeColor } from "../../../hooks";
 
 const Badges = () => {
+  const whiteBackground = useThemeColor("backgroundSecondary");
+
   return (
     <View>
-      <View style={styles.BadgeText}>
+      <View style={[styles.BadgeText, , { backgroundColor: whiteBackground }]}>
         <Text
           variant="h3"
-          lightColor={colors.light.primary}
+          lightColor={colors.light.titleTextColor}
           style={{ marginLeft: 18 }}
         >
           BADGES
         </Text>
-        <Text variant="body" color="linkText" style={{ marginRight: 18 }}>
-          View all
-        </Text>
+
+        <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
       </View>
-      <View style={styles.Badges}>
+      <View style={[styles.Badges, , { backgroundColor: whiteBackground }]}>
         <ScrollView horizontal={true}>
-          <Avatar.Image
-            style={{ marginLeft: 25 }}
-            size={75}
-            source={require("../../../assets/badge1.png")}
-          />
-          <Avatar.Image
-            style={styles.Badge}
-            size={75}
-            source={require("../../../assets/badge2.png")}
-          />
-          <Avatar.Image
-            size={75}
-            source={require("../../../assets/badge3.png")}
-          />
-          <Avatar.Image
-            style={styles.Badge}
-            size={75}
-            source={require("../../../assets/badge4.png")}
-          />
-          <Avatar.Image
-            size={75}
-            source={require("../../../assets/badge1.png")}
-          />
-          <Avatar.Image
-            style={styles.Badge}
-            size={75}
-            source={require("../../../assets/badge2.png")}
-          />
-          <Avatar.Image
-            size={75}
-            source={require("../../../assets/badge3.png")}
-          />
-          <Avatar.Image
-            style={styles.Badge}
-            size={75}
-            source={require("../../../assets/badge4.png")}
-          />
+          <Badge index={0} />
+          <Badge index={1} />
+          <Badge index={2} />
+          <Badge index={3} />
+          <Badge index={0} />
+          <Badge index={1} />
+          <Badge index={2} />
+          <Badge index={3} />
         </ScrollView>
       </View>
     </View>
@@ -73,9 +45,6 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
     paddingTop: 15,
     backgroundColor: colors.light.backgroundSecondary,
-  },
-  Badge: {
-    marginHorizontal: 20,
   },
   BadgeText: {
     marginTop: 2,
