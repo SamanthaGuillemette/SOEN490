@@ -1,21 +1,26 @@
-import { StyleSheet } from "react-native";
-import { Platform } from "react-native";
-import { multiplier } from "../../constants";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  avatar_container: {
-    borderRadius: 30,
-    elevation: 3,
+  avatarContainer: {
+    borderRadius: 100,
+    elevation: Platform.OS === "ios" ? 5 : 10,
     shadowOpacity: 0.2,
+    shadowRadius: 5,
     shadowOffset: {
       width: 0,
       height: 0,
     },
+    padding: 5,
+    margin: -5,
   },
   avatar: {
-    height: Platform.OS === "ios" ? 50 * multiplier : 50,
-    width: Platform.OS === "ios" ? 50 * multiplier : 50,
-    borderRadius: 30,
-    borderWidth: 3,
+    borderWidth: 4,
+  },
+  textAvatar: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textAvatarText: {
+    color: "white",
   },
 });

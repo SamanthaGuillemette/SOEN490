@@ -11,7 +11,12 @@ const LeftBubble = ({ text, image }: LeftBubbleProps) => {
   return (
     <View backgroundColor="background" style={styles.bubbleContainer}>
       <View backgroundColor="background">
-        <Avatar image={image} style={styles.leftBubbleAvatar} />
+        <Avatar
+          name="Username"
+          size={45}
+          imageURL={image}
+          style={styles.leftBubbleAvatar}
+        />
       </View>
       <ShadowView style={styles.leftBubble}>
         <Text variant="body">{text}</Text>

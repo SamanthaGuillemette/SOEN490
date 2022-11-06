@@ -1,24 +1,18 @@
-import {
-  StyleProp,
-  StyleSheet,
-  TouchableOpacity,
-  ViewStyle,
-} from "react-native";
-import { colors } from "../../constants";
+import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
 import { Text } from "../Text";
 import { View } from "../View";
+import styles from "./LinkButton.styles";
 
 interface LinkButtonProps {
   children: string;
-  backgroundColor?: keyof typeof colors.light & keyof typeof colors.dark;
   style?: StyleProp<ViewStyle>;
 }
 
 export const LinkButton = (props: LinkButtonProps) => {
-  const { children, backgroundColor, style } = props;
+  const { children, style } = props;
 
   return (
-    <View backgroundColor={backgroundColor} style={style}>
+    <View style={style}>
       <TouchableOpacity>
         <Text variant="link" color="linkText" style={styles.linkButtonText}>
           {children}
@@ -27,11 +21,3 @@ export const LinkButton = (props: LinkButtonProps) => {
     </View>
   );
 };
-
-export default LinkButton;
-
-const styles = StyleSheet.create({
-  linkButtonText: {
-    textDecorationLine: "underline",
-  },
-});

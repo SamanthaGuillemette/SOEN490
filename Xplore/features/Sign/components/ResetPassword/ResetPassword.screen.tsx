@@ -6,7 +6,6 @@ import LottieView from "lottie-react-native";
 
 const ResetPassword = () => {
   const animation = useRef(null);
-
   return (
     <ScrollView>
       <View style={styles.container}>

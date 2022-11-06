@@ -16,7 +16,12 @@ const LeftBubble = ({ text, image }: RightBubbleProps) => {
         <MessageTime time={"11:11 PM"} style={styles.msgTime} />
       </ShadowView>
       <View backgroundColor="background">
-        <Avatar image={image} style={styles.rightBubbleAvatar} />
+        <Avatar
+          name="Username"
+          size={45}
+          imageURL={image}
+          style={styles.rightBubbleAvatar}
+        />
       </View>
     </View>
   );

@@ -19,7 +19,7 @@ export const TextButton = (props: TextButtonProps) => {
   return (
     <View style={styles.skipButton}>
       <TouchableOpacity {...restOfProps}>
-        <Text variant="body" color="gray300">
+        <Text variant="body" color="bodyText">
           {children}
         </Text>
       </TouchableOpacity>

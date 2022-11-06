@@ -8,6 +8,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     padding: 4,
     marginRight: 12,
+    marginBottom: 10, // To make the shadow visible
   },
   projectImageContainer: {
     width: "100%",
