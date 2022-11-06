@@ -280,7 +280,11 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                 Array [
                   undefined,
                   Object {
+<<<<<<< HEAD
                     "backgroundColor": "#FFFFFF",
+=======
+                    "backgroundColor": "#F5F5F5",
+>>>>>>> origin/develop
                   },
                 ]
               }
@@ -379,7 +383,11 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                     "width": 8,
                   },
                   Object {
+<<<<<<< HEAD
                     "backgroundColor": undefined,
+=======
+                    "backgroundColor": "#E8E8E8",
+>>>>>>> origin/develop
                   },
                 ]
               }
@@ -396,7 +404,11 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                     "width": 8,
                   },
                   Object {
+<<<<<<< HEAD
                     "backgroundColor": undefined,
+=======
+                    "backgroundColor": "#E8E8E8",
+>>>>>>> origin/develop
                   },
                 ]
               }
@@ -413,7 +425,11 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                     "width": 8,
                   },
                   Object {
+<<<<<<< HEAD
                     "backgroundColor": undefined,
+=======
+                    "backgroundColor": "#E8E8E8",
+>>>>>>> origin/develop
                   },
                 ]
               }
@@ -430,7 +446,11 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                     "width": 8,
                   },
                   Object {
+<<<<<<< HEAD
                     "backgroundColor": undefined,
+=======
+                    "backgroundColor": "#E8E8E8",
+>>>>>>> origin/develop
                   },
                 ]
               }
@@ -447,7 +467,11 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                     "width": 8,
                   },
                   Object {
+<<<<<<< HEAD
                     "backgroundColor": undefined,
+=======
+                    "backgroundColor": "#E8E8E8",
+>>>>>>> origin/develop
                   },
                 ]
               }
@@ -509,7 +533,11 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
+<<<<<<< HEAD
                   "color": undefined,
+=======
+                  "color": "#969696",
+>>>>>>> origin/develop
                 },
                 undefined,
               ]

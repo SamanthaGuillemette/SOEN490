@@ -33,7 +33,6 @@ const ForgotPassword = () => {
         </View>
 
         <TextInput placeHolder="Email" iconName="mail" />
-
         <PrimaryButton label="SEND RESET LINK" style={styles.primaryButton} />
         <LinkButton style={styles.loginLink}>Go back to login</LinkButton>
       </View>
