@@ -6,7 +6,7 @@ import { useThemeColor } from "../../hooks";
 import styles from "./TextInput.styles";
 
 interface TextInputProps {
-  placeHolder: any;
+  placeHolder: string;
   iconName: keyof typeof Feather.glyphMap;
   secureTextEntry?: boolean;
 }
@@ -15,9 +15,11 @@ export const TextInput = ({
   placeHolder,
   iconName,
   secureTextEntry,
+  ...restOfProps
 }: TextInputProps) => {
-  const gray77 = useThemeColor("gray77");
-  const gray100 = useThemeColor("gray100");
+  const generalGray = useThemeColor("generalGray");
+  const smallText = useThemeColor("smallText");
+  const bodyText = useThemeColor("bodyText");
   const primary = useThemeColor("primary");
   const IconSize = Platform.OS === "ios" ? 24 * multiplier : 24;
   const [isFocused, setFocused] = useState(false);
@@ -33,22 +35,23 @@ export const TextInput = ({
     <View
       style={[
         styles.inputWrapper,
-        { borderBottomColor: isFocused ? primary : gray77 },
+        { borderBottomColor: isFocused ? primary : generalGray },
       ]}
     >
       <Feather
         name={iconName}
         size={IconSize}
-        color={isFocused ? primary : gray77}
+        color={isFocused ? primary : smallText}
         style={styles.textInputIcon}
       />
       <RNTextInput
         onFocus={handleFocus}
         onBlur={handleBlur}
-        placeholderTextColor={gray77}
+        placeholderTextColor={bodyText}
         placeholder={placeHolder}
         secureTextEntry={secureTextEntry}
-        style={{ color: gray100 }}
+        style={{ color: smallText }}
+        {...restOfProps}
       />
     </View>
   );
