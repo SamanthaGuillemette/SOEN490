@@ -11,7 +11,9 @@ import Chats from "../features/Chat/screens/Chats/Chats.screen";
 import ChatDetails from "../features/Chat/screens/ChatDetails/ChatDetails.screen";
 import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import BottomTabNavigator from "./BottomTabNavigator";
-import Home from "../features/Dashboard/screens/Home.screen";
+import Sign from "../features/Sign/screens/Sign.screen";
+import ForgotPassword from "../features/Sign/components/ForgotPassword/ForgotPassword.screen";
+import ResetPassword from "../features/Sign/components/ResetPassword/ResetPassword.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +33,11 @@ const Main = ({ colorScheme }: MainProps) => {
         screenOptions={{ headerShown: false }}
         initialRouteName="Onboarding"
       >
+        {isLoggedIn ? (
+          <Stack.Screen name="Onboarding" component={Onboarding} />
+        ) : (
+          <Stack.Screen name="Sign" component={Sign} />
+        )}
         <Stack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}
@@ -38,7 +45,9 @@ const Main = ({ colorScheme }: MainProps) => {
         <Stack.Screen name="Completion" component={Completion} />
         <Stack.Screen name="Chats" component={Chats} />
         <Stack.Screen name="ChatDetails" component={ChatDetails} />
-        <Stack.Screen name="Onboarding" component={Onboarding} />
+
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="ResetPassword" component={ResetPassword} />
       </Stack.Navigator>
     </NavigationContainer>
   );

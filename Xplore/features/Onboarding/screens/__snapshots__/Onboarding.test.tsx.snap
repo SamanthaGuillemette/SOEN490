@@ -509,7 +509,7 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                   "lineHeight": 21,
                 },
                 Object {
-                  "color": undefined,
+                  "color": "#585757",
                 },
                 undefined,
               ]
