@@ -9,7 +9,9 @@ import { ColorSchemeName } from "react-native";
 import Completion from "../features/Completion/screens/Completion.component";
 import Chats from "../features/Chat/screens/Chats/Chats.screen";
 import ChatDetails from "../features/Chat/screens/ChatDetails/ChatDetails.screen";
+import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import BottomTabNavigator from "./BottomTabNavigator";
+import Home from "../features/Dashboard/screens/Home.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +27,10 @@ const Main = ({ colorScheme }: MainProps) => {
     <NavigationContainer
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="Onboarding"
+      >
         <Stack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}
@@ -33,6 +38,7 @@ const Main = ({ colorScheme }: MainProps) => {
         <Stack.Screen name="Completion" component={Completion} />
         <Stack.Screen name="Chats" component={Chats} />
         <Stack.Screen name="ChatDetails" component={ChatDetails} />
+        <Stack.Screen name="Onboarding" component={Onboarding} />
       </Stack.Navigator>
     </NavigationContainer>
   );

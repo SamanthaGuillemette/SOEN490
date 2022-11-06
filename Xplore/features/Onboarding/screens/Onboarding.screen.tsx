@@ -126,7 +126,7 @@ const Onboarding = (props: OnboardingProps) => {
             />
           </View>
 
-          <TextButton onPress={() => navigation.navigate("Home")}>
+          <TextButton onPress={() => navigation.navigate("BottomTabNavigator")}>
             SKIP
           </TextButton>
         </View>
