@@ -24,7 +24,7 @@ export const HomeHeader = () => {
         <LinkButton style={styles.linkButton}>View your projects</LinkButton>
       </View>
       <View>
-        <Avatar name="Josh" imageURL="https://picsum.photos/200" size="large" />
+        <Avatar name="Josh" imageURL="https://picsum.photos/200" size={60} />
       </View>
     </ShadowView>
   );

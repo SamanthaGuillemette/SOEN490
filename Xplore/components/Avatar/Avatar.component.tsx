@@ -1,45 +1,52 @@
-import { ShadowView } from "../ShadowView";
-import { Avatar as _Avatar } from "react-native-paper";
 import { useThemeColor } from "../../hooks";
+import { Image, StyleProp, ViewStyle } from "react-native";
 import styles from "./Avatar.styles";
+import { View } from "../View";
+import { Text } from "../Text";
 
 interface AvatarProps {
   name: string;
   imageURL?: string;
-  size?: "small" | "medium" | "large" | "xlarge";
+  size?: number;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const Avatar = (props: AvatarProps) => {
-  // Default size to "large"
-  const { size = "large", name, imageURL } = props;
+  // Default size to '60'
+  const { name, imageURL, size = 60, style } = props;
 
-  const textAvatarBackground = useThemeColor("primary");
+  const primary = useThemeColor("primary");
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
   const avatarDisplayName = name.charAt(0).toUpperCase();
-  const avatarSize =
-    size === "small"
-      ? 31
-      : size === "medium"
-      ? 45
-      : size === "large"
-      ? 60
-      : 135;
 
   return (
-    <ShadowView
-      backgroundColor="backgroundSecondary"
-      style={styles.avatarContainer}
-    >
+    <View style={[style, styles.avatarContainer, { shadowColor: primary }]}>
       {imageURL ? (
-        <_Avatar.Image source={{ uri: `${imageURL}` }} size={avatarSize} />
-      ) : (
-        <_Avatar.Text
-          label={avatarDisplayName}
-          size={avatarSize}
-          style={{
-            backgroundColor: textAvatarBackground,
-          }}
+        <Image
+          style={[
+            styles.avatar,
+            {
+              borderColor: backgroundSecondary,
+              width: size,
+              height: size,
+              borderRadius: size / 2,
+            },
+          ]}
+          source={{ uri: `${imageURL}` }}
         />
+      ) : (
+        <View
+          backgroundColor="primary"
+          style={[
+            styles.textAvatar,
+            { width: size, height: size, borderRadius: size / 2 },
+          ]}
+        >
+          <Text style={styles.textAvatarText} variant="h2">
+            {avatarDisplayName}
+          </Text>
+        </View>
       )}
-    </ShadowView>
+    </View>
   );
 };

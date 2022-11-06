@@ -1,11 +1,26 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   avatarContainer: {
     borderRadius: 100,
-    borderWidth: 1,
-    borderColor: "#fff",
-    padding: 3, // padding to shows the shadow clearly
-    marginRight: -3, // marginRight to adjust the position to the right
+    elevation: Platform.OS === "ios" ? 5 : 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    padding: 5,
+    margin: -5,
+  },
+  avatar: {
+    borderWidth: 4,
+  },
+  textAvatar: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textAvatarText: {
+    color: "white",
   },
 });
