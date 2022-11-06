@@ -5,18 +5,26 @@ import styles from "./TodayStats.styles";
 
 export const TodayStats = () => {
   return (
-    <View backgroundColor="background" style={styles.container}>
+    <View style={styles.container}>
       <Text variant="h2" color="titleText" style={styles.todayTitle}>
         Today
       </Text>
-      <View backgroundColor="background" style={styles.todayStats}>
-        <View backgroundColor="background" style={styles.leftPanel}>
-          <StatBoxLarge />
-          <StatBoxSmall />
+      <View style={styles.todayStats}>
+        <View style={styles.leftPanel}>
+          <StatBoxLarge
+            title="In Progress"
+            subTitle="3 Projects"
+            iconName="refresh-ccw"
+          />
+          <StatBoxSmall
+            title="Completed"
+            subTitle="20 Tasks"
+            iconName="check-circle"
+          />
         </View>
-        <View backgroundColor="background" style={styles.rightPanel}>
-          <StatBoxSmall />
-          <StatBoxLarge />
+        <View style={styles.rightPanel}>
+          <StatBoxSmall title="Active" subTitle="15 Tasks" iconName="zap" />
+          <StatBoxLarge title="Overdue" subTitle="6 Tasks" iconName="clock" />
         </View>
       </View>
     </View>

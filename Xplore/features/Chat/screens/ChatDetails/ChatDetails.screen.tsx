@@ -6,6 +6,7 @@ import ChatDetailsHeader from "../../components/ChatDetailsHeader/ChatDetailsHea
 import Conversation from "../../components/Conversation/Conversation.Component";
 import ChatTextInput from "../../components/ChatTextInput/ChatTextInput.Component";
 import styles from "./ChatDetails.styles";
+
 interface ChatDetailsProps {
   navigation: NavigationProp<any>;
 }

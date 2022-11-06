@@ -20,7 +20,7 @@ const Chats = (props: ChatsProps) => {
         style={[styles.chat_container, { backgroundColor: background }]}
       >
         <ChatBox
-          image={require("../../../../assets/users/josh.jpg")}
+          image="https://picsum.photos/200"
           username={"Josh Lewis"}
           lastText={"Lorem ipsum dolor sit amet consectetur... "}
           time={"5 min ago"}
@@ -29,31 +29,31 @@ const Chats = (props: ChatsProps) => {
           }
         />
         <ChatBox
-          image={require("../../../../assets/users/amy.jpg")}
+          image="https://picsum.photos/200"
           username={"Amy Lucas"}
           lastText={"Lorem ipsum dolor sit amet consectetur..."}
           time={"5 min ago"}
         />
         <ChatBox
-          image={require("../../../../assets/users/landon.jpg")}
+          image="https://picsum.photos/200"
           username={"Landon Clayton"}
           lastText={"Lorem ipsum dolor sit amet consectetur..."}
           time={"5 min ago"}
         />
         <ChatBox
-          image={require("../../../../assets/users/martin.jpg")}
+          image="https://picsum.photos/200"
           username={"Martin Carza"}
           lastText={"Lorem ipsum dolor sit amet consectetur..."}
           time={"5 min ago"}
         />
         <ChatBox
-          image={require("../../../../assets/users/bernice.jpg")}
+          image="https://picsum.photos/200"
           username={"Bernice Lewis"}
           lastText={"Lorem ipsum dolor sit amet consectetur..."}
           time={"5 min ago"}
         />
         <ChatBox
-          image={require("../../../../assets/users/elva.jpg")}
+          image="https://picsum.photos/200"
           username={"Elva Moore"}
           lastText={"Lorem ipsum dolor sit amet consectetur..."}
           time={"5 min ago"}

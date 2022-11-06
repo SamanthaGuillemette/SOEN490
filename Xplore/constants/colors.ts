@@ -15,6 +15,7 @@ export const colors = {
     smallText: "#969696",
     generalGray: "#E8E8E8",
     linkText: "#6587FF",
+    transparent: "transparent",
   },
   dark: {
     primary: "#0074FF",
@@ -32,5 +33,6 @@ export const colors = {
     smallText: "#767676",
     generalGray: "#313131",
     linkText: "#6587FF",
+    transparent: "transparent",
   },
 };

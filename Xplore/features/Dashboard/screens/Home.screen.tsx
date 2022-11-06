@@ -2,13 +2,19 @@ import { useState } from "react";
 import {
   NativeScrollEvent,
   NativeSyntheticEvent,
+  Platform,
   SafeAreaView,
   ScrollView,
 } from "react-native";
 import { AnimatedFAB } from "react-native-paper";
 import { View } from "../../../components/";
 import { useThemeColor } from "../../../hooks";
-import { HomeHeader, ExploreProjects, TodayStats } from "../components";
+import {
+  HomeHeader,
+  ExploreProjects,
+  TodayStats,
+  NewProjects,
+} from "../components";
 import styles from "./Home.styles";
 
 const Home = () => {
@@ -33,14 +39,14 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: scrollViewBackground }}
         onScroll={onScroll}
-        scrollEventThrottle={16}
+        scrollEventThrottle={32}
       >
         <HomeHeader />
 
-        <View backgroundColor="background" style={styles.mainScreen}>
+        <View style={styles.mainScreen}>
           <TodayStats />
           <ExploreProjects />
-          <ExploreProjects />
+          <NewProjects />
         </View>
       </ScrollView>
 
@@ -52,10 +58,9 @@ const Home = () => {
         visible={true}
         animateFrom={"right"}
         iconMode={"dynamic"}
-        theme={{ roundness: 10 }}
         style={{
           position: "absolute",
-          bottom: 120,
+          bottom: Platform.OS === "ios" ? "15%" : "12%",
           right: 16,
         }}
       />

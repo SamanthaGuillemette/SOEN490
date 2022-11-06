@@ -9,5 +9,6 @@ export default StyleSheet.create({
     paddingTop: 45,
     paddingHorizontal: 20,
     flex: 1,
+    marginBottom: 150,
   },
 });
