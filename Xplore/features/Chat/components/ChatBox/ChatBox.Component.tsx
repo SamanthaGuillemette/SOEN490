@@ -4,7 +4,7 @@ import { useThemeColor } from "../../../../hooks";
 import styles from "./ChatBox.styles";
 
 interface ChatBoxProps {
-  image: any;
+  image: string;
   username: String;
   lastText?: String;
   time?: String;
@@ -27,7 +27,12 @@ const ChatBox = ({
           { backgroundColor: backgroundSecondary },
         ]}
       >
-        <Avatar image={image} style={styles.chatBox_avatar} />
+        <Avatar
+          name="Username"
+          imageURL={image}
+          size={45}
+          style={styles.chatBox_avatar}
+        />
         <View style={{ backgroundColor: backgroundSecondary }}>
           <Text variant="h3" style={styles.chatBox_username}>
             {username}

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     marginTop: StatusBar.currentHeight ?? 0,
   },
   chat_container: {
-    paddingTop: 45,
     flex: 1,
+    paddingTop: 45,
   },
 });

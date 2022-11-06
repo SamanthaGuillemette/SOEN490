@@ -22,34 +22,19 @@ const Conversation = ({}: ConversationProps) => {
       }
     >
       <ChatDate date={"Jun 25, 2022"} />
-      <LeftBubble
-        text="hello"
-        image={require("../../../../assets/users/josh.jpg")}
-      />
-      <LeftBubble
-        text="It's Meeee"
-        image={require("../../../../assets/users/josh.jpg")}
-      />
+      <LeftBubble text="hello" image="https://picsum.photos/200" />
+      <LeftBubble text="It's Meeee" image="https://picsum.photos/200" />
       <LeftBubble
         text="Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur..."
-        image={require("../../../../assets/users/josh.jpg")}
+        image="https://picsum.photos/200"
       />
-      <RightBubble
-        text="Alright"
-        image={require("../../../../assets/users/josh.jpg")}
-      />
-      <RightBubble
-        text="OKAYYYYYYYYY"
-        image={require("../../../../assets/users/josh.jpg")}
-      />
+      <RightBubble text="Alright" image="https://picsum.photos/200" />
+      <RightBubble text="OKAYYYYYYYYY" image="https://picsum.photos/200" />
       <RightBubble
         text="Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur..."
-        image={require("../../../../assets/users/josh.jpg")}
+        image="https://picsum.photos/200"
       />
-      <LeftBubble
-        text="OHH"
-        image={require("../../../../assets/users/josh.jpg")}
-      />
+      <LeftBubble text="OHH" image="https://picsum.photos/200" />
     </ScrollView>
   );
 };

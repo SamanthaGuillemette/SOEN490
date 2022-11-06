@@ -13,7 +13,7 @@ interface ViewProps {
 export const View = (props: ViewProps) => {
   const {
     children,
-    backgroundColor = "backgroundSecondary",
+    backgroundColor = "transparent",
     lightColor,
     darkColor,
     style,

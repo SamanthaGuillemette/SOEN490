@@ -67,16 +67,13 @@ export const ExploreProjects = () => {
   };
 
   return (
-    <View backgroundColor="background" style={styles.exploreContainer}>
+    <View style={styles.exploreContainer}>
       <Text variant="h2" color="titleText">
         Explore
       </Text>
-      <View
-        backgroundColor="background"
-        style={styles.exploreSubTitleContainer}
-      >
+      <View style={styles.exploreSubTitleContainer}>
         <Text variant="body">Check out popular projects</Text>
-        <LinkButton backgroundColor="background">View all</LinkButton>
+        <LinkButton>View all</LinkButton>
       </View>
 
       <FlatList

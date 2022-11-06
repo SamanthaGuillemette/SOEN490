@@ -13,7 +13,10 @@ export const ProjectCardSmall = (props: ProjectCardSmallProps) => {
   const dynamicMargin = index === 0 ? 20 : 0;
 
   return (
-    <ShadowView style={[styles.container, { marginLeft: dynamicMargin }]}>
+    <ShadowView
+      backgroundColor="backgroundSecondary"
+      style={[styles.container, { marginLeft: dynamicMargin }]}
+    >
       <View style={styles.projectImageContainer}>
         <Image
           source={{
@@ -33,5 +36,3 @@ export const ProjectCardSmall = (props: ProjectCardSmallProps) => {
     </ShadowView>
   );
 };
-
-export default ProjectCardSmall;
