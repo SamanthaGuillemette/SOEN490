@@ -4,6 +4,7 @@ export * from "./Icon";
 export * from "./View";
 export * from "./LinkButton";
 export * from "./ShadowView";
+export * from "./Avatar";
 export * from "./TextButton";
 export * from "./Logo";
 export * from "./SegmentedButton";
