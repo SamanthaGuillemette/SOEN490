@@ -280,7 +280,7 @@ exports[`<Onboarding /> matches snapshot 1`] = `
                 Array [
                   undefined,
                   Object {
-                    "backgroundColor": "#FFFFFF",
+                    "backgroundColor": "transparent",
                   },
                 ]
               }
