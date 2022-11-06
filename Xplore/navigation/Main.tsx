@@ -26,7 +26,7 @@ interface MainProps {
 
 const Main = ({ colorScheme }: MainProps) => {
   // Fake login, switch state to true to login
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(true);
 
   return (
     <NavigationContainer
