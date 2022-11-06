@@ -11,7 +11,7 @@ describe("Home />", () => {
 });
 
 describe("HomeHeader />", () => {
-  it("renders correctly", () => {
+  it("renders correctly with the proper text", () => {
     const container = render(<HomeHeader />);
     expect(container.getByText("Hi Josh,")).toBeTruthy();
   });
