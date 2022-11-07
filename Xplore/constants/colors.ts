@@ -15,6 +15,7 @@ export const colors = {
     smallText: "#969696",
     generalGray: "#E8E8E8",
     linkText: "#6587FF",
+    primaryBackgroundOpaque: "rgba(2, 64, 137, 0.10)",
     transparent: "transparent",
   },
   dark: {
