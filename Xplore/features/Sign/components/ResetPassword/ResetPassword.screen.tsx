@@ -27,7 +27,7 @@ const ResetPassword = (props: ResetPasswordProps) => {
 
         <View style={styles.textItems}>
           <Text variant="h2">Reset password</Text>
-          <Text variant="body" color="smallText" style={styles.subTitleText}>
+          <Text variant="body" color="bodyText" style={styles.subTitleText}>
             Enter a new password below
           </Text>
         </View>
