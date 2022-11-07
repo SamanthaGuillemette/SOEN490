@@ -27,7 +27,7 @@ const SignUp = (props: SignUpProps) => {
       <PrimaryButton
         label="SIGN UP"
         style={styles.PrimaryButton}
-        onPress={() => navigation.navigate("BottomTabNavigator")}
+        onPress={() => navigation.navigate("ResetPassword")}
       />
     </View>
   );

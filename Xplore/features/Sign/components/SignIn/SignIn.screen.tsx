@@ -28,7 +28,7 @@ const SignIn = (props: SignInProps) => {
       <SecondaryButton
         label="FORGOT PASSWORD"
         style={styles.SecondaryButton}
-        onPress={() => navigation.navigate("BottomTabNavigator")}
+        onPress={() => navigation.navigate("ForgotPassword")}
       />
     </View>
   );
