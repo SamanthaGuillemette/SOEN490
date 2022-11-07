@@ -1,39 +1,31 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider as PaperProvider } from "react-native-paper";
-import useColorScheme from "./hooks/useColorScheme";
-import colors from "./constants/colors";
+import { useCachedResources, useColorScheme, useThemeColor } from "./hooks";
+import Main from "./navigation/Main";
 
 const App = () => {
   const colorScheme = useColorScheme();
 
-  console.log(colors[colorScheme].completedPrimary);
-  const bgColor: string = colors[colorScheme].completedBackground;
+  // Load resources we need (under splash screen) prior to rendering the app
+  const isLoadingComplete = useCachedResources();
 
-  return (
-    <SafeAreaProvider>
-      <PaperProvider>
-        <StatusBar style="auto" />
-        <Text style={styles.text1}>Welcome to SOEN490</Text>
-        <Text style={styles.text2}>Color scheme: {colorScheme}</Text>
-        <View style={[styles.dynamicColor, { backgroundColor: bgColor }]} />
-      </PaperProvider>
-    </SafeAreaProvider>
-  );
+  // Status bar background (only required for Android)
+  const statusBarBg = useThemeColor("backgroundSecondary");
+
+  if (!isLoadingComplete) {
+    // No need to render anything here
+    return null;
+  } else {
+    return (
+      <SafeAreaProvider>
+        <PaperProvider>
+          <StatusBar style="auto" backgroundColor={statusBarBg} />
+          <Main colorScheme={colorScheme} />
+        </PaperProvider>
+      </SafeAreaProvider>
+    );
+  }
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  text1: {
-    fontSize: 50,
-  },
-  text2: {
-    fontSize: 20,
-  },
-  dynamicColor: {
-    width: 60,
-    height: 60,
-  },
-});
