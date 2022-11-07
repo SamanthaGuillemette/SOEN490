@@ -1,8 +1,13 @@
-import { StyleProp, View as RNView, ViewStyle } from "react-native";
+import {
+  StyleProp,
+  View as RNView,
+  ViewStyle,
+  ViewProps as RNViewProps,
+} from "react-native";
 import { colors } from "../../constants";
 import { useThemeColor } from "../../hooks";
 
-interface ViewProps {
+interface ViewProps extends RNViewProps {
   children: React.ReactNode;
   backgroundColor?: keyof typeof colors.light & keyof typeof colors.dark;
   lightColor?: string;
@@ -17,6 +22,7 @@ export const View = (props: ViewProps) => {
     lightColor,
     darkColor,
     style,
+    ...restOfProps
   } = props;
 
   const bgColor = useThemeColor(backgroundColor, {
@@ -25,6 +31,8 @@ export const View = (props: ViewProps) => {
   });
 
   return (
-    <RNView style={[style, { backgroundColor: bgColor }]}>{children}</RNView>
+    <RNView style={[style, { backgroundColor: bgColor }]} {...restOfProps}>
+      {children}
+    </RNView>
   );
 };

@@ -1,16 +1,11 @@
 import React, { useRef } from "react";
-import {
-  Animated,
-  Dimensions,
-  Image,
-  ScrollView,
-  SafeAreaView,
-} from "react-native";
-import { Text, View, TextButton, LinkButton } from "../../../components";
+import { Animated, Image, ScrollView, SafeAreaView } from "react-native";
+import { Text, View, TextButton, PrimaryButton } from "../../../components";
 import styles from "./Onboarding.styles";
 import { PagingDot } from "../components/PagingDot.component";
 import { NavigationProp } from "@react-navigation/native";
 import { useThemeColor } from "../../../hooks";
+import { deviceScreenWidth } from "../../../constants";
 
 const onboardingImages = [
   {
@@ -44,8 +39,6 @@ const onboardingImages = [
   },
 ];
 
-const screenWidth = Dimensions.get("screen").width;
-
 interface OnboardingProps {
   navigation: NavigationProp<any>;
 }
@@ -56,7 +49,7 @@ const Onboarding = (props: OnboardingProps) => {
 
   const scrollValue = useRef(new Animated.Value(0)).current;
   const translateX = scrollValue.interpolate({
-    inputRange: [0, screenWidth],
+    inputRange: [0, deviceScreenWidth],
     outputRange: [0, 18], // 18 = margin + width of dot = (5+5) + 8
   });
 
@@ -93,7 +86,10 @@ const Onboarding = (props: OnboardingProps) => {
                   backgroundColor="backgroundSecondary"
                   style={styles.getStartedButton}
                 >
-                  <LinkButton>Get Started</LinkButton>
+                  <PrimaryButton
+                    label="Get Started"
+                    onPress={() => navigation.navigate("Sign")}
+                  />
                 </View>
               )}
             </View>
@@ -111,7 +107,7 @@ const Onboarding = (props: OnboardingProps) => {
             >
               {onboardingImages.map((_, index) => (
                 <PagingDot
-                  color="gray400"
+                  color="generalGray"
                   translateX={translateX}
                   key={index}
                 />
@@ -126,7 +122,7 @@ const Onboarding = (props: OnboardingProps) => {
             />
           </View>
 
-          <TextButton onPress={() => navigation.navigate("BottomTabNavigator")}>
+          <TextButton onPress={() => navigation.navigate("Sign")}>
             SKIP
           </TextButton>
         </View>

@@ -1,11 +1,16 @@
 import { Feather } from "@expo/vector-icons";
 import { useState } from "react";
-import { Platform, View, TextInput as RNTextInput } from "react-native";
+import {
+  Platform,
+  View,
+  TextInput as RNTextInput,
+  TextInputProps as RNTextInputProps,
+} from "react-native";
 import { multiplier } from "../../constants";
 import { useThemeColor } from "../../hooks";
 import styles from "./TextInput.styles";
 
-interface TextInputProps {
+interface TextInputProps extends RNTextInputProps {
   placeHolder: string;
   iconName: keyof typeof Feather.glyphMap;
   secureTextEntry?: boolean;

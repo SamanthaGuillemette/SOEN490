@@ -11,7 +11,6 @@ interface IconProps {
   style?: StyleProp<ViewStyle>;
 }
 
-
 export const Icon = (props: IconProps) => {
   const { name, size = "large", color = "primary", customColor, style } = props;
 
@@ -20,7 +19,6 @@ export const Icon = (props: IconProps) => {
   if (customColor) {
     iconColor = customColor;
   }
-
 
   let iconSize: number;
   switch (size) {

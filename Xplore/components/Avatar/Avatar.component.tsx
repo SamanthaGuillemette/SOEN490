@@ -1,10 +1,10 @@
 import { useThemeColor } from "../../hooks";
-import { Image, StyleProp, ViewStyle } from "react-native";
+import { Image, StyleProp, ViewProps, ViewStyle } from "react-native";
 import styles from "./Avatar.styles";
 import { View } from "../View";
 import { Text } from "../Text";
 
-interface AvatarProps {
+interface AvatarProps extends ViewProps {
   name: string;
   imageURL?: string;
   size?: number;
@@ -13,14 +13,17 @@ interface AvatarProps {
 
 export const Avatar = (props: AvatarProps) => {
   // Default size to '60'
-  const { name, imageURL, size = 60, style } = props;
+  const { name, imageURL, size = 60, style, ...restOfProps } = props;
 
   const primary = useThemeColor("primary");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const avatarDisplayName = name.charAt(0).toUpperCase();
 
   return (
-    <View style={[style, styles.avatarContainer, { shadowColor: primary }]}>
+    <View
+      style={[style, styles.avatarContainer, { shadowColor: primary }]}
+      {...restOfProps}
+    >
       {imageURL ? (
         <Image
           style={[

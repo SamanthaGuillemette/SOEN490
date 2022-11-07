@@ -1,8 +1,15 @@
+import { NavigationProp } from "@react-navigation/native";
 import * as React from "react";
 import { PrimaryButton, View, TextInput } from "../../../../components";
 import styles from "./SignUp.styles";
 
-const SignUp = () => {
+interface SignUpProps {
+  navigation: NavigationProp<any>;
+}
+
+const SignUp = (props: SignUpProps) => {
+  const { navigation } = props;
+
   return (
     <View style={styles.container}>
       <TextInput placeHolder={"Username"} iconName={"user"} />
@@ -17,7 +24,11 @@ const SignUp = () => {
         iconName={"lock"}
         secureTextEntry={true}
       />
-      <PrimaryButton label="SIGN UP" style={styles.PrimaryButton} />
+      <PrimaryButton
+        label="SIGN UP"
+        style={styles.PrimaryButton}
+        onPress={() => navigation.navigate("BottomTabNavigator")}
+      />
     </View>
   );
 };

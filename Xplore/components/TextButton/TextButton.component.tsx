@@ -3,10 +3,10 @@ import {
   TouchableOpacity,
   ViewStyle,
   TouchableOpacityProps,
-  StyleSheet,
   View,
 } from "react-native";
 import { Text } from "../Text";
+import styles from "./TextButton.styles";
 
 interface TextButtonProps extends TouchableOpacityProps {
   children: string;
@@ -26,9 +26,3 @@ export const TextButton = (props: TextButtonProps) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  skipButton: {
-    paddingVertical: 10,
-  },
-});
