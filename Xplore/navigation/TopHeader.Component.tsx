@@ -1,11 +1,15 @@
+import { NavigationProp } from "@react-navigation/native";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Icon, ShadowView, Text, View } from "../components";
 
 interface TopHeaderProps {
   screenName: String;
+  navigation: NavigationProp<any>;
 }
 
 const TopHeader = (props: TopHeaderProps) => {
+  const { navigation } = props;
+
   return (
     <ShadowView
       shadowOffset={4}
@@ -13,7 +17,7 @@ const TopHeader = (props: TopHeaderProps) => {
       style={styles.headerBar}
     >
       <View style={styles.navLeftItems}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon style={styles.arrowIcon} name="chevron-left" />
         </TouchableOpacity>
         <Text variant="h2">{props.screenName}</Text>

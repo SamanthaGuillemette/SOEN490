@@ -3,9 +3,16 @@ import { View, PrimaryButton, TextInput, Text } from "../../../../components";
 import styles from "./ResetPassword.styles";
 import { ScrollView } from "react-native";
 import LottieView from "lottie-react-native";
+import { NavigationProp } from "@react-navigation/native";
 
-const ResetPassword = () => {
+interface ResetPasswordProps {
+  navigation: NavigationProp<any>;
+}
+
+const ResetPassword = (props: ResetPasswordProps) => {
+  const { navigation } = props;
   const animation = useRef(null);
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -32,7 +39,11 @@ const ResetPassword = () => {
           secureTextEntry
         />
 
-        <PrimaryButton label="RESET PASSWORD" style={styles.primaryButton} />
+        <PrimaryButton
+          label="RESET PASSWORD"
+          style={styles.primaryButton}
+          onPress={() => navigation.goBack()}
+        />
       </View>
     </ScrollView>
   );

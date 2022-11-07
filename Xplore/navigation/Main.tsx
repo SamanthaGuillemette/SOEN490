@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   DarkTheme,
   DefaultTheme,
@@ -25,9 +24,6 @@ interface MainProps {
 }
 
 const Main = ({ colorScheme }: MainProps) => {
-  // Fake login, switch state to true to login
-  const [isLoggedIn] = useState(false);
-
   return (
     <NavigationContainer
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
@@ -36,11 +32,13 @@ const Main = ({ colorScheme }: MainProps) => {
         screenOptions={{ headerShown: false }}
         initialRouteName="Onboarding"
       >
-        {isLoggedIn ? (
-          <Stack.Screen name="Onboarding" component={Onboarding} />
-        ) : (
-          <Stack.Screen name="Sign" component={Sign} />
-        )}
+        <Stack.Screen name="Onboarding" component={Onboarding} />
+        <Stack.Screen name="Sign" component={Sign} />
+        <Stack.Screen name="Completion" component={Completion} />
+        <Stack.Screen name="Chats" component={Chats} />
+        <Stack.Screen name="ChatDetails" component={ChatDetails} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}
@@ -61,12 +59,6 @@ const Main = ({ colorScheme }: MainProps) => {
           component={Settings}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Completion" component={Completion} />
-        <Stack.Screen name="Chats" component={Chats} />
-        <Stack.Screen name="ChatDetails" component={ChatDetails} />
-
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="ResetPassword" component={ResetPassword} />
       </Stack.Navigator>
     </NavigationContainer>
   );

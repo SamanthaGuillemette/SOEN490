@@ -5,8 +5,14 @@ import { SegmentedButton } from "../../../components/SegmentedButton";
 import styles from "./Sign.styles";
 import SignIn from "../components/SignIn/SignIn.screen";
 import SignUp from "../components/SignUp/SignUp.screen";
+import { NavigationProp } from "@react-navigation/native";
 
-const Sign = () => {
+interface SignProps {
+  navigation: NavigationProp<any>;
+}
+
+const Sign = (props: SignProps) => {
+  const { navigation } = props;
   const [screen, setScreen] = useState(0);
 
   return (
@@ -20,8 +26,8 @@ const Sign = () => {
             labels={["SIGN IN", "SIGN UP"]}
             setIndex={setScreen}
           />
-          {screen === 0 && <SignIn />}
-          {screen === 1 && <SignUp />}
+          {screen === 0 && <SignIn navigation={navigation} />}
+          {screen === 1 && <SignUp navigation={navigation} />}
         </View>
       </ScrollView>
     </View>
