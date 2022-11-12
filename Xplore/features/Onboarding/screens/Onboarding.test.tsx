@@ -16,7 +16,7 @@ function OnboardingWithNavigation() {
   );
 }
 
-describe("Tesing for <Onboarding /> component", () => {
+describe("Tesing for <Onboarding /> screen:", () => {
   it("matches snapshot", () => {
     const tree = renderer.create(<OnboardingWithNavigation />).toJSON();
     expect(tree).toMatchSnapshot();
