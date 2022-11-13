@@ -7,6 +7,9 @@ export default StyleSheet.create({
   },
   contactName: {
     alignItems: "center",
-    marginTop: 40,
+    marginTop: 60,
+  },
+  avatarGroup: {
+    margin: 30,
   },
 });
