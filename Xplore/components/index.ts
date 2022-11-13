@@ -10,6 +10,7 @@ export * from "./Button";
 export * from "./ProgressBar";
 export * from "./Badge";
 export * from "./Avatar";
+export * from "./AvatarGroup";
 export * from "./TextButton";
 export * from "./Logo";
 export * from "./SegmentedButton";

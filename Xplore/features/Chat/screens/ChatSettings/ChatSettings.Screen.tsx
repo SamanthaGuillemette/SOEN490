@@ -1,7 +1,7 @@
 import { SafeAreaView } from "react-native";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
-import { Text, View } from "../../../../components";
+import { AvatarGroup, Text, View } from "../../../../components";
 import { NavigationProp } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
@@ -21,6 +21,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
       <TopHeader screenName={"Chat Settings"} navigation={props.navigation} />
       <View style={styles.contactName}>
         <Text variant="h2">{name}</Text>
+        <AvatarGroup />
       </View>
     </SafeAreaView>
   );
