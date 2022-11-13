@@ -9,6 +9,7 @@ interface ChatDetailsHeader {
 }
 
 const ChatDetailsHeader = (props: ChatDetailsHeader) => {
+  const { navigation } = props;
   return (
     <ShadowView
       shadowOffset={4}
@@ -27,7 +28,11 @@ const ChatDetailsHeader = (props: ChatDetailsHeader) => {
         <TouchableOpacity>
           <Icon style={styles.phoneIcon} name="phone" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            props.navigation.navigate("ChatSettings", { name: "Josh Lewis" })
+          }
+        >
           <Icon name="more-vertical" />
         </TouchableOpacity>
       </View>
