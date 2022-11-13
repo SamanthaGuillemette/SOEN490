@@ -1,18 +1,28 @@
 import { render } from "@testing-library/react-native";
+import renderer from "react-test-renderer";
 import Home from "../screens/Home.screen";
-import HomeHeader from "../components/HomeHeader/HomeHeader.component";
-import { LinkButton, ShadowView, Text, View } from "../../../components";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
 
-describe("Home />", () => {
-  it("renders correctly", () => {
-    const container = render(<Home />);
-    expect(container).toBeTruthy();
+// Create stack navigator
+const Stack = createNativeStackNavigator();
+
+// Wrap test component in navigation container
+function HomeWithNavigation() {
+  return (
+    <NavigationContainer>
+      <Stack.Screen name="Home" component={Home} />
+    </NavigationContainer>
+  );
+}
+
+describe("Tesing for <Home /> screen:", () => {
+  it("matches snapshot", () => {
+    const tree = renderer.create(<HomeWithNavigation />).toJSON();
+    expect(tree).toMatchSnapshot();
   });
-});
-
-describe("HomeHeader />", () => {
-  it("renders correctly with the proper text", () => {
-    const container = render(<HomeHeader />);
-    expect(container.getByText("Hi Josh,")).toBeTruthy();
+  it("renders correctly", () => {
+    const container = render(<HomeWithNavigation />);
+    expect(container).toBeTruthy();
   });
 });
