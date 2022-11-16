@@ -16,6 +16,7 @@ import Home from "../features/Dashboard/screens/Home.screen";
 import Sign from "../features/Sign/screens/Sign.screen";
 import ForgotPassword from "../features/Sign/components/ForgotPassword/ForgotPassword.screen";
 import ResetPassword from "../features/Sign/components/ResetPassword/ResetPassword.screen";
+import TopicSelection from "../features/TopicSelection/screen/TopicSelection.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,7 @@ const Main = ({ colorScheme }: MainProps) => {
         <Stack.Screen name="ChatDetails" component={ChatDetails} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
+        <Stack.Screen name="TopicSelection" component={TopicSelection} />
         <Stack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}
