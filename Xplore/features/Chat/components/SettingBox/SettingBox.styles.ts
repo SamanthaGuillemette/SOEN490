@@ -5,8 +5,8 @@ import { multiplier } from "../../../../constants";
 export default StyleSheet.create({
   settingBox_container: {
     width: 320,
-    paddingHorizontal: 15,
-    paddingVertical: Platform.OS === "ios" ? 10 * multiplier : 10,
+    paddingHorizontal: 20,
+    paddingVertical: Platform.OS === "ios" ? 12 * multiplier : 12,
     marginHorizontal: 15,
     marginTop: 25,
     borderRadius: 8,

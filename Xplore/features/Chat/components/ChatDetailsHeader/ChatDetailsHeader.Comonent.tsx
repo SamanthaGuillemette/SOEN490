@@ -9,7 +9,6 @@ interface ChatDetailsHeader {
 }
 
 const ChatDetailsHeader = (props: ChatDetailsHeader) => {
-  const { navigation } = props;
   return (
     <ShadowView
       shadowOffset={4}

@@ -5,9 +5,13 @@ export default StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
   },
-  contactName: {
+  settingsContainer: {
     alignItems: "center",
+    height: "100%",
+  },
+  contactName: {
     marginTop: 60,
+    alignItems: "center",
   },
   avatarGroup: {
     margin: 30,
