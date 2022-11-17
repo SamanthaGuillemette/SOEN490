@@ -16,11 +16,17 @@ import {
   NewProjects,
 } from "../components";
 import styles from "./Home.styles";
+import { NavigationProp } from "@react-navigation/native";
 
-const Home = () => {
+interface HomeProps {
+  navigation: NavigationProp<any>;
+}
+
+const Home = (props: HomeProps) => {
   const homeBackground = useThemeColor("backgroundSecondary");
   const scrollViewBackground = useThemeColor("background");
   const [isButtonExpanded, setIsButtonExpanded] = useState(true);
+  const { navigation } = props;
 
   const onScroll = ({
     nativeEvent,
@@ -54,7 +60,7 @@ const Home = () => {
         icon={"plus"}
         label={"New Project"}
         extended={isButtonExpanded}
-        onPress={() => console.log("Pressed")}
+        onPress={() => navigation.navigate("ProjectCreation_Desc")}
         visible={true}
         animateFrom={"right"}
         iconMode={"dynamic"}
