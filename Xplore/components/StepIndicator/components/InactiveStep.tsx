@@ -1,5 +1,6 @@
 import styles from "../StepIndicator.styles";
-import { ShadowView, Text } from "../../index";
+import { Text } from "../../Text";
+import { ShadowView } from "../../ShadowView";
 import { useThemeColor } from "../../../hooks";
 
 interface InactiveStepProps {

@@ -27,7 +27,6 @@ interface ProfileInfoProps extends TouchableWithoutFeedbackProps {
 const ProfileInfo = (props: ProfileInfoProps) => {
   const whiteBackground = useThemeColor("backgroundSecondary");
   const badgeBackground = useThemeColor("background");
-  const primary = useThemeColor("primary");
   const success = useThemeColor("success");
   const { ...restOfProps } = props;
 
@@ -62,22 +61,11 @@ const ProfileInfo = (props: ProfileInfoProps) => {
         </Text>
 
         <View style={styles.Rec}>
-          <View
-            style={[
-              styles.BiggerRectangle,
-              { backgroundColor: badgeBackground, width: 330 },
-            ]}
-          >
-            <View
-              style={[
-                styles.Rectangle,
-                {
-                  width: 0.9 * 330,
-                  backgroundColor: primary,
-                },
-              ]}
-            ></View>
-          </View>
+          <ProgressBar
+            width={330}
+            completionPercentage={0.97}
+            barColor="primary"
+          />
 
           <View style={styles.Description}>
             <Text variant="smBody" color="bodyText" style={{ marginTop: 5 }}>

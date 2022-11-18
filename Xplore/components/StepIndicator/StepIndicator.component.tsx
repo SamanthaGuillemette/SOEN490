@@ -1,65 +1,51 @@
-import { View } from "react-native";
-import { useThemeColor } from "../../hooks";
 import styles from "./StepIndicator.styles";
-import { ShadowView, Text, Icon } from "../index";
+import InactiveStep from "./components/InactiveStep";
+import CompletedStep from "./components/CompletedStep";
+import ActiveStep from "./components/ActiveStep";
+import StepLabel from "./components/StepLabel";
+import { View } from "react-native";
+
 interface StepIndicatorProps {
-  firstStep: "inactive" | "active" | "completed";
-  secondStep: "inactive" | "active" | "completed";
-  thirdStep: "inactive" | "active" | "completed";
+  stepTypes: ("inactive" | "active" | "completed")[];
+  title: string;
+  titleLevel: 1 | 2;
+  stepNumber: number[];
 }
 
-const StepIndicator = (props: StepIndicatorProps) => {
-  const bodyText = useThemeColor("bodyText");
-  const primary = useThemeColor("primary");
-  const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
-  const generalGray = useThemeColor("generalGray");
-  const success = useThemeColor("success");
-  const { firstStep } = props;
+export const StepIndicator = (props: StepIndicatorProps) => {
+  const { stepTypes, stepNumber, title, titleLevel } = props;
 
   return (
-    <View style={[styles.container, styles.extraDesign]}>
-      {firstStep === "inactive" ? "" : <CompletedStep />}
+    <View style={[styles.container, { marginTop: 52 }]}>
+      {stepTypes[0] === "inactive" ? (
+        <InactiveStep stepNumber={stepNumber[0]} />
+      ) : stepTypes[0] === "active" ? (
+        <ActiveStep stepNumber={stepNumber[0]} />
+      ) : (
+        <CompletedStep />
+      )}
+
+      {titleLevel === 1 ? <StepLabel title={title} /> : <StepLabel />}
+
+      {stepTypes[1] === "inactive" ? (
+        <InactiveStep stepNumber={stepNumber[1]} />
+      ) : stepTypes[1] === "active" ? (
+        <ActiveStep stepNumber={stepNumber[1]} />
+      ) : (
+        <CompletedStep />
+      )}
+
+      {titleLevel === 2 ? <StepLabel title={title} /> : <StepLabel />}
+
+      {stepTypes[3] === "inactive" ? (
+        <InactiveStep stepNumber={stepNumber[2]} />
+      ) : stepTypes[3] === "active" ? (
+        <ActiveStep stepNumber={stepNumber[2]} />
+      ) : (
+        <CompletedStep />
+      )}
     </View>
   );
 };
 
 export default StepIndicator;
-interface ActiveStepProps {
-  stepNumber: number;
-}
-
-const ActiveStep = (props: ActiveStepProps) => {
-  const bodyText = useThemeColor("bodyText");
-  const primary = useThemeColor("primary");
-
-  return (
-    <ShadowView style={[styles.step, { borderColor: bodyText }]}>
-      <Text style={{ color: primary }}>{props.stepNumber}</Text>
-    </ShadowView>
-  );
-};
-
-const CompletedStep = () => {
-  const success = useThemeColor("success");
-
-  return (
-    <ShadowView style={[styles.step, { borderColor: success }]}>
-      <Icon name="check" color="success" />
-    </ShadowView>
-  );
-};
-
-interface InactiveStepProps {
-  stepNumber: number;
-}
-
-const InactiveStep = (props: InactiveStepProps) => {
-  const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
-  const generalGray = useThemeColor("generalGray");
-
-  return (
-    <ShadowView style={[styles.step, { borderColor: generalGray }]}>
-      <Text style={{ color: primaryBackgroundOpaque }}>{props.stepNumber}</Text>
-    </ShadowView>
-  );
-};

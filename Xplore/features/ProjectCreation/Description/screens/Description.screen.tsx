@@ -18,7 +18,12 @@ const Description = (props: DescriptionProps) => {
         icon1Color="primaryBackground"
         navigation={navigation}
       />
-      <StepIndicator />
+      <StepIndicator
+        stepNumber={[0, 1, 2]}
+        title="Description"
+        titleLevel={2}
+        stepTypes={["inactive", "active", "completed"]}
+      />
     </SafeAreaView>
   );
 };
@@ -29,5 +34,10 @@ const styles = StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
+  },
+  line: {
+    width: 34,
+    height: 1,
+    marginTop: 18,
   },
 });

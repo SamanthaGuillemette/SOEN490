@@ -1,5 +1,6 @@
 import styles from "../StepIndicator.styles";
-import { ShadowView, Icon } from "../../index";
+import { ShadowView } from "../../ShadowView";
+import { Icon } from "../../Icon";
 import { useThemeColor } from "../../../hooks";
 
 const CompletedStep = () => {

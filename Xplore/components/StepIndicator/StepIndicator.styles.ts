@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  extraDesign: {
-    marginTop: 52,
-  },
   container: {
     paddingHorizontal: 10,
     flexDirection: "row",

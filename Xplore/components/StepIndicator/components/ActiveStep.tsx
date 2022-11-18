@@ -1,6 +1,7 @@
 import styles from "../StepIndicator.styles";
-import { ShadowView, Text } from "../../index";
 import { useThemeColor } from "../../../hooks";
+import { ShadowView } from "../../ShadowView";
+import { Text } from "../../Text";
 
 interface ActiveStepProps {
   stepNumber: number;
