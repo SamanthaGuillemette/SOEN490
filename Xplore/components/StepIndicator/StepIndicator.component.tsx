@@ -1,16 +1,11 @@
 import { View } from "react-native";
-import CompletedStep from "./components/CompletedStep.component";
 import { useThemeColor } from "../../hooks";
 import styles from "./StepIndicator.styles";
-
-interface stepArray {
+import { ShadowView, Text, Icon } from "../index";
+interface StepIndicatorProps {
   firstStep: "inactive" | "active" | "completed";
   secondStep: "inactive" | "active" | "completed";
   thirdStep: "inactive" | "active" | "completed";
-}
-
-interface StepIndicatorProps {
-  stepTypes: stepArray;
 }
 
 const StepIndicator = (props: StepIndicatorProps) => {
@@ -19,13 +14,52 @@ const StepIndicator = (props: StepIndicatorProps) => {
   const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
   const generalGray = useThemeColor("generalGray");
   const success = useThemeColor("success");
-  const { stepTypes } = props;
+  const { firstStep } = props;
 
   return (
     <View style={[styles.container, styles.extraDesign]}>
-      {stepTypes.firstStep === "inactive" ? "" : <CompletedStep />}
+      {firstStep === "inactive" ? "" : <CompletedStep />}
     </View>
   );
 };
 
 export default StepIndicator;
+interface ActiveStepProps {
+  stepNumber: number;
+}
+
+const ActiveStep = (props: ActiveStepProps) => {
+  const bodyText = useThemeColor("bodyText");
+  const primary = useThemeColor("primary");
+
+  return (
+    <ShadowView style={[styles.step, { borderColor: bodyText }]}>
+      <Text style={{ color: primary }}>{props.stepNumber}</Text>
+    </ShadowView>
+  );
+};
+
+const CompletedStep = () => {
+  const success = useThemeColor("success");
+
+  return (
+    <ShadowView style={[styles.step, { borderColor: success }]}>
+      <Icon name="check" color="success" />
+    </ShadowView>
+  );
+};
+
+interface InactiveStepProps {
+  stepNumber: number;
+}
+
+const InactiveStep = (props: InactiveStepProps) => {
+  const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
+  const generalGray = useThemeColor("generalGray");
+
+  return (
+    <ShadowView style={[styles.step, { borderColor: generalGray }]}>
+      <Text style={{ color: primaryBackgroundOpaque }}>{props.stepNumber}</Text>
+    </ShadowView>
+  );
+};
