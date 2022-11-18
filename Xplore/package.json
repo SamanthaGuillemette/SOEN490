@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:coverage": "jest --watchAll --coverageProvider=v8 --coverage"
   },
   "dependencies": {
     "@babel/runtime": "^7.20.1",
