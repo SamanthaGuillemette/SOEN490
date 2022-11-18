@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Modal, Text, Pressable, View, StyleSheet } from "react-native";
+import { Modal, View } from "react-native";
+import { useThemeColor } from "../../../../hooks/useThemeColor";
+import {
+  TextInput,
+  ShadowView,
+  PrimaryButton,
+  SecondaryButton,
+} from "../../../../components";
+import styles from "./ChatNameModal";
 
 interface ChatNameModalProps {
   setChatNameModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,8 +16,8 @@ interface ChatNameModalProps {
 export const ChatNameModal = ({
   setChatNameModalVisible,
 }: ChatNameModalProps) => {
-  const [modalVisible, setModalVisible] = useState<boolean>();
-
+  const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
     setChatNameModalVisible(!modalVisible);
@@ -23,60 +31,22 @@ export const ChatNameModal = ({
       onRequestClose={handleIndexSelect}
     >
       <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>Hello World!</Text>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
+        <ShadowView
+          style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
+        >
+          <TextInput placeHolder="Group Name" iconName="user" />
+          <PrimaryButton
+            label="Change Name"
             onPress={handleIndexSelect}
-          >
-            <Text style={styles.textStyle}>Hide Modal</Text>
-          </Pressable>
-        </View>
+            style={styles.primaryButton}
+          />
+          <SecondaryButton
+            label="Cancel"
+            onPress={handleIndexSelect}
+            style={styles.secondaryButton}
+          />
+        </ShadowView>
       </View>
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
