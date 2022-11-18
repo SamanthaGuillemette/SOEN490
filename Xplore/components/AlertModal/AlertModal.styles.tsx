@@ -13,6 +13,9 @@ export default StyleSheet.create({
     padding: 35,
     alignItems: "center",
   },
+  alertText: {
+    margin: 5,
+  },
   primaryButton: {
     marginTop: 20,
   },

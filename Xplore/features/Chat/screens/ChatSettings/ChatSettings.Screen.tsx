@@ -3,10 +3,15 @@ import { SafeAreaView } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
-import { AvatarGroup, Text, View } from "../../../../components";
+import {
+  AvatarGroup,
+  Text,
+  View,
+  ConfirmationModal,
+  AlertModal,
+} from "../../../../components";
 import SettingBox from "../../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../../components/ChatNameModal/ChatNameModal.component";
-import { InviteLinkModal } from "../../components/InviteLinkModal/InviteLinkModal.component";
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
 
@@ -19,6 +24,8 @@ const ChatSettings = (props: ChatSettingsProps) => {
   let { name }: any = route.params;
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
   const [inviteModalVisible, setInviteModalVisible] = useState<any>(false);
+  const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
+  const [confirmBlockVisible, setConfirmBlockVisible] = useState<any>(false);
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
@@ -56,11 +63,39 @@ const ChatSettings = (props: ChatSettingsProps) => {
             onPress={() => setInviteModalVisible(true)}
           />
           {inviteModalVisible === true && (
-            <InviteLinkModal setInviteModalVisible={setInviteModalVisible} />
+            <AlertModal
+              setAlertModalVisible={setInviteModalVisible}
+              alertMsg="Invite link copied to clipboard"
+            />
           )}
           <SettingBox settingName="Add a member" iconName="user-plus" />
           <SettingBox settingName="Remove a member" iconName="user-x" />
-          <SettingBox settingName="Leave group" iconName="log-out" />
+          <SettingBox
+            settingName="Block user"
+            iconName="user-x"
+            onPress={() => setConfirmBlockVisible(true)}
+          />
+          {confirmBlockVisible === true && (
+            <ConfirmationModal
+              setConfirmModalVisible={setConfirmBlockVisible}
+              confirmMsg={"Are you sure you want to block " + name + "?"}
+              primaryText={"Block " + name}
+              secondaryText="Cancel"
+            />
+          )}
+          <SettingBox
+            settingName="Leave group"
+            iconName="log-out"
+            onPress={() => setConfirmLeaveVisible(true)}
+          />
+          {confirmLeaveVisible === true && (
+            <ConfirmationModal
+              setConfirmModalVisible={setConfirmLeaveVisible}
+              confirmMsg="Are you sure you want to leave the group?"
+              primaryText="Leave Group"
+              secondaryText="Cancel"
+            />
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

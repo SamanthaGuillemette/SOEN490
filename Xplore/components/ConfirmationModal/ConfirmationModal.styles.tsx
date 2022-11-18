@@ -13,13 +13,14 @@ export default StyleSheet.create({
     padding: 35,
     alignItems: "center",
   },
-  textInput: {
+  confirmingMsg: {
+    justifyContent: "center",
     margin: 5,
   },
   primaryButton: {
-    marginTop: 5,
+    marginTop: 10,
   },
   secondaryButton: {
-    marginTop: 10,
+    marginTop: 15,
   },
 });

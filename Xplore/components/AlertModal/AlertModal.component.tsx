@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { Modal, View } from "react-native";
-import { useThemeColor } from "../../../../hooks/useThemeColor";
-import { Text, ShadowView, PrimaryButton } from "../../../../components";
-import styles from "./InviteLinkModal.styles";
+import { useThemeColor } from "../../hooks/useThemeColor";
+import { PrimaryButton } from "../PrimaryButton";
+import { ShadowView } from "../ShadowView";
+import { Text } from "../Text";
+import styles from "./AlertModal.styles";
 
-interface InviteLinkModalProps {
-  setInviteModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+interface AlertModalProps {
+  setAlertModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  alertMsg: string;
 }
 
-export const InviteLinkModal = ({
-  setInviteModalVisible,
-}: InviteLinkModalProps) => {
+export const AlertModal = (props: AlertModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
-    setInviteModalVisible(!modalVisible);
+    props.setAlertModalVisible(!modalVisible);
   }
 
   return (
@@ -29,7 +30,9 @@ export const InviteLinkModal = ({
         <ShadowView
           style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
         >
-          <Text>Invite link copied to clipboard</Text>
+          <Text variant="h4" style={styles.alertText}>
+            {props.alertMsg}
+          </Text>
           <PrimaryButton
             label="Done"
             onPress={handleIndexSelect}

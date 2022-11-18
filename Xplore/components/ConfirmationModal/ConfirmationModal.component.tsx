@@ -1,26 +1,25 @@
 import { useState } from "react";
 import { Modal, View } from "react-native";
-import { useThemeColor } from "../../../../hooks/useThemeColor";
-import {
-  TextInput,
-  ShadowView,
-  PrimaryButton,
-  SecondaryButton,
-} from "../../../../components";
-import styles from "./ChatNameModal";
+import { useThemeColor } from "../../hooks/useThemeColor";
+import { Text } from "../Text";
+import { ShadowView } from "../ShadowView";
+import { PrimaryButton } from "../PrimaryButton";
+import { SecondaryButton } from "../SecondaryButton";
+import styles from "./ConfirmationModal.styles";
 
-interface ChatNameModalProps {
-  setChatNameModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+interface ConfirmationModalProps {
+  setConfirmModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  primaryText: string;
+  secondaryText: string;
+  confirmMsg: string;
 }
 
-export const ChatNameModal = ({
-  setChatNameModalVisible,
-}: ChatNameModalProps) => {
+export const ConfirmationModal = (props: ConfirmationModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
-    setChatNameModalVisible(!modalVisible);
+    props.setConfirmModalVisible(!modalVisible);
   }
 
   return (
@@ -34,18 +33,16 @@ export const ChatNameModal = ({
         <ShadowView
           style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
         >
-          <TextInput
-            placeHolder="Group Name"
-            iconName="user"
-            style={styles.textInput}
-          />
+          <Text variant="h4" style={styles.confirmingMsg}>
+            {props.confirmMsg}
+          </Text>
           <PrimaryButton
-            label="Change Name"
+            label={props.primaryText}
             onPress={handleIndexSelect}
             style={styles.primaryButton}
           />
           <SecondaryButton
-            label="Cancel"
+            label={props.secondaryText}
             onPress={handleIndexSelect}
             style={styles.secondaryButton}
           />
