@@ -31,7 +31,7 @@ export const InputField = (props: InputFieldProps) => {
           style={styles.ShadowView}
           isInnerShadow={true}
           lightColor={colors.light.primaryBackgroundOpaque}
-          darkColor={colors.dark.primaryBackground}
+          darkColor={colors.dark.primaryBackgroundOpaque}
         >
           <Text
             lightColor={lightTextColor}

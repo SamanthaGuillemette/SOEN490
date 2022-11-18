@@ -1,6 +1,7 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import { Header, View } from "../../../../components";
+import { Header } from "../../../../components";
+import Test from "../components/StepIndicator";
 import { NavigationProp } from "@react-navigation/native";
 
 interface DescriptionProps {
@@ -18,6 +19,7 @@ const Description = (props: DescriptionProps) => {
         icon1Color="primaryBackground"
         navigation={navigation}
       />
+      <Test />
     </SafeAreaView>
   );
 };
