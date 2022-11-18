@@ -6,6 +6,7 @@ import { useThemeColor } from "../../../../hooks/useThemeColor";
 import { AvatarGroup, Text, View } from "../../../../components";
 import SettingBox from "../../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../../components/ChatNameModal/ChatNameModal.component";
+import { InviteLinkModal } from "../../components/InviteLinkModal/InviteLinkModal.component";
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
 
@@ -16,7 +17,8 @@ interface ChatSettingsProps {
 const ChatSettings = (props: ChatSettingsProps) => {
   const route = useRoute();
   let { name }: any = route.params;
-  const [modalVisible, setModalVisible] = useState<any>(false);
+  const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
+  const [inviteModalVisible, setInviteModalVisible] = useState<any>(false);
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
@@ -43,12 +45,19 @@ const ChatSettings = (props: ChatSettingsProps) => {
           <SettingBox
             settingName="Change group name"
             iconName="chevron-right"
-            onPress={() => setModalVisible(true)}
+            onPress={() => setChatNameModalVisible(true)}
           />
-          {modalVisible === true && (
-            <ChatNameModal setChatNameModalVisible={setModalVisible} />
+          {chatNameModalVisible === true && (
+            <ChatNameModal setChatNameModalVisible={setChatNameModalVisible} />
           )}
-          <SettingBox settingName="Copy invite link" iconName="share-2" />
+          <SettingBox
+            settingName="Copy invite link"
+            iconName="share-2"
+            onPress={() => setInviteModalVisible(true)}
+          />
+          {inviteModalVisible === true && (
+            <InviteLinkModal setInviteModalVisible={setInviteModalVisible} />
+          )}
           <SettingBox settingName="Add a member" iconName="user-plus" />
           <SettingBox settingName="Remove a member" iconName="user-x" />
           <SettingBox settingName="Leave group" iconName="log-out" />
