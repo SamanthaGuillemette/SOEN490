@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { SafeAreaView } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
 import { AvatarGroup, Text, View } from "../../../../components";
 import SettingBox from "../../components/SettingBox/SettingBox.component";
-import { NavigationProp } from "@react-navigation/native";
-import { useRoute } from "@react-navigation/native";
+import { ChatNameModal } from "../../components/ChatNameModal/ChatNameModal.component";
+import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
-import { ScrollView } from "react-native-gesture-handler";
 
 interface ChatSettingsProps {
   navigation: NavigationProp<any>;
@@ -15,6 +16,7 @@ interface ChatSettingsProps {
 const ChatSettings = (props: ChatSettingsProps) => {
   const route = useRoute();
   let { name }: any = route.params;
+  const [modalVisible, setModalVisible] = useState<any>(false);
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
@@ -41,7 +43,11 @@ const ChatSettings = (props: ChatSettingsProps) => {
           <SettingBox
             settingName="Change group name"
             iconName="chevron-right"
+            onPress={() => setModalVisible(true)}
           />
+          {modalVisible === true && (
+            <ChatNameModal setChatNameModalVisible={setModalVisible} />
+          )}
           <SettingBox settingName="Copy invite link" iconName="share-2" />
           <SettingBox settingName="Add a member" iconName="user-plus" />
           <SettingBox settingName="Remove a member" iconName="user-x" />

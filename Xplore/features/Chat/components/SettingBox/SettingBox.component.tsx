@@ -7,12 +7,17 @@ import styles from "./SettingBox.styles";
 interface SettingBoxProps {
   settingName: String;
   iconName: keyof typeof Feather.glyphMap;
+  onPress?: any;
 }
 
-const SettingBox = (props: SettingBoxProps) => {
+const SettingBox = ({
+  settingName,
+  iconName,
+  ...restOfProps
+}: SettingBoxProps) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <TouchableOpacity>
+    <TouchableOpacity {...restOfProps}>
       <ShadowView
         style={[
           styles.settingBox_container,
@@ -20,9 +25,9 @@ const SettingBox = (props: SettingBoxProps) => {
         ]}
       >
         <View style={{ backgroundColor: backgroundSecondary }}>
-          <Text variant="body">{props.settingName}</Text>
+          <Text variant="body">{settingName}</Text>
         </View>
-        <Icon name={props.iconName} style={styles.settingIcon} size="small" />
+        <Icon name={iconName} style={styles.settingIcon} size="small" />
       </ShadowView>
     </TouchableOpacity>
   );
