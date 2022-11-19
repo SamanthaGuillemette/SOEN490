@@ -3,6 +3,9 @@ import SecureStore from "expo-secure-store";
 import { useMemo, useReducer, useEffect, createContext } from "react";
 
 
+let u: unknown; //temporary till typing issues are solved
+const AuthContext = createContext(u); 
+
 interface AuthState {
   isLoading: boolean;
   isSignout: boolean;
@@ -14,11 +17,8 @@ interface Action {
   token?: null 
 }
 
-
-
-
-export const useAuth = () => {
-  const [state, dispatch] = useReducer(
+export const AuthProvider = () => {
+  const [authState, dispatch] = useReducer(
     (prevState: AuthState, action: Action) => {
       switch (action.type) {
         case "RESTORE_TOKEN":
@@ -50,7 +50,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
-    const bootstrapAsync = async () => {
+    const updateToken = async () => {
       let userToken: null | string | undefined;
 
       try {
@@ -61,16 +61,17 @@ export const useAuth = () => {
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-     // dispatch({ type: "RESTORE_TOKEN", token: userToken });
+     dispatch({ type: "RESTORE_TOKEN", token: userToken });
     };
 
-    bootstrapAsync();
+    updateToken();
   }, []);
 
-  const authContext = useMemo(
+  const authActions = useMemo(
     () => ({
       signIn: async (data: any) => {
-        //todo: handle signin here
+        //todo: handle signin here (set token) and redirect 
+          
 
         dispatch({ type: "SIGN_IN", token: null });
       },
@@ -80,7 +81,7 @@ export const useAuth = () => {
           token: null,
         }),
       signUp: async (data: any) => {
-        //todo: handle login here
+        //todo: handle login here create account and redirect to login 
 
         dispatch({ type: "SIGN_IN", token: null });
       },
@@ -88,9 +89,11 @@ export const useAuth = () => {
     []
   );
 
-
-  
+  return (
+    <AuthContext.Provider value={{authState, authActions}}>
+    </AuthContext.Provider>
+  )
 };
 
 
-export default useAuth; 
+export default AuthProvider; 
