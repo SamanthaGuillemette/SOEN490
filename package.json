@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@babel/runtime": "^7.20.1",
+    "react-native-reanimated": "^2.13.0",
     "react-native-segmented-control-tab": "^4.0.0"
   }
 }

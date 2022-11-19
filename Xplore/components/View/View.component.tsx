@@ -13,6 +13,7 @@ interface ViewProps extends RNViewProps {
   lightColor?: string;
   darkColor?: string;
   style?: StyleProp<ViewStyle>;
+  key?: number;
 }
 
 export const View = (props: ViewProps) => {
