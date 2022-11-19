@@ -16,51 +16,66 @@ import Home from "../features/Dashboard/screens/Home.screen";
 import Sign from "../features/Sign/screens/Sign.screen";
 import ForgotPassword from "../features/Sign/components/ForgotPassword/ForgotPassword.screen";
 import ResetPassword from "../features/Sign/components/ResetPassword/ResetPassword.screen";
+import useAuth from "../services/authentication/useAuth";
+import { createContext } from "react";
 
 const Stack = createNativeStackNavigator();
+
+const AuthContext = createContext({});
 
 interface MainProps {
   colorScheme: ColorSchemeName;
 }
 
 const Main = ({ colorScheme }: MainProps) => {
+  const { authActions, authState } = useAuth();
+
   return (
-    <NavigationContainer
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-    >
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName="Onboarding"
+    <AuthContext.Provider value={{ authActions, authState }}>
+      <NavigationContainer
+        theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >
-        <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="Sign" component={Sign} />
-        <Stack.Screen name="Completion" component={Completion} />
-        <Stack.Screen name="Chats" component={Chats} />
-        <Stack.Screen name="ChatDetails" component={ChatDetails} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="ResetPassword" component={ResetPassword} />
-        <Stack.Screen
-          name="BottomTabNavigator"
-          component={BottomTabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Profile"
-          component={Profile}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Settings"
-          component={Settings}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName="Onboarding"
+        >
+          {authState.isSignedIn ? (
+            <>
+              <Stack.Screen name="Onboarding" component={Onboarding} />
+              <Stack.Screen name="Completion" component={Completion} />
+              <Stack.Screen name="Chats" component={Chats} />
+              <Stack.Screen name="ChatDetails" component={ChatDetails} />
+              <Stack.Screen
+                name="BottomTabNavigator"
+                component={BottomTabNavigator}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Profile"
+                component={Profile}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Settings"
+                component={Settings}
+                options={{ headerShown: false }}
+              />
+            </>
+          ) : (
+            <>
+              <Stack.Screen name="Sign" component={Sign} />
+              <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+              <Stack.Screen name="ResetPassword" component={ResetPassword} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 };
 

@@ -1,23 +1,21 @@
 /* eslint-disable */
 import SecureStore from "expo-secure-store";
-import { useMemo, useReducer, useEffect, createContext } from "react";
+import { useMemo, useReducer, useEffect } from "react";
 
-
-let u: unknown; //temporary till typing issues are solved
-const AuthContext = createContext(u); 
+type Token = string | null
 
 interface AuthState {
   isLoading: boolean;
-  isSignout: boolean;
-  userToken?: null;
+  isSignedIn: boolean;
+  userToken?: Token
 }
 
 interface Action {
   type: "RESTORE_TOKEN" | "SIGN_IN" | "SIGN_OUT";
-  token?: null 
+  token?: Token
 }
 
-export const AuthProvider = () => {
+export const useAuth = () => {
   const [authState, dispatch] = useReducer(
     (prevState: AuthState, action: Action) => {
       switch (action.type) {
@@ -30,20 +28,20 @@ export const AuthProvider = () => {
         case "SIGN_IN":
           return {
             ...prevState,
-            isSignout: false,
+            isSignedIn: true,
             userToken: action.token,
           };
         case "SIGN_OUT":
           return {
             ...prevState,
-            isSignout: true,
+            isSignedIn: false,
             userToken: null,
           };
       }
     },
     {
       isLoading: true,
-      isSignout: false,
+      isSignedIn: false,
       userToken: null,
     }
   );
@@ -51,22 +49,23 @@ export const AuthProvider = () => {
   useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const updateToken = async () => {
-      let userToken: null | string | undefined;
-
+      let userToken: Token
       try {
         userToken = await SecureStore.getItemAsync("userToken");
+        dispatch({ type: "RESTORE_TOKEN", token: userToken });
       } catch (e) {}
 
       // After restoring token, we may need to validate it in production apps
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-     dispatch({ type: "RESTORE_TOKEN", token: userToken });
+     
     };
 
     updateToken();
   }, []);
 
+  //not sure why we need to memoization here (useMemo)
   const authActions = useMemo(
     () => ({
       signIn: async (data: any) => {
@@ -89,11 +88,9 @@ export const AuthProvider = () => {
     []
   );
 
-  return (
-    <AuthContext.Provider value={{authState, authActions}}>
-    </AuthContext.Provider>
-  )
+  return {authState, authActions}
+  
 };
 
 
-export default AuthProvider; 
+export default useAuth; 
