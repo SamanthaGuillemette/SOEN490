@@ -16,7 +16,7 @@ import Home from "../features/Dashboard/screens/Home.screen";
 import Sign from "../features/Sign/screens/Sign.screen";
 import ForgotPassword from "../features/Sign/components/ForgotPassword/ForgotPassword.screen";
 import ResetPassword from "../features/Sign/components/ResetPassword/ResetPassword.screen";
-import Projects from "../features/Projects/components/ProjectCoreScreen.screen";
+import Projects from "../features/Projects/screens/Projects.screen";
 
 const Stack = createNativeStackNavigator();
 

@@ -3,12 +3,15 @@ import { View } from "../../../components";
 import ProjectTitle from "./ProjectTitle.component";
 import ProjectNavBar from "./ProjectNavBar.component";
 import { NavigationProp } from "@react-navigation/native";
+import { useState } from "react";
 
-interface ProjectCoreScreenProps {
+interface ProjectCoreProps {
   navigation: NavigationProp<any>;
 }
 
-const ProjectCoreScreen = (props: ProjectCoreScreenProps) => {
+const ProjectCore = (props: ProjectCoreProps) => {
+  const { navigation } = props;
+  const [screen, setScreen] = useState(0);
   return (
     <View backgroundColor="background">
       <ProjectTitle />
@@ -19,4 +22,4 @@ const ProjectCoreScreen = (props: ProjectCoreScreenProps) => {
   );
 };
 
-export default ProjectCoreScreen;
+export default ProjectCore;
