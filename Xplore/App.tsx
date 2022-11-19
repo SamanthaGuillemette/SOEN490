@@ -3,7 +3,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider as PaperProvider } from "react-native-paper";
 import { useCachedResources, useColorScheme, useThemeColor } from "./hooks";
 import Main from "./navigation/Main";
-import { AvatarList } from "./components/AvatarList";
+import { ProjectCard } from "./components/ProjectCard";
 
 const App = () => {
   const colorScheme = useColorScheme();
@@ -24,8 +24,13 @@ const App = () => {
           <StatusBar style="auto" backgroundColor={statusBarBg} />
 
           <Main colorScheme={colorScheme} />
-          <AvatarList
-            users={[{ name: "lucas" }, { name: "james" }, { name: "olivia" }]}
+          <ProjectCard
+            members={[{ name: "lucas" }, { name: "james" }, { name: "olivia" }]}
+            projectName={"arduino car"}
+            description={"an arduino controlled arduino car"}
+            taskCount={13}
+            conversationCount={25}
+            percentComplete={56}
           />
         </PaperProvider>
       </SafeAreaProvider>

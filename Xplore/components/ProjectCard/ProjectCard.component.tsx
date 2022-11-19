@@ -3,10 +3,14 @@ import { View } from "../View";
 import { Icon } from "../Icon";
 import styles from "./ProjectCard.styles";
 import { useThemeColor } from "../../hooks";
+import { AvatarProps } from "../Avatar/Avatar.component";
+import { AvatarList } from "../AvatarList";
+import { View as RNView } from "react-native-ui-lib";
+
 interface ProjectCardProps {
   projectName: String;
   description: String;
-  members: String[];
+  members: AvatarProps[];
   taskCount: Number;
   conversationCount: Number;
   percentComplete: Number;
@@ -17,10 +21,17 @@ export const ProjectCard = ({
   description,
   taskCount,
   conversationCount,
+  members,
 }: ProjectCardProps) => {
   const bg = useThemeColor("backgroundSecondary");
+  const primary = useThemeColor("primary");
   return (
-    <View style={[styles.cardContainer, { backgroundColor: bg }]}>
+    <RNView
+      style={[
+        styles.cardContainer,
+        { backgroundColor: bg, shadowColor: primary },
+      ]}
+    >
       <View
         style={[styles.projectInformationContainer, { backgroundColor: bg }]}
       >
@@ -49,13 +60,13 @@ export const ProjectCard = ({
             {String(conversationCount)} conversations
           </Text>
         </View>
-        <View>
-          <Text>member avatar placeholder</Text>
+        <View style={styles.projectMembersContainer}>
+          <AvatarList users={members} />
         </View>
       </View>
       <View style={styles.projectCompletionContainer}>
         <Text variant="body">placeholder for project percentage component</Text>
       </View>
-    </View>
+    </RNView>
   );
 };

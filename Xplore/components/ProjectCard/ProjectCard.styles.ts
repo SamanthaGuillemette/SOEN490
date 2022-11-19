@@ -5,10 +5,23 @@ export default StyleSheet.create({
   cardContainer: {
     width: Platform.OS === "ios" ? 350 * multiplier : 350,
     height: Platform.OS === "ios" ? 186 * multiplier : 186,
-    borderRadius: 8,
-    padding: 20,
+    borderRadius: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
     display: "flex",
     flexDirection: "row",
+    backgroundColor: "#0000",
+    elevation: Platform.OS === "ios" ? 5 : 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    marginBottom: 40,
+    marginLeft: 20,
   },
   projectInformationContainer: {
     width: "60%",
@@ -26,5 +39,8 @@ export default StyleSheet.create({
   },
   icon: {
     marginRight: 5,
+  },
+  projectMembersContainer: {
+    marginTop: 10,
   },
 });
