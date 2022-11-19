@@ -14,18 +14,14 @@ import ProjectDescription from "./ProjectDescription.component";
 import Links from "./Links.component";
 import { useThemeColor } from "../../../hooks";
 import { colors } from "../../../constants";
+import { NavigationProp } from "@react-navigation/native";
 //import { useThemeColor } from "../../../hooks";
 
 //const tabBarBackground = useThemeColor("backgroundSecondary");
 
 interface ScrollableTabViewPager {
-    children: React.ReactNode;
-    shadowOffset?: number;
-    backgroundColor?: keyof typeof colors.light & keyof typeof colors.dark;
-    lightColor?: string;
-    darkColor?: string;
-    style?: StyleProp<ViewStyle>;
-  }
+  navigation: NavigationProp<any>;
+}
 
 const { width } = Dimensions.get("window");
 
@@ -43,12 +39,6 @@ export default function ScrollableTabViewPager() {
   const [active, setActive] = useState(0);
   const headerScrollView = useRef();
   const itemScrollView = useRef();
-  const {
-    backgroundColor = "backgroundSecondary",
-    lightColor,
-    darkColor,
-    style,
-  } = props;
   useEffect(() => {
     headerScrollView.current.scrollToIndex({
       index: active,
@@ -83,7 +73,7 @@ export default function ScrollableTabViewPager() {
               style={[
                 styles.headerItem,
                 // eslint-disable-next-line react-native/no-inline-styles
-                { backgroundColor: active == index ? "#0cc" : backgroundColor },
+                { backgroundColor: active == index ? "#0cc" : "#0ccc" },
               ]}
             >
               <Text>{item}</Text>
