@@ -5,7 +5,8 @@ import styles from "./ProjectCard.styles";
 import { useThemeColor } from "../../hooks";
 import { AvatarProps } from "../Avatar/Avatar.component";
 import { AvatarList } from "../AvatarList";
-import { View as RNView } from "react-native-ui-lib";
+import { ShadowView } from "../ShadowView";
+//import { View as RNView } from "react-native-ui-lib";
 
 interface ProjectCardProps {
   projectName: String;
@@ -26,7 +27,7 @@ export const ProjectCard = ({
   const bg = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
   return (
-    <RNView
+    <ShadowView
       style={[
         styles.cardContainer,
         { backgroundColor: bg, shadowColor: primary },
@@ -67,6 +68,6 @@ export const ProjectCard = ({
       <View style={styles.projectCompletionContainer}>
         <Text variant="body">placeholder for project percentage component</Text>
       </View>
-    </RNView>
+    </ShadowView>
   );
 };
