@@ -164,6 +164,9 @@ Instead of:
 import { Text } from '../components/Text';
 import { Card } from '../components/Card';
 ```
+More on Import & Export: <br />
+<img width="70%" alt="importExport" src="https://user-images.githubusercontent.com/45047536/202866545-51d5ebba-eb0b-40c9-baad-a72aa262653a.jpg" />
+
 
 ## Component design
 
