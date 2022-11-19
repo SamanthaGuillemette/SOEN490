@@ -35,29 +35,16 @@ const Main = ({ colorScheme }: MainProps) => {
         <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Sign" component={Sign} />
         <Stack.Screen name="Completion" component={Completion} />
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Chats" component={Chats} />
         <Stack.Screen name="ChatDetails" component={ChatDetails} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Profile"
-          component={Profile}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Settings"
-          component={Settings}
-          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
