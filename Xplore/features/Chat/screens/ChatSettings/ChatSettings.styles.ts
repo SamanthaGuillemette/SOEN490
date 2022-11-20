@@ -8,6 +8,7 @@ export default StyleSheet.create({
   settingsContainer: {
     alignItems: "center",
     height: "100%",
+    marginBottom: 50,
   },
   contactName: {
     marginTop: 60,
