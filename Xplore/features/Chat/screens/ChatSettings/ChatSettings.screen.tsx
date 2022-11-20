@@ -13,6 +13,7 @@ import {
 import SettingBox from "../../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../../components/ChatNameModal/ChatNameModal.component";
 import { AddMemberModal } from "../../components/AddMemberModal/AddMemberModal.component";
+import { RemoveMemberModal } from "../../components/RemoveMemberModal/RemoveMemberModal.component";
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
 
@@ -26,6 +27,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
   const [inviteModalVisible, setInviteModalVisible] = useState<any>(false);
   const [addModalVisible, setAddModalVisible] = useState<any>(false);
+  const [removeModalVisible, setRemoveModalVisible] = useState<any>(false);
   const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
   const [confirmBlockVisible, setConfirmBlockVisible] = useState<any>(false);
   const background = useThemeColor("background");
@@ -78,7 +80,14 @@ const ChatSettings = (props: ChatSettingsProps) => {
           {addModalVisible === true && (
             <AddMemberModal setAddModalVisible={setAddModalVisible} />
           )}
-          <SettingBox settingName="Remove a member" iconName="user-x" />
+          <SettingBox
+            settingName="Remove a member"
+            iconName="user-x"
+            onPress={() => setRemoveModalVisible(true)}
+          />
+          {removeModalVisible === true && (
+            <RemoveMemberModal setRemoveModalVisible={setRemoveModalVisible} />
+          )}
           <SettingBox
             settingName="Block user"
             iconName="user-x"
