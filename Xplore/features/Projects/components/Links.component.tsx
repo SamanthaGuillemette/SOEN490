@@ -11,15 +11,76 @@ import { Text, Icon } from "../../../components";
 import { colors } from "../../../constants";
 import { useThemeColor } from "../../../hooks";
 import { useState } from "react";
+import { FlatList } from "react-native";
 
 interface LinksProps {
-  style?: StyleProp<ViewStyle>;
+  // style?: StyleProp<ViewStyle>;
+  linkName: string;
+  iconName: string;
+  description: string;
 }
 
-const Links = (props: LinksProps) => {
+export const Links = (props: LinksProps) => {
+  const { linkName, iconName, description } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
   const badgeBackground = useThemeColor("background");
   const primary = useThemeColor("primary");
+
+  const DATA = [
+    {
+      id: "1",
+      linkName: "Github Integration",
+      iconName: "github",
+      description: "aaaa",
+    },
+    {
+      id: "2",
+      linkName: "Jira Integration",
+      iconName: "github",
+      description: "aaaa",
+    },
+    {
+      id: "3",
+      linkName: "Figma Integration",
+      iconName: "github",
+      description: "aaaa",
+    },
+  ];
+
+  const Item = ({ linkName, iconName, description }) => (
+    <View style={[styles.Box, { backgroundColor: whiteBackground }]}>
+      <View style={{ flexDirection: "row" }}>
+        <Text variant="h3" color="titleText">
+          {linkName}{" "}
+        </Text>
+        <Icon name={iconName} color="primary" size="large" style={styles.a} />
+      </View>
+      <Text variant="smBody" color="bodyText">
+        {" "}
+        {description}
+      </Text>
+      <View style={styles.container}>
+        <TouchableHighlight {...touchProps}>
+          <Button
+            onPress={() => {
+              setPressed(false);
+            }}
+            disabled={!isPressed}
+            title={isPressed ? "ADD" : "ADDED"}
+            color="white"
+          />
+        </TouchableHighlight>
+      </View>
+    </View>
+  );
+
+  const renderItem = ({ item }) => (
+    <Item
+      linkName={item.linkName}
+      iconName={item.iconName}
+      description={item.description}
+    />
+  );
 
   const [isPressed, setPressed] = useState(true);
   const touchProps = {
@@ -32,30 +93,11 @@ const Links = (props: LinksProps) => {
 
   return (
     <ScrollView>
-      <View style={[styles.Box, { backgroundColor: whiteBackground }]}>
-        <View style={{ flexDirection: "row" }}>
-          <Text variant="h3" color="titleText">
-            GitHub Integration{" "}
-          </Text>
-          <Icon name="github" color="primary" size="large" style={styles.a} />
-        </View>
-        <Text variant="smBody" color="bodyText">
-          {" "}
-          Description
-        </Text>
-        <View style={styles.container}>
-          <TouchableHighlight {...touchProps}>
-            <Button
-              onPress={() => {
-                setPressed(false);
-              }}
-              disabled={!isPressed}
-              title={isPressed ? "ADD" : "ADDED"}
-              color="white"
-            />
-          </TouchableHighlight>
-        </View>
-      </View>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </ScrollView>
   );
 };
