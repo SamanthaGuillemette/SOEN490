@@ -12,6 +12,7 @@ import {
 } from "../../../../components";
 import SettingBox from "../../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../../components/ChatNameModal/ChatNameModal.component";
+import { AddMemberModal } from "../../components/AddMemberModal/AddMemberModal.component";
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
 
@@ -24,6 +25,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
   let { name }: any = route.params;
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
   const [inviteModalVisible, setInviteModalVisible] = useState<any>(false);
+  const [addModalVisible, setAddModalVisible] = useState<any>(false);
   const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
   const [confirmBlockVisible, setConfirmBlockVisible] = useState<any>(false);
   const background = useThemeColor("background");
@@ -68,7 +70,14 @@ const ChatSettings = (props: ChatSettingsProps) => {
               alertMsg="Invite link copied to clipboard"
             />
           )}
-          <SettingBox settingName="Add a member" iconName="user-plus" />
+          <SettingBox
+            settingName="Add a member"
+            iconName="user-plus"
+            onPress={() => setAddModalVisible(true)}
+          />
+          {addModalVisible === true && (
+            <AddMemberModal setAddModalVisible={setAddModalVisible} />
+          )}
           <SettingBox settingName="Remove a member" iconName="user-x" />
           <SettingBox
             settingName="Block user"
