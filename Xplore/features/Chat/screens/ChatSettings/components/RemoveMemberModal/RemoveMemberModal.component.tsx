@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Modal, View } from "react-native";
-import { useThemeColor } from "../../../../hooks/useThemeColor";
+import { useThemeColor } from "../../../../../../hooks/useThemeColor";
 import {
   ShadowView,
   PrimaryButton,
   SecondaryButton,
-} from "../../../../components";
+} from "../../../../../../components";
 import styles from "./RemoveMemberModal.styles";
 
 interface RemoveMemberModalProps {

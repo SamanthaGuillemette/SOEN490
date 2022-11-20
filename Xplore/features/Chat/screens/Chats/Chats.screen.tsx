@@ -1,6 +1,6 @@
 import { ScrollView, SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../../hooks";
-import ChatBox from "../../components/ChatBox/ChatBox.component";
+import ChatBox from "./components/ChatBox/ChatBox.component";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import styles from "./Chats.styles";
 import { NavigationProp } from "@react-navigation/native";

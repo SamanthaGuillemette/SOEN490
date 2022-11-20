@@ -1,5 +1,10 @@
 import React from "react";
-import { View, ShadowView, Text, Avatar } from "../../../../../../components";
+import {
+  View,
+  ShadowView,
+  Text,
+  Avatar,
+} from "../../../../../../../../components";
 import MessageTime from "../MessageTime/MessageTime.component";
 import styles from "./RightBubble.styles";
 

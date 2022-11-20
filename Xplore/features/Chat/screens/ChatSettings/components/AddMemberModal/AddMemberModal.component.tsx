@@ -1,26 +1,23 @@
 import { useState } from "react";
 import { Modal, View } from "react-native";
-import { useThemeColor } from "../../../../hooks/useThemeColor";
+import { useThemeColor } from "../../../../../../hooks/useThemeColor";
 import {
-  TextInput,
   ShadowView,
   PrimaryButton,
   SecondaryButton,
-} from "../../../../components";
-import styles from "./ChatNameModal.styles";
+} from "../../../../../../components";
+import styles from "./AddMemberModal.styles";
 
-interface ChatNameModalProps {
-  setChatNameModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+interface AddMemberModalProps {
+  setAddModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const ChatNameModal = ({
-  setChatNameModalVisible,
-}: ChatNameModalProps) => {
+export const AddMemberModal = ({ setAddModalVisible }: AddMemberModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
-    setChatNameModalVisible(!modalVisible);
+    setAddModalVisible(!modalVisible);
   }
 
   return (
@@ -34,13 +31,8 @@ export const ChatNameModal = ({
         <ShadowView
           style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
         >
-          <TextInput
-            placeHolder="Group Name"
-            iconName="user"
-            style={styles.textInput}
-          />
           <PrimaryButton
-            label="Change Name"
+            label="ADD"
             onPress={handleIndexSelect}
             style={styles.primaryButton}
           />

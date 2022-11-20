@@ -1,5 +1,5 @@
 import { ViewStyle, StyleProp } from "react-native";
-import { Text } from "../../../../../../components";
+import { Text } from "../../../../../../../../components";
 
 interface MessageTimeProps {
   time: String;

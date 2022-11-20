@@ -10,10 +10,10 @@ import {
   ConfirmationModal,
   AlertModal,
 } from "../../../../components";
-import SettingBox from "../../components/SettingBox/SettingBox.component";
-import { ChatNameModal } from "../../components/ChatNameModal/ChatNameModal.component";
-import { AddMemberModal } from "../../components/AddMemberModal/AddMemberModal.component";
-import { RemoveMemberModal } from "../../components/RemoveMemberModal/RemoveMemberModal.component";
+import SettingBox from "./components/SettingBox/SettingBox.component";
+import { ChatNameModal } from "./components/ChatNameModal/ChatNameModal.component";
+import { AddMemberModal } from "./components/AddMemberModal/AddMemberModal.component";
+import { RemoveMemberModal } from "./components/RemoveMemberModal/RemoveMemberModal.component";
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
 

@@ -1,6 +1,6 @@
 import { NavigationProp } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
-import { Icon, ShadowView, Text, View } from "../../../../components";
+import { Icon, ShadowView, Text, View } from "../../../../../../components";
 import styles from "./ChatDetailsHeader.styles";
 
 interface ChatDetailsHeader {

@@ -1,7 +1,7 @@
 import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { ShadowView, View, Text, Icon } from "../../../../components";
-import { useThemeColor } from "../../../../hooks";
+import { ShadowView, View, Text, Icon } from "../../../../../../components";
+import { useThemeColor } from "../../../../../../hooks";
 import styles from "./SettingBox.styles";
 
 interface SettingBoxProps {

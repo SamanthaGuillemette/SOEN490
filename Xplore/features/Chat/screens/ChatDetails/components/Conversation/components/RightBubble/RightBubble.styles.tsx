@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Platform } from "react-native";
-import { multiplier } from "../../../../../../constants";
+import { multiplier } from "../../../../../../../../constants";
 
 export default StyleSheet.create({
   bubbleContainer: {

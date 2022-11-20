@@ -1,6 +1,6 @@
 import { TextInput as RNTextInput, TouchableOpacity } from "react-native";
-import { View, ShadowView, Icon } from "../../../../components";
-import { useThemeColor } from "../../../../hooks";
+import { View, ShadowView, Icon } from "../../../../../../components";
+import { useThemeColor } from "../../../../../../hooks";
 import styles from "./ChatTextInput.styles";
 
 interface ChatTextInputProps {}

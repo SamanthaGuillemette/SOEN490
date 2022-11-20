@@ -1,7 +1,7 @@
 import { NavigationProp } from "@react-navigation/native";
 import { ScrollView } from "react-native";
 import { useRef } from "react";
-import { useThemeColor } from "../../../../hooks/useThemeColor";
+import { useThemeColor } from "../../../../../../hooks/useThemeColor";
 import ChatDate from "./components/ChatDate/ChatDate.component";
 import LeftBubble from "./components/LeftBubble/LeftBubble.component";
 import RightBubble from "./components/RightBubble/RightBubble.component";
