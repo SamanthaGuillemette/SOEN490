@@ -58,6 +58,20 @@ Example:
 [Refactor]: extract code into smaller components in Settings screen
 ```
 
+## Commit & PR frequency
+
+Commit whenever you made some progress in code for the linked issue, and create a PR to merge once a subtask is completed locally and ready for code review.
+
+## Branching
+
+When creating a new branch, follow these naming conventions:
+
+- Working on a feature: `feature/my_feature_name`
+- Working on a component: `component/my_component_name`
+- Working on testing: `test/what_you_test`
+- Fixing a bug/code: `fix/what_you_fix`
+- Improvement (i.e. refactoring, updating, upgrading lib): `improve/what_you_want`
+
 ## Component/Screen file structure (the code)
 
 A screen or a composite component should show an abstract view of the overall structure of the layout. New developer joining the team can just quickly tell what is where just by scanning this file. <br />
@@ -164,9 +178,9 @@ Instead of:
 import { Text } from '../components/Text';
 import { Card } from '../components/Card';
 ```
+
 More on Import & Export: <br />
 <img width="70%" alt="importExport" src="https://user-images.githubusercontent.com/45047536/202866545-51d5ebba-eb0b-40c9-baad-a72aa262653a.jpg" />
-
 
 ## Component design
 
