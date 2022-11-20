@@ -7,18 +7,20 @@ import styles from "./InputField.styles";
 
 interface InputFieldProps {
   children: string;
-  lightTextColor:
+  lightTextColor?:
     | "titleText"
     | "bodyText"
     | "smallText"
     | "generalGray"
     | "linkText";
   style?: StyleProp<ViewStyle>;
-  lightBorderColor: string;
+  styleText?: StyleProp<ViewStyle>;
+  lightBorderColor?: string;
 }
 
 export const InputField = (props: InputFieldProps) => {
-  const { children, lightTextColor, style, lightBorderColor } = props;
+  const { children, lightTextColor, style, styleText, lightBorderColor } =
+    props;
 
   return (
     <ShadowView style={[style, styles.InputField]} isInnerShadow={false}>
@@ -37,7 +39,7 @@ export const InputField = (props: InputFieldProps) => {
             lightColor={lightTextColor}
             darkColor={colors.light.backgroundSecondary}
             variant="smBody"
-            style={styles.Text}
+            style={[styles.Text, styleText]}
           >
             {children}
           </Text>

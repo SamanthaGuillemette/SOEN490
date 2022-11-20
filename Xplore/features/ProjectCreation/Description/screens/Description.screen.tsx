@@ -2,7 +2,8 @@ import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { Header, StepIndicator } from "../../../../components";
 import { NavigationProp } from "@react-navigation/native";
-
+import EditImage from "../components/EditImage";
+import Input from "../components/Input";
 interface DescriptionProps {
   navigation: NavigationProp<any>;
 }
@@ -19,11 +20,13 @@ const Description = (props: DescriptionProps) => {
         navigation={navigation}
       />
       <StepIndicator
-        stepNumber={[0, 1, 2]}
+        stepNumber={[1, 2, 3]}
         title="Description"
-        titleLevel={2}
-        stepTypes={["inactive", "active", "completed"]}
+        titleLevel={1}
+        stepTypes={["active", "inactive", "inactive"]}
       />
+      <EditImage />
+      <Input />
     </SafeAreaView>
   );
 };
@@ -34,10 +37,5 @@ const styles = StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
-  },
-  line: {
-    width: 34,
-    height: 1,
-    marginTop: 18,
   },
 });

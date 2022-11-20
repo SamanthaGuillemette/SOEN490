@@ -37,9 +37,9 @@ export const StepIndicator = (props: StepIndicatorProps) => {
 
       {titleLevel === 2 ? <StepLabel title={title} /> : <StepLabel />}
 
-      {stepTypes[3] === "inactive" ? (
+      {stepTypes[2] === "inactive" ? (
         <InactiveStep stepNumber={stepNumber[2]} />
-      ) : stepTypes[3] === "active" ? (
+      ) : stepTypes[2] === "active" ? (
         <ActiveStep stepNumber={stepNumber[2]} />
       ) : (
         <CompletedStep />
