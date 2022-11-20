@@ -16,9 +16,6 @@ const ChatTextInput = ({}: ChatTextInputProps) => {
         backgroundColor="backgroundSecondary"
       >
         <View style={styles.rightInputItems}>
-          <TouchableOpacity>
-            <Icon name="smile" />
-          </TouchableOpacity>
           <RNTextInput
             placeholderTextColor={smallText}
             placeholder="Message ..."
