@@ -12,7 +12,7 @@ interface TopHeaderProps {
   style?: StyleProp<ViewStyle>;
   icon1Name: keyof typeof Feather.glyphMap;
   icon2Name?: keyof typeof Feather.glyphMap;
-  icon1Color: "primary" | "smallText" | "primaryBackground";
+  icon1Color?: "primary" | "smallText" | "primaryBackground";
   icon2Color?: "primary" | "smallText" | "primaryBackground";
   isMessaging?: boolean;
   isActive?: boolean;

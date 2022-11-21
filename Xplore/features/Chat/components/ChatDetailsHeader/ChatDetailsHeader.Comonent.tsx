@@ -1,37 +1,21 @@
 import { NavigationProp } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native";
-import { Icon, ShadowView, Text, View } from "../../../../components";
-import styles from "./ChatDetailsHeader.styles";
+import { TopHeader } from "../../../../components";
 
 interface ChatDetailsHeader {
-  username: String;
+  username: string;
   navigation: NavigationProp<any>;
 }
 
 const ChatDetailsHeader = (props: ChatDetailsHeader) => {
+  const { navigation, username } = props;
+
   return (
-    <ShadowView
-      shadowOffset={4}
-      backgroundColor="backgroundSecondary"
-      style={styles.headerBar}
-    >
-      <View style={styles.navLeftItems}>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate("BottomTabNavigator")}
-        >
-          <Icon style={styles.arrowIcon} name="chevron-left" />
-        </TouchableOpacity>
-        <Text variant="h2">{props.username}</Text>
-      </View>
-      <View style={styles.navRightItems}>
-        <TouchableOpacity>
-          <Icon style={styles.phoneIcon} name="phone" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Icon name="more-vertical" />
-        </TouchableOpacity>
-      </View>
-    </ShadowView>
+    <TopHeader
+      title={username}
+      icon1Name="phone"
+      icon2Name="more-vertical"
+      navigation={navigation}
+    />
   );
 };
 
