@@ -20,4 +20,11 @@ export default StyleSheet.create({
     paddingRight: 10,
     marginTop: 4,
   },
+  active: {
+    height: 10,
+    width: 10,
+    borderRadius: 100,
+    left: 10,
+    top: 10,
+  },
 });

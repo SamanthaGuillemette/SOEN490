@@ -1,23 +1,25 @@
-import { StyleProp, ViewStyle, TouchableOpacity } from "react-native";
+import { StyleProp, ViewStyle, TouchableOpacity, View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Text } from "../Text";
-import { View } from "../View";
 import { Icon } from "../Icon";
 import { ShadowView } from "../ShadowView";
-import styles from "./Header.styles";
+import styles from "./TopHeader.styles";
 import { Feather } from "@expo/vector-icons";
+import { useThemeColor } from "../../hooks";
 
-interface HeaderProps {
+interface TopHeaderProps {
   title: string;
   style?: StyleProp<ViewStyle>;
   icon1Name: keyof typeof Feather.glyphMap;
   icon2Name?: keyof typeof Feather.glyphMap;
   icon1Color: "primary" | "smallText" | "primaryBackground";
   icon2Color?: "primary" | "smallText" | "primaryBackground";
+  isMessaging?: boolean;
+  isActive?: boolean;
   navigation: NavigationProp<any>;
 }
 
-export const Header = (props: HeaderProps) => {
+export const TopHeader = (props: TopHeaderProps) => {
   const {
     title,
     style,
@@ -26,7 +28,12 @@ export const Header = (props: HeaderProps) => {
     icon1Color,
     icon2Color,
     navigation,
+    isMessaging,
+    isActive,
   } = props;
+
+  const smallText = useThemeColor("smallText");
+  const success = useThemeColor("success");
 
   return (
     <ShadowView
@@ -46,36 +53,38 @@ export const Header = (props: HeaderProps) => {
         <Text variant="h2" color="titleText" style={[style]}>
           {title}
         </Text>
+        {isMessaging ? (
+          <View
+            style={[
+              styles.active,
+              isActive
+                ? { backgroundColor: success }
+                : { backgroundColor: smallText },
+            ]}
+          />
+        ) : (
+          ""
+        )}
       </View>
-
-      {icon2Name ? (
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity>
-            <Icon
-              name={icon1Name}
-              color={icon1Color}
-              size="large"
-              style={{ marginRight: 10 }}
-            />
-          </TouchableOpacity>
+      <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity>
+          <Icon
+            name={icon1Name}
+            color={icon1Color}
+            size="large"
+            style={{ marginRight: 10 }}
+          />
+        </TouchableOpacity>
+        {icon2Name ? (
           <TouchableOpacity>
             <Icon name={icon2Name} color={icon2Color} size="large" />
           </TouchableOpacity>
-        </View>
-      ) : (
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity>
-            <Icon
-              name={icon1Name}
-              color={icon1Color}
-              size="large"
-              style={{ marginRight: 10 }}
-            />
-          </TouchableOpacity>
-        </View>
-      )}
+        ) : (
+          ""
+        )}
+      </View>
     </ShadowView>
   );
 };
 
-export default Header;
+export default TopHeader;

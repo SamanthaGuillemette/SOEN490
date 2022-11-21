@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import { Header, StepIndicator } from "../../../../components";
+import { TopHeader, StepIndicator } from "../../../../components";
 import { NavigationProp } from "@react-navigation/native";
 import EditImage from "../components/EditImage";
 import Input from "../components/Input";
@@ -13,7 +13,7 @@ const Description = (props: DescriptionProps) => {
 
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
-      <Header
+      <TopHeader
         title="Create Projects"
         icon1Name="search"
         icon1Color="primaryBackground"

@@ -15,5 +15,5 @@ export * from "./Logo";
 export * from "./SegmentedButton";
 export * from "./PrimaryButton";
 export * from "./SecondaryButton";
-export * from "./Header";
+export * from "./TopHeader";
 export * from "./StepIndicator";
