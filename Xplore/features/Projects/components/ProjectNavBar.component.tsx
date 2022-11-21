@@ -2,24 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
-  StyleProp,
   StyleSheet,
   Text,
   TouchableHighlight,
-  //TouchableOpacity,
   View,
-  ViewStyle,
 } from "react-native";
 import ProjectDescription from "./ProjectDescription.component";
 import Links from "./Links.component";
 import { useThemeColor } from "../../../hooks";
-import { colors } from "../../../constants";
 import { NavigationProp } from "@react-navigation/native";
-//import { useThemeColor } from "../../../hooks";
 
-//const tabBarBackground = useThemeColor("backgroundSecondary");
-
-interface ScrollableTabViewPager {
+interface ProjectNavBar {
   navigation: NavigationProp<any>;
 }
 
@@ -35,7 +28,10 @@ const projectScreenPages = [
   <Links />,
 ];
 
-export default function ScrollableTabViewPager() {
+export default function ProjectNavBar() {
+  const background = useThemeColor("background");
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
+
   const [active, setActive] = useState(0);
   const headerScrollView = useRef();
   const itemScrollView = useRef();
@@ -72,8 +68,10 @@ export default function ScrollableTabViewPager() {
               key={item}
               style={[
                 styles.headerItem,
-                // eslint-disable-next-line react-native/no-inline-styles
-                { backgroundColor: active == index ? "#0cc" : "#0ccc" },
+                {
+                  backgroundColor:
+                    active == index ? background : backgroundSecondary,
+                },
               ]}
             >
               <Text>{item}</Text>
