@@ -16,7 +16,7 @@ interface ChatSettingsProps {
 const ChatSettings = (props: ChatSettingsProps) => {
   const route = useRoute();
   let { name }: any = route.params;
-  const userRole = "private";
+  const userRole = "admin";
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
@@ -45,7 +45,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
           ) : userRole === "member" ? (
             <MemberSettings />
           ) : (
-            <PrivateChatSettings />
+            <PrivateChatSettings contactName={name} />
           )}
         </View>
       </ScrollView>
