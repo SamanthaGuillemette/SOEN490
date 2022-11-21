@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Text, View, Icon } from "../../../components";
+import { Text, View, Icon, ShadowView } from "../../../components";
+import { useThemeColor } from "../../../hooks";
 import {
   LayoutAnimation,
   Platform,
@@ -26,14 +27,20 @@ if (Platform.OS === "android") {
   }
 }
 
-export default function CollapsibleHeader2() {
+export default function CollapsibleHeader() {
   const [active, setActive] = useState(null);
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ShadowView
+      style={[
+        styles.statusBox_container,
+        { backgroundColor: backgroundSecondary },
+      ]}
+    >
       {[1, 2, 3].map((x, i) => (
         <Item key={x} active={active} i={i} setActive={setActive} />
       ))}
-    </ScrollView>
+    </ShadowView>
   );
 }
 
