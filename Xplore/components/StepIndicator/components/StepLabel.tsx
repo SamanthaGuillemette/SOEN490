@@ -13,13 +13,13 @@ const StepLabel = (props: StepLabelProps) => {
   const { title } = props;
 
   return title ? (
-    <>
+    <View style={{ flex: 1, flexDirection: "row" }}>
       <View style={[styles.line, { backgroundColor: generalGray }]} />
       <Text variant="label" style={{ color: primary, marginTop: 8 }}>
         {title}
       </Text>
       <View style={[styles.line, { backgroundColor: generalGray }]} />
-    </>
+    </View>
   ) : (
     <View style={[styles.line, { flex: 1, backgroundColor: generalGray }]} />
   );
