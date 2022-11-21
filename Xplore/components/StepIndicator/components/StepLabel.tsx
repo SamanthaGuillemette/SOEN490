@@ -21,7 +21,7 @@ const StepLabel = (props: StepLabelProps) => {
       <View style={[styles.line, { backgroundColor: generalGray }]} />
     </View>
   ) : (
-    <View style={[styles.line, { flex: 1, backgroundColor: generalGray }]} />
+    <View style={[styles.line, { backgroundColor: generalGray }]} />
   );
 };
 

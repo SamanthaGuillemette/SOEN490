@@ -9,6 +9,7 @@ export default StyleSheet.create({
     width: 34,
     height: 1,
     marginTop: 18,
+    flex: 1,
   },
   step: {
     width: 36,
