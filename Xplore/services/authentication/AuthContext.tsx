@@ -4,31 +4,32 @@ import { account } from "../appwrite/appwrite";
 
 type AuthContextData = {
   loggedIn?: Models.Session | undefined;
-  //sessionStatus: boolean;
+  sessionStatus: boolean;
   signIn: (email: string, password: string) => void;
   signOut: () => void;
-  //getSessionStatus: () => void;
+  getSessionStatus: () => void;
 };
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loggedIn, setLoggedIn] = useState<Models.Session>();
-  // const [sessionStatus, setSessionStatus] = useState<boolean>(false);
+  const [sessionStatus, setSessionStatus] = useState<boolean>(false);
 
-  // const getSessionStatus = () => {
-  //   const status = account.get();
+  const getSessionStatus = () => {
+    const status = account.get();
 
-  //   status.then(
-  //     (response) => {
-  //       console.log(response);
-  //       setSessionStatus(true);
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // };
+    status.then(
+      (response) => {
+        console.log(response);
+        setSessionStatus(true);
+      },
+      (error) => {
+        setSessionStatus(false);
+        console.log(`Session not found: ${error}`);
+      }
+    );
+  };
 
   const signIn = (email: string, password: string) => {
     const login = account.createEmailSession(email, password);
@@ -52,7 +53,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
   return (
-    <AuthContext.Provider value={{ loggedIn, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ loggedIn, sessionStatus, signIn, signOut, getSessionStatus }}
+    >
       {children}
     </AuthContext.Provider>
   );

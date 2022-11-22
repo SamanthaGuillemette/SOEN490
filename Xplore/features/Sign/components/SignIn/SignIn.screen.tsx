@@ -36,7 +36,6 @@ const SignIn = (props: SignInProps) => {
         label="SIGN IN"
         style={styles.PrimaryButton}
         onPress={() => {
-          console.log(auth.loggedIn);
           auth.signIn(email, password);
           setEmail("");
           setPassword("");
