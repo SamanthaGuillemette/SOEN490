@@ -7,30 +7,17 @@ import {
   TextInput,
 } from "../../../../components";
 import styles from "./SignIn.styles";
-import { account } from "../../../../services/appwrite/appwrite";
-
+import { useAuth } from "../../../../services/authentication";
 interface SignInProps {
   navigation: NavigationProp<any>;
 }
-
-const handleSignIn = (username: string, password: string) => {
-  const promise = account.createEmailSession(username, password);
-
-  promise.then(
-    function (response: any) {
-      console.log(response); // Success
-    },
-    function (error: any) {
-      console.log(error); // Failure
-    }
-  );
-};
 
 const SignIn = (props: SignInProps) => {
   const { navigation } = props;
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  // const navigation = useNavigation();
+
+  const auth = useAuth();
 
   return (
     <View style={styles.container}>
@@ -49,7 +36,8 @@ const SignIn = (props: SignInProps) => {
         label="SIGN IN"
         style={styles.PrimaryButton}
         onPress={() => {
-          handleSignIn(email, password);
+          console.log(auth.loggedIn);
+          auth.signIn(email, password);
           setEmail("");
           setPassword("");
         }}

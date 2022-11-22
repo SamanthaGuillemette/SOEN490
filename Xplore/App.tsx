@@ -3,6 +3,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider as PaperProvider } from "react-native-paper";
 import { useCachedResources, useColorScheme, useThemeColor } from "./hooks";
 import Main from "./navigation/Main";
+import { AuthProvider } from "./services/authentication";
 
 const App = () => {
   const colorScheme = useColorScheme();
@@ -21,7 +22,9 @@ const App = () => {
       <SafeAreaProvider>
         <PaperProvider>
           <StatusBar style="auto" backgroundColor={statusBarBg} />
-          <Main colorScheme={colorScheme} />
+          <AuthProvider>
+            <Main colorScheme={colorScheme} />
+          </AuthProvider>
         </PaperProvider>
       </SafeAreaProvider>
     );

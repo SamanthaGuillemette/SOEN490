@@ -3,31 +3,49 @@ import React, { createContext, useState, useContext } from "react";
 import { account } from "../appwrite/appwrite";
 
 type AuthContextData = {
-  loggedIn?: Models.Session;
-  signIn: any;
-  signOut: any;
+  loggedIn?: Models.Session | undefined;
+  //sessionStatus: boolean;
+  signIn: (email: string, password: string) => void;
+  signOut: () => void;
+  //getSessionStatus: () => void;
 };
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loggedIn, setLoggedIn] = useState<Models.Session>();
+  // const [sessionStatus, setSessionStatus] = useState<boolean>(false);
+
+  // const getSessionStatus = () => {
+  //   const status = account.get();
+
+  //   status.then(
+  //     (response) => {
+  //       console.log(response);
+  //       setSessionStatus(true);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // };
 
   const signIn = (email: string, password: string) => {
     const login = account.createEmailSession(email, password);
 
     login.then(
-      function (result) {
+      (result) => {
         setLoggedIn(result);
+        console.log(result);
       },
-      function (err) {
+      (err) => {
         console.log(err);
       }
     );
   };
 
   const signOut = () => {
-    if (loggedIn?.$id !== undefined) {
+    if (loggedIn) {
       account.deleteSession(loggedIn?.$id);
     } else {
       console.log("no session id found");
