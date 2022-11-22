@@ -3,9 +3,9 @@ import React, { createContext, useState, useContext } from "react";
 import { account } from "../appwrite/appwrite";
 
 type AuthContextData = {
-  loggedIn?: Models.Session;
-  sessionStatus: boolean;
-  isLoading: boolean;
+  sessionToken?: Models.Session | null;
+  loggedIn: boolean;
+  loading: boolean;
   signIn: (email: string, password: string) => void;
   signOut: () => void;
   getSessionStatus: () => void;
@@ -14,20 +14,19 @@ type AuthContextData = {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [loggedIn, setLoggedIn] = useState<Models.Session>();
-  const [sessionStatus, setSessionStatus] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [sessionToken, setSessionToken] = useState<Models.Session | null>(null);
+  const [loggedIn, setLoginStatus] = useState<boolean>(false);
+  const [loading, setLoadingStatus] = useState<boolean>(false);
 
   const getSessionStatus = () => {
     const status = account.get();
-
     status.then(
       (response) => {
-        console.log(response);
-        setSessionStatus(true);
+        console.log(`Session retrieved: ${JSON.stringify(response)}`);
+        setLoginStatus(true);
       },
       (error) => {
-        setSessionStatus(false);
+        setLoginStatus(false);
         console.log(`Session not found: ${error}`);
       }
     );
@@ -35,13 +34,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signIn = (email: string, password: string) => {
     const login = account.createEmailSession(email, password);
-    setIsLoading(true);
+    setLoadingStatus(true);
 
     login.then(
-      (result) => {
-        setLoggedIn(result);
-        setIsLoading(false);
-        console.log(result);
+      (response) => {
+        setSessionToken(response);
+        setLoadingStatus(false);
+        console.log(response);
       },
       (err) => {
         console.log(err);
@@ -50,8 +49,20 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const signOut = () => {
-    if (loggedIn) {
-      account.deleteSession(loggedIn?.$id);
+    if (sessionToken) {
+      const logout = account.deleteSession(sessionToken.$id);
+
+      setLoadingStatus(true);
+      logout.then(
+        () => {
+          setLoadingStatus(false);
+          setLoginStatus(false);
+          setSessionToken(null);
+        },
+        (error) => {
+          console.log(`Logout error: ${error}`);
+        }
+      );
     } else {
       console.log("no session id found");
     }
@@ -59,9 +70,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <AuthContext.Provider
       value={{
+        sessionToken,
         loggedIn,
-        sessionStatus,
-        isLoading,
+        loading,
         signIn,
         signOut,
         getSessionStatus,

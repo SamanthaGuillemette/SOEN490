@@ -14,16 +14,17 @@ interface MainProps {
 }
 
 const Main = ({ colorScheme }: MainProps) => {
-  const { loggedIn, sessionStatus, getSessionStatus } = useAuth();
+  const { sessionToken, loggedIn, getSessionStatus } = useAuth();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(getSessionStatus, []);
+
   return (
     <>
       <NavigationContainer
         theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >
-        {loggedIn?.$id !== undefined || sessionStatus ? (
+        {sessionToken?.$id !== undefined || loggedIn ? (
           <AppStack />
         ) : (
           <AuthStack />

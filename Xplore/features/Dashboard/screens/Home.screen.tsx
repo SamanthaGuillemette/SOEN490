@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -16,11 +16,16 @@ import {
   NewProjects,
 } from "../components";
 import styles from "./Home.styles";
+//imports for temporary sign out button
+import { PrimaryButton } from "../../../components/";
+import { useAuth } from "../../../services/authentication";
 
 const Home = () => {
   const homeBackground = useThemeColor("backgroundSecondary");
   const scrollViewBackground = useThemeColor("background");
   const [isButtonExpanded, setIsButtonExpanded] = useState(true);
+
+  const auth = useAuth();
 
   const onScroll = ({
     nativeEvent,
@@ -47,6 +52,8 @@ const Home = () => {
           <TodayStats />
           <ExploreProjects />
           <NewProjects />
+          {/* temporary button to teset logout functionality */}
+          <PrimaryButton label="SIGN OUT" onPress={auth.signOut} />
         </View>
       </ScrollView>
 

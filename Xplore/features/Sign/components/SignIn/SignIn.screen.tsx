@@ -23,7 +23,7 @@ const SignIn = (props: SignInProps) => {
   return (
     <View style={styles.container}>
       <Spinner
-        visible={auth.isLoading}
+        visible={auth.loading}
         textContent={"Hang tight!\n We're signing you in ⚡"}
         textStyle={styles.loadingScreen}
         animation={"fade"}
