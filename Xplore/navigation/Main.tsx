@@ -8,7 +8,6 @@ import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
 import { useAuth } from "../services/authentication/AuthContext";
 import { useEffect } from "react";
-//import { useEffect } from "react";
 
 interface MainProps {
   colorScheme: ColorSchemeName;
@@ -21,7 +20,6 @@ const Main = ({ colorScheme }: MainProps) => {
   useEffect(getSessionStatus, []);
   return (
     <>
-      {/* {getSessionStatus()} */}
       <NavigationContainer
         theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >

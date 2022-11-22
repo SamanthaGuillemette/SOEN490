@@ -8,6 +8,7 @@ import {
 } from "../../../../components";
 import styles from "./SignIn.styles";
 import { useAuth } from "../../../../services/authentication";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 interface SignInProps {
   navigation: NavigationProp<any>;
 }
@@ -21,6 +22,12 @@ const SignIn = (props: SignInProps) => {
 
   return (
     <View style={styles.container}>
+      <Spinner
+        visible={auth.isLoading}
+        textContent={"Hang tight!\n We're signing you in ⚡"}
+        textStyle={styles.loadingScreen}
+        animation={"fade"}
+      />
       <TextInput
         placeHolder="Username"
         iconName="user"

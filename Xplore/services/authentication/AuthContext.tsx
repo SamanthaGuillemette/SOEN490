@@ -3,8 +3,9 @@ import React, { createContext, useState, useContext } from "react";
 import { account } from "../appwrite/appwrite";
 
 type AuthContextData = {
-  loggedIn?: Models.Session | undefined;
+  loggedIn?: Models.Session;
   sessionStatus: boolean;
+  isLoading: boolean;
   signIn: (email: string, password: string) => void;
   signOut: () => void;
   getSessionStatus: () => void;
@@ -15,6 +16,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loggedIn, setLoggedIn] = useState<Models.Session>();
   const [sessionStatus, setSessionStatus] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getSessionStatus = () => {
     const status = account.get();
@@ -33,10 +35,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signIn = (email: string, password: string) => {
     const login = account.createEmailSession(email, password);
+    setIsLoading(true);
 
     login.then(
       (result) => {
         setLoggedIn(result);
+        setIsLoading(false);
         console.log(result);
       },
       (err) => {
@@ -54,7 +58,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
   return (
     <AuthContext.Provider
-      value={{ loggedIn, sessionStatus, signIn, signOut, getSessionStatus }}
+      value={{
+        loggedIn,
+        sessionStatus,
+        isLoading,
+        signIn,
+        signOut,
+        getSessionStatus,
+      }}
     >
       {children}
     </AuthContext.Provider>
