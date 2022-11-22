@@ -88,7 +88,7 @@ const Onboarding = (props: OnboardingProps) => {
                 >
                   <PrimaryButton
                     label="Get Started"
-                    onPress={() => navigation.navigate("Sign")}
+                    onPress={() => navigation.navigate("Home")}
                   />
                 </View>
               )}
@@ -122,7 +122,7 @@ const Onboarding = (props: OnboardingProps) => {
             />
           </View>
 
-          <TextButton onPress={() => navigation.navigate("Sign")}>
+          <TextButton onPress={() => navigation.navigate("Home")}>
             SKIP
           </TextButton>
         </View>

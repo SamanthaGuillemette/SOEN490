@@ -6,6 +6,7 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import Profile from "../features/Profile/screens/Profile.screen";
 import Settings from "../features/Settings/screens/Settings.screen";
 import Home from "../features/Dashboard/screens/Home.screen";
+import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,8 +14,9 @@ const AppStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName="Home"
+      initialRouteName="Onboarding"
     >
+      <Stack.Screen name="Onboarding" component={Onboarding} />
       <Stack.Screen name="Completion" component={Completion} />
       <Stack.Screen name="Chats" component={Chats} />
       <Stack.Screen name="ChatDetails" component={ChatDetails} />
