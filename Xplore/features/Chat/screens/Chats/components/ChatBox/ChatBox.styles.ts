@@ -5,7 +5,7 @@ import { multiplier } from "../../../../../../constants";
 export default StyleSheet.create({
   chatBox_container: {
     paddingHorizontal: 15,
-    paddingVertical: Platform.OS === "ios" ? 15 * multiplier : 20,
+    paddingVertical: Platform.OS === "ios" ? 15 * multiplier : 15,
     marginHorizontal: 10,
     marginTop: 15,
     borderRadius: 8,
