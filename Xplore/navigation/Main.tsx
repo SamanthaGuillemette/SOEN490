@@ -8,6 +8,7 @@ import { ColorSchemeName } from "react-native";
 import Completion from "../features/Completion/screens/Completion.component";
 import Chats from "../features/Chat/screens/Chats/Chats.screen";
 import ChatDetails from "../features/Chat/screens/ChatDetails/ChatDetails.screen";
+import ChatSettings from "../features/Chat/screens/ChatSettings/ChatSettings.screen";
 import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import BottomTabNavigator from "./BottomTabNavigator";
 import Profile from "../features/Profile/screens/Profile.screen";
@@ -38,6 +39,7 @@ const Main = ({ colorScheme }: MainProps) => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Chats" component={Chats} />
         <Stack.Screen name="ChatDetails" component={ChatDetails} />
+        <Stack.Screen name="ChatSettings" component={ChatSettings} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="Profile" component={Profile} />
