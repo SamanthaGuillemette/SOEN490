@@ -23,7 +23,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
           ))}
           <Avatar
             name="+"
-            avatarCount={"+" + avatarCount}
+            avatarCount={avatarCount}
             size={60}
             style={styles.singleAvatar}
           />

@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    borderRadius: 20,
+    borderRadius: 8,
     padding: 35,
     alignItems: "center",
   },

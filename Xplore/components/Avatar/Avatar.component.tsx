@@ -6,7 +6,7 @@ import { Text } from "../Text";
 
 interface AvatarProps extends ViewProps {
   name: string;
-  avatarCount?: string;
+  avatarCount?: number;
   imageURL?: string;
   size?: number;
   style?: StyleProp<ViewStyle>;
@@ -54,7 +54,7 @@ export const Avatar = (props: AvatarProps) => {
           ]}
         >
           <Text style={styles.textAvatarText} variant="h3">
-            {avatarCount}
+            +{avatarCount}
           </Text>
         </View>
       ) : (
