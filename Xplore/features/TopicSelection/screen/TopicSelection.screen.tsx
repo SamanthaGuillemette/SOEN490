@@ -1,5 +1,6 @@
 import * as React from "react";
 import { SafeAreaView, ScrollView } from "react-native";
+import SearchBar from "../../../components/SearchBar/SearchBar.component"
 import TopicSelectionHeader from "../components/TopicSelectionHeader/TopicSelectionHeader.component";
 
 
@@ -10,6 +11,7 @@ const TopicSelection = () => {
             showsVerticalScrollIndicator={false}
         >
             <TopicSelectionHeader/>
+            <SearchBar></SearchBar>
         </ScrollView>
     </SafeAreaView>
   );
