@@ -8,6 +8,7 @@ export default StyleSheet.create({
     paddingVertical: Platform.OS === "ios" ? 15 * multiplier : 20,
     marginHorizontal: 10,
     marginTop: 15,
+    marginBottom: 15,
     borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
