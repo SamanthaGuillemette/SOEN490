@@ -76,7 +76,15 @@ function ProjectNavBar() {
                 },
               ]}
             >
-              <Text style={styles.headerText}>{item}</Text>
+              <Text
+                // eslint-disable-next-line react-native/no-inline-styles
+                style={{
+                  color: active == index ? "#024089" : "#000000",
+                  fontWeight: "bold",
+                }}
+              >
+                {item}
+              </Text>
             </TouchableHighlight>
             {active == index && <View style={styles.headerBar} />}
           </View>
@@ -136,7 +144,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
   },
-  headerText: {
+  /*headerText: {
     color: "#024089",
-  },
+    fontWeight: "bold",
+  },*/
 });
