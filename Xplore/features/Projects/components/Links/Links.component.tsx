@@ -1,9 +1,8 @@
-import { ScrollView, View, StyleSheet } from "react-native";
-import { Text, Icon } from "../../../components";
-import { AddButton } from "../../../components/AddButton";
-import { colors } from "../../../constants";
-import { useThemeColor } from "../../../hooks";
-
+import { ScrollView, View } from "react-native";
+import { Text, Icon } from "../../../../components";
+import { AddButton } from "../../../../components/AddButton";
+import { useThemeColor } from "../../../../hooks";
+import styles from "./Links.styles";
 interface LinksProps {}
 
 export const Links = (props: LinksProps) => {
@@ -81,32 +80,3 @@ export const Links = (props: LinksProps) => {
 };
 
 export default Links;
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    justifyContent: "space-between",
-    borderRadius: 8,
-    padding: 30,
-    backgroundColor: colors.light.backgroundSecondary,
-    marginTop: 20,
-    height: 120,
-    width: 320,
-  },
-
-  buttonNormal: {
-    marginLeft: 2,
-    backgroundColor: colors.light.primary,
-    borderRadius: 8,
-    height: 35,
-    width: 70,
-  },
-  buttonPressed: {
-    marginLeft: 2,
-    backgroundColor: colors.light.backgroundSecondary,
-    borderColor: colors.light.backgroundSecondary,
-    borderRadius: 8,
-    borderWidth: 1,
-    height: 35,
-    width: 76,
-  },
-});

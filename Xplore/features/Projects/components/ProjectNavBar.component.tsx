@@ -10,7 +10,7 @@ import {
 import ProjectDescription from "./ProjectDescription.component";
 import ProjectMembers from "./ProjectMembers.component";
 import ProjectDiscussion from "./ProjectComponents/Discussion.component";
-import Links from "./Links.component";
+import Links from "../components/Links/Links.component";
 import { useThemeColor } from "../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 
