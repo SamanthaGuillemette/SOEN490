@@ -25,6 +25,15 @@ export default StyleSheet.create({
     width: 10,
     borderRadius: 100,
     left: 10,
-    top: 10,
+    top: 13,
+  },
+  iconAlign: {
+    marginRight: 10,
+  },
+  alignTitle: {
+    top: 2,
+  },
+  rowAlign: {
+    flexDirection: "row",
   },
 });
