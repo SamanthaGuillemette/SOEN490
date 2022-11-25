@@ -43,12 +43,9 @@ const Main = ({ colorScheme }: MainProps) => {
         <Stack.Screen name="ChatSettings" component={ChatSettings} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
-<<<<<<< HEAD
         <Stack.Screen name="Projects" component={Projects} />
-=======
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Settings" component={Settings} />
->>>>>>> 19ca60675ec220820e2ff190d91cc72365e2c9d5
         <Stack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}
