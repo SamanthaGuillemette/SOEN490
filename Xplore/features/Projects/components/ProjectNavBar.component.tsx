@@ -8,6 +8,8 @@ import {
   View,
 } from "react-native";
 import ProjectDescription from "./ProjectDescription.component";
+import ProjectMembers from "./ProjectMembers.component";
+import ProjectDiscussion from "./ProjectComponents/Discussion.component";
 import Links from "./Links.component";
 import { useThemeColor } from "../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
@@ -22,13 +24,13 @@ const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
 
 const projectScreenPages = [
   <ProjectDescription />,
-  <ProjectDescription />,
-  <ProjectDescription />,
-  <ProjectDescription />,
+  <ProjectDescription />, // tasks
+  <ProjectDiscussion />, // discussion
+  <ProjectMembers />,
   <Links />,
 ];
 
-export default function ProjectNavBar() {
+function ProjectNavBar() {
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
@@ -64,7 +66,7 @@ export default function ProjectNavBar() {
           <View>
             <TouchableHighlight
               onPress={() => onPressHeader(index)}
-              //underlayColor={tabBarBackground}
+              underlayColor={""}
               key={item}
               style={[
                 styles.headerItem,
@@ -99,11 +101,12 @@ export default function ProjectNavBar() {
   );
 }
 
+export default ProjectNavBar;
+
 const styles = StyleSheet.create({
   container: {
     //flex: 1,
-    marginTop: -20,
-    marginLeft: -20,
+    marginTop: -220,
     width: width,
   },
   headerScroll: {
@@ -129,7 +132,7 @@ const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     // bottom bar color
-    backgroundColor: "#eedddd",
+    backgroundColor: "#024089",
     position: "absolute",
     bottom: 0,
   },
