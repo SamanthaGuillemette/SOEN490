@@ -1,5 +1,5 @@
 import { View, ShadowView, Text, Avatar } from "../../../../../../components";
-import MessageTime from "../MessageTime/MessageTime.Component";
+import MessageTime from "../MessageTime/MessageTime.component";
 import styles from "./LeftBubble.styles";
 
 interface LeftBubbleProps {
