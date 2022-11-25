@@ -15,11 +15,11 @@ const Home = ({}: ProjectsProps) => {
 
   return (
     <SafeAreaView
-      style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
+      style={[{ backgroundColor: homeBackground }]}
     >
       <TopHeader screenName={"Projects"} navigation={undefined} />
 
-      <View backgroundColor="background" style={styles.mainScreen}>
+      <View backgroundColor="background">
         <ProjectCoreScreen navigation={undefined} />
       </View>
     </SafeAreaView>
@@ -27,15 +27,3 @@ const Home = ({}: ProjectsProps) => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  safeAreaStyle: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight ?? 0,
-  },
-  mainScreen: {
-    paddingTop: 45,
-    paddingHorizontal: 20,
-    flex: 1,
-  },
-});
