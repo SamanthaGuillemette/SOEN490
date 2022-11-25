@@ -2,11 +2,11 @@ import { StatusBar, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   safeAreaStyle: {
-    //flex: 1,
+    flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
   },
-  scrollViewStyle: {
+  chat_container: {
     flex: 1,
-    //paddingTop: 45,
+    paddingTop: 30,
   },
 });
