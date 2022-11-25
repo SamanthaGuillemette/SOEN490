@@ -4,7 +4,6 @@ import { useThemeColor } from "../../../hooks";
 import {
   LayoutAnimation,
   Platform,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
   UIManager,
