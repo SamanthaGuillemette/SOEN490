@@ -2,9 +2,9 @@ import { NavigationProp } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
-import ChatDetailsHeader from "../../components/ChatDetailsHeader/ChatDetailsHeader.Comonent";
-import Conversation from "../../components/Conversation/Conversation.Component";
-import ChatTextInput from "../../components/ChatTextInput/ChatTextInput.Component";
+import ChatDetailsHeader from "./components/ChatDetailsHeader/ChatDetailsHeader.component";
+import Conversation from "./components/Conversation/Conversation.component";
+import ChatTextInput from "./components/ChatTextInput/ChatTextInput.component";
 import styles from "./ChatDetails.styles";
 
 interface ChatDetailsProps {

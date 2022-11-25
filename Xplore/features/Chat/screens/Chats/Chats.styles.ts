@@ -7,6 +7,6 @@ export default StyleSheet.create({
   },
   chat_container: {
     flex: 1,
-    paddingTop: 45,
+    paddingTop: 30,
   },
 });
