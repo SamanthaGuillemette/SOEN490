@@ -76,7 +76,7 @@ function ProjectNavBar() {
                 },
               ]}
             >
-              <Text>{item}</Text>
+              <Text style={styles.headerText}>{item}</Text>
             </TouchableHighlight>
             {active == index && <View style={styles.headerBar} />}
           </View>
@@ -128,12 +128,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   headerBar: {
-    height: 2,
+    height: 4,
     width: "90%",
     alignSelf: "center",
     // bottom bar color
     backgroundColor: "#024089",
     position: "absolute",
     bottom: 0,
+  },
+  headerText: {
+    color: "#024089",
   },
 });

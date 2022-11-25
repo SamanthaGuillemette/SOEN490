@@ -14,11 +14,8 @@ const Home = ({}: ProjectsProps) => {
   const homeBackground = useThemeColor("backgroundSecondary");
 
   return (
-    <SafeAreaView
-      style={[{ backgroundColor: homeBackground }]}
-    >
+    <SafeAreaView style={[{ backgroundColor: homeBackground }]}>
       <TopHeader screenName={"Projects"} navigation={undefined} />
-
       <View backgroundColor="background">
         <ProjectCoreScreen navigation={undefined} />
       </View>
