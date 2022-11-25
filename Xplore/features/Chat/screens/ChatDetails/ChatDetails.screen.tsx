@@ -26,7 +26,7 @@ const ChatDetails = (props: ChatDetailsProps) => {
         icon1Name={"phone"}
         icon2Name={"more-vertical"}
         navigation={props.navigation}
-        isMessaging={true}
+        isChat={true}
       />
     </SafeAreaView>
   );
