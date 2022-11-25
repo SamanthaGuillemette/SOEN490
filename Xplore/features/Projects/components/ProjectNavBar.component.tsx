@@ -62,6 +62,7 @@ function ProjectNavBar() {
         horizontal
         style={styles.headerScroll}
         showsHorizontalScrollIndicator={false}
+        bounces={false}
         renderItem={({ item, index }) => (
           <View>
             <TouchableHighlight
