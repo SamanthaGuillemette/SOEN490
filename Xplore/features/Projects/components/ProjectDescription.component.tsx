@@ -1,9 +1,9 @@
 import { ScrollView, SafeAreaView } from "react-native";
 import ProjectDropDown from "./DropDown.component";
-//import ProjectStats from "./ProjectStats.component";
 import { NavigationProp } from "@react-navigation/native";
 import { useThemeColor } from "../../../hooks";
 import ProjectStatusBox from "./ProjectComponents/ProjectStatusBox.Component";
+import CircularPercentageBar from "./ProjectComponents/CircularPercentageBar.component";
 import styles from "./ProjectDescription.styles";
 
 interface ProjectDescription {
@@ -26,17 +26,12 @@ const ProjectDescription = () => {
           tasks={"13"}
           conversations={"20"}
           date={"August 12, 2022"}
+          percent={63}
         />
         <ProjectDropDown />
       </ScrollView>
     </SafeAreaView>
   );
-  /*return (
-    <ScrollView>
-      <ProjectStats navigation={undefined} />
-      <ProjectDropDown />
-    </ScrollView>
-  );*/
 };
 
 export default ProjectDescription;
