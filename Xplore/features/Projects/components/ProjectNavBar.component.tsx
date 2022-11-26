@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import ProjectDescription from "./ProjectDescription.component";
 import ProjectMembers from "./ProjectMembers.component";
-import ProjectDiscussion from "./ProjectComponents/Discussion.component";
+//import ProjectDiscussion from "./ProjectComponents/Discussion.component";
 import Links from "../components/Links/Links.component";
 import Tasks from "../components/Tasks/Tasks.component";
 import { useThemeColor } from "../../../hooks";
@@ -26,7 +26,8 @@ const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
 const projectScreenPages = [
   <ProjectDescription />,
   <Tasks />, // tasks
-  <ProjectDiscussion />, // discussion
+  <ProjectDescription />, // discussion placeholder
+  //<ProjectDiscussion />, // discussion
   <ProjectMembers />,
   <Links />,
 ];
