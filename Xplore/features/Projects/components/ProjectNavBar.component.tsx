@@ -11,6 +11,7 @@ import ProjectDescription from "./ProjectDescription.component";
 import ProjectMembers from "./ProjectMembers.component";
 import ProjectDiscussion from "./ProjectComponents/Discussion.component";
 import Links from "../components/Links/Links.component";
+import Tasks from "../components/Tasks/Tasks.component";
 import { useThemeColor } from "../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 
@@ -24,7 +25,7 @@ const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
 
 const projectScreenPages = [
   <ProjectDescription />,
-  <ProjectDescription />, // tasks
+  <Tasks />, // tasks
   <ProjectDiscussion />, // discussion
   <ProjectMembers />,
   <Links />,
