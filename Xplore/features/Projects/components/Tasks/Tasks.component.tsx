@@ -1,10 +1,6 @@
 import { ScrollView } from "react-native";
 import { Text, Icon, View, LinkButton } from "../../../../components";
-import { AddButton } from "../../../../components/AddButton";
-import { useThemeColor } from "../../../../hooks";
 import styles from "./Tasks.styles";
-import ProjectStatusBox from "../ProjectComponents/ProjectStatusBox.Component";
-import { colors } from "../../../../constants";
 
 interface TasksProps {}
 
@@ -13,7 +9,7 @@ export const Tasks = (props: TasksProps) => {
     <ScrollView>
       <View backgroundColor="generalGray" style={styles.backgroundBox}>
         <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
-          <View style={styles.line}>
+          <View style={{ flexDirection: "row" }}>
             <LinkButton>Design</LinkButton>
             <Icon style={{ marginLeft: 180 }} size="small" name="help-circle" />
           </View>
@@ -44,7 +40,7 @@ export const Tasks = (props: TasksProps) => {
 
       <View backgroundColor="generalGray" style={styles.backgroundBox}>
         <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
-          <View style={styles.line}>
+          <View style={{ flexDirection: "row" }}>
             <LinkButton>Meeting</LinkButton>
             <Icon style={{ marginLeft: 180 }} size="small" name="help-circle" />
           </View>
@@ -70,6 +66,22 @@ export const Tasks = (props: TasksProps) => {
             size="large"
             name="check-square"
           />
+        </View>
+      </View>
+      <View style={{ marginTop: 20, alignItems: "center" }}>
+        <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
+          <View style={{ flexDirection: "row" }}>
+            <LinkButton>Meeting</LinkButton>
+            <Icon style={{ marginLeft: 180 }} size="small" name="help-circle" />
+          </View>
+
+          <Text variant="h2" color="titleText">
+            {" "}
+            Spring Meeting{" "}
+          </Text>
+          <Text variant="smBody" color="bodyText">
+            <Icon name="calendar" size="small" /> 13/12/2022
+          </Text>
         </View>
       </View>
     </ScrollView>

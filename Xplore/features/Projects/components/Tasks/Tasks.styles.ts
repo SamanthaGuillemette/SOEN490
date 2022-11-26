@@ -22,12 +22,7 @@ export default StyleSheet.create({
     paddingBottom: 13,
   },
   icons: {
-    // flexDirection: "column",
     marginLeft: 290,
     marginBottom: 60,
-  },
-  line: {
-    flexDirection: "row",
-    // justifyContent: "space-between",
   },
 });
