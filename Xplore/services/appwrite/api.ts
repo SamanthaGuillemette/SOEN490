@@ -1,93 +1,89 @@
-import { Client, Databases, Account, ID } from "appwrite";
 import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
-import { AccountObject } from "./serverTypes";
+import { Client, Databases, Account, ID, Models } from "appwrite";
+// import { AccountObject } from "./serverTypes";
 
 // Interface of our Appwrite API - provides us autocompletion
-interface apiInterface {
-  sdk: { account: Account; database: Databases } | null;
-  provider: () => any;
+// interface apiInterface {
+//   sdk?: { account: Account; database: Databases } | null;
+//   provider?: () => any;
 
-  createAccount: (
-    email: string,
-    password: string,
-    name: string
-  ) => Promise<any>;
+//   createAccount: (
+//     email: string,
+//     password: string,
+//     name: string
+//   ) => Promise<any>;
 
-  getAccount: () => Promise<AccountObject>;
+//   getAccount: () => Promise<AccountObject>;
 
-  createSession: (email: string, password: string) => Promise<any>;
+//   createSession: (email: string, password: string) => Promise<any>;
 
-  deleteCurrentSession: () => Promise<any>;
+//   deleteCurrentSession: () => Promise<any>;
+
+//   createDocument: (
+//     collectionId: string,
+//     documentId: string,
+//     data: any
+//   ) => Promise<any>;
+
+//   listDocuments: (collectionId: string) => Promise<any>;
+
+//   updateDocument: (
+//     collectionId: string,
+//     documentId: string,
+//     data: any
+//   ) => Promise<any>;
+
+//   deleteDocument: (collectionId: string, documentId: string) => Promise<any>;
+// }
+
+const client = new Client();
+client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
+const account = new Account(client);
+const database = new Databases(client);
+
+const api = {
+  createAccount: (email: string, password: string, name: string) => {
+    return account.create(ID.unique(), email, password, name);
+  },
+
+  getAccount: () => {
+    return account.get();
+  },
+
+  createSession: (email: string, password: string) => {
+    return account.createEmailSession(email, password);
+  },
+
+  deleteCurrentSession: () => {
+    return account.deleteSession("current");
+  },
 
   createDocument: (
     collectionId: string,
-    documentId: string,
-    data: Object
-  ) => Promise<any>;
+    data: Omit<Models.Document, keyof Models.Document>
+  ) => {
+    return database.createDocument(
+      DATABASE_ID,
+      collectionId,
+      ID.unique(),
+      data
+    );
+  },
 
-  listDocuments: (collectionId: string) => Promise<any>;
+  listDocuments: (collectionId: string) => {
+    return database.listDocuments(DATABASE_ID, collectionId);
+  },
 
   updateDocument: (
     collectionId: string,
     documentId: string,
-    data: Object
-  ) => Promise<any>;
-
-  deleteDocument: (collectionId: string, documentId: string) => Promise<any>;
-}
-
-let api: apiInterface = {
-  sdk: null,
-
-  provider: () => {
-    if (api.sdk) {
-      return api.sdk;
-    }
-    let client = new Client();
-    client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
-    const account = new Account(client);
-    const database = new Databases(client);
-
-    api.sdk = { account, database };
-    return client;
+    data: Omit<Models.Document, keyof Models.Document>
+  ) => {
+    return database.updateDocument(DATABASE_ID, collectionId, documentId, data);
   },
 
-  createAccount: (email, password, name) => {
-    return api.provider().account.create(ID.unique(), email, password, name);
-  },
-
-  getAccount: () => {
-    return api.provider().account.get();
-  },
-
-  createSession: (email, password) => {
-    return api.provider().account.createEmailSession(email, password);
-  },
-
-  deleteCurrentSession: () => {
-    return api.provider().account.deleteSession("current");
-  },
-
-  createDocument: (collectionId, documentId, data) => {
-    return api
-      .provider()
-      .database.createDocument(DATABASE_ID, collectionId, documentId, data);
-  },
-
-  listDocuments: (collectionId) => {
-    return api.provider().database.listDocuments(DATABASE_ID, collectionId);
-  },
-
-  updateDocument: (collectionId, documentId, data) => {
-    return api
-      .provider()
-      .database.updateDocument(DATABASE_ID, collectionId, documentId, data);
-  },
-
-  deleteDocument: (collectionId, documentId) => {
-    return api
-      .provider()
-      .database.deleteDocument(DATABASE_ID, collectionId, documentId);
+  deleteDocument: (collectionId: string, documentId: string) => {
+    return database.deleteDocument(DATABASE_ID, collectionId, documentId);
   },
 };
 
