@@ -39,6 +39,7 @@
     "react-native-testing-library": "^6.0.0",
     "react-native-ui-lib": "^6.21.2",
     "react-native-web": "~0.18.7",
+    "react-query": "^3.39.2",
     "react-router-native": "^6.4.3",
     "react-test-renderer": "18.0.0",
     "sonarqube": "^0.0.1"

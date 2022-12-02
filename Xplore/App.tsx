@@ -4,15 +4,13 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { useCachedResources, useColorScheme, useThemeColor } from "./hooks";
 import Main from "./navigation/Main";
 import { AuthProvider } from "./services/authentication";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const App = () => {
   const colorScheme = useColorScheme();
-
-  // Load resources we need (under splash screen) prior to rendering the app
-  const isLoadingComplete = useCachedResources();
-
-  // Status bar background (only required for Android)
-  const statusBarBg = useThemeColor("backgroundSecondary");
+  const isLoadingComplete = useCachedResources(); // Load resources we need (under splash screen) prior to rendering the app
+  const statusBarBg = useThemeColor("backgroundSecondary"); // Status bar background (only required for Android)
+  const queryClient = new QueryClient(); // queryClient for React Query
 
   if (!isLoadingComplete) {
     // No need to render anything here
@@ -23,7 +21,9 @@ const App = () => {
         <PaperProvider>
           <StatusBar style="auto" backgroundColor={statusBarBg} />
           <AuthProvider>
-            <Main colorScheme={colorScheme} />
+            <QueryClientProvider client={queryClient}>
+              <Main colorScheme={colorScheme} />
+            </QueryClientProvider>
           </AuthProvider>
         </PaperProvider>
       </SafeAreaProvider>
