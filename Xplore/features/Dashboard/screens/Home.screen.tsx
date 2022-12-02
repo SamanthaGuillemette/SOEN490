@@ -19,6 +19,8 @@ import styles from "./Home.styles";
 //imports for temporary sign out button
 import { PrimaryButton } from "../../../components/";
 import { useAuth } from "../../../services/authentication";
+import api from "../../../services/appwrite/api";
+import { COLLECTION_ID } from "@env";
 
 const Home = () => {
   const homeBackground = useThemeColor("backgroundSecondary");
@@ -54,6 +56,24 @@ const Home = () => {
           <NewProjects />
           {/* temporary button to teset logout functionality */}
           <PrimaryButton label="SIGN OUT" onPress={auth.signOut} />
+
+          <PrimaryButton
+            label="Create new data"
+            onPress={() => {
+              const data = {
+                test1: "my test data 1",
+                test2: "my test data 2",
+              };
+              api.createDocument(COLLECTION_ID, data);
+            }}
+          />
+
+          <PrimaryButton
+            label="Delete data"
+            onPress={() => {
+              api.deleteDocument(COLLECTION_ID, "638a2b72ed1d766a3441");
+            }}
+          />
         </View>
       </ScrollView>
 
