@@ -10,8 +10,10 @@ export const Tasks = (props: TasksProps) => {
       <View backgroundColor="generalGray" style={styles.backgroundBox}>
         <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
           <View style={{ flexDirection: "row" }}>
-            <LinkButton>Design</LinkButton>
-            <Icon style={{ marginLeft: 180 }} size="small" name="help-circle" />
+            <Text variant="h4" color="linkText">
+              Design
+            </Text>
+            <Icon style={{ marginLeft: 170 }} size="small" name="help-circle" />
           </View>
 
           <Text variant="h2" color="titleText">
@@ -41,8 +43,10 @@ export const Tasks = (props: TasksProps) => {
       <View backgroundColor="generalGray" style={styles.backgroundBox}>
         <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
           <View style={{ flexDirection: "row" }}>
-            <LinkButton>Meeting</LinkButton>
-            <Icon style={{ marginLeft: 180 }} size="small" name="help-circle" />
+            <Text variant="h4" color="linkText">
+              Meeting
+            </Text>
+            <Icon style={{ marginLeft: 160 }} size="small" name="help-circle" />
           </View>
 
           <Text variant="h2" color="titleText">
@@ -71,8 +75,10 @@ export const Tasks = (props: TasksProps) => {
       <View style={{ marginTop: 20, alignItems: "center" }}>
         <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
           <View style={{ flexDirection: "row" }}>
-            <LinkButton>Meeting</LinkButton>
-            <Icon style={{ marginLeft: 180 }} size="small" name="help-circle" />
+            <Text variant="h4" color="linkText">
+              Meeting
+            </Text>
+            <Icon style={{ marginLeft: 160 }} size="small" name="help-circle" />
           </View>
 
           <Text variant="h2" color="titleText">
