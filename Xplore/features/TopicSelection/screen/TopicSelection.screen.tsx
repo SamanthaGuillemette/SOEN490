@@ -1,7 +1,8 @@
 import * as React from "react";
 import { SafeAreaView, ScrollView } from "react-native";
-import SearchBar from "../../../components/SearchBar/SearchBar.component"
+import SearchBar from "../../../components/SearchBar/SearchBar.component";
 import TopicSelectionHeader from "../components/TopicSelectionHeader/TopicSelectionHeader.component";
+import TopicCard from "../components/TopicCard/TopicCard.component";
 
 
 const TopicSelection = () => {
@@ -12,6 +13,7 @@ const TopicSelection = () => {
         >
             <TopicSelectionHeader/>
             <SearchBar></SearchBar>
+            <TopicCard topicName="Frontend Development" imageURL="https://picsum.photos/300/200"></TopicCard>
         </ScrollView>
     </SafeAreaView>
   );
