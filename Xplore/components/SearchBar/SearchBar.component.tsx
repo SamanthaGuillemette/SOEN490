@@ -4,7 +4,7 @@ import { Icon, ShadowView, View } from "../../components";
 import { useThemeColor } from "../../hooks";
 import styles from "./SearchBar.styles";
 
-const MyComponent = () => {
+const SearchBar = () => {
   const bodyText = useThemeColor("bodyText");
 
   return (
@@ -24,4 +24,4 @@ const MyComponent = () => {
   );
 };
 
-export default MyComponent;
+export default SearchBar;

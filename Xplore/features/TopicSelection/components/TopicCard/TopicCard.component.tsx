@@ -7,12 +7,13 @@ import styles from "./TopicCard.styles";
 interface TopicCardProps {
   topicName: string;
   imageURL: string;
+  index: number;
 }
 
 const TopicCard = (props: TopicCardProps) => {
   const success = useThemeColor("success");
   const { topicName, imageURL } = props;
-  const [showImage, setShowImage] = useState(true);
+  const [showImage, setShowImage] = useState(false);
 
   const handleShowImage= () => {
     setShowImage(!showImage)
@@ -26,13 +27,13 @@ const TopicCard = (props: TopicCardProps) => {
             imageStyle={styles.imageBgContainer}
         >
             <View style={styles.topicNameContainer}>
-              <RNView style={showImage ? [styles.overlay, {borderColor: success, borderWidth: 3}] : null} />
+              <RNView style={showImage ? [styles.selectedOverlay, {borderColor: success, borderWidth: 3}] : styles.overlay} />
               {showImage ? (
                 <Image
                   source={require("../../../../assets/check-circle.png")}
                   style={styles.checkCircleImg}/> ) : null}
                 <Text variant="h3" color={showImage ? "smallText":  "generalGray"} style={styles.projectName}>
-                    {topicName}
+                  {topicName}
                 </Text>
             </View>
         </ImageBackground>
