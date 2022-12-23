@@ -10,7 +10,11 @@ export default StyleSheet.create({
     marginTop: 51,
   },
   searchBox: {
-    borderRadius: 50,
-    backgroundColor: "white"
-  }
+    marginLeft: 20.83,
+    marginTop: 12.5,
+    flexDirection: "row"
+  },
+  searchBoxInput: {
+    marginLeft: 14
+  },
 });

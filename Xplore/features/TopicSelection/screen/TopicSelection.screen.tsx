@@ -13,7 +13,7 @@ const TopicSelection = () => {
         >
             <TopicSelectionHeader/>
             <SearchBar></SearchBar>
-            <TopicCard topicName="Frontend Development" imageURL="https://picsum.photos/300/200"></TopicCard>
+            <TopicCard topicName="Frontend Development" imageURL="https://picsum.photos/200"></TopicCard>
         </ScrollView>
     </SafeAreaView>
   );

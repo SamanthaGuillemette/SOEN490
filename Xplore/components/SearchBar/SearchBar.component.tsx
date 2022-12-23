@@ -1,25 +1,25 @@
 import * as React from 'react';
-import { Searchbar } from 'react-native-paper';
-import { ShadowView } from "../ShadowView";
+import { TextInput } from "react-native";
+import { Icon, ShadowView, View } from "../../components";
+import { useThemeColor } from "../../hooks";
 import styles from "./SearchBar.styles";
 
 const MyComponent = () => {
-  const [searchQuery, setSearchQuery] = React.useState('');
-
-  const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
+  const bodyText = useThemeColor("bodyText");
 
   return (
     <ShadowView
       shadowOffset={4}
       backgroundColor="backgroundSecondary"
       style={styles.container}>
-        <Searchbar
-            placeholder="Search"
-            placeholderTextColor="#585757"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-            style={styles.searchBox}
+      <View style={styles.searchBox}>   
+        <Icon name="search" color='smallText'/>
+        <TextInput
+          style={styles.searchBoxInput}
+          placeholderTextColor={bodyText}
+          placeholder="Search"
         />
+      </View>
     </ShadowView>
   );
 };

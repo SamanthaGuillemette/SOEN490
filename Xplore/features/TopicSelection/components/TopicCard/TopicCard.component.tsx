@@ -21,21 +21,21 @@ const TopicCard = (props: TopicCardProps) => {
   return (
     <TouchableOpacity onPress={() => handleShowImage()}>
       <ShadowView backgroundColor="primary" style={styles.container}>
-          <ImageBackground
-              source={{ uri: `${imageURL}` }}
-              imageStyle={[styles.imageBgContainer, showImage ? {borderColor: success, borderWidth: 3} : null]}
-          >
-              <View style={styles.topicNameContainer}>
-                <RNView style={showImage ? styles.overlay : null} />
-                {showImage ? (
-                  <Image
-                    source={require("../../../../assets/check-circle.png")}
-                    style={styles.checkCircleImg}/> ) : null}
-                  <Text variant="h3" color={showImage ? "smallText":  "generalGray"} style={styles.projectName}>
-                      {topicName}
-                  </Text>
-              </View>
-          </ImageBackground>
+        <ImageBackground
+            source={{ uri: `${imageURL}` }}
+            imageStyle={styles.imageBgContainer}
+        >
+            <View style={styles.topicNameContainer}>
+              <RNView style={showImage ? [styles.overlay, {borderColor: success, borderWidth: 3}] : null} />
+              {showImage ? (
+                <Image
+                  source={require("../../../../assets/check-circle.png")}
+                  style={styles.checkCircleImg}/> ) : null}
+                <Text variant="h3" color={showImage ? "smallText":  "generalGray"} style={styles.projectName}>
+                    {topicName}
+                </Text>
+            </View>
+        </ImageBackground>
       </ShadowView>
     </TouchableOpacity>
   );
