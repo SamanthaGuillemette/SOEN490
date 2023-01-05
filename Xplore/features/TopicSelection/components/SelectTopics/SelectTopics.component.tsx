@@ -1,6 +1,6 @@
 import { FlatList } from "react-native";
 import { View } from "../../../../components";
-import TopicCard from "../TopicCard/TopicCard.component";
+import { TopicCard } from "../TopicCard";
 import styles from "./SelectTopics.styles";
 
 interface TopicCardType {

@@ -10,7 +10,7 @@ interface TopicCardProps {
   index: number;
 }
 
-const TopicCard = (props: TopicCardProps) => {
+export const TopicCard = (props: TopicCardProps) => {
   const success = useThemeColor("success");
   const { topicName, imageURL } = props;
   const [showImage, setShowImage] = useState(false);
@@ -21,25 +21,26 @@ const TopicCard = (props: TopicCardProps) => {
 
   return (
     <TouchableOpacity onPress={() => handleShowImage()}>
-      <ShadowView backgroundColor="primary" style={styles.container}>
-        <ImageBackground
-            source={{ uri: `${imageURL}` }}
-            imageStyle={styles.imageBgContainer}
-        >
-            <View style={styles.topicNameContainer}>
-              <RNView style={showImage ? [styles.selectedOverlay, {borderColor: success, borderWidth: 3}] : styles.overlay} />
-              {showImage ? (
-                <Image
-                  source={require("../../../../assets/check-circle.png")}
-                  style={styles.checkCircleImg}/> ) : null}
-                <Text variant="h3" color={showImage ? "smallText":  "generalGray"} style={styles.projectName}>
-                  {topicName}
-                </Text>
-            </View>
-        </ImageBackground>
+      <ShadowView 
+        backgroundColor="primary" 
+        isInnerShadow={false}
+        style={styles.container}>
+          <ImageBackground
+              source={{ uri: `${imageURL}` }}
+              imageStyle={styles.imageBgContainer}
+          >
+              <View style={styles.topicNameContainer}>
+                <RNView style={showImage ? [styles.selectedOverlay, {borderColor: success, borderWidth: 3}] : styles.overlay} />
+                {showImage ? (
+                  <Image
+                    source={require("../../../../assets/check-circle.png")}
+                    style={styles.checkCircleImg}/> ) : null}
+                  <Text variant="h3" color={showImage ? "smallText":  "generalGray"} style={styles.projectName}>
+                    {topicName}
+                  </Text>
+              </View>
+          </ImageBackground>
       </ShadowView>
     </TouchableOpacity>
   );
 };
-
-export default TopicCard;

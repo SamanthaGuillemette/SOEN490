@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { TextInput } from "react-native";
-import { Icon, ShadowView, View } from "../../components";
+import { View } from "../View";
+import { Icon } from "../Icon";
+import { ShadowView } from "../ShadowView";
 import { useThemeColor } from "../../hooks";
 import styles from "./SearchBar.styles";
 
-const SearchBar = () => {
+export const SearchBar = () => {
   const bodyText = useThemeColor("bodyText");
 
   return (
     <ShadowView
       shadowOffset={4}
       backgroundColor="backgroundSecondary"
+      isInnerShadow={false}
       style={styles.container}>
       <View style={styles.searchBox}>   
         <Icon name="search" color='smallText'/>
@@ -23,5 +26,3 @@ const SearchBar = () => {
     </ShadowView>
   );
 };
-
-export default SearchBar;
