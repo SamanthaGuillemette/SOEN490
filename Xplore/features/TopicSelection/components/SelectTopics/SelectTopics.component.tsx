@@ -1,6 +1,7 @@
 import { FlatList } from "react-native";
-import { View } from "../../../../components";
+import { View, SearchBar} from "../../../../components";
 import { TopicCard } from "../TopicCard";
+import { TopicSelectionHeader } from "../TopicSelectionHeader";
 import styles from "./SelectTopics.styles";
 
 interface TopicCardType {
@@ -57,11 +58,17 @@ export const SelectTopics = () => {
         />
       );
     };
-  
+
     return (
-      <View style={styles.topicCardsContainer}>
+      <View>
         <FlatList
           data={TopicCards}
+          ListHeaderComponent={ 
+          <>
+            <TopicSelectionHeader/>
+            <SearchBar/>
+          </>}
+          ListHeaderComponentStyle={styles.headerComponentStyle}
           renderItem={renderTopicCards}
           keyExtractor={({ id }) => id}
         />
