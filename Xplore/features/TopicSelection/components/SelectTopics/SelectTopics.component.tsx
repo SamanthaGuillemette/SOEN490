@@ -1,5 +1,5 @@
 import { FlatList } from "react-native";
-import { View, SearchBar} from "../../../../components";
+import { View, SearchBar, NextButton} from "../../../../components";
 import { TopicCard } from "../TopicCard";
 import { TopicSelectionHeader } from "../TopicSelectionHeader";
 import styles from "./SelectTopics.styles";
@@ -69,6 +69,8 @@ export const SelectTopics = () => {
             <SearchBar/>
           </>}
           ListHeaderComponentStyle={styles.headerComponentStyle}
+          ListFooterComponent={<NextButton/>}
+          ListFooterComponentStyle={styles.footerComponentStyle}
           renderItem={renderTopicCards}
           keyExtractor={({ id }) => id}
         />

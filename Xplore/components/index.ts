@@ -16,3 +16,4 @@ export * from "./SegmentedButton";
 export * from "./PrimaryButton";
 export * from "./SecondaryButton";
 export * from "./SearchBar";
+export * from "./NextButton";
