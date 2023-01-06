@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import TopHeader from "../../../../navigation/TopHeader.Component";
+import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
 import { AvatarGroup, Text, View } from "../../../../components";
 import { NavigationProp, useRoute } from "@react-navigation/native";

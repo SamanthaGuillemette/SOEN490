@@ -3,7 +3,7 @@ import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { View } from "../../../components";
 import { useThemeColor } from "../../../hooks";
 import ProjectCoreScreen from "../components/ProjectCoreScreen.component";
-import TopHeader from "../../../navigation/TopHeader.Component";
+import TopHeader from "../../../navigation/TopHeader.component";
 import { NavigationProp } from "@react-navigation/native";
 
 interface ProjectsProps {
