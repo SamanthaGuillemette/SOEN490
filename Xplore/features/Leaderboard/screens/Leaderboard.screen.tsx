@@ -1,6 +1,7 @@
 import { SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../hooks";
-import { ShadowView, Text } from "../../../components";
+import { ShadowView, View } from "../../../components";
+import UserRank from "../components/UserRank/UserRank.component";
 import TopHeader from "../../../navigation/TopHeader.component";
 import styles from "./Leaderboard.styles";
 import { NavigationProp } from "@react-navigation/native";
@@ -12,21 +13,28 @@ interface LeaderboardProps {
 
 const Leaderboard = (props: LeaderboardProps) => {
   const { navigation } = props;
-  const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <TopHeader screenName={"Leaderboard"} navigation={navigation} />
-      <ScrollView style={{ backgroundColor: background }}>
+      <View backgroundColor="background">
         <ShadowView
           backgroundColor="backgroundSecondary"
           style={styles.leaderboardContainer}
         >
-          <Text>view</Text>
+          <ScrollView>
+            <UserRank
+              avatar="https://picsum.photos/200"
+              username="Josh Lewis"
+              xp={103597}
+              rank="1"
+            />
+          </ScrollView>
         </ShadowView>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
