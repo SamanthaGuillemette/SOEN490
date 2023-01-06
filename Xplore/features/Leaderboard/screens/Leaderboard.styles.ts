@@ -8,9 +8,9 @@ export default StyleSheet.create({
   leaderboardContainer: {
     marginHorizontal: 20,
     marginVertical: 45,
-    minHeight: Platform.OS === "ios" ? 560 : 460,
+    paddingHorizontal: 40,
+    height: Platform.OS === "ios" ? 560 : 460,
     borderRadius: 8,
     flexDirection: "row",
-    alignItems: "center",
   },
 });
