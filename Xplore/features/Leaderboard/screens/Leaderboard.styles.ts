@@ -8,7 +8,7 @@ export default StyleSheet.create({
   leaderboardContainer: {
     marginHorizontal: 20,
     marginVertical: 45,
-    paddingHorizontal: 40,
+    paddingHorizontal: 35,
     height: Platform.OS === "ios" ? 560 : 460,
     borderRadius: 8,
     flexDirection: "row",

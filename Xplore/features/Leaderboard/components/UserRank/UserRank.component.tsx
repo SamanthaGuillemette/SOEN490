@@ -12,7 +12,9 @@ const UserRank = (props: UserRankProps) => {
   const { avatar, username, xp, rank } = props;
   return (
     <View style={styles.userRankContainer}>
-      <Text color="titleText">{rank}</Text>
+      <Text style={styles.userRank} color="titleText">
+        {rank}
+      </Text>
       <User avatar={avatar} username={username} xp={xp} />
     </View>
   );

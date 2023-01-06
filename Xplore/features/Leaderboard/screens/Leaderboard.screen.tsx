@@ -25,7 +25,7 @@ const Leaderboard = (props: LeaderboardProps) => {
           backgroundColor="backgroundSecondary"
           style={styles.leaderboardContainer}
         >
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <UserRank
               avatar="https://picsum.photos/200"
               username="Josh Lewis"
@@ -67,6 +67,12 @@ const Leaderboard = (props: LeaderboardProps) => {
               username="Martin Garza"
               xp={103597}
               rank={7}
+            />
+            <UserRank
+              avatar="https://picsum.photos/200"
+              username="Martin Garza"
+              xp={103597}
+              rank={8}
             />
           </ScrollView>
         </ShadowView>
