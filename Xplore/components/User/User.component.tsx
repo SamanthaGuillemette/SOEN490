@@ -7,7 +7,7 @@ import styles from "./User.styles";
 interface UserProps {
   avatar: string;
   username: string;
-  xp: string;
+  xp: number;
 }
 
 export const User = (props: UserProps) => {
