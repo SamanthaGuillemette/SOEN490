@@ -1,9 +1,9 @@
-import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
+import { APP_URL, DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
 import { Client, Databases, Account, ID, Models } from "appwrite";
 
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
-const account = new Account(client);
+export const account = new Account(client);
 const database = new Databases(client);
 
 const api = {
@@ -13,6 +13,10 @@ const api = {
 
   getAccount: async () => {
     return await account.get();
+  },
+
+  createEmailVerification: async () => {
+    return await account.createVerification(APP_URL);
   },
 
   createSession: async (email: string, password: string) => {

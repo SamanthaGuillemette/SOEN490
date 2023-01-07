@@ -1,6 +1,6 @@
 import { Models } from "appwrite";
 import React, { createContext, useState, useContext } from "react";
-import { account } from "../appwrite/appwrite";
+import api from "../appwrite/api";
 
 type AuthContextData = {
   sessionToken?: Models.Session | null;
@@ -19,28 +19,28 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoadingStatus] = useState<boolean>(false);
 
   const getSessionStatus = () => {
-    const status = account.get();
+    const status = api.getAccount();
     status.then(
       (response) => {
-        console.log(`Session retrieved: ${JSON.stringify(response)}`);
+        console.log(`===> Session retrieved: ${JSON.stringify(response)}`);
         setLoginStatus(true);
       },
       (error) => {
         setLoginStatus(false);
-        console.log(`Session not found: ${error}`);
+        console.log(`===> Session not found: ${error}`);
       }
     );
   };
 
   const signIn = (email: string, password: string) => {
-    const login = account.createEmailSession(email, password);
+    const login = api.createSession(email, password);
     setLoadingStatus(true);
 
     login.then(
       (response) => {
         setSessionToken(response);
         setLoadingStatus(false);
-        console.log(response);
+        console.log(`===> Session created: ${JSON.stringify(response)}`);
       },
       (err) => {
         console.log(err);
@@ -50,9 +50,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = () => {
     if (sessionToken) {
-      const logout = account.deleteSession(sessionToken.$id);
-
+      const logout = api.deleteCurrentSession();
       setLoadingStatus(true);
+
       logout.then(
         () => {
           setLoadingStatus(false);
@@ -60,11 +60,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           setSessionToken(null);
         },
         (error) => {
-          console.log(`Logout error: ${error}`);
+          console.log(`===> Logout error: ${error}`);
         }
       );
     } else {
-      console.log("no session id found");
+      console.log("===> No session id found");
     }
   };
   return (
@@ -87,7 +87,7 @@ function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("===> useAuth must be used within an AuthProvider");
   }
 
   return context;

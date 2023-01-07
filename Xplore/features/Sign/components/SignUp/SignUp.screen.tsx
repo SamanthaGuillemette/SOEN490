@@ -3,8 +3,8 @@ import { NavigationProp } from "@react-navigation/native";
 import * as React from "react";
 import { PrimaryButton, View, TextInput } from "../../../../components";
 import styles from "./SignUp.styles";
-import { account } from "../../../../services/appwrite/appwrite"
 import { ID } from "appwrite";
+import api, { account } from "../../../../services/appwrite/api";
 
 // Need to implement
 //  ** error handling
@@ -22,11 +22,11 @@ interface SignUpProps {
 }
 
 const handleSignUp = (username: string, email: string, password: string) => {
-  const promise = account.create(ID.unique(), email, password, username);
+  const promise = api.createAccount(email, password, username);
   promise.then(
-    async function (result) {
-      console.log(result);
-      await account.createVerification("https://xplorify.ca");
+    async function (accountObj) {
+      console.log(`===> Account created: ${JSON.stringify(accountObj)}`);
+      await api.createEmailVerification();
     },
     function (err) {
       console.log(err);
@@ -41,8 +41,16 @@ const SignUp = (props: SignUpProps) => {
 
   return (
     <View style={styles.container}>
-      <TextInput placeHolder={"Username"} iconName={"user"} onChangeText={(thisUsername: string) => setUserName(thisUsername)} />
-      <TextInput placeHolder={"Email"} iconName={"mail"} onChangeText={(thisEmail: string) => setEmail(thisEmail)} />
+      <TextInput
+        placeHolder={"Username"}
+        iconName={"user"}
+        onChangeText={(thisUsername: string) => setUserName(thisUsername)}
+      />
+      <TextInput
+        placeHolder={"Email"}
+        iconName={"mail"}
+        onChangeText={(thisEmail: string) => setEmail(thisEmail)}
+      />
       <TextInput
         placeHolder={"Password"}
         iconName={"lock"}

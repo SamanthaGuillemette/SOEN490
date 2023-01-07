@@ -2,6 +2,7 @@
 declare module "react-native-inset-shadow";
 
 declare module "@env" {
+  export const APP_URL: string;
   export const ENDPOINT: string;
   export const PROJECT_ID: string;
   export const DATABASE_ID: string;
