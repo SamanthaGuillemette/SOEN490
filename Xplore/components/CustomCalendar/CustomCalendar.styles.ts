@@ -4,8 +4,8 @@ export default StyleSheet.create({
   calendar: {
     borderRadius: 8,
     top: 20,
-    width: "90%",
-    left: 20,
+    width: "83%",
+    left: 35,
   },
   alignRow: {
     flexDirection: "row",
@@ -25,15 +25,15 @@ export default StyleSheet.create({
     paddingBottom: 12,
   },
   btnContainer: {
-    width: "90%",
+    width: "83%",
     height: 60,
     borderRadius: 8,
-    left: 20,
-    top: 10,
+    left: 35,
+    top: 5,
   },
   BtnAlignText: {
     flexDirection: "row",
-    marginLeft: 250,
+    marginLeft: 220,
     top: 20,
   },
   alignOkBtn: {
