@@ -6,8 +6,8 @@ import {
 import { ColorSchemeName } from "react-native";
 import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
-import { useAuth } from "../services/authentication/AuthContext";
 import { useEffect } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 interface MainProps {
   colorScheme: ColorSchemeName;

@@ -18,10 +18,10 @@ import {
 import styles from "./Home.styles";
 //imports for temporary sign out button
 import { PrimaryButton } from "../../../components/";
-import { useAuth } from "../../../services/authentication";
 import api from "../../../services/appwrite/api";
 import { COLLECTION_ID_TEST } from "@env";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useAuth } from "../../../hooks/useAuth";
 
 const Home = () => {
   const homeBackground = useThemeColor("backgroundSecondary");
@@ -45,7 +45,7 @@ const Home = () => {
     }
   );
 
-  const auth = useAuth();
+  const { signOut } = useAuth();
 
   const onScroll = ({
     nativeEvent,
@@ -73,7 +73,7 @@ const Home = () => {
           <ExploreProjects />
           <NewProjects />
           {/* temporary button to teset logout functionality */}
-          <PrimaryButton label="SIGN OUT" onPress={auth.signOut} />
+          <PrimaryButton label="SIGN OUT" onPress={signOut} />
 
           <PrimaryButton
             label="Create new data"

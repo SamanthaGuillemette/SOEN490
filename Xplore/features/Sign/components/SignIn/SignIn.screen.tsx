@@ -7,8 +7,8 @@ import {
   TextInput,
 } from "../../../../components";
 import styles from "./SignIn.styles";
-import { useAuth } from "../../../../services/authentication";
 import Spinner from "react-native-loading-spinner-overlay/lib";
+import { useAuth } from "../../../../hooks/useAuth";
 interface SignInProps {
   navigation: NavigationProp<any>;
 }
@@ -18,12 +18,12 @@ const SignIn = (props: SignInProps) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const auth = useAuth();
+  const { signIn, loading } = useAuth();
 
   return (
     <View style={styles.container}>
       <Spinner
-        visible={auth.loading}
+        visible={loading}
         textContent={"Hang tight!\n We're signing you in ⚡"}
         textStyle={styles.loadingScreen}
         animation={"fade"}
@@ -43,7 +43,7 @@ const SignIn = (props: SignInProps) => {
         label="SIGN IN"
         style={styles.PrimaryButton}
         onPress={() => {
-          auth.signIn(email, password);
+          signIn(email, password);
           setEmail("");
           setPassword("");
         }}

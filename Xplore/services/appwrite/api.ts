@@ -7,31 +7,31 @@ export const account = new Account(client);
 const database = new Databases(client);
 
 const api = {
-  createAccount: async (email: string, password: string, name: string) => {
-    return await account.create(ID.unique(), email, password, name);
+  createAccount: (email: string, password: string, name: string) => {
+    return account.create(ID.unique(), email, password, name);
   },
 
-  getAccount: async () => {
-    return await account.get();
+  getAccount: () => {
+    return account.get();
   },
 
-  createEmailVerification: async () => {
-    return await account.createVerification(APP_URL);
+  createEmailVerification: () => {
+    return account.createVerification(APP_URL);
   },
 
-  createSession: async (email: string, password: string) => {
-    return await account.createEmailSession(email, password);
+  createSession: (email: string, password: string) => {
+    return account.createEmailSession(email, password);
   },
 
-  deleteCurrentSession: async () => {
-    return await account.deleteSession("current");
+  deleteCurrentSession: () => {
+    return account.deleteSession("current");
   },
 
-  createDocument: async (
+  createDocument: (
     collectionId: string,
     data: Omit<Models.Document, keyof Models.Document>
   ) => {
-    return await database.createDocument(
+    return database.createDocument(
       DATABASE_ID,
       collectionId,
       ID.unique(),
@@ -39,25 +39,20 @@ const api = {
     );
   },
 
-  listDocuments: async (collectionId: string) => {
-    return await database.listDocuments(DATABASE_ID, collectionId);
+  listDocuments: (collectionId: string) => {
+    return database.listDocuments(DATABASE_ID, collectionId);
   },
 
-  updateDocument: async (
+  updateDocument: (
     collectionId: string,
     documentId: string,
     data: Omit<Models.Document, keyof Models.Document>
   ) => {
-    return await database.updateDocument(
-      DATABASE_ID,
-      collectionId,
-      documentId,
-      data
-    );
+    return database.updateDocument(DATABASE_ID, collectionId, documentId, data);
   },
 
-  deleteDocument: async (collectionId: string, documentId: string) => {
-    return await database.deleteDocument(DATABASE_ID, collectionId, documentId);
+  deleteDocument: (collectionId: string, documentId: string) => {
+    return database.deleteDocument(DATABASE_ID, collectionId, documentId);
   },
 };
 

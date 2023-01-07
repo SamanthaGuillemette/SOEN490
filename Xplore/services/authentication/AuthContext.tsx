@@ -1,8 +1,8 @@
 import { Models } from "appwrite";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState } from "react";
 import api from "../appwrite/api";
 
-type AuthContextData = {
+export type AuthContextData = {
   sessionToken?: Models.Session | null;
   loggedIn: boolean;
   loading: boolean;
@@ -83,14 +83,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-function useAuth(): AuthContextData {
-  const context = useContext(AuthContext);
+// function useAuth(): AuthContextData {
+//   const context = useContext(AuthContext);
 
-  if (!context) {
-    throw new Error("===> useAuth must be used within an AuthProvider");
-  }
+//   if (!context) {
+//     throw new Error("===> useAuth must be used within an AuthProvider");
+//   }
 
-  return context;
-}
+//   return context;
+// }
 
-export { AuthContext, AuthProvider, useAuth };
+export { AuthContext, AuthProvider };

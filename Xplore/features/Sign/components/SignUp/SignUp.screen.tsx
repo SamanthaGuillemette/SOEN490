@@ -21,17 +21,35 @@ interface SignUpProps {
   navigation: NavigationProp<any>;
 }
 
-const handleSignUp = (username: string, email: string, password: string) => {
-  const promise = api.createAccount(email, password, username);
-  promise.then(
-    async function (accountObj) {
-      console.log(`===> Account created: ${JSON.stringify(accountObj)}`);
-      await api.createEmailVerification();
-    },
-    function (err) {
-      console.log(err);
-    }
-  );
+const handleSignUp = async (
+  username: string,
+  email: string,
+  password: string
+) => {
+  // const promise = api.createAccount(email, password, username);
+  // promise.then(
+  //   async function (accountObj) {
+  //     console.log(`===> Account created: ${JSON.stringify(accountObj)}`);
+  //     await api.createEmailVerification();
+  //     console.log("===> Verification email sent!");
+
+  //   },
+  //   function (err) {
+  //     console.log(err);
+  //   }
+  // );
+
+  try {
+    const accountObj = await api.createAccount(email, password, username);
+    console.log(
+      accountObj ?? `===> Account created: ${JSON.stringify(accountObj)}`
+    );
+
+    await api.createEmailVerification();
+    console.log("===> Verification email sent!");
+  } catch (error) {
+    console.log("Sign up error: ", error);
+  }
 };
 
 const SignUp = (props: SignUpProps) => {
