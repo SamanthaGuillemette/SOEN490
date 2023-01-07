@@ -1,12 +1,9 @@
 import * as React from "react";
-import { InputField, Text, Button, Icon } from "../../../../../components";
+import { InputField, CustomCalendar, Button } from "../../../../../components";
 import { View } from "react-native";
 import styles from "./Input.styles";
-import { useThemeColor } from "../../../../../hooks";
 
-const Input = () => {
-  const generalGray = useThemeColor("generalGray");
-
+export const Input = () => {
   return (
     <View>
       <View style={styles.container}>
@@ -14,14 +11,9 @@ const Input = () => {
           Project name
         </InputField>
       </View>
-      <Text color="titleText" variant="h3" style={styles.start}>
-        Start
-      </Text>
-      <Text color="bodyText" variant="label" style={styles.startDate}>
-        13/12/2022
-      </Text>
-      <Icon name="calendar" size="large" style={styles.calendar} />
-      <View style={[styles.line, { backgroundColor: generalGray }]} />
+
+      <CustomCalendar title="Start" style={styles.alignLeft} />
+
       <View style={styles.container}>
         <InputField style={styles.projectDesc} styleText={styles.styleText}>
           Project description
@@ -39,5 +31,3 @@ const Input = () => {
     </View>
   );
 };
-
-export default Input;

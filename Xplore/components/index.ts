@@ -17,3 +17,4 @@ export * from "./PrimaryButton";
 export * from "./SecondaryButton";
 export * from "./TopHeader";
 export * from "./StepIndicator";
+export * from "./CustomCalendar";

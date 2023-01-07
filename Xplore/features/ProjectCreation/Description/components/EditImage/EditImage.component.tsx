@@ -2,7 +2,7 @@ import * as React from "react";
 import { ShadowView, View, Icon } from "../../../../../components";
 import styles from "./EditImage.styles";
 
-const EditImage = () => {
+export const EditImage = () => {
   return (
     <View style={styles.container}>
       <ShadowView style={styles.circle}>
@@ -11,5 +11,3 @@ const EditImage = () => {
     </View>
   );
 };
-
-export default EditImage;

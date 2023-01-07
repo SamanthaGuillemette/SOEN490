@@ -7111,7 +7111,7 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment@^2.24.0:
+moment@^2.24.0, moment@^2.29.4:
   version "2.29.4"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
   integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
@@ -8001,10 +8001,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-calendars@^1.1291.1:
-  version "1.1291.1"
-  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.1291.1.tgz#3cf86ba88d9efe05b0ac450a7099af48415c2a28"
-  integrity sha512-L2MK2t3kbnDg2RoU12UAoQyNrUpDYdj2MyIfg13YrwVb8BuI/gc0q/VpEinY3iz5ETHiFsTLkCsAFwSj7xbZWw==
+react-native-calendars@^1.1293.0:
+  version "1.1293.0"
+  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.1293.0.tgz#3b06a7cbc050a074ec876a5accc90e49e9db84a1"
+  integrity sha512-/wWBlNOooHAVTCDhZptdeZEa1+DTUW1E3cI9auEPblJ56t1TXqe0gVK1UTchPDsA5d2eIXxdhTThpFD846yq7g==
   dependencies:
     hoist-non-react-statics "^3.3.1"
     immutable "^4.0.0-rc.12"
@@ -8015,7 +8015,7 @@ react-native-calendars@^1.1291.1:
     recyclerlistview "^3.0.5"
     xdate "^0.8.0"
   optionalDependencies:
-    moment "^2.24.0"
+    moment "^2.29.4"
 
 react-native-codegen@^0.69.2:
   version "0.69.2"

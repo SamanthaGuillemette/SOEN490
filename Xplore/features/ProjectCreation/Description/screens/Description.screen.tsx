@@ -2,10 +2,7 @@ import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { TopHeader, StepIndicator } from "../../../../components";
 import { NavigationProp } from "@react-navigation/native";
-import EditImage from "../components/EditImage/EditImage.component";
-import Input from "../components/Input/Input.component";
-import CustomCalendar from "../components/CustomCalendar/CustomCalendar.component";
-
+import { EditImage, Input } from "../components";
 interface DescriptionProps {
   navigation: NavigationProp<any>;
 }
@@ -27,7 +24,7 @@ const Description = (props: DescriptionProps) => {
         titleLevel={1}
         stepTypes={["active", "inactive", "inactive"]}
       />
-      <CustomCalendar />
+      <Input />
     </SafeAreaView>
   );
 };
@@ -38,5 +35,8 @@ const styles = StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
+  },
+  calendar: {
+    left: 50,
   },
 });
