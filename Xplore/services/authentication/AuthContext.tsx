@@ -2,6 +2,7 @@ import { Models } from "appwrite";
 import React, { createContext, useState } from "react";
 import api from "../appwrite/api";
 
+// The "shape" of our AuthContext data
 export type AuthContextData = {
   sessionToken?: Models.Session | null;
   loggedIn: boolean;
@@ -13,6 +14,11 @@ export type AuthContextData = {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
+/*
+ *  This 'AuthProvider' will be wrapped around the root of our app to provide
+ *  access to states/functions inside the AuthContext data object.
+ *  ==> Look at type "AuthContextData"
+ */
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [sessionToken, setSessionToken] = useState<Models.Session | null>(null);
   const [loggedIn, setLoginStatus] = useState<boolean>(false);
@@ -67,6 +73,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.log("===> No session id found");
     }
   };
+
   return (
     <AuthContext.Provider
       value={{
@@ -82,15 +89,5 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     </AuthContext.Provider>
   );
 };
-
-// function useAuth(): AuthContextData {
-//   const context = useContext(AuthContext);
-
-//   if (!context) {
-//     throw new Error("===> useAuth must be used within an AuthProvider");
-//   }
-
-//   return context;
-// }
 
 export { AuthContext, AuthProvider };

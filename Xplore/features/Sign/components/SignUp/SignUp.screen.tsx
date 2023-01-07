@@ -3,8 +3,7 @@ import { NavigationProp } from "@react-navigation/native";
 import * as React from "react";
 import { PrimaryButton, View, TextInput } from "../../../../components";
 import styles from "./SignUp.styles";
-import { ID } from "appwrite";
-import api, { account } from "../../../../services/appwrite/api";
+import api from "../../../../services/appwrite/api";
 
 // Need to implement
 //  ** error handling

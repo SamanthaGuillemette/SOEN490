@@ -8,7 +8,7 @@ import {
 } from "../../../../components";
 import styles from "./SignIn.styles";
 import Spinner from "react-native-loading-spinner-overlay/lib";
-import { useAuth } from "../../../../hooks/useAuth";
+import { useAuth } from "../../../../hooks";
 interface SignInProps {
   navigation: NavigationProp<any>;
 }
