@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { deviceScreenWidth } from "../../../../constants";
+import { deviceScreenWidth } from "../../../../../constants";
 
 export default StyleSheet.create({
   container: {

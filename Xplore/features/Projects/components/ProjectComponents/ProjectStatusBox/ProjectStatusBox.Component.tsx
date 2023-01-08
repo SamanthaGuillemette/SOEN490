@@ -1,7 +1,7 @@
-import { ShadowView, View, Text, Icon } from "../../../../components";
-import { useThemeColor } from "../../../../hooks";
+import { ShadowView, View, Text, Icon } from "../../../../../components";
+import { useThemeColor } from "../../../../../hooks";
 import styles from "./ProjectStatusBox.styles";
-import CircularPercentageBar from "./CircularPercentageBar.component";
+import CircularPercentageBar from "../CircularPercentageBar/CircularPercentageBar.component";
 
 interface ProjectStats {
   tasks: string;
@@ -27,16 +27,16 @@ const ProjectStats = ({
     >
       <View style={{ backgroundColor: backgroundSecondary }}>
         <Text style={styles.statusBox_text}>
-          <Icon name="file-text" />
-          {" " + tasks} tasks
+          <Icon size="small" name="file-text" />
+          {"   " + tasks} tasks
         </Text>
         <Text style={styles.statusBox_text}>
-          <Icon name="message-circle" />
-          {" " + conversations} Conversations
+          <Icon size="small" name="message-circle" />
+          {"   " + conversations} Conversations
         </Text>
         <Text style={styles.statusBox_text}>
-          <Icon name="calendar" />
-          {" " + date}
+          <Icon size="small" name="calendar" />
+          {"   " + date}
         </Text>
       </View>
       <CircularPercentageBar percentage={percent} />

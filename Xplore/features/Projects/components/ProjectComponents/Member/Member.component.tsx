@@ -1,9 +1,9 @@
-import { View } from "../../../../components/View";
-import { Avatar } from "../../../../components/Avatar";
-import { Text } from "../../../../components/Text";
-import { useThemeColor } from "../../../../hooks";
+import { View } from "../../../../../components/View";
+import { Avatar } from "../../../../../components/Avatar";
+import { Text } from "../../../../../components/Text";
+import { useThemeColor } from "../../../../../hooks";
 import styles from "./Member.styles";
-import MessageButton from "./MessageButton.component";
+import MessageButton from "../MessageButton/MessageButton.component";
 
 interface MemberProps {
   avatar: string;

@@ -1,9 +1,8 @@
 import { ScrollView, SafeAreaView } from "react-native";
-import ProjectDropDown from "./DropDown.component";
+import ProjectDropDown from "../DropDown/DropDown.component";
 import { NavigationProp } from "@react-navigation/native";
-import { useThemeColor } from "../../../hooks";
-import ProjectStatusBox from "./ProjectComponents/ProjectStatusBox.Component";
-import CircularPercentageBar from "./ProjectComponents/CircularPercentageBar.component";
+import { useThemeColor } from "../../../../hooks";
+import ProjectStatusBox from "../ProjectComponents/ProjectStatusBox/ProjectStatusBox.Component";
 import styles from "./ProjectDescription.styles";
 
 interface ProjectDescription {

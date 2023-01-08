@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { Text } from "../../../../../components";
 import styles from "./CircularPercentageBar.styles";
 
 const CircularPercentageBarProps = (
@@ -12,7 +13,7 @@ const CircularPercentageBarProps = (
   };
 };
 
-const renderThirdLayer = (percentage) => {
+const renderThirdLayer = (percentage: number) => {
   if (percentage > 50) {
     return (
       <View
@@ -39,7 +40,9 @@ const CircularPercentageBar = ({ percentage }) => {
     <View style={styles.container}>
       <View style={[styles.percentageLayerOne, firstProgressLayerStyle]} />
       {renderThirdLayer(percentage)}
-      <Text style={styles.percentageText}>{percentage}%</Text>
+      <Text color="titleText" style={styles.percentageText}>
+        {percentage}%
+      </Text>
     </View>
   );
 };

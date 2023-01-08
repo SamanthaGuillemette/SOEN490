@@ -1,4 +1,4 @@
-import Member from "./ProjectComponents/Member.component";
+import Member from "../ProjectComponents/Member/Member.component";
 import { ScrollView } from "react-native";
 
 interface ProjectMembers {}

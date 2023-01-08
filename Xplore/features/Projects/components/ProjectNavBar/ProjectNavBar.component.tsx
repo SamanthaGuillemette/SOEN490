@@ -2,18 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
-  StyleSheet,
   Text,
   TouchableHighlight,
   View,
 } from "react-native";
-import ProjectDescription from "./ProjectDescription.component";
-import ProjectMembers from "./ProjectMembers.component";
-//import ProjectDiscussion from "./ProjectComponents/Discussion.component";
-import Links from "../components/Links/Links.component";
-import Tasks from "../components/Tasks/Tasks.component";
-import { useThemeColor } from "../../../hooks";
+import ProjectDescription from "../ProjectDescription/ProjectDescription.component";
+import ProjectMembers from "../ProjectMembers/ProjectMembers.component";
+import Links from "../Links/Links.component";
+import Tasks from "../Tasks/Tasks.component";
+import { useThemeColor } from "../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
+import styles from "./ProjectNavBar.styles";
 
 interface ProjectNavBar {
   navigation: NavigationProp<any>;
@@ -27,7 +26,6 @@ const projectScreenPages = [
   <ProjectDescription />,
   <Tasks />, // tasks
   <ProjectDescription />, // discussion placeholder
-  //<ProjectDiscussion />, // discussion
   <ProjectMembers />,
   <Links />,
 ];
@@ -35,6 +33,9 @@ const projectScreenPages = [
 function ProjectNavBar() {
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const primary = useThemeColor("primary");
+  const titleText = useThemeColor("titleText");
+  const generalGray = useThemeColor("generalGray");
 
   const [active, setActive] = useState(0);
   const headerScrollView = useRef();
@@ -51,7 +52,7 @@ function ProjectNavBar() {
   };
   const onMomentumScrollEnd = (e) => {
     const newIndex = Math.round(e.nativeEvent.contentOffset.x / width);
-    if (active != newIndex) {
+    if (active !== newIndex) {
       setActive(newIndex);
     }
   };
@@ -74,22 +75,28 @@ function ProjectNavBar() {
               style={[
                 styles.headerItem,
                 {
-                  backgroundColor:
-                    active == index ? background : backgroundSecondary,
+                  backgroundColor: backgroundSecondary,
                 },
               ]}
             >
               <Text
                 // eslint-disable-next-line react-native/no-inline-styles
                 style={{
-                  color: active == index ? "#024089" : "#000000",
+                  color: active === index ? primary : titleText,
                   fontWeight: "bold",
                 }}
               >
                 {item}
               </Text>
             </TouchableHighlight>
-            {active == index && <View style={styles.headerBar} />}
+            {active === index && (
+              <View
+                style={[styles.headerActiveBar, { backgroundColor: primary }]}
+              />
+            )}
+            <View
+              style={[styles.headerBar, { backgroundColor: generalGray }]}
+            />
           </View>
         )}
       />
@@ -103,7 +110,10 @@ function ProjectNavBar() {
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={onMomentumScrollEnd}
         renderItem={({ item, index }) => (
-          <View key={item} style={styles.mainItem}>
+          <View
+            key={item}
+            style={[styles.mainItem, { borderColor: background }]}
+          >
             {projectScreenPages[index]}
           </View>
         )}
@@ -113,42 +123,3 @@ function ProjectNavBar() {
 }
 
 export default ProjectNavBar;
-
-const styles = StyleSheet.create({
-  container: {
-    //flex: 1,
-    marginTop: -220,
-    width: width,
-  },
-  headerScroll: {
-    flexGrow: 0,
-    color: "white",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-  },
-  headerItem: {
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-  mainItem: {
-    width: width,
-    borderWidth: 5,
-    borderColor: "#0000",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-  },
-  headerBar: {
-    height: 4,
-    width: "90%",
-    alignSelf: "center",
-    // bottom bar color
-    backgroundColor: "#024089",
-    position: "absolute",
-    bottom: 0,
-  },
-  /*headerText: {
-    color: "#024089",
-    fontWeight: "bold",
-  },*/
-});

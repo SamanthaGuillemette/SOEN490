@@ -1,6 +1,6 @@
-import { View } from "../../../components";
-import ProjectNavBar from "./ProjectNavBar.component";
-import ShadowImage from ".//ProjectComponents/ShadowImage.component";
+import { View } from "../../../../components";
+import ProjectNavBar from "../ProjectNavBar/ProjectNavBar.component";
+import ShadowImage from "../ProjectComponents/ShadowImage/ShadowImage.component";
 
 const ProjectCore = () => {
   return (

@@ -1,24 +1,24 @@
 import * as React from "react";
-import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import { View } from "../../../components";
+import { SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../hooks";
-import ProjectCoreScreen from "../components/ProjectCoreScreen.component";
+import ProjectCoreScreen from "../components/ProjectCoreScreen/ProjectCoreScreen.component";
 import TopHeader from "../../../navigation/TopHeader.component";
 import { NavigationProp } from "@react-navigation/native";
+import styles from "./Projects.styles";
 
 interface ProjectsProps {
   navigation: NavigationProp<any>;
 }
 
-const Home = ({}: ProjectsProps) => {
+const Home = (props: ProjectsProps) => {
   const homeBackground = useThemeColor("backgroundSecondary");
 
   return (
-    <SafeAreaView style={[{ backgroundColor: homeBackground }]}>
-      <TopHeader screenName={"Projects"} navigation={undefined} />
-      <View backgroundColor="background">
-        <ProjectCoreScreen navigation={undefined} />
-      </View>
+    <SafeAreaView
+      style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
+    >
+      <TopHeader screenName={"Projects"} navigation={props.navigation} />
+      <ProjectCoreScreen />
     </SafeAreaView>
   );
 };

@@ -1,7 +1,7 @@
 import { TouchableOpacity } from "react-native";
-import { ShadowView, Avatar, View, Text } from "../../../../components";
-import { useThemeColor } from "../../../../hooks";
-import styles from "../ProjectDescription.styles";
+import { ShadowView, Avatar, View, Text } from "../../../../../components";
+import { useThemeColor } from "../../../../../hooks";
+import styles from "./Discussion.styles";
 
 interface ChatBoxProps {
   image: string;

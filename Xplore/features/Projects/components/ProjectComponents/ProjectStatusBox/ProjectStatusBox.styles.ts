@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Platform } from "react-native";
-import { multiplier } from "../../../../constants";
+import { multiplier } from "../../../../../constants";
 
 export default StyleSheet.create({
   statusBox_container: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 25,
     paddingVertical: Platform.OS === "ios" ? 15 * multiplier : 20,
     marginHorizontal: 10,
     marginTop: 15,
@@ -12,9 +12,10 @@ export default StyleSheet.create({
     borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   statusBox_text: {
     lineHeight: 30,
-    fontSize: 15,
+    fontSize: 12,
   },
 });

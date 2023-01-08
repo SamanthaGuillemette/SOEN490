@@ -1,5 +1,5 @@
 import { StyleSheet, PixelRatio, ImageBackground } from "react-native";
-import { Text, View } from "../../../components";
+import { Text, View } from "../../../../components";
 
 const ProjectTitle = () => {
   return (
