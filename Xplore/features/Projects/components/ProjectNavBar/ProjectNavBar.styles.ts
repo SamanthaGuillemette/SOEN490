@@ -16,6 +16,10 @@ export default StyleSheet.create({
     justifyContent: "center",
     padding: 20,
   },
+  mainItem_scrollView: {
+    flex: 1,
+    paddingBottom: 300,
+  },
   mainItem: {
     width: width,
     borderWidth: 5,
@@ -23,14 +27,14 @@ export default StyleSheet.create({
     justifyContent: "space-evenly",
   },
   headerActiveBar: {
-    height: 3,
+    height: 4,
     width: "80%",
     alignSelf: "center",
     position: "absolute",
     bottom: 0,
   },
   headerBar: {
-    height: 1,
+    height: 2,
     width: "100%",
     alignSelf: "center",
     position: "absolute",

@@ -6,9 +6,7 @@ const ProjectCore = () => {
   return (
     <View backgroundColor="background">
       <ShadowImage projectName="Snake Robot" source="" />
-      <View backgroundColor="background">
-        <ProjectNavBar />
-      </View>
+      <ProjectNavBar />
     </View>
   );
 };

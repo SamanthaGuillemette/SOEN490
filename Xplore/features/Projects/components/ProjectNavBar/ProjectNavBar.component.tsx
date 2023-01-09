@@ -13,13 +13,13 @@ import Tasks from "../Tasks/Tasks.component";
 import { useThemeColor } from "../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectNavBar.styles";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface ProjectNavBar {
   navigation: NavigationProp<any>;
 }
 
 const { width } = Dimensions.get("window");
-
 const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
 
 const projectScreenPages = [
@@ -63,6 +63,7 @@ function ProjectNavBar() {
         ref={headerScrollView}
         keyExtractor={(item) => item}
         horizontal
+        contentContainerStyle={styles.headerScroll}
         style={styles.headerScroll}
         showsHorizontalScrollIndicator={false}
         bounces={false}
@@ -100,24 +101,26 @@ function ProjectNavBar() {
           </View>
         )}
       />
-      <FlatList
-        data={headers}
-        ref={itemScrollView}
-        keyExtractor={(item) => item}
-        horizontal
-        pagingEnabled
-        decelerationRate="fast"
-        showsHorizontalScrollIndicator={false}
-        onMomentumScrollEnd={onMomentumScrollEnd}
-        renderItem={({ item, index }) => (
-          <View
-            key={item}
-            style={[styles.mainItem, { borderColor: background }]}
-          >
-            {projectScreenPages[index]}
-          </View>
-        )}
-      />
+      <ScrollView style={styles.mainItem_scrollView}>
+        <FlatList
+          data={headers}
+          ref={itemScrollView}
+          keyExtractor={(item) => item}
+          horizontal
+          pagingEnabled
+          decelerationRate="fast"
+          showsHorizontalScrollIndicator={false}
+          onMomentumScrollEnd={onMomentumScrollEnd}
+          renderItem={({ item, index }) => (
+            <View
+              key={item}
+              style={[styles.mainItem, { borderColor: background }]}
+            >
+              {projectScreenPages[index]}
+            </View>
+          )}
+        />
+      </ScrollView>
     </View>
   );
 }

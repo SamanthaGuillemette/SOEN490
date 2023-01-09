@@ -14,7 +14,6 @@ const ProjectDescription = () => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   return (
-    //
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >

@@ -15,7 +15,7 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     overflow: "hidden",
     paddingVertical: 10,
-    marginBottom: 5,
+    marginTop: 5,
   },
   subItem: {
     paddingTop: 4,

@@ -5,8 +5,5 @@ export default StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
   },
-  chat_container: {
-    flex: 1,
-    paddingTop: 30,
-  },
+  scrollViewStyle: {},
 });
