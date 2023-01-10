@@ -1,9 +1,6 @@
-import { View } from "../../../../../components/View";
-import { Avatar } from "../../../../../components/Avatar";
-import { Text } from "../../../../../components/Text";
+import { View, Avatar, Text, ChipButton } from "../../../../../components";
 import { useThemeColor } from "../../../../../hooks";
 import styles from "./Member.styles";
-import MessageButton from "../MessageButton/MessageButton.component";
 
 interface MemberProps {
   avatar: string;
@@ -29,7 +26,7 @@ const Member = (props: MemberProps) => {
           {props.xp} &nbsp; XP
         </Text>
       </View>
-      <MessageButton />
+      <ChipButton label="Message" />
     </View>
   );
 };
