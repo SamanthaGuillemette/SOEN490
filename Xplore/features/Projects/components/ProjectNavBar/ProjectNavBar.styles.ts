@@ -11,7 +11,6 @@ export default StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     overflow: "hidden",
-    zIndex: 1,
   },
   headerItem: {
     alignItems: "center",
@@ -19,7 +18,6 @@ export default StyleSheet.create({
     padding: 20,
   },
   mainItem_scrollView: {
-    flex: 1,
     paddingBottom: 600,
   },
   mainItem: {
@@ -30,14 +28,14 @@ export default StyleSheet.create({
     paddingBottom: 300,
   },
   headerActiveBar: {
-    height: 4,
+    height: 2,
     width: "80%",
     alignSelf: "center",
     position: "absolute",
     bottom: 0,
   },
   headerBar: {
-    height: 2,
+    height: 0.2,
     width: "100%",
     alignSelf: "center",
     position: "absolute",

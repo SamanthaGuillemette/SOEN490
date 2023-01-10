@@ -33,7 +33,8 @@ export default function CollapsibleHeader() {
   );
 }
 
-function Item({ i, active, setActive }) {
+function Item(props: any) {
+  const { i, active, setActive } = props;
   const onPress = () => {
     LayoutAnimation.easeInEaseOut();
     setActive(i === active ? null : i);

@@ -1,10 +1,8 @@
 import { ScrollView } from "react-native";
-import { Text, Icon, View, LinkButton } from "../../../../components";
+import { Text, Icon, View } from "../../../../components";
 import styles from "./Tasks.styles";
 
-interface TasksProps {}
-
-export const Tasks = (props: TasksProps) => {
+export const Tasks = () => {
   return (
     <ScrollView>
       <View backgroundColor="generalGray" style={styles.backgroundBox}>

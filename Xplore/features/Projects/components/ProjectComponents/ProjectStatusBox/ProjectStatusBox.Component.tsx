@@ -7,7 +7,6 @@ interface ProjectStats {
   tasks: string;
   conversations: String;
   date: String;
-  onPress: any;
   percent: number;
 }
 

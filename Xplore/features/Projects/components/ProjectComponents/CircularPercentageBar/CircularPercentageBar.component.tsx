@@ -28,7 +28,8 @@ const renderThirdLayer = (percentage: number) => {
   }
 };
 
-const CircularPercentageBar = ({ percentage }) => {
+const CircularPercentageBar = (props: any) => {
+  const { percentage } = props;
   let firstProgressLayerStyle;
   if (percentage > 50) {
     firstProgressLayerStyle = CircularPercentageBarProps(50, -135);

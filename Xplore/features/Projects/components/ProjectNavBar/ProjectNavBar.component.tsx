@@ -14,7 +14,6 @@ import { useThemeColor } from "../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectNavBar.styles";
 import { ScrollView } from "react-native-gesture-handler";
-import { getBackgroundColor } from "react-native-ui-lib/src/helpers/AvatarHelper";
 
 interface ProjectNavBar {
   navigation: NavigationProp<any>;
@@ -36,11 +35,11 @@ function ProjectNavBar() {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
   const titleText = useThemeColor("titleText");
-  const generalGray = useThemeColor("generalGray");
+  const smallText = useThemeColor("smallText");
 
   const [active, setActive] = useState(0);
-  const headerScrollView = useRef();
-  const itemScrollView = useRef();
+  const headerScrollView = useRef<any>(null);
+  const itemScrollView = useRef<any>(null);
   useEffect(() => {
     headerScrollView.current.scrollToIndex({
       index: active,
@@ -51,7 +50,7 @@ function ProjectNavBar() {
     itemScrollView.current.scrollToIndex({ index });
     setActive(index);
   };
-  const onMomentumScrollEnd = (e) => {
+  const onMomentumScrollEnd = (e: any) => {
     const newIndex = Math.round(e.nativeEvent.contentOffset.x / width);
     if (active !== newIndex) {
       setActive(newIndex);
@@ -98,7 +97,7 @@ function ProjectNavBar() {
                 />
               )}
               <View
-                style={[styles.headerBar, { backgroundColor: generalGray }]}
+                style={[styles.headerBar, { backgroundColor: smallText }]}
               />
             </View>
           )}

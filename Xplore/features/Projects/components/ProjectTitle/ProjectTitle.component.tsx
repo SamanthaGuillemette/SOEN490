@@ -1,5 +1,6 @@
-import { StyleSheet, PixelRatio, ImageBackground } from "react-native";
+import { ImageBackground } from "react-native";
 import { Text, View } from "../../../../components";
+import styles from "./ProjectTitle.styles";
 
 const ProjectTitle = () => {
   return (
@@ -18,19 +19,3 @@ const ProjectTitle = () => {
 };
 
 export default ProjectTitle;
-
-const styles = StyleSheet.create({
-  projectImage: {
-    marginTop: -50,
-    marginLeft: -20,
-    width: PixelRatio.getPixelSizeForLayoutSize(160),
-    height: PixelRatio.getPixelSizeForLayoutSize(80),
-  },
-  imageText: {
-    marginTop: 120,
-    marginLeft: -20,
-    textAlign: "center",
-    textAlignVertical: "bottom",
-    color: "white",
-  },
-});

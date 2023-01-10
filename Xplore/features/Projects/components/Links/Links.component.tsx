@@ -3,9 +3,8 @@ import { Text, Icon } from "../../../../components";
 import { AddButton } from "../../../../components/AddButton";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./Links.styles";
-interface LinksProps {}
 
-export const Links = (props: LinksProps) => {
+export const Links = () => {
   const whiteBackground = useThemeColor("backgroundSecondary");
   return (
     <ScrollView>
