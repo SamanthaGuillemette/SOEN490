@@ -1,4 +1,4 @@
-import { ScrollView, SafeAreaView } from "react-native";
+import { SafeAreaView } from "react-native";
 import ProjectDropDown from "../DropDown/DropDown.component";
 import { NavigationProp } from "@react-navigation/native";
 import { useThemeColor } from "../../../../hooks";
@@ -11,23 +11,18 @@ interface ProjectDescription {
 
 const ProjectDescription = () => {
   const background = useThemeColor("background");
-  const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   return (
     <SafeAreaView
-      style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
+      style={[styles.safeAreaStyle, { backgroundColor: background }]}
     >
-      <ScrollView
-        style={[styles.scrollViewStyle, { backgroundColor: background }]}
-      >
-        <ProjectStatusBox
-          tasks={"13"}
-          conversations={"20"}
-          date={"August 12, 2022"}
-          percent={63}
-        />
-        <ProjectDropDown />
-      </ScrollView>
+      <ProjectStatusBox
+        tasks={"13"}
+        conversations={"20"}
+        date={"August 12, 2022"}
+        percent={63}
+      />
+      <ProjectDropDown />
     </SafeAreaView>
   );
 };

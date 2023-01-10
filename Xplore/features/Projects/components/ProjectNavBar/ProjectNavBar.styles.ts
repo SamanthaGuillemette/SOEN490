@@ -18,14 +18,15 @@ export default StyleSheet.create({
     padding: 20,
   },
   mainItem_scrollView: {
-    paddingBottom: 600,
+    flex: 1,
+    paddingBottom: 550,
   },
   mainItem: {
     width: width,
     borderWidth: 5,
     alignItems: "center",
     justifyContent: "space-evenly",
-    paddingBottom: 300,
+    paddingBottom: 200,
   },
   headerActiveBar: {
     height: 2,

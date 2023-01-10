@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, Icon } from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
 import {
   LayoutAnimation,
   Platform,
@@ -40,9 +41,10 @@ function Item(props: any) {
     setActive(i === active ? null : i);
   };
   const open = active === i;
+  const smallText = useThemeColor("smallText");
   return (
     <TouchableOpacity
-      style={styles.dropDown}
+      style={[styles.dropDown, { borderColor: smallText }]}
       onPress={onPress}
       activeOpacity={1}
     >
