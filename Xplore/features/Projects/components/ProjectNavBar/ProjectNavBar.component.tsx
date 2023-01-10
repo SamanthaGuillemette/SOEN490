@@ -14,6 +14,7 @@ import { useThemeColor } from "../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectNavBar.styles";
 import { ScrollView } from "react-native-gesture-handler";
+import { getBackgroundColor } from "react-native-ui-lib/src/helpers/AvatarHelper";
 
 interface ProjectNavBar {
   navigation: NavigationProp<any>;
@@ -57,51 +58,55 @@ function ProjectNavBar() {
     }
   };
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={headers}
-        ref={headerScrollView}
-        keyExtractor={(item) => item}
-        horizontal
-        contentContainerStyle={styles.headerScroll}
-        style={styles.headerScroll}
-        showsHorizontalScrollIndicator={false}
-        bounces={false}
-        renderItem={({ item, index }) => (
-          <View>
-            <TouchableHighlight
-              onPress={() => onPressHeader(index)}
-              underlayColor={""}
-              key={item}
-              style={[
-                styles.headerItem,
-                {
-                  backgroundColor: backgroundSecondary,
-                },
-              ]}
-            >
-              <Text
-                // eslint-disable-next-line react-native/no-inline-styles
-                style={{
-                  color: active === index ? primary : titleText,
-                  fontWeight: "bold",
-                }}
+    <View style={[styles.container]}>
+      <View
+        style={[styles.headerScroll, { backgroundColor: backgroundSecondary }]}
+      >
+        <FlatList
+          data={headers}
+          ref={headerScrollView}
+          keyExtractor={(item) => item}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+          renderItem={({ item, index }) => (
+            <View>
+              <TouchableHighlight
+                onPress={() => onPressHeader(index)}
+                underlayColor={""}
+                key={item}
+                style={[
+                  styles.headerItem,
+                  {
+                    backgroundColor: backgroundSecondary,
+                  },
+                ]}
               >
-                {item}
-              </Text>
-            </TouchableHighlight>
-            {active === index && (
+                <Text
+                  // eslint-disable-next-line react-native/no-inline-styles
+                  style={{
+                    color: active === index ? primary : titleText,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item}
+                </Text>
+              </TouchableHighlight>
+              {active === index && (
+                <View
+                  style={[styles.headerActiveBar, { backgroundColor: primary }]}
+                />
+              )}
               <View
-                style={[styles.headerActiveBar, { backgroundColor: primary }]}
+                style={[styles.headerBar, { backgroundColor: generalGray }]}
               />
-            )}
-            <View
-              style={[styles.headerBar, { backgroundColor: generalGray }]}
-            />
-          </View>
-        )}
-      />
-      <ScrollView style={styles.mainItem_scrollView}>
+            </View>
+          )}
+        />
+      </View>
+      <ScrollView
+        style={[styles.mainItem_scrollView, { backgroundColor: background }]}
+      >
         <FlatList
           data={headers}
           ref={itemScrollView}
