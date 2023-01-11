@@ -8,19 +8,26 @@ export const Tasks = () => {
       <View backgroundColor="generalGray" style={styles.backgroundBox}>
         <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
           <View style={{ flexDirection: "row" }}>
-            <Text variant="h4" color="linkText">
+            <Text style={{ marginLeft: 32 }} variant="h4" color="linkText">
               Design
             </Text>
-            <Icon style={{ marginLeft: 170 }} size="small" name="help-circle" />
+            <Icon
+              style={{ marginLeft: 160 }}
+              size="medium"
+              name="help-circle"
+            />
           </View>
 
-          <Text variant="h2" color="titleText">
+          <Text style={{ marginLeft: 32 }} variant="h2" color="titleText">
             {" "}
             UX Brainstorm{" "}
           </Text>
-          <Text variant="smBody" color="bodyText">
-            <Icon name="calendar" size="small" /> 13/12/2022
-          </Text>
+          <View style={{ flexDirection: "row", marginLeft: 34.5 }}>
+            <Icon style={{ marginRight: 14.5 }} size="medium" name="calendar" />
+            <Text style={{ marginLeft: 0 }} variant="smBody" color="bodyText">
+              13/12/2022
+            </Text>
+          </View>
         </View>
         <View style={styles.icons}>
           <Icon
@@ -37,23 +44,29 @@ export const Tasks = () => {
           />
         </View>
       </View>
-
       <View backgroundColor="generalGray" style={styles.backgroundBox}>
         <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
           <View style={{ flexDirection: "row" }}>
-            <Text variant="h4" color="linkText">
+            <Text style={{ marginLeft: 32 }} variant="h4" color="linkText">
               Meeting
             </Text>
-            <Icon style={{ marginLeft: 160 }} size="small" name="help-circle" />
+            <Icon
+              style={{ marginLeft: 160 }}
+              size="medium"
+              name="help-circle"
+            />
           </View>
 
-          <Text variant="h2" color="titleText">
+          <Text style={{ marginLeft: 32 }} variant="h2" color="titleText">
             {" "}
             Finish App UI{" "}
           </Text>
-          <Text variant="smBody" color="bodyText">
-            <Icon name="calendar" size="small" /> 13/12/2022
-          </Text>
+          <View style={{ flexDirection: "row", marginLeft: 34.5 }}>
+            <Icon style={{ marginRight: 14.5 }} size="medium" name="calendar" />
+            <Text style={{ marginLeft: 0 }} variant="smBody" color="bodyText">
+              13/12/2022
+            </Text>
+          </View>
         </View>
         <View style={styles.icons}>
           <Icon
@@ -73,19 +86,26 @@ export const Tasks = () => {
       <View style={{ marginTop: 20, alignItems: "center" }}>
         <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
           <View style={{ flexDirection: "row" }}>
-            <Text variant="h4" color="linkText">
+            <Text style={{ marginLeft: 32 }} variant="h4" color="linkText">
               Meeting
             </Text>
-            <Icon style={{ marginLeft: 160 }} size="small" name="help-circle" />
+            <Icon
+              style={{ marginLeft: 160 }}
+              size="medium"
+              name="help-circle"
+            />
           </View>
 
-          <Text variant="h2" color="titleText">
+          <Text style={{ marginLeft: 32 }} variant="h2" color="titleText">
             {" "}
             Spring Meeting{" "}
           </Text>
-          <Text variant="smBody" color="bodyText">
-            <Icon name="calendar" size="small" /> 13/12/2022
-          </Text>
+          <View style={{ flexDirection: "row", marginLeft: 34.5 }}>
+            <Icon style={{ marginRight: 14.5 }} size="medium" name="calendar" />
+            <Text style={{ marginLeft: 0 }} variant="smBody" color="bodyText">
+              13/12/2022
+            </Text>
+          </View>
         </View>
       </View>
     </ScrollView>

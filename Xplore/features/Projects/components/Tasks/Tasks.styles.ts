@@ -17,7 +17,6 @@ export default StyleSheet.create({
     backgroundColor: colors.light.generalGray,
     height: 110,
     width: 287,
-    paddingLeft: 32,
     paddingTop: 13,
     paddingBottom: 13,
   },
