@@ -7,5 +7,6 @@ export default StyleSheet.create({
   },
   userRank: {
     paddingHorizontal: 10,
+    fontWeight: "bold",
   },
 });
