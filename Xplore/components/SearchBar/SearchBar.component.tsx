@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import { TextInput } from "react-native";
 import { View } from "../View";
 import { Icon } from "../Icon";
@@ -14,9 +14,10 @@ export const SearchBar = () => {
       shadowOffset={4}
       backgroundColor="backgroundSecondary"
       isInnerShadow={false}
-      style={styles.container}>
-      <View style={styles.searchBox}>   
-        <Icon name="search" color='smallText'/>
+      style={styles.container}
+    >
+      <View style={styles.searchBox}>
+        <Icon name="search" color="smallText" />
         <TextInput
           style={styles.searchBoxInput}
           placeholderTextColor={bodyText}

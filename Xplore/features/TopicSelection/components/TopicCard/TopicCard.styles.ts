@@ -8,7 +8,6 @@ export default StyleSheet.create({
     height: 115,
     marginBottom: 25,
     marginHorizontal: 35,
-    backgroundColor: "white",
   },
   imageBgContainer: {
     borderRadius: 8,
@@ -37,16 +36,16 @@ export default StyleSheet.create({
   projectName: {
     marginBottom: 30,
     textAlign: "center",
-    top: 15
+    top: 15,
   },
   checkCircleImg: {
     width: 24,
     height: 24,
-    position: 'absolute', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    top: 45, 
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
+    top: 45,
     left: 149,
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 });

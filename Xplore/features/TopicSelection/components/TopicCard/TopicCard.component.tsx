@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { ImageBackground, TouchableOpacity, Image, View as RNView } from "react-native";
+import {
+  ImageBackground,
+  TouchableOpacity,
+  Image,
+  View as RNView,
+} from "react-native";
 import { Text, View } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./TopicCard.styles";
@@ -15,29 +20,45 @@ export const TopicCard = (props: TopicCardProps) => {
   const { topicName, imageURL } = props;
   const [showImage, setShowImage] = useState(false);
 
-  const handleShowImage= () => {
-    setShowImage(!showImage)
-  }
+  const handleShowImage = () => {
+    setShowImage(!showImage);
+  };
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.container}
-      onPress={() => handleShowImage()}>
-        <ImageBackground
-            source={{ uri: `${imageURL}` }}
-            imageStyle={styles.imageBgContainer}
-        >
-          <View style={styles.topicNameContainer}>
-            <RNView style={showImage ? [styles.selectedOverlay, {borderColor: success, borderWidth: 3}] : styles.overlay} />
-            {showImage ? (
-              <Image
-                source={require("../../../../assets/check-circle.png")}
-                style={styles.checkCircleImg}/> ) : null}
-              <Text variant="h3" color={showImage ? "smallText":  "generalGray"} style={styles.projectName}>
-                {topicName}
-              </Text>
-          </View>
-        </ImageBackground>
+      onPress={() => handleShowImage()}
+    >
+      <ImageBackground
+        source={{ uri: `${imageURL}` }}
+        imageStyle={styles.imageBgContainer}
+      >
+        <View style={styles.topicNameContainer}>
+          <RNView
+            style={
+              showImage
+                ? [
+                    styles.selectedOverlay,
+                    { borderColor: success, borderWidth: 3 },
+                  ]
+                : styles.overlay
+            }
+          />
+          {showImage ? (
+            <Image
+              source={require("../../../../assets/check-circle.png")}
+              style={styles.checkCircleImg}
+            />
+          ) : null}
+          <Text
+            variant="h3"
+            color={showImage ? "smallText" : "white"}
+            style={styles.projectName}
+          >
+            {topicName}
+          </Text>
+        </View>
+      </ImageBackground>
     </TouchableOpacity>
   );
 };
