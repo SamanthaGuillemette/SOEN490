@@ -1,4 +1,4 @@
-import { ShadowView, View, Text, Icon } from "../../../../../../components";
+import { View, Text, Icon } from "../../../../../../components";
 import { useThemeColor } from "../../../../../../hooks";
 import styles from "./ProjectStatusBox.styles";
 import CircularPercentageBar from "../../../ProjectComponents/CircularPercentageBar/CircularPercentageBar.component";
@@ -18,7 +18,7 @@ const ProjectStats = ({
 }: ProjectStats) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <ShadowView
+    <View
       style={[
         styles.statusBox_container,
         { backgroundColor: backgroundSecondary },
@@ -39,7 +39,7 @@ const ProjectStats = ({
         </Text>
       </View>
       <CircularPercentageBar percentage={percent} />
-    </ShadowView>
+    </View>
   );
 };
 

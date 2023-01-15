@@ -1,43 +1,31 @@
-import { StyleSheet, Dimensions } from "react-native";
-const { width } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 20,
-    width: width,
-  },
   dropDown: {
     width: 330,
     borderRadius: 10,
     borderWidth: 1,
-    paddingHorizontal: 20,
     overflow: "hidden",
     paddingVertical: 10,
-    marginTop: 5,
+    marginTop: 12,
   },
   subItem: {
-    paddingTop: 4,
-  },
-  itemContainer: {
-    marginVertical: 5,
-    width: 30,
-    borderRadius: 10,
-    borderWidth: 1,
-    marginBottom: 5,
+    paddingTop: 20,
+    paddingHorizontal: 20,
   },
   row: {
-    paddingLeft: 4,
+    paddingLeft: 25,
     paddingVertical: 5,
+    paddingHorizontal: 20,
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  headerBar: {
-    height: 1,
-    width: "100%",
-    alignSelf: "center",
-    position: "absolute",
-    bottom: 0,
+  rowOpen: {
+    paddingLeft: 25,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
   },
 });

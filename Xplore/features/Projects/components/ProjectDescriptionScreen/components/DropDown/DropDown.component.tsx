@@ -48,7 +48,12 @@ function Item(props: any) {
       onPress={onPress}
       activeOpacity={1}
     >
-      <View backgroundColor="background" style={styles.row}>
+      <View
+        backgroundColor="background"
+        style={
+          open ? [styles.rowOpen, { borderBottomColor: smallText }] : styles.row
+        }
+      >
         <Text variant="h4" color="titleText">
           {dropDownNames[i]}
         </Text>
