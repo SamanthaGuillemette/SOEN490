@@ -5,13 +5,16 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    paddingVertical: 80,
   },
   modalView: {
     margin: 20,
     borderRadius: 8,
     padding: 35,
     alignItems: "center",
+  },
+  searchBar: {
+    width: 250,
   },
   primaryButton: {
     marginTop: 5,

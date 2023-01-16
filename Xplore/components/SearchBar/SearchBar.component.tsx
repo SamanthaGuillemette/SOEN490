@@ -1,12 +1,15 @@
 import * as React from "react";
-import { TextInput } from "react-native";
+import { StyleProp, TextInput, ViewStyle } from "react-native";
 import { View } from "../View";
 import { Icon } from "../Icon";
 import { ShadowView } from "../ShadowView";
 import { useThemeColor } from "../../hooks";
 import styles from "./SearchBar.styles";
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  style?: StyleProp<ViewStyle>;
+}
+export const SearchBar = (props: SearchBarProps) => {
   const bodyText = useThemeColor("bodyText");
 
   return (
@@ -14,7 +17,7 @@ export const SearchBar = () => {
       shadowOffset={4}
       backgroundColor="backgroundSecondary"
       isInnerShadow={false}
-      style={styles.container}
+      style={[styles.container, props.style]}
     >
       <View style={styles.searchBox}>
         <Icon name="search" color="smallText" />
