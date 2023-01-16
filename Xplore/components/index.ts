@@ -16,6 +16,8 @@ export * from "./Logo";
 export * from "./SegmentedButton";
 export * from "./PrimaryButton";
 export * from "./SecondaryButton";
+export * from "./SearchBar";
+export * from "./NextButton";
 export * from "./ConfirmationModal";
 export * from "./AlertModal";
 export * from "./User";

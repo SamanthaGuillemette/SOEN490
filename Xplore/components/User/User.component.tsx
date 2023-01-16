@@ -7,7 +7,7 @@ import styles from "./User.styles";
 interface UserProps {
   avatar: string;
   username: string;
-  xp: string;
+  xp: number;
 }
 
 export const User = (props: UserProps) => {
@@ -21,7 +21,7 @@ export const User = (props: UserProps) => {
         style={styles.user_avatar}
       />
       <View style={{ backgroundColor: backgroundSecondary }}>
-        <Text variant="label" style={styles.username}>
+        <Text color="titleText" variant="label" style={styles.username}>
           {props.username}
         </Text>
         <Text variant="smLabel" color="smallText" style={styles.user_xp}>
