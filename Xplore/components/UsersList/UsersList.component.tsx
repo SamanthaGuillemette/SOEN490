@@ -4,10 +4,6 @@ import { View } from "../View";
 import { User } from "../User";
 import styles from "./UsersList.styles";
 
-// interface UsersListProps {
-//   data: any[];
-// }
-
 interface UsersType {
   id: string;
   username: string;
@@ -19,58 +15,7 @@ interface UserTypeItem {
   item: UsersType;
   index: number;
 }
-
-const Users: UsersType[] = [
-  {
-    id: "1",
-    username: "Josh Lewis",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "2",
-    username: "Amy Lucas",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "3",
-    username: "Landon Clayton",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "4",
-    username: "Elva Moore",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "5",
-    username: "Martin Garza",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "6",
-    username: "Bernice Lewis",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "7",
-    username: "Landon Clayton",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "8",
-    username: "Martin Garza",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-];
-
+//  UsersItem component creates user and sets selected to false initially
 export const UserItem = (props: UsersType) => {
   const [selected, setSelected] = useState(false);
   return (
@@ -93,7 +38,12 @@ export const UserItem = (props: UsersType) => {
   );
 };
 
-export const UsersList = () => {
+interface UsersListProps {
+  data: any;
+}
+
+// UsersList renders users
+export const UsersList = (props: UsersListProps) => {
   const renderUsers = ({ item }: UserTypeItem) => {
     return (
       <UserItem
@@ -107,7 +57,7 @@ export const UsersList = () => {
 
   return (
     <FlatList
-      data={Users}
+      data={props.data}
       renderItem={renderUsers}
       keyExtractor={({ id }) => id}
     />
