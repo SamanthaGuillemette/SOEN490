@@ -7,6 +7,7 @@ import {
   SecondaryButton,
   UsersList,
   SearchBar,
+  Text,
 } from "../../../../../../components";
 import styles from "./AddMemberModal.styles";
 
@@ -91,6 +92,9 @@ export const AddMemberModal = ({ setAddModalVisible }: AddMemberModalProps) => {
         <ShadowView
           style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
         >
+          <Text variant="h4" style={styles.alertText}>
+            Add new members
+          </Text>
           <SearchBar style={styles.searchBar} />
           <UsersList data={Users} />
           <PrimaryButton

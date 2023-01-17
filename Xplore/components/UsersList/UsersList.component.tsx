@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Image, TouchableOpacity, FlatList } from "react-native";
+import { TouchableOpacity, FlatList } from "react-native";
 import { View } from "../View";
 import { User } from "../User";
 import styles from "./UsersList.styles";
+import { Icon } from "../Icon";
 
 interface UsersType {
   id: string;
@@ -28,11 +29,20 @@ export const UserItem = (props: UsersType) => {
           style={styles.user}
         />
         {selected ? (
-          <Image
-            source={require("../../assets/check-circle.png")}
-            style={styles.checkCircleImg}
+          <Icon
+            name="check-circle"
+            color="success"
+            size="medium"
+            style={styles.checkCircle}
           />
-        ) : null}
+        ) : (
+          <Icon
+            name="circle"
+            color="smallText"
+            size="medium"
+            style={styles.checkCircle}
+          />
+        )}
       </TouchableOpacity>
     </View>
   );

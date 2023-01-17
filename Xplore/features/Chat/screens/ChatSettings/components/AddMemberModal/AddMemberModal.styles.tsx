@@ -13,6 +13,9 @@ export default StyleSheet.create({
     padding: 35,
     alignItems: "center",
   },
+  alertText: {
+    marginBottom: 10,
+  },
   searchBar: {
     width: 250,
   },

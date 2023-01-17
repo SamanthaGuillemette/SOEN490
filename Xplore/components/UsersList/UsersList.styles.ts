@@ -3,16 +3,14 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   listContainer: {
     flexDirection: "row",
+    alignItems: "center",
   },
   user: {
-    left: 0,
-    marginRight: 60,
+    marginRight: 40,
   },
-  checkCircleImg: {
+  checkCircle: {
     position: "absolute",
     top: 30,
-    right: 10,
-    height: 24,
-    width: 24,
+    left: 200,
   },
 });
