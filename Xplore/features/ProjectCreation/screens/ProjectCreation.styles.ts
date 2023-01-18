@@ -23,7 +23,10 @@ export default StyleSheet.create({
     backgroundColor: "transparent",
   },
   activeConfigStyle: {
-    color: "red",
+    color: "blue",
     circleColor: "black",
+  },
+  toastDesign: {
+    backgroundColor: "blue",
   },
 });

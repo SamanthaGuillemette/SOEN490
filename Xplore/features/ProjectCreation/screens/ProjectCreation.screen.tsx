@@ -209,14 +209,96 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
               activeIndex={activeIndex}
               onActiveIndexChanged={this.onActiveIndexChanged}
             >
-              <Wizard.Step state={this.getStepState(0)} label={"Description"} />
+              <Wizard.Step
+                state={this.getStepState(0)}
+                label={"Description"}
+                circleColor={
+                  activeIndex === 0
+                    ? "black"
+                    : activeIndex > 0
+                    ? "green"
+                    : "#E8E8E8"
+                }
+                color={
+                  activeIndex === 0
+                    ? "blue"
+                    : activeIndex > 0
+                    ? "green"
+                    : "#024089"
+                }
+              />
               <Wizard.Step
                 state={this.getStepState(1)}
                 label={"Tech & Goals"}
+                circleColor={
+                  activeIndex === 1
+                    ? "black"
+                    : activeIndex > 1
+                    ? "green"
+                    : "#E8E8E8"
+                }
+                color={
+                  activeIndex === 1
+                    ? "blue"
+                    : activeIndex > 1
+                    ? "green"
+                    : "#024089"
+                }
               />
-              <Wizard.Step state={this.getStepState(2)} label={"Tasks"} />
-              <Wizard.Step state={this.getStepState(3)} label={"Add Members"} />
-              <Wizard.Step state={this.getStepState(4)} label={"Add Links"} />
+              <Wizard.Step
+                state={this.getStepState(2)}
+                label={"Tasks"}
+                circleColor={
+                  activeIndex === 2
+                    ? "black"
+                    : activeIndex > 2
+                    ? "green"
+                    : "#E8E8E8"
+                }
+                color={
+                  activeIndex === 2
+                    ? "blue"
+                    : activeIndex > 2
+                    ? "green"
+                    : "#024089"
+                }
+              />
+              <Wizard.Step
+                state={this.getStepState(3)}
+                label={"Add Members"}
+                circleColor={
+                  activeIndex === 3
+                    ? "black"
+                    : activeIndex > 3
+                    ? "green"
+                    : "#E8E8E8"
+                }
+                color={
+                  activeIndex === 3
+                    ? "blue"
+                    : activeIndex > 3
+                    ? "green"
+                    : "#024089"
+                }
+              />
+              <Wizard.Step
+                state={this.getStepState(4)}
+                label={"Add Links"}
+                circleColor={
+                  activeIndex === 4
+                    ? "black"
+                    : activeIndex > 4
+                    ? "green"
+                    : "#E8E8E8"
+                }
+                color={
+                  activeIndex === 4
+                    ? "blue"
+                    : activeIndex > 4
+                    ? "green"
+                    : "#024089"
+                }
+              />
             </Wizard>
           </View>
           {this.renderCurrentStep()}
@@ -227,6 +309,7 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
             visible
             position="bottom"
             message={submissionMsg}
+            style={styles.toastDesign}
           />
         )}
       </SafeAreaView>
