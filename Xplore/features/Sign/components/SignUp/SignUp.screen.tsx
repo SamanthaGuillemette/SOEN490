@@ -3,7 +3,8 @@ import { NavigationProp } from "@react-navigation/native";
 import * as React from "react";
 import { PrimaryButton, View, TextInput } from "../../../../components";
 import styles from "./SignUp.styles";
-import api from "../../../../services/appwrite/api";
+//import api from "../../../../services/appwrite/api";
+import { useAuth } from "../../../../hooks";
 
 // Need to implement
 //  ** error handling
@@ -20,43 +21,12 @@ interface SignUpProps {
   navigation: NavigationProp<any>;
 }
 
-const handleSignUp = async (
-  username: string,
-  email: string,
-  password: string
-) => {
-  // const promise = api.createAccount(email, password, username);
-  // promise.then(
-  //   async function (accountObj) {
-  //     console.log(`===> Account created: ${JSON.stringify(accountObj)}`);
-  //     await api.createEmailVerification();
-  //     console.log("===> Verification email sent!");
-
-  //   },
-  //   function (err) {
-  //     console.log(err);
-  //   }
-  // );
-
-  try {
-    const accountObj = await api.createAccount(email, password, username);
-    console.log(
-      accountObj ?? `===> Account created: ${JSON.stringify(accountObj)}`
-    );
-    //a session needed to be created in order to send the verifiation email. 
-    await api.createSession(email, password);
-
-    await api.createEmailVerification();
-    console.log("===> Verification email sent!");
-  } catch (error) {
-    console.log("Sign up error: ", error);
-  }
-};
-
 const SignUp = (props: SignUpProps) => {
   const [username, setUserName] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
+
+  const { signUp, loading } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -85,7 +55,7 @@ const SignUp = (props: SignUpProps) => {
         label="SIGN UP"
         style={styles.PrimaryButton}
         onPress={() => {
-          handleSignUp(username, email, password);
+          signUp(username, email, password);
           setEmail("");
           setUserName("");
           setPassword("");

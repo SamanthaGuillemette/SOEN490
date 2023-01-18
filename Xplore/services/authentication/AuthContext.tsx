@@ -7,6 +7,8 @@ export type AuthContextData = {
   sessionToken?: Models.Session | null;
   loggedIn: boolean;
   loading: boolean;
+  emailIsVerified: boolean;
+  signUp: (username: string, email: string, password: string) => void;
   signIn: (email: string, password: string) => void;
   signOut: () => void;
   getSessionStatus: () => void;
@@ -23,6 +25,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [sessionToken, setSessionToken] = useState<Models.Session | null>(null);
   const [loggedIn, setLoginStatus] = useState<boolean>(false);
   const [loading, setLoadingStatus] = useState<boolean>(false);
+  const [emailIsVerified, setVerifiedStatus] = useState<boolean>(false);
 
   const getSessionStatus = () => {
     const status = api.getAccount();
@@ -74,14 +77,37 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const signUp = async (username: string, email: string, password: string) => {
+    try {
+      const accountObj = await api.createAccount(email, password, username);
+
+      //a session needed to be created in order to send the verifiation email.
+      const sessionObj = await api.createSession(email, password);
+      const emailVerificationObj = await api.createEmailVerification();
+      setVerifiedStatus(true);
+
+      console.log(
+        accountObj ??
+          `===> Account created: ${JSON.stringify(
+            accountObj
+          )} and Verification email sent!`
+      );
+      Promise.all([accountObj, sessionObj, emailVerificationObj]);
+    } catch (error) {
+      console.log("Sign up error: ", error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
         sessionToken,
         loggedIn,
         loading,
+        emailIsVerified,
         signIn,
         signOut,
+        signUp,
         getSessionStatus,
       }}
     >
