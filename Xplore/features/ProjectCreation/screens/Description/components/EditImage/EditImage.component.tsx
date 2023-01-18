@@ -1,5 +1,4 @@
-import * as React from "react";
-import { ShadowView, View, Icon } from "../../../../../components";
+import { ShadowView, View, Icon } from "../../../../../../components";
 import styles from "./EditImage.styles";
 
 export const EditImage = () => {

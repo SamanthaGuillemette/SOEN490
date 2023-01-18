@@ -1,5 +1,5 @@
 import * as React from "react";
-import { InputField, CustomCalendar } from "../../../../../components";
+import { InputField, CustomCalendar } from "../../../../../../components";
 import { View } from "react-native";
 import styles from "./Input.styles";
 

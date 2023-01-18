@@ -3,7 +3,6 @@ import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import ProfileInfo from "../components/ProfileInfo";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Button } from "react-native-paper";
 
 interface ProfileProps {
   navigation: NavigationProp<any>;

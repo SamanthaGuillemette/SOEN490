@@ -1,16 +1,12 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
-  StatusBar,
-} from "react-native";
+import { ScrollView, TouchableOpacity, SafeAreaView } from "react-native";
 import { View, Wizard, Text, Toast } from "react-native-ui-lib";
-import { Button, TopHeader } from "../../components";
-import ProjectCreation_Desc from "../ProjectCreation/Description/screens/Description.screen";
+import { Button, TopHeader } from "../../../components";
+import Description from "./Description/screens/Description.screen";
+import TechNGoals from "./TechNGoals/screens/TechNGoals.screen";
 import { NavigationProp } from "@react-navigation/native";
+import styles from "./ProjectCreation.styles";
 
 interface State {
   activeIndex: number;
@@ -115,7 +111,7 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
   renderProjectCreation_Desc = () => {
     return (
       <View>
-        <ProjectCreation_Desc />
+        <Description />
         {this.renderNextButton()}
       </View>
     );
@@ -124,7 +120,7 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
   renderProjectCreation_TechNGoals = () => {
     return (
       <View>
-        <Text>TECH & GOALS SCREEN</Text>
+        <TechNGoals />
         {this.renderNextButton()}
         {this.renderPrevButton()}
       </View>
@@ -207,6 +203,7 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
           <View style={styles.stepIndicator}>
             <Wizard
               containerStyle={styles.containerStyle}
+              activeConfig={styles.activeConfigStyle}
               testID={"uilib.wizardAllTypes"}
               activeIndex={activeIndex}
               onActiveIndexChanged={this.onActiveIndexChanged}
@@ -235,27 +232,3 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  alignBtn: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 23,
-  },
-  btn: {
-    width: 300,
-    height: 50,
-    borderRadius: 50,
-  },
-  safeAreaStyle: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight ?? 0,
-  },
-  stepIndicator: {
-    marginTop: 52,
-    marginBottom: -25,
-  },
-  containerStyle: {
-    backgroundColor: "transparent",
-  },
-});

@@ -1,4 +1,5 @@
-import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native";
+import styles from "./Description.styles";
 import { EditImage, Input } from "../components";
 
 const Description = () => {
@@ -11,10 +12,3 @@ const Description = () => {
 };
 
 export default Description;
-
-const styles = StyleSheet.create({
-  safeAreaStyle: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight ?? 0,
-  },
-});
