@@ -5,6 +5,7 @@ import { View, Wizard, Text, Toast } from "react-native-ui-lib";
 import { Button, TopHeader } from "../../../components";
 import Description from "./Description/screens/Description.screen";
 import TechNGoals from "./TechNGoals/screens/TechNGoals.screen";
+import AddLinks from "./AddLinks/screens/AddLinks.screen";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectCreation.styles";
 
@@ -150,7 +151,7 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
   renderProjectCreation_AddLinks = () => {
     return (
       <View>
-        <Text>ADD LINKS SCREEN</Text>
+        <AddLinks />
         {this.renderNextButton()}
         {this.renderPrevButton()}
       </View>
