@@ -10,7 +10,13 @@ import styles from "./Text.styles";
 // Extends the React Native's TextProps to have their props autocomplete + our own props
 interface TextProps extends RNTextProps {
   children: React.ReactNode;
-  color?: "titleText" | "bodyText" | "smallText" | "generalGray" | "linkText";
+  color?:
+    | "titleText"
+    | "bodyText"
+    | "smallText"
+    | "generalGray"
+    | "linkText"
+    | "white";
   variant?:
     | "h1"
     | "h2"

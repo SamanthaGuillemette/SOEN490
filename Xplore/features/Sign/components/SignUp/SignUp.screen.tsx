@@ -88,6 +88,7 @@ const SignUp = (props: SignUpProps) => {
           setUserName("");
           setPassword("");
         }}
+        // onPress={() => navigation.navigate("TopicSelection")}
       />
     </View>
   );
