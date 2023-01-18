@@ -4,6 +4,7 @@ import { View } from "../View";
 import styles from "./Button.styles";
 import { useThemeColor } from "../../hooks";
 interface ButtonProps {
+  testID: string;
   children: string;
   backgroundColor: "backgroundSecondary" | "primary";
   textColor: "primary" | "generalGray";

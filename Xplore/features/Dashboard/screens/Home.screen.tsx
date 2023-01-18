@@ -60,7 +60,7 @@ const Home = (props: HomeProps) => {
         icon={"plus"}
         label={"New Project"}
         extended={isButtonExpanded}
-        onPress={() => navigation.navigate("ProjectCreation_Desc")}
+        onPress={() => navigation.navigate("ProjectCreation")}
         visible={true}
         animateFrom={"right"}
         iconMode={"dynamic"}

@@ -1,6 +1,7 @@
 import { Calendar } from "react-native-calendars";
 import Icon from "../../components/Icon/Icon.component";
 import { Text } from "../../components/Text/Text.component";
+import { ShadowView } from "../../components/ShadowView/ShadowView.component";
 import { useThemeColor } from "../../hooks";
 import { StyleProp, ViewStyle } from "react-native";
 import { TouchableWithoutFeedback, View } from "react-native";
@@ -15,19 +16,8 @@ interface CustomCalendarProps {
 export const CustomCalendar = (props: CustomCalendarProps) => {
   const { title, style } = props;
   const [openCalendar, setOpenCalendar] = useState(false);
-  let today = new Date();
-  let date = today.getDate();
-  let month = today.getMonth() + 1;
-  let year = today.getFullYear();
-  let newDate =
-    year +
-    "-" +
-    (month < 10 ? `0${month}` : `${month}`) +
-    "-" +
-    (date < 10 ? `0${date}` : `${date}`);
-
-  const [selectedDate, setSelectedDate] = useState(newDate);
-  const [tempDate, setTempDate] = useState(newDate);
+  const [selectedDate, setSelectedDate] = useState("YYYY-MM-DD");
+  const [tempDate, setTempDate] = useState("YYYY-MM-DD");
   const primary = useThemeColor("primary");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
@@ -36,30 +26,34 @@ export const CustomCalendar = (props: CustomCalendarProps) => {
 
   return (
     <View>
-      <TouchableWithoutFeedback onPress={() => setOpenCalendar(!openCalendar)}>
-        <View style={[style, styles.padding]}>
-          <Text color="titleText" variant="h3">
-            {title}
+      <View style={[style, styles.padding]}>
+        <Text color="titleText" variant="h3">
+          {title}
+        </Text>
+
+        <View style={styles.alignRow}>
+          <Text color="bodyText" variant="label">
+            {selectedDate}
           </Text>
 
-          <View style={styles.alignRow}>
-            <Text color="bodyText" variant="label">
-              {selectedDate}
-            </Text>
-
-            <Icon
-              name="calendar"
-              size="large"
-              color="smallText"
-              style={styles.calendarIcon}
-            />
-          </View>
-          <View style={[styles.line, { backgroundColor: generalGray }]} />
+          <TouchableWithoutFeedback
+            onPress={() => setOpenCalendar(!openCalendar)}
+          >
+            <View>
+              <Icon
+                name="calendar"
+                size="large"
+                color="smallText"
+                style={styles.calendarIcon}
+              />
+            </View>
+          </TouchableWithoutFeedback>
         </View>
-      </TouchableWithoutFeedback>
+        <View style={[styles.line, { backgroundColor: generalGray }]} />
+      </View>
 
       {openCalendar ? (
-        <View>
+        <ShadowView style={styles.shadowView}>
           <Calendar
             style={styles.calendar}
             enableSwipeMonths={true}
@@ -104,7 +98,10 @@ export const CustomCalendar = (props: CustomCalendarProps) => {
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback
-                onPress={() => setSelectedDate(tempDate)}
+                onPress={() => {
+                  setSelectedDate(tempDate);
+                  setOpenCalendar(!openCalendar);
+                }}
               >
                 <View>
                   <Text
@@ -117,7 +114,7 @@ export const CustomCalendar = (props: CustomCalendarProps) => {
               </TouchableWithoutFeedback>
             </View>
           </View>
-        </View>
+        </ShadowView>
       ) : (
         <></>
       )}

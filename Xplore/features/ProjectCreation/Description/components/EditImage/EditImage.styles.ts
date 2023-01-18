@@ -9,7 +9,6 @@ export default StyleSheet.create({
     width: 127,
     height: 127,
     borderRadius: 100,
-    marginTop: 23,
   },
   alignImage: {
     left: 34,

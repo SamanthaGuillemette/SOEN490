@@ -16,7 +16,7 @@ import Home from "../features/Dashboard/screens/Home.screen";
 import Sign from "../features/Sign/screens/Sign.screen";
 import ForgotPassword from "../features/Sign/components/ForgotPassword/ForgotPassword.screen";
 import ResetPassword from "../features/Sign/components/ResetPassword/ResetPassword.screen";
-import ProjectCreation_Desc from "../features/ProjectCreation/Description/screens/Description.screen";
+import ProjectCreation from "../features/ProjectCreation/ProjectCreation.component";
 
 const Stack = createNativeStackNavigator();
 
@@ -61,8 +61,8 @@ const Main = ({ colorScheme }: MainProps) => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="ProjectCreation_Desc"
-          component={ProjectCreation_Desc}
+          name="ProjectCreation"
+          component={ProjectCreation}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -6,9 +6,8 @@ export default StyleSheet.create({
     justifyContent: "center",
     marginTop: 23,
   },
-  containerAbsolute: {
-    left: 37,
-    marginTop: 23,
+  alignLeft: {
+    left: 50,
   },
   projectName: {
     width: 337,
@@ -18,24 +17,7 @@ export default StyleSheet.create({
     width: 337,
     height: 111,
   },
-  nextBtn: {
-    width: 300,
-    height: 50,
-    borderRadius: 25,
-    marginTop: 57,
-    left: 15,
-  },
   styleText: {
     marginTop: 13,
-  },
-  alignLeft: {
-    left: 40,
-  },
-  positionProjDesc: {
-    position: "absolute",
-    top: 70,
-  },
-  positionRelative: {
-    position: "relative",
   },
 });

@@ -1,11 +1,14 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  shadowView: {
+    width: 337,
+    borderRadius: 8,
+    top: 10,
+    left: 36,
+  },
   calendar: {
     borderRadius: 8,
-    top: 20,
-    width: "83%",
-    left: 35,
   },
   alignRow: {
     flexDirection: "row",
@@ -21,15 +24,12 @@ export default StyleSheet.create({
     top: 15,
   },
   padding: {
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: 15,
+    paddingBottom: 15,
   },
   btnContainer: {
-    width: "83%",
     height: 60,
     borderRadius: 8,
-    left: 35,
-    top: 5,
   },
   BtnAlignText: {
     flexDirection: "row",
