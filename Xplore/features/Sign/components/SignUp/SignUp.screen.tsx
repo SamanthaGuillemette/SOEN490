@@ -43,6 +43,8 @@ const handleSignUp = async (
     console.log(
       accountObj ?? `===> Account created: ${JSON.stringify(accountObj)}`
     );
+    //a session needed to be created in order to send the verifiation email. 
+    await api.createSession(email, password);
 
     await api.createEmailVerification();
     console.log("===> Verification email sent!");
