@@ -11,4 +11,8 @@ export default StyleSheet.create({
   SecondaryButton: {
     marginVertical: 25,
   },
+  loadingScreen: {
+    color: "#FFF",
+    textAlign: "center",
+  },
 });
