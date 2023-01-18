@@ -5,14 +5,14 @@ import {
   ShadowView,
   PrimaryButton,
   SecondaryButton,
-  SearchBar,
   UsersList,
+  SearchBar,
   Text,
 } from "../../../../../../components";
-import styles from "./RemoveMemberModal.styles";
+import styles from "./AddAdminModal.styles";
 
-interface RemoveMemberModalProps {
-  setRemoveModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+interface AddAdminModalProps {
+  setAddModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface UsersType {
@@ -72,14 +72,13 @@ const Users: UsersType[] = [
     xp: 103597,
   },
 ];
-export const RemoveMemberModal = ({
-  setRemoveModalVisible,
-}: RemoveMemberModalProps) => {
+
+export const AddAdminModal = ({ setAddModalVisible }: AddAdminModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
-    setRemoveModalVisible(!modalVisible);
+    setAddModalVisible(!modalVisible);
   }
 
   return (
@@ -94,12 +93,12 @@ export const RemoveMemberModal = ({
           style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
         >
           <Text variant="h4" style={styles.alertText}>
-            Remove members
+            Add new admins
           </Text>
           <SearchBar style={styles.searchBar} />
           <UsersList data={Users} />
           <PrimaryButton
-            label="REMOVE"
+            label="ADD"
             onPress={handleIndexSelect}
             style={styles.primaryButton}
           />

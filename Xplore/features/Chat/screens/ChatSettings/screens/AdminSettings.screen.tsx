@@ -3,6 +3,7 @@ import { View, ConfirmationModal, AlertModal } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
 import { AddMemberModal } from "../components/AddMemberModal/AddMemberModal.component";
+import { AddAdminModal } from "../components/AddAdminModal/AddAdminModal.component";
 import { RemoveMemberModal } from "../components/RemoveMemberModal/RemoveMemberModal.component";
 import styles from "./SettingsOptions.styles";
 
@@ -11,7 +12,9 @@ interface AdminSettingsProps {}
 const AdminSettings = (props: AdminSettingsProps) => {
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
   const [inviteModalVisible, setInviteModalVisible] = useState<any>(false);
-  const [addModalVisible, setAddModalVisible] = useState<any>(false);
+  const [addMemberModalVisible, setAddMemberModalVisible] =
+    useState<any>(false);
+  const [addAdminModalVisible, setAddAdminModalVisible] = useState<any>(false);
   const [removeModalVisible, setRemoveModalVisible] = useState<any>(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState<any>(false);
   const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
@@ -39,18 +42,18 @@ const AdminSettings = (props: AdminSettingsProps) => {
       <SettingBox
         settingName="Add a member"
         iconName="user-plus"
-        onPress={() => setAddModalVisible(true)}
+        onPress={() => setAddMemberModalVisible(true)}
       />
-      {addModalVisible === true && (
-        <AddMemberModal setAddModalVisible={setAddModalVisible} />
+      {addMemberModalVisible === true && (
+        <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
       )}
       <SettingBox
         settingName="Add admin"
         iconName="user-plus"
-        onPress={() => setAddModalVisible(true)}
+        onPress={() => setAddAdminModalVisible(true)}
       />
-      {addModalVisible === true && (
-        <AddMemberModal setAddModalVisible={setAddModalVisible} />
+      {addAdminModalVisible === true && (
+        <AddAdminModal setAddModalVisible={setAddAdminModalVisible} />
       )}
       <SettingBox
         settingName="Remove a member"
