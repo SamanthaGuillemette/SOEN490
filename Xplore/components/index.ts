@@ -17,12 +17,9 @@ export * from "./Logo";
 export * from "./SegmentedButton";
 export * from "./PrimaryButton";
 export * from "./SecondaryButton";
-<<<<<<< HEAD
 export * from "./ChipButton";
-=======
 export * from "./SearchBar";
 export * from "./NextButton";
->>>>>>> origin/develop
 export * from "./ConfirmationModal";
 export * from "./AlertModal";
 export * from "./User";
