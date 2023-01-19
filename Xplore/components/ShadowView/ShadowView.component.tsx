@@ -27,7 +27,7 @@ export const ShadowView = (props: ShadowViewProps) => {
     lightColor,
     darkColor,
     style,
-    isInnerShadow,
+    isInnerShadow = false,
     ...restOfProps
   } = props;
 

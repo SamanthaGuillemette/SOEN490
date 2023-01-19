@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { AnimatedFAB } from "react-native-paper";
-import { View } from "../../../components/";
+import { Text, View } from "../../../components/";
 import { useThemeColor } from "../../../hooks";
 import {
   HomeHeader,
@@ -17,6 +17,12 @@ import {
 } from "../components";
 import styles from "./Home.styles";
 import { NavigationProp } from "@react-navigation/native";
+//imports for temporary sign out button
+import { PrimaryButton } from "../../../components/";
+import api from "../../../services/appwrite/api";
+import { COLLECTION_ID_TEST } from "@env";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useAuth } from "../../../hooks";
 
 interface HomeProps {
   navigation: NavigationProp<any>;
@@ -27,6 +33,25 @@ const Home = (props: HomeProps) => {
   const scrollViewBackground = useThemeColor("background");
   const [isButtonExpanded, setIsButtonExpanded] = useState(true);
   const { navigation } = props;
+
+  // FIXME: DELTE THIS PART LATER
+  const { isLoading, data } = useQuery("test data", () =>
+    api.listDocuments(COLLECTION_ID_TEST)
+  );
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    (newData: Omit<Document, keyof Document>) =>
+      api.createDocument(COLLECTION_ID_TEST, newData),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("test data");
+      },
+    }
+  );
+
+  const { signOut } = useAuth();
 
   const onScroll = ({
     nativeEvent,
@@ -53,6 +78,29 @@ const Home = (props: HomeProps) => {
           <TodayStats />
           <ExploreProjects />
           <NewProjects />
+          {/* temporary button to teset logout functionality */}
+          <PrimaryButton label="SIGN OUT" onPress={signOut} />
+
+          <PrimaryButton
+            label="Create new data"
+            onPress={() => {
+              const newData = {
+                test1: "new data 1",
+                test2: "new data 2",
+              };
+              mutation.mutate(newData);
+            }}
+          />
+
+          <View>
+            {data?.documents?.map((doc: any, index: number) => (
+              <Fragment key={index}>
+                <Text>{isLoading && "Loading........."}</Text>
+                <Text>{doc.test1}</Text>
+                <Text>{doc.test2}</Text>
+              </Fragment>
+            ))}
+          </View>
         </View>
       </ScrollView>
 
