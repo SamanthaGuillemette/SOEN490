@@ -1,29 +1,32 @@
 import { ScrollView } from "react-native-gesture-handler";
-import { View } from "../../../../components";
-import LinkBox from "./components/LinkBox.component";
+import { View, IntegrationCard } from "../../../../components";
 import styles from "./Links.styles";
 
 export const Links = () => {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.content}>
-          <LinkBox
-            linkName="GitHub Integration"
-            description="Description"
-            iconName="github"
-          />
-          <LinkBox
-            linkName="Jira Integration"
-            description="Description"
-            iconName="github"
-          />
-          <LinkBox
-            linkName="Figma Integration"
-            description="Description"
-            iconName="figma"
-          />
-        </View>
+        <IntegrationCard
+          testID={"Proj_GitHubIntegration"}
+          title={"GitHub Integration"}
+          description={"Description"}
+          bgColor={"white"}
+          btnType={"add"}
+        />
+        <IntegrationCard
+          testID={"Proj_JiraIntegration"}
+          title={"Jira Integration"}
+          description={"Description"}
+          bgColor={"blue"}
+          btnType={"added"}
+        />
+        <IntegrationCard
+          testID={"Proj_FigmaIntegration"}
+          title={"Figma Integration"}
+          description={"Description"}
+          bgColor={"white"}
+          btnType={"add"}
+        />
       </ScrollView>
     </View>
   );
