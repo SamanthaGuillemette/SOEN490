@@ -12,7 +12,7 @@ interface ConversationProps {
 
 const Conversation = ({}: ConversationProps) => {
   const background = useThemeColor("background");
-  const ref = React.useRef<FlatList>();
+  const ref = React.useRef<FlatList>(null);
   const messages = [
     {
       id: "1",

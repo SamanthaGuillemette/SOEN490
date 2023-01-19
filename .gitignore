@@ -1,5 +1,6 @@
 node_modules/
 .expo/
+.env
 
 Xplore/node_modules/
 Xplore/npm-debug.log
