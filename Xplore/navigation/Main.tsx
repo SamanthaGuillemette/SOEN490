@@ -17,7 +17,7 @@ const Main = ({ colorScheme }: MainProps) => {
   const { sessionToken, loggedIn, getSessionStatus } = useAuth();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(getSessionStatus, []);
+  useEffect(() => console.log(getSessionStatus()), []);
 
   return (
     <>
