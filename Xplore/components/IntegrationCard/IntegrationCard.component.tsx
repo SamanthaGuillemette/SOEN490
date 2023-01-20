@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Text } from "../Text";
 import { View } from "../View";
 import { ShadowView } from "../ShadowView";
