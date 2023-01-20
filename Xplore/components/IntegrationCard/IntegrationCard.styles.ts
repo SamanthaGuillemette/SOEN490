@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   alignDesc: {
     left: 23,
-    top: 20,
+    bottom: 18,
   },
   boxSize: {
     width: 320,
@@ -31,7 +31,11 @@ export default StyleSheet.create({
   btn: {
     height: 24,
     borderRadius: 8,
-    top: 30,
     left: 23,
+    bottom: 10,
+  },
+  alignIcon: {
+    left: 265,
+    bottom: 10,
   },
 });

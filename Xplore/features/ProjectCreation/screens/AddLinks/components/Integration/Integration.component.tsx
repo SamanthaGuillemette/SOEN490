@@ -7,6 +7,7 @@ export const Integration = () => {
         testID={"ProjCreation_GitHubIntegration"}
         title={"GitHub Integration"}
         description={"Description"}
+        iconName="github"
         bgColor={"white"}
         btnType={"add"}
       />
@@ -14,6 +15,7 @@ export const Integration = () => {
         testID={"ProjCreation_JiraIntegration"}
         title={"Jira Integration"}
         description={"Description"}
+        iconName="jira"
         bgColor={"blue"}
         btnType={"added"}
       />
@@ -21,6 +23,7 @@ export const Integration = () => {
         testID={"ProjCreation_FigmaIntegration"}
         title={"Figma Integration"}
         description={"Description"}
+        iconName="figma"
         bgColor={"white"}
         btnType={"add"}
       />
