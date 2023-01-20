@@ -20,7 +20,7 @@ export * from "./SecondaryButton";
 export * from "./TopHeader";
 export * from "./StepIndicator";
 export * from "./CustomCalendar";
-export * from "./IntegrationLinks";
+export * from "./IntegrationCard";
 export * from "./SearchBar";
 export * from "./NextButton";
 export * from "./ConfirmationModal";

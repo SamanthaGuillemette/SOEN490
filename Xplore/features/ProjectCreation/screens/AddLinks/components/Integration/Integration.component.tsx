@@ -1,24 +1,24 @@
-import { IntegrationLinks, View } from "../../../../../../components";
+import { IntegrationCard, View } from "../../../../../../components";
 
 export const Integration = () => {
   return (
     <View>
-      <IntegrationLinks
+      <IntegrationCard
         testID={"ProjCreation_GitHubIntegration"}
         title={"GitHub Integration"}
         description={"Description"}
         bgColor={"white"}
         btnType={"add"}
       />
-      <IntegrationLinks
-        testID={"ProjCreation_GitHubIntegration"}
+      <IntegrationCard
+        testID={"ProjCreation_JiraIntegration"}
         title={"Jira Integration"}
         description={"Description"}
         bgColor={"blue"}
         btnType={"added"}
       />
-      <IntegrationLinks
-        testID={"ProjCreation_GitHubIntegration"}
+      <IntegrationCard
+        testID={"ProjCreation_FigmaIntegration"}
         title={"Figma Integration"}
         description={"Description"}
         bgColor={"white"}

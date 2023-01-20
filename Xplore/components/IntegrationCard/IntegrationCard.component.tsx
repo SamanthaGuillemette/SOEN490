@@ -3,10 +3,10 @@ import { Text } from "../Text";
 import { View } from "../View";
 import { ShadowView } from "../ShadowView";
 import { Button } from "../Button";
-import styles from "./IntegrationLinks.styles";
+import styles from "./IntegrationCard.styles";
 import { useThemeColor } from "../../hooks";
 
-interface IntegrationLinksProps {
+interface IntegrationCardProps {
   testID: string;
   title: string;
   description: string;
@@ -14,7 +14,7 @@ interface IntegrationLinksProps {
   bgColor: "white" | "blue";
 }
 
-export const IntegrationLinks = (props: IntegrationLinksProps) => {
+export const IntegrationCard = (props: IntegrationCardProps) => {
   const { title, description, btnType, bgColor } = props;
   const success = useThemeColor("success");
 
@@ -37,7 +37,6 @@ export const IntegrationLinks = (props: IntegrationLinksProps) => {
           </Text>
           {btnType === "add" ? (
             <Button
-              testID={"ProjectCreation_nextBtn"}
               backgroundColor="primary"
               children={"ADD"}
               textColor="generalGray"
