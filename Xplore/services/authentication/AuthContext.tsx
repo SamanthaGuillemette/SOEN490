@@ -97,6 +97,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const signUp = async (username: string, email: string, password: string) => {
+    setLoadingStatus(true);
     try {
       const accountObj = await api.createAccount(email, password, username);
 
@@ -104,13 +105,15 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const sessionObj = await api.createSession(email, password);
       const emailVerificationObj = await api.createEmailVerification();
 
+      Promise.all([accountObj, sessionObj, emailVerificationObj]);
+      setSessionToken(sessionObj);
+      setLoadingStatus(false);
       console.log(
         accountObj ??
           `===> Account created: ${JSON.stringify(
             accountObj
           )} and Verification email sent!`
       );
-      Promise.all([accountObj, sessionObj, emailVerificationObj]);
     } catch (error) {
       console.log("Sign up error: ", error);
     }

@@ -5,6 +5,7 @@ import { PrimaryButton, View, TextInput } from "../../../../components";
 import styles from "./SignUp.styles";
 //import api from "../../../../services/appwrite/api";
 import { useAuth } from "../../../../hooks";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 
 // Need to implement
 //  ** error handling
@@ -30,6 +31,12 @@ const SignUp = (props: SignUpProps) => {
 
   return (
     <View style={styles.container}>
+      <Spinner
+        visible={loading}
+        textContent={"Hang tight!\n We're signing you up ⚡"}
+        textStyle={styles.loadingScreen}
+        animation={"fade"}
+      />
       <TextInput
         placeHolder={"Username"}
         iconName={"user"}

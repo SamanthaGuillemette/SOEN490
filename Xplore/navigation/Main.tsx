@@ -9,6 +9,7 @@ import AuthStack from "./AuthStack";
 import VerificationStack from "./VerificationStack";
 import { useEffect } from "react";
 import { useAuth } from "../hooks";
+//import { account } from "../services/appwrite/api";
 
 interface MainProps {
   colorScheme: ColorSchemeName;
@@ -24,11 +25,15 @@ const Main = ({ colorScheme }: MainProps) => {
   } = useAuth();
 
   useEffect(() => {
-    console.log(getSessionStatus("current"));
-    console.log(getAccountStatus());
+    getSessionStatus("current");
+    getAccountStatus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  console.log(
+    `sessionToken: ${JSON.stringify(sessionToken)}\n loggedIn: ${JSON.stringify(
+      loggedIn
+    )}\n accountToken${JSON.stringify(accountToken)}\n`
+  );
   if (
     sessionToken?.$id !== undefined &&
     loggedIn &&
