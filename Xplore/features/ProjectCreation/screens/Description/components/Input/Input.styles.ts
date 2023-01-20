@@ -4,10 +4,13 @@ export default StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
+  },
+  alignProjectName: {
     marginTop: 23,
   },
   alignLeft: {
-    left: 50,
+    top: 10,
+    left: 45,
   },
   projectName: {
     width: 337,
@@ -18,6 +21,6 @@ export default StyleSheet.create({
     height: 111,
   },
   styleText: {
-    marginTop: 13,
+    marginTop: 7,
   },
 });

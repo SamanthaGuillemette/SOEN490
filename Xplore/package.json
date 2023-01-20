@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.1",
+    "@react-native-community/datetimepicker": "6.2.0",
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.8.0",
@@ -30,6 +31,8 @@
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
     "react-native-calendars": "^1.1293.0",
+    "react-native-date-picker": "^4.2.6",
+    "react-native-datepicker": "^1.7.2",
     "react-native-dotenv": "^3.4.7",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-inset-shadow": "^1.0.3",

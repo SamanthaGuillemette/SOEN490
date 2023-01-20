@@ -18,11 +18,11 @@ export default StyleSheet.create({
     height: 200,
   },
   styleTextTech: {
-    marginTop: 19,
+    marginTop: 15,
     marginLeft: 115,
   },
   styleTextGoals: {
-    marginTop: 13,
+    marginTop: 7,
   },
   alignTag: {
     position: "absolute",

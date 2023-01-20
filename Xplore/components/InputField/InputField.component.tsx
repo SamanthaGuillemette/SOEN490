@@ -1,32 +1,25 @@
-import { StyleProp, ViewStyle } from "react-native";
+import { StyleProp, ViewStyle, TextInput as RNTextInput } from "react-native";
 import { colors } from "../../constants";
-import { Text } from "../Text";
 import { View } from "../View";
 import { ShadowView } from "../ShadowView";
 import styles from "./InputField.styles";
+import { useState } from "react";
+import { useThemeColor } from "../../hooks";
 
 interface InputFieldProps {
   children: string;
-  lightTextColor?:
-    | "titleText"
-    | "bodyText"
-    | "smallText"
-    | "generalGray"
-    | "linkText";
-  style?: StyleProp<ViewStyle>;
+  styleBox?: StyleProp<ViewStyle>;
   styleText?: StyleProp<ViewStyle>;
-  lightBorderColor?: string;
 }
 
 export const InputField = (props: InputFieldProps) => {
-  const { children, lightTextColor, style, styleText, lightBorderColor } =
-    props;
+  const { children, styleBox, styleText } = props;
+  const bodyText = useThemeColor("bodyText");
 
   return (
-    <ShadowView style={[style, styles.InputField]} isInnerShadow={false}>
+    <ShadowView style={[styleBox, styles.InputField]} isInnerShadow={false}>
       <View
         style={styles.InputField}
-        lightColor={lightBorderColor}
         darkColor={colors.dark.backgroundSecondary}
       >
         <ShadowView
@@ -35,14 +28,11 @@ export const InputField = (props: InputFieldProps) => {
           lightColor={colors.light.primaryBackgroundOpaque}
           darkColor={colors.dark.primaryBackgroundOpaque}
         >
-          <Text
-            lightColor={lightTextColor}
-            darkColor={colors.light.backgroundSecondary}
-            variant="smBody"
-            style={[styles.Text, styleText]}
-          >
-            {children}
-          </Text>
+          <RNTextInput
+            placeholderTextColor={bodyText}
+            placeholder={children}
+            style={[styles.Text, styleText, { color: bodyText }]}
+          />
         </ShadowView>
       </View>
     </ShadowView>

@@ -19,7 +19,7 @@ export * from "./PrimaryButton";
 export * from "./SecondaryButton";
 export * from "./TopHeader";
 export * from "./StepIndicator";
-export * from "./CustomCalendar";
+export * from "./DatePicker";
 export * from "./IntegrationCard";
 export * from "./SearchBar";
 export * from "./NextButton";

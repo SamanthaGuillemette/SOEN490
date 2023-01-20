@@ -16,7 +16,10 @@ export const Input = () => {
   return (
     <View style={styles.positionRelative}>
       <View style={styles.container}>
-        <InputField style={styles.projectTech} styleText={styles.styleTextTech}>
+        <InputField
+          styleBox={styles.projectTech}
+          styleText={styles.styleTextTech}
+        >
           J
         </InputField>
       </View>
@@ -39,7 +42,7 @@ export const Input = () => {
 
       <View style={styles.container}>
         <InputField
-          style={styles.projectGoals}
+          styleBox={styles.projectGoals}
           styleText={styles.styleTextGoals}
         >
           Project Goals
