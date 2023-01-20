@@ -15,6 +15,10 @@ const api = {
     return account.get();
   },
 
+  getSession: (sessionId: string) => {
+    return account.getSession(sessionId);
+  },
+
   createEmailVerification: () => {
     return account.createVerification(APP_URL);
   },

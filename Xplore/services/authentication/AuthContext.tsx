@@ -5,13 +5,14 @@ import api from "../appwrite/api";
 // The "shape" of our AuthContext data
 export type AuthContextData = {
   sessionToken?: Models.Session | null;
+  accountToken?: Models.Account<any> | null;
   loggedIn: boolean;
   loading: boolean;
-  emailIsVerified: boolean;
   signUp: (username: string, email: string, password: string) => void;
   signIn: (email: string, password: string) => void;
   signOut: () => void;
-  getSessionStatus: () => void;
+  getSessionStatus: (sessionId: string) => void;
+  getAccountStatus: () => void;
 };
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -23,12 +24,15 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
  */
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [sessionToken, setSessionToken] = useState<Models.Session | null>(null);
+  const [accountToken, setAccountToken] = useState<Models.Account<any> | null>(
+    null
+  );
   const [loggedIn, setLoginStatus] = useState<boolean>(false);
   const [loading, setLoadingStatus] = useState<boolean>(false);
-  const [emailIsVerified, setVerifiedStatus] = useState<boolean>(false);
+  //const [emailIsVerified, setVerifiedStatus] = useState<boolean>(false);
 
-  const getSessionStatus = () => {
-    const status = api.getAccount();
+  const getSessionStatus = (sessionId: string) => {
+    const status = api.getSession(sessionId);
     status.then(
       (response) => {
         console.log(`===> Session retrieved: ${JSON.stringify(response)}`);
@@ -41,6 +45,19 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
+  const getAccountStatus = () => {
+    const status = api.getAccount();
+    status.then(
+      (response) => {
+        console.log(`===> Account data retrieved: ${JSON.stringify(response)}`);
+        setAccountToken(response);
+      },
+      (error) => {
+        console.log(`===> Account data not found: ${error}`);
+      }
+    );
+  };
+
   const signIn = (email: string, password: string) => {
     const login = api.createSession(email, password);
     setLoadingStatus(true);
@@ -49,9 +66,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       (response) => {
         setSessionToken(response);
         setLoadingStatus(false);
+        setLoginStatus(true);
         console.log(`===> Session created: ${JSON.stringify(response)}`);
       },
       (err) => {
+        setLoginStatus(false);
         console.log(err);
       }
     );
@@ -84,7 +103,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       //a session needed to be created in order to send the verifiation email.
       const sessionObj = await api.createSession(email, password);
       const emailVerificationObj = await api.createEmailVerification();
-      setVerifiedStatus(true);
 
       console.log(
         accountObj ??
@@ -102,13 +120,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider
       value={{
         sessionToken,
+        accountToken,
         loggedIn,
         loading,
-        emailIsVerified,
         signIn,
         signOut,
         signUp,
         getSessionStatus,
+        getAccountStatus,
       }}
     >
       {children}
