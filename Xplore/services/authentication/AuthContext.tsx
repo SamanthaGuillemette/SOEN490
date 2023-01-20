@@ -36,10 +36,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     status.then(
       (response) => {
         console.log(`===> Session retrieved: ${JSON.stringify(response)}`);
-        setLoginStatus(true);
       },
       (error) => {
-        setLoginStatus(false);
         console.log(`===> Session not found: ${error}`);
       }
     );
