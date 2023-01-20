@@ -2,7 +2,6 @@ import { View } from "react-native";
 import { Text } from "../../../components";
 import { InputField, ShadowView } from "../../../components";
 import styles from "./EditBox.styles";
-import { colors } from "../../../constants";
 
 const EditProfileBox = () => {
   return (
@@ -18,13 +17,7 @@ const EditProfileBox = () => {
           <Text variant="smLabel" color={"smallText"}>
             USERNAME
           </Text>
-          <InputField
-            lightTextColor={"titleText"}
-            style={styles.InputField}
-            lightBorderColor={colors.light.backgroundSecondary}
-          >
-            JoshLewis123
-          </InputField>
+          <InputField placeHolder="JoshLewis123" styleBox={styles.InputField} />
         </View>
 
         <View style={{ left: 40 }}>
@@ -33,12 +26,9 @@ const EditProfileBox = () => {
               LOCATION
             </Text>
             <InputField
-              lightTextColor={"titleText"}
-              style={styles.InputField}
-              lightBorderColor={colors.light.backgroundSecondary}
-            >
-              Montréal, Qc
-            </InputField>
+              placeHolder="Montréal, Qc"
+              styleBox={styles.InputField}
+            />
           </View>
         </View>
       </View>
@@ -47,13 +37,7 @@ const EditProfileBox = () => {
           <Text variant="smLabel" color={"smallText"}>
             EMAIL
           </Text>
-          <InputField
-            lightTextColor={"titleText"}
-            style={styles.InputField}
-            lightBorderColor={colors.light.backgroundSecondary}
-          >
-            example@...
-          </InputField>
+          <InputField placeHolder="example@..." styleBox={styles.InputField} />
         </View>
       </View>
     </ShadowView>

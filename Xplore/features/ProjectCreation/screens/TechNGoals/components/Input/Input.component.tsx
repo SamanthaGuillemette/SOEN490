@@ -17,11 +17,10 @@ export const Input = () => {
     <View style={styles.positionRelative}>
       <View style={styles.container}>
         <InputField
+          placeHolder="J"
           styleBox={styles.projectTech}
           styleText={styles.styleTextTech}
-        >
-          J
-        </InputField>
+        />
       </View>
 
       <View style={styles.alignTag}>
@@ -42,11 +41,10 @@ export const Input = () => {
 
       <View style={styles.container}>
         <InputField
+          placeHolder="Project Goals"
           styleBox={styles.projectGoals}
           styleText={styles.styleTextGoals}
-        >
-          Project Goals
-        </InputField>
+        />
       </View>
 
       <View style={(styles.alignTag, styles.alignDropdown)}>

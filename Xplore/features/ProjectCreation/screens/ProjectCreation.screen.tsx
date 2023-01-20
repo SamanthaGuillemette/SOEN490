@@ -85,7 +85,6 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
     return (
       <TouchableOpacity onPress={this.goToNextStep} style={styles.alignBtn}>
         <Button
-          testID={"ProjectCreation_nextBtn"}
           backgroundColor="primary"
           children={activeIndex === 4 ? "SUBMIT" : "NEXT"}
           textColor="generalGray"
@@ -99,7 +98,6 @@ export default class WizardScreen extends Component<{}, State, HeaderProps> {
     return (
       <TouchableOpacity onPress={this.goToPrevStep} style={styles.alignBtn}>
         <Button
-          testID={"ProjectCreation_prevBtn"}
           backgroundColor="backgroundSecondary"
           children="BACK"
           textColor="primary"

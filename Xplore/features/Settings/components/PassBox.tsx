@@ -2,7 +2,6 @@ import { View } from "react-native";
 import { Text } from "../../../components";
 import { InputField, ShadowView } from "../../../components";
 import styles from "./EditBox.styles";
-import { colors } from "../../../constants";
 
 const PassBox = () => {
   return (
@@ -18,13 +17,7 @@ const PassBox = () => {
           <Text variant="smLabel" color={"smallText"}>
             OLD PASSWORD
           </Text>
-          <InputField
-            lightTextColor={"titleText"}
-            style={styles.InputField}
-            lightBorderColor={colors.light.backgroundSecondary}
-          >
-            ********...
-          </InputField>
+          <InputField placeHolder="********..." styleBox={styles.InputField} />
         </View>
       </View>
 
@@ -33,13 +26,7 @@ const PassBox = () => {
           <Text variant="smLabel" color={"smallText"}>
             NEW PASSWORD
           </Text>
-          <InputField
-            lightTextColor={"titleText"}
-            style={styles.InputField}
-            lightBorderColor={colors.light.backgroundSecondary}
-          >
-            ********...
-          </InputField>
+          <InputField placeHolder="********..." styleBox={styles.InputField} />
         </View>
 
         <View style={{ left: 40 }}>
@@ -48,12 +35,9 @@ const PassBox = () => {
               CONFIRM PASSWORD
             </Text>
             <InputField
-              lightTextColor={"titleText"}
-              style={styles.InputField}
-              lightBorderColor={colors.light.backgroundSecondary}
-            >
-              ********...
-            </InputField>
+              placeHolder="********..."
+              styleBox={styles.InputField}
+            />
           </View>
         </View>
       </View>

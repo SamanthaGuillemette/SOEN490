@@ -1,19 +1,23 @@
-import { StyleProp, ViewStyle, TextInput as RNTextInput } from "react-native";
+import {
+  StyleProp,
+  ViewStyle,
+  TextInput as RNTextInput,
+  TextInputProps as RNTextInputProps,
+} from "react-native";
 import { colors } from "../../constants";
 import { View } from "../View";
 import { ShadowView } from "../ShadowView";
 import styles from "./InputField.styles";
-import { useState } from "react";
 import { useThemeColor } from "../../hooks";
 
-interface InputFieldProps {
-  children: string;
+interface InputFieldProps extends RNTextInputProps {
+  placeHolder: string;
   styleBox?: StyleProp<ViewStyle>;
   styleText?: StyleProp<ViewStyle>;
 }
 
 export const InputField = (props: InputFieldProps) => {
-  const { children, styleBox, styleText } = props;
+  const { placeHolder, styleBox, styleText, ...restOfProps } = props;
   const bodyText = useThemeColor("bodyText");
 
   return (
@@ -30,8 +34,9 @@ export const InputField = (props: InputFieldProps) => {
         >
           <RNTextInput
             placeholderTextColor={bodyText}
-            placeholder={children}
+            placeholder={placeHolder}
             style={[styles.Text, styleText, { color: bodyText }]}
+            {...restOfProps}
           />
         </ShadowView>
       </View>
