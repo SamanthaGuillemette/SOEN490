@@ -10,7 +10,13 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Icon, LinkButton, Text, Avatar } from "../../../components";
+import {
+  Icon,
+  LinkButton,
+  Text,
+  Avatar,
+  LinearProgressBar,
+} from "../../../components";
 import { useThemeColor } from "../../../hooks";
 import {
   colors,
@@ -34,6 +40,7 @@ const Profile = (props: ProfileProps) => {
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
   const badgeBackground = useThemeColor("background");
+  const generalGray = useThemeColor("generalGray");
   const primary = useThemeColor("primary");
   const success = useThemeColor("success");
   const titleText = useThemeColor("titleText");
@@ -64,15 +71,6 @@ const Profile = (props: ProfileProps) => {
     outputRange: [1, headerFinalHeight / headerHeight],
     extrapolate: "clamp",
   });
-  // const translateName = scrollY.interpolate({
-  //   inputRange: [0, offset / 2, offset],
-  //   outputRange: [
-  //     0,
-  //     10,
-  //     -deviceScreenWidth / 2 + textWidth / 2 + headerFinalHeight,
-  //   ],
-  //   extrapolate: "clamp",
-  // });
 
   const translateInfoX = scrollY.interpolate({
     inputRange: [0, offset],
@@ -84,12 +82,6 @@ const Profile = (props: ProfileProps) => {
     outputRange: [1, -40],
     extrapolate: "clamp",
   });
-
-  // const scaleUserName = scrollY.interpolate({
-  //   inputRange: [0, offset],
-  //   outputRange: [1, 0.8],
-  //   extrapolate: "clamp",
-  // });
 
   return (
     <SafeAreaView
@@ -104,9 +96,9 @@ const Profile = (props: ProfileProps) => {
           { useNativeDriver: false }
         )}
       >
-        <View style={{ width: "100%", height: 990, backgroundColor: "pink" }} />
+        {/* <View style={{ width: "100%", height: 990, backgroundColor: "pink" }} /> */}
 
-        <View>
+        <View style={{ width: "100%", height: 990, backgroundColor: "pink" }}>
           {/* <View style={styles.ProfileIcons}>
             <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
               <View style={styles.Settings}>
@@ -125,70 +117,8 @@ const Profile = (props: ProfileProps) => {
             </View>
           </View> */}
 
-          <View
-            style={[styles.ProfileInfo, { backgroundColor: whiteBackground }]}
-          >
-            {/* <Text variant="h2" style={{ marginTop: 40 }} color="titleText">
-              Josh Lewis
-            </Text>
-            <Text variant="body" color="bodyText">
-              <Icon name="map-pin" color="smallText" size="medium" /> Montreal,
-              Quebec
-            </Text>
-            <Text
-              variant="smBody"
-              color="bodyText"
-              style={{ marginTop: 5, marginBottom: 20 }}
-            >
-              <Icon name="zap" color="smallText" size="medium" /> 103,597 XP
-            </Text> */}
-
-            {/* <View style={styles.Rec}>
-              <View
-                style={[
-                  styles.BiggerRectangle,
-                  { backgroundColor: badgeBackground, width: 330 },
-                ]}
-              >
-                <View
-                  style={[
-                    styles.Rectangle,
-                    {
-                      width: 0.9 * 330,
-                      backgroundColor: primary,
-                    },
-                  ]}
-                ></View>
-              </View>
-
-              <View style={styles.Description}>
-                <Text
-                  variant="smBody"
-                  color="bodyText"
-                  style={{ marginTop: 5 }}
-                >
-                  970/1000{" "}
-                  <Text variant="h4" color="bodyText">
-                    XP
-                  </Text>
-                </Text>
-                <View>
-                  <Text
-                    variant="body"
-                    color="bodyText"
-                    style={{ marginTop: 5 }}
-                  >
-                    <Text variant="h4" color="bodyText">
-                      30 XP
-                    </Text>{" "}
-                    to level up
-                  </Text>
-                </View>
-              </View>
-            </View> */}
-
-            {/* <StatBoxes /> */}
-          </View>
+          <StatBoxes />
+          <LinearProgressBar progress={0.3} />
 
           {/* <Badges />
 
@@ -320,6 +250,7 @@ const Profile = (props: ProfileProps) => {
           {
             transform: [{ translateY: translateHeader }],
             backgroundColor: whiteBackground,
+            borderBottomColor: generalGray,
           },
         ]}
       >
@@ -375,19 +306,6 @@ const Profile = (props: ProfileProps) => {
             <Text variant="smBody">103,597 XP</Text>
           </View>
         </Animated.View>
-
-        {/* <Animated.Text
-          onTextLayout={(e) => setTextWidth(e.nativeEvent.lines[0].width)}
-          style={[
-            styles.userName,
-            {
-              transform: [{ translateX: translateName }],
-              color: titleText,
-            },
-          ]}
-        >
-          Josh Lewis
-        </Animated.Text> */}
       </Animated.View>
     </SafeAreaView>
   );
@@ -410,6 +328,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+    borderBottomWidth: 1,
   },
   avatar: {
     borderRadius: headerHeight,
