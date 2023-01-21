@@ -1,10 +1,13 @@
 import { StyleSheet, View } from "react-native";
 import { LinkButton, Text, Badge } from "../../../../components";
 import { ScrollView } from "react-native";
+import { useThemeColor } from "../../../../hooks";
 
 export const Badges = () => {
+  const generalGray = useThemeColor("generalGray");
+
   return (
-    <View>
+    <View style={[styles.mainContainer, { borderTopColor: generalGray }]}>
       <View style={[styles.badgeTitleContainer]}>
         <Text variant="h3" color="titleText">
           BADGES
@@ -33,6 +36,10 @@ export const Badges = () => {
 };
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    borderTopWidth: 1,
+    marginBottom: 40,
+  },
   scrollViewContainer: {
     paddingRight: 30,
   },

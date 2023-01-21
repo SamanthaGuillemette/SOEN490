@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Icon, Text, Avatar, LinearProgressBar } from "../../../components";
+import { Icon, Text, Avatar } from "../../../components";
 import { useThemeColor } from "../../../hooks";
 import { deviceScreenWidth } from "../../../constants";
-import { Badges, ProjectSlider } from "../components";
+import { Badges, ProjectSlider, UserProgress } from "../components";
 import { StatBoxes } from "../components";
 import { useRef } from "react";
 
@@ -26,13 +26,8 @@ interface ProfileProps {
 const Profile = (props: ProfileProps) => {
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
-  const badgeBackground = useThemeColor("background");
   const generalGray = useThemeColor("generalGray");
-  const primary = useThemeColor("primary");
-  const success = useThemeColor("success");
-  const titleText = useThemeColor("titleText");
 
-  // const [textWidth, setTextWidth] = useState(0);
   const scrollY = useRef(new Animated.Value(0)).current;
   const offset = headerHeight - headerFinalHeight;
   const translateHeader = scrollY.interpolate({
@@ -83,9 +78,14 @@ const Profile = (props: ProfileProps) => {
           { useNativeDriver: false }
         )}
       >
-        {/* <View style={{ width: "100%", height: 990, backgroundColor: "pink" }} /> */}
-
-        <View style={{ width: "100%", height: 990, backgroundColor: "pink" }}>
+        <View
+          style={{
+            width: "100%",
+            height: 990,
+            // backgroundColor: "pink",
+            paddingTop: Platform.OS === "ios" ? 30 : 60,
+          }}
+        >
           {/* <View style={styles.ProfileIcons}>
             <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
               <View style={styles.Settings}>
@@ -104,11 +104,9 @@ const Profile = (props: ProfileProps) => {
             </View>
           </View> */}
 
+          <UserProgress />
           <StatBoxes />
-          <LinearProgressBar progress={0.3} />
-
           <Badges />
-
           <ProjectSlider />
 
           <View>

@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  mainContainer: {
+    borderTopWidth: 1,
+  },
   projectTitleContainer: {
     marginTop: 2,
     flexDirection: "row",

@@ -8,6 +8,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { LinkButton, Text, View } from "../../../../components";
 import { deviceScreenWidth } from "../../../../constants";
+import { useThemeColor } from "../../../../hooks";
 import styles from "./ProjectSlider.styles";
 
 const itemWidth = deviceScreenWidth / 1.4;
@@ -17,9 +18,10 @@ export const ProjectSlider = () => {
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.x;
   });
+  const generalGray = useThemeColor("generalGray");
 
   return (
-    <View>
+    <View style={[styles.mainContainer, { borderTopColor: generalGray }]}>
       <View style={styles.projectTitleContainer}>
         <Text variant="h3" color="titleText">
           PROJECTS
