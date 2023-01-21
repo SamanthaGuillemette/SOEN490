@@ -1,5 +1,7 @@
 import {
+  Animated,
   Image,
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -8,12 +10,21 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Icon, LinkButton, ShadowView, Text } from "../../../components";
+import { Icon, LinkButton, Text, Avatar } from "../../../components";
 import { useThemeColor } from "../../../hooks";
-import { colors } from "../../../constants";
-import { Avatar } from "react-native-paper";
+import {
+  colors,
+  deviceScreenWidth,
+  fonts,
+  fontSizes,
+} from "../../../constants";
 import { Badges } from "../components";
 import { StatBoxes } from "../components";
+import { useRef, useState } from "react";
+
+const headerHeight = 300;
+const headerFinalHeight = 160;
+const imageSize = (headerHeight / 3) * 2;
 
 interface ProfileProps {
   navigation: NavigationProp<any>;
@@ -25,12 +36,78 @@ const Profile = (props: ProfileProps) => {
   const badgeBackground = useThemeColor("background");
   const primary = useThemeColor("primary");
   const success = useThemeColor("success");
+  const titleText = useThemeColor("titleText");
+
+  // const [textWidth, setTextWidth] = useState(0);
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const offset = headerHeight - headerFinalHeight;
+  const translateHeader = scrollY.interpolate({
+    inputRange: [0, offset],
+    outputRange: [0, -offset],
+    extrapolate: "clamp",
+  });
+  const translateImageY = scrollY.interpolate({
+    inputRange: [0, offset],
+    outputRange: [0, -(headerFinalHeight - headerHeight) / 2],
+    extrapolate: "clamp",
+  });
+  const translateImageX = scrollY.interpolate({
+    inputRange: [0, offset],
+    outputRange: [
+      0,
+      -(deviceScreenWidth / 2) + (imageSize * headerFinalHeight) / headerHeight,
+    ],
+    extrapolate: "clamp",
+  });
+  const scaleImage = scrollY.interpolate({
+    inputRange: [0, offset],
+    outputRange: [1, headerFinalHeight / headerHeight],
+    extrapolate: "clamp",
+  });
+  // const translateName = scrollY.interpolate({
+  //   inputRange: [0, offset / 2, offset],
+  //   outputRange: [
+  //     0,
+  //     10,
+  //     -deviceScreenWidth / 2 + textWidth / 2 + headerFinalHeight,
+  //   ],
+  //   extrapolate: "clamp",
+  // });
+
+  const translateInfoX = scrollY.interpolate({
+    inputRange: [0, offset],
+    outputRange: [0, 60],
+    extrapolate: "clamp",
+  });
+  const translateInfoY = scrollY.interpolate({
+    inputRange: [0, offset],
+    outputRange: [1, -40],
+    extrapolate: "clamp",
+  });
+
+  // const scaleUserName = scrollY.interpolate({
+  //   inputRange: [0, offset],
+  //   outputRange: [1, 0.8],
+  //   extrapolate: "clamp",
+  // });
 
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
-      <ScrollView>
+    <SafeAreaView
+      style={[styles.safeAreaStyle, { backgroundColor: whiteBackground }]}
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false }
+        )}
+      >
+        <View style={{ width: "100%", height: 990, backgroundColor: "pink" }} />
+
         <View>
-          <View style={styles.ProfileIcons}>
+          {/* <View style={styles.ProfileIcons}>
             <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
               <View style={styles.Settings}>
                 <Icon name="settings" color="primary" size="large" />
@@ -46,12 +123,12 @@ const Profile = (props: ProfileProps) => {
               />
               <View style={styles.RedDot} />
             </View>
-          </View>
+          </View> */}
 
           <View
             style={[styles.ProfileInfo, { backgroundColor: whiteBackground }]}
           >
-            <Text variant="h2" style={{ marginTop: 40 }} color="titleText">
+            {/* <Text variant="h2" style={{ marginTop: 40 }} color="titleText">
               Josh Lewis
             </Text>
             <Text variant="body" color="bodyText">
@@ -64,9 +141,9 @@ const Profile = (props: ProfileProps) => {
               style={{ marginTop: 5, marginBottom: 20 }}
             >
               <Icon name="zap" color="smallText" size="medium" /> 103,597 XP
-            </Text>
+            </Text> */}
 
-            <View style={styles.Rec}>
+            {/* <View style={styles.Rec}>
               <View
                 style={[
                   styles.BiggerRectangle,
@@ -108,25 +185,12 @@ const Profile = (props: ProfileProps) => {
                   </Text>
                 </View>
               </View>
-            </View>
+            </View> */}
 
-            <StatBoxes />
+            {/* <StatBoxes /> */}
           </View>
 
-          <View style={styles.Avatar}>
-            <ShadowView
-              shadowOffset={12}
-              style={styles.Shadow}
-              isInnerShadow={false}
-            >
-              <Avatar.Image
-                size={135}
-                source={require("../../../assets/Josh.png")}
-              />
-            </ShadowView>
-          </View>
-
-          <Badges />
+          {/* <Badges />
 
           <View>
             <View
@@ -245,9 +309,86 @@ const Profile = (props: ProfileProps) => {
                 </Text>
               </ScrollView>
             </View>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
+
+      <Animated.View
+        pointerEvents="none"
+        style={[
+          styles.header,
+          {
+            transform: [{ translateY: translateHeader }],
+            backgroundColor: whiteBackground,
+          },
+        ]}
+      >
+        <Animated.View
+          style={[
+            styles.avatar,
+            {
+              transform: [
+                { translateY: translateImageY },
+                { translateX: translateImageX },
+                { scale: scaleImage },
+              ],
+            },
+          ]}
+        >
+          <Avatar
+            size={135}
+            name="user avatar"
+            imageURL="https://picsum.photos/200"
+          />
+        </Animated.View>
+
+        <Animated.View
+          style={[
+            styles.userInfo,
+            {
+              transform: [
+                { translateX: translateInfoX },
+                { translateY: translateInfoY },
+              ],
+            },
+          ]}
+        >
+          <Text variant="h2" color="titleText" style={styles.userName}>
+            Josh Lewis
+          </Text>
+          <View style={styles.userInfoDetails}>
+            <Icon
+              name="map-pin"
+              color="smallText"
+              size="small"
+              style={styles.userInfoIcon}
+            />
+            <Text variant="smBody">Montreal, Quebec</Text>
+          </View>
+          <View style={styles.userInfoDetails}>
+            <Icon
+              name="zap"
+              color="smallText"
+              size="small"
+              style={styles.userInfoIcon}
+            />
+            <Text variant="smBody">103,597 XP</Text>
+          </View>
+        </Animated.View>
+
+        {/* <Animated.Text
+          onTextLayout={(e) => setTextWidth(e.nativeEvent.lines[0].width)}
+          style={[
+            styles.userName,
+            {
+              transform: [{ translateX: translateName }],
+              color: titleText,
+            },
+          ]}
+        >
+          Josh Lewis
+        </Animated.Text> */}
+      </Animated.View>
     </SafeAreaView>
   );
 };
@@ -259,6 +400,36 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
   },
+  scrollContainer: {
+    paddingTop: headerHeight,
+  },
+  header: {
+    height: headerHeight,
+    position: "absolute",
+    top: Platform.OS === "ios" ? "8%" : "3%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  avatar: {
+    borderRadius: headerHeight,
+    overflow: "hidden",
+  },
+  userInfo: {
+    alignItems: "center",
+    // backgroundColor: "lightblue",
+  },
+  userInfoIcon: {
+    marginRight: 6,
+  },
+  userInfoDetails: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5,
+  },
+  userName: {
+    marginTop: 6,
+  },
   BiggerRectangle: {
     height: 8,
     borderRadius: 100,
@@ -268,26 +439,17 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginTop: 2,
   },
-  ProfileInfo: {
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    padding: 30,
-    backgroundColor: colors.light.backgroundSecondary,
-    marginTop: 70,
-    paddingTop: 40,
-  },
-  Avatar: {
-    alignSelf: "center",
-    position: "absolute",
-    marginTop: 30,
-    borderRadius: 100,
-    backgroundColor: colors.light.backgroundSecondary,
-    borderWidth: 2,
-    borderColor: colors.light.backgroundSecondary,
-  },
+  // ProfileInfo: {
+  //   flexDirection: "column",
+  //   alignItems: "center",
+  //   justifyContent: "space-between",
+  //   borderTopLeftRadius: 20,
+  //   borderTopRightRadius: 20,
+  //   padding: 30,
+  //   backgroundColor: colors.light.backgroundSecondary,
+  //   marginTop: 70,
+  //   paddingTop: 40,
+  // },
   ProfileIcons: {
     flexDirection: "row",
     marginTop: 10,
@@ -316,13 +478,6 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: -22,
   },
-  Shadow: {
-    hadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 4,
-    borderRadius: 200,
-  },
-
   Badges: {
     flexDirection: "row",
     justifyContent: "center",
