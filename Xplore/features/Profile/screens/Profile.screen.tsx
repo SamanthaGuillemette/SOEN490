@@ -1,32 +1,19 @@
 import {
   Animated,
-  Image,
   Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import {
-  Icon,
-  LinkButton,
-  Text,
-  Avatar,
-  LinearProgressBar,
-} from "../../../components";
+import { Icon, Text, Avatar, LinearProgressBar } from "../../../components";
 import { useThemeColor } from "../../../hooks";
-import {
-  colors,
-  deviceScreenWidth,
-  fonts,
-  fontSizes,
-} from "../../../constants";
-import { Badges } from "../components";
+import { deviceScreenWidth } from "../../../constants";
+import { ProjectSlider } from "../components";
 import { StatBoxes } from "../components";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -120,20 +107,12 @@ const Profile = (props: ProfileProps) => {
           <StatBoxes />
           <LinearProgressBar progress={0.3} />
 
-          {/* <Badges />
+          {/* <Badges /> */}
+
+          <ProjectSlider />
 
           <View>
-            <View
-              style={[styles.ProjectText, { backgroundColor: whiteBackground }]}
-            >
-              <Text variant="h3" color="titleText" style={{ marginLeft: 18 }}>
-                PROJECTS
-              </Text>
-              <LinkButton style={{ marginRight: 18 }}>View all</LinkButton>
-            </View>
-            <View
-              style={[styles.Projects, { backgroundColor: whiteBackground }]}
-            >
+            {/* <View>
               <ScrollView horizontal={true}>
                 <Image
                   style={[styles.SideProject, { marginLeft: 25 }]}
@@ -238,8 +217,10 @@ const Profile = (props: ProfileProps) => {
                   Unique soft robot
                 </Text>
               </ScrollView>
-            </View>
-          </View> */}
+            </View> */}
+          </View>
+
+          {/* Spaces here */}
         </View>
       </ScrollView>
 
@@ -413,12 +394,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
-  Projects: {
-    paddingBottom: 50,
-    paddingTop: 15,
-    flexDirection: "row",
-    justifyContent: "center",
-  },
+  // Projects: {
+  //   paddingBottom: 50,
+  //   paddingTop: 15,
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  // },
   MiddleProject: {
     height: 230,
     width: 300,
@@ -444,11 +425,5 @@ const styles = StyleSheet.create({
   },
   OverlayText: {
     position: "absolute",
-  },
-  ProjectText: {
-    marginTop: 2,
-    flexDirection: "row",
-    padding: 10,
-    justifyContent: "space-between",
   },
 });
