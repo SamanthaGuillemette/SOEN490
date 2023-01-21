@@ -11,7 +11,7 @@ import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar, LinearProgressBar } from "../../../components";
 import { useThemeColor } from "../../../hooks";
 import { deviceScreenWidth } from "../../../constants";
-import { ProjectSlider } from "../components";
+import { Badges, ProjectSlider } from "../components";
 import { StatBoxes } from "../components";
 import { useRef } from "react";
 
@@ -107,7 +107,7 @@ const Profile = (props: ProfileProps) => {
           <StatBoxes />
           <LinearProgressBar progress={0.3} />
 
-          {/* <Badges /> */}
+          <Badges />
 
           <ProjectSlider />
 

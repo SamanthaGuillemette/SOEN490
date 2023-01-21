@@ -70,7 +70,7 @@ const styleTemp = StyleSheet.create({
   item: {
     height: itemWidth / 1.5,
     width: itemWidth,
-    backgroundColor: "lightblue",
+    backgroundColor: "orange",
     borderRadius: 10,
   },
   list: {

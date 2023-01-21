@@ -6,7 +6,8 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 15,
+    paddingTop: 15,
+    paddingBottom: 20,
     paddingHorizontal: 30,
   },
 });
