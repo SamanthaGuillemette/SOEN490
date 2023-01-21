@@ -1,6 +1,7 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Text } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
+import styles from "./StatBoxes.styles";
 
 export const StatBoxes = () => {
   const badgeBackground = useThemeColor("background");
@@ -34,20 +35,3 @@ export const StatBoxes = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 30,
-    paddingBottom: 40,
-    paddingHorizontal: 30,
-  },
-  badgeBox: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: 105,
-    height: 70,
-    borderRadius: 8,
-  },
-});
