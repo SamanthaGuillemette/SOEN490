@@ -1,29 +1,46 @@
-import { StyleProp, ViewStyle } from "react-native";
+import {
+  StyleProp,
+  ViewStyle,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from "react-native";
 import { Text } from "../Text";
-import { View } from "../View";
 import styles from "./Button.styles";
 import { useThemeColor } from "../../hooks";
-interface ButtonProps {
+interface ButtonProps extends TouchableOpacityProps {
   children: string;
-  backgroundColor: "backgroundSecondary" | "primary";
-  textColor: "primary" | "generalGray";
+  backgroundColor: "background" | "backgroundSecondary" | "primary";
+  textColor: "primary" | "generalGray" | "smallText" | "success";
+  borderColor: "primary" | "smallText" | "success";
   style?: StyleProp<ViewStyle>;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { children, backgroundColor, textColor, style } = props;
-  const primary = useThemeColor("primary");
+  const {
+    children,
+    backgroundColor,
+    borderColor,
+    textColor,
+    style,
+    ...restOfProps
+  } = props;
+  const primary = useThemeColor(borderColor);
+  const bgColor = useThemeColor(backgroundColor);
   const color = useThemeColor(textColor);
 
   return (
-    <View
-      backgroundColor={backgroundColor}
-      style={[style, styles.Button, { borderColor: primary }]}
+    <TouchableOpacity
+      {...restOfProps}
+      style={[
+        style,
+        styles.Button,
+        { borderColor: primary, backgroundColor: bgColor },
+      ]}
     >
       <Text style={{ color: color }} variant="smBody">
         {children}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

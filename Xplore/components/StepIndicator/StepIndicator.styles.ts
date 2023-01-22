@@ -3,7 +3,6 @@ import { StyleSheet, StatusBar } from "react-native";
 export default StyleSheet.create({
   alignBtn: {
     alignItems: "center",
-    justifyContent: "center",
     marginTop: 23,
   },
   btn: {

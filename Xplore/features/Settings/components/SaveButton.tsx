@@ -9,6 +9,7 @@ const SaveButton = () => {
         style={styles.SaveBtn}
         backgroundColor="primary"
         textColor="generalGray"
+        borderColor="primary"
       >
         SAVE
       </Button>

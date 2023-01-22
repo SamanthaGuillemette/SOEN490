@@ -4,8 +4,8 @@ import { ShadowView } from "../ShadowView";
 import { Button } from "../Button";
 import { BrandIcon } from "../BrandIcon";
 import styles from "./IntegrationCard.styles";
-import { useThemeColor } from "../../hooks";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useState } from "react";
 
 interface IntegrationCardProps {
   testID: string;
@@ -18,7 +18,15 @@ interface IntegrationCardProps {
 
 export const IntegrationCard = (props: IntegrationCardProps) => {
   const { title, description, btnType, bgColor, iconName } = props;
-  const success = useThemeColor("success");
+  const [btnState, setBtnState] = useState(btnType);
+
+  const changeIntegrationBtn = () => {
+    if (btnState === "add") {
+      setBtnState("added");
+    } else {
+      setBtnState("add");
+    }
+  };
 
   return (
     <View style={[styles.container]}>
@@ -42,22 +50,24 @@ export const IntegrationCard = (props: IntegrationCardProps) => {
           <Text variant="smBody" color="bodyText" style={styles.alignDesc}>
             {description}
           </Text>
-          {btnType === "add" ? (
+          {btnState === "add" ? (
             <Button
               backgroundColor="primary"
               children={"ADD"}
               textColor="generalGray"
+              borderColor="primary"
               style={[styles.btn, styles.addBtn]}
+              onPress={() => changeIntegrationBtn()}
             />
           ) : (
-            <View
-              backgroundColor={"background"}
-              style={[styles.btn, styles.addedBtn, { borderColor: success }]}
-            >
-              <Text style={{ color: success }} variant="smBody">
-                ADDED
-              </Text>
-            </View>
+            <Button
+              backgroundColor="background"
+              children={"ADDED"}
+              textColor="success"
+              borderColor="success"
+              style={[styles.btn, styles.addedBtn]}
+              onPress={() => changeIntegrationBtn()}
+            />
           )}
         </View>
       </ShadowView>

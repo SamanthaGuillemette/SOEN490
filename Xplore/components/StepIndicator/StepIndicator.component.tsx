@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { ScrollView, TouchableOpacity, SafeAreaView } from "react-native";
+import { ScrollView, SafeAreaView } from "react-native";
 import { View, Wizard, Toast } from "react-native-ui-lib";
 import { Button } from "../Button";
 import { TopHeader } from "../TopHeader";
@@ -85,27 +85,31 @@ export const StepIndicator = (props: StepIndicatorProps) => {
 
   const renderNextButton = () => {
     return (
-      <TouchableOpacity onPress={goToNextStep} style={styles.alignBtn}>
+      <View style={styles.alignBtn}>
         <Button
           backgroundColor="primary"
           children={activeIndex === numOfSteps - 1 ? "SUBMIT" : "NEXT"}
           textColor="generalGray"
+          borderColor="primary"
           style={styles.btn}
+          onPress={goToNextStep}
         />
-      </TouchableOpacity>
+      </View>
     );
   };
 
   const renderPrevButton = () => {
     return (
-      <TouchableOpacity onPress={goToPrevStep} style={styles.alignBtn}>
+      <View style={styles.alignBtn}>
         <Button
           backgroundColor="backgroundSecondary"
           children="BACK"
           textColor="primary"
+          borderColor="primary"
           style={styles.btn}
+          onPress={goToPrevStep}
         />
-      </TouchableOpacity>
+      </View>
     );
   };
 
