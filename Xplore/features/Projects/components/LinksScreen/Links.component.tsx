@@ -1,8 +1,10 @@
-import { View, IntegrationCard } from "../../../../components";
+import { IntegrationCard } from "../../../../components";
+import { ScrollView, View } from "react-native";
+import styles from "./Links.styles";
 
 export const Links = () => {
   return (
-    <View>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <IntegrationCard
         testID={"ProjCreation_GitHubIntegration"}
         title={"GitHub Integration"}
@@ -27,7 +29,8 @@ export const Links = () => {
         bgColor={"white"}
         btnType={"add"}
       />
-    </View>
+      <View style={styles.spaceBottom} />
+    </ScrollView>
   );
 };
 
