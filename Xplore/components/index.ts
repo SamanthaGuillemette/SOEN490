@@ -25,3 +25,4 @@ export * from "./AlertModal";
 export * from "./User";
 export * from "./UsersList";
 export * from "./IntegrationCard";
+export * from "./TaskCard";

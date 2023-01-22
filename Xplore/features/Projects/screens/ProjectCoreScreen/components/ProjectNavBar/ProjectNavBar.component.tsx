@@ -9,7 +9,7 @@ import {
 import ProjectDescription from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
 import ProjectMembers from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
 import Links from "../../../../components/LinksScreen/Links.component";
-import Tasks from "../../../../components/TasksScreen/Tasks.component";
+import Tasks from "../../../../components/ProjectTasksScreen/Tasks.component";
 import { useThemeColor } from "../../../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectNavBar.styles";
