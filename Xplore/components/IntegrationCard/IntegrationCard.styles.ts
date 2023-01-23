@@ -25,6 +25,9 @@ export default StyleSheet.create({
   addedBtn: {
     width: 67,
   },
+  removedBtn: {
+    width: 86,
+  },
   btn: {
     height: 24,
     borderRadius: 8,

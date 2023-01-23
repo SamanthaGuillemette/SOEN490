@@ -10,6 +10,7 @@ export const Integration = () => {
         iconName="github"
         bgColor={"white"}
         btnType={"add"}
+        editableIntegration={true}
       />
       <IntegrationCard
         testID={"ProjCreation_JiraIntegration"}
@@ -18,6 +19,7 @@ export const Integration = () => {
         iconName="jira"
         bgColor={"blue"}
         btnType={"added"}
+        editableIntegration={true}
       />
       <IntegrationCard
         testID={"ProjCreation_FigmaIntegration"}
@@ -26,6 +28,7 @@ export const Integration = () => {
         iconName="figma"
         bgColor={"white"}
         btnType={"add"}
+        editableIntegration={true}
       />
     </View>
   );

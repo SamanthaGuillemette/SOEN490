@@ -12,19 +12,30 @@ interface IntegrationCardProps {
   title: string;
   description: string;
   iconName: keyof typeof FontAwesome5.glyphMap;
-  btnType: "add" | "added";
+  btnType: "add" | "added" | "removed"; // USER DOES NOT INPUT REMOVED VALUE EVER!
   bgColor: "white" | "blue";
+  editableIntegration?: boolean;
 }
 
 export const IntegrationCard = (props: IntegrationCardProps) => {
-  const { title, description, btnType, bgColor, iconName } = props;
+  const {
+    title,
+    description,
+    btnType,
+    bgColor,
+    iconName,
+    editableIntegration,
+  } = props;
   const [btnState, setBtnState] = useState(btnType);
 
   const changeIntegrationBtn = () => {
     if (btnState === "add") {
       setBtnState("added");
     } else {
-      setBtnState("add");
+      setBtnState("removed");
+      setTimeout(() => {
+        setBtnState("add");
+      }, 1000);
     }
   };
 
@@ -50,15 +61,36 @@ export const IntegrationCard = (props: IntegrationCardProps) => {
           <Text variant="smBody" color="bodyText" style={styles.alignDesc}>
             {description}
           </Text>
-          {btnState === "add" ? (
-            <Button
-              backgroundColor="primary"
-              children={"ADD"}
-              textColor="generalGray"
-              borderColor="primary"
-              style={[styles.btn, styles.addBtn]}
-              onPress={() => changeIntegrationBtn()}
-            />
+
+          {editableIntegration ? (
+            btnState === "add" ? (
+              <Button
+                backgroundColor="primary"
+                children={"ADD"}
+                textColor="generalGray"
+                borderColor="primary"
+                style={[styles.btn, styles.addBtn]}
+                onPress={() => changeIntegrationBtn()}
+              />
+            ) : btnState === "added" ? (
+              <Button
+                backgroundColor="background"
+                children={"ADDED"}
+                textColor="success"
+                borderColor="success"
+                style={[styles.btn, styles.addedBtn]}
+                onPress={() => changeIntegrationBtn()}
+              />
+            ) : (
+              <Button
+                backgroundColor="background"
+                children={"REMOVED"}
+                textColor="primary"
+                borderColor="primary"
+                style={[styles.btn, styles.removedBtn]}
+                onPress={() => changeIntegrationBtn()}
+              />
+            )
           ) : (
             <Button
               backgroundColor="background"
