@@ -12,5 +12,16 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    top: 4,
+  },
+  alignText: {
+    marginLeft: 10,
+  },
+  ShadowView: {
+    borderRadius: 4,
+  },
+  InputField: {
+    padding: 1,
+    borderRadius: 4,
   },
 });

@@ -12,8 +12,8 @@ import { useThemeColor } from "../../hooks";
 
 interface InputFieldProps extends RNTextInputProps {
   placeHolder: string;
-  styleBox?: StyleProp<ViewStyle>;
-  styleText?: StyleProp<ViewStyle>;
+  styleBox: StyleProp<ViewStyle>;
+  styleText: StyleProp<ViewStyle>;
 }
 
 export const InputField = (props: InputFieldProps) => {

@@ -4,16 +4,10 @@ import styles from "./Input.styles";
 
 export const Input = () => {
   return (
-    <View style={styles.positionRelative}>
+    <View>
       <View style={styles.container}>
-        <InputField
-          placeHolder="J"
-          styleBox={styles.projectTech}
-          styleText={styles.styleTextTech}
-        />
+        <Chips styleBox={styles.projectTech} placeHolder={"Technologies"} />
       </View>
-
-      <Chips placeHolder={"Technologies"} />
 
       <View style={styles.container}>
         <InputField

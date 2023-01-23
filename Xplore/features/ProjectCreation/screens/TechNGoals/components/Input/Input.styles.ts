@@ -6,20 +6,12 @@ export default StyleSheet.create({
     justifyContent: "center",
     marginTop: 23,
   },
-  positionRelative: {
-    position: "relative",
-  },
   projectTech: {
     width: 337,
-    height: 57,
   },
   projectGoals: {
     width: 337,
     height: 200,
-  },
-  styleTextTech: {
-    marginTop: 15,
-    marginLeft: 115,
   },
   styleTextGoals: {
     marginTop: 7,
