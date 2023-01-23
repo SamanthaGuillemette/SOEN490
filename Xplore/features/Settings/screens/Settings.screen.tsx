@@ -17,7 +17,7 @@ const Settings = (props: SettingsProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView>
-        <EditAvatar onPress={() => navigation.navigate("BottomTabNavigator")} />
+        <EditAvatar onPress={() => navigation.navigate("Profile")} />
         <EditProfileBox />
         <PassBox />
         <TopicBox />
