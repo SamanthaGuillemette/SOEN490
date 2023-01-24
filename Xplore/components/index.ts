@@ -23,3 +23,4 @@ export * from "./ConfirmationModal";
 export * from "./AlertModal";
 export * from "./User";
 export * from "./UsersList";
+export * from "./LogoutButton";

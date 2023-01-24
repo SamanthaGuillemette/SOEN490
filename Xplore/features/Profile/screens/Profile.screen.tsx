@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Icon, LinkButton, ShadowView, Text } from "../../../components";
+import { Icon, LinkButton, Logout, ShadowView, Text } from "../../../components";
 import { useThemeColor } from "../../../hooks";
 import { colors } from "../../../constants";
 import { Avatar } from "react-native-paper";
@@ -140,110 +140,113 @@ const Profile = (props: ProfileProps) => {
             <View
               style={[styles.Projects, { backgroundColor: whiteBackground }]}
             >
-              <ScrollView horizontal={true}>
-                <Image
-                  style={[styles.SideProject, { marginLeft: 25 }]}
-                  source={require("../../../assets/SnakeRobot.png")}
-                />
-                <View
-                  style={[
-                    styles.Overlay,
-                    styles.SideProject,
-                    { marginLeft: 25 },
-                  ]}
-                ></View>
-                <Text
-                  variant="smLabel"
-                  style={[
-                    styles.CompletedProject,
-                    { backgroundColor: success, bottom: 90, left: 50 },
-                  ]}
-                  darkColor={colors.dark.backgroundSecondary}
-                  lightColor={colors.light.backgroundSecondary}
-                >
-                  Completed
-                </Text>
-                <Text
-                  variant="h3"
-                  color="generalGray"
-                  style={[styles.OverlayText, { bottom: 60, left: 50 }]}
-                >
-                  Snake robot
-                </Text>
-                <Text
-                  variant="smBody"
-                  color="generalGray"
-                  style={[styles.OverlayText, { bottom: 45, left: 50 }]}
-                >
-                  Unique soft robot
-                </Text>
+              <View>
+                <ScrollView horizontal={true}>
+                  <Image
+                    style={[styles.SideProject, { marginLeft: 25 }]}
+                    source={require("../../../assets/SnakeRobot.png")}
+                  />
+                  <View
+                    style={[
+                      styles.Overlay,
+                      styles.SideProject,
+                      { marginLeft: 25 },
+                    ]}
+                  ></View>
+                  <Text
+                    variant="smLabel"
+                    style={[
+                      styles.CompletedProject,
+                      { backgroundColor: success, bottom: 90, left: 50 },
+                    ]}
+                    darkColor={colors.dark.backgroundSecondary}
+                    lightColor={colors.light.backgroundSecondary}
+                  >
+                    Completed
+                  </Text>
+                  <Text
+                    variant="h3"
+                    color="generalGray"
+                    style={[styles.OverlayText, { bottom: 60, left: 50 }]}
+                  >
+                    Snake robot
+                  </Text>
+                  <Text
+                    variant="smBody"
+                    color="generalGray"
+                    style={[styles.OverlayText, { bottom: 45, left: 50 }]}
+                  >
+                    Unique soft robot
+                  </Text>
 
-                <Image
-                  style={styles.MiddleProject}
-                  source={require("../../../assets/SnakeRobot.png")}
-                />
-                <View
-                  style={[styles.Overlay, styles.MiddleProject, { left: 310 }]}
-                />
-                <Text
-                  variant="smLabel"
-                  style={[
-                    styles.CompletedProject,
-                    { backgroundColor: success, bottom: 84, left: 335 },
-                  ]}
-                  darkColor={colors.dark.backgroundSecondary}
-                  lightColor={colors.light.backgroundSecondary}
-                >
-                  Completed
-                </Text>
-                <Text
-                  variant="h3"
-                  color="generalGray"
-                  style={[styles.OverlayText, { bottom: 54, left: 335 }]}
-                >
-                  Snake robot
-                </Text>
-                <Text
-                  variant="smBody"
-                  color="generalGray"
-                  style={[styles.OverlayText, { bottom: 39, left: 335 }]}
-                >
-                  Unique soft robot
-                </Text>
+                  <Image
+                    style={styles.MiddleProject}
+                    source={require("../../../assets/SnakeRobot.png")}
+                  />
+                  <View
+                    style={[styles.Overlay, styles.MiddleProject, { left: 310 }]}
+                  />
+                  <Text
+                    variant="smLabel"
+                    style={[
+                      styles.CompletedProject,
+                      { backgroundColor: success, bottom: 84, left: 335 },
+                    ]}
+                    darkColor={colors.dark.backgroundSecondary}
+                    lightColor={colors.light.backgroundSecondary}
+                  >
+                    Completed
+                  </Text>
+                  <Text
+                    variant="h3"
+                    color="generalGray"
+                    style={[styles.OverlayText, { bottom: 54, left: 335 }]}
+                  >
+                    Snake robot
+                  </Text>
+                  <Text
+                    variant="smBody"
+                    color="generalGray"
+                    style={[styles.OverlayText, { bottom: 39, left: 335 }]}
+                  >
+                    Unique soft robot
+                  </Text>
 
-                <Image
-                  style={styles.SideProject}
-                  source={require("../../../assets/SnakeRobot.png")}
-                />
-                <View
-                  style={[styles.Overlay, styles.SideProject, { left: 610 }]}
-                />
-                <Text
-                  variant="smLabel"
-                  style={[
-                    styles.CompletedProject,
-                    { backgroundColor: success, bottom: 90, left: 660 },
-                  ]}
-                  darkColor={colors.dark.backgroundSecondary}
-                  lightColor={colors.light.backgroundSecondary}
-                >
-                  Completed
-                </Text>
-                <Text
-                  variant="h3"
-                  style={[styles.OverlayText, { bottom: 60, left: 660 }]}
-                  color="generalGray"
-                >
-                  Snake robot
-                </Text>
-                <Text
-                  variant="smBody"
-                  style={[styles.OverlayText, { bottom: 45, left: 660 }]}
-                  color="generalGray"
-                >
-                  Unique soft robot
-                </Text>
-              </ScrollView>
+                  <Image
+                    style={styles.SideProject}
+                    source={require("../../../assets/SnakeRobot.png")}
+                  />
+                  <View
+                    style={[styles.Overlay, styles.SideProject, { left: 610 }]}
+                  />
+                  <Text
+                    variant="smLabel"
+                    style={[
+                      styles.CompletedProject,
+                      { backgroundColor: success, bottom: 90, left: 660 },
+                    ]}
+                    darkColor={colors.dark.backgroundSecondary}
+                    lightColor={colors.light.backgroundSecondary}
+                  >
+                    Completed
+                  </Text>
+                  <Text
+                    variant="h3"
+                    style={[styles.OverlayText, { bottom: 60, left: 660 }]}
+                    color="generalGray"
+                  >
+                    Snake robot
+                  </Text>
+                  <Text
+                    variant="smBody"
+                    style={[styles.OverlayText, { bottom: 45, left: 660 }]}
+                    color="generalGray"
+                  >
+                    Unique soft robot
+                  </Text>
+                </ScrollView>
+                <Logout style={styles.Logout}/>
+              </View>
             </View>
           </View>
         </View>
@@ -376,5 +379,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     justifyContent: "space-between",
+  },
+  Logout: {
+    marginBottom: 25,
+    marginLeft: 176,
   },
 });
