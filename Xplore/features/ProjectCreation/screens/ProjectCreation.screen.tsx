@@ -2,6 +2,7 @@ import { StepIndicator } from "../../../components";
 import Description from "./Description/screens/Description.screen";
 import TechNGoals from "./TechNGoals/screens/TechNGoals.screen";
 import Tasks from "./Tasks/screens/Tasks.screen";
+import AddMembers from "./AddMembers/screens/AddMembers.screen";
 import AddLinks from "./AddLinks/screens/AddLinks.screen";
 import { NavigationProp } from "@react-navigation/native";
 
@@ -25,7 +26,7 @@ const ProjectCreation = (props: HeaderProps) => {
         <Description />,
         <TechNGoals />,
         <Tasks />,
-        <></>,
+        <AddMembers />,
         <AddLinks />,
       ]}
       navigation={props.navigation}
