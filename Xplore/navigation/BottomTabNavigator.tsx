@@ -5,7 +5,7 @@ import Home from "../features/Dashboard/screens/Home.screen";
 import Chats from "../features/Chat/screens/Chats/Chats.screen";
 import { useThemeColor } from "../hooks";
 import styles from "./BottomTabNavigator.styles";
-import Profile from "../features/Profile/screens/Profile.screen";
+import Profile from "../features/Profile/screens/Profile/Profile.screen";
 
 const BottomTab = createBottomTabNavigator();
 

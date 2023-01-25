@@ -1,11 +1,11 @@
 import { Animated, SafeAreaView, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
-// import { NavigationProp } from "@react-navigation/native";
-import { Icon, Text, Avatar, PrimaryButton } from "../../../components";
-import { useThemeColor } from "../../../hooks";
-import { deviceScreenWidth } from "../../../constants";
-import { Badges, ProjectSlider, UserProgress } from "../components";
-import { StatBoxes } from "../components";
+import { NavigationProp } from "@react-navigation/native";
+import { Icon, Text, Avatar, PrimaryButton } from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
+import { deviceScreenWidth } from "../../../../constants";
+import { Badges, ProjectSlider, UserProgress } from "../../components";
+import { StatBoxes } from "../../components";
 import { useRef } from "react";
 import styles from "./Profile.styles";
 
@@ -13,11 +13,12 @@ const headerHeight = 300;
 const headerFinalHeight = 160;
 const imageSize = (headerHeight / 3) * 2;
 
-// interface ProfileProps {
-//   navigation: NavigationProp<any>;
-// }
+interface ProfileProps {
+  navigation: NavigationProp<any>;
+}
 
-const Profile = () => {
+const Profile = (props: ProfileProps) => {
+  const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
 
@@ -80,6 +81,15 @@ const Profile = () => {
 
           <View style={styles.signoutButton}>
             <PrimaryButton label="Sign out" onPress={() => {}} />
+
+            {/* FIXME: DELETE THIS LATER */}
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Settings");
+              }}
+            >
+              <Icon name="settings" color="primary" size="large" />
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -98,7 +108,11 @@ const Profile = () => {
         ]}
       >
         <View style={styles.topHeaderButtons}>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Settings");
+            }}
+          >
             <Icon name="settings" color="primary" size="large" />
           </TouchableOpacity>
 
