@@ -5,7 +5,8 @@ import styles from "./UserProgress.styles";
 export const UserProgress = () => {
   return (
     <View style={styles.mainContainer}>
-      <LinearProgressBar progress={0.3} />
+      <LinearProgressBar progress={0.8} />
+
       <View style={styles.userStatText}>
         <Text>
           <Text variant="smBody" color="bodyText">

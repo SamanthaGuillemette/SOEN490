@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import { ScrollView } from "react-native";
-import { NavigationProp } from "@react-navigation/native";
+// import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar } from "../../../components";
 import { useThemeColor } from "../../../hooks";
 import { deviceScreenWidth } from "../../../constants";
@@ -19,12 +19,11 @@ const headerHeight = 300;
 const headerFinalHeight = 160;
 const imageSize = (headerHeight / 3) * 2;
 
-interface ProfileProps {
-  navigation: NavigationProp<any>;
-}
+// interface ProfileProps {
+//   navigation: NavigationProp<any>;
+// }
 
-const Profile = (props: ProfileProps) => {
-  const { navigation } = props;
+const Profile = () => {
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
 
