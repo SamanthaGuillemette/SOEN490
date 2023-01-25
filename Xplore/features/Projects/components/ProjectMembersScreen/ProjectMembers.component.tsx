@@ -1,9 +1,10 @@
 import Member from "./components/Member/Member.component";
-import { ScrollView } from "react-native";
+import { ScrollView, Platform } from "react-native";
 import { View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
-interface ProjectMembers {}
+import { AnimatedFAB } from "react-native-paper";
 
+interface ProjectMembers {}
 const ProjectMembers = () => {
   return (
     <View style={styles.container}>
@@ -31,6 +32,21 @@ const ProjectMembers = () => {
           />
         </View>
       </ScrollView>
+      <AnimatedFAB
+        icon={"plus"}
+        label={"New Member"}
+        extended={false}
+        onPress={() => console.log("Pressed")}
+        visible={true}
+        animateFrom={"left"}
+        iconMode={"dynamic"}
+        style={{
+          position: "absolute",
+          bottom: Platform.OS === "ios" ? "15%" : "12%",
+          //right: Platform.OS === "ios" ? "10%" : "12%",
+          right: 40,
+        }}
+      />
     </View>
   );
 };
