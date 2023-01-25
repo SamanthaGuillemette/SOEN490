@@ -13,7 +13,7 @@ export const Links = () => {
             description={"Description"}
             iconName="github"
             bgColor={"white"}
-            btnType={"add"}
+            btnType={"added"}
           />
           <IntegrationCard
             testID={"ProjCreation_JiraIntegration"}
@@ -29,7 +29,7 @@ export const Links = () => {
             description={"Description"}
             iconName="figma"
             bgColor={"white"}
-            btnType={"add"}
+            btnType={"added"}
           />
         </View>
       </ScrollView>
