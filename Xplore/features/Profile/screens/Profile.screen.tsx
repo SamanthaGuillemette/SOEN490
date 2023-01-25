@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Icon, LinkButton, Logout, ShadowView, Text } from "../../../components";
+import { Icon, LinkButton, ShadowView, Text } from "../../../components";
+import { LogoutButton } from "../components/Logout/LogoutButton/LogoutButton.component";
 import { useThemeColor } from "../../../hooks";
 import { colors } from "../../../constants";
 import { Avatar } from "react-native-paper";
@@ -245,7 +246,7 @@ const Profile = (props: ProfileProps) => {
                     Unique soft robot
                   </Text>
                 </ScrollView>
-                <Logout style={styles.Logout}/>
+                <LogoutButton style={styles.Logout}/>
               </View>
             </View>
           </View>

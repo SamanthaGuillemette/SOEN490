@@ -5,13 +5,13 @@ import {
   TouchableOpacityProps,
   Image
 } from "react-native";
-import styles from "./Logout.styles";
+import styles from "./LogoutButton.styles";
 
 interface LogoutButtonProps extends TouchableOpacityProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const Logout = (props: LogoutButtonProps) => {
+export const LogoutButton = (props: LogoutButtonProps) => {
   const { style, ...restOfProps } = props;
 
   return (
@@ -21,7 +21,7 @@ export const Logout = (props: LogoutButtonProps) => {
     >
       <Image
         style={styles.logoutButton}
-        source={require("../../assets/logout.png")}
+        source={require("../../../../../assets/logout.png")}
       />
     </TouchableOpacity>
   );
