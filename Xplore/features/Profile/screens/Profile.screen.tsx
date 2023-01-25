@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 // import { NavigationProp } from "@react-navigation/native";
-import { Icon, Text, Avatar } from "../../../components";
+import { Icon, Text, Avatar, PrimaryButton } from "../../../components";
 import { useThemeColor } from "../../../hooks";
 import { deviceScreenWidth } from "../../../constants";
 import { Badges, ProjectSlider, UserProgress } from "../components";
@@ -110,6 +110,10 @@ const Profile = () => {
           <StatBoxes />
           <Badges />
           <ProjectSlider />
+
+          <View style={{ alignItems: "center", marginTop: 50 }}>
+            <PrimaryButton label="Sign out" onPress={() => {}} />
+          </View>
         </View>
       </ScrollView>
 
@@ -221,8 +225,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   avatar: {
-    borderRadius: headerHeight,
-    overflow: "hidden",
+    // borderRadius: headerHeight,
+    // overflow: "hidden",
   },
   userInfo: {
     alignItems: "center",
