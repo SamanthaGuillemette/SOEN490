@@ -14,6 +14,12 @@ export default StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
   },
+  spacingBottom: {
+    paddingBottom: 100,
+  },
+  spacingToast: {
+    paddingBottom: 70,
+  },
   stepIndicator: {
     marginTop: 52,
     marginBottom: -25,

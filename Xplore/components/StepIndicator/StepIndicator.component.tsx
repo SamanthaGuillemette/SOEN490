@@ -177,6 +177,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
           </Wizard>
         </View>
         {renderCurrentStep()}
+        <View style={styles.spacingBottom} />
       </ScrollView>
       {!_.isNil(submissionMsg) && (
         <Toast
@@ -184,7 +185,12 @@ export const StepIndicator = (props: StepIndicatorProps) => {
           visible={submissionMsg === "" ? false : true}
           position="bottom"
           message={submissionMsg}
-          style={{ backgroundColor: primary }}
+          style={[
+            {
+              backgroundColor: primary,
+            },
+            styles.spacingToast,
+          ]}
         />
       )}
     </SafeAreaView>
