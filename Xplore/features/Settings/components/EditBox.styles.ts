@@ -6,7 +6,10 @@ export default StyleSheet.create({
     marginTop: 13,
     paddingTop: 20,
     paddingLeft: 25,
-    left: 43,
+    marginLeft: "auto",
+    marginRight: "auto",
+    height: 203,
+    width: 325,
   },
   InputField: {
     height: 20,

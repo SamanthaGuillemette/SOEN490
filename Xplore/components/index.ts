@@ -5,6 +5,7 @@ export * from "./View";
 export * from "./LinkButton";
 export * from "./ShadowView";
 export * from "./InputField";
+export * from "./LabelledInputField";
 export * from "./UserAvatar";
 export * from "./Button";
 export * from "./ProgressBar";

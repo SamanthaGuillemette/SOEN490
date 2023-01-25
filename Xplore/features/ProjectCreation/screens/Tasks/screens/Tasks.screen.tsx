@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native";
 import styles from "./Tasks.styles";
-import { Input } from "../components/Input";
+import { Input } from "../components";
 
 const Tasks = () => {
   return (

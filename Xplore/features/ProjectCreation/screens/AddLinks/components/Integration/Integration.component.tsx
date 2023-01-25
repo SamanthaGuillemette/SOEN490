@@ -1,8 +1,9 @@
 import { IntegrationCard, View } from "../../../../../../components";
+import styles from "./Integration.styles";
 
 export const Integration = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <IntegrationCard
         testID={"ProjCreation_GitHubIntegration"}
         title={"GitHub Integration"}

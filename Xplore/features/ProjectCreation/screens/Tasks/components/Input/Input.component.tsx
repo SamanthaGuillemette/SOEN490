@@ -1,4 +1,9 @@
-import { InputField, DatePicker, Text } from "../../../../../../components";
+import {
+  InputField,
+  DatePicker,
+  Text,
+  ShadowView,
+} from "../../../../../../components";
 import { useState } from "react";
 import { View } from "react-native";
 import styles from "./Input.styles";
@@ -9,7 +14,7 @@ export const Input = () => {
   const [taskCategory, setTaskCategory] = useState("");
 
   return (
-    <View>
+    <ShadowView style={styles.shadowView}>
       <View style={styles.alignLeft}>
         <Text color="titleText" variant="h3">
           About
@@ -42,8 +47,8 @@ export const Input = () => {
         />
       </View>
       <View style={styles.alignDatePicker}>
-        <DatePicker title="Start" style={styles.alignLeft} />
-        <DatePicker title="End" style={styles.alignRight} />
+        <DatePicker title="Starts" style={styles.alignLeft} />
+        <DatePicker title="Ends" style={styles.alignRight} />
       </View>
       <View style={styles.alignLeft}>
         <Text color="titleText" variant="h3">
@@ -54,6 +59,6 @@ export const Input = () => {
       <View style={styles.alignLeft}>
         <Text>ADD button with checkmark</Text>
       </View>
-    </View>
+    </ShadowView>
   );
 };

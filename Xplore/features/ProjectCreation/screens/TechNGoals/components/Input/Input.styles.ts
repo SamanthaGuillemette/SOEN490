@@ -6,6 +6,11 @@ export default StyleSheet.create({
     justifyContent: "center",
     marginTop: 23,
   },
+  container2: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: -5,
+  },
   projectTech: {
     width: 337,
   },
@@ -15,39 +20,5 @@ export default StyleSheet.create({
   },
   styleTextGoals: {
     marginTop: 7,
-  },
-  alignTag: {
-    position: "absolute",
-    left: 45,
-    top: 34,
-  },
-  alignDropdown: {
-    left: 145,
-    bottom: 210,
-  },
-  alignCenter: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  figmaTag: {
-    height: 36,
-    width: 97,
-    borderRadius: 8,
-    borderWidth: 1,
-  },
-  jTag: {
-    height: 63,
-    width: 97,
-    borderRadius: 8,
-    borderWidth: 1,
-  },
-  alignItems: {
-    flexDirection: "row",
-  },
-  alignJTag: {
-    justifyContent: "center",
-  },
-  alignJTagText: {
-    left: 17,
   },
 });

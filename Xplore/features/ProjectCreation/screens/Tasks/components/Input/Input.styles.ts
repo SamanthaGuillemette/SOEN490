@@ -6,11 +6,16 @@ export default StyleSheet.create({
     justifyContent: "center",
     marginTop: 23,
   },
-
   alignDatePicker: {
     flexDirection: "row",
   },
-
+  shadowView: {
+    width: 357,
+    marginLeft: "auto",
+    marginRight: "auto",
+    paddingBottom: 20,
+    borderRadius: 10,
+  },
   alignLeft: {
     top: 10,
     left: 45,
@@ -23,12 +28,10 @@ export default StyleSheet.create({
     width: 337,
     height: 45,
   },
-
   taskDesc: {
     width: 337,
     height: 111,
   },
-
   taskCategory: {
     width: 337,
     height: 45,
@@ -40,7 +43,6 @@ export default StyleSheet.create({
     alignItems: "center",
     marginTop: 23,
   },
-
   btn: {
     width: 300,
     height: 50,

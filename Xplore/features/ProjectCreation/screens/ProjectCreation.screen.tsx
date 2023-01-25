@@ -1,10 +1,9 @@
 import { StepIndicator } from "../../../components";
 import Description from "./Description/screens/Description.screen";
 import TechNGoals from "./TechNGoals/screens/TechNGoals.screen";
-import Tasks from "./Task/screens/Tasks.screen";
+import Tasks from "./Tasks/screens/Tasks.screen";
 import AddLinks from "./AddLinks/screens/AddLinks.screen";
 import { NavigationProp } from "@react-navigation/native";
-import { ScrollView } from "react-native";
 
 interface HeaderProps {
   navigation: NavigationProp<any>;
@@ -12,28 +11,26 @@ interface HeaderProps {
 
 const ProjectCreation = (props: HeaderProps) => {
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <StepIndicator
-        headerTitle={"Create Projects"}
-        stepLabels={[
-          "Description",
-          "Tech & Goals",
-          "Tasks",
-          "Add Members",
-          "Add Links",
-        ]}
-        numOfSteps={5}
-        screens={[
-          <Description />,
-          <TechNGoals />,
-          <Tasks />,
-          <></>,
-          <AddLinks />,
-        ]}
-        navigation={props.navigation}
-        onSubmitMsg={"Project Created!"}
-      />
-    </ScrollView>
+    <StepIndicator
+      headerTitle={"Create Projects"}
+      stepLabels={[
+        "Description",
+        "Tech & Goals",
+        "Tasks",
+        "Add Members",
+        "Add Links",
+      ]}
+      numOfSteps={5}
+      screens={[
+        <Description />,
+        <TechNGoals />,
+        <Tasks />,
+        <></>,
+        <AddLinks />,
+      ]}
+      navigation={props.navigation}
+      onSubmitMsg={"Project Created!"}
+    />
   );
 };
 

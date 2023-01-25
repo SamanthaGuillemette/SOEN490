@@ -16,7 +16,7 @@ export default StyleSheet.create({
     left: 5,
   },
   line: {
-    width: 98,
+    width: 105,
     height: 1,
     top: 15,
   },
