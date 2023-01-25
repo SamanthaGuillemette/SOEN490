@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { ScrollView } from "react-native";
@@ -77,11 +78,13 @@ const Profile = () => {
           { useNativeDriver: false }
         )}
       >
+        {/* THIS IS EVERYTHING BELOW THE AVATAR & BASIC USER INFO */}
         <View
           style={{
             width: "100%",
-            height: 990,
+            // height: 990,
             // backgroundColor: "pink",
+            paddingBottom: 120,
             paddingTop: Platform.OS === "ios" ? 30 : 60,
           }}
         >
@@ -107,120 +110,10 @@ const Profile = () => {
           <StatBoxes />
           <Badges />
           <ProjectSlider />
-
-          <View>
-            {/* <View>
-              <ScrollView horizontal={true}>
-                <Image
-                  style={[styles.SideProject, { marginLeft: 25 }]}
-                  source={require("../../../assets/SnakeRobot.png")}
-                />
-                <View
-                  style={[
-                    styles.Overlay,
-                    styles.SideProject,
-                    { marginLeft: 25 },
-                  ]}
-                ></View>
-                <Text
-                  variant="smLabel"
-                  style={[
-                    styles.CompletedProject,
-                    { backgroundColor: success, bottom: 90, left: 50 },
-                  ]}
-                  darkColor={colors.dark.backgroundSecondary}
-                  lightColor={colors.light.backgroundSecondary}
-                >
-                  Completed
-                </Text>
-                <Text
-                  variant="h3"
-                  color="generalGray"
-                  style={[styles.OverlayText, { bottom: 60, left: 50 }]}
-                >
-                  Snake robot
-                </Text>
-                <Text
-                  variant="smBody"
-                  color="generalGray"
-                  style={[styles.OverlayText, { bottom: 45, left: 50 }]}
-                >
-                  Unique soft robot
-                </Text>
-
-                <Image
-                  style={styles.MiddleProject}
-                  source={require("../../../assets/SnakeRobot.png")}
-                />
-                <View
-                  style={[styles.Overlay, styles.MiddleProject, { left: 310 }]}
-                />
-                <Text
-                  variant="smLabel"
-                  style={[
-                    styles.CompletedProject,
-                    { backgroundColor: success, bottom: 84, left: 335 },
-                  ]}
-                  darkColor={colors.dark.backgroundSecondary}
-                  lightColor={colors.light.backgroundSecondary}
-                >
-                  Completed
-                </Text>
-                <Text
-                  variant="h3"
-                  color="generalGray"
-                  style={[styles.OverlayText, { bottom: 54, left: 335 }]}
-                >
-                  Snake robot
-                </Text>
-                <Text
-                  variant="smBody"
-                  color="generalGray"
-                  style={[styles.OverlayText, { bottom: 39, left: 335 }]}
-                >
-                  Unique soft robot
-                </Text>
-
-                <Image
-                  style={styles.SideProject}
-                  source={require("../../../assets/SnakeRobot.png")}
-                />
-                <View
-                  style={[styles.Overlay, styles.SideProject, { left: 610 }]}
-                />
-                <Text
-                  variant="smLabel"
-                  style={[
-                    styles.CompletedProject,
-                    { backgroundColor: success, bottom: 90, left: 660 },
-                  ]}
-                  darkColor={colors.dark.backgroundSecondary}
-                  lightColor={colors.light.backgroundSecondary}
-                >
-                  Completed
-                </Text>
-                <Text
-                  variant="h3"
-                  style={[styles.OverlayText, { bottom: 60, left: 660 }]}
-                  color="generalGray"
-                >
-                  Snake robot
-                </Text>
-                <Text
-                  variant="smBody"
-                  style={[styles.OverlayText, { bottom: 45, left: 660 }]}
-                  color="generalGray"
-                >
-                  Unique soft robot
-                </Text>
-              </ScrollView>
-            </View> */}
-          </View>
-
-          {/* Spaces here */}
         </View>
       </ScrollView>
 
+      {/* ANIMATED HEADER OF USER PROFILE */}
       <Animated.View
         pointerEvents="none"
         style={[
@@ -232,6 +125,25 @@ const Profile = () => {
           },
         ]}
       >
+        <View
+          style={{
+            height: 50,
+            width: 400,
+            // backgroundColor: "purple",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingHorizontal: 30,
+          }}
+        >
+          <TouchableOpacity onPress={() => {}}>
+            <Icon name="settings" color="primary" size="large" />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => {}}>
+            <Icon name="bell" color="primary" size="large" />
+          </TouchableOpacity>
+        </View>
         <Animated.View
           style={[
             styles.avatar,
@@ -314,7 +226,6 @@ const styles = StyleSheet.create({
   },
   userInfo: {
     alignItems: "center",
-    // backgroundColor: "lightblue",
   },
   userInfoIcon: {
     marginRight: 6,
@@ -336,17 +247,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginTop: 2,
   },
-  // ProfileInfo: {
-  //   flexDirection: "column",
-  //   alignItems: "center",
-  //   justifyContent: "space-between",
-  //   borderTopLeftRadius: 20,
-  //   borderTopRightRadius: 20,
-  //   padding: 30,
-  //   backgroundColor: colors.light.backgroundSecondary,
-  //   marginTop: 70,
-  //   paddingTop: 40,
-  // },
   ProfileIcons: {
     flexDirection: "row",
     marginTop: 10,
@@ -390,37 +290,9 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "space-between",
   },
-
-  // Projects: {
-  //   paddingBottom: 50,
-  //   paddingTop: 15,
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  // },
   MiddleProject: {
     height: 230,
     width: 300,
     borderRadius: 7,
-  },
-  SideProject: {
-    height: 200,
-    width: 270,
-    borderRadius: 7,
-    marginVertical: 15,
-    marginHorizontal: 15,
-  },
-  Overlay: {
-    backgroundColor: "rgba(0,0,0,0.5)",
-    position: "absolute",
-  },
-  CompletedProject: {
-    position: "absolute",
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 3,
-    letterSpacing: 0.2,
-  },
-  OverlayText: {
-    position: "absolute",
   },
 });

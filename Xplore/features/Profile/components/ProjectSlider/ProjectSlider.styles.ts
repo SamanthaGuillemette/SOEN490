@@ -13,4 +13,7 @@ export default StyleSheet.create({
     paddingBottom: 20,
     paddingHorizontal: 30,
   },
+  flatlistContentContainer: {
+    alignItems: "center",
+  },
 });
