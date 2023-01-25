@@ -27,3 +27,4 @@ export * from "./UsersList";
 export * from "./IntegrationCard";
 export * from "./TaskCard";
 export * from "./CircularPercentageBar";
+export * from "./MessageMember";
