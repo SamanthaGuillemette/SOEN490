@@ -13,14 +13,17 @@ export default StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
     position: "absolute",
   },
-  CompletedProject: {
+  textContent: {
     position: "absolute",
-    paddingVertical: 4,
+    left: 25,
+    bottom: 35,
+  },
+  completedLabel: {
+    paddingVertical: 5,
     paddingHorizontal: 8,
     borderRadius: 3,
     letterSpacing: 0.2,
-  },
-  OverlayText: {
-    position: "absolute",
+    width: 70,
+    marginBottom: 8,
   },
 });

@@ -6,6 +6,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Text } from "../../../../components";
 import { colors } from "../../../../constants";
+import { useThemeColor } from "../../../../hooks";
 import styles from "./ProjectSliderSingle.styles";
 
 interface ProjectSliderSingleProps {
@@ -32,13 +33,15 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
     };
   });
 
+  const successColor = useThemeColor("success");
+
   return (
     <Animated.View
       style={[
         styles.item,
         itemScaleStyle,
         {
-          height: itemWidth / 1.3,
+          height: itemWidth / 1.4,
           width: itemWidth,
         },
       ]}
@@ -48,31 +51,23 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
         source={{ uri: "https://picsum.photos/200/300" }}
       />
       <View style={[styles.overlay, styles.sideProject]} />
-      <Text
-        variant="smLabel"
-        style={[
-          styles.CompletedProject,
-          { backgroundColor: "success", bottom: 90, left: 50 },
-        ]}
-        darkColor={colors.dark.backgroundSecondary}
-        lightColor={colors.light.backgroundSecondary}
-      >
-        Completed
-      </Text>
-      <Text
-        variant="h3"
-        color="generalGray"
-        style={[styles.OverlayText, { bottom: 60, left: 50 }]}
-      >
-        Snake robot
-      </Text>
-      <Text
-        variant="smBody"
-        color="generalGray"
-        style={[styles.OverlayText, { bottom: 45, left: 50 }]}
-      >
-        Unique soft robot
-      </Text>
+
+      <View style={styles.textContent}>
+        <Text
+          variant="smLabel"
+          style={[styles.completedLabel, { backgroundColor: successColor }]}
+          darkColor={colors.dark.backgroundSecondary}
+          lightColor={colors.light.backgroundSecondary}
+        >
+          Completed
+        </Text>
+        <Text variant="h3" color="generalGray">
+          Snake robot
+        </Text>
+        <Text variant="smBody" color="generalGray">
+          Unique soft robot
+        </Text>
+      </View>
     </Animated.View>
   );
 };
