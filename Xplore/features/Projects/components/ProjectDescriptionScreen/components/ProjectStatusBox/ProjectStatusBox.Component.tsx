@@ -1,7 +1,11 @@
-import { View, Text, Icon } from "../../../../../../components";
+import {
+  View,
+  Text,
+  Icon,
+  CircularPercentageBar,
+} from "../../../../../../components";
 import { useThemeColor } from "../../../../../../hooks";
 import styles from "./ProjectStatusBox.styles";
-import CircularPercentageBar from "../../../ProjectComponents/CircularPercentageBar/CircularPercentageBar.component";
 
 interface ProjectStats {
   tasks: string;

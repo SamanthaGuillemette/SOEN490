@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { Text } from "../../../../../components";
+import { Text } from "../Text";
 import styles from "./CircularPercentageBar.styles";
 
 const CircularPercentageBarProps = (
@@ -28,7 +28,7 @@ const renderThirdLayer = (percentage: number) => {
   }
 };
 
-const CircularPercentageBar = (props: any) => {
+export const CircularPercentageBar = (props: any) => {
   const { percentage } = props;
   let firstProgressLayerStyle;
   if (percentage > 50) {
@@ -47,5 +47,3 @@ const CircularPercentageBar = (props: any) => {
     </View>
   );
 };
-
-export default CircularPercentageBar;
