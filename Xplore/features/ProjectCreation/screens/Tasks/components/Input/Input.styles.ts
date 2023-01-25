@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   alignLeft: {
     top: 10,
-    left: 45,
+    left: 20,
   },
   alignRight: {
     top: 10,
