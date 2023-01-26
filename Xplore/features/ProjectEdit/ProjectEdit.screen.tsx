@@ -30,7 +30,7 @@ const ProjectEdit = (props: HeaderProps) => {
         <AddLinks />,
       ]}
       navigation={props.navigation}
-      onSubmitMsg={"Project Created!"}
+      onSubmitMsg={"Project Edited!"}
     />
   );
 };
