@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Text, View, Icon } from "../../../../../../components";
-import { useThemeColor } from "../../../../../../hooks";
+import { Text, View, Icon } from "..";
+import { useThemeColor } from "../../hooks";
 import {
   LayoutAnimation,
   Platform,

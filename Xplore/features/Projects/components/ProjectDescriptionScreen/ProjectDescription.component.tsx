@@ -1,6 +1,6 @@
 import { ScrollView } from "react-native-gesture-handler";
 import { View } from "../../../../components";
-import ProjectDropDown from "./components/DropDown/DropDown.component";
+import ProjectDropDown from "../../../../components/DropDown/DropDown.component";
 import { NavigationProp } from "@react-navigation/native";
 import ProjectStatusBox from "./components/ProjectStatusBox/ProjectStatusBox.Component";
 import styles from "./ProjectDescription.styles";
