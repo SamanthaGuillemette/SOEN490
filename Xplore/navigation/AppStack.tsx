@@ -8,7 +8,7 @@ import Settings from "../features/Settings/screens/Settings.screen";
 import Home from "../features/Dashboard/screens/Home.screen";
 import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import ProjectCreation from "../features/ProjectCreation/screens/ProjectCreation.screen";
-import ProjectEdit from "../features/ProjectEdit/ProfileEdit.screen";
+import ProjectEdit from "../features/ProjectEdit/screens/ProjectEdit.screen";
 
 const Stack = createNativeStackNavigator();
 
