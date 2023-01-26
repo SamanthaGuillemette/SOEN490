@@ -1,6 +1,6 @@
-import Member from "./components/Member/Member.component";
+import MessageMember from "../../../../components/MessageMember/MessageMember.component";
 import { ScrollView } from "react-native";
-import { View } from "../../../../components";
+import { SquaredAddButton, View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
 
 interface ProjectMembers {}
@@ -9,26 +9,27 @@ const ProjectMembers = () => {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <Member
+          <MessageMember
             avatar={"https://picsum.photos/200"}
             username={"Josh Lewis"}
-            xp={"103,597"}
+            xp={103597}
           />
-          <Member
+          <MessageMember
             avatar={"https://picsum.photos/300"}
             username={"Amy Lucas"}
-            xp={"103,597"}
+            xp={103597}
           />
-          <Member
+          <MessageMember
             avatar={"https://picsum.photos/400"}
             username={"Elva Moore"}
-            xp={"103,597"}
+            xp={103597}
           />
-          <Member
+          <MessageMember
             avatar={"https://picsum.photos/500"}
             username={"Bernice Lewis"}
-            xp={"103,597"}
+            xp={103597}
           />
+          <SquaredAddButton />
         </View>
       </ScrollView>
     </View>
