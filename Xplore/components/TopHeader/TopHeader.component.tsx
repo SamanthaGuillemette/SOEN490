@@ -9,13 +9,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 interface TopHeaderProps {
   title: string;
-  icon1Name: keyof typeof Feather.glyphMap;
-  icon2Name?: keyof typeof Feather.glyphMap;
-  icon1Color?: "primary" | "smallText" | "primaryBackground";
-  icon2Color?: "primary" | "smallText" | "primaryBackground";
+  iconNames: (keyof typeof Feather.glyphMap)[];
+  iconColors: ("primary" | "smallText" | "primaryBackground")[];
   isChat?: boolean;
   isUserActive?: boolean;
-  navigation: NavigationProp<any>;
+  navArrow: NavigationProp<any>;
+  icon1OnPressFunc?: any;
+  icon2OnPressFunc?: any;
   children: any;
 }
 
@@ -24,17 +24,66 @@ const Stack = createNativeStackNavigator();
 export const TopHeader = (props: TopHeaderProps) => {
   const {
     title,
-    children,
-    icon1Name,
-    icon2Name,
-    icon1Color,
-    icon2Color,
-    navigation,
+    iconNames,
+    iconColors,
     isChat,
     isUserActive,
+    children,
+    navArrow,
+    icon1OnPressFunc,
+    icon2OnPressFunc,
   } = props;
   const smallText = useThemeColor("smallText");
   const success = useThemeColor("success");
+
+  const headerTitle = () => (
+    <View style={[styles.rowAlign, styles.bottomMargin]}>
+      <Text variant="h2" color="titleText" style={styles.alignTitle}>
+        {title}
+      </Text>
+      {isChat ? (
+        <View
+          style={[
+            styles.active,
+            isUserActive
+              ? { backgroundColor: success }
+              : { backgroundColor: smallText },
+          ]}
+        />
+      ) : (
+        ""
+      )}
+    </View>
+  );
+
+  const headerLeft = () => (
+    <View style={[styles.rowAlign, styles.bottomMargin]}>
+      <TouchableOpacity onPress={() => navArrow.goBack()}>
+        <Icon
+          style={styles.arrowIcon}
+          name="chevron-left"
+          color="primary"
+          size="large"
+        />
+      </TouchableOpacity>
+    </View>
+  );
+
+  const headerRight = () => (
+    <View style={[styles.rowAlign, styles.bottomMargin]}>
+      <TouchableOpacity onPress={icon1OnPressFunc}>
+        <Icon
+          name={iconNames[0]}
+          color={iconColors[0]}
+          size="large"
+          style={styles.iconAlign}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={icon2OnPressFunc}>
+        <Icon name={iconNames[1]} color={iconColors[1]} size="large" />
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <Stack.Navigator>
@@ -42,56 +91,9 @@ export const TopHeader = (props: TopHeaderProps) => {
         name="Header"
         component={children}
         options={{
-          headerTitle: () => (
-            <View style={[styles.rowAlign, styles.bottomMargin]}>
-              <Text variant="h2" color="titleText" style={styles.alignTitle}>
-                {title}
-              </Text>
-              {isChat ? (
-                <View
-                  style={[
-                    styles.active,
-                    isUserActive
-                      ? { backgroundColor: success }
-                      : { backgroundColor: smallText },
-                  ]}
-                />
-              ) : (
-                ""
-              )}
-            </View>
-          ),
-          headerLeft: () => (
-            <View style={[styles.rowAlign, styles.bottomMargin]}>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Icon
-                  style={styles.arrowIcon}
-                  name="chevron-left"
-                  color="primary"
-                  size="large"
-                />
-              </TouchableOpacity>
-            </View>
-          ),
-          headerRight: () => (
-            <View style={[styles.rowAlign, styles.bottomMargin]}>
-              <TouchableOpacity>
-                <Icon
-                  name={icon1Name}
-                  color={icon1Color}
-                  size="large"
-                  style={styles.iconAlign}
-                />
-              </TouchableOpacity>
-              {icon2Name ? (
-                <TouchableOpacity>
-                  <Icon name={icon2Name} color={icon2Color} size="large" />
-                </TouchableOpacity>
-              ) : (
-                ""
-              )}
-            </View>
-          ),
+          headerTitle: headerTitle,
+          headerLeft: headerLeft,
+          headerRight: headerRight,
         }}
       />
     </Stack.Navigator>

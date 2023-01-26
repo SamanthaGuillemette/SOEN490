@@ -20,9 +20,9 @@ const Chats = (props: ChatsProps) => {
       <TopHeader
         children={AllChats}
         title="Messages"
-        icon1Name="search"
-        icon1Color="smallText"
-        navigation={navigation}
+        iconNames={["search"]}
+        iconColors={["smallText"]}
+        navArrow={navigation}
       />
     </SafeAreaView>
   );

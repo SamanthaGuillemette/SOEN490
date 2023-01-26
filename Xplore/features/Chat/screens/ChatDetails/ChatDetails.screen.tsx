@@ -16,6 +16,8 @@ const ChatDetails = (props: ChatDetailsProps) => {
   let { name }: any = route.params;
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
+  const onPressPhone = () => console.log("phone icon clicked");
+
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
@@ -23,10 +25,12 @@ const ChatDetails = (props: ChatDetailsProps) => {
       <TopHeader
         children={ChatInformation}
         title={name}
-        icon1Name={"phone"}
-        icon2Name={"more-vertical"}
-        navigation={props.navigation}
+        iconNames={["phone", "more-vertical"]}
+        iconColors={["primary", "primary"]}
+        navArrow={props.navigation}
         isChat={true}
+        icon1OnPressFunc={onPressPhone}
+        icon2OnPressFunc={() => console.log("more-vertical icon clicked")}
       />
     </SafeAreaView>
   );
