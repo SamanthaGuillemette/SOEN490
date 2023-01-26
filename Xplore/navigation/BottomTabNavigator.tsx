@@ -13,6 +13,7 @@ import Settings from "../features/Settings/screens/Settings.screen";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
+import Projects from "../features/Projects/screens/Projects.screen";
 
 const BottomTab = createBottomTabNavigator();
 const CreationStack = createNativeStackNavigator();
@@ -64,7 +65,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="Home2"
-        component={Home}
+        component={Projects}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
