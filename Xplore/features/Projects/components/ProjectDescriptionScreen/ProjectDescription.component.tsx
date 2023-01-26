@@ -1,5 +1,5 @@
 import { ScrollView } from "react-native-gesture-handler";
-import { View } from "../../../../components";
+import { View, RequestJoin } from "../../../../components";
 import Accordion from "../../../../components/Accordion/Accordion.component";
 import { NavigationProp } from "@react-navigation/native";
 import ProjectStatusBox from "./components/ProjectStatusBox/ProjectStatusBox.Component";
@@ -21,6 +21,7 @@ const ProjectDescription = () => {
             percent={63}
           />
           <Accordion />
+          <RequestJoin />
         </View>
       </ScrollView>
     </View>
