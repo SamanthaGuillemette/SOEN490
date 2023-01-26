@@ -17,6 +17,7 @@ export * from "./Logo";
 export * from "./SegmentedButton";
 export * from "./PrimaryButton";
 export * from "./SecondaryButton";
+export * from "./RequestJoinButton";
 export * from "./SquaredAddButton";
 export * from "./ChipButton";
 export * from "./SearchBar";
