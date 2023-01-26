@@ -24,9 +24,9 @@ export const Button = (props: ButtonProps) => {
     style,
     ...restOfProps
   } = props;
-  const primary = useThemeColor(borderColor);
+  const borderC = useThemeColor(borderColor);
   const bgColor = useThemeColor(backgroundColor);
-  const color = useThemeColor(textColor);
+  const textC = useThemeColor(textColor);
 
   return (
     <TouchableOpacity
@@ -34,10 +34,10 @@ export const Button = (props: ButtonProps) => {
       style={[
         style,
         styles.Button,
-        { borderColor: primary, backgroundColor: bgColor },
+        { borderColor: borderC, backgroundColor: bgColor },
       ]}
     >
-      <Text style={{ color: color }} variant="smBody">
+      <Text style={{ color: textC }} variant="smBody">
         {children}
       </Text>
     </TouchableOpacity>

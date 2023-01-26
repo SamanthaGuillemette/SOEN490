@@ -6,6 +6,7 @@ import { BrandIcon } from "../BrandIcon";
 import styles from "./IntegrationCard.styles";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useState } from "react";
+import { useThemeColor } from "../../hooks";
 
 interface IntegrationCardProps {
   testID: string;
@@ -27,6 +28,7 @@ export const IntegrationCard = (props: IntegrationCardProps) => {
     editableIntegration,
   } = props;
   const [btnState, setBtnState] = useState(btnType);
+  const success = useThemeColor("success");
 
   const changeIntegrationBtn = () => {
     if (btnState === "add") {
@@ -92,14 +94,19 @@ export const IntegrationCard = (props: IntegrationCardProps) => {
               />
             )
           ) : (
-            <Button
+            <View
               backgroundColor="background"
-              children={"ADDED"}
-              textColor="success"
-              borderColor="success"
-              style={[styles.btn, styles.addedBtn]}
-              onPress={() => changeIntegrationBtn()}
-            />
+              style={[
+                styles.btn,
+                styles.addedBtn,
+                styles.Button,
+                { borderColor: success },
+              ]}
+            >
+              <Text style={{ color: success }} variant="smBody">
+                {"ADDED"}
+              </Text>
+            </View>
           )}
         </View>
       </ShadowView>
