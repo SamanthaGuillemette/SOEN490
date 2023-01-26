@@ -2,7 +2,7 @@ import { Animated, SafeAreaView, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar, PrimaryButton } from "../../../../components";
-import { useThemeColor } from "../../../../hooks";
+import { useAuth, useThemeColor } from "../../../../hooks";
 import { deviceScreenWidth } from "../../../../constants";
 import { Badges, ProjectSlider, UserProgress } from "../../components";
 import { StatBoxes } from "../../components";
@@ -19,6 +19,7 @@ interface ProfileProps {
 
 const Profile = (props: ProfileProps) => {
   const { navigation } = props;
+  const { signOut } = useAuth();
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
 
@@ -80,7 +81,7 @@ const Profile = (props: ProfileProps) => {
           <ProjectSlider />
 
           <View style={styles.signoutButton}>
-            <PrimaryButton label="Sign out" onPress={() => {}} />
+            <PrimaryButton label="Sign out" onPress={signOut} />
 
             {/* FIXME: DELETE THIS LATER */}
             <TouchableOpacity
