@@ -4,9 +4,9 @@ export default StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
+    alignItems: "center",
   },
   searchBar: {
-    marginHorizontal: 35,
     width: 320,
   },
 });
