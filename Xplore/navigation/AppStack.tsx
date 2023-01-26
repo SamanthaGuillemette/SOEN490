@@ -3,10 +3,12 @@ import Completion from "../features/Completion/screens/Completion.component";
 import Chats from "../features/Chat/screens/Chats/Chats.screen";
 import ChatDetails from "../features/Chat/screens/ChatDetails/ChatDetails.screen";
 import BottomTabNavigator from "./BottomTabNavigator";
-import Profile from "../features/Profile/screens/Profile.screen";
-import Settings from "../features/Settings/screens/Settings.screen";
+// import Profile from "../features/Profile/screens/Profile.screen";
+// import Settings from "../features/Settings/screens/Settings.screen";
 import Home from "../features/Dashboard/screens/Home.screen";
 import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
+import Profile from "../features/Profile/screens/Profile/Profile.screen";
+import Settings from "../features/Profile/screens/Settings/Settings.screen";
 
 const Stack = createNativeStackNavigator();
 
