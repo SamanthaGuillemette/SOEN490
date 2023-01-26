@@ -56,18 +56,18 @@ export const TopHeader = (props: TopHeaderProps) => {
     </View>
   );
 
-  const headerLeft = () => (
-    <View style={[styles.rowAlign, styles.bottomMargin]}>
-      <TouchableOpacity onPress={() => navArrow.goBack()}>
-        <Icon
-          style={styles.arrowIcon}
-          name="chevron-left"
-          color="primary"
-          size="large"
-        />
-      </TouchableOpacity>
-    </View>
-  );
+  // const headerLeft = () => (
+  //   <View style={[styles.rowAlign, styles.bottomMargin]}>
+  //     <TouchableOpacity onPress={() => navArrow.goBack()}>
+  //       <Icon
+  //         style={styles.arrowIcon}
+  //         name="chevron-left"
+  //         color="primary"
+  //         size="large"
+  //       />
+  //     </TouchableOpacity>
+  //   </View>
+  // );
 
   const headerRight = () => (
     <View style={[styles.rowAlign, styles.bottomMargin]}>
@@ -92,7 +92,7 @@ export const TopHeader = (props: TopHeaderProps) => {
         component={children}
         options={{
           headerTitle: headerTitle,
-          headerLeft: headerLeft,
+          // headerLeft: headerLeft,
           headerRight: headerRight,
         }}
       />
