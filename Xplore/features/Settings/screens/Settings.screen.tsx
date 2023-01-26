@@ -1,4 +1,3 @@
-import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import EditProfileBox from "../components/EditProfileBox";
 import PassBox from "../components/PassBox";
@@ -17,7 +16,7 @@ const Settings = (props: SettingsProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView>
-        <EditAvatar onPress={() => navigation.navigate("BottomTabNavigator")} />
+        <EditAvatar onPress={() => navigation.navigate("Profile")} />
         <EditProfileBox />
         <PassBox />
         <TopicBox />
