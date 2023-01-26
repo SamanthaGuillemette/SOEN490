@@ -5,6 +5,17 @@ export default StyleSheet.create({
     flex: 1,
   },
   content: {
-    paddingBottom: 200,
+    paddingBottom: 100,
+  },
+  shadowView: {
+    width: 357,
+    marginLeft: "auto",
+    marginRight: "auto",
+    paddingBottom: 20,
+    borderRadius: 10,
+  },
+  alignLeft: {
+    top: 10,
+    left: 20,
   },
 });
