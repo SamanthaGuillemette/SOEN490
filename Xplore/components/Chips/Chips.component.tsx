@@ -1,9 +1,15 @@
-import { ScrollView, StyleProp, ViewStyle } from "react-native";
+import {
+  ScrollView,
+  StyleProp,
+  ViewStyle,
+  TextInputChangeEventData,
+  NativeSyntheticEvent,
+} from "react-native";
+import { useState } from "react";
 import { ShadowView } from "../ShadowView/ShadowView.component";
-import { Icon } from "../Icon/Icon.component";
-import { Text } from "../Text/Text.component";
 import { View } from "../View/View.component";
-import { ChipsInput, NumberInputProps } from "react-native-ui-lib";
+import _ from "lodash";
+import { Incubator, ChipsInputChipProps } from "react-native-ui-lib";
 import styles from "./Chips.styles";
 import { useThemeColor } from "../../hooks";
 
@@ -15,29 +21,9 @@ interface ChipsProps {
 export const Chips = (props: ChipsProps) => {
   const background = useThemeColor("background");
   const generalGray = useThemeColor("generalGray");
-  const bodyText = useThemeColor("bodyText");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const { placeHolder, styleBox } = props;
-
-  const renderCustomTag = (tag: any, _: NumberInputProps) => {
-    return (
-      <ShadowView
-        style={[
-          styles.customTag,
-          { backgroundColor: background, borderColor: generalGray },
-        ]}
-      >
-        <Text variant="smBody" color="titleText">
-          {tag.label}
-        </Text>
-        <Icon name="x" color="primaryBackgroundOpaque" size="large" />
-      </ShadowView>
-    );
-  };
-
-  const onCreateTag = (value: string) => {
-    return { label: value };
-  };
+  const [chips, setChips] = useState<ChipsInputChipProps[] | undefined>([]);
 
   return (
     <ScrollView>
@@ -51,12 +37,36 @@ export const Chips = (props: ChipsProps) => {
         backgroundColor={"primaryBackgroundOpaque"}
       >
         <View style={styles.alignText}>
-          <ChipsInput
+          <Incubator.ChipsInput
             placeholder={placeHolder}
-            renderTag={renderCustomTag}
-            onCreateTag={onCreateTag}
-            hideUnderline={true}
-            inputStyle={{ color: bodyText }}
+            chips={chips}
+            defaultChipProps={{
+              backgroundColor: background,
+              containerStyle: {
+                borderWidth: 1,
+                borderColor: generalGray,
+                height: 36,
+                borderRadius: 8,
+              },
+            }}
+            onChange={(newChips) => {
+              _.flow(
+                (newChips) => _.groupBy(newChips, "label"),
+                (newChips) =>
+                  _.forEach(newChips, (group) => {
+                    if (group.length === 1) {
+                      delete group[0].invalid;
+                    } else {
+                      group[group.length - 1].invalid = true;
+                    }
+                  }),
+                _.values,
+                _.flatten
+              )(newChips);
+
+              setChips(newChips);
+              console.log(newChips);
+            }}
           />
         </View>
       </ShadowView>

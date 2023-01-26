@@ -135,7 +135,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
 
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <TopHeader
           title={headerTitle}
           icon1Name="search"
