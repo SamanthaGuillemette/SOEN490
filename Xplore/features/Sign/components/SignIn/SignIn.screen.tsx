@@ -7,23 +7,46 @@ import {
   TextInput,
 } from "../../../../components";
 import styles from "./SignIn.styles";
-
+import Spinner from "react-native-loading-spinner-overlay/lib";
+import { useAuth } from "../../../../hooks";
 interface SignInProps {
   navigation: NavigationProp<any>;
 }
 
 const SignIn = (props: SignInProps) => {
   const { navigation } = props;
-  // const navigation = useNavigation();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const { signIn, loading } = useAuth();
 
   return (
     <View style={styles.container}>
-      <TextInput placeHolder="Username" iconName="user" />
-      <TextInput placeHolder="Password" iconName="lock" secureTextEntry />
+      <Spinner
+        visible={loading}
+        textContent={"Hang tight!\n We're signing you in ⚡"}
+        textStyle={styles.loadingScreen}
+        animation={"fade"}
+      />
+      <TextInput
+        placeHolder="Email"
+        iconName="user"
+        onChangeText={(thisEmail: string) => setEmail(thisEmail)}
+      />
+      <TextInput
+        placeHolder="Password"
+        iconName="lock"
+        secureTextEntry
+        onChangeText={(thisPassword: string) => setPassword(thisPassword)}
+      />
       <PrimaryButton
         label="SIGN IN"
         style={styles.PrimaryButton}
-        onPress={() => navigation.navigate("BottomTabNavigator")}
+        onPress={() => {
+          signIn(email, password);
+          setEmail("");
+          setPassword("");
+        }}
       />
       <SecondaryButton
         label="FORGOT PASSWORD"

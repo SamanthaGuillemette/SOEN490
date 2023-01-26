@@ -2,10 +2,11 @@ import { NavigationProp } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
-import Conversation from "../../components/Conversation/Conversation.Component";
-import ChatTextInput from "../../components/ChatTextInput/ChatTextInput.Component";
+import ChatDetailsHeader from "./components/ChatDetailsHeader/ChatDetailsHeader.component";
+import Conversation from "./components/Conversation/Conversation.component";
+import ChatTextInput from "./components/ChatTextInput/ChatTextInput.component";
 import styles from "./ChatDetails.styles";
-import { TopHeader } from "../../../../components";
+//import { TopHeader } from "../../../../components";
 
 interface ChatDetailsProps {
   navigation: NavigationProp<any>;
@@ -22,27 +23,11 @@ const ChatDetails = (props: ChatDetailsProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
-      <TopHeader
-        children={ChatInformation}
-        title={name}
-        iconNames={["phone", "more-vertical"]}
-        iconColors={["primary", "primary"]}
-        navigation={props.navigation}
-        isChat={true}
-        //onPressIcon1={onPressPhone}
-        //onPressIcon2={() => console.log("more-vertical icon clicked")}
-      />
+      <ChatDetailsHeader username={name} navigation={props.navigation} />
+      <Conversation navigation={name} />
+      <ChatTextInput />
     </SafeAreaView>
   );
 };
 
 export default ChatDetails;
-
-const ChatInformation = () => {
-  return (
-    <>
-      <Conversation />
-      <ChatTextInput />
-    </>
-  );
-};

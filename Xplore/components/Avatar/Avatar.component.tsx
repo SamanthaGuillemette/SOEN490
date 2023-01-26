@@ -6,6 +6,7 @@ import { Text } from "../Text";
 
 interface AvatarProps extends ViewProps {
   name: string;
+  avatarCount?: number;
   imageURL?: string;
   size?: number;
   style?: StyleProp<ViewStyle>;
@@ -13,7 +14,14 @@ interface AvatarProps extends ViewProps {
 
 export const Avatar = (props: AvatarProps) => {
   // Default size to '60'
-  const { name, imageURL, size = 60, style, ...restOfProps } = props;
+  const {
+    name,
+    imageURL,
+    size = 60,
+    style,
+    avatarCount,
+    ...restOfProps
+  } = props;
 
   const primary = useThemeColor("primary");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
@@ -37,6 +45,18 @@ export const Avatar = (props: AvatarProps) => {
           ]}
           source={{ uri: `${imageURL}` }}
         />
+      ) : avatarCount ? (
+        <View
+          backgroundColor="primary"
+          style={[
+            styles.textAvatar,
+            { width: size, height: size, borderRadius: size / 2 },
+          ]}
+        >
+          <Text style={styles.textAvatarText} variant="h3">
+            +{avatarCount}
+          </Text>
+        </View>
       ) : (
         <View
           backgroundColor="primary"

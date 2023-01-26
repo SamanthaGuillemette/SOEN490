@@ -22,7 +22,7 @@ const EditAvatar = (props: EditAvatarProps) => {
       <View style={styles.ProfileIcons}>
         <TouchableWithoutFeedback {...restOfProps}>
           <View style={styles.Arrow_Left}>
-            <Icon name="arrow-left" color="primary" size="large" />
+            <Icon name="chevron-left" color="primary" size="large" />
           </View>
         </TouchableWithoutFeedback>
         <View>
