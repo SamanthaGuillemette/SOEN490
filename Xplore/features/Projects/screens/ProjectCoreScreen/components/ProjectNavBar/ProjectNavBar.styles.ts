@@ -1,11 +1,10 @@
-import { StyleSheet, Dimensions } from "react-native";
-
-const { width } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
+import { deviceScreenWidth } from "../../../../../../constants";
 
 export default StyleSheet.create({
   container: {
     marginTop: -220,
-    width: width,
+    width: deviceScreenWidth,
   },
   headerScroll: {
     borderTopLeftRadius: 10,
@@ -32,8 +31,8 @@ export default StyleSheet.create({
     bottom: 0,
   },
   mainItem: {
-    width: width,
-    borderWidth: 5,
+    width: deviceScreenWidth,
+    borderTopWidth: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
     height: "65%",

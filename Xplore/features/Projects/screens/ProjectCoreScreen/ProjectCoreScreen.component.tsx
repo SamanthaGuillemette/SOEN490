@@ -1,11 +1,11 @@
 import { View } from "../../../../components";
 import ProjectNavBar from "./components/ProjectNavBar/ProjectNavBar.component";
-import ShadowImage from "./components/ShadowImage/ShadowImage.component";
+import FeaturedImage from "./components/FeaturedImage/FeaturedImage.component";
 
 const ProjectCore = () => {
   return (
     <View backgroundColor="background">
-      <ShadowImage projectName="Snake Robot" source="" />
+      <FeaturedImage projectName="Snake Robot" source="" />
       <ProjectNavBar />
     </View>
   );

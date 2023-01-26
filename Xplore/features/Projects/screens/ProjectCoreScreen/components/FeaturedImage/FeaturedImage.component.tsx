@@ -1,13 +1,13 @@
 import { ImageBackground, View as RNView } from "react-native";
 import { ShadowView, Text, View } from "../../../../../../components";
-import styles from "./ShadowImage.styles";
+import styles from "./FeaturedImage.styles";
 
 interface ShadowImageProps {
   projectName: string;
   source: string;
 }
 
-export const ShadowImage = (props: ShadowImageProps) => {
+export const FeaturedImage = (props: ShadowImageProps) => {
   const { projectName, source } = props;
 
   return (
@@ -27,4 +27,4 @@ export const ShadowImage = (props: ShadowImageProps) => {
   );
 };
 
-export default ShadowImage;
+export default FeaturedImage;

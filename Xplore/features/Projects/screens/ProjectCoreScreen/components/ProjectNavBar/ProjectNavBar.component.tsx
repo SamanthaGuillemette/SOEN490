@@ -102,6 +102,7 @@ function ProjectNavBar() {
           )}
         />
       </View>
+
       <FlatList
         data={headers}
         ref={itemScrollView}
@@ -114,7 +115,7 @@ function ProjectNavBar() {
         renderItem={({ item, index }) => (
           <View
             key={item}
-            style={[styles.mainItem, { borderColor: background }]}
+            style={[styles.mainItem, { borderTopColor: background }]}
           >
             {projectScreenPages[index]}
           </View>
