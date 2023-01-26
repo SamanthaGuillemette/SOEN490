@@ -54,8 +54,9 @@ export const TextInput = ({
         onBlur={handleBlur}
         placeholderTextColor={bodyText}
         placeholder={placeHolder}
+        autoCapitalize={"none"}
         secureTextEntry={secureTextEntry}
-        style={{ color: smallText }}
+        style={[styles.textInput, { color: smallText }]}
         {...restOfProps}
       />
     </View>
