@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { Modal, View, Image } from "react-native";
 import { useThemeColor } from "../../../../../hooks/useThemeColor";
-import {
-  Text,
-  ShadowView,
-} from "../../../../../components";
+import { Text } from "../../../../../components";
 import { useAuth } from "../../../../../hooks";
 import styles from "./LogoutSuccessModal.styles";
 
@@ -16,7 +13,7 @@ export const LogoutSuccessModal = ({
   setLogoutSuccessModalVisible: setLogoutSuccessModalVisible,
 }: LogoutSuccessModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
-  const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const background = useThemeColor("background");
 
   const { signOut } = useAuth();
   
@@ -34,8 +31,8 @@ export const LogoutSuccessModal = ({
       onShow={signOut}
     >
       <View style={styles.fullView}>
-        <ShadowView
-          style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
+        <View
+          style={[styles.modalView, { backgroundColor: background }]}
         >
           <Text
             variant="h2"
@@ -55,7 +52,7 @@ export const LogoutSuccessModal = ({
           >
             Redirecting to Login Page...
           </Text>
-        </ShadowView>
+        </View>
       </View>
     </Modal>
   );

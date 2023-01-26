@@ -3,7 +3,6 @@ import { Modal, View } from "react-native";
 import { useThemeColor } from "../../../../../hooks/useThemeColor";
 import {
   Text,
-  ShadowView,
   PrimaryButton,
   SecondaryButton,
 } from "../../../../../components";
@@ -18,7 +17,7 @@ export const LogoutConfirmModal = ({
   setLogoutConfirmModalVisible: setLogoutConfirmModalVisible,
 }: LogoutConfirmModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
-  const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const background = useThemeColor("background");
 
   const [logoutSuccessModalVisible, setLogoutSuccessModalVisible] = useState<any>(false);
   
@@ -35,8 +34,8 @@ export const LogoutConfirmModal = ({
       onRequestClose={handleClose}
     >
       <View style={styles.fullView}>
-        <ShadowView
-          style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
+        <View
+          style={[styles.modalView, { backgroundColor: background }]}
         >
           <Text
             variant="h2"
@@ -58,7 +57,7 @@ export const LogoutConfirmModal = ({
             onPress={handleClose}
             style={styles.cancelButton}
           />
-        </ShadowView>
+        </View>
       </View>
     </Modal>
   );
