@@ -5,6 +5,7 @@ import ProjectCoreScreen from "./ProjectCoreScreen/ProjectCoreScreen.component";
 import TopHeader from "../../../navigation/TopHeader.component";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./Projects.styles";
+import { TouchableOpacity } from "react-native-ui-lib";
 
 interface ProjectsProps {
   navigation: NavigationProp<any>;
@@ -18,6 +19,9 @@ const Home = (props: ProjectsProps) => {
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
       <TopHeader screenName={"Projects"} navigation={props.navigation} />
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("ProfileEdit")}
+      />
       <ProjectCoreScreen />
     </SafeAreaView>
   );

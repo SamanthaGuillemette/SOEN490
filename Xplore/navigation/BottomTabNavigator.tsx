@@ -14,10 +14,12 @@ import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 import Projects from "../features/Projects/screens/Projects.screen";
+import ProjectEdit from "../features/ProjectEdit/ProfileEdit.screen";
 
 const BottomTab = createBottomTabNavigator();
 const CreationStack = createNativeStackNavigator();
 const ProfileStk = createNativeStackNavigator();
+const Edit = createNativeStackNavigator();
 
 const CreationCreationStack = () => {
   return (
@@ -37,6 +39,15 @@ const ProfileStack = () => {
       <ProfileStk.Screen name="Profile" component={Profile} />
       <ProfileStk.Screen name="Settings" component={Settings} />
     </ProfileStk.Navigator>
+  );
+};
+
+const EditStack = () => {
+  return (
+    <Edit.Navigator screenOptions={{ headerShown: false }}>
+      <Edit.Screen name="Projects" component={Projects} />
+      <Edit.Screen name="ProjectEdit" component={ProjectEdit} />
+    </Edit.Navigator>
   );
 };
 
@@ -65,7 +76,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="Home2"
-        component={Projects}
+        component={EditStack}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon

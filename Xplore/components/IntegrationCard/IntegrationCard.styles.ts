@@ -38,4 +38,9 @@ export default StyleSheet.create({
     left: 265,
     bottom: 10,
   },
+  Button: {
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
