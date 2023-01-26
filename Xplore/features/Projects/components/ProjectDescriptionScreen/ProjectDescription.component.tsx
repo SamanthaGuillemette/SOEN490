@@ -1,6 +1,6 @@
 import { ScrollView } from "react-native-gesture-handler";
 import { View } from "../../../../components";
-import ProjectDropDown from "../../../../components/DropDown/DropDown.component";
+import Accordion from "../../../../components/Accordion/Accordion.component";
 import { NavigationProp } from "@react-navigation/native";
 import ProjectStatusBox from "./components/ProjectStatusBox/ProjectStatusBox.Component";
 import styles from "./ProjectDescription.styles";
@@ -20,7 +20,7 @@ const ProjectDescription = () => {
             date={"August 12, 2022"}
             percent={63}
           />
-          <ProjectDropDown />
+          <Accordion />
         </View>
       </ScrollView>
     </View>

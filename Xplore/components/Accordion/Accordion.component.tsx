@@ -7,14 +7,14 @@ import {
   TouchableOpacity,
   UIManager,
 } from "react-native";
-import styles from "./DropDown.styles";
+import styles from "./Accordion.styles";
 
-const dropDownNames = ["About", "Technologies", "Goals"];
+const accordionNames = ["About", "Technologies", "Goals"];
 
-const dropDownContent = [
-  "About dropdown tab \n",
-  "Technologies dropdown tab \n",
-  "Goals dropdown tab \n",
+const accordionContent = [
+  "About accordion tab \n",
+  "Technologies accordion tab \n",
+  "Goals accordion tab \n",
 ];
 
 if (Platform.OS === "android") {
@@ -23,7 +23,7 @@ if (Platform.OS === "android") {
   }
 }
 
-export default function CollapsibleHeader() {
+export default function Accordion() {
   const [active, setActive] = useState(null);
   return (
     <View backgroundColor="background">
@@ -44,7 +44,7 @@ function Item(props: any) {
   const smallText = useThemeColor("smallText");
   return (
     <TouchableOpacity
-      style={[styles.dropDown, { borderColor: smallText }]}
+      style={[styles.accordion, { borderColor: smallText }]}
       onPress={onPress}
       activeOpacity={1}
     >
@@ -55,7 +55,7 @@ function Item(props: any) {
         }
       >
         <Text variant="h4" color="titleText">
-          {dropDownNames[i]}
+          {accordionNames[i]}
         </Text>
         <View>
           {open ? (
@@ -65,7 +65,7 @@ function Item(props: any) {
           )}
         </View>
       </View>
-      {open && <Text style={styles.subItem}> {dropDownContent[i]} </Text>}
+      {open && <Text style={styles.subItem}> {accordionContent[i]} </Text>}
     </TouchableOpacity>
   );
 }

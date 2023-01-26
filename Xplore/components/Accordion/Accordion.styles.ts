@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  dropDown: {
+  accordion: {
     width: 330,
     borderRadius: 10,
     borderWidth: 1,
