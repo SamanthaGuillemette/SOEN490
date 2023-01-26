@@ -9,7 +9,11 @@ import styles from "./Button.styles";
 import { useThemeColor } from "../../hooks";
 interface ButtonProps extends TouchableOpacityProps {
   children: string;
-  backgroundColor: "background" | "backgroundSecondary" | "primary";
+  backgroundColor:
+    | "background"
+    | "backgroundSecondary"
+    | "primary"
+    | "primaryBackground";
   textColor: "primary" | "generalGray" | "smallText" | "success";
   borderColor: "primary" | "smallText" | "success";
   style?: StyleProp<ViewStyle>;
