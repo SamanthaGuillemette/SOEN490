@@ -7,6 +7,7 @@ import {
   PrimaryButton,
   SecondaryButton,
 } from "../../../../../components";
+import { LogoutSuccessModal } from "../LogoutSuccessModal/LogoutSuccessModal.component";
 import styles from "./LogoutConfirmModal.styles";
 
 interface LogoutConfirmModalProps {
@@ -18,6 +19,8 @@ export const LogoutConfirmModal = ({
 }: LogoutConfirmModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+
+  const [logoutSuccessModalVisible, setLogoutSuccessModalVisible] = useState<any>(false);
   
   function handleClose() {
     setModalVisible(!modalVisible);
@@ -45,7 +48,11 @@ export const LogoutConfirmModal = ({
           <PrimaryButton
             label="LOG OUT"
             style={styles.logoutButton}
+            onPress={() => setLogoutSuccessModalVisible(true)}
           />
+          {logoutSuccessModalVisible === true && (
+            <LogoutSuccessModal setLogoutSuccessModalVisible={setLogoutSuccessModalVisible}/>
+          )}
           <SecondaryButton
             label="CANCEL"
             onPress={handleClose}
