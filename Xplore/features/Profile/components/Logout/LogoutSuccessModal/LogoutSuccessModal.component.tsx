@@ -5,6 +5,7 @@ import {
   Text,
   ShadowView,
 } from "../../../../../components";
+import { useAuth } from "../../../../../hooks";
 import styles from "./LogoutSuccessModal.styles";
 
 interface LogoutSuccessModalProps {
@@ -16,6 +17,8 @@ export const LogoutSuccessModal = ({
 }: LogoutSuccessModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+
+  const { signOut } = useAuth();
   
   function handleClose() {
     setModalVisible(!modalVisible);
@@ -28,6 +31,7 @@ export const LogoutSuccessModal = ({
       transparent={true}
       visible={modalVisible}
       onRequestClose={handleClose}
+      onShow={signOut}
     >
       <View style={styles.fullView}>
         <ShadowView
