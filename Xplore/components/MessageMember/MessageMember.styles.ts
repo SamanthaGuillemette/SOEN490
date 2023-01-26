@@ -5,7 +5,7 @@ import { multiplier } from "../../constants";
 export default StyleSheet.create({
   user_container: {
     paddingHorizontal: 25,
-    paddingVertical: Platform.OS === "ios" ? 15 * multiplier : 20,
+    paddingVertical: 10,
     borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",

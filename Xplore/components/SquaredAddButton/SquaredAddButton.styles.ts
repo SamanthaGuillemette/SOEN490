@@ -6,6 +6,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 8,
     marginHorizontal: 150,
+    overflow: "hidden",
   },
   icon: {
     margin: 10,
