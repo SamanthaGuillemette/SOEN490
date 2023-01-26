@@ -22,7 +22,14 @@ const TopHeader = (props: TopHeaderProps) => {
         </TouchableOpacity>
         <Text variant="h2">{props.screenName}</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("ProjectEdit")}
+      >
+        <Icon name="edit" style={styles.editIcon} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("BottomTabNavigator")}
+      >
         <Icon name="search" />
       </TouchableOpacity>
     </ShadowView>
@@ -55,5 +62,9 @@ const styles = StyleSheet.create({
   },
   screenName: {
     paddingLeft: 20,
+  },
+  editIcon: {
+    flexDirection: "row",
+    marginLeft: 120,
   },
 });
