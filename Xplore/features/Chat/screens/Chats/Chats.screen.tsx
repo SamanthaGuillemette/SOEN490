@@ -22,7 +22,7 @@ const Chats = (props: ChatsProps) => {
         title="Messages"
         iconNames={["search"]}
         iconColors={["smallText"]}
-        navArrow={navigation}
+        navigation={navigation}
       />
     </SafeAreaView>
   );

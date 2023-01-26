@@ -13,9 +13,9 @@ interface TopHeaderProps {
   iconColors: ("primary" | "smallText" | "primaryBackground")[];
   isChat?: boolean;
   isUserActive?: boolean;
-  navArrow: NavigationProp<any>;
-  icon1OnPressFunc?: any;
-  icon2OnPressFunc?: any;
+  navigation: NavigationProp<any>;
+  onPressIcon1?: any;
+  onPressIcon2?: any;
   children: any;
 }
 
@@ -29,9 +29,9 @@ export const TopHeader = (props: TopHeaderProps) => {
     isChat,
     isUserActive,
     children,
-    navArrow,
-    icon1OnPressFunc,
-    icon2OnPressFunc,
+    navigation,
+    onPressIcon1,
+    onPressIcon2,
   } = props;
   const smallText = useThemeColor("smallText");
   const success = useThemeColor("success");
@@ -56,22 +56,22 @@ export const TopHeader = (props: TopHeaderProps) => {
     </View>
   );
 
-  // const headerLeft = () => (
-  //   <View style={[styles.rowAlign, styles.bottomMargin]}>
-  //     <TouchableOpacity onPress={() => navArrow.goBack()}>
-  //       <Icon
-  //         style={styles.arrowIcon}
-  //         name="chevron-left"
-  //         color="primary"
-  //         size="large"
-  //       />
-  //     </TouchableOpacity>
-  //   </View>
-  // );
+  /*const headerLeft = () => (
+    <View style={[styles.rowAlign, styles.bottomMargin]}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon
+          style={styles.arrowIcon}
+          name="chevron-left"
+          color="primary"
+          size="large"
+        />
+      </TouchableOpacity>
+    </View>
+  );*/
 
   const headerRight = () => (
     <View style={[styles.rowAlign, styles.bottomMargin]}>
-      <TouchableOpacity onPress={icon1OnPressFunc}>
+      <TouchableOpacity onPress={onPressIcon1}>
         <Icon
           name={iconNames[0]}
           color={iconColors[0]}
@@ -79,7 +79,7 @@ export const TopHeader = (props: TopHeaderProps) => {
           style={styles.iconAlign}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={icon2OnPressFunc}>
+      <TouchableOpacity onPress={onPressIcon2}>
         <Icon name={iconNames[1]} color={iconColors[1]} size="large" />
       </TouchableOpacity>
     </View>
@@ -92,7 +92,7 @@ export const TopHeader = (props: TopHeaderProps) => {
         component={children}
         options={{
           headerTitle: headerTitle,
-          // headerLeft: headerLeft,
+          //headerLeft: headerLeft,
           headerRight: headerRight,
         }}
       />

@@ -27,10 +27,10 @@ const ChatDetails = (props: ChatDetailsProps) => {
         title={name}
         iconNames={["phone", "more-vertical"]}
         iconColors={["primary", "primary"]}
-        navArrow={props.navigation}
+        navigation={props.navigation}
         isChat={true}
-        icon1OnPressFunc={onPressPhone}
-        icon2OnPressFunc={() => console.log("more-vertical icon clicked")}
+        //onPressIcon1={onPressPhone}
+        //onPressIcon2={() => console.log("more-vertical icon clicked")}
       />
     </SafeAreaView>
   );
