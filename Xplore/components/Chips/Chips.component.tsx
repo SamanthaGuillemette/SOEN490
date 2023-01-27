@@ -22,6 +22,7 @@ export const Chips = (props: ChipsProps) => {
   const background = useThemeColor("background");
   const generalGray = useThemeColor("generalGray");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const titleText = useThemeColor("titleText");
   const { placeHolder, styleBox } = props;
   const [chips, setChips] = useState<ChipsInputChipProps[] | undefined>([]);
 
@@ -48,6 +49,7 @@ export const Chips = (props: ChipsProps) => {
                 height: 36,
                 borderRadius: 8,
               },
+              labelStyle: { color: titleText },
             }}
             onChange={(newChips) => {
               _.flow(

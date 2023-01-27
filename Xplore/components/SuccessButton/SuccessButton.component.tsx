@@ -43,12 +43,7 @@ const SuccessButton = (props: SuccessButtonProps) => {
           ]}
           onPress={() => setSelected(!selected)}
         >
-          <Icon
-            name="check-circle"
-            color="primary"
-            size="medium"
-            style={styles.checkIcon}
-          />
+          <Icon name="check-circle" color="primary" size="medium" />
         </TouchableOpacity>
       )}
     </View>

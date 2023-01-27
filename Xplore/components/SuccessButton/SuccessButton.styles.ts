@@ -9,12 +9,9 @@ export default StyleSheet.create({
     width: 300,
     height: 50,
     borderRadius: 50,
+    justifyContent: "center",
+    textAlign: "center",
+    flex: 1,
   },
-  check: {
-    alignItems: "center",
-    borderWidth: 1,
-  },
-  checkIcon: {
-    marginTop: 15,
-  },
+  check: { justifyContent: "center", alignItems: "center", borderWidth: 1 },
 });
