@@ -1,21 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
   content: {
-    paddingBottom: 100,
+    paddingBottom: 50,
   },
-  shadowView: {
-    width: 357,
-    marginLeft: "auto",
-    marginRight: "auto",
-    paddingBottom: 20,
-    borderRadius: 10,
-  },
+
   alignLeft: {
-    top: 10,
+    top: -10,
     left: 20,
+  },
+  safeAreaStyle: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight ?? 0,
   },
 });
