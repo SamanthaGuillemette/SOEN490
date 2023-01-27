@@ -3,7 +3,6 @@ import { SquaredAddButton, Text, View } from "../../../../../components";
 import { TaskCard } from "../../../../../components";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ShadowView } rom "../../../../../components";
 
 export const AllTasks = () => {
   return (
