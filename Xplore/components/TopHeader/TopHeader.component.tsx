@@ -8,12 +8,12 @@ import { useThemeColor } from "../../hooks";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 interface TopHeaderProps {
-  title: string;
+  screenName: string;
   iconNames: (keyof typeof Feather.glyphMap)[];
   iconColors: ("primary" | "smallText" | "primaryBackground")[];
   isChat?: boolean;
   isUserActive?: boolean;
-  navigation: NavigationProp<any>;
+  navigation?: NavigationProp<any>;
   onPressIcon1?: any;
   onPressIcon2?: any;
   children: any;
@@ -23,7 +23,7 @@ const Stack = createNativeStackNavigator();
 
 export const TopHeader = (props: TopHeaderProps) => {
   const {
-    title,
+    screenName,
     iconNames,
     iconColors,
     isChat,
@@ -39,7 +39,7 @@ export const TopHeader = (props: TopHeaderProps) => {
   const headerTitle = () => (
     <View style={[styles.rowAlign, styles.bottomMargin]}>
       <Text variant="h2" color="titleText" style={styles.alignTitle}>
-        {title}
+        {screenName}
       </Text>
       {isChat ? (
         <View
@@ -56,18 +56,21 @@ export const TopHeader = (props: TopHeaderProps) => {
     </View>
   );
 
-  /*const headerLeft = () => (
-    <View style={[styles.rowAlign, styles.bottomMargin]}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon
-          style={styles.arrowIcon}
-          name="chevron-left"
-          color="primary"
-          size="large"
-        />
-      </TouchableOpacity>
-    </View>
-  );*/
+  const headerLeft = () =>
+    navigation ? (
+      <View style={[styles.rowAlign, styles.bottomMargin]}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon
+            style={styles.arrowIcon}
+            name="chevron-left"
+            color="primary"
+            size="large"
+          />
+        </TouchableOpacity>
+      </View>
+    ) : (
+      <></>
+    );
 
   const headerRight = () => (
     <View style={[styles.rowAlign, styles.bottomMargin]}>
@@ -92,7 +95,8 @@ export const TopHeader = (props: TopHeaderProps) => {
         component={children}
         options={{
           headerTitle: headerTitle,
-          //headerLeft: headerLeft,
+          headerLeft: headerLeft,
+          headerBackVisible: false,
           headerRight: headerRight,
         }}
       />

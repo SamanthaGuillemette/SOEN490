@@ -9,7 +9,7 @@ export default StyleSheet.create({
     height: 10,
     width: 10,
     borderRadius: 100,
-    left: 10,
+    left: 20,
     top: 13,
   },
   iconAlign: {
@@ -17,11 +17,12 @@ export default StyleSheet.create({
   },
   alignTitle: {
     top: 2,
+    left: 10,
   },
   rowAlign: {
     flexDirection: "row",
   },
   bottomMargin: {
-    bottom: 10,
+    paddingBottom: 20,
   },
 });

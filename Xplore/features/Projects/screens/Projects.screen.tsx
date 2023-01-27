@@ -2,7 +2,7 @@ import * as React from "react";
 import { SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../hooks";
 import ProjectCoreScreen from "./ProjectCoreScreen/ProjectCoreScreen.component";
-import TopHeader from "../../../navigation/TopHeader.component";
+import { TopHeader } from "../../../components";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./Projects.styles";
 
@@ -17,8 +17,12 @@ const Home = (props: ProjectsProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
-      <TopHeader screenName={"Projects"} navigation={props.navigation} />
-      <ProjectCoreScreen />
+      <TopHeader
+        screenName={"Projects"}
+        iconNames={["edit", "search"]}
+        iconColors={["primary", "smallText"]}
+        children={ProjectCoreScreen}
+      />
     </SafeAreaView>
   );
 };

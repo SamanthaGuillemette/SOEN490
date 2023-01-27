@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Icon } from "../components";
 import Home from "../features/Dashboard/screens/Home.screen";
 import Chats from "../features/Chat/screens/Chats/Chats.screen";
+import ChatDetails from "../features/Chat/screens/ChatDetails/ChatDetails.screen";
+import ChatSettings from "../features/Chat/screens/ChatSettings/ChatSettings.screen";
 import Leaderboard from "../features/Leaderboard/screens/Leaderboard.screen";
 import { useThemeColor } from "../hooks";
 import styles from "./BottomTabNavigator.styles";
@@ -32,6 +34,16 @@ const ProfileStack = () => {
     <ProfileStk.Navigator screenOptions={{ headerShown: false }}>
       <ProfileStk.Screen name="Profile" component={Profile} />
       <ProfileStk.Screen name="Settings" component={Settings} />
+    </ProfileStk.Navigator>
+  );
+};
+
+const ChatStack = () => {
+  return (
+    <ProfileStk.Navigator screenOptions={{ headerShown: false }}>
+      <ProfileStk.Screen name="Chats" component={Chats} />
+      <ProfileStk.Screen name="ChatDetails" component={ChatDetails} />
+      <ProfileStk.Screen name="ChatSettings" component={ChatSettings} />
     </ProfileStk.Navigator>
   );
 };
@@ -82,7 +94,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="Home3"
-        component={Chats}
+        component={ChatStack}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
