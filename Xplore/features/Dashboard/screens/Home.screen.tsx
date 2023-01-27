@@ -22,23 +22,6 @@ const Home = () => {
   const scrollViewBackground = useThemeColor("background");
   const [isButtonExpanded, setIsButtonExpanded] = useState(true);
 
-  // // FIXME: DELTE THIS PART LATER
-  // const { isLoading, data } = useQuery("test data", () =>
-  //   api.listDocuments(COLLECTION_ID_TEST)
-  // );
-
-  // const queryClient = useQueryClient();
-
-  // const mutation = useMutation(
-  //   (newData: Omit<Document, keyof Document>) =>
-  //     api.createDocument(COLLECTION_ID_TEST, newData),
-  //   {
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries("test data");
-  //     },
-  //   }
-  // );
-
   const onScroll = ({
     nativeEvent,
   }: NativeSyntheticEvent<NativeScrollEvent>) => {

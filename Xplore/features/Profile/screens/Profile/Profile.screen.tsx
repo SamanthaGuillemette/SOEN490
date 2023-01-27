@@ -8,6 +8,8 @@ import { Badges, ProjectSlider, UserProgress } from "../../components";
 import { StatBoxes } from "../../components";
 import { useRef } from "react";
 import styles from "./Profile.styles";
+import { useQuery } from "react-query";
+import api from "../../../../services/appwrite/api";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -59,6 +61,12 @@ const Profile = (props: ProfileProps) => {
     outputRange: [1, -40],
     extrapolate: "clamp",
   });
+
+  // Get user data from DB, renamed 'data' to 'userdata' to avoid confusion
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  const { data: userPrefs } = useQuery("user prefs", () =>
+    api.getUserPreferences()
+  );
 
   return (
     <SafeAreaView
@@ -152,7 +160,7 @@ const Profile = (props: ProfileProps) => {
           ]}
         >
           <Text variant="h2" color="titleText" style={styles.userName}>
-            Josh Lewis
+            {userdata?.name}
           </Text>
           <View style={styles.userInfoDetails}>
             <Icon
@@ -161,7 +169,7 @@ const Profile = (props: ProfileProps) => {
               size="small"
               style={styles.userInfoIcon}
             />
-            <Text variant="smBody">Montreal, Quebec</Text>
+            <Text variant="smBody">{userPrefs?.from}</Text>
           </View>
           <View style={styles.userInfoDetails}>
             <Icon
