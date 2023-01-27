@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Button } from "../../../components";
+import { Button } from "../../../../components";
 import styles from "./EditBox.styles";
 
 const SaveButton = () => {

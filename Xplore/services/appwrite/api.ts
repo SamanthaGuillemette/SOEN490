@@ -15,6 +15,10 @@ const api = {
     return account.get();
   },
 
+  getUserPreferences: () => {
+    return account.getPrefs();
+  },
+
   createEmailVerification: () => {
     return account.createVerification(APP_URL);
   },
