@@ -129,7 +129,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const verifyEmail = async (userid: string, secret: string) => {
-    setLoadingStatus(true);
     try {
       const emailVerificationObj = await api.updateEmailVerification(
         userid,
@@ -137,7 +136,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       );
 
       Promise.all([emailVerificationObj]);
-      setLoadingStatus(false);
       console.log(
         emailVerificationObj ??
           `===> Email is verified: ${JSON.stringify(emailVerificationObj)}`

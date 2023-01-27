@@ -27,21 +27,24 @@ const Main = ({ colorScheme }: MainProps) => {
   } = useAuth();
 
   const [data, setData] = useState<Linking.ParsedURL | null>(null);
+  let listener = Linking.addEventListener("url", handleDeepLink);
 
   function handleDeepLink(event: any) {
     let linkData = Linking.parse(event.url);
     setData(linkData);
-  }
-
-  // TODO Need to fix this event listener and the useEffect which comes after it
-  Linking.addEventListener("url", handleDeepLink);
-
-  useEffect(() => {
     console.log("===> Deeplink data: " + JSON.stringify(data));
     console.log("\tuserid: " + data?.queryParams?.userId);
     console.log("\tsecret: " + data?.queryParams?.secret);
-    data ?? verifyEmail(data?.queryParams?.userId, data?.queryParams?.secret);
-  }, [data]);
+    verifyEmail(data?.queryParams?.userId, data?.queryParams?.secret);
+    listener.remove();
+  }
+
+  // useEffect(() => {
+  // console.log("===> Deeplink data: " + JSON.stringify(data));
+  // console.log("\tuserid: " + data?.queryParams?.userId);
+  // console.log("\tsecret: " + data?.queryParams?.secret);
+  //   data ?? verifyEmail(data?.queryParams?.userId, data?.queryParams?.secret);
+  // }, [data]);
 
   useEffect(() => {
     getSessionStatus("current");
