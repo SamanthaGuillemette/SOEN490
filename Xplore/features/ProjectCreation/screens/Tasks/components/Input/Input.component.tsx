@@ -7,11 +7,13 @@ import {
 import { useState } from "react";
 import { View } from "react-native";
 import styles from "./Input.styles";
+import { MemberChip } from "../../../../../../components/MemberChip";
 
 export const Input = () => {
   const [taskName, setTaskName] = useState("");
   const [taskDesc, setTaskDesc] = useState("");
   const [taskCategory, setTaskCategory] = useState("");
+  const userName = useState("");
 
   return (
     <ShadowView style={styles.shadowView}>
@@ -55,9 +57,8 @@ export const Input = () => {
           Participants
         </Text>
         <Text>Component for add participants</Text>
-      </View>
-      <View style={styles.alignLeft}>
-        <Text>ADD button with checkmark</Text>
+        <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
+        {/* Testing the component, will be adjusted */}
       </View>
     </ShadowView>
   );
