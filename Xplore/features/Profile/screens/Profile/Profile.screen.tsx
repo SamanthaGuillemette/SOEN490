@@ -90,22 +90,13 @@ const Profile = (props: ProfileProps) => {
 
           <View style={styles.signoutButton}>
             <PrimaryButton label="Sign out" onPress={signOut} />
-
-            {/* FIXME: DELETE THIS LATER */}
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("Settings");
-              }}
-            >
-              <Icon name="settings" color="primary" size="large" />
-            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
 
       {/* ANIMATED HEADER OF USER PROFILE */}
       <Animated.View
-        pointerEvents="none"
+        // pointerEvents="none"
         style={[
           styles.header,
           {
