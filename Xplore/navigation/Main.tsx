@@ -33,6 +33,7 @@ const Main = ({ colorScheme }: MainProps) => {
     setData(linkData);
   }
 
+  // TODO Need to fix this event listener and the useEffect which comes after it
   Linking.addEventListener("url", handleDeepLink);
 
   useEffect(() => {
