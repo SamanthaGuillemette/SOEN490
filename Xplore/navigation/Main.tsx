@@ -7,8 +7,9 @@ import { ColorSchemeName } from "react-native";
 import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
 import VerificationStack from "./VerificationStack";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hooks";
+import * as Linking from "expo-linking";
 //import { account } from "../services/appwrite/api";
 
 interface MainProps {
@@ -22,7 +23,24 @@ const Main = ({ colorScheme }: MainProps) => {
     loggedIn,
     getSessionStatus,
     getAccountStatus,
+    verifyEmail,
   } = useAuth();
+
+  const [data, setData] = useState<Linking.ParsedURL | null>(null);
+
+  function handleDeepLink(event: any) {
+    let linkData = Linking.parse(event.url);
+    setData(linkData);
+  }
+
+  Linking.addEventListener("url", handleDeepLink);
+
+  useEffect(() => {
+    console.log("===> Deeplink data: " + JSON.stringify(data));
+    console.log("\tuserid: " + data?.queryParams?.userId);
+    console.log("\tsecret: " + data?.queryParams?.secret);
+    data ?? verifyEmail(data?.queryParams?.userId, data?.queryParams?.secret);
+  }, [data]);
 
   useEffect(() => {
     getSessionStatus("current");

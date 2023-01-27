@@ -8,8 +8,14 @@ export type AuthContextData = {
   accountToken?: Models.Account<any> | null;
   loggedIn: boolean;
   loading: boolean;
-  signUp: (username: string, email: string, password: string) => void;
+  signUp: (
+    username: string,
+    email: string,
+    password: string,
+    appURL: string
+  ) => void;
   signIn: (email: string, password: string) => void;
+  verifyEmail: (userid: string, secret: string) => void;
   signOut: () => void;
   getSessionStatus: (sessionId: string) => void;
   getAccountStatus: () => void;
@@ -94,14 +100,19 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const signUp = async (username: string, email: string, password: string) => {
+  const signUp = async (
+    username: string,
+    email: string,
+    password: string,
+    appURL: string
+  ) => {
     setLoadingStatus(true);
     try {
       const accountObj = await api.createAccount(email, password, username);
 
       //a session needed to be created in order to send the verifiation email.
       const sessionObj = await api.createSession(email, password);
-      const emailVerificationObj = await api.createEmailVerification();
+      const emailVerificationObj = await api.createEmailVerification(appURL);
 
       Promise.all([accountObj, sessionObj, emailVerificationObj]);
       setSessionToken(sessionObj);
@@ -117,6 +128,25 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const verifyEmail = async (userid: string, secret: string) => {
+    setLoadingStatus(true);
+    try {
+      const emailVerificationObj = await api.updateEmailVerification(
+        userid,
+        secret
+      );
+
+      Promise.all([emailVerificationObj]);
+      setLoadingStatus(false);
+      console.log(
+        emailVerificationObj ??
+          `===> Email is verified: ${JSON.stringify(emailVerificationObj)}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -129,6 +159,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         signUp,
         getSessionStatus,
         getAccountStatus,
+        verifyEmail,
       }}
     >
       {children}

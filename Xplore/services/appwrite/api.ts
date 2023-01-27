@@ -1,4 +1,4 @@
-import { APP_URL, DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
+import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
 import { Client, Databases, Account, ID, Models } from "appwrite";
 
 const client = new Client();
@@ -19,8 +19,12 @@ const api = {
     return account.getSession(sessionId);
   },
 
-  createEmailVerification: () => {
-    return account.createVerification(APP_URL);
+  createEmailVerification: (app_url: string) => {
+    return account.createVerification(app_url);
+  },
+
+  updateEmailVerification: (userID: string, secret: string) => {
+    return account.updateVerification(userID, secret);
   },
 
   createSession: (email: string, password: string) => {

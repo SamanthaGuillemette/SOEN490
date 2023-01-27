@@ -6,6 +6,7 @@ import styles from "./SignUp.styles";
 //import api from "../../../../services/appwrite/api";
 import { useAuth } from "../../../../hooks";
 import Spinner from "react-native-loading-spinner-overlay/lib";
+import * as Linking from "expo-linking";
 
 // Need to implement
 //  ** error handling
@@ -26,6 +27,8 @@ const SignUp = (props: SignUpProps) => {
   const [username, setUserName] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
+
+  const prefix = Linking.createURL("");
 
   const { signUp, loading } = useAuth();
 
@@ -62,7 +65,7 @@ const SignUp = (props: SignUpProps) => {
         label="SIGN UP"
         style={styles.PrimaryButton}
         onPress={() => {
-          signUp(username, email, password);
+          signUp(username, email, password, prefix);
           setEmail("");
           setUserName("");
           setPassword("");
