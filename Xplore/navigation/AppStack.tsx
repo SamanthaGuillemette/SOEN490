@@ -9,6 +9,7 @@ import Home from "../features/Dashboard/screens/Home.screen";
 import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import ProjectCreation from "../features/ProjectCreation/screens/ProjectCreation.screen";
 import ProjectEdit from "../features/ProjectEdit/screens/ProjectEdit.screen";
+import Tasks from "../features/ProjectCreation/screens/Tasks/screens/Tasks.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,11 @@ const AppStack = () => {
       <Stack.Screen
         name="ProjectEdit"
         component={ProjectEdit}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CreateTask"
+        component={Tasks}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
