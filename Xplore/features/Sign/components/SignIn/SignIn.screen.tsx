@@ -29,7 +29,7 @@ const SignIn = (props: SignInProps) => {
         animation={"fade"}
       />
       <TextInput
-        placeHolder="Username"
+        placeHolder="Email"
         iconName="user"
         onChangeText={(thisEmail: string) => setEmail(thisEmail)}
       />

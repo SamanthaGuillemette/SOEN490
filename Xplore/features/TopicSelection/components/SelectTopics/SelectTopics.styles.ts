@@ -9,4 +9,9 @@ export default StyleSheet.create({
     marginTop: 20,
     marginVertical: 25,
   },
+  searchBar: {
+    marginHorizontal: 35,
+    marginTop: 51,
+    width: 320,
+  },
 });
