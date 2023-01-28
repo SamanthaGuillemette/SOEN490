@@ -2,7 +2,7 @@ import _ from "lodash";
 import { ScrollView, SafeAreaView } from "react-native";
 import { View, Wizard, Toast } from "react-native-ui-lib";
 import { Button } from "../Button";
-import { TopHeader } from "../TopHeader";
+import { StepIndicatorHeader } from "./components/StepIndicatorHeader/StepIndicatorHeader.component";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./StepIndicator.styles";
 import { useThemeColor } from "../../hooks";
@@ -98,16 +98,16 @@ export const StepIndicator = (props: StepIndicatorProps) => {
     );
   };
 
-  const renderPrevButton = () => {
+  const renderCancelButton = () => {
     return (
       <View style={styles.alignBtn}>
         <Button
           backgroundColor="backgroundSecondary"
-          children="BACK"
+          children="CANCEL"
           textColor="primary"
           borderColor="primary"
           style={styles.btn}
-          onPress={goToPrevStep}
+          onPress={() => navigation.goBack()}
         />
       </View>
     );
@@ -118,7 +118,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
       <View>
         {screens[activeIndex]}
         {renderNextButton()}
-        {activeIndex === 0 ? "" : renderPrevButton()}
+        {renderCancelButton()}
       </View>
     );
   };
@@ -136,11 +136,11 @@ export const StepIndicator = (props: StepIndicatorProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <TopHeader
+        <StepIndicatorHeader
           title={headerTitle}
           icon1Name="search"
           icon1Color="primaryBackground"
-          navigation={navigation}
+          navigation={activeIndex === 0 ? navigation : goToPrevStep}
         />
         <View style={styles.stepIndicator}>
           <Wizard

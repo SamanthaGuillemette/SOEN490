@@ -48,4 +48,17 @@ export default StyleSheet.create({
     height: 50,
     borderRadius: 50,
   },
+  button: {
+    width: 45,
+    height: 45,
+    borderRadius: 8,
+    marginHorizontal: 150,
+    overflow: "hidden",
+  },
+  icon: {
+    margin: 10,
+  },
+  alignTouchable: {
+    top: 1,
+  },
 });

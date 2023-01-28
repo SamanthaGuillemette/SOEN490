@@ -8,12 +8,31 @@ import { useState } from "react";
 import { View } from "react-native";
 import styles from "./Input.styles";
 import { MemberChip } from "../../../../../../components/MemberChip";
+import { TouchableOpacity } from "react-native";
+import { useThemeColor } from "../../../../../../hooks";
+import { Icon } from "../../../../../../components";
 
 export const Input = () => {
   const [taskName, setTaskName] = useState("");
   const [taskDesc, setTaskDesc] = useState("");
   const [taskCategory, setTaskCategory] = useState("");
   const userName = useState("");
+  const primaryBackground = useThemeColor("primaryBackground");
+  const [btnClicked, setBtnClicked] = useState(false);
+
+  const added = () => {
+    setBtnClicked(true);
+
+    setTimeout(() => {
+      setBtnClicked(false);
+    }, 2000);
+  };
+
+  const reset = () => {
+    setTaskName("");
+    setTaskDesc("");
+    setTaskCategory("");
+  };
 
   return (
     <ShadowView style={styles.shadowView}>
@@ -60,6 +79,27 @@ export const Input = () => {
         <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
         {/* Testing the component, will be adjusted */}
       </View>
+      <ShadowView
+        style={[styles.button, { backgroundColor: primaryBackground }]}
+      >
+        <TouchableOpacity
+          style={[
+            { backgroundColor: primaryBackground },
+            styles.alignTouchable,
+          ]}
+          onPress={() => {
+            added();
+            reset();
+          }}
+        >
+          <Icon
+            name={btnClicked === true ? "check-circle" : "plus"}
+            size="large"
+            color="primary"
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+      </ShadowView>
     </ShadowView>
   );
 };
