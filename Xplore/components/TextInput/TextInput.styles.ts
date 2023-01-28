@@ -22,4 +22,7 @@ export default StyleSheet.create({
     height: 24,
     marginRight: 10,
   },
+  textInput: {
+    width: 200,
+  },
 });

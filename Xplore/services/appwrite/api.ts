@@ -27,6 +27,10 @@ const api = {
     return account.updateVerification(userID, secret);
   },
 
+  getUserPreferences: () => {
+    return account.getPrefs();
+  },
+
   createSession: (email: string, password: string) => {
     return account.createEmailSession(email, password);
   },

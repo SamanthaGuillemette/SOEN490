@@ -62,7 +62,7 @@ export const SelectTopics = () => {
         ListHeaderComponent={
           <>
             <TopicSelectionHeader />
-            <SearchBar />
+            <SearchBar style={styles.searchBar} />
           </>
         }
         ListHeaderComponentStyle={styles.headerComponentStyle}
