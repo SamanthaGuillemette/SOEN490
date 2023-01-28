@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.quang.tran304.Xplore"
@@ -31,9 +29,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-community-flipper"
-    ],
     "extra": {
       "eas": {
         "projectId": "44263ee1-ac24-4f5b-86e9-275197feba9f"
