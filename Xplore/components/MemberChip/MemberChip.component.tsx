@@ -23,22 +23,12 @@ export const MemberChip = (props: ChipButtonProps) => {
       backgroundColor="background"
       style={[props.style, styles.button, { borderColor: generalGray }]}
     >
-      <Avatar
-        name={props.userName}
-        imageURL={props.avatar}
-        size={45}
-        style={styles.user_avatar}
-      />
+      <Avatar name={props.userName} imageURL={props.avatar} size={45} />
       <Text variant="label" style={[styles.textStyle, { color: titleText }]}>
         {props.userName}
       </Text>
       <TouchableOpacity>
-        <Icon
-          name="x"
-          size="large"
-          color="primaryBackground"
-          style={styles.icon}
-        />
+        <Icon name="x" size="large" color="primaryBackground" />
       </TouchableOpacity>
     </View>
   );
