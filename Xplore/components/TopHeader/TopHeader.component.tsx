@@ -16,7 +16,7 @@ interface TopHeaderProps {
   icon2Color?: "primary" | "smallText" | "primaryBackground";
   isMessaging?: boolean;
   isActive?: boolean;
-  navigation: NavigationProp<any>;
+  navigation?: NavigationProp<any> | any;
 }
 
 export const TopHeader = (props: TopHeaderProps) => {
@@ -42,7 +42,13 @@ export const TopHeader = (props: TopHeaderProps) => {
       style={styles.headerBar}
     >
       <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          onPress={
+            typeof navigation === "object"
+              ? () => navigation.goBack()
+              : navigation
+          }
+        >
           <Icon
             style={styles.arrowIcon}
             name="chevron-left"

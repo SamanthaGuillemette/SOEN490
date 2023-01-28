@@ -12,7 +12,6 @@ import _ from "lodash";
 import { Incubator, ChipsInputChipProps } from "react-native-ui-lib";
 import styles from "./Chips.styles";
 import { useThemeColor } from "../../hooks";
-
 interface ChipsProps {
   placeHolder: string;
   styleBox: StyleProp<ViewStyle>;
@@ -51,7 +50,11 @@ export const Chips = (props: ChipsProps) => {
               },
               labelStyle: { color: titleText },
             }}
-            onChange={(newChips) => {
+            onChange={(
+              newChips:
+                | ChipsInputChipProps[]
+                | NativeSyntheticEvent<TextInputChangeEventData>
+            ) => {
               _.flow(
                 (newChips) => _.groupBy(newChips, "label"),
                 (newChips) =>

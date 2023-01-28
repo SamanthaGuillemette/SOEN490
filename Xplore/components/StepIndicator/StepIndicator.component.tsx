@@ -2,7 +2,7 @@ import _ from "lodash";
 import { ScrollView, SafeAreaView } from "react-native";
 import { View, Wizard, Toast } from "react-native-ui-lib";
 import { Button } from "../Button";
-import { StepIndicatorHeader } from "./components/StepIndicatorHeader/StepIndicatorHeader.component";
+import { TopHeader } from "../TopHeader";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./StepIndicator.styles";
 import { useThemeColor } from "../../hooks";
@@ -136,7 +136,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <StepIndicatorHeader
+        <TopHeader
           title={headerTitle}
           icon1Name="search"
           icon1Color="primaryBackground"
