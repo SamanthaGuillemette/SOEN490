@@ -21,6 +21,7 @@ import * as Linking from "expo-linking";
 
 interface SignUpProps {
   navigation: NavigationProp<any>;
+  setScreen: (value: number) => void; 
 }
 
 const SignUp = (props: SignUpProps) => {
@@ -69,6 +70,8 @@ const SignUp = (props: SignUpProps) => {
           setEmail("");
           setUserName("");
           setPassword("");
+          props.setScreen(0);
+          
         }}
         // onPress={() => navigation.navigate("TopicSelection")}
       />

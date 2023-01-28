@@ -51,7 +51,7 @@ const Main = ({ colorScheme }: MainProps) => {
       <NavigationContainer
         theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >
-        {sessionToken !== undefined && accountToken?.emailVerification ? (
+        {sessionToken && accountToken?.emailVerification ? (
           <AppStack />
         ) : (
           <AuthStack />
