@@ -3,7 +3,7 @@ import { SquaredAddButton, Text, View } from "../../../../../components";
 import { TaskCard } from "../../../../../components";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { NavigationProp } from "@react-navigation/native";
+import { AddTaskModalButton } from "../../../components/AddTaskModalButton.component";
 
 export const AllTasks = () => {
   return (
@@ -33,7 +33,7 @@ export const AllTasks = () => {
             />
           </View>
         </ScrollView>
-        <SquaredAddButton />
+        <AddTaskModalButton />
       </View>
     </SafeAreaView>
   );
