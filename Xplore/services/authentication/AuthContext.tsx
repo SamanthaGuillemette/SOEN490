@@ -6,7 +6,6 @@ import api from "../appwrite/api";
 export type AuthContextData = {
   sessionToken?: Models.Session | null;
   accountToken?: Models.Account<any> | null;
-  loggedIn: boolean;
   loading: boolean;
   signUp: (
     username: string,
@@ -33,7 +32,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [accountToken, setAccountToken] = useState<Models.Account<any> | null>(
     null
   );
-  const [loggedIn, setLoginStatus] = useState<boolean>(false);
   const [loading, setLoadingStatus] = useState<boolean>(false);
   //const [emailIsVerified, setVerifiedStatus] = useState<boolean>(false);
 
@@ -70,12 +68,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     login.then(
       (response) => {
         setSessionToken(response);
+        getAccountStatus();
         setLoadingStatus(false);
-        setLoginStatus(true);
         console.log(`===> Session created: ${JSON.stringify(response)}`);
       },
       (err) => {
-        setLoginStatus(false);
         setLoadingStatus(false);
         console.log(err);
       }
@@ -90,7 +87,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       logout.then(
         () => {
           setLoadingStatus(false);
-          setLoginStatus(false);
           setSessionToken(null);
         },
         (error) => {
@@ -152,7 +148,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         sessionToken,
         accountToken,
-        loggedIn,
         loading,
         signIn,
         signOut,
