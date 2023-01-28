@@ -42,6 +42,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     status.then(
       (response) => {
         console.log(`===> Session retrieved: ${JSON.stringify(response)}`);
+        setSessionToken(response);
       },
       (error) => {
         console.log(`===> Session not found: ${error}`);
@@ -75,6 +76,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       },
       (err) => {
         setLoginStatus(false);
+        setLoadingStatus(false);
         console.log(err);
       }
     );
@@ -115,7 +117,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const emailVerificationObj = await api.createEmailVerification(appURL);
 
       Promise.all([accountObj, sessionObj, emailVerificationObj]);
-      setSessionToken(sessionObj);
+      api.deleteCurrentSession();
       setLoadingStatus(false);
       console.log(
         accountObj ??
