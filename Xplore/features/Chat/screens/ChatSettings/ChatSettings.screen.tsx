@@ -42,7 +42,7 @@ const ChatSettingsCoreScreen = (name: any) => {
     <ScrollView style={{ backgroundColor: background }}>
       <View style={styles.settingsContainer}>
         <Text style={styles.contactName} variant="h2">
-          {name}
+          {name.toString()}
         </Text>
         <View style={styles.avatarGroup}>
           <AvatarGroup
