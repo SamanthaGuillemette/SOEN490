@@ -43,17 +43,14 @@ export default StyleSheet.create({
     alignItems: "center",
     marginTop: 23,
   },
-  btn: {
-    width: 300,
-    height: 50,
-    borderRadius: 50,
-  },
+
   button: {
     width: 45,
     height: 45,
     borderRadius: 8,
     marginHorizontal: 150,
     overflow: "hidden",
+    marginTop: 20,
   },
   icon: {
     margin: 10,
