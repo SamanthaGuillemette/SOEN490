@@ -3,14 +3,16 @@ import {
   DatePicker,
   Text,
   ShadowView,
+  MemberChip,
 } from "../../../../../../components";
 import { useState } from "react";
 import { View } from "react-native";
 import styles from "./Input.styles";
-import { MemberChip } from "../../../../../../components/MemberChip";
+
 import { TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../../../../../hooks";
 import { Icon } from "../../../../../../components";
+import { AddMemberModal } from "../../../../../Chat/screens/ChatSettings/components/AddMemberModal/AddMemberModal.component";
 
 interface InputProps {
   onPress?: any;
@@ -22,8 +24,12 @@ export const Input = (props: InputProps) => {
   const [taskCategory, setTaskCategory] = useState("");
   const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
+  const background = useThemeColor("backgroundSecondary");
+  const primary = useThemeColor("primary");
   const [btnClicked, setBtnClicked] = useState(false);
   const { onPress } = props;
+  const [addMemberModalVisible, setAddMemberModalVisible] =
+    useState<any>(false);
 
   const added = () => {
     setBtnClicked(true);
@@ -55,7 +61,6 @@ export const Input = (props: InputProps) => {
           onChangeText={(name) => setTaskName(name)}
         />
       </View>
-
       <View style={styles.container}>
         <InputField
           placeHolder="Task description"
@@ -64,7 +69,6 @@ export const Input = (props: InputProps) => {
           onChangeText={(desc) => setTaskDesc(desc)}
         />
       </View>
-
       <View style={styles.container}>
         <InputField
           placeHolder="Add a category"
@@ -81,9 +85,29 @@ export const Input = (props: InputProps) => {
         <Text color="titleText" variant="h3">
           Participants
         </Text>
-        <Text>Component for add participants</Text>
-        <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
+
         {/* Testing the component, will be adjusted */}
+      </View>
+      <View style={styles.containerParticipants}>
+        <TouchableOpacity
+          style={[
+            styles.buttonAdder,
+            { backgroundColor: background, borderColor: primary },
+          ]}
+          onPress={() => setAddMemberModalVisible(true)}
+        >
+          <Icon
+            name="plus"
+            size="large"
+            color="primary"
+            style={styles.iconAdder}
+          />
+          {addMemberModalVisible === true && (
+            <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
+          )}
+        </TouchableOpacity>
+        <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
+        <MemberChip userName="Bernice" avatar="https://picsum.photos/201" />
       </View>
       <ShadowView
         style={[styles.button, { backgroundColor: primaryBackground }]}

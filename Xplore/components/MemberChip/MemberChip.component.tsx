@@ -8,13 +8,13 @@ import { useThemeColor } from "../../hooks";
 import { Text, Avatar, Icon, View } from "../";
 import styles from "./MemberChip.styles";
 
-interface ChipButtonProps extends TouchableOpacityProps {
+interface MemberChipProps extends TouchableOpacityProps {
   userName: string;
   avatar: string;
   style?: StyleProp<ViewStyle>;
 }
 
-export const MemberChip = (props: ChipButtonProps) => {
+export const MemberChip = (props: MemberChipProps) => {
   const generalGray = useThemeColor("generalGray");
   const titleText = useThemeColor("titleText");
 

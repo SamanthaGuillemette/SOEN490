@@ -6,6 +6,13 @@ export default StyleSheet.create({
     justifyContent: "center",
     marginTop: 23,
   },
+  containerParticipants: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    marginTop: 23,
+    marginHorizontal: 6,
+  },
   alignDatePicker: {
     flexDirection: "row",
   },
@@ -57,5 +64,16 @@ export default StyleSheet.create({
   },
   alignTouchable: {
     top: 1,
+  },
+
+  buttonAdder: {
+    width: 45,
+    height: 45,
+    borderRadius: 8,
+    overflow: "hidden",
+    borderWidth: 1,
+  },
+  iconAdder: {
+    margin: 10,
   },
 });
