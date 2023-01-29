@@ -37,7 +37,7 @@ export const AllTasks = () => {
           </View>
         </ScrollView>
         <SquaredAddButton
-          iconName="edit-3"
+          iconName="plus"
           onPress={() => setShowModal(!showModal)}
         />
         <Modal
