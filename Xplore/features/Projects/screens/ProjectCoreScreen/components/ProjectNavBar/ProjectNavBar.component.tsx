@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import ProjectDescription from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
 import ProjectMembers from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
+import ProjectDiscussion from "../../../../components/ProjectDiscussionScreen/ProjectDiscussion.component";
 import Links from "../../../../components/LinksScreen/Links.component";
 import Tasks from "../../../../components/ProjectTasksScreen/Tasks.component";
 import { useThemeColor } from "../../../../../../hooks";
@@ -24,7 +25,7 @@ const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
 const projectScreenPages = [
   <ProjectDescription />,
   <Tasks />, // tasks
-  <ProjectDescription />, // discussion placeholder
+  <ProjectDiscussion />, // discussion placeholder
   <ProjectMembers />,
   <Links />,
 ];
