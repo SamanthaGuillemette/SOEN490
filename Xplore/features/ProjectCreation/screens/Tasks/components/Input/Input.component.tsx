@@ -12,19 +12,25 @@ import { TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../../../../../hooks";
 import { Icon } from "../../../../../../components";
 
-export const Input = () => {
+interface InputProps {
+  onPress?: any;
+}
+
+export const Input = (props: InputProps) => {
   const [taskName, setTaskName] = useState("");
   const [taskDesc, setTaskDesc] = useState("");
   const [taskCategory, setTaskCategory] = useState("");
   const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
   const [btnClicked, setBtnClicked] = useState(false);
+  const { onPress } = props;
 
   const added = () => {
     setBtnClicked(true);
 
     setTimeout(() => {
       setBtnClicked(false);
+      onPress === undefined ? "" : onPress();
     }, 2000);
   };
 

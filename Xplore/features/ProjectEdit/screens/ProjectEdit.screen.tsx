@@ -4,7 +4,7 @@ import TechNGoals from "../../ProjectCreation/screens/TechNGoals/screens/TechNGo
 import Tasks from "../../ProjectCreation/screens/Tasks/screens/Tasks.screen";
 import AddMembers from "../../ProjectCreation/screens/AddMembers/screens/AddMembers.screen";
 import AddLinks from "../../ProjectCreation/screens/AddLinks/screens/AddLinks.screen";
-import { AllTasks } from "./AllTasks/screens/AllTasks.screen";
+import { AllTasks } from "./AllTasks/AllTasks.screen";
 import { NavigationProp } from "@react-navigation/native";
 
 interface HeaderProps {
