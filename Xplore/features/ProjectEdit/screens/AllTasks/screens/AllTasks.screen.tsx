@@ -3,14 +3,9 @@ import { SquaredAddButton, Text, View } from "../../../../../components";
 import { TaskCard } from "../../../../../components";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { NavigationProp } from "@react-navigation/native";
+import { AddTaskModalButton } from "../../../components/AddTaskModalButton.component";
 
-interface AllTasksProps {
-  navigation: NavigationProp<any>;
-}
-
-export const AllTasks = (props: AllTasksProps) => {
-  const { navigation } = props;
+export const AllTasks = () => {
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <View style={styles.alignLeft}>
@@ -38,7 +33,7 @@ export const AllTasks = (props: AllTasksProps) => {
             />
           </View>
         </ScrollView>
-        <SquaredAddButton onPress={() => navigation.navigate("CreateTask")} />
+        <AddTaskModalButton />
       </View>
     </SafeAreaView>
   );

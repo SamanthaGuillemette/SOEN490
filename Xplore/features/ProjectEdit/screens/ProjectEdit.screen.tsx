@@ -28,7 +28,7 @@ const ProjectEdit = (props: HeaderProps) => {
       screens={[
         <Description />,
         <TechNGoals />,
-        <AllTasks navigation={navigation} />,
+        <AllTasks />,
         <Tasks />,
         <AddMembers />,
         <AddLinks />,
