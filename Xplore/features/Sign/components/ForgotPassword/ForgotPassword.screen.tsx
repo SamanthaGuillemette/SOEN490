@@ -61,7 +61,7 @@ const ForgotPassword = (props: ForgotPasswordProps) => {
           style={styles.primaryButton}
           onPress={() => {
             passwordRecovery(email, prefix);
-            navigation.navigate("ResetPassword");
+            navigation.goBack();
           }}
         />
         <LinkButton

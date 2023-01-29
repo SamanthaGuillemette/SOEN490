@@ -14,6 +14,17 @@ interface MainProps {
   colorScheme: ColorSchemeName;
 }
 
+const prefix = Linking.createURL("/");
+
+const linking = {
+  prefixes: [prefix],
+  config: {
+    screens: {
+      ResetPassword: "reset",
+    },
+  },
+};
+
 const Main = ({ colorScheme }: MainProps) => {
   const {
     sessionToken,
@@ -21,6 +32,7 @@ const Main = ({ colorScheme }: MainProps) => {
     getSessionStatus,
     getAccountStatus,
     verifyEmail,
+    setLinkData,
   } = useAuth();
 
   let listener = Linking.addEventListener("url", handleDeepLink);
@@ -28,7 +40,7 @@ const Main = ({ colorScheme }: MainProps) => {
   function handleDeepLink(event: any) {
     const linkData = Linking.parse(event.url);
     if (linkData.path === "reset") {
-      console.log(linkData);
+      // setLinkData(linkData);
     } else if (
       linkData.path === "signup" &&
       linkData.queryParams?.userId &&
@@ -56,6 +68,7 @@ const Main = ({ colorScheme }: MainProps) => {
     <>
       <NavigationContainer
         theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        linking={linking}
       >
         {sessionToken && accountToken?.emailVerification ? (
           <AppStack />
