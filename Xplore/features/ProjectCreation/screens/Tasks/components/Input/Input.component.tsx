@@ -12,6 +12,7 @@ import styles from "./Input.styles";
 import { TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../../../../../hooks";
 import { Icon } from "../../../../../../components";
+import { AddMemberModal } from "../../../../../Chat/screens/ChatSettings/components/AddMemberModal/AddMemberModal.component";
 
 export const Input = () => {
   const [taskName, setTaskName] = useState("");
@@ -22,6 +23,8 @@ export const Input = () => {
   const background = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
   const [btnClicked, setBtnClicked] = useState(false);
+  const [addMemberModalVisible, setAddMemberModalVisible] =
+    useState<any>(false);
 
   const added = () => {
     setBtnClicked(true);
@@ -85,6 +88,7 @@ export const Input = () => {
             styles.buttonAdder,
             { backgroundColor: background, borderColor: primary },
           ]}
+          onPress={() => setAddMemberModalVisible(true)}
         >
           <Icon
             name="plus"
@@ -92,6 +96,9 @@ export const Input = () => {
             color="primary"
             style={styles.iconAdder}
           />
+          {addMemberModalVisible === true && (
+            <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
+          )}
         </TouchableOpacity>
         <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
         <MemberChip userName="Bernice" avatar="https://picsum.photos/201" />
