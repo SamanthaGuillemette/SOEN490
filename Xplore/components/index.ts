@@ -19,7 +19,7 @@ export * from "./PrimaryButton";
 export * from "./SecondaryButton";
 export * from "./LinearProgressBar";
 export * from "./RequestJoinButton";
-export * from "./SquaredAddButton";
+export * from "./SquaredButton";
 export * from "./ChipButton";
 export * from "./SearchBar";
 export * from "./NextButton";

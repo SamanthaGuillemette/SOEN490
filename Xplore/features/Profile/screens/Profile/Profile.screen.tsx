@@ -1,11 +1,12 @@
 import { Animated, SafeAreaView, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Icon, Text, Avatar, PrimaryButton } from "../../../../components";
+import { Icon, Text, Avatar } from "../../../../components";
 import { useAuth, useThemeColor } from "../../../../hooks";
 import { deviceScreenWidth } from "../../../../constants";
 import { Badges, ProjectSlider, UserProgress } from "../../components";
 import { StatBoxes } from "../../components";
+import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.component";
 import { useRef } from "react";
 import styles from "./Profile.styles";
 import { useQuery } from "react-query";
@@ -87,9 +88,8 @@ const Profile = (props: ProfileProps) => {
           <StatBoxes />
           <Badges />
           <ProjectSlider />
-
-          <View style={styles.signoutButton}>
-            <PrimaryButton label="Sign out" onPress={signOut} />
+          <View style={styles.logoutButton}>
+            <LogoutButton />
           </View>
         </View>
       </ScrollView>
