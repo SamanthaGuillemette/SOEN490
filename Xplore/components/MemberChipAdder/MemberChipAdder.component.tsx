@@ -5,7 +5,9 @@ import {
   TouchableOpacityProps,
 } from "react-native";
 import { useThemeColor } from "../../hooks";
-import { Icon, View, MemberChip } from "../";
+import { Icon } from "../Icon";
+import { View } from "../View";
+import { MemberChip } from "../MemberChip";
 import styles from "./MemberChipAdder.styles";
 import { AddMemberModal } from "../../features/Chat/screens/ChatSettings/components/AddMemberModal/AddMemberModal.component";
 import { useState } from "react";

@@ -1,11 +1,14 @@
-import { ScrollView } from "react-native";
-import { SquaredAddButton, Text, View } from "../../../../../components";
-import { TaskCard } from "../../../../../components";
+import { ScrollView, Modal } from "react-native";
+import { useState } from "react";
+import { SquaredAddButton, Text, View } from "../../../../components";
+import { TaskCard } from "../../../../components";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { AddTaskModalButton } from "../../../components/AddTaskModalButton.component";
+import { Input } from "../../../ProjectCreation/screens/Tasks/components/Input";
 
 export const AllTasks = () => {
+  const [showModal, setShowModal] = useState<any>(false);
+
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
       <View style={styles.alignLeft}>
@@ -33,7 +36,20 @@ export const AllTasks = () => {
             />
           </View>
         </ScrollView>
-        <AddTaskModalButton />
+        <SquaredAddButton
+          iconName="edit-3"
+          onPress={() => setShowModal(!showModal)}
+        />
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={showModal}
+          onRequestClose={() => setShowModal(!showModal)}
+        >
+          <SafeAreaView style={styles.safeAreaStyle}>
+            <Input onPress={() => setShowModal(!showModal)} />
+          </SafeAreaView>
+        </Modal>
       </View>
     </SafeAreaView>
   );
