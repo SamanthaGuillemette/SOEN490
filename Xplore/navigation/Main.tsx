@@ -27,13 +27,19 @@ const Main = ({ colorScheme }: MainProps) => {
 
   function handleDeepLink(event: any) {
     const linkData = Linking.parse(event.url);
-    if (linkData.queryParams?.userId && linkData.queryParams?.secret) {
-      listener.remove();
+    if (linkData.path === "reset") {
+      console.log(linkData);
+    } else if (
+      linkData.path === "signup" &&
+      linkData.queryParams?.userId &&
+      linkData.queryParams?.secret
+    ) {
       verifyEmail(
         linkData.queryParams.userId.toString(),
         linkData.queryParams.secret.toString()
       );
     }
+    listener.remove();
   }
 
   useEffect(() => {

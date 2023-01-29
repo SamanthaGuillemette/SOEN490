@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { NavigationProp } from "@react-navigation/native";
 import * as React from "react";
 import { PrimaryButton, View, TextInput } from "../../../../components";
@@ -21,7 +20,7 @@ import * as Linking from "expo-linking";
 
 interface SignUpProps {
   navigation: NavigationProp<any>;
-  setScreen: (value: number) => void; 
+  setScreen: (value: number) => void;
 }
 
 const SignUp = (props: SignUpProps) => {
@@ -29,7 +28,7 @@ const SignUp = (props: SignUpProps) => {
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
-  const prefix = Linking.createURL("");
+  const prefix = Linking.createURL("signup");
 
   const { signUp, loading } = useAuth();
 
@@ -71,9 +70,7 @@ const SignUp = (props: SignUpProps) => {
           setUserName("");
           setPassword("");
           props.setScreen(0);
-          
         }}
-        // onPress={() => navigation.navigate("TopicSelection")}
       />
     </View>
   );
