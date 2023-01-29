@@ -6,8 +6,8 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
-import { Icon, UserAvatar } from "../../../components";
-import { useThemeColor } from "../../../hooks";
+import { Icon, UserAvatar } from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
 
 interface EditAvatarProps extends TouchableWithoutFeedbackProps {
   style?: StyleProp<ViewStyle>;

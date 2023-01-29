@@ -7,14 +7,14 @@ import Chats from "../features/Chat/screens/Chats/Chats.screen";
 import Leaderboard from "../features/Leaderboard/screens/Leaderboard.screen";
 import { useThemeColor } from "../hooks";
 import styles from "./BottomTabNavigator.styles";
-import Profile from "../features/Profile/screens/Profile.screen";
-import ProjectCreation from "../features/ProjectCreation/screens/ProjectCreation.screen";
-import Settings from "../features/Settings/screens/Settings.screen";
+import Profile from "../features/Profile/screens/Profile/Profile.screen";
+import ProjectCreation from "../features/ProjectCRUD/screens/ProjectCreation.screen";
+import Settings from "../features/Profile/screens/Settings/Settings.screen";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 import Projects from "../features/Projects/screens/Projects.screen";
-import ProjectEdit from "../features/ProjectEdit/screens/ProjectEdit.screen";
+import ProjectEdit from "../features/ProjectCRUD/screens/ProjectEdit.screen";
 
 const BottomTab = createBottomTabNavigator();
 const CreationStack = createNativeStackNavigator();

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import EditProfileBox from "../components/EditProfileBox";
-import PassBox from "../components/PassBox";
-import SaveButton from "../components/SaveButton";
-import TopicBox from "../components/TopicBox";
-import EditAvatar from "../components/EditAvatar";
+import EditProfileBox from "../../components/settings-components/EditProfileBox";
+import PassBox from "../../components/settings-components/PassBox";
+import SaveButton from "../../components/settings-components/SaveButton";
+import TopicBox from "../../components/settings-components/TopicBox";
+import EditAvatar from "../../components/settings-components/EditAvatar";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 

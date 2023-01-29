@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import { Text } from "../../../components";
-import { LabelledInputField, ShadowView } from "../../../components";
+import { Text } from "../../../../components";
+import { ShadowView, LabelledInputField } from "../../../../components";
 import styles from "./EditBox.styles";
 
 const EditProfileBox = () => {

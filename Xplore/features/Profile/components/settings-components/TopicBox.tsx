@@ -1,4 +1,4 @@
-import { Text, Button, ShadowView } from "../../../components";
+import { Text, Button, ShadowView } from "../../../../components";
 import styles from "./EditBox.styles";
 
 const TopicBox = () => {

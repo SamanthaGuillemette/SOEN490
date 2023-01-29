@@ -21,6 +21,7 @@ export * from "./SecondaryButton";
 export * from "./TopHeader";
 export * from "./DatePicker";
 export * from "./IntegrationCard";
+export * from "./LinearProgressBar";
 export * from "./RequestJoinButton";
 export * from "./SquaredAddButton";
 export * from "./ChipButton";

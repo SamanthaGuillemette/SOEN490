@@ -1,10 +1,10 @@
 import { ScrollView, Modal } from "react-native";
 import { useState } from "react";
-import { SquaredAddButton, Text, View } from "../../../../components";
-import { TaskCard } from "../../../../components";
+import { SquaredAddButton, Text, View } from "../../../../../components";
+import { TaskCard } from "../../../../../components";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Input } from "../../../ProjectCreation/screens/Tasks/components/Input";
+import { Input } from "../components/Input";
 
 export const AllTasks = () => {
   const [showModal, setShowModal] = useState<any>(false);
