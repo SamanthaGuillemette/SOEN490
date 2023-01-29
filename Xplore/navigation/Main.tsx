@@ -40,7 +40,7 @@ const Main = ({ colorScheme }: MainProps) => {
   function handleDeepLink(event: any) {
     const linkData = Linking.parse(event.url);
     if (linkData.path === "reset") {
-      // setLinkData(linkData);
+      setLinkData(linkData);
     } else if (
       linkData.path === "signup" &&
       linkData.queryParams?.userId &&

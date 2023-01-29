@@ -21,15 +21,12 @@ const ResetPassword = (props: ResetPasswordProps) => {
   const { linkData, confirmRecovery } = useAuth();
 
   const confirm = () => {
-    console.log("shalom");
-    if (linkData.queryParams?.userId && linkData.queryParams?.secret) {
-      confirmRecovery(
-        linkData.queryParams.userId.toString(),
-        linkData.queryParams.secret.toString(),
-        passwordReentered
-      );
-      navigation.navigate("Sign");
-    }
+    confirmRecovery(
+      String(linkData!.queryParams!.userId!),
+      String(linkData!.queryParams!.secret!),
+      passwordReentered
+    );
+    navigation.navigate("Sign");
   };
 
   return (
