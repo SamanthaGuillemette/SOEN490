@@ -4,8 +4,8 @@ import {
   ViewStyle,
   TouchableOpacity,
   TouchableOpacityProps,
-  Image
 } from "react-native";
+import { SquaredButton } from "../../../../../components";
 import { LogoutConfirmModal } from "../LogoutConfirmModal/LogoutConfirmModal.component";
 import styles from "./LogoutButton.styles";
 
@@ -14,22 +14,22 @@ interface LogoutButtonProps extends TouchableOpacityProps {
 }
 
 export const LogoutButton = (props: LogoutButtonProps) => {
-  const { style, ...restOfProps } = props;
-  const [logoutConfirmModalVisible, setLogoutConfirmModalVisible] = useState<any>(false);
+  const { ...restOfProps } = props;
+  const [logoutConfirmModalVisible, setLogoutConfirmModalVisible] =
+    useState<any>(false);
 
   return (
     <TouchableOpacity
-        style={[style, styles.logoutButton]}
-        {...restOfProps}
-        onPress={() => setLogoutConfirmModalVisible(true)}
+      style={[styles.logoutButton]}
+      {...restOfProps}
+      onPress={() => setLogoutConfirmModalVisible(true)}
     >
-    {logoutConfirmModalVisible === true && (
-        <LogoutConfirmModal setLogoutConfirmModalVisible={setLogoutConfirmModalVisible} />
-    )}
-      <Image
-        style={styles.logoutButton}
-        source={require("../../../../../assets/logout.png")}
-      />
+      {logoutConfirmModalVisible === true && (
+        <LogoutConfirmModal
+          setLogoutConfirmModalVisible={setLogoutConfirmModalVisible}
+        />
+      )}
+      <SquaredButton iconName="log-out" />
     </TouchableOpacity>
   );
 };

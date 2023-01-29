@@ -1,6 +1,6 @@
 import MessageMember from "../../../../components/MessageMember/MessageMember.component";
 import { ScrollView } from "react-native";
-import { SquaredAddButton, View } from "../../../../components";
+import { SquaredButton, View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
 
 interface ProjectMembers {}
@@ -29,7 +29,7 @@ const ProjectMembers = () => {
             username={"Bernice Lewis"}
             xp={103597}
           />
-          <SquaredAddButton />
+          <SquaredButton iconName="plus" />
         </View>
       </ScrollView>
     </View>

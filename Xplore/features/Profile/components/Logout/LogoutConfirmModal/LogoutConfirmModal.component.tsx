@@ -19,8 +19,9 @@ export const LogoutConfirmModal = ({
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const background = useThemeColor("background");
 
-  const [logoutSuccessModalVisible, setLogoutSuccessModalVisible] = useState<any>(false);
-  
+  const [logoutSuccessModalVisible, setLogoutSuccessModalVisible] =
+    useState<any>(false);
+
   function handleClose() {
     setModalVisible(!modalVisible);
     setLogoutConfirmModalVisible(!modalVisible);
@@ -34,14 +35,8 @@ export const LogoutConfirmModal = ({
       onRequestClose={handleClose}
     >
       <View style={styles.fullView}>
-        <View
-          style={[styles.modalView, { backgroundColor: background }]}
-        >
-          <Text
-            variant="h2"
-            color="titleText"
-            style={styles.logoutText}
-          >
+        <View style={[styles.modalView, { backgroundColor: background }]}>
+          <Text variant="h2" color="titleText" style={styles.logoutText}>
             Log out of Xplorify?
           </Text>
           <PrimaryButton
@@ -50,7 +45,9 @@ export const LogoutConfirmModal = ({
             onPress={() => setLogoutSuccessModalVisible(true)}
           />
           {logoutSuccessModalVisible === true && (
-            <LogoutSuccessModal setLogoutSuccessModalVisible={setLogoutSuccessModalVisible}/>
+            <LogoutSuccessModal
+              setLogoutSuccessModalVisible={setLogoutSuccessModalVisible}
+            />
           )}
           <SecondaryButton
             label="CANCEL"

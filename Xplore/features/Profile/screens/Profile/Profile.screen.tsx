@@ -1,7 +1,7 @@
 import { Animated, SafeAreaView, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Icon, Text, Avatar, PrimaryButton } from "../../../../components";
+import { Icon, Text, Avatar } from "../../../../components";
 import { useAuth, useThemeColor } from "../../../../hooks";
 import { deviceScreenWidth } from "../../../../constants";
 import { Badges, ProjectSlider, UserProgress } from "../../components";
@@ -88,9 +88,8 @@ const Profile = (props: ProfileProps) => {
           <StatBoxes />
           <Badges />
           <ProjectSlider />
-
           <View style={styles.logoutButton}>
-            <LogoutButton/>
+            <LogoutButton />
           </View>
         </View>
       </ScrollView>

@@ -16,7 +16,7 @@ export const LogoutSuccessModal = ({
   const background = useThemeColor("background");
 
   const { signOut } = useAuth();
-  
+
   function handleClose() {
     setModalVisible(!modalVisible);
     setLogoutSuccessModalVisible(!modalVisible);
@@ -31,25 +31,15 @@ export const LogoutSuccessModal = ({
       onShow={signOut}
     >
       <View style={styles.fullView}>
-        <View
-          style={[styles.modalView, { backgroundColor: background }]}
-        >
-          <Text
-            variant="h2"
-            color="titleText"
-            style={styles.logoutSuccessText}
-          >
+        <View style={[styles.modalView, { backgroundColor: background }]}>
+          <Text variant="h2" color="titleText" style={styles.logoutSuccessText}>
             You've been Logged out
           </Text>
           <Image
             style={styles.checkCircleImage}
             source={require("../../../../../assets/logoutCheckCircle.png")}
           />
-          <Text
-            variant="body"
-            color="smallText"
-            style={styles.redirectionText}
-          >
+          <Text variant="body" color="smallText" style={styles.redirectionText}>
             Redirecting to Login Page...
           </Text>
         </View>
