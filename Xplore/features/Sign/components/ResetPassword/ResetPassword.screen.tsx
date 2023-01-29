@@ -22,6 +22,7 @@ const ResetPassword = (props: ResetPasswordProps) => {
 
   const confirm = () => {
     if (linkData.queryParams?.userId && linkData.queryParams?.secret) {
+      console.log("hello");
       confirmRecovery(
         linkData.queryParams.userId.toString(),
         linkData.queryParams.secret.toString(),
