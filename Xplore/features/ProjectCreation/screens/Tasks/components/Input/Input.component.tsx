@@ -3,11 +3,12 @@ import {
   DatePicker,
   Text,
   ShadowView,
+  MemberChip,
 } from "../../../../../../components";
 import { useState } from "react";
 import { View } from "react-native";
 import styles from "./Input.styles";
-import { MemberChip } from "../../../../../../components/MemberChip";
+
 import { TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../../../../../hooks";
 import { Icon } from "../../../../../../components";
@@ -18,6 +19,8 @@ export const Input = () => {
   const [taskCategory, setTaskCategory] = useState("");
   const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
+  const background = useThemeColor("backgroundSecondary");
+  const primary = useThemeColor("primary");
   const [btnClicked, setBtnClicked] = useState(false);
 
   const added = () => {
@@ -49,7 +52,6 @@ export const Input = () => {
           onChangeText={(name) => setTaskName(name)}
         />
       </View>
-
       <View style={styles.container}>
         <InputField
           placeHolder="Task description"
@@ -58,7 +60,6 @@ export const Input = () => {
           onChangeText={(desc) => setTaskDesc(desc)}
         />
       </View>
-
       <View style={styles.container}>
         <InputField
           placeHolder="Add a category"
@@ -75,9 +76,25 @@ export const Input = () => {
         <Text color="titleText" variant="h3">
           Participants
         </Text>
-        <Text>Component for add participants</Text>
-        <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
+
         {/* Testing the component, will be adjusted */}
+      </View>
+      <View style={styles.containerParticipants}>
+        <TouchableOpacity
+          style={[
+            styles.buttonAdder,
+            { backgroundColor: background, borderColor: primary },
+          ]}
+        >
+          <Icon
+            name="plus"
+            size="large"
+            color="primary"
+            style={styles.iconAdder}
+          />
+        </TouchableOpacity>
+        <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
+        <MemberChip userName="Bernice" avatar="https://picsum.photos/201" />
       </View>
       <ShadowView
         style={[styles.button, { backgroundColor: primaryBackground }]}
