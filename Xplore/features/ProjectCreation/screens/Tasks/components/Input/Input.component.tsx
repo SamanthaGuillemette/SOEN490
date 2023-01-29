@@ -3,7 +3,6 @@ import {
   DatePicker,
   Text,
   ShadowView,
-  MemberChip,
   MemberChipAdder,
 } from "../../../../../../components";
 import { useState } from "react";
@@ -13,7 +12,6 @@ import styles from "./Input.styles";
 import { TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../../../../../hooks";
 import { Icon } from "../../../../../../components";
-import { AddMemberModal } from "../../../../../Chat/screens/ChatSettings/components/AddMemberModal/AddMemberModal.component";
 
 export const Input = () => {
   const [taskName, setTaskName] = useState("");
@@ -21,11 +19,8 @@ export const Input = () => {
   const [taskCategory, setTaskCategory] = useState("");
   const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
-  const backgroundSecondary = useThemeColor("backgroundSecondary");
-  const primary = useThemeColor("primary");
+
   const [btnClicked, setBtnClicked] = useState(false);
-  const [addMemberModalVisible, setAddMemberModalVisible] =
-    useState<any>(false);
 
   const added = () => {
     setBtnClicked(true);
