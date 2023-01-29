@@ -5,7 +5,10 @@ import {
   TouchableOpacityProps,
 } from "react-native";
 import { useThemeColor } from "../../hooks";
-import { Text, Avatar, Icon, View } from "../";
+import { Text } from "../Text";
+import { Avatar } from "../Avatar";
+import { Icon } from "../Icon";
+import { View } from "../View";
 import styles from "./MemberChip.styles";
 
 interface MemberChipProps extends TouchableOpacityProps {
