@@ -1,13 +1,7 @@
 import { useState } from "react";
-import {
-  StyleProp,
-  ViewStyle,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
-import { SquaredButton } from "../../../../../components";
+import { StyleProp, ViewStyle, TouchableOpacityProps } from "react-native";
+import { SquaredButton, View } from "../../../../../components";
 import { LogoutConfirmModal } from "../LogoutConfirmModal/LogoutConfirmModal.component";
-import styles from "./LogoutButton.styles";
 
 interface LogoutButtonProps extends TouchableOpacityProps {
   style?: StyleProp<ViewStyle>;
@@ -19,17 +13,16 @@ export const LogoutButton = (props: LogoutButtonProps) => {
     useState<any>(false);
 
   return (
-    <TouchableOpacity
-      style={[styles.logoutButton]}
-      {...restOfProps}
-      onPress={() => setLogoutConfirmModalVisible(true)}
-    >
+    <View {...restOfProps}>
       {logoutConfirmModalVisible === true && (
         <LogoutConfirmModal
           setLogoutConfirmModalVisible={setLogoutConfirmModalVisible}
         />
       )}
-      <SquaredButton iconName="log-out" />
-    </TouchableOpacity>
+      <SquaredButton
+        iconName="log-out"
+        onPress={() => setLogoutConfirmModalVisible(true)}
+      />
+    </View>
   );
 };
