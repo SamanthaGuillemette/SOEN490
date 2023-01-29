@@ -4,6 +4,7 @@ import {
   Text,
   ShadowView,
   MemberChip,
+  MemberChipAdder,
 } from "../../../../../../components";
 import { useState } from "react";
 import { View } from "react-native";
@@ -20,7 +21,7 @@ export const Input = () => {
   const [taskCategory, setTaskCategory] = useState("");
   const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
-  const background = useThemeColor("backgroundSecondary");
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
   const [btnClicked, setBtnClicked] = useState(false);
   const [addMemberModalVisible, setAddMemberModalVisible] =
@@ -82,27 +83,8 @@ export const Input = () => {
 
         {/* Testing the component, will be adjusted */}
       </View>
-      <View style={styles.containerParticipants}>
-        <TouchableOpacity
-          style={[
-            styles.buttonAdder,
-            { backgroundColor: background, borderColor: primary },
-          ]}
-          onPress={() => setAddMemberModalVisible(true)}
-        >
-          <Icon
-            name="plus"
-            size="large"
-            color="primary"
-            style={styles.iconAdder}
-          />
-          {addMemberModalVisible === true && (
-            <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
-          )}
-        </TouchableOpacity>
-        <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
-        <MemberChip userName="Bernice" avatar="https://picsum.photos/201" />
-      </View>
+
+      <MemberChipAdder />
       <ShadowView
         style={[styles.button, { backgroundColor: primaryBackground }]}
       >

@@ -35,3 +35,5 @@ export * from "./StepIndicator";
 export * from "./TaskCard";
 export * from "./CircularPercentageBar";
 export * from "./MessageMember";
+export * from "./MemberChip";
+export * from "./MemberChipAdder";
