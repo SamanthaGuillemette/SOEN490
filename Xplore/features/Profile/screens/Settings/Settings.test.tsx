@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react-native";
-import Settings from "../screens/Settings.screen";
+import Settings from "../Settings/Settings.screen";
 
 describe("Settings />", () => {
   it("renders correctly", () => {
