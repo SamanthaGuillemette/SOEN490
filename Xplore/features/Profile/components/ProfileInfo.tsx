@@ -17,7 +17,7 @@ import {
   ProgressBar,
 } from "../../../components";
 import { colors } from "../../../constants";
-import Badges from "./Badges";
+import Badges from "./Badges/Badges.component";
 import { useThemeColor } from "../../../hooks";
 
 interface ProfileInfoProps extends TouchableWithoutFeedbackProps {

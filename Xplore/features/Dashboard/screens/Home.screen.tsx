@@ -50,6 +50,7 @@ const Home = () => {
         </View>
       </ScrollView>
 
+      {/* FIXME: Gonna make some changes to this floating button later */}
       <AnimatedFAB
         icon={"plus"}
         label={"New Project"}
