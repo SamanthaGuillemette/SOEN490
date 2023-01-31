@@ -1,6 +1,6 @@
 import { ScrollView } from "react-native";
-import { View } from "../../../../components";
-import { TaskCard } from "../../../../components/TaskCard";
+import { View } from "../../../../../components";
+import { TaskCard } from "../../../../../components/TaskCard";
 
 import styles from "./Tasks.styles";
 

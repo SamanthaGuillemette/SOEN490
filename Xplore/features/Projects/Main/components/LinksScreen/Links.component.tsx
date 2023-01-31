@@ -1,4 +1,4 @@
-import { IntegrationCard } from "../../../../components";
+import { IntegrationCard } from "../../../../../components";
 import { ScrollView, View } from "react-native";
 import styles from "./Links.styles";
 

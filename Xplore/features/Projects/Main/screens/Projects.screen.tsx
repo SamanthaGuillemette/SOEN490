@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SafeAreaView } from "react-native";
-import { useThemeColor } from "../../../hooks";
+import { useThemeColor } from "../../../../hooks";
 import ProjectCoreScreen from "./ProjectCoreScreen/ProjectCoreScreen.component";
-import TopHeader from "../../../navigation/TopHeader.component";
+import TopHeader from "../../../../navigation/TopHeader.component";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./Projects.styles";
 

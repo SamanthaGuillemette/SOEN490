@@ -1,6 +1,6 @@
 import { ScrollView } from "react-native-gesture-handler";
-import { View, RequestJoin } from "../../../../components";
-import Accordion from "../../../../components/Accordion/Accordion.component";
+import { View, RequestJoin } from "../../../../../components";
+import Accordion from "../../../../../components/Accordion/Accordion.component";
 import { NavigationProp } from "@react-navigation/native";
 import ProjectStatusBox from "./components/ProjectStatusBox/ProjectStatusBox.Component";
 import styles from "./ProjectDescription.styles";

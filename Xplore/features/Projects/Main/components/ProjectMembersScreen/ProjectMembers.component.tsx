@@ -1,6 +1,6 @@
-import MessageMember from "../../../../components/MessageMember/MessageMember.component";
+import MessageMember from "../../../../../components/MessageMember/MessageMember.component";
 import { ScrollView } from "react-native";
-import { SquaredButton, View } from "../../../../components";
+import { SquaredButton, View } from "../../../../../components";
 import styles from "./ProjectMembers.styles";
 
 interface ProjectMembers {}

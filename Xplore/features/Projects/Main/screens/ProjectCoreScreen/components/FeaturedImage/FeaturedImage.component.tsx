@@ -1,5 +1,5 @@
 import { ImageBackground, View as RNView } from "react-native";
-import { ShadowView, Text, View } from "../../../../../../components";
+import { ShadowView, Text, View } from "../../../../../../../components";
 import styles from "./FeaturedImage.styles";
 
 interface ShadowImageProps {
@@ -13,7 +13,7 @@ export const FeaturedImage = (props: ShadowImageProps) => {
   return (
     <ShadowView backgroundColor="primary" style={styles.container}>
       <ImageBackground
-        source={require("../../../../../../assets/SnakeRobot.png")}
+        source={require("../../../../../../../assets/SnakeRobot.png")}
         imageStyle={styles.imageBgContainer}
       >
         <View style={styles.thirdContainer}>

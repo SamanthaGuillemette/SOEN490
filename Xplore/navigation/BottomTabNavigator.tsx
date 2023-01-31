@@ -7,7 +7,7 @@ import Leaderboard from "../features/Leaderboard/screens/Leaderboard.screen";
 import { useThemeColor } from "../hooks";
 import styles from "./BottomTabNavigator.styles";
 import Profile from "../features/Profile/screens/Profile/Profile.screen";
-import Projects from "../features/Projects/screens/Projects.screen";
+import Projects from "../features/Projects/Main/screens/Projects.screen";
 
 const BottomTab = createBottomTabNavigator();
 
