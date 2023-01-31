@@ -1,3 +1,4 @@
+import { NavigationProp } from "@react-navigation/native";
 import { FlatList } from "react-native";
 import { LinkButton, Text, View } from "../../../../components";
 import { ProjectCardSmall } from "../ProjectCardSmall";
@@ -53,9 +54,14 @@ interface FakeProjectsTypeItem {
   index: number;
 }
 
+interface ExploreProjectsProps {
+  navigation: NavigationProp<any>;
+}
+
 // Cannot directly destruct item here because it will cause an error.
 // Use the 'FakeProjectsTypeItem' interface instead.
-export const ExploreProjects = () => {
+export const ExploreProjects = (props: ExploreProjectsProps) => {
+  const { navigation } = props;
   const renderProjectCards = ({ item, index }: FakeProjectsTypeItem) => {
     return (
       <ProjectCardSmall
@@ -73,7 +79,9 @@ export const ExploreProjects = () => {
       </Text>
       <View style={styles.exploreSubTitleContainer}>
         <Text variant="body">Check out popular projects</Text>
-        <LinkButton>View all</LinkButton>
+        <LinkButton onPress={() => navigation.navigate("AllProjects")}>
+          View all
+        </LinkButton>
       </View>
 
       <FlatList

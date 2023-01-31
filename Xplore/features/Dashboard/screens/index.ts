@@ -1,4 +1,4 @@
 import Home from "./Home/Home.screen";
-import ExploreProjects from "./ExploreProjects/ExploreProjects.screen";
+import AllProjects from "./AllProjects/AllProjects.screen";
 
-export { Home, ExploreProjects };
+export { Home, AllProjects };
