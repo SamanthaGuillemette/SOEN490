@@ -23,26 +23,10 @@ const AppStack = () => {
       <Stack.Screen name="Chats" component={Chats} />
       <Stack.Screen name="ChatDetails" component={ChatDetails} />
       <Stack.Screen name="ChatSettings" component={ChatSettings} />
-      <Stack.Screen
-        name="BottomTabNavigator"
-        component={BottomTabNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Settings"
-        component={Settings}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
     </Stack.Navigator>
   );
 };

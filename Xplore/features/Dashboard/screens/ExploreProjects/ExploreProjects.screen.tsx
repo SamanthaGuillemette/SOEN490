@@ -2,7 +2,7 @@ import { Text, View } from "../../../../components";
 
 const ExploreProjects = () => {
   return (
-    <View>
+    <View backgroundColor="background">
       <Text>Explore Projects screen</Text>
     </View>
   );
