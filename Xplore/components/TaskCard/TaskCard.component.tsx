@@ -45,7 +45,11 @@ export const taskContent = (props: taskContentProps) => {
           {props.taskType}
         </Text>
         <TouchableOpacity
-          onPress={() => props.navigation.navigate("IndividualTask")}
+          onPress={() =>
+            props.navigation.navigate("IndividualTask", {
+              taskName: props.taskName,
+            })
+          }
         >
           <Icon style={styles.taskInfoIcon} size="medium" name="help-circle" />
         </TouchableOpacity>

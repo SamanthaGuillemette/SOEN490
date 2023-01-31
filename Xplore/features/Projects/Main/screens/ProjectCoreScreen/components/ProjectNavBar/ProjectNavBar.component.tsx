@@ -18,18 +18,17 @@ interface ProjectNavBar {
   navigation: NavigationProp<any>;
 }
 
-const { width } = Dimensions.get("window");
-const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
-
-const projectScreenPages = [
-  <ProjectDescription />,
-  <Tasks />, // tasks
-  <ProjectDescription />, // discussion placeholder
-  <ProjectMembers />,
-  <Links />,
-];
-
-function ProjectNavBar() {
+function ProjectNavBar(props: ProjectNavBar) {
+  const { navigation } = props;
+  const { width } = Dimensions.get("window");
+  const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
+  const projectScreenPages = [
+    <ProjectDescription />,
+    <Tasks navigation={navigation} />, // tasks
+    <ProjectDescription />, // discussion placeholder
+    <ProjectMembers />,
+    <Links />,
+  ];
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
@@ -39,6 +38,7 @@ function ProjectNavBar() {
   const [active, setActive] = useState(0);
   const headerScrollView = useRef<any>(null);
   const itemScrollView = useRef<any>(null);
+
   useEffect(() => {
     headerScrollView.current.scrollToIndex({
       index: active,

@@ -18,7 +18,7 @@ const Home = (props: ProjectsProps) => {
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
       <TopHeader screenName={"Projects"} navigation={props.navigation} />
-      <ProjectCoreScreen />
+      <ProjectCoreScreen navigation={props.navigation} />
     </SafeAreaView>
   );
 };

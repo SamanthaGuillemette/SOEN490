@@ -1,13 +1,26 @@
-import { View } from "../../../../components/View";
-import { Text } from "../../../../components/Text";
+import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./IndividualTask.styles";
+import { SafeAreaView } from "react-native";
+import TopHeader from "../../../../navigation/TopHeader.component";
+import { useThemeColor } from "../../../../hooks/useThemeColor";
 
-const IndividualTask = () => {
+interface IndividualTaskScreenProps {
+  navigation: NavigationProp<any>;
+  taskName: string;
+}
+
+const IndividualTask = (props: IndividualTaskScreenProps) => {
+  const { navigation } = props;
+  const route = useRoute();
+  let { taskName }: any = route.params;
+
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <View>
-      <Text>test</Text>
-    </View>
+    <SafeAreaView
+      style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
+    >
+      <TopHeader screenName={taskName} navigation={navigation} />
+    </SafeAreaView>
   );
 };
-
 export default IndividualTask;
