@@ -7,14 +7,14 @@ import {
   ScrollView,
 } from "react-native";
 import { AnimatedFAB } from "react-native-paper";
-import { View } from "../../../components/";
-import { useThemeColor } from "../../../hooks";
+import { View } from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
 import {
   HomeHeader,
   ExploreProjects,
   TodayStats,
   NewProjects,
-} from "../components";
+} from "../../components";
 import styles from "./Home.styles";
 
 const Home = () => {
