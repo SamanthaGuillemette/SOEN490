@@ -52,7 +52,7 @@ const Home = (props: HomeProps) => {
         <View style={styles.mainScreen}>
           <TodayStats />
           <ExploreProjects navigation={navigation} />
-          <NewProjects />
+          <NewProjects navigation={navigation} />
         </View>
       </ScrollView>
 

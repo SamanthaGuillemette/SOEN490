@@ -16,10 +16,16 @@ interface SearchBarProps {
   style?: StyleProp<ViewStyle>;
   searchText?: string;
   searchIconColor?: keyof typeof colors.light & keyof typeof colors.dark;
+  showFilterButton?: boolean;
 }
 export const SearchBar = (props: SearchBarProps) => {
   // Give default values to props
-  const { searchText = "Search", searchIconColor = "smallText", style } = props;
+  const {
+    searchText = "Search",
+    searchIconColor = "smallText",
+    showFilterButton = false,
+    style,
+  } = props;
 
   const bodyTextColor = useThemeColor("bodyText");
   const [isFilterButtonActive, setIsFilterButtonActive] = useState(false);
@@ -39,17 +45,19 @@ export const SearchBar = (props: SearchBarProps) => {
           placeholder={searchText}
         />
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          alert("filter button clicked");
-          setIsFilterButtonActive(!isFilterButtonActive);
-        }}
-      >
-        <Icon
-          name="sliders"
-          color={isFilterButtonActive ? "primary" : "smallText"}
-        />
-      </TouchableOpacity>
+      {showFilterButton && (
+        <TouchableOpacity
+          onPress={() => {
+            alert("filter button clicked");
+            setIsFilterButtonActive(!isFilterButtonActive);
+          }}
+        >
+          <Icon
+            name="sliders"
+            color={isFilterButtonActive ? "primary" : "smallText"}
+          />
+        </TouchableOpacity>
+      )}
     </ShadowView>
   );
 };

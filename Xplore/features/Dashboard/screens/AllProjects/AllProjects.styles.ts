@@ -2,8 +2,9 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   mainContainer: {
+    flex: 1,
     paddingHorizontal: 20,
-    paddingVertical: 50,
+    paddingTop: 10,
   },
   mainTitleText: {
     marginBottom: 20,
