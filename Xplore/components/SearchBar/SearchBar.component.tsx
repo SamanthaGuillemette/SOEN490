@@ -1,32 +1,55 @@
-import * as React from "react";
-import { StyleProp, TextInput, ViewStyle } from "react-native";
+import { useState } from "react";
+import {
+  StyleProp,
+  TextInput,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 import { View } from "../View";
 import { Icon } from "../Icon";
 import { ShadowView } from "../ShadowView";
 import { useThemeColor } from "../../hooks";
+import { colors } from "../../constants";
 import styles from "./SearchBar.styles";
 
 interface SearchBarProps {
   style?: StyleProp<ViewStyle>;
+  searchText?: string;
+  searchIconColor?: keyof typeof colors.light & keyof typeof colors.dark;
 }
 export const SearchBar = (props: SearchBarProps) => {
-  const bodyText = useThemeColor("bodyText");
+  // Give default values to props
+  const { searchText = "Search", searchIconColor = "smallText", style } = props;
+
+  const bodyTextColor = useThemeColor("bodyText");
+  const [isFilterButtonActive, setIsFilterButtonActive] = useState(false);
 
   return (
     <ShadowView
       shadowOffset={4}
       backgroundColor="backgroundSecondary"
       isInnerShadow={false}
-      style={[styles.container, props.style]}
+      style={[styles.container, style]}
     >
       <View style={styles.searchBox}>
-        <Icon name="search" color="smallText" />
+        <Icon name="search" color={searchIconColor} />
         <TextInput
           style={styles.searchBoxInput}
-          placeholderTextColor={bodyText}
-          placeholder="Search"
+          placeholderTextColor={bodyTextColor}
+          placeholder={searchText}
         />
       </View>
+      <TouchableOpacity
+        onPress={() => {
+          alert("filter button clicked");
+          setIsFilterButtonActive(!isFilterButtonActive);
+        }}
+      >
+        <Icon
+          name="sliders"
+          color={isFilterButtonActive ? "primary" : "smallText"}
+        />
+      </TouchableOpacity>
     </ShadowView>
   );
 };
