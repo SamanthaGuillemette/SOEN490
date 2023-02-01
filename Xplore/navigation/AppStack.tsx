@@ -8,7 +8,7 @@ import Home from "../features/Dashboard/screens/Home.screen";
 import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import Profile from "../features/Profile/screens/Profile/Profile.screen";
 import Settings from "../features/Profile/screens/Settings/Settings.screen";
-import IndividualTask from "../features/Projects/IndividualTask/Screens/IndividualTask.screen";
+import IndividualTask from "../features/Projects/IndividualTask/screens/IndividualTask.screen";
 
 const Stack = createNativeStackNavigator();
 

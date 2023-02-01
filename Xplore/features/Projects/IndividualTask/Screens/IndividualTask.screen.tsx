@@ -3,7 +3,9 @@ import styles from "./IndividualTask.styles";
 import { SafeAreaView } from "react-native";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
-
+// import { TaskIllustration } from "../components/TaskIllustration/taskIllustration.component";
+// import { TaskIllustration } from "../components/TaskIllustration";
+import { TaskIllustration } from "../components/TaskIllustration/TaskIllustration.component";
 interface IndividualTaskScreenProps {
   navigation: NavigationProp<any>;
   taskName: string;
@@ -20,6 +22,7 @@ const IndividualTask = (props: IndividualTaskScreenProps) => {
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <TopHeader screenName={taskName} navigation={navigation} />
+      <TaskIllustration />
     </SafeAreaView>
   );
 };
