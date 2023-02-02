@@ -9,26 +9,24 @@ import { View } from "../View";
 import { Icon } from "../Icon";
 import { ShadowView } from "../ShadowView";
 import { useThemeColor } from "../../hooks";
-import { colors } from "../../constants";
 import styles from "./SearchBar.styles";
 
 interface SearchBarProps {
   style?: StyleProp<ViewStyle>;
-  searchText?: string;
-  searchIconColor?: keyof typeof colors.light & keyof typeof colors.dark;
+  searchPlaceHolder?: string;
   showFilterButton?: boolean;
 }
 
 export const SearchBar = (props: SearchBarProps) => {
   // Give default values to props
   const {
-    searchText = "Search",
-    searchIconColor = "smallText",
+    searchPlaceHolder = "Search",
     showFilterButton = false,
     style,
   } = props;
 
   const bodyTextColor = useThemeColor("bodyText");
+  const [isSearchInputActive, setIsSearchInputActive] = useState(false);
   const [isFilterButtonActive, setIsFilterButtonActive] = useState(false);
 
   return (
@@ -39,11 +37,16 @@ export const SearchBar = (props: SearchBarProps) => {
       style={[styles.container, style]}
     >
       <View style={styles.searchBox}>
-        <Icon name="search" color={searchIconColor} />
+        <Icon
+          name="search"
+          color={isSearchInputActive ? "primary" : "smallText"}
+        />
         <TextInput
           style={styles.searchBoxInput}
           placeholderTextColor={bodyTextColor}
-          placeholder={searchText}
+          placeholder={searchPlaceHolder}
+          onFocus={() => setIsSearchInputActive(true)}
+          onBlur={() => setIsSearchInputActive(false)}
         />
       </View>
 
