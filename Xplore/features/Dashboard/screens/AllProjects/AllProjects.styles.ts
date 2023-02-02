@@ -12,4 +12,7 @@ export default StyleSheet.create({
   searchBar: {
     marginBottom: 25,
   },
+  flashListContainer: {
+    paddingBottom: 30,
+  },
 });
