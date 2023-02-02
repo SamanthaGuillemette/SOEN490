@@ -3,16 +3,18 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   mainContainer: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 10,
+  },
+  header: {
+    marginHorizontal: 20,
   },
   mainTitleText: {
     marginBottom: 20,
   },
   searchBar: {
-    marginBottom: 25,
+    marginBottom: 20,
   },
   flashListContainer: {
     paddingBottom: 30,
+    paddingTop: 5,
   },
 });

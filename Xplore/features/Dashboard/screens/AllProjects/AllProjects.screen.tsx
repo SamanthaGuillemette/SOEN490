@@ -1,7 +1,6 @@
 import { FlashList } from "@shopify/flash-list";
-import { Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Icon, SearchBar, Text, View } from "../../../../components";
+import { SearchBar, Text, View } from "../../../../components";
 import { AllProjectsCard } from "../../components";
 import styles from "./AllProjects.styles";
 
@@ -56,16 +55,18 @@ export const fakeProjectData = [
 const ExploreProjects = () => {
   return (
     <SafeAreaView edges={["top"]} style={styles.mainContainer}>
-      <Text style={styles.mainTitleText} variant="h2" color="titleText">
-        Explore Projects
-      </Text>
+      <View style={styles.header}>
+        <Text style={styles.mainTitleText} variant="h2" color="titleText">
+          Explore Projects
+        </Text>
 
-      <SearchBar
-        searchText="Search for a project..."
-        searchIconColor="primary"
-        showFilterButton={true}
-        style={styles.searchBar}
-      />
+        <SearchBar
+          searchText="Search for a project..."
+          searchIconColor="primary"
+          showFilterButton={true}
+          style={styles.searchBar}
+        />
+      </View>
 
       <FlashList
         data={fakeProjectData}
