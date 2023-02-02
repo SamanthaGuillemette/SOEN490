@@ -1,5 +1,6 @@
 import { Image } from "react-native";
 import { Icon, Text, View } from "../../../../components";
+import styles from "./AllProjectsCard.styles";
 
 interface AllProjectsCardProps {
   item: {
@@ -19,27 +20,15 @@ export const AllProjectsCard = (props: AllProjectsCardProps) => {
   return (
     <View
       backgroundColor="backgroundSecondary"
-      style={{
-        borderRadius: 8,
-        marginBottom: 20,
-        width: "100%",
-        flexDirection: "row",
-        alignItems: "center",
-      }}
+      style={styles.cardContainer}
       key={item.title}
     >
       <Image
         source={{ uri: "https://picsum.photos/200" }}
-        style={{
-          width: 125,
-          height: 137,
-          borderRadius: 8,
-          marginVertical: 4,
-          marginLeft: 4,
-        }}
+        style={styles.projectImage}
       />
 
-      <View style={{ paddingHorizontal: 15 }}>
+      <View style={styles.projectInfo}>
         <Text variant="h3" color="titleText">
           {item.title}
         </Text>
@@ -48,12 +37,12 @@ export const AllProjectsCard = (props: AllProjectsCardProps) => {
           color="bodyText"
           lineBreakMode="tail"
           numberOfLines={2}
-          style={{ marginBottom: 35 }}
+          style={styles.projectDescription}
         >
           {item.description}
         </Text>
 
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View style={styles.statIcon}>
           <Icon name="file-text" size="medium" />
           <Text variant="smBody" color="bodyText">
             12
