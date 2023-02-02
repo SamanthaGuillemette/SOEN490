@@ -1,5 +1,7 @@
 import { FlashList } from "@shopify/flash-list";
+import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollBar } from "react-native-ui-lib";
 import { SearchBar, Text, View } from "../../../../components";
 import { AllProjectsCard } from "../../components";
 import styles from "./AllProjects.styles";
@@ -53,6 +55,12 @@ export const fakeProjectData = [
 ];
 
 const ExploreProjects = () => {
+  const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
+
+  // useEffect(() => {
+  //   alert(isCategoryListVisible);
+  // }, [isCategoryListVisible]);
+
   return (
     <SafeAreaView edges={["top"]} style={styles.mainContainer}>
       <View style={styles.header}>
@@ -61,12 +69,33 @@ const ExploreProjects = () => {
         </Text>
 
         <SearchBar
-          searchText="Search for a project..."
-          searchIconColor="primary"
+          searchPlaceHolder="Search for a project..."
           showFilterButton={true}
           style={styles.searchBar}
+          onFilterButtonPress={setIsCategoryListVisible}
         />
       </View>
+
+      {isCategoryListVisible && (
+        <ScrollBar
+          useList={true} // use FlatList
+          data={fakeProjectData}
+          renderItem={({ item }) => (
+            <View
+              style={{
+                backgroundColor: "yellow",
+                marginRight: 8,
+                height: 25,
+                width: 80,
+                borderWidth: 1,
+                borderColor: "red",
+              }}
+            >
+              <Text>{item.title}</Text>
+            </View>
+          )}
+        />
+      )}
 
       <FlashList
         data={fakeProjectData}

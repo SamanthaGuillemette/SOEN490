@@ -15,14 +15,16 @@ interface SearchBarProps {
   style?: StyleProp<ViewStyle>;
   searchPlaceHolder?: string;
   showFilterButton?: boolean;
+  onFilterButtonPress?: (isFilterButtonActive: boolean) => void;
 }
 
 export const SearchBar = (props: SearchBarProps) => {
   // Give default values to props
   const {
+    style,
     searchPlaceHolder = "Search",
     showFilterButton = false,
-    style,
+    onFilterButtonPress,
   } = props;
 
   const bodyTextColor = useThemeColor("bodyText");
@@ -53,9 +55,8 @@ export const SearchBar = (props: SearchBarProps) => {
       {showFilterButton && (
         <TouchableOpacity
           onPress={() => {
-            // eslint-disable-next-line no-alert
-            alert("filter button clicked");
             setIsFilterButtonActive(!isFilterButtonActive);
+            onFilterButtonPress && onFilterButtonPress(isFilterButtonActive);
           }}
         >
           <Icon
