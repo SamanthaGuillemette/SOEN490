@@ -17,4 +17,9 @@ export default StyleSheet.create({
     paddingBottom: 30,
     paddingTop: 5,
   },
+  categoryListContainer: {
+    paddingHorizontal: 20,
+    marginTop: 5,
+    marginBottom: 20,
+  },
 });

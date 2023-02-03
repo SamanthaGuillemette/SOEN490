@@ -54,6 +54,15 @@ export const fakeProjectData = [
   },
 ];
 
+const categories = [
+  { title: "All" },
+  { title: "Web Dev" },
+  { title: "Mobile Dev" },
+  { title: "Frontend" },
+  { title: "Backend" },
+  { title: "DSA" },
+];
+
 const ExploreProjects = () => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
 
@@ -79,19 +88,26 @@ const ExploreProjects = () => {
       {isCategoryListVisible && (
         <ScrollBar
           useList={true} // use FlatList
-          data={fakeProjectData}
-          renderItem={({ item }) => (
+          data={categories}
+          contentContainerStyle={styles.categoryListContainer}
+          renderItem={({ item, index }) => (
             <View
+              backgroundColor={index === 0 ? "primary" : "generalGray"}
               style={{
-                backgroundColor: "yellow",
                 marginRight: 8,
                 height: 25,
-                width: 80,
-                borderWidth: 1,
-                borderColor: "red",
+                borderRadius: 20,
+                paddingHorizontal: 25,
+                justifyContent: "center",
               }}
             >
-              <Text>{item.title}</Text>
+              <Text
+                variant="label"
+                color="bodyText"
+                lightColor={index === 0 ? "white" : ""}
+              >
+                {item.title}
+              </Text>
             </View>
           )}
         />
