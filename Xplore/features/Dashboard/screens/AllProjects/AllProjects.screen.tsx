@@ -1,11 +1,16 @@
 import { FlashList } from "@shopify/flash-list";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollBar } from "react-native-ui-lib";
-import { SearchBar, Text, View } from "../../../../components";
+import {
+  CategoryScrollBar,
+  SearchBar,
+  Text,
+  View,
+} from "../../../../components";
 import { AllProjectsCard } from "../../components";
 import styles from "./AllProjects.styles";
 
+// These fake data will be replaced by data pulled from the backend later.
 export const fakeProjectData = [
   {
     title: "Snake Robot",
@@ -55,12 +60,12 @@ export const fakeProjectData = [
 ];
 
 const categories = [
-  { title: "All" },
-  { title: "Web Dev" },
-  { title: "Mobile Dev" },
-  { title: "Frontend" },
-  { title: "Backend" },
-  { title: "DSA" },
+  { name: "All", isActive: true },
+  { name: "Web Dev", isActive: false },
+  { name: "Mobile Dev", isActive: false },
+  { name: "Frontend", isActive: false },
+  { name: "Backend", isActive: false },
+  { name: "DSA", isActive: false },
 ];
 
 const ExploreProjects = () => {
@@ -85,33 +90,9 @@ const ExploreProjects = () => {
         />
       </View>
 
-      {isCategoryListVisible && (
-        <ScrollBar
-          useList={true} // use FlatList
-          data={categories}
-          contentContainerStyle={styles.categoryListContainer}
-          renderItem={({ item, index }) => (
-            <View
-              backgroundColor={index === 0 ? "primary" : "generalGray"}
-              style={{
-                marginRight: 8,
-                height: 25,
-                borderRadius: 20,
-                paddingHorizontal: 25,
-                justifyContent: "center",
-              }}
-            >
-              <Text
-                variant="label"
-                color="bodyText"
-                lightColor={index === 0 ? "white" : ""}
-              >
-                {item.title}
-              </Text>
-            </View>
-          )}
-        />
-      )}
+      {/* This horizontal scrollbar is hidden by default.
+      When the user clicks on the filter button, the horizontal scrollbar is shown. */}
+      {isCategoryListVisible && <CategoryScrollBar categories={categories} />}
 
       <FlashList
         data={fakeProjectData}
