@@ -6,6 +6,8 @@ import { useThemeColor } from "../../../../hooks/useThemeColor";
 // import { TaskIllustration } from "../components/TaskIllustration/taskIllustration.component";
 // import { TaskIllustration } from "../components/TaskIllustration";
 import { TaskIllustration } from "../components/TaskIllustration/TaskIllustration.component";
+import { DescriptionCard } from "../components/DescriptionCard/DescriptionCard.component";
+import { ScrollView } from "react-native";
 interface IndividualTaskScreenProps {
   navigation: NavigationProp<any>;
   taskName: string;
@@ -18,12 +20,13 @@ const IndividualTask = (props: IndividualTaskScreenProps) => {
 
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <SafeAreaView
+    <ScrollView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <TopHeader screenName={taskName} navigation={navigation} />
       <TaskIllustration />
-    </SafeAreaView>
+      <DescriptionCard />
+    </ScrollView>
   );
 };
 export default IndividualTask;
