@@ -16,5 +16,6 @@ export default StyleSheet.create({
   },
   searchBoxInput: {
     marginLeft: 11,
+    flex: 0.9, // to increase the "senstive" area of the input
   },
 });

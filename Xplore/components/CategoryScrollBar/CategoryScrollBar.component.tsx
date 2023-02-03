@@ -4,10 +4,10 @@ import { useThemeColor } from "../../hooks";
 import { Text } from "../Text";
 import styles from "./CategoryScrollBar.styles";
 
-type Category = {
+interface Category {
   name: string;
   isActive: boolean;
-};
+}
 
 interface CategoryScrollBarProps {
   categories: Category[];
@@ -15,7 +15,6 @@ interface CategoryScrollBarProps {
 
 export const CategoryScrollBar = (props: CategoryScrollBarProps) => {
   const { categories } = props;
-
   const primaryColor = useThemeColor("primary");
   const generalGrayColor = useThemeColor("generalGray");
 
@@ -27,14 +26,14 @@ export const CategoryScrollBar = (props: CategoryScrollBarProps) => {
       renderItem={({ item }: any) => (
         <View key={item.name}>
           <TouchableOpacity
-            style={{
-              marginRight: 8,
-              height: 25,
-              borderRadius: 20,
-              paddingHorizontal: 25,
-              justifyContent: "center",
-              backgroundColor: item.isActive ? primaryColor : generalGrayColor,
-            }}
+            style={[
+              styles.categoryButton,
+              {
+                backgroundColor: item.isActive
+                  ? primaryColor
+                  : generalGrayColor,
+              },
+            ]}
             onPress={() => {
               // eslint-disable-next-line no-alert
               alert("category selected");
