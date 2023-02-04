@@ -55,8 +55,8 @@ export const SearchBar = (props: SearchBarProps) => {
       {showFilterButton && (
         <TouchableOpacity
           onPress={() => {
-            setIsFilterButtonActive(!isFilterButtonActive);
-            onFilterButtonPress && onFilterButtonPress(isFilterButtonActive);
+            setIsFilterButtonActive(!isFilterButtonActive); // Toggle the opposite value
+            onFilterButtonPress && onFilterButtonPress(!isFilterButtonActive);
           }}
         >
           <Icon

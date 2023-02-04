@@ -60,6 +60,7 @@ export const fakeProjectData = [
 ];
 
 const categories = [
+  // TODO: we may not need the "isActive" property
   { name: "All", isActive: true },
   { name: "Web Dev", isActive: false },
   { name: "Mobile Dev", isActive: false },
@@ -71,10 +72,6 @@ const categories = [
 const ExploreProjects = () => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
 
-  // useEffect(() => {
-  //   alert(isCategoryListVisible);
-  // }, [isCategoryListVisible]);
-
   return (
     <SafeAreaView edges={["top"]} style={styles.mainContainer}>
       <View style={styles.header}>
@@ -85,8 +82,8 @@ const ExploreProjects = () => {
         <SearchBar
           searchPlaceHolder="Search for a project..."
           showFilterButton={true}
-          style={styles.searchBar}
           onFilterButtonPress={setIsCategoryListVisible}
+          style={styles.searchBar}
         />
       </View>
 

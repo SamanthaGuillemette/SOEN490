@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { ScrollBar } from "react-native-ui-lib";
 import { useThemeColor } from "../../hooks";
@@ -6,7 +7,7 @@ import styles from "./CategoryScrollBar.styles";
 
 interface Category {
   name: string;
-  isActive: boolean;
+  isActive: boolean; // TODO: We may not need this property
 }
 
 interface CategoryScrollBarProps {
@@ -17,6 +18,7 @@ export const CategoryScrollBar = (props: CategoryScrollBarProps) => {
   const { categories } = props;
   const primaryColor = useThemeColor("primary");
   const generalGrayColor = useThemeColor("generalGray");
+  const [activeCategory, setActiveCategory] = useState(categories[0].name);
 
   return (
     <ScrollBar
@@ -29,20 +31,22 @@ export const CategoryScrollBar = (props: CategoryScrollBarProps) => {
             style={[
               styles.categoryButton,
               {
-                backgroundColor: item.isActive
-                  ? primaryColor
-                  : generalGrayColor,
+                backgroundColor:
+                  item.name === activeCategory
+                    ? primaryColor
+                    : generalGrayColor,
               },
             ]}
             onPress={() => {
+              setActiveCategory(item.name);
               // eslint-disable-next-line no-alert
-              alert("category selected");
+              alert(`category -- ${item.name} -- is selected`);
             }}
           >
             <Text
               variant="label"
               color="bodyText"
-              lightColor={item.isActive ? "white" : ""}
+              lightColor={item.name === activeCategory ? "white" : ""}
             >
               {item.name}
             </Text>
