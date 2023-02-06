@@ -1,11 +1,13 @@
 import { TextInput as RNTextInput, TouchableOpacity } from "react-native";
-import { View, ShadowView, Icon } from "../../../../../../components";
-import { useThemeColor } from "../../../../../../hooks";
+import { Icon } from "../Icon";
+import { ShadowView } from "../ShadowView";
+import { View } from "../View";
+import { useThemeColor } from "../../hooks";
 import styles from "./ChatTextInput.styles";
 
 interface ChatTextInputProps {}
 
-const ChatTextInput = ({}: ChatTextInputProps) => {
+export const ChatTextInput = ({}: ChatTextInputProps) => {
   const bodyText = useThemeColor("bodyText");
   const smallText = useThemeColor("smallText");
 
@@ -29,5 +31,3 @@ const ChatTextInput = ({}: ChatTextInputProps) => {
     </View>
   );
 };
-
-export default ChatTextInput;

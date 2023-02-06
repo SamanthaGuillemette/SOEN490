@@ -1,16 +1,17 @@
 import React from "react";
 import { FlatList, View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { useThemeColor } from "../../../../../../hooks/useThemeColor";
-import ChatDate from "./components/ChatDate/ChatDate.component";
-import LeftBubble from "./components/LeftBubble/LeftBubble.component";
-import RightBubble from "./components/RightBubble/RightBubble.component";
+import { useThemeColor } from "../../hooks/useThemeColor";
+import { ChatDate } from "../ChatDate";
+import { RightBubble } from "../RightBubble";
+import { LeftBubble } from "../LeftBubble";
 import styles from "./Conversation.styles";
+
 interface ConversationProps {
   navigation: NavigationProp<any>;
 }
 
-const Conversation = ({}: ConversationProps) => {
+export const Conversation = ({}: ConversationProps) => {
   const background = useThemeColor("background");
   const ref = React.useRef<FlatList>(null);
   const messages = [
@@ -91,5 +92,3 @@ const Conversation = ({}: ConversationProps) => {
     </View>
   );
 };
-
-export default Conversation;
