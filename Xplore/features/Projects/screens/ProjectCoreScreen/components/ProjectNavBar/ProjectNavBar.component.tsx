@@ -6,10 +6,11 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import ProjectDescription from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
-import ProjectMembers from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
-import Links from "../../../../components/LinksScreen/Links.component";
-import Tasks from "../../../../components/ProjectTasksScreen/Tasks.component";
+import DescriptionScreen from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
+import TasksScreen from "../../../../components/ProjectTasksScreen/Tasks.component";
+import DiscussionScreen from "../../../../components/ProjectDiscussionScreen/Discussion.component";
+import ProjectMembersScreen from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
+import LinksScreen from "../../../../components/LinksScreen/Links.component";
 import { useThemeColor } from "../../../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectNavBar.styles";
@@ -22,11 +23,11 @@ const { width } = Dimensions.get("window");
 const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
 
 const projectScreenPages = [
-  <ProjectDescription />,
-  <Tasks />, // tasks
-  <ProjectDescription />, // discussion placeholder
-  <ProjectMembers />,
-  <Links />,
+  <DescriptionScreen />,
+  <TasksScreen />,
+  <DiscussionScreen />,
+  <ProjectMembersScreen />,
+  <LinksScreen />,
 ];
 
 function ProjectNavBar() {

@@ -5,7 +5,7 @@ import FeaturedImage from "./components/FeaturedImage/FeaturedImage.component";
 const ProjectCore = () => {
   return (
     <View backgroundColor="background">
-      <FeaturedImage projectName="Snake Robot" source="" />
+      <FeaturedImage projectName="Snake Robot" />
       <ProjectNavBar />
     </View>
   );

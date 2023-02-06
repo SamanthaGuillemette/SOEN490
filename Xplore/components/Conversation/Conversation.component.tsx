@@ -8,7 +8,7 @@ import { LeftBubble } from "../LeftBubble";
 import styles from "./Conversation.styles";
 
 interface ConversationProps {
-  navigation: NavigationProp<any>;
+  navigation?: NavigationProp<any>;
 }
 
 export const Conversation = ({}: ConversationProps) => {

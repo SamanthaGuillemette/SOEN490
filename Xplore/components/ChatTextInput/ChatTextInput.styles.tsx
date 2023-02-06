@@ -9,11 +9,13 @@ export default StyleSheet.create({
     margin: Platform.OS === "ios" ? 15 * multiplier : 15,
     padding: Platform.OS === "ios" ? 15 * multiplier : 15,
     borderRadius: 10,
+    maxWidth: "100%",
   },
   rightInputItems: {
     flexDirection: "row",
   },
   textInput: {
-    paddingLeft: 15,
+    paddingLeft: 10,
+    width: "92%",
   },
 });

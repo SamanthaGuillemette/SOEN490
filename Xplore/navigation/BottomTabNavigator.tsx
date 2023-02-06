@@ -23,6 +23,7 @@ const BottomTabNavigator = () => {
         tabBarShowLabel: false,
         tabBarStyle: [styles.tabBar, { backgroundColor: tabBarBackground }],
         tabBarActiveTintColor: primaryColor,
+        tabBarHideOnKeyboard: true,
       }}
     >
       <BottomTab.Screen

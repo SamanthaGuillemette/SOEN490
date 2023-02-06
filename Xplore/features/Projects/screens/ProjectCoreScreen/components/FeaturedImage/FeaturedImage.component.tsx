@@ -4,11 +4,10 @@ import styles from "./FeaturedImage.styles";
 
 interface ShadowImageProps {
   projectName: string;
-  source: string;
 }
 
 export const FeaturedImage = (props: ShadowImageProps) => {
-  const { projectName, source } = props;
+  const { projectName } = props;
 
   return (
     <ShadowView backgroundColor="primary" style={styles.container}>
