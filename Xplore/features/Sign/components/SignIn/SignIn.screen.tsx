@@ -6,6 +6,7 @@ import {
   SecondaryButton,
   TextInput,
 } from "../../../../components";
+import { ProjectCard } from "../../../Projects/components/ProjectCard";
 import styles from "./SignIn.styles";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { useAuth } from "../../../../hooks";
@@ -27,6 +28,20 @@ const SignIn = (props: SignInProps) => {
         textContent={"Hang tight!\n We're signing you in ⚡"}
         textStyle={styles.loadingScreen}
         animation={"fade"}
+      />
+      <ProjectCard
+        projectName="Snake Robot"
+        taskCount={32}
+        conversationCount={12}
+        percentComplete={67}
+        description="Build a cool Arduino-based Snake Robot"
+        memberAvatars={[
+          "https://picsum.photos/200",
+          "https://picsum.photos/200",
+          "https://picsum.photos/200",
+          "https://picsum.photos/200",
+          "https://picsum.photos/200",
+        ]}
       />
       <TextInput
         placeHolder="Email"
