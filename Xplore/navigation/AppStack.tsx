@@ -10,6 +10,7 @@ import Home from "../features/Dashboard/screens/Home.screen";
 import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import Profile from "../features/Profile/screens/Profile/Profile.screen";
 import Settings from "../features/Profile/screens/Settings/Settings.screen";
+import Notification from "../features/Profile/screens/Notification/Notification.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,11 @@ const AppStack = () => {
       <Stack.Screen
         name="Settings"
         component={Settings}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Notification"
+        component={Notification}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
