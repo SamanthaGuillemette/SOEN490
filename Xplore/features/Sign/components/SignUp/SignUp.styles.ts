@@ -8,4 +8,8 @@ export default StyleSheet.create({
   PrimaryButton: {
     marginVertical: 50,
   },
+  loadingScreen: {
+    color: "#FFF",
+    textAlign: "center",
+  },
 });
