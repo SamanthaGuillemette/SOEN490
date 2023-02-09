@@ -33,7 +33,9 @@ const Notification = (props: NotificationProps) => {
       >
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.text}>
-            <Text variant="h3">Today</Text>
+            <Text variant="h3" color="titleText">
+              Today
+            </Text>
           </View>
           <BadgeNotification />
           <GroupAddNotification groupName="Snake Robot" />
@@ -42,7 +44,9 @@ const Notification = (props: NotificationProps) => {
             image="https://picsum.photos/200"
           />
           <View style={styles.text}>
-            <Text variant="h3">Previous</Text>
+            <Text variant="h3" color="titleText">
+              Previous
+            </Text>
           </View>
           <JoinRequestNotification
             username="Josh Lewis"

@@ -22,10 +22,9 @@ export default StyleSheet.create({
   modalView: {
     marginTop: Platform.OS === "ios" ? 65 : 80,
     borderRadius: 8,
-    padding: 10,
     alignItems: "center",
-    height: "88%",
-    marginHorizontal: 10,
+    height: "86%",
+    marginHorizontal: 8,
   },
   text: {
     width: 300,

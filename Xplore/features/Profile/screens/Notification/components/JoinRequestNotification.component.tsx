@@ -16,9 +16,14 @@ export const JoinRequestNotification = (props: NotificationProps) => {
         size={45}
         style={styles.avatar}
       />
-      <Text variant="body" color="primary">
-        {props.username}
-      </Text>
+      <View>
+        <Text variant="body" color="primary">
+          Group Join Request
+        </Text>
+        <Text variant="body" color="bodyText" style={styles.bodyText}>
+          {props.username} is requesting a join Snake Robot.
+        </Text>
+      </View>
       <View style={styles.chipButton}>
         <ChipButton label="View" />
       </View>
