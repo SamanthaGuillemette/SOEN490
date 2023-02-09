@@ -69,8 +69,9 @@ export const ProjectCard = ({
       <View style={styles.projectCompletionContainer}>
         <CircularPercentageBar
           percentage={percentComplete}
-          base_degrees={40}
+          base_degrees={25}
           styles={styles.percentageCircle}
+          scale={1.5}
         />
       </View>
     </ShadowView>

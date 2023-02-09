@@ -13,23 +13,8 @@ const CircularPercentageBarProps = (
   };
 };
 
-const renderThirdLayer = (percentage: number) => {
-  if (percentage > 50) {
-    return (
-      <View
-        style={[
-          styles().percentageLayerTwo,
-          CircularPercentageBarProps(percentage - 50, 45),
-        ]}
-      />
-    );
-  } else {
-    return <View style={styles().offsetLayer} />;
-  }
-};
-
 export const CircularPercentageBar = (props: any) => {
-  const { percentage, circleSize, borderSize } = props;
+  const { percentage, scale } = props;
   let firstProgressLayerStyle;
   if (percentage > 50) {
     firstProgressLayerStyle = CircularPercentageBarProps(50, -135);
@@ -37,11 +22,28 @@ export const CircularPercentageBar = (props: any) => {
     firstProgressLayerStyle = CircularPercentageBarProps(percentage, -135);
   }
 
+  const renderThirdLayer = () => {
+    if (percentage > 50) {
+      return (
+        <View
+          style={[
+            styles(scale).percentageLayerTwo,
+            CircularPercentageBarProps(percentage - 50, 45),
+          ]}
+        />
+      );
+    } else {
+      return <View style={styles(scale).offsetLayer} />;
+    }
+  };
+
   return (
-    <View style={styles(circleSize, borderSize).container}>
-      <View style={[styles().percentageLayerOne, firstProgressLayerStyle]} />
-      {renderThirdLayer(percentage)}
-      <Text color="titleText" style={styles().percentageText}>
+    <View style={styles(scale).container}>
+      <View
+        style={[styles(scale).percentageLayerOne, firstProgressLayerStyle]}
+      />
+      {renderThirdLayer()}
+      <Text color="titleText" style={styles(scale).percentageText}>
         {percentage}%
       </Text>
     </View>

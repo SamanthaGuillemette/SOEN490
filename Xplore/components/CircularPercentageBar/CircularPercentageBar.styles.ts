@@ -3,13 +3,13 @@ import { StyleSheet } from "react-native";
 const percentageColor = "#00BA34";
 const emptyColor = "#F5F5F5";
 
-const styles = (circleSize: number = 70, borderSize: number = 5) =>
-  StyleSheet.create({
+const styles = (scalingFactor: number = 1) => {
+  return StyleSheet.create({
     container: {
-      width: circleSize,
-      height: circleSize,
+      width: scalingFactor * 70,
+      height: scalingFactor * 70,
       borderColor: emptyColor,
-      borderWidth: borderSize,
+      borderWidth: scalingFactor * 5,
       borderRadius: 100,
       alignItems: "center",
       justifyContent: "center",
@@ -17,11 +17,11 @@ const styles = (circleSize: number = 70, borderSize: number = 5) =>
       marginRight: 15,
     },
     percentageLayerOne: {
-      width: circleSize,
-      height: circleSize,
+      width: scalingFactor * 70,
+      height: scalingFactor * 70,
       position: "absolute",
       borderRadius: 100,
-      borderWidth: borderSize,
+      borderWidth: scalingFactor * 5,
       borderLeftColor: "transparent",
       borderBottomColor: "transparent",
       borderRightColor: percentageColor,
@@ -29,11 +29,11 @@ const styles = (circleSize: number = 70, borderSize: number = 5) =>
       transform: [{ rotateZ: "-135deg" }],
     },
     percentageLayerTwo: {
-      width: circleSize,
-      height: circleSize,
+      width: scalingFactor * 70,
+      height: scalingFactor * 70,
       position: "absolute",
       borderRadius: 100,
-      borderWidth: borderSize,
+      borderWidth: scalingFactor * 5,
       borderLeftColor: "transparent",
       borderBottomColor: "transparent",
       borderRightColor: percentageColor,
@@ -41,10 +41,10 @@ const styles = (circleSize: number = 70, borderSize: number = 5) =>
       transform: [{ rotateZ: "45deg" }],
     },
     offsetLayer: {
-      width: circleSize,
-      height: circleSize,
+      width: scalingFactor * 70,
+      height: scalingFactor * 70,
       borderRadius: 100,
-      borderWidth: borderSize,
+      borderWidth: scalingFactor * 5,
       borderLeftColor: "transparent",
       borderBottomColor: "transparent",
       borderRightColor: emptyColor,
@@ -53,8 +53,9 @@ const styles = (circleSize: number = 70, borderSize: number = 5) =>
     },
     percentageText: {
       position: "absolute",
-      fontSize: 12,
+      fontSize: scalingFactor * 12,
     },
   });
+};
 
 export default styles;
