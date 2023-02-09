@@ -1,8 +1,8 @@
 import * as React from "react";
-import { SafeAreaView } from "react-native";
-import { ScrollView } from "react-native";
+import { SafeAreaView, TouchableOpacity } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { View, Icon } from "../../../../components";
+import { View, Text, Icon, ShadowView } from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
 import styles from "./Notification.styles";
 
 interface NotificationProps {
@@ -11,13 +11,25 @@ interface NotificationProps {
 
 const Notification = (props: NotificationProps) => {
   const { navigation } = props;
+  const background = useThemeColor("background");
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.notificationIcon}>
+    <SafeAreaView
+      style={[styles.safeAreaStyle, { backgroundColor: background }]}
+    >
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.notificationIcon}
+          onPress={() => navigation.goBack()}
+        >
           <Icon name="bell" color="primary" size="large" />
-        </View>
-      </ScrollView>
+        </TouchableOpacity>
+      </View>
+      <ShadowView
+        style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
+      >
+        <Text>here</Text>
+      </ShadowView>
     </SafeAreaView>
   );
 };
