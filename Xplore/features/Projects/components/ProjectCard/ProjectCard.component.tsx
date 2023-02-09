@@ -64,14 +64,14 @@ export const ProjectCard = ({
           </Text>
         </View>
         <View style={styles.projectMembersContainer} children={undefined} />
-        <AvatarGroup usersAvatars={memberAvatars} />
+        <AvatarGroup usersAvatars={memberAvatars} scale={1.25} />
       </View>
       <View style={styles.projectCompletionContainer}>
         <CircularPercentageBar
           percentage={percentComplete}
-          base_degrees={25}
+          base_degrees={70}
           styles={styles.percentageCircle}
-          scale={1.5}
+          scale={1.6}
         />
       </View>
     </ShadowView>

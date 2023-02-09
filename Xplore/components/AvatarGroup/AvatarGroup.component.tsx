@@ -4,9 +4,10 @@ import styles from "./AvatarGroup.styles";
 
 interface AvatarGroupProps {
   usersAvatars: string[];
+  scale?: number;
 }
 
-export const AvatarGroup = (props: AvatarGroupProps) => {
+export const AvatarGroup = ({ scale = 3, ...props }: AvatarGroupProps) => {
   const avatarCount = props.usersAvatars.length - 3;
   return (
     <View>
@@ -17,14 +18,14 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
               key={key}
               name="Username"
               imageURL={avatar}
-              size={60}
+              size={scale * 30}
               style={styles.singleAvatar}
             />
           ))}
           <Avatar
             name="+"
             avatarCount={avatarCount}
-            size={60}
+            size={scale * 20}
             style={styles.singleAvatar}
           />
         </View>
@@ -35,7 +36,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
               key={key}
               name="Username"
               imageURL={avatar}
-              size={60}
+              size={scale * 20}
               style={styles.singleAvatar}
             />
           ))}

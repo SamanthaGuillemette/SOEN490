@@ -19,18 +19,20 @@ export default StyleSheet.create({
     width: "50%",
   },
   taskContainer: {
-    marginTop: 10,
+    marginTop: 2,
     flexDirection: "row",
   },
   conversationsContainer: {
-    marginTop: 5,
+    marginTop: 1,
     flexDirection: "row",
   },
   projectCompletionContainer: {
     width: "50%",
+    display: "flex",
+    justifyContent: "center",
   },
   percentageCircle: {
-    transform: [{ scaleX: 10 }, { scaleY: 10 }],
+    marginLeft: 100,
   },
   icon: {
     marginRight: 5,
