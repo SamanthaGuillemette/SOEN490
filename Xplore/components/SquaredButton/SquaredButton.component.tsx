@@ -7,7 +7,7 @@ import styles from "./SquaredButton.styles";
 
 interface SquaredButtonProps {
   iconName: keyof typeof Feather.glyphMap;
-  onPress: any;
+  onPress?: any;
 }
 
 export const SquaredButton = (props: SquaredButtonProps) => {

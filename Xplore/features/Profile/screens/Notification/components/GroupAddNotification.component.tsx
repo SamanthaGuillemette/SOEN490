@@ -1,4 +1,4 @@
-import { View, Text, Icon } from "../../../../../components";
+import { View, Text, Icon, ChipButton } from "../../../../../components";
 import styles from "./Notif.styles";
 
 interface NotificationProps {
@@ -13,6 +13,9 @@ export const GroupAddNotification = (props: NotificationProps) => {
       <Text variant="body" color="primary">
         {props.groupName}
       </Text>
+      <View style={styles.chipButton}>
+        <ChipButton label="View" />
+      </View>
     </View>
   );
 };

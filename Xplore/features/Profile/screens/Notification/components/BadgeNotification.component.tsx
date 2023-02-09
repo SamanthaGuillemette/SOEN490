@@ -1,4 +1,4 @@
-import { View, Text, Icon } from "../../../../../components";
+import { View, Text, Icon, ChipButton } from "../../../../../components";
 import styles from "./Notif.styles";
 
 interface NotificationProps {
@@ -12,6 +12,9 @@ export const BadgeNotification = (props: NotificationProps) => {
       <Text variant="body" color="primary">
         Congratulations
       </Text>
+      <View style={styles.chipButton}>
+        <ChipButton label="View" />
+      </View>
     </View>
   );
 };

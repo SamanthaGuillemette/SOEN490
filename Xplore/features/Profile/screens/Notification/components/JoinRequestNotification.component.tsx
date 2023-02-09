@@ -1,4 +1,4 @@
-import { View, Text, Avatar } from "../../../../../components";
+import { View, Text, Avatar, ChipButton } from "../../../../../components";
 import styles from "./Notif.styles";
 
 interface NotificationProps {
@@ -14,11 +14,14 @@ export const JoinRequestNotification = (props: NotificationProps) => {
         name="Username"
         imageURL={props.image}
         size={45}
-        style={styles.icon}
+        style={styles.avatar}
       />
       <Text variant="body" color="primary">
         {props.username}
       </Text>
+      <View style={styles.chipButton}>
+        <ChipButton label="View" />
+      </View>
     </View>
   );
 };

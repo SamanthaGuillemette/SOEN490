@@ -8,8 +8,17 @@ export default StyleSheet.create({
     paddingVertical: 20,
   },
   icon: {
+    marginRight: 10,
+    marginLeft: 20,
+  },
+  avatar: {
     marginRight: 15,
     marginLeft: 5,
   },
-  text: {},
+  chipButton: {
+    position: "absolute",
+    flexDirection: "column",
+    alignItems: "center",
+    right: 10,
+  },
 });

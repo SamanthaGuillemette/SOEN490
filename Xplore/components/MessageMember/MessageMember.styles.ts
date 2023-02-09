@@ -16,6 +16,6 @@ export default StyleSheet.create({
   msg_button: {
     position: "absolute",
     top: Platform.OS === "ios" ? 35 * multiplier : 45,
-    right: 20,
+    right: 50,
   },
 });
