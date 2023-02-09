@@ -3,6 +3,7 @@ import { SafeAreaView, TouchableOpacity } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { View, Text, Icon, ShadowView } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
+import { BadgeNotification } from "./components/BadgeNotification.component";
 import styles from "./Notification.styles";
 
 interface NotificationProps {
@@ -28,7 +29,13 @@ const Notification = (props: NotificationProps) => {
       <ShadowView
         style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
       >
-        <Text>here</Text>
+        <View style={styles.text}>
+          <Text variant="h3">Today</Text>
+        </View>
+        <BadgeNotification />
+        <View style={styles.text}>
+          <Text variant="h3">Previous</Text>
+        </View>
       </ShadowView>
     </SafeAreaView>
   );

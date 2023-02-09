@@ -31,7 +31,6 @@ interface ProfileProps {
 
 const Profile = (props: ProfileProps) => {
   const { navigation } = props;
-  const { signOut } = useAuth();
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
 
