@@ -5,11 +5,11 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     width: 300,
-    paddingRight: 35,
+    paddingVertical: 20,
   },
   icon: {
     marginRight: 15,
+    marginLeft: 5,
   },
-  text: {
-  },
+  text: {},
 });

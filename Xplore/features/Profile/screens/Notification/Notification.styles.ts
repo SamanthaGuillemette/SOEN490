@@ -25,10 +25,10 @@ export default StyleSheet.create({
     padding: 10,
     alignItems: "center",
     height: "88%",
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   text: {
     width: 300,
-    paddingVertical: 20,
+    paddingVertical: 30,
   },
 });
