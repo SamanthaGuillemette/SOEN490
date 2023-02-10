@@ -1,8 +1,13 @@
 import * as React from "react";
-import { SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { View, Text, Icon, ShadowView } from "../../../../components";
-import { useThemeColor } from "../../../../hooks";
+import { useThemeColor, useColorScheme } from "../../../../hooks";
 import { BadgeNotification } from "./components/BadgeNotification.component";
 import { GroupAddNotification } from "./components/GroupAddNotification.component";
 import { JoinRequestNotification } from "./components/JoinRequestNotification.component";
@@ -16,16 +21,28 @@ const Notification = (props: NotificationProps) => {
   const { navigation } = props;
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const colorScheme = useColorScheme();
+
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: background }]}
     >
       <View style={styles.header}>
         <TouchableOpacity
-          style={styles.notificationIcon}
+          style={styles.notificationIconContainer}
           onPress={() => navigation.goBack()}
         >
-          <Icon name="bell" color="primary" size="large" />
+          {colorScheme === "dark" ? (
+            <Image
+              source={require("../../../../assets/filled_bell_dark.png")}
+              style={styles.notificationIcon}
+            />
+          ) : (
+            <Image
+              source={require("../../../../assets/filled_bell_light.png")}
+              style={styles.notificationIcon}
+            />
+          )}
         </TouchableOpacity>
       </View>
       <ShadowView

@@ -12,12 +12,16 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  notificationIcon: {
+  notificationIconContainer: {
     height: 30,
     width: 400,
     flexDirection: "row-reverse",
     justifyContent: "space-between",
     paddingHorizontal: 30,
+  },
+  notificationIcon: {
+    height: 24,
+    width: 24,
   },
   modalView: {
     marginTop: Platform.OS === "ios" ? 65 : 80,
