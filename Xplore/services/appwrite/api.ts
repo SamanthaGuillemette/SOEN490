@@ -4,7 +4,7 @@ import { Client, Databases, Account, ID, Models } from "appwrite";
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
 export const account = new Account(client);
-const database = new Databases(client);
+export const database = new Databases(client);
 
 const api = {
   createAccount: (email: string, password: string, name: string) => {
@@ -53,6 +53,10 @@ const api = {
 
   listDocuments: (collectionId: string) => {
     return database.listDocuments(DATABASE_ID, collectionId);
+  },
+
+  getDocument: (collectionId: string, documentId: string) => {
+    return database.getDocument(DATABASE_ID, collectionId, documentId);
   },
 
   updateDocument: (
