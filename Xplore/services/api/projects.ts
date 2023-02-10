@@ -1,10 +1,10 @@
 import { useQuery, useMutation } from "react-query";
-import { PROJECT_COLLECTION_ID } from "@env";
 import api from "../appwrite/api";
 
 //to be defined
 interface Project {}
 
+//will need to implement pagination here as fetching the entire list of projects is not ideal
 const useListProjects = () => {
   return useQuery("projects", () => api.listDocuments(PROJECT_COLLECTION_ID));
 };
