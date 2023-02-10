@@ -14,7 +14,6 @@ export const BadgeNotification = (props: NotificationProps) => {
           Congratulations!
         </Text>
         <Text variant="body" color="bodyText" style={styles.bodyText}>
-          {" "}
           you just earned a new badge.
         </Text>
       </View>

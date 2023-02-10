@@ -6,11 +6,12 @@ import {
   Image,
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { View, Text, Icon, ShadowView } from "../../../../components";
+import { View, Text, ShadowView } from "../../../../components";
 import { useThemeColor, useColorScheme } from "../../../../hooks";
 import { BadgeNotification } from "./components/BadgeNotification.component";
 import { GroupAddNotification } from "./components/GroupAddNotification.component";
 import { JoinRequestNotification } from "./components/JoinRequestNotification.component";
+import { AcceptRequestNotification } from "./components/AcceptRequestNotification.component";
 import styles from "./Notification.styles";
 
 interface NotificationProps {
@@ -58,6 +59,11 @@ const Notification = (props: NotificationProps) => {
           <GroupAddNotification groupName="Snake Robot" />
           <JoinRequestNotification
             username="Berince"
+            image="https://picsum.photos/200"
+          />
+          <AcceptRequestNotification
+            username="Berince"
+            groupName="Databases"
             image="https://picsum.photos/200"
           />
           <View style={styles.text}>

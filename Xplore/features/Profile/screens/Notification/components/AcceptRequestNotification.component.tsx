@@ -4,10 +4,11 @@ import styles from "./Notif.styles";
 interface NotificationProps {
   badgeName?: string;
   username: string;
+  groupName: string;
   image: string;
 }
 
-export const JoinRequestNotification = (props: NotificationProps) => {
+export const AcceptRequestNotification = (props: NotificationProps) => {
   return (
     <View style={styles.container}>
       <Avatar
@@ -18,10 +19,10 @@ export const JoinRequestNotification = (props: NotificationProps) => {
       />
       <View>
         <Text variant="body" color="primary">
-          Group Join Request
+          Join Request Accepted!
         </Text>
         <Text variant="body" color="bodyText" style={styles.bodyText}>
-          {props.username} is requesting to join Snake Robot.
+          {props.username} accepted your join request to {props.groupName}
         </Text>
       </View>
       <View style={styles.chipButton}>
