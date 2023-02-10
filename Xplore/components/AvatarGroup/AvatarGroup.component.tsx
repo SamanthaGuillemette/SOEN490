@@ -25,7 +25,7 @@ export const AvatarGroup = ({ scale = 3, ...props }: AvatarGroupProps) => {
           <Avatar
             name="+"
             avatarCount={avatarCount}
-            size={scale * 20}
+            size={scale * 25}
             style={styles.singleAvatar}
           />
         </View>

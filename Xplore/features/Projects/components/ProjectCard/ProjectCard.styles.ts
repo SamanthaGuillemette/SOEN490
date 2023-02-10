@@ -16,7 +16,7 @@ export default StyleSheet.create({
     marginLeft: 20,
   },
   projectInformationContainer: {
-    width: "50%",
+    width: "60%",
   },
   taskContainer: {
     marginTop: 2,
@@ -38,6 +38,7 @@ export default StyleSheet.create({
     marginRight: 5,
   },
   projectMembersContainer: {
-    height: "5%",
+    marginTop: 10,
+    marginLeft: 10,
   },
 });

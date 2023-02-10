@@ -1,3 +1,4 @@
+//es-l
 import {
   Text,
   View,
@@ -63,8 +64,9 @@ export const ProjectCard = ({
             {String(conversationCount)} conversations
           </Text>
         </View>
-        <View style={styles.projectMembersContainer} children={undefined} />
-        <AvatarGroup usersAvatars={memberAvatars} scale={1.25} />
+        <View style={styles.projectMembersContainer}>
+          <AvatarGroup usersAvatars={memberAvatars} scale={1.50} />
+        </View>
       </View>
       <View style={styles.projectCompletionContainer}>
         <CircularPercentageBar
