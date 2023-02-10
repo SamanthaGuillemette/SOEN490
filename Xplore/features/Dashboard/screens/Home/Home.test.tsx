@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react-native";
 import renderer from "react-test-renderer";
-import Home from "../screens/Home.screen";
+import Home from "./Home.screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 

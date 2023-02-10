@@ -1,3 +1,4 @@
+import { NavigationProp } from "@react-navigation/native";
 import { useState } from "react";
 import {
   NativeScrollEvent,
@@ -7,17 +8,22 @@ import {
   ScrollView,
 } from "react-native";
 import { AnimatedFAB } from "react-native-paper";
-import { View } from "../../../components/";
-import { useThemeColor } from "../../../hooks";
+import { View } from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
 import {
   HomeHeader,
   ExploreProjects,
   TodayStats,
   NewProjects,
-} from "../components";
+} from "../../components";
 import styles from "./Home.styles";
 
-const Home = () => {
+interface HomeProps {
+  navigation: NavigationProp<any>;
+}
+
+const Home = (props: HomeProps) => {
+  const { navigation } = props;
   const homeBackground = useThemeColor("backgroundSecondary");
   const scrollViewBackground = useThemeColor("background");
   const [isButtonExpanded, setIsButtonExpanded] = useState(true);
@@ -45,8 +51,8 @@ const Home = () => {
 
         <View style={styles.mainScreen}>
           <TodayStats />
-          <ExploreProjects />
-          <NewProjects />
+          <ExploreProjects navigation={navigation} />
+          <NewProjects navigation={navigation} />
         </View>
       </ScrollView>
 

@@ -31,3 +31,4 @@ export * from "./IntegrationCard";
 export * from "./TaskCard";
 export * from "./CircularPercentageBar";
 export * from "./MessageMember";
+export * from "./CategoryScrollBar";
