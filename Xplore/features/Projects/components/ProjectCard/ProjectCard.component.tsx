@@ -65,7 +65,7 @@ export const ProjectCard = ({
           </Text>
         </View>
         <View style={styles.projectMembersContainer}>
-          <AvatarGroup usersAvatars={memberAvatars} scale={1.50} />
+          <AvatarGroup usersAvatars={memberAvatars} scale={1.5} />
         </View>
       </View>
       <View style={styles.projectCompletionContainer}>
