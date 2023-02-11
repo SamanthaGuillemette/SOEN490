@@ -52,7 +52,6 @@ const api = {
   },
 
   listDocuments: async (collectionId: string) => {
-    console.log(DATABASE_ID);
     return await database.listDocuments(DATABASE_ID, collectionId);
   },
 

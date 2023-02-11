@@ -15,6 +15,8 @@ import {
   TodayStats,
   NewProjects,
 } from "../components";
+//for api tesing purposes
+import useDatabaseApiTesting from "../../../hooks/useDatabaseApiTesting";
 import styles from "./Home.styles";
 
 const Home = () => {
@@ -30,6 +32,8 @@ const Home = () => {
 
     setIsButtonExpanded(currentScrollPosition <= 0);
   };
+
+  useDatabaseApiTesting();
 
   return (
     <SafeAreaView

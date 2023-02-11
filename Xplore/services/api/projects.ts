@@ -7,7 +7,9 @@ interface Project {}
 
 //will need to implement pagination here as fetching the entire list of projects is not ideal
 const useListProjects = () => {
-  return useQuery("projects", () => api.listDocuments(PROJECT_COLLECTION_ID));
+  return useQuery("projects", () => api.listDocuments(PROJECT_COLLECTION_ID), {
+    retry: 3,
+  });
 };
 
 const useCreateProject = (data: Project) => {
