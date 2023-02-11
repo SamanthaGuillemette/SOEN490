@@ -20,7 +20,13 @@ export const JoinRequestNotification = (props: NotificationProps) => {
         <Text variant="body" color="primary">
           Group Join Request
         </Text>
-        <Text variant="body" color="bodyText" style={styles.bodyText}>
+        <Text
+          variant="body"
+          color="bodyText"
+          style={styles.bodyText}
+          numberOfLines={2}
+          ellipsizeMode="tail"
+        >
           {props.username} is requesting to join Snake Robot.
         </Text>
       </View>

@@ -22,6 +22,9 @@ export default StyleSheet.create({
     right: 5,
   },
   bodyText: {
-    width: 180,
+    width: 160,
+    marginRight: 10,
+    // ellipsizeMode: "tail",
+    // numberOfLines: {2},
   },
 });
