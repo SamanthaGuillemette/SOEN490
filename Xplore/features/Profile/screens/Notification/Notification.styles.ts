@@ -32,6 +32,7 @@ export default StyleSheet.create({
   },
   text: {
     width: 300,
-    paddingVertical: 30,
+    paddingVertical: 10,
+    paddingTop: 30,
   },
 });
