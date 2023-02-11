@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinearProgressBar should render should render the progress bar 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "backgroundColor": "transparent",
+      },
+    ]
+  }
+>
+  <View
+    accessibilityRole="progressbar"
+    accessibilityState={
+      Object {
+        "busy": true,
+      }
+    }
+    accessibilityValue={
+      Object {
+        "max": 100,
+        "min": 0,
+        "now": 20,
+      }
+    }
+    accessible={true}
+    onLayout={[Function]}
+  >
+    <View
+      collapsable={false}
+      style={
+        Object {
+          "backgroundColor": "#F5F5F5",
+          "borderColor": "#F5F5F5",
+          "borderRadius": 8,
+          "borderWidth": 2,
+          "height": 8,
+          "opacity": 0,
+          "overflow": "hidden",
+        }
+      }
+    />
+  </View>
+</View>
+`;
