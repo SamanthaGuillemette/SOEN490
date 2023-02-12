@@ -21,24 +21,26 @@ export const AlertModal = (props: AlertModalProps) => {
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={modalVisible}
       onRequestClose={handleIndexSelect}
     >
-      <View style={styles.centeredView}>
-        <ShadowView
-          style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
-        >
-          <Text variant="h4" style={styles.alertText}>
-            {props.alertMsg}
-          </Text>
-          <PrimaryButton
-            label="Done"
-            onPress={handleIndexSelect}
-            style={styles.primaryButton}
-          />
-        </ShadowView>
+      <View style={styles.fullView}>
+        <View style={styles.centeredView}>
+          <ShadowView
+            style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
+          >
+            <Text variant="h4" style={styles.alertText}>
+              {props.alertMsg}
+            </Text>
+            <PrimaryButton
+              label="Done"
+              onPress={handleIndexSelect}
+              style={styles.primaryButton}
+            />
+          </ShadowView>
+        </View>
       </View>
     </Modal>
   );
