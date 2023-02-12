@@ -21,7 +21,7 @@ export const JoinRequestNotification = (props: NotificationProps) => {
           variant="body"
           color="bodyText"
           style={styles.bodyText}
-          numberOfLines={2}
+          numberOfLines={3}
           ellipsizeMode="tail"
         >
           <Text style={styles.bodyText} color="primary">

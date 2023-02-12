@@ -19,7 +19,7 @@ export const AcceptRequestNotification = (props: NotificationProps) => {
       />
       <View>
         <Text
-          numberOfLines={2}
+          numberOfLines={3}
           ellipsizeMode="tail"
           style={styles.bodyText}
           color="primary"

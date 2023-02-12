@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    width: 300,
+    width: 350,
     paddingVertical: 20,
   },
   icon: {
@@ -22,7 +22,7 @@ export default StyleSheet.create({
     right: 5,
   },
   bodyText: {
-    width: 160,
+    width: 220,
     marginRight: 10,
   },
 });

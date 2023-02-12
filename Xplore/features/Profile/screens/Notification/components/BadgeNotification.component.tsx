@@ -13,7 +13,7 @@ export const BadgeNotification = (props: NotificationProps) => {
         <Text
           variant="body"
           color="primary"
-          numberOfLines={2}
+          numberOfLines={3}
           ellipsizeMode="tail"
           style={styles.bodyText}
         >
