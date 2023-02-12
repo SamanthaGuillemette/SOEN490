@@ -27,7 +27,10 @@ export const JoinRequestNotification = (props: NotificationProps) => {
           numberOfLines={2}
           ellipsizeMode="tail"
         >
-          {props.username} is requesting to join Snake Robot.
+          <Text style={styles.bodyText} color="primary">
+            {props.username}
+          </Text>{" "}
+          is requesting to join Snake Robot.
         </Text>
       </View>
       <View style={styles.chipButton}>

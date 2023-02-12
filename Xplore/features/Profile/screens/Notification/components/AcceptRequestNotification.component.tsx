@@ -22,13 +22,19 @@ export const AcceptRequestNotification = (props: NotificationProps) => {
           Join Request Accepted!
         </Text>
         <Text
-          variant="body"
-          color="bodyText"
-          style={styles.bodyText}
           numberOfLines={2}
           ellipsizeMode="tail"
+          style={styles.bodyText}
+          color="primary"
         >
-          {props.username} accepted your join request to {props.groupName}
+          {props.username}
+          <Text variant="body" color="bodyText" style={styles.bodyText}>
+            {" "}
+            accepted your join request to{" "}
+            <Text style={styles.bodyText} color="primary">
+              {props.groupName}
+            </Text>
+          </Text>
         </Text>
       </View>
       <View style={styles.chipButton}>
