@@ -28,7 +28,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     height: "86%",
-    marginHorizontal: 8,
+    marginHorizontal: 6,
   },
   text: {
     width: 300,
