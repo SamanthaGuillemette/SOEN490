@@ -10,11 +10,18 @@ export const BadgeNotification = (props: NotificationProps) => {
     <View style={styles.container}>
       <Icon name="award" size="large" style={styles.icon} />
       <View>
-        <Text variant="body" color="primary">
+        <Text
+          variant="body"
+          color="primary"
+          numberOfLines={2}
+          ellipsizeMode="tail"
+          style={styles.bodyText}
+        >
           Congratulations!
-        </Text>
-        <Text variant="body" color="bodyText" style={styles.bodyText}>
-          you just earned a new badge.
+          <Text variant="body" color="bodyText" style={styles.bodyText}>
+            {" "}
+            you just earned a new badge.
+          </Text>
         </Text>
       </View>
       <View style={styles.chipButton}>

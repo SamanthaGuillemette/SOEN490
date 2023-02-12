@@ -18,9 +18,6 @@ export const AcceptRequestNotification = (props: NotificationProps) => {
         style={styles.avatar}
       />
       <View>
-        <Text variant="body" color="primary">
-          Join Request Accepted!
-        </Text>
         <Text
           numberOfLines={2}
           ellipsizeMode="tail"

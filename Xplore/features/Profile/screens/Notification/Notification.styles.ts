@@ -34,5 +34,6 @@ export default StyleSheet.create({
     width: 300,
     paddingVertical: 10,
     paddingTop: 30,
+    marginLeft: 15,
   },
 });

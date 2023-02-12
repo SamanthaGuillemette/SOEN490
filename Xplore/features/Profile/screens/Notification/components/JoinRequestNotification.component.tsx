@@ -17,9 +17,6 @@ export const JoinRequestNotification = (props: NotificationProps) => {
         style={styles.avatar}
       />
       <View>
-        <Text variant="body" color="primary">
-          Group Join Request
-        </Text>
         <Text
           variant="body"
           color="bodyText"
