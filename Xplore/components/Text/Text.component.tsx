@@ -16,6 +16,7 @@ interface TextProps extends RNTextProps {
     | "smallText"
     | "generalGray"
     | "linkText"
+    | "primary"
     | "white";
   variant?:
     | "h1"
