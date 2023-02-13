@@ -1,9 +1,12 @@
 import { StyleSheet } from "react-native";
-import { deviceScreenWidth } from "../../../../../../constants";
+import {
+  deviceScreenWidth,
+  deviceScreenHeight,
+} from "../../../../../../constants";
 
 export default StyleSheet.create({
   container: {
-    marginTop: -220,
+    marginTop: -235,
     width: deviceScreenWidth,
   },
   headerScroll: {
@@ -32,9 +35,8 @@ export default StyleSheet.create({
   },
   mainItem: {
     width: deviceScreenWidth,
+    height: deviceScreenHeight - 110,
     borderTopWidth: 1,
     alignItems: "center",
-    justifyContent: "space-evenly",
-    height: "65%",
   },
 });

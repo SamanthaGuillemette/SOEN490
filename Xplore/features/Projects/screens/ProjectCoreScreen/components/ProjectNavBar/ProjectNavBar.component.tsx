@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
+  KeyboardAvoidingView,
   Text,
   TouchableHighlight,
   View,
@@ -114,12 +115,13 @@ function ProjectNavBar() {
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={onMomentumScrollEnd}
         renderItem={({ item, index }) => (
-          <View
+          <KeyboardAvoidingView
             key={item}
+            behavior="height"
             style={[styles.mainItem, { borderTopColor: background }]}
           >
             {projectScreenPages[index]}
-          </View>
+          </KeyboardAvoidingView>
         )}
       />
     </View>
