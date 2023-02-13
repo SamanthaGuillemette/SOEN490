@@ -35,7 +35,16 @@ export default StyleSheet.create({
   },
   mainItem: {
     width: deviceScreenWidth,
+    height: "65%",
+    justifyContent: "space-evenly",
+    borderTopWidth: 1,
+    alignItems: "center",
+  },
+  discussion: {
+    flex: 1,
+    width: deviceScreenWidth,
     height: deviceScreenHeight - 110,
+    justifyContent: "space-evenly",
     borderTopWidth: 1,
     alignItems: "center",
   },

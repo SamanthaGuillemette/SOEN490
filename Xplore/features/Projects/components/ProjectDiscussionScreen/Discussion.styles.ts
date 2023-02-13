@@ -5,6 +5,6 @@ export default StyleSheet.create({
     flex: 1,
   },
   content: {
-    paddingBottom: "80%",
+    paddingBottom: "92%",
   },
 });

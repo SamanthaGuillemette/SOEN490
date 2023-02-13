@@ -118,7 +118,10 @@ function ProjectNavBar() {
           <KeyboardAvoidingView
             key={item}
             behavior="height"
-            style={[styles.mainItem, { borderTopColor: background }]}
+            style={[
+              index === 2 ? styles.discussion : styles.mainItem,
+              { borderTopColor: background },
+            ]}
           >
             {projectScreenPages[index]}
           </KeyboardAvoidingView>
