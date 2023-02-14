@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Icon } from "../components";
-import Home from "../features/Dashboard/screens/Home/Home.screen";
-import Chats from "../features/Chat/screens/Chats/Chats.screen";
-import Leaderboard from "../features/Leaderboard/screens/Leaderboard.screen";
-import { useThemeColor } from "../hooks";
+import { Icon } from "../../components";
+import Home from "../../features/Dashboard/screens/Home/Home.screen";
+import Chats from "../../features/Chat/screens/Chats/Chats.screen";
+import Leaderboard from "../../features/Leaderboard/screens/Leaderboard.screen";
+import { useThemeColor } from "../../hooks";
 import styles from "./BottomTabNavigator.styles";
-import Profile from "../features/Profile/screens/Profile/Profile.screen";
-import Projects from "../features/Projects/screens/Projects.screen";
+import Profile from "../../features/Profile/screens/Profile/Profile.screen";
+import Projects from "../../features/Projects/screens/Projects.screen";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -35,7 +35,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Home2"
+        name="Projects"
         component={Projects}
         options={{
           tabBarIcon: ({ color }) => (
@@ -48,7 +48,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Home3"
+        name="Chats"
         component={Chats}
         options={{
           tabBarIcon: ({ color }) => (
@@ -61,7 +61,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Home4"
+        name="Leaderboard"
         component={Leaderboard}
         options={{
           tabBarIcon: ({ color }) => (
