@@ -24,6 +24,7 @@ export const SquaredButton = (props: SquaredButtonProps) => {
           size="large"
           color="primary"
           style={styles.icon}
+          testId={props.iconName}
         />
       </TouchableOpacity>
     </ShadowView>
