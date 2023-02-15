@@ -10,8 +10,8 @@ const HomeGroupTab = () => {
         headerShown: false,
       }}
     >
-      <HomeGroup.Screen name="HomeScreen" component={Home} />
-      <HomeGroup.Screen name="AllProjectsScreen" component={AllProjects} />
+      <HomeGroup.Screen name="Home" component={Home} />
+      <HomeGroup.Screen name="AllProjects" component={AllProjects} />
     </HomeGroup.Navigator>
   );
 };

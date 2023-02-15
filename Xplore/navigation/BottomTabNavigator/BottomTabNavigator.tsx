@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "../../components";
-import Chats from "../../features/Chat/screens/Chats/Chats.screen";
-import Leaderboard from "../../features/Leaderboard/screens/Leaderboard.screen";
 import { useThemeColor } from "../../hooks";
 import styles from "./BottomTabNavigator.styles";
 import Profile from "../../features/Profile/screens/Profile/Profile.screen";
 import HomeGroupTab from "./HomeGroupTab";
 import ProjectGroupTab from "./ProjectGroupTab";
+import ChatGroupTab from "./ChatGroupTab";
+import LeaderGroupTab from "./LeaderGroupTab";
+import ProfileGroupTab from "./ProfileGroupTab";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -17,7 +18,7 @@ const BottomTabNavigator = () => {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeTab"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -26,7 +27,7 @@ const BottomTabNavigator = () => {
       }}
     >
       <BottomTab.Screen
-        name="Home"
+        name="HomeTab"
         component={HomeGroupTab}
         options={{
           tabBarIcon: ({ color }) => (
@@ -35,7 +36,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Projects"
+        name="ProjectsTab"
         component={ProjectGroupTab}
         options={{
           tabBarIcon: ({ color }) => (
@@ -48,8 +49,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Chats"
-        component={Chats}
+        name="ChatsTab"
+        component={ChatGroupTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
@@ -61,8 +62,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Leaderboard"
-        component={Leaderboard}
+        name="LeaderboardTab"
+        component={LeaderGroupTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
@@ -74,8 +75,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Profile"
-        component={Profile}
+        name="ProfileTab"
+        component={ProfileGroupTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="user" customColor={color} style={styles.tabBarIcon} />
