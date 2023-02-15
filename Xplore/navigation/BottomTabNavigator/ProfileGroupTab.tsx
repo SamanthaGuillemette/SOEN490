@@ -5,20 +5,20 @@ import {
   Settings,
 } from "../../features/Profile/screens";
 
-const ProfileGroup = createNativeStackNavigator();
+const ProfileStack = createNativeStackNavigator();
 
-const ProfileGroupTab = () => {
+const ProfileTab = () => {
   return (
-    <ProfileGroup.Navigator
+    <ProfileStack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <ProfileGroup.Screen name="Profile" component={Profile} />
-      <ProfileGroup.Screen name="Settings" component={Settings} />
-      <ProfileGroup.Screen name="Notification" component={Notification} />
-    </ProfileGroup.Navigator>
+      <ProfileStack.Screen name="Profile" component={Profile} />
+      <ProfileStack.Screen name="Settings" component={Settings} />
+      <ProfileStack.Screen name="Notification" component={Notification} />
+    </ProfileStack.Navigator>
   );
 };
 
-export default ProfileGroupTab;
+export default ProfileTab;

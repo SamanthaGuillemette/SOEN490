@@ -1,18 +1,18 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Chats from "../../features/Chat/screens/Chats/Chats.screen";
 
-const ChatGroup = createNativeStackNavigator();
+const ChatStack = createNativeStackNavigator();
 
-const ChatGroupTab = () => {
+const ChatTab = () => {
   return (
-    <ChatGroup.Navigator
+    <ChatStack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <ChatGroup.Screen name="Chats" component={Chats} />
-    </ChatGroup.Navigator>
+      <ChatStack.Screen name="Chats" component={Chats} />
+    </ChatStack.Navigator>
   );
 };
 
-export default ChatGroupTab;
+export default ChatTab;

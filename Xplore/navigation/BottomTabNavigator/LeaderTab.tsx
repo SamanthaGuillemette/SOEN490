@@ -1,18 +1,18 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Leaderboard from "../../features/Leaderboard/screens/Leaderboard.screen";
 
-const LeaderGroup = createNativeStackNavigator();
+const LeaderStack = createNativeStackNavigator();
 
-const LeaderGroupTab = () => {
+const LeaderTab = () => {
   return (
-    <LeaderGroup.Navigator
+    <LeaderStack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <LeaderGroup.Screen name="Leaderboard" component={Leaderboard} />
-    </LeaderGroup.Navigator>
+      <LeaderStack.Screen name="Leaderboard" component={Leaderboard} />
+    </LeaderStack.Navigator>
   );
 };
 
-export default LeaderGroupTab;
+export default LeaderTab;

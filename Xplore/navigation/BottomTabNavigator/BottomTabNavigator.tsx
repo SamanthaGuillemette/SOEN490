@@ -3,12 +3,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "../../components";
 import { useThemeColor } from "../../hooks";
 import styles from "./BottomTabNavigator.styles";
-import Profile from "../../features/Profile/screens/Profile/Profile.screen";
-import HomeGroupTab from "./HomeGroupTab";
-import ProjectGroupTab from "./ProjectGroupTab";
-import ChatGroupTab from "./ChatGroupTab";
-import LeaderGroupTab from "./LeaderGroupTab";
-import ProfileGroupTab from "./ProfileGroupTab";
+import HomeTab from "./HomeTab";
+import ProjectTab from "./ProjectTab";
+import ChatTab from "./ChatTab";
+import LeaderTab from "./LeaderTab";
+import ProfileTab from "./ProfileGroupTab";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -28,7 +27,7 @@ const BottomTabNavigator = () => {
     >
       <BottomTab.Screen
         name="HomeTab"
-        component={HomeGroupTab}
+        component={HomeTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="home" customColor={color} style={styles.tabBarIcon} />
@@ -37,7 +36,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="ProjectsTab"
-        component={ProjectGroupTab}
+        component={ProjectTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
@@ -50,7 +49,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="ChatsTab"
-        component={ChatGroupTab}
+        component={ChatTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
@@ -63,7 +62,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="LeaderboardTab"
-        component={LeaderGroupTab}
+        component={LeaderTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
@@ -76,7 +75,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="ProfileTab"
-        component={ProfileGroupTab}
+        component={ProfileTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="user" customColor={color} style={styles.tabBarIcon} />
