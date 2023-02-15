@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "../../components";
-import Home from "../../features/Dashboard/screens/Home/Home.screen";
 import Chats from "../../features/Chat/screens/Chats/Chats.screen";
 import Leaderboard from "../../features/Leaderboard/screens/Leaderboard.screen";
 import { useThemeColor } from "../../hooks";
 import styles from "./BottomTabNavigator.styles";
 import Profile from "../../features/Profile/screens/Profile/Profile.screen";
 import Projects from "../../features/Projects/screens/Projects.screen";
+import HomeGroupTab from "./HomeGroupTab";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -27,7 +27,7 @@ const BottomTabNavigator = () => {
     >
       <BottomTab.Screen
         name="Home"
-        component={Home}
+        component={HomeGroupTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="home" customColor={color} style={styles.tabBarIcon} />
