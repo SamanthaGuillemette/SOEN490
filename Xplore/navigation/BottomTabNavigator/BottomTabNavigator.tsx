@@ -35,7 +35,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="ProjectsTab"
+        name="ProjectTab"
         component={ProjectTab}
         options={{
           tabBarIcon: ({ color }) => (
@@ -48,7 +48,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="ChatsTab"
+        name="ChatTab"
         component={ChatTab}
         options={{
           tabBarIcon: ({ color }) => (
@@ -61,7 +61,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="LeaderboardTab"
+        name="LeaderTab"
         component={LeaderTab}
         options={{
           tabBarIcon: ({ color }) => (
