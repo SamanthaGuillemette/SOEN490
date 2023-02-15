@@ -6,8 +6,8 @@ import Leaderboard from "../../features/Leaderboard/screens/Leaderboard.screen";
 import { useThemeColor } from "../../hooks";
 import styles from "./BottomTabNavigator.styles";
 import Profile from "../../features/Profile/screens/Profile/Profile.screen";
-import Projects from "../../features/Projects/screens/Projects.screen";
 import HomeGroupTab from "./HomeGroupTab";
+import ProjectGroupTab from "./ProjectGroupTab";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -36,7 +36,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="Projects"
-        component={Projects}
+        component={ProjectGroupTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
