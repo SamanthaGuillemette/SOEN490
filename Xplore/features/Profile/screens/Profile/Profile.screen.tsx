@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar } from "../../../../components";
-import { useAuth, useThemeColor } from "../../../../hooks";
+import { useThemeColor } from "../../../../hooks";
 import { deviceScreenWidth } from "../../../../constants";
 import {
   Badges,

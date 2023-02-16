@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   mainContainer: {
@@ -14,7 +14,7 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   flashListContainer: {
-    paddingBottom: 30,
+    paddingBottom: Platform.OS === "ios" ? 110 : 80,
     paddingTop: 5,
   },
 });

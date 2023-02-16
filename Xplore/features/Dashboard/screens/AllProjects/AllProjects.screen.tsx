@@ -1,5 +1,5 @@
 import { FlashList } from "@shopify/flash-list";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   CategoryScrollBar,
