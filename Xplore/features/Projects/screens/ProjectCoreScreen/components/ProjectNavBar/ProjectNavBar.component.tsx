@@ -18,18 +18,17 @@ interface ProjectNavBar {
   navigation: NavigationProp<any>;
 }
 
-const { width } = Dimensions.get("window");
-const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
-
-const projectScreenPages = [
-  <ProjectDescription />,
-  <Tasks />, // tasks
-  <ProjectDescription />, // discussion placeholder
-  <ProjectMembers />,
-  <Links />,
-];
-
-function ProjectNavBar() {
+function ProjectNavBar(props: ProjectNavBar) {
+  const { navigation } = props;
+  const { width } = Dimensions.get("window");
+  const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
+  const projectScreenPages = [
+    <ProjectDescription />,
+    <Tasks />,
+    <ProjectDescription />,
+    <ProjectMembers navigation={navigation} />,
+    <Links />,
+  ];
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
