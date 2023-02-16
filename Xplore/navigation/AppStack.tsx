@@ -9,6 +9,7 @@ import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import Profile from "../features/Profile/screens/Profile/Profile.screen";
 import Settings from "../features/Profile/screens/Settings/Settings.screen";
 import Notification from "../features/Profile/screens/Notification/Notification.screen";
+import TopicSelection from "../features/TopicSelection/screen/TopicSelection.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,7 @@ const AppStack = () => {
       <Stack.Screen name="AllProjects" component={AllProjects} />
       <Stack.Screen name="Notification" component={Notification} />
       <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
+      <Stack.Screen name="TopicSelection" component={TopicSelection} />
     </Stack.Navigator>
   );
 };
