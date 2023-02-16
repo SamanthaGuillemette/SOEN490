@@ -23,18 +23,21 @@ const ProjectMembers = (props: ProjectMembersProps) => {
             username={"Amy Lucas"}
             email={"amy@gmail.com"}
             xp={103597}
+            navigation={props.navigation}
           />
           <MessageMember
             avatar={"https://picsum.photos/400"}
             username={"Elva Moore"}
             email={"elva@gmail.com"}
             xp={103597}
+            navigation={props.navigation}
           />
           <MessageMember
             avatar={"https://picsum.photos/500"}
             username={"Bernice Lewis"}
             email={"berince@gmail.com"}
             xp={103597}
+            navigation={props.navigation}
           />
           <SquaredButton iconName="plus" />
         </View>

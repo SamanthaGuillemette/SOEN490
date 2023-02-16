@@ -25,9 +25,6 @@ export default StyleSheet.create({
     paddingRight: 10,
     marginTop: 4,
   },
-  phoneIcon: {
-    marginRight: 10,
-  },
   screenName: {
     paddingLeft: 20,
   },

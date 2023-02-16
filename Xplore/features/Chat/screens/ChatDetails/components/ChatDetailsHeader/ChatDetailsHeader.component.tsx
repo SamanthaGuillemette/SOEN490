@@ -24,9 +24,6 @@ const ChatDetailsHeader = (props: ChatDetailsHeader) => {
         <Text variant="h2">{props.username}</Text>
       </View>
       <View style={styles.navRightItems}>
-        <TouchableOpacity>
-          <Icon style={styles.phoneIcon} name="phone" />
-        </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
             props.navigation.navigate("ChatSettings", { name: "Josh Lewis" })

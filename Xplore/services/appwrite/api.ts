@@ -51,8 +51,13 @@ const api = {
     );
   },
 
-  listDocuments: (collectionId: string) => {
-    return database.listDocuments(DATABASE_ID, collectionId);
+  listDocuments: async (
+    collectionId: string,
+    queries: string[] | null = null
+  ) => {
+    return await (queries
+      ? database.listDocuments(DATABASE_ID, collectionId, queries)
+      : database.listDocuments(DATABASE_ID, collectionId));
   },
 
   updateDocument: (
