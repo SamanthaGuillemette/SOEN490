@@ -13,6 +13,10 @@ export default StyleSheet.create({
   searchBar: {
     marginBottom: 20,
   },
+  categoryBar: {
+    marginTop: 5,
+    marginBottom: 20,
+  },
   flashListContainer: {
     paddingBottom: Platform.OS === "ios" ? 110 : 80,
     paddingTop: 5,

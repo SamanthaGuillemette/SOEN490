@@ -89,7 +89,9 @@ const ExploreProjects = () => {
 
       {/* This horizontal scrollbar is hidden by default.
       When the user clicks on the filter button, "isCategoryListVisible" === true */}
-      {isCategoryListVisible && <CategoryScrollBar categories={categories} />}
+      {isCategoryListVisible && (
+        <CategoryScrollBar style={styles.categoryBar} categories={categories} />
+      )}
 
       <FlashList
         data={fakeProjectData}
