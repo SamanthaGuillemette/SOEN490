@@ -15,8 +15,6 @@ import {
   TodayStats,
   NewProjects,
 } from "../components";
-//for api tesing purposes
-import useDatabaseApiTesting from "../../../hooks/useDatabaseApiTesting";
 import styles from "./Home.styles";
 
 const Home = () => {
@@ -33,8 +31,6 @@ const Home = () => {
     setIsButtonExpanded(currentScrollPosition <= 0);
   };
 
-  useDatabaseApiTesting();
-
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
@@ -46,7 +42,6 @@ const Home = () => {
         scrollEventThrottle={32}
       >
         <HomeHeader />
-
         <View style={styles.mainScreen}>
           <TodayStats />
           <ExploreProjects />

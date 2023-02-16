@@ -8,7 +8,6 @@ export const database = new Databases(client);
 
 const api = {
   query: Query,
-  client: client,
   createAccount: (email: string, password: string, name: string) => {
     return account.create(ID.unique(), email, password, name);
   },
