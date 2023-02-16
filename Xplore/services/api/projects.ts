@@ -7,7 +7,7 @@ import api from "../appwrite/api";
 interface Project {}
 
 const useListProjectsPaginated = () => {
-  const LIMIT = 2;
+  const LIMIT = 5;
   return useInfiniteQuery({
     queryKey: "projects",
     queryFn: async ({ pageParam = 0 }) => {
