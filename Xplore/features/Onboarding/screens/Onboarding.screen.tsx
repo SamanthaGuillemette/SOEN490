@@ -88,7 +88,7 @@ const Onboarding = (props: OnboardingProps) => {
                 >
                   <PrimaryButton
                     label="Get Started"
-                    onPress={() => navigation.navigate("BottomTabNavigator")}
+                    onPress={() => navigation.navigate("TopicSelection")}
                   />
                 </View>
               )}
