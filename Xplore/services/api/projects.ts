@@ -1,14 +1,27 @@
-import { useQuery, useMutation } from "react-query";
+//removed useQuery import for the time being
+import { useInfiniteQuery, useMutation } from "react-query";
 import { PROJECT_COLLECTION_ID } from "@env";
 import api from "../appwrite/api";
 
 //to be defined
 interface Project {}
 
-//will need to implement pagination here as fetching the entire list of projects is not ideal
-const useListProjects = () => {
-  return useQuery("projects", () => api.listDocuments(PROJECT_COLLECTION_ID), {
-    retry: 3,
+const useListProjectsPaginated = () => {
+  const LIMIT = 2;
+  return useInfiniteQuery({
+    queryKey: "projects",
+    queryFn: async ({ pageParam = 0 }) => {
+      const res = await api.listDocuments(PROJECT_COLLECTION_ID, [
+        api.query.offset(LIMIT * pageParam),
+        api.query.limit(LIMIT),
+      ]);
+      return {
+        response: res.documents,
+        nextOffset: pageParam + 1,
+      };
+    },
+    getNextPageParam: (lastPage) => lastPage.nextOffset,
+    retry: 2,
   });
 };
 
@@ -22,4 +35,4 @@ const useDeleteProject = (documentId: string) => {
   );
 };
 
-export { useCreateProject, useDeleteProject, useListProjects };
+export { useCreateProject, useDeleteProject, useListProjectsPaginated };
