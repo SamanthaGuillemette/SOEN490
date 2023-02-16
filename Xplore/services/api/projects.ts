@@ -16,8 +16,8 @@ const useListProjectsPaginated = () => {
         api.query.limit(LIMIT),
       ]);
       return {
-        response: res.documents,
-        nextOffset: pageParam + 1,
+        projects: res.documents,
+        nextOffset: ++pageParam,
       };
     },
     getNextPageParam: (lastPage) => lastPage.nextOffset,
