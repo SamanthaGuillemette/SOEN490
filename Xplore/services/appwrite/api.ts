@@ -1,5 +1,5 @@
 import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
-import { Client, Databases, Account, ID, Models } from "appwrite";
+import { Client, Databases, Account, ID, Models, Query } from "appwrite";
 
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
@@ -7,6 +7,7 @@ export const account = new Account(client);
 export const database = new Databases(client);
 
 const api = {
+  query: Query,
   createAccount: (email: string, password: string, name: string) => {
     return account.create(ID.unique(), email, password, name);
   },
@@ -51,8 +52,13 @@ const api = {
     );
   },
 
-  listDocuments: async (collectionId: string, queries: string[] = []) => {
-    return await database.listDocuments(DATABASE_ID, collectionId, queries);
+  listDocuments: async (
+    collectionId: string,
+    queries: string[] | null = null
+  ) => {
+    return await (queries
+      ? database.listDocuments(DATABASE_ID, collectionId, queries)
+      : database.listDocuments(DATABASE_ID, collectionId));
   },
 
   getDocument: (collectionId: string, documentId: string) => {
