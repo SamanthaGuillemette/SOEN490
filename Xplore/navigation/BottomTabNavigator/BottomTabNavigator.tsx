@@ -21,8 +21,11 @@ const BottomTabNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: [styles.tabBar, { backgroundColor: tabBarBackground }],
         tabBarActiveTintColor: primaryColor,
+        tabBarStyle: [
+          styles.tabBar,
+          { backgroundColor: tabBarBackground, shadowColor: primaryColor },
+        ],
       }}
     >
       <BottomTab.Screen
