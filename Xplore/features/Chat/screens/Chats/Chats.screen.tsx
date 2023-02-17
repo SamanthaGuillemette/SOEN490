@@ -29,7 +29,10 @@ const Chats = (props: ChatsProps) => {
             lastText={"Lorem ipsum dolor sit amet consectetur... "}
             time={"5 min ago"}
             onPress={() =>
-              props.navigation.navigate("ChatDetails", { name: "Josh Lewis" })
+              props.navigation.navigate("ChatDetails", {
+                name: "Josh Lewis",
+                contactEmail: "josh@gmail.com",
+              })
             }
           />
           <ChatBox

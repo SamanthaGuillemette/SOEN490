@@ -6,11 +6,13 @@ import ChatDate from "./components/ChatDate/ChatDate.component";
 import LeftBubble from "./components/LeftBubble/LeftBubble.component";
 import RightBubble from "./components/RightBubble/RightBubble.component";
 import styles from "./Conversation.styles";
+
 interface ConversationProps {
   navigation: NavigationProp<any>;
+  contactEmail: string;
 }
 
-const Conversation = ({}: ConversationProps) => {
+const Conversation = (props: ConversationProps) => {
   const background = useThemeColor("background");
   const ref = React.useRef<FlatList>(null);
   const messages = [

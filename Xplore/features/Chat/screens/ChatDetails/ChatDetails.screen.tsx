@@ -13,15 +13,16 @@ interface ChatDetailsProps {
 
 const ChatDetails = (props: ChatDetailsProps) => {
   const route = useRoute();
-  let { name }: any = route.params;
+  let { name, contactEmail }: any = route.params;
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <ChatDetailsHeader username={name} navigation={props.navigation} />
-      <Conversation navigation={name} />
-      <ChatTextInput />
+      <Conversation contactEmail={contactEmail} navigation={props.navigation} />
+      <ChatTextInput contactEmail={contactEmail} />
     </SafeAreaView>
   );
 };
