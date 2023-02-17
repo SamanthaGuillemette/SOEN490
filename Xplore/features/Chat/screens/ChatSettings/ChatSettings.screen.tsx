@@ -1,4 +1,3 @@
-import { SafeAreaView } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
@@ -8,6 +7,7 @@ import styles from "./ChatSettings.styles";
 import AdminSettings from "./screens/AdminSettings.screen";
 import MemberSettings from "./screens/MemberSettings.screen";
 import PrivateChatSettings from "./screens/PrivateChatSettings.screen";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface ChatSettingsProps {
   navigation: NavigationProp<any>;
@@ -21,6 +21,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
     <SafeAreaView
+      edges={["top", "left", "right"]}
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <TopHeader screenName={"Chat Settings"} navigation={props.navigation} />
