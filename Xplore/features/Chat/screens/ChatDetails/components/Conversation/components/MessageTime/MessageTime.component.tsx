@@ -9,7 +9,7 @@ interface MessageTimeProps {
 const MessageTime = ({ time, style }: MessageTimeProps) => {
   return (
     <Text variant="smLabel" color="smallText" style={style}>
-      {time}
+      {time} {+time.substring(0, 2) > 12 ? "PM" : "AM"}
     </Text>
   );
 };
