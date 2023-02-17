@@ -1,15 +1,25 @@
-import { Animated, SafeAreaView, TouchableOpacity, View } from "react-native";
-import { ScrollView } from "react-native";
+import { useRef } from "react";
+import {
+  Animated,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+  ScrollView,
+} from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Icon, Text, Avatar, PrimaryButton } from "../../../../components";
+import { Icon, Text, Avatar } from "../../../../components";
 import { useAuth, useThemeColor } from "../../../../hooks";
 import { deviceScreenWidth } from "../../../../constants";
-import { Badges, ProjectSlider, UserProgress } from "../../components";
-import { StatBoxes } from "../../components";
-import { useRef } from "react";
-import styles from "./Profile.styles";
+import {
+  Badges,
+  ProjectSlider,
+  UserProgress,
+  StatBoxes,
+} from "../../components";
+import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.component";
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
+import styles from "./Profile.styles";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -21,7 +31,6 @@ interface ProfileProps {
 
 const Profile = (props: ProfileProps) => {
   const { navigation } = props;
-  const { signOut } = useAuth();
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
 
@@ -87,9 +96,8 @@ const Profile = (props: ProfileProps) => {
           <StatBoxes />
           <Badges />
           <ProjectSlider />
-
-          <View style={styles.signoutButton}>
-            <PrimaryButton label="Sign out" onPress={signOut} />
+          <View style={styles.logoutButton}>
+            <LogoutButton />
           </View>
         </View>
       </ScrollView>
@@ -116,7 +124,11 @@ const Profile = (props: ProfileProps) => {
             <Icon name="settings" color="primary" size="large" />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Notification");
+            }}
+          >
             <Icon name="bell" color="primary" size="large" />
           </TouchableOpacity>
         </View>

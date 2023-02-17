@@ -2,21 +2,9 @@ import { NavigationProp } from "@react-navigation/native";
 import * as React from "react";
 import { PrimaryButton, View, TextInput } from "../../../../components";
 import styles from "./SignUp.styles";
-//import api from "../../../../services/appwrite/api";
 import { useAuth } from "../../../../hooks";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import * as Linking from "expo-linking";
-
-// Need to implement
-//  ** error handling
-//    ** maybe a popup window or toast
-//    ** for stuff below:
-//  ** input sanitization
-//    ** Passwods are the same
-//    ** Username does not exist
-//    ** email does not exist
-//    ** email is valid (xyz@gmail.com)
-//  ** getting a name
 
 interface SignUpProps {
   navigation: NavigationProp<any>;

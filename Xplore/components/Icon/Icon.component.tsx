@@ -9,10 +9,18 @@ interface IconProps {
   color?: keyof typeof colors.light & keyof typeof colors.dark;
   customColor?: string;
   style?: StyleProp<ViewStyle>;
+  testId?: string;
 }
 
 export const Icon = (props: IconProps) => {
-  const { name, size = "large", color = "primary", customColor, style } = props;
+  const {
+    name,
+    size = "large",
+    color = "primary",
+    customColor,
+    style,
+    testId,
+  } = props;
 
   let iconColor = useThemeColor(color);
   // If customColor is provided, use that instead
@@ -34,7 +42,13 @@ export const Icon = (props: IconProps) => {
   }
 
   return (
-    <Feather name={name} size={iconSize} color={iconColor} style={style} />
+    <Feather
+      name={name}
+      size={iconSize}
+      color={iconColor}
+      style={style}
+      testID={testId}
+    />
   );
 };
 

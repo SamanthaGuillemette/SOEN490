@@ -40,7 +40,7 @@ export default StyleSheet.create({
     paddingBottom: 120,
     paddingTop: Platform.OS === "ios" ? 30 : 60,
   },
-  signoutButton: {
+  logoutButton: {
     alignItems: "center",
     marginTop: 50,
   },
