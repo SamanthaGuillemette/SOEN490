@@ -35,6 +35,7 @@ const ChatTextInput = (props: ChatTextInputProps) => {
           <RNTextInput
             placeholderTextColor={smallText}
             placeholder={"Message ..."}
+            autoCapitalize={"none"}
             value={message}
             onChangeText={(thisMessage) => setMessage(thisMessage)}
             style={[styles.textInput, { color: bodyText }]}

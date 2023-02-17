@@ -22,7 +22,7 @@ const Conversation = (props: ConversationProps) => {
 
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
-  let usrEmail: string = userdata?.email as string;
+  let currUserID: string = userdata?.$id as string;
 
   const messages = [
     {
@@ -69,35 +69,34 @@ const Conversation = (props: ConversationProps) => {
     },
   ];
 
-  // const response = api.listDocuments(COLLECTION_ID_MESSAGES, [
-  //   Query.equal("chatID", [props.chatID]),
-  // ]);
-
-  // response.then(function (res) {
-  //   console.log(res);
-  // });
+  // Quering chat details
+  const { data: chatData } = useQuery("chat data", () =>
+    api.listDocuments(COLLECTION_ID_MESSAGES, [
+      Query.equal("ChatID", props.chatID),
+    ])
+  );
 
   const rendeMessages = ({ item }) => (
     <View style={{ backgroundColor: background }}>
-      {item.user === "right" ? (
-        <RightBubble text={item.text} image={item.image} />
-      ) : (
-        <LeftBubble text={item.text} image={item.image} />
+      {chatData?.documents?.map((doc) =>
+        doc.UserID === currUserID ? (
+          <RightBubble
+            key={doc.$id}
+            text={doc.Message}
+            msgTime={doc.$createdAt.slice(11, 16)}
+            image={"https://picsum.photos/200"}
+          />
+        ) : (
+          <LeftBubble
+            key={doc.$id}
+            text={doc.Message}
+            msgTime={doc.$createdAt.slice(11, 16)}
+            image={"https://picsum.photos/200"}
+          />
+        )
       )}
     </View>
   );
-
-  // const rendeMessages = () => (
-  //   data?.documents?.map((doc: any, index: number) => (
-  //     <View style={{ backgroundColor: background }}>
-  //       {item.user === "right" ? (
-  //         <RightBubble text={item.text} image={item.image} />
-  //       ) : (
-  //         <LeftBubble text={item.text} image={item.image} />
-  //       )}
-  //     </View>
-  //   })
-  // );
 
   const getChatDate = () => {
     return <ChatDate date={"Jun 25, 2022"} />;

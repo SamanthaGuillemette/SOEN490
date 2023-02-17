@@ -23,6 +23,7 @@ const Chats = (props: ChatsProps) => {
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
+  // Quering chats
   const { data: chatData } = useQuery("chat data", () =>
     api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
       Query.equal("userID", userId),
@@ -40,6 +41,7 @@ const Chats = (props: ChatsProps) => {
         <View backgroundColor="background" style={styles.chat_container}>
           {chatData?.documents?.map((doc) => (
             <ChatBox
+              key={doc.chatID}
               image="https://picsum.photos/200"
               username={doc.userID}
               lastText={doc.lastMessage}
