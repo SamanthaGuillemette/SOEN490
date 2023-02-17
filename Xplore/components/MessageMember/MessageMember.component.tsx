@@ -19,22 +19,23 @@ interface MemberProps {
 export const MessageMember = (props: MemberProps) => {
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
-  let usrEmail: string = userdata?.email as string;
+  let userId: string = userdata?.$id as string;
 
   // Define chat data to be created
   const chatData = {
-    userEmail: usrEmail,
-    contactEmail: props.email,
+    userID: userId,
+    contactID: props.email,
   };
 
   // Check if the chat exist
   const response = api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
-    Query.equal("userEmail", usrEmail),
+    // TO BE FIXED
+    Query.equal("userEmail", userId),
     Query.equal("contactEmail", props.email),
   ]);
 
   // onMessageClick Function
-  const onMessageClickFunction = () => {
+  const onMessageClick = () => {
     // If a chat already exist
     response.then(function (res) {
       if (res.total === 0) {
@@ -50,7 +51,7 @@ export const MessageMember = (props: MemberProps) => {
         <User avatar={props.avatar} username={props.username} xp={props.xp} />
       </View>
       <View style={styles.msg_button}>
-        <ChipButton label="Message" onPress={onMessageClickFunction} />
+        <ChipButton label="Message" onPress={onMessageClick} />
       </View>
     </View>
   );

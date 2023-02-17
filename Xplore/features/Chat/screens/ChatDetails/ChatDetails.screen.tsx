@@ -9,11 +9,12 @@ import styles from "./ChatDetails.styles";
 
 interface ChatDetailsProps {
   navigation: NavigationProp<any>;
+  chatID: string;
 }
 
 const ChatDetails = (props: ChatDetailsProps) => {
   const route = useRoute();
-  let { name, contactEmail }: any = route.params;
+  let { name, chatID }: any = route.params;
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   return (
@@ -21,8 +22,8 @@ const ChatDetails = (props: ChatDetailsProps) => {
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <ChatDetailsHeader username={name} navigation={props.navigation} />
-      <Conversation contactEmail={contactEmail} navigation={props.navigation} />
-      <ChatTextInput contactEmail={contactEmail} />
+      <Conversation chatID={chatID} navigation={props.navigation} />
+      <ChatTextInput chatID={chatID} />
     </SafeAreaView>
   );
 };

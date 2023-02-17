@@ -1,5 +1,9 @@
 import React from "react";
+import { useQuery } from "react-query";
 import { FlatList, View } from "react-native";
+import api from "../../../../../../services/appwrite/api";
+import { COLLECTION_ID_MESSAGES } from "@env";
+import { Query } from "appwrite";
 import { NavigationProp } from "@react-navigation/native";
 import { useThemeColor } from "../../../../../../hooks/useThemeColor";
 import ChatDate from "./components/ChatDate/ChatDate.component";
@@ -9,12 +13,17 @@ import styles from "./Conversation.styles";
 
 interface ConversationProps {
   navigation: NavigationProp<any>;
-  contactEmail: string;
+  chatID: string;
 }
 
 const Conversation = (props: ConversationProps) => {
   const background = useThemeColor("background");
   const ref = React.useRef<FlatList>(null);
+
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let usrEmail: string = userdata?.email as string;
+
   const messages = [
     {
       id: "1",
@@ -60,6 +69,14 @@ const Conversation = (props: ConversationProps) => {
     },
   ];
 
+  // const response = api.listDocuments(COLLECTION_ID_MESSAGES, [
+  //   Query.equal("chatID", [props.chatID]),
+  // ]);
+
+  // response.then(function (res) {
+  //   console.log(res);
+  // });
+
   const rendeMessages = ({ item }) => (
     <View style={{ backgroundColor: background }}>
       {item.user === "right" ? (
@@ -69,6 +86,18 @@ const Conversation = (props: ConversationProps) => {
       )}
     </View>
   );
+
+  // const rendeMessages = () => (
+  //   data?.documents?.map((doc: any, index: number) => (
+  //     <View style={{ backgroundColor: background }}>
+  //       {item.user === "right" ? (
+  //         <RightBubble text={item.text} image={item.image} />
+  //       ) : (
+  //         <LeftBubble text={item.text} image={item.image} />
+  //       )}
+  //     </View>
+  //   })
+  // );
 
   const getChatDate = () => {
     return <ChatDate date={"Jun 25, 2022"} />;

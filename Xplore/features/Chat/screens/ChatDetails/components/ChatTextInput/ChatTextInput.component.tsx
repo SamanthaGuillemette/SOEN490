@@ -8,7 +8,7 @@ import { COLLECTION_ID_MESSAGES } from "@env";
 import styles from "./ChatTextInput.styles";
 
 interface ChatTextInputProps {
-  contactEmail: string;
+  chatID: string;
 }
 
 const ChatTextInput = (props: ChatTextInputProps) => {
@@ -18,7 +18,7 @@ const ChatTextInput = (props: ChatTextInputProps) => {
 
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
-  let usrEmail: string = userdata?.email as string;
+  let usrID: string = userdata?.$id as string;
 
   // onSendClick Function
   const onSendClick = (msgData: any) => {
@@ -44,8 +44,8 @@ const ChatTextInput = (props: ChatTextInputProps) => {
           onPress={() => {
             if (message !== "") {
               const msgData = {
-                From: usrEmail,
-                To: props.contactEmail,
+                UserID: usrID,
+                ChatID: props.chatID,
                 Message: message,
               };
               onSendClick(msgData);
