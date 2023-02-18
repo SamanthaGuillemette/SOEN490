@@ -7,7 +7,7 @@ export default StyleSheet.create({
   },
   header: {
     position: "absolute",
-    top: Platform.OS === "ios" ? "11%" : "8%",
+    top: Platform.OS === "ios" ? "11%" : "7%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
@@ -24,10 +24,10 @@ export default StyleSheet.create({
     width: 24,
   },
   modalView: {
-    marginTop: Platform.OS === "ios" ? 65 : 80,
+    marginTop: Platform.OS === "ios" ? 65 : 90,
     borderRadius: 8,
     alignItems: "center",
-    height: "86%",
+    height: "76%",
     marginHorizontal: 6,
   },
   text: {
