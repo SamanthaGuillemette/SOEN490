@@ -1,14 +1,12 @@
 import { Models } from "appwrite";
 import React, { createContext, useState } from "react";
 import api from "../appwrite/api";
-import * as Linking from "expo-linking";
 
 // The "shape" of our AuthContext data
 export type AuthContextData = {
   sessionToken?: Models.Session | null;
   accountToken?: Models.Account<any> | null;
   loading: boolean;
-  linkData: Linking.ParsedURL;
   signUp: (
     username: string,
     email: string,
@@ -22,7 +20,6 @@ export type AuthContextData = {
   signOut: () => void;
   getSessionStatus: (sessionId: string) => void;
   getAccountStatus: () => void;
-  setLinkData: (data: Linking.ParsedURL) => void;
 };
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -38,9 +35,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     null
   );
   const [loading, setLoadingStatus] = useState<boolean>(false);
-  const [linkData, setLinkData] = useState<Linking.ParsedURL>(
-    {} as Linking.ParsedURL
-  );
   //const [emailIsVerified, setVerifiedStatus] = useState<boolean>(false);
 
   const getSessionStatus = (sessionId: string) => {
@@ -200,8 +194,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         sessionToken,
         accountToken,
         loading,
-        linkData,
-        setLinkData,
         signIn,
         signOut,
         signUp,

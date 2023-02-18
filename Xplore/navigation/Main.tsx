@@ -20,7 +20,9 @@ const linking = {
   prefixes: [prefix],
   config: {
     screens: {
-      ResetPassword: "reset",
+      ResetPassword: {
+        path: "reset",
+      },
     },
   },
 };
@@ -32,16 +34,13 @@ const Main = ({ colorScheme }: MainProps) => {
     getSessionStatus,
     getAccountStatus,
     verifyEmail,
-    setLinkData,
   } = useAuth();
 
   let listener = Linking.addEventListener("url", handleDeepLink);
 
   function handleDeepLink(event: any) {
     const linkData = Linking.parse(event.url);
-    if (linkData.path === "reset") {
-      setLinkData(linkData);
-    } else if (
+    if (
       linkData.path === "signup" &&
       linkData.queryParams?.userId &&
       linkData.queryParams?.secret

@@ -12,18 +12,17 @@ interface ResetPasswordProps {
 }
 
 const ResetPassword = (props: ResetPasswordProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [password, setPassword] = useState<string>("");
   const [passwordReentered, setReenteredPassword] = useState<string>("");
   const { navigation } = props;
   const animation = useRef(null);
-
-  const { linkData, confirmRecovery } = useAuth();
+  console.log(navigation.getState().routes[1].params!.userId, null, 4);
+  const { confirmRecovery } = useAuth();
 
   const confirm = () => {
     confirmRecovery(
-      String(linkData!.queryParams!.userId!),
-      String(linkData!.queryParams!.secret!),
+      navigation.getState().routes[1].params!.userId,
+      navigation.getState().routes[1].params!.secret,
       passwordReentered
     );
     navigation.navigate("Sign");
@@ -64,6 +63,7 @@ const ResetPassword = (props: ResetPasswordProps) => {
         <PrimaryButton
           label="RESET PASSWORD"
           style={styles.primaryButton}
+          disabled={!password && password !== passwordReentered}
           onPress={confirm}
         />
       </View>
