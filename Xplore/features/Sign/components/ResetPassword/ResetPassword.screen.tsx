@@ -16,7 +16,6 @@ const ResetPassword = (props: ResetPasswordProps) => {
   const [passwordReentered, setReenteredPassword] = useState<string>("");
   const { navigation } = props;
   const animation = useRef(null);
-  console.log(navigation.getState().routes[1].params!.userId, null, 4);
   const { confirmRecovery } = useAuth();
 
   const confirm = () => {

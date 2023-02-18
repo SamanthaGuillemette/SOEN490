@@ -2,6 +2,15 @@ import { render } from "react-native-testing-library";
 import renderer from "react-test-renderer";
 import ForgotPassword from "./ForgotPassword.screen";
 
+jest.mock("expo-linking", () => {
+  const module: typeof import("expo-linking") = {
+    ...jest.requireActual("expo-linking"),
+    createURL: jest.fn(),
+  };
+
+  return module;
+});
+
 describe("Forgot Pasword screen", () => {
   it("renders correctly", () => {
     const tree = renderer.create(<ForgotPassword />).toJSON();
