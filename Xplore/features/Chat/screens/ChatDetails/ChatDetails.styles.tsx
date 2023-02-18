@@ -4,6 +4,7 @@ export default StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
+    marginBottom: 15,
   },
   messages_container: {
     flex: 1,

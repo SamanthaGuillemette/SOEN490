@@ -10,6 +10,13 @@ export default StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 4,
   },
   tabBarIcon: {
     marginBottom: Platform.OS === "ios" ? -5 : 0,

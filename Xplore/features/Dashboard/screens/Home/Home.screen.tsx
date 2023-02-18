@@ -42,6 +42,7 @@ const Home = (props: HomeProps) => {
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
       <ScrollView
+        bounces={false}
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: scrollViewBackground }}
         onScroll={onScroll}
