@@ -3,8 +3,9 @@ import { TextInput as RNTextInput, TouchableOpacity } from "react-native";
 import { View, ShadowView, Icon } from "../../../../../../components";
 import { useThemeColor } from "../../../../../../hooks";
 import { useQuery } from "react-query";
+import { Query } from "appwrite";
 import api from "../../../../../../services/appwrite/api";
-import { COLLECTION_ID_MESSAGES } from "@env";
+import { COLLECTION_ID_DIRECT_CHATS, COLLECTION_ID_MESSAGES } from "@env";
 import styles from "./ChatTextInput.styles";
 
 interface ChatTextInputProps {
@@ -20,10 +21,27 @@ const ChatTextInput = (props: ChatTextInputProps) => {
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let usrID: string = userdata?.$id as string;
 
+  // Quering chats associated with chatID
+  const { data: chatData } = useQuery("chat data", () =>
+    api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
+      Query.equal("chatID", props.chatID),
+    ])
+  );
+
   // onSendClick Function
-  const onSendClick = (msgData: any) => {
+  async function onSendClick(msgData: any) {
+    // Create a message
     api.createDocument(COLLECTION_ID_MESSAGES, msgData);
-  };
+    // Update the last message for chat docs
+    chatData?.documents.map((doc: any) => {
+      api.updateDocument(COLLECTION_ID_DIRECT_CHATS, doc.$id, {
+        userID: usrID,
+        contactID: doc.contactID,
+        chatID: props.chatID,
+        lastMessage: msgData.message,
+      });
+    });
+  }
 
   return (
     <View backgroundColor="background">
@@ -45,9 +63,9 @@ const ChatTextInput = (props: ChatTextInputProps) => {
           onPress={() => {
             if (message !== "") {
               const msgData = {
-                UserID: usrID,
-                ChatID: props.chatID,
-                Message: message,
+                userID: usrID,
+                chatID: props.chatID,
+                message: message,
               };
               onSendClick(msgData);
               setMessage("");

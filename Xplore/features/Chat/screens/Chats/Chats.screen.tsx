@@ -1,7 +1,8 @@
+import { Fragment } from "react";
 import { ScrollView, SafeAreaView } from "react-native";
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
-import { COLLECTION_ID_DIRECT_CHATS, COLLECTION_ID_USERS } from "@env";
+import { COLLECTION_ID_DIRECT_CHATS } from "@env";
 import { Query } from "appwrite";
 import { useThemeColor } from "../../../../hooks";
 import ChatBox from "./components/ChatBox/ChatBox.component";
@@ -29,7 +30,6 @@ const Chats = (props: ChatsProps) => {
       Query.equal("userID", userId),
     ])
   );
-
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
@@ -39,21 +39,21 @@ const Chats = (props: ChatsProps) => {
         style={[styles.chat_scrollView, { backgroundColor: background }]}
       >
         <View backgroundColor="background" style={styles.chat_container}>
-          {chatData?.documents?.map((doc) => (
-            <ChatBox
-              key={doc.chatID}
-              image="https://picsum.photos/200"
-              username={doc.userID}
-              lastText={doc.lastMessage}
-              time={doc.$createdAt.slice(0, 10)}
-              onPress={() =>
-                props.navigation.navigate("ChatDetails", {
-                  chatID: doc.chatID,
-                  name: "Josh Lewis",
-                  contactEmail: "josh@gmail.com",
-                })
-              }
-            />
+          {chatData?.documents?.map((doc: any, index: number) => (
+            <Fragment key={index}>
+              <ChatBox
+                key={doc.chatID}
+                image="https://picsum.photos/200"
+                username={doc.userID}
+                lastText={doc.lastMessage}
+                time={doc.$createdAt.slice(0, 10)}
+                onPress={() =>
+                  props.navigation.navigate("ChatDetails", {
+                    chatID: doc.chatID,
+                  })
+                }
+              />
+            </Fragment>
           ))}
         </View>
       </ScrollView>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useQuery } from "react-query";
 import { FlatList, View } from "react-native";
 import api from "../../../../../../services/appwrite/api";
@@ -70,32 +70,34 @@ const Conversation = (props: ConversationProps) => {
   ];
 
   // Quering chat details
-  const { data: chatData } = useQuery("chat data", () =>
+  const { data } = useQuery("chat data", () =>
     api.listDocuments(COLLECTION_ID_MESSAGES, [
-      Query.equal("ChatID", props.chatID),
+      Query.equal("chatID", props.chatID),
     ])
   );
 
   const rendeMessages = ({ item }) => (
-    <View style={{ backgroundColor: background }}>
-      {chatData?.documents?.map((doc) =>
-        doc.UserID === currUserID ? (
-          <RightBubble
-            key={doc.$id}
-            text={doc.Message}
-            msgTime={doc.$createdAt.slice(11, 16)}
-            image={"https://picsum.photos/200"}
-          />
-        ) : (
-          <LeftBubble
-            key={doc.$id}
-            text={doc.Message}
-            msgTime={doc.$createdAt.slice(11, 16)}
-            image={"https://picsum.photos/200"}
-          />
-        )
-      )}
-    </View>
+    <Fragment key={item.index}>
+      {data?.documents?.map((doc: any, index: number) => (
+        <View key={index} style={{ backgroundColor: background }}>
+          {doc.userID === currUserID ? (
+            <RightBubble
+              key={doc.$id}
+              text={doc.message}
+              msgTime={doc.$createdAt.slice(11, 16)}
+              image={"https://picsum.photos/200"}
+            />
+          ) : (
+            <LeftBubble
+              key={doc.$id}
+              text={doc.message}
+              msgTime={doc.$createdAt.slice(11, 16)}
+              image={"https://picsum.photos/200"}
+            />
+          )}
+        </View>
+      ))}
+    </Fragment>
   );
 
   const getChatDate = () => {
