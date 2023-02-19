@@ -27,23 +27,23 @@ export const MessageMember = (props: MemberProps) => {
     contactID: props.email,
   };
 
-  // Check if the chat exist
-  const response = api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
-    // TO BE FIXED
-    Query.equal("userEmail", userId),
-    Query.equal("contactEmail", props.email),
-  ]);
+  // // Check if the chat exist
+  // const response = api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
+  //   // TO BE FIXED
+  //   Query.equal("userEmail", userId),
+  //   Query.equal("contactEmail", props.email),
+  // ]);
 
-  // onMessageClick Function
-  const onMessageClick = () => {
-    // If a chat already exist
-    response.then(function (res) {
-      if (res.total === 0) {
-        api.createDocument(COLLECTION_ID_DIRECT_CHATS, chatData);
-      }
-    });
-    props.navigation.navigate("ChatDetails", { name: props.username });
-  };
+  // // onMessageClick Function
+  // const onMessageClick = () => {
+  //   // If a chat already exist
+  //   response.then(function (res) {
+  //     if (res.total === 0) {
+  //       api.createDocument(COLLECTION_ID_DIRECT_CHATS, chatData);
+  //     }
+  //   });
+  //   props.navigation.navigate("ChatDetails", { name: props.username });
+  // };
 
   return (
     <View style={styles.user_container}>
@@ -51,7 +51,10 @@ export const MessageMember = (props: MemberProps) => {
         <User avatar={props.avatar} username={props.username} xp={props.xp} />
       </View>
       <View style={styles.msg_button}>
-        <ChipButton label="Message" onPress={onMessageClick} />
+        <ChipButton
+          label="Message"
+          // onPress={onMessageClick}
+        />
       </View>
     </View>
   );

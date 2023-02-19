@@ -22,8 +22,8 @@ const ChatDetails = (props: ChatDetailsProps) => {
       edges={["top", "left", "right"]}
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
-      <ChatDetailsHeader username={chatID} navigation={props.navigation} />
-      <Conversation chatID={chatID} navigation={props.navigation} />
+      <ChatDetailsHeader chatID={chatID} navigation={props.navigation} />
+      <Conversation chatID={chatID} />
       <ChatTextInput chatID={chatID} />
     </SafeAreaView>
   );

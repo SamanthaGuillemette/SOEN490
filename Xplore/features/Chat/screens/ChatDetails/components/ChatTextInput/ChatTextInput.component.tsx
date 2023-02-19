@@ -29,13 +29,13 @@ const ChatTextInput = (props: ChatTextInputProps) => {
   );
 
   // onSendClick Function
-  async function onSendClick(msgData: any) {
+  function onSendClick(msgData: any) {
     // Create a message
     api.createDocument(COLLECTION_ID_MESSAGES, msgData);
     // Update the last message for chat docs
     chatData?.documents.map((doc: any) => {
       api.updateDocument(COLLECTION_ID_DIRECT_CHATS, doc.$id, {
-        userID: usrID,
+        userID: doc.userID,
         contactID: doc.contactID,
         chatID: props.chatID,
         lastMessage: msgData.message,
