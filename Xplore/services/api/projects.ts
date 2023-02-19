@@ -1,5 +1,5 @@
 //removed useQuery import for the time being
-import { useInfiniteQuery, useMutation } from "react-query";
+import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
 import { PROJECT_COLLECTION_ID } from "@env";
 import api from "../appwrite/api";
 
@@ -30,9 +30,13 @@ const useCreateProject = (data: Project) => {
 };
 
 const useDeleteProject = (documentId: string) => {
-  return useMutation(() =>
-    api.deleteDocument(PROJECT_COLLECTION_ID, documentId)
-  );
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => api.deleteDocument(PROJECT_COLLECTION_ID, documentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+    },
+  });
 };
 
 export { useCreateProject, useDeleteProject, useListProjectsPaginated };
