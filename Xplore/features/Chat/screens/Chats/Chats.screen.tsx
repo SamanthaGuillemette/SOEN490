@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, SafeAreaView } from "react-native";
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
@@ -19,6 +19,7 @@ const Chats = (props: ChatsProps) => {
   const { navigation } = props;
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const [chats, setChats] = useState<any | null>(null);
 
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
@@ -30,6 +31,20 @@ const Chats = (props: ChatsProps) => {
       Query.equal("userID", userId),
     ])
   );
+
+  useEffect(() => {
+    setChats(
+      chatData?.documents?.map((doc: any) => ({
+        chatIndex: doc.$id,
+        chatID: doc.chatID,
+        userID: doc.userID,
+        contactID: doc.contactID,
+        lastMessage: doc.lastMessage,
+        updatedAt: doc.$updatedAt.slice(0, 10),
+      }))
+    );
+  }, [chatData?.documents]);
+
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
@@ -39,22 +54,21 @@ const Chats = (props: ChatsProps) => {
         style={[styles.chat_scrollView, { backgroundColor: background }]}
       >
         <View backgroundColor="background" style={styles.chat_container}>
-          {chatData?.documents?.map((doc: any, index: number) => (
-            <Fragment key={index}>
+          {chats &&
+            chats?.map((chat: any) => (
               <ChatBox
-                key={doc.chatID}
+                key={chat.chatIndex}
                 image="https://picsum.photos/200"
-                username={doc.userID}
-                lastText={doc.lastMessage}
-                time={doc.$createdAt.slice(0, 10)}
+                username={chat.userID}
+                lastText={chat.lastMessage}
+                time={chat.updatedAt}
                 onPress={() =>
                   props.navigation.navigate("ChatDetails", {
-                    chatID: doc.chatID,
+                    chatID: chat.chatID,
                   })
                 }
               />
-            </Fragment>
-          ))}
+            ))}
         </View>
       </ScrollView>
     </SafeAreaView>

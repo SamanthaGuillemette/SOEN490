@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { FlatList, View } from "react-native";
 import api from "../../../../../../services/appwrite/api";
@@ -19,55 +19,10 @@ interface ConversationProps {
 const Conversation = (props: ConversationProps) => {
   const background = useThemeColor("background");
   const ref = React.useRef<FlatList>(null);
-
+  const [messages, setMessages] = useState<any | null>(null);
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let currUserID: string = userdata?.$id as string;
-
-  const messages = [
-    {
-      id: "1",
-      user: "left",
-      text: "hello",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "2",
-      user: "left",
-      text: "It's Meeee",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "3",
-      user: "left",
-      text: "Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur...",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "4",
-      user: "right",
-      text: "Alright",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "5",
-      user: "right",
-      text: "OKAYYYYYYYYY",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "6",
-      user: "right",
-      text: "Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur...",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "7",
-      user: "left",
-      text: "OHH",
-      image: "https://picsum.photos/200",
-    },
-  ];
 
   // Quering chat details
   const { data } = useQuery("chat data", () =>
@@ -76,28 +31,39 @@ const Conversation = (props: ConversationProps) => {
     ])
   );
 
+  useEffect(() => {
+    setMessages(
+      data?.documents?.map((doc: any) => ({
+        id: doc.$id,
+        chatID: doc.chatID,
+        userID: doc.userID,
+        message: doc.message,
+        createdAt: doc.$createdAt.slice(11, 16),
+      }))
+    );
+  }, [data?.documents]);
+
   const rendeMessages = ({ item }) => (
-    <Fragment key={item.index}>
-      {data?.documents?.map((doc: any, index: number) => (
-        <View key={index} style={{ backgroundColor: background }}>
-          {doc.userID === currUserID ? (
+    <View key={item.id} style={{ backgroundColor: background }}>
+      {messages &&
+        messages.map((message: any) =>
+          message.userID === currUserID ? (
             <RightBubble
-              key={doc.$id}
-              text={doc.message}
-              msgTime={doc.$createdAt.slice(11, 16)}
+              key={message.id}
+              text={message.message}
+              msgTime={message.createdAt}
               image={"https://picsum.photos/200"}
             />
           ) : (
             <LeftBubble
-              key={doc.$id}
-              text={doc.message}
-              msgTime={doc.$createdAt.slice(11, 16)}
+              key={message.id}
+              text={message.message}
+              msgTime={message.createdAt}
               image={"https://picsum.photos/200"}
             />
-          )}
-        </View>
-      ))}
-    </Fragment>
+          )
+        )}
+    </View>
   );
 
   const getChatDate = () => {
@@ -115,7 +81,7 @@ const Conversation = (props: ConversationProps) => {
       <FlatList
         data={messages}
         renderItem={rendeMessages}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={getChatDate}
         ref={ref}
         onContentSizeChange={handleScrollToEnd}
