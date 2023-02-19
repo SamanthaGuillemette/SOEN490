@@ -7,4 +7,5 @@ declare module "@env" {
   export const PROJECT_ID: string;
   export const DATABASE_ID: string;
   export const COLLECTION_ID_TEST: string;
+  export const PROJECT_COLLECTION_ID: string;
 }

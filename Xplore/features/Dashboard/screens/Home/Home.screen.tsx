@@ -42,13 +42,13 @@ const Home = (props: HomeProps) => {
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
       <ScrollView
+        bounces={false}
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: scrollViewBackground }}
         onScroll={onScroll}
         scrollEventThrottle={32}
       >
         <HomeHeader />
-
         <View style={styles.mainScreen}>
           <TodayStats />
           <ExploreProjects navigation={navigation} />
