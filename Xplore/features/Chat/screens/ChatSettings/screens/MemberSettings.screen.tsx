@@ -4,7 +4,9 @@ import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
 import styles from "./SettingsOptions.styles";
 
-interface ChatSettingsProps {}
+interface ChatSettingsProps {
+  chatID: string;
+}
 
 const MemberSettings = (props: ChatSettingsProps) => {
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);

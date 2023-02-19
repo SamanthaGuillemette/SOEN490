@@ -24,7 +24,7 @@ const ChatDetailsHeader = (props: ChatDetailsHeader) => {
       <View style={styles.navRightItems}>
         <TouchableOpacity
           onPress={() =>
-            props.navigation.navigate("ChatSettings", { name: props.chatID })
+            props.navigation.navigate("ChatSettings", { chatID: props.chatID })
           }
         >
           <Icon name="more-vertical" />

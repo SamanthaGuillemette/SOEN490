@@ -7,7 +7,9 @@ import { AddAdminModal } from "../components/AddAdminModal/AddAdminModal.compone
 import { RemoveMemberModal } from "../components/RemoveMemberModal/RemoveMemberModal.component";
 import styles from "./SettingsOptions.styles";
 
-interface AdminSettingsProps {}
+interface AdminSettingsProps {
+  chatID: string;
+}
 
 const AdminSettings = (props: AdminSettingsProps) => {
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
