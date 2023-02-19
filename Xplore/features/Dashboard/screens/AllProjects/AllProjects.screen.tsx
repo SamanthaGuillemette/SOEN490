@@ -9,8 +9,68 @@ import {
 } from "../../../../components";
 import { AllProjectsCard } from "../../components";
 import styles from "./AllProjects.styles";
+import { useListProjectsPaginated } from "../../../../services/api/projects";
+import { Models } from "appwrite";
 
-// These fake data will be replaced by data pulled from the backend later.
+interface ProjectData extends Models.Document {
+  name: string;
+  description: string;
+  projectImage?: string;
+  tasks?: number;
+  conversations?: number;
+  members?: number;
+  percentComplete: number;
+}
+
+const formatProjectData = (data: ProjectData | undefined) => {
+  const formattedData: ProjectData[] = [];
+  data?.pages.forEach((page: { projects: ProjectData[] }) =>
+    page.projects.forEach((project: ProjectData) =>
+      formattedData.push(project as ProjectData)
+    )
+  );
+  return formattedData;
+};
+
+const ExploreProjects = () => {
+  const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
+  const { data, fetchNextPage } = useListProjectsPaginated();
+
+  return (
+    <SafeAreaView edges={["top"]} style={styles.mainContainer}>
+      <View style={styles.header}>
+        <Text style={styles.mainTitleText} variant="h2" color="titleText">
+          Explore Projects
+        </Text>
+
+        <SearchBar
+          searchPlaceHolder="Search for a project..."
+          showFilterButton={true}
+          onFilterButtonPress={setIsCategoryListVisible}
+          style={styles.searchBar}
+        />
+      </View>
+
+      {/* This horizontal scrollbar is hidden by default.
+      When the user clicks on the filter button, "isCategoryListVisible" === true */}
+      {isCategoryListVisible && (
+        <CategoryScrollBar style={styles.categoryBar} categories={categories} />
+      )}
+
+      <FlashList
+        data={formatProjectData(data as any)}
+        renderItem={({ item }) => <AllProjectsCard item={item} />}
+        estimatedItemSize={350}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.flashListContainer}
+        onEndReached={fetchNextPage}
+      />
+    </SafeAreaView>
+  );
+};
+
+export default ExploreProjects;
+
 export const fakeProjectData = [
   {
     title: "Snake Robot",
@@ -59,6 +119,8 @@ export const fakeProjectData = [
   },
 ];
 
+// These fake data will be replaced by data pulled from the backend later.
+
 const categories = [
   // TODO: we may not need the "isActive" property
   { name: "All", isActive: true },
@@ -68,40 +130,3 @@ const categories = [
   { name: "Backend", isActive: false },
   { name: "DSA", isActive: false },
 ];
-
-const ExploreProjects = () => {
-  const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
-
-  return (
-    <SafeAreaView edges={["top"]} style={styles.mainContainer}>
-      <View style={styles.header}>
-        <Text style={styles.mainTitleText} variant="h2" color="titleText">
-          Explore Projects
-        </Text>
-
-        <SearchBar
-          searchPlaceHolder="Search for a project..."
-          showFilterButton={true}
-          onFilterButtonPress={setIsCategoryListVisible}
-          style={styles.searchBar}
-        />
-      </View>
-
-      {/* This horizontal scrollbar is hidden by default.
-      When the user clicks on the filter button, "isCategoryListVisible" === true */}
-      {isCategoryListVisible && (
-        <CategoryScrollBar style={styles.categoryBar} categories={categories} />
-      )}
-
-      <FlashList
-        data={fakeProjectData}
-        renderItem={({ item }) => <AllProjectsCard item={item} />}
-        estimatedItemSize={350}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.flashListContainer}
-      />
-    </SafeAreaView>
-  );
-};
-
-export default ExploreProjects;
