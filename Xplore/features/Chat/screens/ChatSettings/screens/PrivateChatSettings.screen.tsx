@@ -14,7 +14,6 @@ interface PrivateChatSettingsProps {
 
 const PrivateChatSettings = (props: PrivateChatSettingsProps) => {
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState<any>(false);
-  const [confirmBlockVisible, setConfirmBlockVisible] = useState<any>(false);
 
   // Quering msg details
   const { data: msgData } = useQuery("msg data", () =>
@@ -63,21 +62,6 @@ const PrivateChatSettings = (props: PrivateChatSettingsProps) => {
           primaryText="Delete chat"
           secondaryText="Cancel"
           primaryAction={deleteChat}
-        />
-      )}
-      <SettingBox
-        settingName="Block user"
-        iconName="user-x"
-        onPress={() => setConfirmBlockVisible(true)}
-      />
-      {confirmBlockVisible === true && (
-        <ConfirmationModal
-          setConfirmModalVisible={setConfirmBlockVisible}
-          confirmMsg={
-            "Are you sure you want to block " + props.contactName + "?"
-          }
-          primaryText={"Block " + props.contactName}
-          secondaryText="Cancel"
         />
       )}
     </View>

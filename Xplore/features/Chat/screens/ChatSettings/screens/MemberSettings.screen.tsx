@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, ConfirmationModal, AlertModal } from "../../../../../components";
+import { View, ConfirmationModal } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
 import styles from "./SettingsOptions.styles";
@@ -10,7 +10,6 @@ interface ChatSettingsProps {
 
 const MemberSettings = (props: ChatSettingsProps) => {
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
-  const [inviteModalVisible, setInviteModalVisible] = useState<any>(false);
   const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
   return (
     <View style={styles.settingsContainer}>
@@ -21,17 +20,6 @@ const MemberSettings = (props: ChatSettingsProps) => {
       />
       {chatNameModalVisible === true && (
         <ChatNameModal setChatNameModalVisible={setChatNameModalVisible} />
-      )}
-      <SettingBox
-        settingName="Copy invite link"
-        iconName="share-2"
-        onPress={() => setInviteModalVisible(true)}
-      />
-      {inviteModalVisible === true && (
-        <AlertModal
-          setAlertModalVisible={setInviteModalVisible}
-          alertMsg="Invite link copied to clipboard"
-        />
       )}
       <SettingBox
         settingName="Leave group"

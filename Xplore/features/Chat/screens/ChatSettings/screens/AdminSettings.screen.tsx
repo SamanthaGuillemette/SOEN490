@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, ConfirmationModal, AlertModal } from "../../../../../components";
+import { View, ConfirmationModal } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
 import { AddMemberModal } from "../components/AddMemberModal/AddMemberModal.component";
@@ -13,7 +13,6 @@ interface AdminSettingsProps {
 
 const AdminSettings = (props: AdminSettingsProps) => {
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
-  const [inviteModalVisible, setInviteModalVisible] = useState<any>(false);
   const [addMemberModalVisible, setAddMemberModalVisible] =
     useState<any>(false);
   const [addAdminModalVisible, setAddAdminModalVisible] = useState<any>(false);
@@ -29,17 +28,6 @@ const AdminSettings = (props: AdminSettingsProps) => {
       />
       {chatNameModalVisible === true && (
         <ChatNameModal setChatNameModalVisible={setChatNameModalVisible} />
-      )}
-      <SettingBox
-        settingName="Copy invite link"
-        iconName="share-2"
-        onPress={() => setInviteModalVisible(true)}
-      />
-      {inviteModalVisible === true && (
-        <AlertModal
-          setAlertModalVisible={setInviteModalVisible}
-          alertMsg="Invite link copied to clipboard"
-        />
       )}
       <SettingBox
         settingName="Add a member"
