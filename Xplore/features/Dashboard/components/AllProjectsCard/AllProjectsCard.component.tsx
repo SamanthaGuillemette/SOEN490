@@ -10,13 +10,13 @@ import styles from "./AllProjectsCard.styles";
 
 interface AllProjectsCardProps {
   item: {
-    title: string;
+    name: string;
     description: string;
-    projectImage: string;
-    tasks: number;
-    conversation: number;
-    members: number;
-    progress: number;
+    projectImage?: string;
+    tasks?: number;
+    conversations?: number;
+    members?: number;
+    percentComplete: number;
   };
 }
 
@@ -27,7 +27,7 @@ export const AllProjectsCard = (props: AllProjectsCardProps) => {
     <ShadowView
       backgroundColor="backgroundSecondary"
       style={styles.cardContainer}
-      key={item.title}
+      key={item.name}
     >
       <Image
         source={{ uri: "https://picsum.photos/200" }}
@@ -41,7 +41,7 @@ export const AllProjectsCard = (props: AllProjectsCardProps) => {
           lineBreakMode="tail"
           numberOfLines={1}
         >
-          {item.title}
+          {item.name}
         </Text>
         <Text
           variant="body"
@@ -64,7 +64,7 @@ export const AllProjectsCard = (props: AllProjectsCardProps) => {
           <View style={styles.statIcon}>
             <Icon name="message-circle" size="medium" style={styles.icon} />
             <Text variant="smBody" color="bodyText">
-              {item.conversation}
+              {item.conversations}
             </Text>
           </View>
 
@@ -76,7 +76,7 @@ export const AllProjectsCard = (props: AllProjectsCardProps) => {
           </View>
         </View>
 
-        <LinearProgressBar progress={item.progress} color="success" />
+        <LinearProgressBar progress={item.percentComplete} color="success" />
       </View>
     </ShadowView>
   );
