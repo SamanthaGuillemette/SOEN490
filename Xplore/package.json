@@ -19,9 +19,11 @@
     "@react-navigation/native-stack": "^6.8.0",
     "@rneui/base": "^4.0.0-rc.7",
     "@rneui/themed": "^4.0.0-rc.7",
+    "@shopify/flash-list": "1.1.0",
     "@types/react-native-dotenv": "^0.2.0",
     "appwrite": "^10.1.0",
     "expo": "~46.0.9",
+    "expo-linking": "~3.2.4",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
     "jest": "^26.6.3",
@@ -64,7 +66,7 @@
     "testEnvironment": "jsdom",
     "preset": "jest-expo",
     "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|@rneui/.*)"
     ],
     "moduleFileExtensions": [
       "ts",

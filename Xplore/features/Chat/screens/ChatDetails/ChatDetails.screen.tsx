@@ -1,10 +1,10 @@
 import { NavigationProp } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
-import { SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
 import ChatDetailsHeader from "./components/ChatDetailsHeader/ChatDetailsHeader.component";
 import { ChatTextInput, Conversation } from "../../../../components";
 import styles from "./ChatDetails.styles";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface ChatDetailsProps {
   navigation: NavigationProp<any>;
@@ -16,6 +16,7 @@ const ChatDetails = (props: ChatDetailsProps) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
     <SafeAreaView
+      edges={["top", "left", "right"]}
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <ChatDetailsHeader username={name} navigation={props.navigation} />

@@ -1,12 +1,13 @@
-import { APP_URL, DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
-import { Client, Databases, Account, ID, Models } from "appwrite";
+import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
+import { Client, Databases, Account, ID, Models, Query } from "appwrite";
 
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
 export const account = new Account(client);
-const database = new Databases(client);
+export const database = new Databases(client);
 
 const api = {
+  query: Query,
   createAccount: (email: string, password: string, name: string) => {
     return account.create(ID.unique(), email, password, name);
   },
@@ -15,12 +16,20 @@ const api = {
     return account.get();
   },
 
-  getUserPreferences: () => {
-    return account.getPrefs();
+  getSession: (sessionId: string) => {
+    return account.getSession(sessionId);
   },
 
-  createEmailVerification: () => {
-    return account.createVerification(APP_URL);
+  createEmailVerification: (app_url: string) => {
+    return account.createVerification(app_url);
+  },
+
+  updateEmailVerification: (userID: string, secret: string) => {
+    return account.updateVerification(userID, secret);
+  },
+
+  getUserPreferences: () => {
+    return account.getPrefs();
   },
 
   createSession: (email: string, password: string) => {
@@ -43,8 +52,14 @@ const api = {
     );
   },
 
-  listDocuments: (collectionId: string) => {
-    return database.listDocuments(DATABASE_ID, collectionId);
+  listDocuments: (collectionId: string, queries: string[] | null = null) => {
+    return queries
+      ? database.listDocuments(DATABASE_ID, collectionId, queries)
+      : database.listDocuments(DATABASE_ID, collectionId);
+  },
+
+  getDocument: (collectionId: string, documentId: string) => {
+    return database.getDocument(DATABASE_ID, collectionId, documentId);
   },
 
   updateDocument: (

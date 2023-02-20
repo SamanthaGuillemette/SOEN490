@@ -7,7 +7,7 @@ import styles from "./SquaredButton.styles";
 
 interface SquaredButtonProps {
   iconName: keyof typeof Feather.glyphMap;
-  onPress: any;
+  onPress?: any;
 }
 
 export const SquaredButton = (props: SquaredButtonProps) => {
@@ -24,6 +24,7 @@ export const SquaredButton = (props: SquaredButtonProps) => {
           size="large"
           color="primary"
           style={styles.icon}
+          testId={props.iconName}
         />
       </TouchableOpacity>
     </ShadowView>
