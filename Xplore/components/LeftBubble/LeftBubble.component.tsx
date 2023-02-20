@@ -1,10 +1,8 @@
-import {
-  View,
-  ShadowView,
-  Text,
-  Avatar,
-} from "../../../../../../../../components";
-import MessageTime from "../MessageTime/MessageTime.component";
+import { View } from "../View";
+import { ShadowView } from "../ShadowView";
+import { Avatar } from "../Avatar";
+import { Text } from "../Text";
+import { MessageTime } from "../MessageTime";
 import styles from "./LeftBubble.styles";
 
 interface LeftBubbleProps {
@@ -12,7 +10,7 @@ interface LeftBubbleProps {
   image: any;
 }
 
-const LeftBubble = ({ text, image }: LeftBubbleProps) => {
+export const LeftBubble = ({ text, image }: LeftBubbleProps) => {
   return (
     <View backgroundColor="background" style={styles.bubbleContainer}>
       <View backgroundColor="background">
@@ -30,5 +28,3 @@ const LeftBubble = ({ text, image }: LeftBubbleProps) => {
     </View>
   );
 };
-
-export default LeftBubble;
