@@ -2,20 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { FlatList, View } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
-import api from "../../../../../../services/appwrite/api";
+import api from "../../services/appwrite/api";
 import { COLLECTION_ID_MESSAGES } from "@env";
 import { Query } from "appwrite";
-import { useThemeColor } from "../../../../../../hooks/useThemeColor";
-import ChatDate from "./components/ChatDate/ChatDate.component";
-import LeftBubble from "./components/LeftBubble/LeftBubble.component";
-import RightBubble from "./components/RightBubble/RightBubble.component";
+import { NavigationProp } from "@react-navigation/native";
+import { useThemeColor } from "../../hooks/useThemeColor";
+import { ChatDate } from "../ChatDate";
+import { RightBubble } from "../RightBubble";
+import { LeftBubble } from "../LeftBubble";
 import styles from "./Conversation.styles";
 
 interface ConversationProps {
+  navigation?: NavigationProp<any>;
   chatID: string;
 }
 
-const Conversation = (props: ConversationProps) => {
+export const Conversation = (props: ConversationProps) => {
   const background = useThemeColor("background");
   const ref = React.useRef<FlatList>(null);
   const [messages, setMessages] = useState<any | null>(null);
@@ -89,5 +91,3 @@ const Conversation = (props: ConversationProps) => {
     </View>
   );
 };
-
-export default Conversation;

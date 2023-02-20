@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { TextInput as RNTextInput, TouchableOpacity } from "react-native";
-import { View, ShadowView, Icon } from "../../../../../../components";
-import { useThemeColor } from "../../../../../../hooks";
+import { useThemeColor } from "../../hooks";
 import { useQuery } from "react-query";
 import { Query } from "appwrite";
-import api from "../../../../../../services/appwrite/api";
+import api from "../../services/appwrite/api";
 import { COLLECTION_ID_DIRECT_CHATS, COLLECTION_ID_MESSAGES } from "@env";
+import { Icon } from "../Icon";
+import { ShadowView } from "../ShadowView";
+import { View } from "../View";
 import styles from "./ChatTextInput.styles";
 
 interface ChatTextInputProps {
   chatID: string;
 }
 
-const ChatTextInput = (props: ChatTextInputProps) => {
+export const ChatTextInput = (props: ChatTextInputProps) => {
   const bodyText = useThemeColor("bodyText");
   const smallText = useThemeColor("smallText");
   const [message, setMessage] = useState("");
@@ -78,5 +80,3 @@ const ChatTextInput = (props: ChatTextInputProps) => {
     </View>
   );
 };
-
-export default ChatTextInput;

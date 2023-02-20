@@ -2,33 +2,37 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
+  KeyboardAvoidingView,
   Text,
   TouchableHighlight,
   View,
 } from "react-native";
-import ProjectDescription from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
-import ProjectMembers from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
-import Links from "../../../../components/LinksScreen/Links.component";
-import Tasks from "../../../../components/ProjectTasksScreen/Tasks.component";
+import DescriptionScreen from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
+import TasksScreen from "../../../../components/ProjectTasksScreen/Tasks.component";
+import DiscussionScreen from "../../../../components/ProjectDiscussionScreen/Discussion.component";
+import ProjectMembersScreen from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
+import LinksScreen from "../../../../components/LinksScreen/Links.component";
 import { useThemeColor } from "../../../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectNavBar.styles";
 
-interface ProjectNavBar {
+interface ProjectNavBarProps {
   navigation: NavigationProp<any>;
 }
 
-function ProjectNavBar(props: ProjectNavBar) {
+function ProjectNavBar(props: ProjectNavBarProps) {
   const { navigation } = props;
   const { width } = Dimensions.get("window");
   const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
+
   const projectScreenPages = [
-    <ProjectDescription />,
-    <Tasks />,
-    <ProjectDescription />,
-    <ProjectMembers navigation={navigation} />,
-    <Links />,
+    <DescriptionScreen />,
+    <TasksScreen />,
+    <DiscussionScreen />,
+    <ProjectMembersScreen navigation={navigation} />,
+    <LinksScreen />,
   ];
+
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
@@ -112,12 +116,16 @@ function ProjectNavBar(props: ProjectNavBar) {
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={onMomentumScrollEnd}
         renderItem={({ item, index }) => (
-          <View
+          <KeyboardAvoidingView
             key={item}
-            style={[styles.mainItem, { borderTopColor: background }]}
+            behavior="height"
+            style={[
+              index === 2 ? styles.discussion : styles.mainItem,
+              { borderTopColor: background },
+            ]}
           >
             {projectScreenPages[index]}
-          </View>
+          </KeyboardAvoidingView>
         )}
       />
     </View>

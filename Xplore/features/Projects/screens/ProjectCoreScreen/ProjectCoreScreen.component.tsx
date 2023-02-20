@@ -11,7 +11,7 @@ const ProjectCore = (props: ProjectCoreProps) => {
   const { navigation } = props;
   return (
     <View backgroundColor="background">
-      <FeaturedImage projectName="Snake Robot" source="" />
+      <FeaturedImage projectName="Snake Robot" />
       <ProjectNavBar navigation={navigation} />
     </View>
   );

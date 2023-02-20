@@ -1,11 +1,9 @@
 import React from "react";
-import {
-  View,
-  ShadowView,
-  Text,
-  Avatar,
-} from "../../../../../../../../components";
-import MessageTime from "../MessageTime/MessageTime.component";
+import { ShadowView } from "../ShadowView";
+import { View } from "../View";
+import { Text } from "../Text";
+import { Avatar } from "../Avatar";
+import { MessageTime } from "../MessageTime";
 import styles from "./RightBubble.styles";
 
 interface RightBubbleProps {
@@ -14,7 +12,7 @@ interface RightBubbleProps {
   image: any;
 }
 
-const LeftBubble = ({ text, msgTime, image }: RightBubbleProps) => {
+export const RightBubble = ({ text, msgTime, image }: RightBubbleProps) => {
   return (
     <View backgroundColor="background" style={styles.bubbleContainer}>
       <ShadowView style={styles.rightBubble}>
@@ -32,5 +30,3 @@ const LeftBubble = ({ text, msgTime, image }: RightBubbleProps) => {
     </View>
   );
 };
-
-export default LeftBubble;

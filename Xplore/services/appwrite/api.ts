@@ -1,12 +1,13 @@
 import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
-import { Client, Databases, Account, ID, Models } from "appwrite";
+import { Client, Databases, Account, ID, Models, Query } from "appwrite";
 
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
 export const account = new Account(client);
-const database = new Databases(client);
+export const database = new Databases(client);
 
 const api = {
+  query: Query,
   createAccount: (email: string, password: string, name: string) => {
     return account.create(ID.unique(), email, password, name);
   },
@@ -21,6 +22,18 @@ const api = {
 
   createEmailVerification: (app_url: string) => {
     return account.createVerification(app_url);
+  },
+
+  createPasswordRecovery: (email: string, app_url: string) => {
+    return account.createRecovery(email, app_url);
+  },
+
+  createPasswordRecoveryConfirm: (
+    userid: string,
+    secret: string,
+    password: string
+  ) => {
+    return account.updateRecovery(userid, secret, password, password);
   },
 
   updateEmailVerification: (userID: string, secret: string) => {
@@ -51,13 +64,14 @@ const api = {
     );
   },
 
-  listDocuments: async (
-    collectionId: string,
-    queries: string[] | null = null
-  ) => {
-    return await (queries
+  listDocuments: (collectionId: string, queries: string[] | null = null) => {
+    return queries
       ? database.listDocuments(DATABASE_ID, collectionId, queries)
-      : database.listDocuments(DATABASE_ID, collectionId));
+      : database.listDocuments(DATABASE_ID, collectionId);
+  },
+
+  getDocument: (collectionId: string, documentId: string) => {
+    return database.getDocument(DATABASE_ID, collectionId, documentId);
   },
 
   updateDocument: (

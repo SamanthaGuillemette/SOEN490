@@ -16,7 +16,7 @@ const SignUp = (props: SignUpProps) => {
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
-  const prefix = Linking.createURL("");
+  const prefix = Linking.createURL("signup");
 
   const { signUp, loading } = useAuth();
 
@@ -59,7 +59,6 @@ const SignUp = (props: SignUpProps) => {
           setPassword("");
           props.setScreen(0);
         }}
-        // onPress={() => navigation.navigate("TopicSelection")}
       />
     </View>
   );

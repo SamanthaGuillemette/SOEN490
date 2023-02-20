@@ -26,4 +26,8 @@ export default StyleSheet.create({
     width: PixelRatio.getPixelSizeForLayoutSize(60),
     height: PixelRatio.getPixelSizeForLayoutSize(60),
   },
+  loadingScreen: {
+    color: "#FFF",
+    textAlign: "center",
+  },
 });
