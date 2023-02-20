@@ -24,6 +24,18 @@ const api = {
     return account.createVerification(app_url);
   },
 
+  createPasswordRecovery: (email: string, app_url: string) => {
+    return account.createRecovery(email, app_url);
+  },
+
+  createPasswordRecoveryConfirm: (
+    userid: string,
+    secret: string,
+    password: string
+  ) => {
+    return account.updateRecovery(userid, secret, password, password);
+  },
+
   updateEmailVerification: (userID: string, secret: string) => {
     return account.updateVerification(userID, secret);
   },

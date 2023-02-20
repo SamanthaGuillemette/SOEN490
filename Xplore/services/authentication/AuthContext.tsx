@@ -15,6 +15,8 @@ export type AuthContextData = {
   ) => void;
   signIn: (email: string, password: string) => void;
   verifyEmail: (userid: string, secret: string) => void;
+  passwordRecovery: (userid: string, appURL: string) => void;
+  confirmRecovery: (userid: string, secret: string, password: string) => void;
   signOut: () => void;
   getSessionStatus: (sessionId: string) => void;
   getAccountStatus: () => void;
@@ -143,6 +145,49 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const passwordRecovery = async (userid: string, appURL: string) => {
+    try {
+      const passwordVerificationObj = await api.createPasswordRecovery(
+        userid,
+        appURL
+      );
+
+      Promise.all([passwordVerificationObj]);
+      console.log(
+        passwordVerificationObj ??
+          `===> Password recovery email sent: ${JSON.stringify(
+            passwordVerificationObj
+          )}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const confirmRecovery = async (
+    userid: string,
+    secret: string,
+    password: string
+  ) => {
+    try {
+      const passwordVerificationObj = await api.createPasswordRecoveryConfirm(
+        userid,
+        secret,
+        password
+      );
+
+      Promise.all([passwordVerificationObj]);
+      console.log(
+        passwordVerificationObj ??
+          `===> Password recovery email sent: ${JSON.stringify(
+            passwordVerificationObj
+          )}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -155,6 +200,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         getSessionStatus,
         getAccountStatus,
         verifyEmail,
+        passwordRecovery,
+        confirmRecovery,
       }}
     >
       {children}
