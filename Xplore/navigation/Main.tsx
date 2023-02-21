@@ -69,11 +69,12 @@ const Main = ({ colorScheme }: MainProps) => {
         theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         linking={linking}
       >
-        {sessionToken && accountToken?.emailVerification ? (
+        {/* {sessionToken && accountToken?.emailVerification ? (
           <AppStack />
         ) : (
           <AuthStack />
-        )}
+        )} */}
+        <AppStack />
       </NavigationContainer>
     </>
   );
