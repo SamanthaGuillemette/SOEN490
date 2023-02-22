@@ -53,5 +53,4 @@ There are similarities between DevProjects and Xplorify, however Xplorify has mo
 | Tushar Raval         | 40124664   | [Tushar Raval](https://github.com/tusharraval102)             |
 | Quang Tran           | 27740654   | [QuangTran304](https://github.com/QuangTran304)               |
 | Marwa Khalid         | 40155098   | [MarwaKhalid](https://github.com/MarwaKhalid)                 |
-| Faizan Ahmad         | 40100581   | [AndroidBiscuit](https://github.com/AndroidBiscuit)           |
 | Lucas Catchlove      | 27145640   | [LucasCatchlove](https://github.com/LucasCatchlove)           |
