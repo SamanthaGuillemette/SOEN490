@@ -2,7 +2,12 @@ import { FlatList } from "react-native";
 import { View, SearchBar, NextButton } from "../../../../components";
 import { TopicCard } from "../TopicCard";
 import { TopicSelectionHeader } from "../TopicSelectionHeader";
+import { NavigationProp } from "@react-navigation/native";
 import styles from "./SelectTopics.styles";
+
+interface SelectTopicsProps {
+  navigation: NavigationProp<any>;
+}
 
 interface TopicCardType {
   id: string;
@@ -48,7 +53,8 @@ interface TopicCardTypeItem {
   index: number;
 }
 
-export const SelectTopics = () => {
+export const SelectTopics = (props: SelectTopicsProps) => {
+  const { navigation } = props;
   const renderTopicCards = ({ item, index }: TopicCardTypeItem) => {
     return (
       <TopicCard topicName={item.name} imageURL={item.image} index={index} />
@@ -66,7 +72,13 @@ export const SelectTopics = () => {
           </>
         }
         ListHeaderComponentStyle={styles.headerComponentStyle}
-        ListFooterComponent={<NextButton />}
+        ListFooterComponent={
+          <NextButton 
+            onPress={() => {
+              navigation.navigate("BottomTabNavigator")
+            }}
+          />
+        }
         ListFooterComponentStyle={styles.footerComponentStyle}
         renderItem={renderTopicCards}
         keyExtractor={({ id }) => id}

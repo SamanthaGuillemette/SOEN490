@@ -25,31 +25,33 @@ export const ChatNameModal = ({
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={modalVisible}
       onRequestClose={handleIndexSelect}
     >
-      <View style={styles.centeredView}>
-        <ShadowView
-          style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
-        >
-          <TextInput
-            placeHolder="Group Name"
-            iconName="user"
-            style={styles.textInput}
-          />
-          <PrimaryButton
-            label="Change Name"
-            onPress={handleIndexSelect}
-            style={styles.primaryButton}
-          />
-          <SecondaryButton
-            label="Cancel"
-            onPress={handleIndexSelect}
-            style={styles.secondaryButton}
-          />
-        </ShadowView>
+      <View style={styles.fullView}>
+        <View style={styles.centeredView}>
+          <ShadowView
+            style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
+          >
+            <TextInput
+              placeHolder="Group Name"
+              iconName="user"
+              style={styles.textInput}
+            />
+            <PrimaryButton
+              label="Change Name"
+              onPress={handleIndexSelect}
+              style={styles.primaryButton}
+            />
+            <SecondaryButton
+              label="Cancel"
+              onPress={handleIndexSelect}
+              style={styles.secondaryButton}
+            />
+          </ShadowView>
+        </View>
       </View>
     </Modal>
   );

@@ -19,7 +19,7 @@ export const LinearProgressBar = (props: LinearProgressBarProps) => {
   return (
     <View>
       <ProgressBar
-        progress={progress}
+        progress={progress / 100}
         color={customProgressColor}
         style={[
           style,

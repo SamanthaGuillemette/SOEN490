@@ -27,7 +27,9 @@ const Sign = (props: SignProps) => {
             setIndex={setScreen}
           />
           {screen === 0 && <SignIn navigation={navigation} />}
-          {screen === 1 && <SignUp navigation={navigation} />}
+          {screen === 1 && (
+            <SignUp navigation={navigation} setScreen={setScreen} />
+          )}
         </View>
       </ScrollView>
     </View>

@@ -1,63 +1,33 @@
-/* eslint-disable */
 import { NavigationProp } from "@react-navigation/native";
 import * as React from "react";
 import { PrimaryButton, View, TextInput } from "../../../../components";
 import styles from "./SignUp.styles";
-import api from "../../../../services/appwrite/api";
-
-// Need to implement
-//  ** error handling
-//    ** maybe a popup window or toast
-//    ** for stuff below:
-//  ** input sanitization
-//    ** Passwods are the same
-//    ** Username does not exist
-//    ** email does not exist
-//    ** email is valid (xyz@gmail.com)
-//  ** getting a name
+import { useAuth } from "../../../../hooks";
+import Spinner from "react-native-loading-spinner-overlay/lib";
+import * as Linking from "expo-linking";
 
 interface SignUpProps {
   navigation: NavigationProp<any>;
+  setScreen: (value: number) => void;
 }
-
-const handleSignUp = async (
-  username: string,
-  email: string,
-  password: string
-) => {
-  // const promise = api.createAccount(email, password, username);
-  // promise.then(
-  //   async function (accountObj) {
-  //     console.log(`===> Account created: ${JSON.stringify(accountObj)}`);
-  //     await api.createEmailVerification();
-  //     console.log("===> Verification email sent!");
-
-  //   },
-  //   function (err) {
-  //     console.log(err);
-  //   }
-  // );
-
-  try {
-    const accountObj = await api.createAccount(email, password, username);
-    console.log(
-      accountObj ?? `===> Account created: ${JSON.stringify(accountObj)}`
-    );
-
-    await api.createEmailVerification();
-    console.log("===> Verification email sent!");
-  } catch (error) {
-    console.log("Sign up error: ", error);
-  }
-};
 
 const SignUp = (props: SignUpProps) => {
   const [username, setUserName] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
+  const prefix = Linking.createURL("signup");
+
+  const { signUp, loading } = useAuth();
+
   return (
     <View style={styles.container}>
+      <Spinner
+        visible={loading}
+        textContent={"Hang tight!\n We're signing you up ⚡"}
+        textStyle={styles.loadingScreen}
+        animation={"fade"}
+      />
       <TextInput
         placeHolder={"Username"}
         iconName={"user"}
@@ -83,12 +53,12 @@ const SignUp = (props: SignUpProps) => {
         label="SIGN UP"
         style={styles.PrimaryButton}
         onPress={() => {
-          handleSignUp(username, email, password);
+          signUp(username, email, password, prefix);
           setEmail("");
           setUserName("");
           setPassword("");
+          props.setScreen(0);
         }}
-        // onPress={() => navigation.navigate("TopicSelection")}
       />
     </View>
   );
