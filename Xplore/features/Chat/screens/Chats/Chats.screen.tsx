@@ -22,6 +22,7 @@ const Chats = (props: ChatsProps) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const [directChats, setDirectChats] = useState<any | null>(null);
   const [groupChats, setGroupChats] = useState<any | null>(null);
+  var chats: any;
 
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
@@ -59,13 +60,15 @@ const Chats = (props: ChatsProps) => {
           chatID: doc.chatID,
           userID: doc.userID,
           chatName: doc.chatName,
+          chatType: "group",
           lastMessage: doc.lastMessage,
           updatedAt: doc.$updatedAt.slice(0, 10),
         }))
       );
     }
   }, [chatData?.documents, groupChatData?.documents, isFocused]);
-  const chats = directChats.concat(groupChats);
+
+  chats = directChats.concat(groupChats).filter(Boolean);
 
   return (
     <SafeAreaView
@@ -81,11 +84,17 @@ const Chats = (props: ChatsProps) => {
               key={chat.chatIndex}
               image="https://picsum.photos/200"
               username={chat.contactID || chat.chatName}
+              chatType={chat.chatType}
               lastText={chat.lastMessage}
-              time={chat.updatedAt}
+              time={new Date(chat.updatedAt).toLocaleDateString("en-us", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
               onPress={() =>
                 props.navigation.navigate("ChatDetails", {
                   chatID: chat.chatID,
+                  username: chat.contactID || chat.chatName,
                 })
               }
             />

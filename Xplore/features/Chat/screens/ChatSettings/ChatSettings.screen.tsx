@@ -12,12 +12,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 interface ChatSettingsProps {
   navigation: NavigationProp<any>;
   chatID: string;
+  username: string;
 }
 
 const ChatSettings = (props: ChatSettingsProps) => {
   const route = useRoute();
-  let { chatID }: any = route.params;
-  const userRole = "other";
+  let { chatID, username }: any = route.params;
+  const userRole = "admin";
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
@@ -29,7 +30,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
       <ScrollView style={{ backgroundColor: background }}>
         <View style={styles.settingsContainer}>
           <Text style={styles.contactName} variant="h2">
-            {chatID}
+            {username}
           </Text>
           <View style={styles.avatarGroup}>
             <AvatarGroup

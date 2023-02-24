@@ -8,12 +8,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 interface ChatDetailsProps {
   navigation: NavigationProp<any>;
+  username: string;
   chatID: string;
 }
 
 const ChatDetails = (props: ChatDetailsProps) => {
   const route = useRoute();
-  let { chatID }: any = route.params;
+  let { chatID, username }: any = route.params;
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   return (
@@ -21,7 +22,11 @@ const ChatDetails = (props: ChatDetailsProps) => {
       edges={["top", "left", "right"]}
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
-      <ChatDetailsHeader chatID={chatID} navigation={props.navigation} />
+      <ChatDetailsHeader
+        chatID={chatID}
+        username={username}
+        navigation={props.navigation}
+      />
       <Conversation chatID={chatID} />
       <ChatTextInput chatID={chatID} />
     </SafeAreaView>
