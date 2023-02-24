@@ -43,10 +43,19 @@ export const Conversation = (props: ConversationProps) => {
           userID: doc.userID,
           message: doc.message,
           createdAt: doc.$createdAt.slice(11, 16),
+          date: doc.$updatedAt.slice(0, 10),
         }))
       );
     }
   }, [msgData?.documents, isFocused]);
+
+  // const groupByDate = messages.reduce((group, message) => {
+  //   const { date } = message;
+  //   group[date] = group[date] ?? [];
+  //   group[date].push(message);
+  //   return group;
+  // }, {});
+  // console.log(groupByDate);
 
   const rendeMessages = ({ item }) => (
     <View key={item.id} style={{ backgroundColor: background }}>

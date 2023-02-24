@@ -22,7 +22,6 @@ const Chats = (props: ChatsProps) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const [directChats, setDirectChats] = useState<any | null>(null);
   const [groupChats, setGroupChats] = useState<any | null>(null);
-  var chats: any;
 
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
@@ -43,32 +42,37 @@ const Chats = (props: ChatsProps) => {
   );
 
   useEffect(() => {
-    if (isFocused) {
-      setDirectChats(
-        chatData?.documents?.map((doc: any) => ({
-          chatIndex: doc.$id,
-          chatID: doc.chatID,
-          userID: doc.userID,
-          contactID: doc.contactID,
-          lastMessage: doc.lastMessage,
-          updatedAt: doc.$updatedAt.slice(0, 10),
-        }))
-      );
-      setGroupChats(
-        groupChatData?.documents?.map((doc: any) => ({
-          chatIndex: doc.$id,
-          chatID: doc.chatID,
-          userID: doc.userID,
-          chatName: doc.chatName,
-          chatType: "group",
-          lastMessage: doc.lastMessage,
-          updatedAt: doc.$updatedAt.slice(0, 10),
-        }))
-      );
-    }
+    const getMessages = async () => {
+      try {
+        if (isFocused) {
+          setDirectChats(
+            chatData?.documents?.map((doc: any) => ({
+              chatIndex: doc.$id,
+              chatID: doc.chatID,
+              userID: doc.userID,
+              contactID: doc.contactID,
+              lastMessage: doc.lastMessage,
+              updatedAt: doc.$updatedAt.slice(0, 10),
+            }))
+          );
+          setGroupChats(
+            groupChatData?.documents?.map((doc: any) => ({
+              chatIndex: doc.$id,
+              chatID: doc.chatID,
+              userID: doc.userID,
+              chatName: doc.chatName,
+              chatType: "group",
+              lastMessage: doc.lastMessage,
+              updatedAt: doc.$updatedAt.slice(0, 10),
+            }))
+          );
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getMessages();
   }, [chatData?.documents, groupChatData?.documents, isFocused]);
-
-  chats = directChats.concat(groupChats).filter(Boolean);
 
   return (
     <SafeAreaView
@@ -79,26 +83,27 @@ const Chats = (props: ChatsProps) => {
         style={[styles.chat_scrollView, { backgroundColor: background }]}
       >
         <View backgroundColor="background" style={styles.chat_container}>
-          {chats?.map((chat: any) => (
-            <ChatBox
-              key={chat.chatIndex}
-              image="https://picsum.photos/200"
-              username={chat.contactID || chat.chatName}
-              chatType={chat.chatType}
-              lastText={chat.lastMessage}
-              time={new Date(chat.updatedAt).toLocaleDateString("en-us", {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              })}
-              onPress={() =>
-                props.navigation.navigate("ChatDetails", {
-                  chatID: chat.chatID,
-                  username: chat.contactID || chat.chatName,
-                })
-              }
-            />
-          ))}
+          {directChats &&
+            directChats?.map((chat: any) => (
+              <ChatBox
+                key={chat.chatIndex}
+                image="https://picsum.photos/200"
+                username={chat.contactID || chat.chatName}
+                chatType={chat.chatType}
+                lastText={chat.lastMessage}
+                time={new Date(chat.updatedAt).toLocaleDateString("en-us", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })}
+                onPress={() =>
+                  props.navigation.navigate("ChatDetails", {
+                    chatID: chat.chatID,
+                    username: chat.contactID || chat.chatName,
+                  })
+                }
+              />
+            ))}
         </View>
       </ScrollView>
     </SafeAreaView>
