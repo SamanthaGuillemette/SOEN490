@@ -5,9 +5,9 @@ import { useEffect, useRef } from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { PrimaryButton, Text } from "../../../../components";
-import { deviceScreenWidth } from "../../../../constants";
 import congratAnimation from "../../../../assets/lottieFiles/congratulation.json";
 import checkmarkAnimation from "../../../../assets/lottieFiles/checkmark.json";
+import styles from "./Completion.styles";
 
 interface CompletionProps {
   navigation: NavigationProp<any>;
@@ -19,15 +19,12 @@ const Completion = (props: CompletionProps) => {
   const congratRef = useRef<Lottie>(null);
 
   useEffect(() => {
-    // Set sepecific animation startFrame & endFrame
-    checkmarkRef.current?.play(0, 50);
-
-    // Play all of animation file
-    congratRef.current?.play();
+    checkmarkRef.current?.play(0, 50); // Set sepecific animation startFrame & endFrame
+    congratRef.current?.play(); // Play all of animation file
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
       <AnimatedLottieView
         ref={congratRef}
         source={congratAnimation}
@@ -35,29 +32,18 @@ const Completion = (props: CompletionProps) => {
         speed={0.7}
       />
       <AnimatedLottieView
-        style={{
-          marginTop: 30,
-          width: deviceScreenWidth,
-        }}
+        style={styles.greenCheck}
         ref={checkmarkRef}
         source={checkmarkAnimation}
         loop={false}
         speed={0.7}
       />
-      <View
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          bottom: "10%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Text variant="h2" style={{ marginBottom: 10 }}>
+
+      <View style={styles.bottomHalfContainer}>
+        <Text variant="h2" style={styles.congratTitle}>
           Congratulations!
         </Text>
-        <Text variant="body" style={{ marginBottom: "40%" }}>
+        <Text variant="body" style={styles.congratText}>
           You have just completed the project!
         </Text>
         <PrimaryButton
