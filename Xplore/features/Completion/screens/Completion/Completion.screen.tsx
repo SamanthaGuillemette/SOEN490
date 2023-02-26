@@ -40,10 +40,10 @@ const Completion = (props: CompletionProps) => {
       />
 
       <View style={styles.bottomHalfContainer}>
-        <Text variant="h2" style={styles.congratTitle}>
+        <Text variant="h2" color="titleText" style={styles.congratTitle}>
           Congratulations!
         </Text>
-        <Text variant="body" style={styles.congratText}>
+        <Text variant="body" color="bodyText" style={styles.congratText}>
           You have just completed the project!
         </Text>
         <PrimaryButton
