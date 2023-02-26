@@ -10,6 +10,7 @@ import ChatBox from "./components/ChatBox/ChatBox.component";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { View } from "../../../../components";
 import styles from "./Chats.styles";
+import NoMessages from "./components/NoMessages/NoMessages.component";
 
 interface ChatsProps {
   navigation: NavigationProp<any>;
@@ -22,57 +23,57 @@ const Chats = (props: ChatsProps) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const [directChats, setDirectChats] = useState<any | null>(null);
   const [groupChats, setGroupChats] = useState<any | null>(null);
+  const [chats, setChats] = useState([]);
 
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
-  // Quering chats
-  const { data: chatData } = useQuery("chat data", () =>
-    api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
-      Query.equal("userID", userId),
-    ])
-  );
-
-  // Quering chats
-  const { data: groupChatData } = useQuery("group chat data", () =>
-    api.listDocuments(COLLECTION_ID_GROUP_CHATS, [
-      Query.equal("userID", userId),
-    ])
-  );
-
   useEffect(() => {
     const getMessages = async () => {
       try {
-        if (isFocused) {
-          setDirectChats(
-            chatData?.documents?.map((doc: any) => ({
-              chatIndex: doc.$id,
-              chatID: doc.chatID,
-              userID: doc.userID,
-              contactID: doc.contactID,
-              lastMessage: doc.lastMessage,
-              updatedAt: doc.$updatedAt.slice(0, 10),
-            }))
-          );
-          setGroupChats(
-            groupChatData?.documents?.map((doc: any) => ({
-              chatIndex: doc.$id,
-              chatID: doc.chatID,
-              userID: doc.userID,
-              chatName: doc.chatName,
-              chatType: "group",
-              lastMessage: doc.lastMessage,
-              updatedAt: doc.$updatedAt.slice(0, 10),
-            }))
-          );
-        }
+        const direct_chats_response = await api.listDocuments(
+          COLLECTION_ID_DIRECT_CHATS,
+          [Query.equal("userID", userId)]
+        );
+        setDirectChats(
+          direct_chats_response?.documents?.map((doc: any) => ({
+            chatIndex: doc.$id,
+            chatID: doc.chatID,
+            userID: doc.userID,
+            contactID: doc.contactID,
+            chatType: "direct",
+            lastMessage: doc.lastMessage,
+            updatedAt: doc.$updatedAt.slice(0, 10),
+          }))
+        );
+        const group_chats_response = await api.listDocuments(
+          COLLECTION_ID_GROUP_CHATS,
+          [Query.equal("userID", userId)]
+        );
+        setGroupChats(
+          group_chats_response?.documents?.map((doc: any) => ({
+            chatIndex: doc.$id,
+            chatID: doc.chatID,
+            userID: doc.userID,
+            chatName: doc.chatName,
+            chatType: "group",
+            lastMessage: doc.lastMessage,
+            updatedAt: doc.$updatedAt.slice(0, 10),
+          }))
+        );
       } catch (e) {
         console.log(e);
       }
     };
     getMessages();
-  }, [chatData?.documents, groupChatData?.documents, isFocused]);
+  }, [userId, isFocused]);
+
+  useEffect(() => {
+    if (directChats && groupChats) {
+      setChats(directChats.concat(groupChats));
+    }
+  }, [directChats, groupChats]);
 
   return (
     <SafeAreaView
@@ -83,12 +84,14 @@ const Chats = (props: ChatsProps) => {
         style={[styles.chat_scrollView, { backgroundColor: background }]}
       >
         <View backgroundColor="background" style={styles.chat_container}>
-          {directChats &&
-            directChats?.map((chat: any) => (
+          {chats.length > 0 ? (
+            chats?.map((chat: any) => (
               <ChatBox
                 key={chat.chatIndex}
                 image="https://picsum.photos/200"
-                username={chat.contactID || chat.chatName}
+                username={
+                  chat.chatType === "direct" ? chat.contactID : chat.chatName
+                }
                 chatType={chat.chatType}
                 lastText={chat.lastMessage}
                 time={new Date(chat.updatedAt).toLocaleDateString("en-us", {
@@ -99,11 +102,17 @@ const Chats = (props: ChatsProps) => {
                 onPress={() =>
                   props.navigation.navigate("ChatDetails", {
                     chatID: chat.chatID,
-                    username: chat.contactID || chat.chatName,
+                    username:
+                      chat.chatType === "direct"
+                        ? chat.contactID
+                        : chat.chatName,
                   })
                 }
               />
-            ))}
+            ))
+          ) : (
+            <NoMessages />
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
