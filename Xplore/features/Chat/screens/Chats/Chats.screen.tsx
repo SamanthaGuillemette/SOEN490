@@ -29,8 +29,9 @@ const Chats = (props: ChatsProps) => {
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
+  // This useEffect renders group and direct chats then combines them
   useEffect(() => {
-    const getMessages = async () => {
+    const getChats = async () => {
       try {
         const direct_chats_response = await api.listDocuments(
           COLLECTION_ID_DIRECT_CHATS,
@@ -66,12 +67,19 @@ const Chats = (props: ChatsProps) => {
         console.log(e);
       }
     };
-    getMessages();
+    getChats();
   }, [userId, isFocused]);
 
+  // This useEffect will combine chats and sort them by date.
   useEffect(() => {
     if (directChats && groupChats) {
-      setChats(directChats.concat(groupChats));
+      const allChats = directChats.concat(groupChats);
+      allChats.sort(
+        (chat1: any, chat2: any) =>
+          new Date(chat2.updatedAt).getTime() -
+          new Date(chat1.updatedAt).getTime()
+      );
+      setChats(allChats);
     }
   }, [directChats, groupChats]);
 
@@ -85,7 +93,7 @@ const Chats = (props: ChatsProps) => {
       >
         <View backgroundColor="background" style={styles.chat_container}>
           {chats.length > 0 ? (
-            chats?.map((chat: any) => (
+            chats.map((chat: any) => (
               <ChatBox
                 key={chat.chatIndex}
                 image="https://picsum.photos/200"
