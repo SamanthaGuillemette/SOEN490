@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useQuery } from "react-query";
-import { SectionList, View } from "react-native";
+import { SectionList, View as RNView } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import api from "../../services/appwrite/api";
 import { COLLECTION_ID_MESSAGES } from "@env";
@@ -10,8 +10,10 @@ import { useThemeColor } from "../../hooks/useThemeColor";
 import { ChatDate } from "../ChatDate";
 import { RightBubble } from "../RightBubble";
 import { LeftBubble } from "../LeftBubble";
+import { View } from "../View";
+import { Text } from "../Text";
 import styles from "./Conversation.styles";
-
+// TO DO: SCROLL TO END
 interface ConversationProps {
   navigation?: NavigationProp<any>;
   chatID: string;
@@ -19,7 +21,7 @@ interface ConversationProps {
 
 export const Conversation = (props: ConversationProps) => {
   const background = useThemeColor("background");
-  const ref = React.useRef<SectionList>(null);
+  const sectionListRef = useRef(null);
   const [messages, setMessages] = useState<any | null>(null);
   const [messagesByDate, setMessagesByDate] = useState<any[]>([]);
   const isFocused = useIsFocused();
@@ -37,14 +39,20 @@ export const Conversation = (props: ConversationProps) => {
             Query.equal("chatID", props.chatID),
           ]);
           setMessages(
-            msgData?.documents?.map((doc: any) => ({
-              id: doc.$id,
-              chatID: doc.chatID,
-              userID: doc.userID,
-              message: doc.message,
-              createdAt: doc.$createdAt.slice(11, 16),
-              date: doc.$updatedAt.slice(0, 10),
-            }))
+            msgData?.documents?.map((doc: any) => {
+              const createdAt = new Date(doc.$createdAt);
+              return {
+                id: doc.$id,
+                chatID: doc.chatID,
+                userID: doc.userID,
+                message: doc.message,
+                createdAt: createdAt.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }),
+                date: doc.$updatedAt.slice(0, 10),
+              };
+            })
           );
         }
       } catch (e) {
@@ -63,11 +71,22 @@ export const Conversation = (props: ConversationProps) => {
         group[date].push(rest);
         return group;
       }, {});
-      const messagesByDate = Object.keys(groupByDate).map((date) => ({
-        title: date,
-        data: groupByDate[date],
-      }));
+
+      const messagesByDate = Object.keys(groupByDate).map((date) => {
+        return {
+          title: date,
+          data: groupByDate[date],
+        };
+      });
+
+      // Sort messages by title in ascending order
+     // messagesByDate.sort((a, b) => a.title.localeCompare(b.title));
+      
+      // Sort messages by title in descending order
+      messagesByDate.sort((a, b) => b.title.localeCompare(a.title));
+
       setMessagesByDate(messagesByDate);
+      console.log(JSON.stringify(messagesByDate, null, 2));
     }
   }, [messages]);
 
@@ -76,7 +95,7 @@ export const Conversation = (props: ConversationProps) => {
       return null; // or some other fallback behavior
     }
     return (
-      <View key={item.id} style={{ backgroundColor: background }}>
+      <RNView key={item.id} style={{ backgroundColor: background }}>
         {item.userID === currUserID ? (
           <RightBubble
             key={item.id}
@@ -92,27 +111,34 @@ export const Conversation = (props: ConversationProps) => {
             image={"https://picsum.photos/200"}
           />
         )}
-      </View>
+      </RNView>
     );
   };
-  // function handleScrollToEnd(width: number, height: number) {
-  //   if (ref.current) {
-  //     ref.current.scrollToOffset({ offset: height });
-  //   }
-  // }
 
   return (
-    <View style={[styles.messages_container, { backgroundColor: background }]}>
-      {messagesByDate && (
+    <RNView
+      style={[styles.messages_container, { backgroundColor: background }]}
+    >
+      {messagesByDate.length > 0 ? (
         <SectionList
           sections={messagesByDate}
           keyExtractor={(item, index) => item + index}
           renderItem={rendeMessages}
-          renderSectionHeader={({ section }) => (
+          renderSectionFooter={({ section }) => (
             <ChatDate date={section.title} />
           )}
+          stickySectionHeadersEnabled={false}
+          ref={sectionListRef}
+          refreshing={true}
+          inverted={true}
         />
+      ) : (
+        <View backgroundColor="background" style={styles.startChat}>
+          <Text color="primary" variant="body">
+            Start Chatting!
+          </Text>
+        </View>
       )}
-    </View>
+    </RNView>
   );
 };
