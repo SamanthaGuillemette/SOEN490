@@ -4,7 +4,11 @@ import { useThemeColor } from "../../hooks";
 import { useQuery } from "react-query";
 import { Query } from "appwrite";
 import api from "../../services/appwrite/api";
-import { COLLECTION_ID_DIRECT_CHATS, COLLECTION_ID_MESSAGES } from "@env";
+import {
+  COLLECTION_ID_DIRECT_CHATS,
+  COLLECTION_ID_GROUP_CHATS,
+  COLLECTION_ID_MESSAGES,
+} from "@env";
 import { Icon } from "../Icon";
 import { ShadowView } from "../ShadowView";
 import { View } from "../View";
@@ -12,6 +16,7 @@ import styles from "./ChatTextInput.styles";
 
 interface ChatTextInputProps {
   chatID: string;
+  chatType: string;
 }
 
 export const ChatTextInput = (props: ChatTextInputProps) => {
@@ -23,26 +28,40 @@ export const ChatTextInput = (props: ChatTextInputProps) => {
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let usrID: string = userdata?.$id as string;
 
-  // Quering chats associated with chatID
-  const { data: chatData } = useQuery("chat data", () =>
-    api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
-      Query.equal("chatID", props.chatID),
-    ])
-  );
-
   // onSendClick Function
-  function onSendClick(msgData: any) {
-    // Create a message
-    api.createDocument(COLLECTION_ID_MESSAGES, msgData);
-    // Update the last message for chat docs
-    chatData?.documents.map((doc: any) => {
-      api.updateDocument(COLLECTION_ID_DIRECT_CHATS, doc.$id, {
-        userID: doc.userID,
-        contactID: doc.contactID,
-        chatID: props.chatID,
-        lastMessage: msgData.message,
-      });
-    });
+  async function onSendClick(msgData: any) {
+    try {
+      // Create a message
+      api.createDocument(COLLECTION_ID_MESSAGES, msgData);
+      // Update last message
+      if (props.chatType === "group") {
+        const response = await api.listDocuments(COLLECTION_ID_GROUP_CHATS, [
+          Query.equal("chatID", props.chatID),
+        ]);
+        response?.documents?.map((doc: any) => {
+          api.updateDocument(COLLECTION_ID_GROUP_CHATS, doc.$id, {
+            userID: doc.userID,
+            chatName: doc.chatName,
+            chatID: props.chatID,
+            lastMessage: msgData.message,
+          });
+        });
+      } else {
+        const response = await api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
+          Query.equal("chatID", props.chatID),
+        ]);
+        response?.documents?.map((doc: any) => {
+          api.updateDocument(COLLECTION_ID_DIRECT_CHATS, doc.$id, {
+            userID: doc.userID,
+            contactID: doc.contactID,
+            chatID: props.chatID,
+            lastMessage: msgData.message,
+          });
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (

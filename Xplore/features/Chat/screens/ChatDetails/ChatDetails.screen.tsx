@@ -30,7 +30,7 @@ const ChatDetails = (props: ChatDetailsProps) => {
         navigation={props.navigation}
       />
       <Conversation chatID={chatID} />
-      <ChatTextInput chatID={chatID} />
+      <ChatTextInput chatID={chatID} chatType={chatType} />
     </SafeAreaView>
   );
 };
