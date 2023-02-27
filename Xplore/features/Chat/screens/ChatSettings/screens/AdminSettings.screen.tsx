@@ -33,6 +33,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
     // Update the last message for chat docs
     chatData?.documents.map((doc: any) => {
       api.updateDocument(COLLECTION_ID_GROUP_CHATS, doc.$id, {
+        chatName: doc.chatName,
         userID: doc.userID,
         chatID: props.chatID,
         lastMessage: "Start chatting!",
@@ -59,7 +60,10 @@ const AdminSettings = (props: AdminSettingsProps) => {
         onPress={() => setChatNameModalVisible(true)}
       />
       {chatNameModalVisible === true && (
-        <ChatNameModal setChatNameModalVisible={setChatNameModalVisible} />
+        <ChatNameModal
+          chatID={props.chatID}
+          setChatNameModalVisible={setChatNameModalVisible}
+        />
       )}
       <SettingBox
         settingName="Add a member"
