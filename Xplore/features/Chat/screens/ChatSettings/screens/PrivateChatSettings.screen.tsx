@@ -15,13 +15,6 @@ interface PrivateChatSettingsProps {
 const PrivateChatSettings = (props: PrivateChatSettingsProps) => {
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState<any>(false);
 
-  // Quering msg details
-  const { data: msgData } = useQuery("msg data", () =>
-    api.listDocuments(COLLECTION_ID_MESSAGES, [
-      Query.equal("chatID", props.chatID),
-    ])
-  );
-
   // Quering chat details
   const { data: chatData } = useQuery("chat data", () =>
     api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
@@ -41,12 +34,15 @@ const PrivateChatSettings = (props: PrivateChatSettingsProps) => {
     });
   };
 
-  const deleteChat = () => {
-    msgData?.documents.map((doc: any) => {
+  async function deleteChat() {
+    const response = await api.listDocuments(COLLECTION_ID_MESSAGES, [
+      Query.equal("chatID", props.chatID),
+    ]);
+    response?.documents.map((doc: any) => {
       api.deleteDocument(COLLECTION_ID_MESSAGES, doc.$id);
     });
     updateLastMessage();
-  };
+  }
 
   return (
     <View style={styles.settingsContainer}>

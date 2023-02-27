@@ -5,7 +5,6 @@ import { AvatarGroup, Text, View } from "../../../../components";
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
 import AdminSettings from "./screens/AdminSettings.screen";
-import MemberSettings from "./screens/MemberSettings.screen";
 import PrivateChatSettings from "./screens/PrivateChatSettings.screen";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -44,7 +43,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
             />
           </View>
           {chatType === "group" ? (
-            <AdminSettings chatID={props.chatID} />
+            <AdminSettings chatID={chatID} />
           ) : (
             <PrivateChatSettings contactName={chatID} chatID={chatID} />
           )}
