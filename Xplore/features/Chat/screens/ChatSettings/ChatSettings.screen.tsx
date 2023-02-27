@@ -13,12 +13,12 @@ interface ChatSettingsProps {
   navigation: NavigationProp<any>;
   chatID: string;
   username: string;
+  chatType: string;
 }
 
 const ChatSettings = (props: ChatSettingsProps) => {
   const route = useRoute();
-  let { chatID, username }: any = route.params;
-  const userRole = "admin";
+  let { chatID, username, chatType }: any = route.params;
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
@@ -43,10 +43,8 @@ const ChatSettings = (props: ChatSettingsProps) => {
               ]}
             />
           </View>
-          {userRole === "admin" ? (
+          {chatType === "group" ? (
             <AdminSettings chatID={props.chatID} />
-          ) : userRole === "member" ? (
-            <MemberSettings chatID={props.chatID} />
           ) : (
             <PrivateChatSettings contactName={chatID} chatID={chatID} />
           )}

@@ -3,7 +3,6 @@ import { View, ConfirmationModal } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
 import { AddMemberModal } from "../components/AddMemberModal/AddMemberModal.component";
-import { AddAdminModal } from "../components/AddAdminModal/AddAdminModal.component";
 import { RemoveMemberModal } from "../components/RemoveMemberModal/RemoveMemberModal.component";
 import styles from "./SettingsOptions.styles";
 
@@ -15,7 +14,6 @@ const AdminSettings = (props: AdminSettingsProps) => {
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
   const [addMemberModalVisible, setAddMemberModalVisible] =
     useState<any>(false);
-  const [addAdminModalVisible, setAddAdminModalVisible] = useState<any>(false);
   const [removeModalVisible, setRemoveModalVisible] = useState<any>(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState<any>(false);
   const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
@@ -36,14 +34,6 @@ const AdminSettings = (props: AdminSettingsProps) => {
       />
       {addMemberModalVisible === true && (
         <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
-      )}
-      <SettingBox
-        settingName="Add admin"
-        iconName="user-plus"
-        onPress={() => setAddAdminModalVisible(true)}
-      />
-      {addAdminModalVisible === true && (
-        <AddAdminModal setAddModalVisible={setAddAdminModalVisible} />
       )}
       <SettingBox
         settingName="Remove a member"

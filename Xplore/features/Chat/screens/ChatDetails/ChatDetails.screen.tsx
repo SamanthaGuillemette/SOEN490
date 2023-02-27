@@ -10,11 +10,12 @@ interface ChatDetailsProps {
   navigation: NavigationProp<any>;
   username: string;
   chatID: string;
+  chatType: string;
 }
 
 const ChatDetails = (props: ChatDetailsProps) => {
   const route = useRoute();
-  let { chatID, username }: any = route.params;
+  let { chatType, chatID, username }: any = route.params;
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   return (
@@ -25,6 +26,7 @@ const ChatDetails = (props: ChatDetailsProps) => {
       <ChatDetailsHeader
         chatID={chatID}
         username={username}
+        chatType={chatType}
         navigation={props.navigation}
       />
       <Conversation chatID={chatID} />

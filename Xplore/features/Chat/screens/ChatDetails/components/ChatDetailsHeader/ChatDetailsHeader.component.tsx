@@ -6,6 +6,7 @@ import styles from "./ChatDetailsHeader.styles";
 interface ChatDetailsHeader {
   chatID: String;
   username: String;
+  chatType: String;
   navigation: NavigationProp<any>;
 }
 
@@ -28,6 +29,7 @@ const ChatDetailsHeader = (props: ChatDetailsHeader) => {
             props.navigation.navigate("ChatSettings", {
               chatID: props.chatID,
               username: props.username,
+              chatType: props.chatType,
             })
           }
         >

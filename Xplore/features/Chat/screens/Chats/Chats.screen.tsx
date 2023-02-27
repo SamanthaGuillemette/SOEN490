@@ -110,6 +110,7 @@ const Chats = (props: ChatsProps) => {
                 onPress={() =>
                   props.navigation.navigate("ChatDetails", {
                     chatID: chat.chatID,
+                    chatType: chat.chatType,
                     username:
                       chat.chatType === "direct"
                         ? chat.contactID

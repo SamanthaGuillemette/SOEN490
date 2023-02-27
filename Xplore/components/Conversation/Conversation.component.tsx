@@ -13,7 +13,7 @@ import { LeftBubble } from "../LeftBubble";
 import { View } from "../View";
 import { Text } from "../Text";
 import styles from "./Conversation.styles";
-// TO DO: SCROLL TO END
+
 interface ConversationProps {
   navigation?: NavigationProp<any>;
   chatID: string;
@@ -78,15 +78,14 @@ export const Conversation = (props: ConversationProps) => {
           data: groupByDate[date],
         };
       });
-
-      // Sort messages by title in ascending order
-     // messagesByDate.sort((a, b) => a.title.localeCompare(b.title));
-      
       // Sort messages by title in descending order
       messagesByDate.sort((a, b) => b.title.localeCompare(a.title));
+      // Reverse messages inside data array for each group
+      messagesByDate.forEach((group) => {
+        group.data.reverse();
+      });
 
       setMessagesByDate(messagesByDate);
-      console.log(JSON.stringify(messagesByDate, null, 2));
     }
   }, [messages]);
 
