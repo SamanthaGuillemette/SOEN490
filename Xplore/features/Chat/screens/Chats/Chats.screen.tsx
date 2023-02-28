@@ -45,6 +45,7 @@ const Chats = (props: ChatsProps) => {
             contactID: doc.contactID,
             chatType: "direct",
             lastMessage: doc.lastMessage,
+            seen: doc.seen,
             updatedAt: doc.$updatedAt.slice(0, 10),
           }))
         );
@@ -60,6 +61,7 @@ const Chats = (props: ChatsProps) => {
             chatName: doc.chatName,
             chatType: "group",
             lastMessage: doc.lastMessage,
+            seen: doc.seen,
             updatedAt: doc.$updatedAt.slice(0, 10),
           }))
         );
@@ -83,6 +85,42 @@ const Chats = (props: ChatsProps) => {
     }
   }, [directChats, groupChats]);
 
+  async function markAsSeen(chatType: any, chatID: any) {
+    try {
+      if (chatType === "direct") {
+        const response = await api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
+          Query.equal("chatID", chatID),
+          Query.equal("userID", userId),
+        ]);
+        response?.documents?.map((doc: any) => {
+          api.updateDocument(COLLECTION_ID_DIRECT_CHATS, doc.$id, {
+            chatID: chatID,
+            userID: doc.userID,
+            contactID: doc.contactID,
+            lastMessage: doc.message,
+            seen: true,
+          });
+        });
+      } else {
+        const response = await api.listDocuments(COLLECTION_ID_GROUP_CHATS, [
+          Query.equal("chatID", chatID),
+          Query.equal("userID", userId),
+        ]);
+        response?.documents?.map((doc: any) => {
+          api.updateDocument(COLLECTION_ID_GROUP_CHATS, doc.$id, {
+            chatID: chatID,
+            chatName: doc.chatName,
+            userID: doc.userID,
+            lastMessage: doc.message,
+            seen: true,
+          });
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
@@ -102,21 +140,27 @@ const Chats = (props: ChatsProps) => {
                 }
                 chatType={chat.chatType}
                 lastText={chat.lastMessage}
+                seen={chat.seen}
                 time={new Date(chat.updatedAt).toLocaleDateString("en-us", {
                   day: "numeric",
                   month: "short",
                   year: "numeric",
                 })}
-                onPress={() =>
-                  props.navigation.navigate("ChatDetails", {
-                    chatID: chat.chatID,
-                    chatType: chat.chatType,
-                    username:
-                      chat.chatType === "direct"
-                        ? chat.contactID
-                        : chat.chatName,
-                  })
-                }
+                onPress={async () => {
+                  try {
+                    await markAsSeen(chat.chatType, chat.chatID);
+                    props.navigation.navigate("ChatDetails", {
+                      chatID: chat.chatID,
+                      chatType: chat.chatType,
+                      username:
+                        chat.chatType === "direct"
+                          ? chat.contactID
+                          : chat.chatName,
+                    });
+                  } catch (error) {
+                    console.log("Error marking chat as seen: ", error);
+                  }
+                }}
               />
             ))
           ) : (

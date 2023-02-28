@@ -8,6 +8,7 @@ interface ChatBoxProps {
   username: String;
   chatType?: String;
   lastText?: String;
+  seen?: Boolean;
   time?: String;
   onPress?: any;
 }
@@ -17,6 +18,7 @@ const ChatBox = ({
   username,
   chatType,
   lastText,
+  seen,
   time,
   ...restOfProps
 }: ChatBoxProps) => {
@@ -50,7 +52,7 @@ const ChatBox = ({
           </Text>
           <Text
             variant="smBody"
-            color="smallText"
+            color={seen ? "smallText" : "titleText"}
             style={styles.chatBox_lastText}
           >
             {lastText}

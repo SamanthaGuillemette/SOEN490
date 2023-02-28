@@ -71,7 +71,6 @@ export const Conversation = (props: ConversationProps) => {
         group[date].push(rest);
         return group;
       }, {});
-
       const messagesByDate = Object.keys(groupByDate).map((date) => {
         return {
           title: date,
@@ -84,7 +83,6 @@ export const Conversation = (props: ConversationProps) => {
       messagesByDate.forEach((group) => {
         group.data.reverse();
       });
-
       setMessagesByDate(messagesByDate);
     }
   }, [messages]);

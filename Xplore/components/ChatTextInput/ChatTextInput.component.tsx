@@ -44,6 +44,7 @@ export const ChatTextInput = (props: ChatTextInputProps) => {
             chatName: doc.chatName,
             chatID: props.chatID,
             lastMessage: msgData.message,
+            seen: doc.userID === usrID ? true : false,
           });
         });
       } else {
@@ -56,6 +57,7 @@ export const ChatTextInput = (props: ChatTextInputProps) => {
             contactID: doc.contactID,
             chatID: props.chatID,
             lastMessage: msgData.message,
+            seen: doc.userID === usrID ? true : false,
           });
         });
       }
