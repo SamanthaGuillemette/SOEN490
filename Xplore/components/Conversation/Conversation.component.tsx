@@ -122,7 +122,13 @@ export const Conversation = (props: ConversationProps) => {
           keyExtractor={(item, index) => item + index}
           renderItem={rendeMessages}
           renderSectionFooter={({ section }) => (
-            <ChatDate date={section.title} />
+            <ChatDate
+              date={new Date(section.title).toLocaleDateString("en-us", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            />
           )}
           stickySectionHeadersEnabled={false}
           ref={sectionListRef}
