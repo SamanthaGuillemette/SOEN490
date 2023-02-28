@@ -9,8 +9,7 @@ import { ProjectCardLarge } from "../ProjectCardLarge/ProjectCardLarge.component
 import styles from "./NewProjects.styles";
 import { useNewProjects } from "../../../../services/api/projects";
 
-// const data = ["brown", "orange", "red", "blue", "green"];
-
+const indicators = ["brown", "orange", "red", "blue", "green"];
 
 interface NewProjectsProps {
   navigation: NavigationProp<any>;
@@ -24,7 +23,7 @@ export const NewProjects = (props: NewProjectsProps) => {
     outputRange: [0, 18],
   });
 
-  const { data } = useNewProjects();
+  const { data, status } = useNewProjects();
 
   return (
     <View style={styles.container}>
@@ -54,20 +53,24 @@ export const NewProjects = (props: NewProjectsProps) => {
             { useNativeDriver: false }
           )}
         >
-          {data?.documents.map((project) => (
-            <ProjectCardLarge
-              projectName={project.name}
-              goal={project.description.str.split(" ").slice(0, 5).join(" ")}
-              duration={100}
-              members={8}
-              imageURL="https://picsum.photos/300/200"
-              key={projectDetail}
-            />
-          ))}
+          {status === "success" ? (
+            data.documents.map((project) => (
+              <ProjectCardLarge
+                projectName={project.name}
+                goal={project.description.split(" ").slice(0, 5).join(" ")}
+                duration={100}
+                members={8}
+                imageURL="https://picsum.photos/300/200"
+                key={project.name}
+              />
+            ))
+          ) : (
+            <></>
+          )}
         </ScrollView>
 
         <RNView style={theme.indicatorConatiner} pointerEvents="none">
-          {data.map((x) => (
+          {indicators.map((x) => (
             <Indicator key={x} />
           ))}
           <Animated.View
