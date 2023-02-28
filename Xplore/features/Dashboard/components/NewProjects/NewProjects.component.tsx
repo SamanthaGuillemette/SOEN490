@@ -7,8 +7,10 @@ import { LinkButton, Text, View } from "../../../../components";
 import { deviceScreenWidth } from "../../../../constants";
 import { ProjectCardLarge } from "../ProjectCardLarge/ProjectCardLarge.component";
 import styles from "./NewProjects.styles";
+import { useNewProjects } from "../../../../services/api/projects";
 
-const data = ["brown", "orange", "red", "blue", "green"];
+// const data = ["brown", "orange", "red", "blue", "green"];
+
 
 interface NewProjectsProps {
   navigation: NavigationProp<any>;
@@ -21,6 +23,8 @@ export const NewProjects = (props: NewProjectsProps) => {
     inputRange: [0, deviceScreenWidth - 40],
     outputRange: [0, 18],
   });
+
+  const { data } = useNewProjects();
 
   return (
     <View style={styles.container}>
@@ -50,10 +54,10 @@ export const NewProjects = (props: NewProjectsProps) => {
             { useNativeDriver: false }
           )}
         >
-          {data.map((projectDetail) => (
+          {data?.documents.map((project) => (
             <ProjectCardLarge
-              projectName="100 Python challenges"
-              goal="Gain fundamental understanding"
+              projectName={project.name}
+              goal={project.description.str.split(" ").slice(0, 5).join(" ")}
               duration={100}
               members={8}
               imageURL="https://picsum.photos/300/200"

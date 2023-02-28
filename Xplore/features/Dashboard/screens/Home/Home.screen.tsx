@@ -17,6 +17,7 @@ import {
   NewProjects,
 } from "../../components";
 import styles from "./Home.styles";
+import DatabaseApiTesting from "../../../../components/DatabaseApiTesting";
 
 interface HomeProps {
   navigation: NavigationProp<any>;
@@ -51,6 +52,7 @@ const Home = (props: HomeProps) => {
         <HomeHeader />
         <View style={styles.mainScreen}>
           <TodayStats />
+          <DatabaseApiTesting />
           <ExploreProjects navigation={navigation} />
           <NewProjects navigation={navigation} />
         </View>
