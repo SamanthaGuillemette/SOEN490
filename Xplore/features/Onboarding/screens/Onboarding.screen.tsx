@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import React, { useRef } from "react";
 import { Animated, Image, ScrollView, SafeAreaView } from "react-native";
 import { Text, View, TextButton, PrimaryButton } from "../../../components";
@@ -6,35 +7,30 @@ import { PagingDot } from "../components/PagingDot.component";
 import { NavigationProp } from "@react-navigation/native";
 import { useThemeColor } from "../../../hooks";
 import { deviceScreenWidth } from "../../../constants";
+import api from "../../../services/appwrite/api";
+import { useQuery } from "react-query";
+import { Query } from "appwrite";
+import { COLLECTION_ID_ONBOARDING } from "@env";
 
 const onboardingImages = [
   {
     img: require("../../../assets/Onboarding1.png"),
-    // message: "Xplore is an application that focuses on project-based learning.",
     message: "Xplorify focuses on project-based learning",
   },
   {
     img: require("../../../assets/Onboarding2.png"),
-    // message:
-    //   "This application allows a user to explore or start new exciting projects.",
     message: "Discover or create your own amazing project ideas",
   },
   {
     img: require("../../../assets/Onboarding3.png"),
-    // message:
-    //   "The application also enables users to chat with other users on the platform.",
     message: "Communicate with your team members in real-time",
   },
   {
     img: require("../../../assets/Onboarding4.png"),
-    // message:
-    //   "Upon project completion, users will accumulate points and/or badges.",
     message: "Earn rewards upon project completion",
   },
   {
     img: require("../../../assets/Onboarding5.png"),
-    // message:
-    //   "A leaderboard featuring the top contributing users will be displayed.",
     message: "Stay engaged with the leaderboard",
   },
 ];
@@ -46,12 +42,43 @@ interface OnboardingProps {
 const Onboarding = (props: OnboardingProps) => {
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
+  const [onboarding, setOnboarding] = useState<any | null>(null);
 
   const scrollValue = useRef(new Animated.Value(0)).current;
   const translateX = scrollValue.interpolate({
     inputRange: [0, deviceScreenWidth],
     outputRange: [0, 18], // 18 = margin + width of dot = (5+5) + 8
   });
+
+  // Current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+
+  useEffect(() => {
+    const getOnboarding = async () => {
+      try {
+        const onboarding_response = await api.listDocuments(
+          COLLECTION_ID_ONBOARDING,
+          [Query.equal("userID", userId)]
+        );
+        if(onboarding_response.total == 0 && userId){
+          api.createDocument(COLLECTION_ID_ONBOARDING, {userID: userId, seen: true});
+        }
+        else {
+          setOnboarding(
+            onboarding_response?.documents?.at(0)
+          );
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getOnboarding();
+  }, [userId]);
+
+  if(onboarding != null && onboarding.seen == true){
+    navigation.navigate("BottomTabNavigator")
+  };
 
   return (
     <SafeAreaView
@@ -127,7 +154,7 @@ const Onboarding = (props: OnboardingProps) => {
           </TextButton>
         </View>
       </View>
-    </SafeAreaView>
+    </SafeAreaView> 
   );
 };
 
