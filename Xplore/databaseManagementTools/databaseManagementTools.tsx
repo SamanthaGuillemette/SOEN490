@@ -1,7 +1,8 @@
 import api from "../services/appwrite/api";
 import { PROJECT_COLLECTION_ID } from "@env";
-import { Button } from "react-native";
-import { projects } from "./database_seed";
+import { Button, Text } from "react-native";
+import { projects } from "./projects_database_seed";
+import { users } from "./users_database_seed";
 
 const deleteAllDocuments = async (collectionId: string) => {
   const projectsToSeed = await api.listDocuments(collectionId);
@@ -11,7 +12,7 @@ const deleteAllDocuments = async (collectionId: string) => {
   }
 };
 
-const createBulkProjects = async (data: Object[]) => {
+const createBulkProjects = async (data) => {
   for (const d of data) {
     try {
       console.log(d);
@@ -22,17 +23,35 @@ const createBulkProjects = async (data: Object[]) => {
   }
 };
 
+// const associateProjectsToUsers = async (data) => {
+//   const projects = await api.listDocuments(PROJECT_COLLECTION_ID);
+
+// }
+
+const createBulkUsers = async (data: Object[]) => {
+  for (const user of data) {
+    try {
+      await api.createAccount(user.email, user.password, user.username);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+};
+
 export const DatabaseApiTesting = () => {
   return (
     <>
+      <Text>---------------database tools------------</Text>
       <Button
         title="seed projects"
         onPress={() => createBulkProjects(projects)}
       />
+      <Button title="seed users" onPress={() => createBulkUsers(users)} />
       <Button
-        title="delete projects"
+        title="delete all projects"
         onPress={() => deleteAllDocuments(PROJECT_COLLECTION_ID)}
       />
+      <Text>-------------------------------------------</Text>
     </>
   );
 };
