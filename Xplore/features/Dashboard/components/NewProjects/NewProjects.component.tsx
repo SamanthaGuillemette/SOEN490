@@ -57,7 +57,10 @@ export const NewProjects = (props: NewProjectsProps) => {
             data.documents.map((project) => (
               <ProjectCardLarge
                 projectName={project.name}
-                goal={project.description.split(" ").slice(0, 5).join(" ")}
+                goal={`${project.description
+                  .split(" ")
+                  .slice(0, 5)
+                  .join(" ")}...`}
                 duration={100}
                 members={8}
                 imageURL="https://picsum.photos/300/200"

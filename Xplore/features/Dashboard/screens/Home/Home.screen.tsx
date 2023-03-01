@@ -17,7 +17,7 @@ import {
   NewProjects,
 } from "../../components";
 import styles from "./Home.styles";
-import DatabaseApiTesting from "../../../../components/DatabaseApiTesting";
+import { DatabaseApiTesting } from "../../../../databaseManagementTools/databaseManagementTools";
 
 interface HomeProps {
   navigation: NavigationProp<any>;
