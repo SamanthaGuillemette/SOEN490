@@ -1,13 +1,14 @@
 import _ from "lodash";
-import { View, Wizard, Toast } from "react-native-ui-lib";
+import { Wizard, Toast } from "react-native-ui-lib";
 import { Button } from "../Button";
 import { TopHeader } from "../TopHeader";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./StepIndicator.styles";
 import { useThemeColor } from "../../hooks";
 import { useState } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View as RNView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "../View";
 
 interface StepIndicatorProps {
   headerTitle: string;
@@ -28,6 +29,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
   const generalGray = useThemeColor("generalGray");
   const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const background = useThemeColor("background");
   const {
     navigation,
     headerTitle,
@@ -139,7 +141,10 @@ export const StepIndicator = (props: StepIndicatorProps) => {
       edges={["top", "left", "right"]}
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ backgroundColor: background }}
+      >
         <TopHeader
           title={headerTitle}
           icon1Name="search"
@@ -181,7 +186,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
           </Wizard>
         </View>
         {renderCurrentStep()}
-        <View style={styles.spacingBottom} />
+        <RNView style={styles.spacingBottom} />
       </ScrollView>
       {!_.isNil(submissionMsg) && (
         <Toast
