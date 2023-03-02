@@ -20,6 +20,10 @@ import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
+import {
+  useFetchUserDetails,
+  useFetchUserProject,
+} from "../../../../services/api/userProfile";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -72,7 +76,11 @@ const Profile = (props: ProfileProps) => {
   });
 
   // Get user data from DB, renamed 'data' to 'userdata' to avoid confusion
-  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  const { data } = useFetchUserDetails();
+  const userDetails = data?.documents[0];
+  console.log(JSON.stringify(data, null, 4));
+  const sfd = useFetchUserProject(userDetails?.projects);
+  console.log(JSON.stringify(sfd, null, 4));
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
@@ -163,7 +171,7 @@ const Profile = (props: ProfileProps) => {
           ]}
         >
           <Text variant="h2" color="titleText" style={styles.userName}>
-            {userdata?.name}
+            {userDetails?.username}
           </Text>
           <View style={styles.userInfoDetails}>
             <Icon
@@ -181,7 +189,7 @@ const Profile = (props: ProfileProps) => {
               size="small"
               style={styles.userInfoIcon}
             />
-            <Text variant="smBody">103,597 XP</Text>
+            <Text variant="smBody">{userDetails?.xp} XP</Text>
           </View>
         </Animated.View>
       </Animated.View>

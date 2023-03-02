@@ -1,17 +1,26 @@
-import {
-  useInfiniteQuery,
-  useMutation,
-  useQueryClient,
-  useQuery,
-} from "react-query";
-import { USER_COLLECTION_ID } from "@env";
+import { useQuery } from "react-query";
+import { PROJECT_COLLECTION_ID, USER_COLLECTION_ID } from "@env";
 import api from "../appwrite/api";
+import { useAuth } from "../../hooks";
 
-const useFetchUserDetails = async () => {
-  const userId = (await api.getAccount()).$id;
+const useFetchUserDetails = () => {
+  const { accountToken } = useAuth();
   return useQuery({
-    queryKey: ["userDetails", userId],
+    queryKey: ["userDetails", accountToken!.$id],
     queryFn: () =>
-      api.getDocument(USER_COLLECTION_ID, api.query.equal("userId", userId)),
+      api.listDocuments(USER_COLLECTION_ID, [
+        api.query.equal("userID", accountToken!.$id),
+      ]),
   });
 };
+
+const useFetchUserProjects = (projectIDs: string[]) =>
+  useQuery({
+    queryKey: ["userProjects", projectIDs],
+    queryFn: () =>
+      api.listDocuments(PROJECT_COLLECTION_ID, [
+        api.query.equal("$id", [...projectIDs]),
+      ]),
+  });
+
+export { useFetchUserDetails, useFetchUserProjects };
