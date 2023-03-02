@@ -1,4 +1,5 @@
 import { Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Icon,
   LinearProgressBar,
@@ -7,6 +8,7 @@ import {
   View,
 } from "../../../../components";
 import styles from "./AllProjectsCard.styles";
+import { NavigationProp } from "@react-navigation/native";
 
 interface AllProjectsCardProps {
   item: {
@@ -18,66 +20,71 @@ interface AllProjectsCardProps {
     members?: number;
     percentComplete: number;
   };
+  navigation?: NavigationProp<any>;
 }
 
 export const AllProjectsCard = (props: AllProjectsCardProps) => {
-  const { item } = props;
+  const { item, navigation } = props;
 
   return (
-    <ShadowView
-      backgroundColor="backgroundSecondary"
-      style={styles.cardContainer}
-      key={item.name}
+    <TouchableOpacity
+      onPress={() => navigation?.navigate("UserProjectsScreen", { ...item })}
     >
-      <Image
-        source={{ uri: "https://picsum.photos/200" }}
-        style={styles.projectImage}
-      />
+      <ShadowView
+        backgroundColor="backgroundSecondary"
+        style={styles.cardContainer}
+        key={item.name}
+      >
+        <Image
+          source={{ uri: "https://picsum.photos/200" }}
+          style={styles.projectImage}
+        />
 
-      <View style={styles.projectInfo}>
-        <Text
-          variant="h3"
-          color="titleText"
-          lineBreakMode="tail"
-          numberOfLines={1}
-        >
-          {item.name}
-        </Text>
-        <Text
-          variant="body"
-          color="bodyText"
-          lineBreakMode="tail"
-          numberOfLines={1}
-          style={styles.projectDescription}
-        >
-          {item.description}
-        </Text>
+        <View style={styles.projectInfo}>
+          <Text
+            variant="h3"
+            color="titleText"
+            lineBreakMode="tail"
+            numberOfLines={1}
+          >
+            {item.name}
+          </Text>
+          <Text
+            variant="body"
+            color="bodyText"
+            lineBreakMode="tail"
+            numberOfLines={1}
+            style={styles.projectDescription}
+          >
+            {item.description}
+          </Text>
 
-        <View style={styles.statContainer}>
-          <View style={styles.statIcon}>
-            <Icon name="file-text" size="medium" style={styles.icon} />
-            <Text variant="smBody" color="bodyText">
-              {item.tasks}
-            </Text>
+          <View style={styles.statContainer}>
+            <View style={styles.statIcon}>
+              <Icon name="file-text" size="medium" style={styles.icon} />
+              <Text variant="smBody" color="bodyText">
+                {item.tasks}
+              </Text>
+            </View>
+
+            <View style={styles.statIcon}>
+              <Icon name="message-circle" size="medium" style={styles.icon} />
+              <Text variant="smBody" color="bodyText">
+                {item.conversations}
+              </Text>
+            </View>
+
+            <View style={styles.statIcon}>
+              <Icon name="users" size="medium" style={styles.icon} />
+              <Text variant="smBody" color="bodyText">
+                {item.members}
+              </Text>
+            </View>
           </View>
 
-          <View style={styles.statIcon}>
-            <Icon name="message-circle" size="medium" style={styles.icon} />
-            <Text variant="smBody" color="bodyText">
-              {item.conversations}
-            </Text>
-          </View>
-
-          <View style={styles.statIcon}>
-            <Icon name="users" size="medium" style={styles.icon} />
-            <Text variant="smBody" color="bodyText">
-              {item.members}
-            </Text>
-          </View>
+          <LinearProgressBar progress={item.percentComplete} color="success" />
         </View>
-
-        <LinearProgressBar progress={item.percentComplete} color="success" />
-      </View>
-    </ShadowView>
+      </ShadowView>
+    </TouchableOpacity>
   );
 };

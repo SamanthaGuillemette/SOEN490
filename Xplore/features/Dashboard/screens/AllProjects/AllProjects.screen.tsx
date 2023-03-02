@@ -71,54 +71,6 @@ const ExploreProjects = () => {
 
 export default ExploreProjects;
 
-export const fakeProjectData = [
-  {
-    title: "Snake Robot",
-    description: "World's first unique soft robot",
-    projectImage: "https://picsum.photos/200",
-    tasks: 12,
-    conversation: 38,
-    members: 5,
-    progress: 0.8,
-  },
-  {
-    title: "UX for Seniors",
-    description: "Designing for the elderly",
-    projectImage: "https://picsum.photos/200",
-    tasks: 10,
-    conversation: 57,
-    members: 8,
-    progress: 0.6,
-  },
-  {
-    title: "Visual Software Tester",
-    description: "Build simple visual QA tool",
-    projectImage: "https://picsum.photos/200",
-    tasks: 8,
-    conversation: 12,
-    members: 3,
-    progress: 0.4,
-  },
-  {
-    title: "Train Ticketing System",
-    description: "A new way to buy train tickets",
-    projectImage: "https://picsum.photos/200",
-    tasks: 12,
-    conversation: 38,
-    members: 5,
-    progress: 0.8,
-  },
-  {
-    title: "UX for Seniors 2",
-    description: "Designing for the elderly....",
-    projectImage: "https://picsum.photos/200",
-    tasks: 10,
-    conversation: 57,
-    members: 8,
-    progress: 0.6,
-  },
-];
-
 // These fake data will be replaced by data pulled from the backend later.
 
 const categories = [
