@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useQuery } from "react-query";
 import { SectionList, View as RNView } from "react-native";
-import { useIsFocused } from "@react-navigation/native";
 import api from "../../services/appwrite/api";
-import { COLLECTION_ID_MESSAGES } from "@env";
-import { Query } from "appwrite";
 import { NavigationProp } from "@react-navigation/native";
 import { useThemeColor } from "../../hooks/useThemeColor";
 import { ChatDate } from "../ChatDate";
@@ -13,6 +10,7 @@ import { LeftBubble } from "../LeftBubble";
 import { View } from "../View";
 import { Text } from "../Text";
 import styles from "./Conversation.styles";
+import { useListMessages } from "../../services/api/chatMessages";
 
 interface ConversationProps {
   navigation?: NavigationProp<any>;
@@ -22,70 +20,12 @@ interface ConversationProps {
 export const Conversation = (props: ConversationProps) => {
   const background = useThemeColor("background");
   const sectionListRef = useRef(null);
-  const [messages, setMessages] = useState<any | null>(null);
-  const [messagesByDate, setMessagesByDate] = useState<any[]>([]);
-  const isFocused = useIsFocused();
+  var messages: any;
+  messages = useListMessages(props.chatID);
 
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let currUserID: string = userdata?.$id as string;
-
-  // This useEffect will generate the messages of the chat
-  useEffect(() => {
-    const getMessages = async () => {
-      try {
-        if (isFocused) {
-          const msgData = await api.listDocuments(COLLECTION_ID_MESSAGES, [
-            Query.equal("chatID", props.chatID),
-          ]);
-          setMessages(
-            msgData?.documents?.map((doc: any) => {
-              const createdAt = new Date(doc.$createdAt);
-              return {
-                id: doc.$id,
-                chatID: doc.chatID,
-                userID: doc.userID,
-                message: doc.message,
-                createdAt: createdAt.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                }),
-                date: doc.$updatedAt.slice(0, 10),
-              };
-            })
-          );
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getMessages();
-  }, [props.chatID, isFocused]);
-
-  // This useEffect will group the messages of the chat by date
-  useEffect(() => {
-    if (messages) {
-      const groupByDate = messages.reduce((group: any, message: any) => {
-        const { date, ...rest } = message;
-        group[date] = group[date] ?? [];
-        group[date].push(rest);
-        return group;
-      }, {});
-      const messagesByDate = Object.keys(groupByDate).map((date) => {
-        return {
-          title: date,
-          data: groupByDate[date],
-        };
-      });
-      // Sort messages by title in descending order
-      messagesByDate.sort((a, b) => b.title.localeCompare(a.title));
-      // Reverse messages inside data array for each group
-      messagesByDate.forEach((group) => {
-        group.data.reverse();
-      });
-      setMessagesByDate(messagesByDate);
-    }
-  }, [messages]);
 
   const rendeMessages = ({ item }) => {
     if (!item) {
@@ -116,9 +56,9 @@ export const Conversation = (props: ConversationProps) => {
     <RNView
       style={[styles.messages_container, { backgroundColor: background }]}
     >
-      {messagesByDate.length > 0 ? (
+      {messages.length > 0 ? (
         <SectionList
-          sections={messagesByDate}
+          sections={messages}
           keyExtractor={(item, index) => item + index}
           renderItem={rendeMessages}
           renderSectionFooter={({ section }) => (

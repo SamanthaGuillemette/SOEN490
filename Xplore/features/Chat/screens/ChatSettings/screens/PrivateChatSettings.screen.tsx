@@ -1,9 +1,6 @@
 import { useState } from "react";
-import { useQuery } from "react-query";
 import { View, ConfirmationModal } from "../../../../../components";
-import api from "../../../../../services/appwrite/api";
-import { COLLECTION_ID_MESSAGES, COLLECTION_ID_DIRECT_CHATS } from "@env";
-import { Query } from "appwrite";
+import { deleteMessages } from "../../../../../services/api/chatSettings";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import styles from "./SettingsOptions.styles";
 
@@ -14,35 +11,6 @@ interface PrivateChatSettingsProps {
 
 const PrivateChatSettings = (props: PrivateChatSettingsProps) => {
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState<any>(false);
-
-  // Quering chat details
-  const { data: chatData } = useQuery("chat data", () =>
-    api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
-      Query.equal("chatID", props.chatID),
-    ])
-  );
-
-  const updateLastMessage = () => {
-    // Update the last message for chat docs
-    chatData?.documents.map((doc: any) => {
-      api.updateDocument(COLLECTION_ID_DIRECT_CHATS, doc.$id, {
-        userID: doc.userID,
-        contactID: doc.contactID,
-        chatID: props.chatID,
-        lastMessage: "Start chatting!",
-      });
-    });
-  };
-
-  async function deleteChat() {
-    const response = await api.listDocuments(COLLECTION_ID_MESSAGES, [
-      Query.equal("chatID", props.chatID),
-    ]);
-    response?.documents.map((doc: any) => {
-      api.deleteDocument(COLLECTION_ID_MESSAGES, doc.$id);
-    });
-    updateLastMessage();
-  }
 
   return (
     <View style={styles.settingsContainer}>
@@ -57,7 +25,7 @@ const PrivateChatSettings = (props: PrivateChatSettingsProps) => {
           confirmMsg="Are you sure you want to delete the chat?"
           primaryText="Delete chat"
           secondaryText="Cancel"
-          primaryAction={deleteChat}
+          primaryAction={() => deleteMessages(props.chatID, "direct")}
         />
       )}
     </View>
