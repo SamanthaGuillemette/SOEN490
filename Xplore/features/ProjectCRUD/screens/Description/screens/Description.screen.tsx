@@ -1,13 +1,13 @@
-import { SafeAreaView } from "react-native";
+import { View } from "react-native";
 import styles from "./Description.styles";
 import { EditImage, Input } from "../components";
 
 const Description = () => {
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
+    <View style={styles.container}>
       <EditImage />
       <Input />
-    </SafeAreaView>
+    </View>
   );
 };
 

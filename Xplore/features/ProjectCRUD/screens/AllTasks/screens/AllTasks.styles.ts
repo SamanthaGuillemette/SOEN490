@@ -14,8 +14,7 @@ export default StyleSheet.create({
     top: -10,
     left: 20,
   },
-  safeAreaStyle: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight ?? 0,
+  mainContainer: {
+    marginTop: 50,
   },
 });

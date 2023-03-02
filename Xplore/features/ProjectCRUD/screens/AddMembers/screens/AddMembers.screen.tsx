@@ -1,7 +1,6 @@
-import { SafeAreaView } from "react-native";
 import styles from "./AddMembers.styles";
-import { SearchBar, UsersList } from "../../../../../components";
-//import { Input } from "../components";
+import { SearchBar, UsersList, View } from "../../../../../components";
+
 interface UsersType {
   id: string;
   username: string;
@@ -62,12 +61,12 @@ const Users: UsersType[] = [
 
 const AddMembers = () => {
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
+    <View style={styles.container}>
       {/* Needed components */}
 
       <SearchBar style={styles.searchBar} />
       <UsersList data={Users} />
-    </SafeAreaView>
+    </View>
   );
 };
 

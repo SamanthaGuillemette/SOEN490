@@ -1,12 +1,12 @@
-import { SafeAreaView } from "react-native";
+import { View } from "react-native";
 import styles from "./TechNGoals.styles";
 import { Input } from "../components";
 
 const TechNGoals = () => {
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
+    <View style={styles.container}>
       <Input />
-    </SafeAreaView>
+    </View>
   );
 };
 

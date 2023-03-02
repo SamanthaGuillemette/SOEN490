@@ -10,7 +10,7 @@ export const AllTasks = () => {
   const [showModal, setShowModal] = useState<any>(false);
 
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
+    <View style={styles.mainContainer}>
       <View style={styles.alignLeft}>
         <Text color="titleText" variant="h3">
           Click here to select a task
@@ -51,6 +51,6 @@ export const AllTasks = () => {
           </SafeAreaView>
         </Modal>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };

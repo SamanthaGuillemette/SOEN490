@@ -1,12 +1,12 @@
-import { SafeAreaView } from "react-native";
 import styles from "./AddLinks.styles";
 import { Integration } from "../components";
+import { View } from "../../../../../components";
 
 const AddLinks = () => {
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
+    <View style={styles.container}>
       <Integration />
-    </SafeAreaView>
+    </View>
   );
 };
 
