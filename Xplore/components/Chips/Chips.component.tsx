@@ -22,6 +22,7 @@ export const Chips = (props: ChipsProps) => {
   const generalGray = useThemeColor("generalGray");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const titleText = useThemeColor("titleText");
+  const bodyText = useThemeColor("bodyText");
   const { placeHolder, styleBox } = props;
   const [chips, setChips] = useState<ChipsInputChipProps[] | undefined>([]);
 
@@ -39,6 +40,7 @@ export const Chips = (props: ChipsProps) => {
         <View style={styles.alignText}>
           <Incubator.ChipsInput
             placeholder={placeHolder}
+            placeholderTextColor={bodyText}
             chips={chips}
             defaultChipProps={{
               backgroundColor: background,
