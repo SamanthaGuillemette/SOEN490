@@ -1,5 +1,6 @@
 // TODO: Need refactoring
 
+import { NavigationProp } from "@react-navigation/native";
 import { useRef } from "react";
 import { Animated, ScrollView, View as RNView, StyleSheet } from "react-native";
 import { LinkButton, Text, View } from "../../../../components";
@@ -9,7 +10,12 @@ import styles from "./NewProjects.styles";
 
 const data = ["brown", "orange", "red", "blue", "green"];
 
-export const NewProjects = () => {
+interface NewProjectsProps {
+  navigation: NavigationProp<any>;
+}
+
+export const NewProjects = (props: NewProjectsProps) => {
+  const { navigation } = props;
   const scrollValue = useRef(new Animated.Value(0)).current;
   const translateX = scrollValue.interpolate({
     inputRange: [0, deviceScreenWidth - 40],
@@ -23,7 +29,13 @@ export const NewProjects = () => {
       </Text>
       <View style={styles.subTitleContainer}>
         <Text variant="body">Fresh new ideas just arrived</Text>
-        <LinkButton>View all</LinkButton>
+        <LinkButton
+          onPress={() => {
+            navigation.navigate("AllProjects");
+          }}
+        >
+          View all
+        </LinkButton>
       </View>
 
       <View style={styles.projectSlideContainer}>

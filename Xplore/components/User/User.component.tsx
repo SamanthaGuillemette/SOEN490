@@ -28,7 +28,7 @@ export const User = (props: UserProps) => {
           {username}
         </Text>
         <Text variant="smLabel" color="smallText" style={styles.user_xp}>
-          {xp} &nbsp; XP
+          {xp} XP
         </Text>
       </View>
     </View>

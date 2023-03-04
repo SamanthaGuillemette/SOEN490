@@ -83,31 +83,33 @@ export const AddAdminModal = ({ setAddModalVisible }: AddAdminModalProps) => {
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={modalVisible}
       onRequestClose={handleIndexSelect}
     >
-      <View style={styles.centeredView}>
-        <ShadowView
-          style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
-        >
-          <Text variant="h4" style={styles.alertText}>
-            Add new admins
-          </Text>
-          <SearchBar style={styles.searchBar} />
-          <UsersList data={Users} />
-          <PrimaryButton
-            label="ADD"
-            onPress={handleIndexSelect}
-            style={styles.primaryButton}
-          />
-          <SecondaryButton
-            label="Cancel"
-            onPress={handleIndexSelect}
-            style={styles.secondaryButton}
-          />
-        </ShadowView>
+      <View style={styles.fullView}>
+        <View style={styles.centeredView}>
+          <ShadowView
+            style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
+          >
+            <Text variant="h4" style={styles.alertText}>
+              Add new admins
+            </Text>
+            <SearchBar style={styles.searchBar} />
+            <UsersList data={Users} />
+            <PrimaryButton
+              label="ADD"
+              onPress={handleIndexSelect}
+              style={styles.primaryButton}
+            />
+            <SecondaryButton
+              label="Cancel"
+              onPress={handleIndexSelect}
+              style={styles.secondaryButton}
+            />
+          </ShadowView>
+        </View>
       </View>
     </Modal>
   );

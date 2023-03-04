@@ -1,11 +1,17 @@
 import * as React from "react";
 import { SafeAreaView } from "react-native";
 import { SelectTopics } from "../components";
+import { NavigationProp } from "@react-navigation/native";
 
-const TopicSelection = () => {
+interface TopicSelectionProps {
+  navigation: NavigationProp<any>;
+}
+
+const TopicSelection = (props: TopicSelectionProps) => {
+  const { navigation } = props;
   return (
     <SafeAreaView>
-      <SelectTopics />
+      <SelectTopics navigation={navigation}/>
     </SafeAreaView>
   );
 };

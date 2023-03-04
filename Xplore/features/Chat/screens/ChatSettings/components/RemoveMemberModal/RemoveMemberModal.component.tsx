@@ -84,31 +84,33 @@ export const RemoveMemberModal = ({
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={modalVisible}
       onRequestClose={handleIndexSelect}
     >
-      <View style={styles.centeredView}>
-        <ShadowView
-          style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
-        >
-          <Text variant="h4" style={styles.alertText}>
-            Remove members
-          </Text>
-          <SearchBar style={styles.searchBar} />
-          <UsersList data={Users} />
-          <PrimaryButton
-            label="REMOVE"
-            onPress={handleIndexSelect}
-            style={styles.primaryButton}
-          />
-          <SecondaryButton
-            label="Cancel"
-            onPress={handleIndexSelect}
-            style={styles.secondaryButton}
-          />
-        </ShadowView>
+      <View style={styles.fullView}>
+        <View style={styles.centeredView}>
+          <ShadowView
+            style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
+          >
+            <Text variant="h4" style={styles.alertText}>
+              Remove members
+            </Text>
+            <SearchBar style={styles.searchBar} />
+            <UsersList data={Users} />
+            <PrimaryButton
+              label="REMOVE"
+              onPress={handleIndexSelect}
+              style={styles.primaryButton}
+            />
+            <SecondaryButton
+              label="Cancel"
+              onPress={handleIndexSelect}
+              style={styles.secondaryButton}
+            />
+          </ShadowView>
+        </View>
       </View>
     </Modal>
   );

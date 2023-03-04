@@ -15,18 +15,13 @@ interface ChipButtonProps extends TouchableOpacityProps {
 
 export const ChipButton = (props: ChipButtonProps) => {
   const { label, style, ...restOfProps } = props;
-  const primary = useThemeColor("primary");
-  const bg = useThemeColor("backgroundSecondary");
+  const smallText = useThemeColor("smallText");
   return (
     <TouchableOpacity
-      style={[
-        style,
-        styles.button,
-        { backgroundColor: bg, borderColor: primary },
-      ]}
+      style={[style, styles.button, { borderColor: smallText }]}
       {...restOfProps}
     >
-      <Text variant="label" style={[styles.textStyle, { color: primary }]}>
+      <Text variant="label" style={[styles.textStyle, { color: smallText }]}>
         {label}
       </Text>
     </TouchableOpacity>
