@@ -15,8 +15,8 @@ const AppStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      // initialRouteName="Onboarding"
-      initialRouteName="Completion"
+      initialRouteName="Onboarding"
+      // initialRouteName="Completion"
     >
       <Stack.Screen name="Onboarding" component={Onboarding} />
       <Stack.Screen name="Completion" component={Completion} />
