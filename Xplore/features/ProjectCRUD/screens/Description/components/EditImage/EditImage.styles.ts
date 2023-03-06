@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
+  editImageContainer: {
     alignItems: "center",
     justifyContent: "center",
   },

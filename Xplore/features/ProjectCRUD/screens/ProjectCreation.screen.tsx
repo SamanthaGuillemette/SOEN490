@@ -1,5 +1,5 @@
 import { StepIndicator } from "../../../components";
-import Description from "./Description/screens/Description.screen";
+import Description from "../components/Description/Description.component";
 import TechNGoals from "./TechNGoals/screens/TechNGoals.screen";
 import AddMembers from "./AddMembers/screens/AddMembers.screen";
 import AddLinks from "./AddLinks/screens/AddLinks.screen";
