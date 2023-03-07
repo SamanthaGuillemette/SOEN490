@@ -2,14 +2,17 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
+    marginTop: 50,
+  },
+  containerTech: {
     alignItems: "center",
     justifyContent: "center",
     marginTop: 23,
   },
-  container2: {
+  containerGoal: {
     alignItems: "center",
     justifyContent: "center",
-    marginTop: -5,
+    marginTop: 5,
   },
   projectTech: {
     width: 337,
