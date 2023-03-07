@@ -7,7 +7,7 @@ import {
   ShadowView,
 } from "../../../../components";
 
-const Description = () => {
+export const Description = () => {
   // const [projName, setProjName] = useState("");
   // const [projDesc, setProjDesc] = useState("");
 
@@ -44,5 +44,3 @@ const Description = () => {
     </View>
   );
 };
-
-export default Description;
