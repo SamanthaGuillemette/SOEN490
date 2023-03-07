@@ -162,6 +162,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
             {_.times(numOfSteps, (i) => {
               return (
                 <Wizard.Step
+                  key={i} // add a unique key prop here
                   state={getStepState(i)}
                   label={stepLabels[i]}
                   circleBackgroundColor={backgroundSecondary}
