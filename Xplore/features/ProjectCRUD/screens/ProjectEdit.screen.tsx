@@ -2,16 +2,15 @@ import { StepIndicator } from "../../../components";
 import Description from "../components/Description/Description.component";
 import TechNGoals from "./TechNGoals/screens/TechNGoals.screen";
 import AddMembers from "./AddMembers/screens/AddMembers.screen";
-import AddLinks from "./AddLinks/screens/AddLinks.screen";
 import { AllTasks } from "./AllTasks/screens/AllTasks.screen";
 import { NavigationProp } from "@react-navigation/native";
+import { AddLinks } from "../components";
 
 interface HeaderProps {
   navigation: NavigationProp<any>;
 }
 
 const ProjectEdit = (props: HeaderProps) => {
-  const { navigation } = props;
   return (
     <StepIndicator
       headerTitle={"Edit Projects"}
