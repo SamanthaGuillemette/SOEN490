@@ -11,6 +11,7 @@ import api from "../../../services/appwrite/api";
 import { useQuery } from "react-query";
 import { Query } from "appwrite";
 import { COLLECTION_ID_ONBOARDING } from "@env";
+import BottomTabNavigator from "../../../navigation/BottomTabNavigator";
 
 const onboardingImages = [
   {
@@ -75,86 +76,83 @@ const Onboarding = (props: OnboardingProps) => {
     };
     getOnboarding();
   }, [userId]);
-
-  if(onboarding != null && onboarding.seen == true){
-    navigation.navigate("BottomTabNavigator")
-  };
-
+  
   return (
-    <SafeAreaView
-      style={[styles.safeAreaContainer, { backgroundColor: whiteBackground }]}
-    >
-      <View backgroundColor="backgroundSecondary" style={styles.mainContainer}>
-        <ScrollView
-          horizontal
-          pagingEnabled
-          decelerationRate="fast"
-          showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={32}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { x: scrollValue } } }],
-            { useNativeDriver: false }
-          )}
-        >
-          {onboardingImages.map((item, index) => (
-            <View
-              backgroundColor="backgroundSecondary"
-              key={index}
-              style={styles.singleSlide}
-            >
-              <Image source={item.img} style={styles.image} />
-              <Text variant="h2" style={styles.onboardingText}>
-                {item.message}
-              </Text>
+    onboarding != null && onboarding.seen == true ? <BottomTabNavigator/> :
+      <SafeAreaView
+        style={[styles.safeAreaContainer, { backgroundColor: whiteBackground }]}
+      >
+        <View backgroundColor="backgroundSecondary" style={styles.mainContainer}>
+          <ScrollView
+            horizontal
+            pagingEnabled
+            decelerationRate="fast"
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={32}
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: scrollValue } } }],
+              { useNativeDriver: false }
+            )}
+          >
+            {onboardingImages.map((item, index) => (
+              <View
+                backgroundColor="backgroundSecondary"
+                key={index}
+                style={styles.singleSlide}
+              >
+                <Image source={item.img} style={styles.image} />
+                <Text variant="h2" style={styles.onboardingText}>
+                  {item.message}
+                </Text>
 
-              {/* If it's the last slide, show the "Get Started" button. NOTE: will be replaced with primary button */}
-              {index === onboardingImages.length - 1 && (
-                <View
-                  backgroundColor="backgroundSecondary"
-                  style={styles.getStartedButton}
-                >
-                  <PrimaryButton
-                    label="Get Started"
-                    onPress={() => navigation.navigate("TopicSelection")}
+                {/* If it's the last slide, show the "Get Started" button. NOTE: will be replaced with primary button */}
+                {index === onboardingImages.length - 1 && (
+                  <View
+                    backgroundColor="backgroundSecondary"
+                    style={styles.getStartedButton}
+                  >
+                    <PrimaryButton
+                      label="Get Started"
+                      onPress={() => navigation.navigate("TopicSelection")}
+                    />
+                  </View>
+                )}
+              </View>
+            ))}
+          </ScrollView>
+
+          <View
+            backgroundColor="backgroundSecondary"
+            style={styles.bottomContainer}
+          >
+            <View backgroundColor="backgroundSecondary">
+              <View
+                backgroundColor="backgroundSecondary"
+                style={styles.dotContainer}
+              >
+                {onboardingImages.map((_, index) => (
+                  <PagingDot
+                    color="generalGray"
+                    translateX={translateX}
+                    key={index}
                   />
-                </View>
-              )}
-            </View>
-          ))}
-        </ScrollView>
+                ))}
+              </View>
 
-        <View
-          backgroundColor="backgroundSecondary"
-          style={styles.bottomContainer}
-        >
-          <View backgroundColor="backgroundSecondary">
-            <View
-              backgroundColor="backgroundSecondary"
-              style={styles.dotContainer}
-            >
-              {onboardingImages.map((_, index) => (
-                <PagingDot
-                  color="generalGray"
-                  translateX={translateX}
-                  key={index}
-                />
-              ))}
+              <PagingDot
+                color="primary"
+                translateX={translateX}
+                isActive={true}
+                style={styles.activeDot}
+              />
             </View>
 
-            <PagingDot
-              color="primary"
-              translateX={translateX}
-              isActive={true}
-              style={styles.activeDot}
-            />
+            <TextButton onPress={() => navigation.navigate("TopicSelection")}>
+              SKIP
+            </TextButton>
           </View>
-
-          <TextButton onPress={() => navigation.navigate("TopicSelection")}>
-            SKIP
-          </TextButton>
         </View>
-      </View>
-    </SafeAreaView> 
+      </SafeAreaView>
   );
 };
 
