@@ -1,8 +1,7 @@
 import { StepIndicator } from "../../../components";
-import AddMembers from "./AddMembers/screens/AddMembers.screen";
 import { NavigationProp } from "@react-navigation/native";
 import { AllTasks } from "./AllTasks/screens/AllTasks.screen";
-import { AddLinks, Description, TechNGoals } from "../components";
+import { AddLinks, AddMembers, Description, TechNGoals } from "../components";
 interface HeaderProps {
   navigation: NavigationProp<any>;
 }

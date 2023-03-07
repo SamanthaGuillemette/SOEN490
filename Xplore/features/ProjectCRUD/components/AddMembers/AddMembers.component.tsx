@@ -1,5 +1,5 @@
 import styles from "./AddMembers.styles";
-import { SearchBar, UsersList, View } from "../../../../../components";
+import { SearchBar, UsersList, View } from "../../../../components";
 
 interface UsersType {
   id: string;
@@ -59,7 +59,7 @@ const Users: UsersType[] = [
   },
 ];
 
-const AddMembers = () => {
+export const AddMembers = () => {
   return (
     <View style={styles.container}>
       {/* Needed components */}
@@ -69,5 +69,3 @@ const AddMembers = () => {
     </View>
   );
 };
-
-export default AddMembers;
