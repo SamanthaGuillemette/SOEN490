@@ -1,10 +1,9 @@
 import { ScrollView, Modal } from "react-native";
 import { useState } from "react";
-import { SquaredButton, Text, View } from "../../../../../components";
-import { TaskCard } from "../../../../../components";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Input } from "../components/Input";
+import { TaskCard, View, Text, SquaredButton } from "../../../../components";
+import { TaskModal } from "../TaskModal";
 
 export const AllTasks = () => {
   const [showModal, setShowModal] = useState<any>(false);
@@ -47,7 +46,7 @@ export const AllTasks = () => {
           onRequestClose={() => setShowModal(!showModal)}
         >
           <SafeAreaView>
-            <Input onPress={() => setShowModal(!showModal)} />
+            <TaskModal onPress={() => setShowModal(!showModal)} />
           </SafeAreaView>
         </Modal>
       </View>

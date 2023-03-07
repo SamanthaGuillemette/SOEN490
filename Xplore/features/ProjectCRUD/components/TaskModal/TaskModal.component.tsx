@@ -1,27 +1,26 @@
-import {
-  InputField,
-  DatePicker,
-  Text,
-  ShadowView,
-  MemberChipAdder,
-} from "../../../../../../components";
 import { useState } from "react";
 import { View } from "react-native";
-import styles from "./Input.styles";
-
+import styles from "./TaskModal.styles";
 import { TouchableOpacity } from "react-native";
-import { useThemeColor } from "../../../../../../hooks";
-import { Icon } from "../../../../../../components";
+import {
+  DatePicker,
+  Icon,
+  InputField,
+  MemberChipAdder,
+  ShadowView,
+  Text,
+} from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
 
-interface InputProps {
+interface TaskModalProps {
   onPress?: any;
 }
 
-export const Input = (props: InputProps) => {
+export const TaskModal = (props: TaskModalProps) => {
   const [taskName, setTaskName] = useState("");
   const [taskDesc, setTaskDesc] = useState("");
   const [taskCategory, setTaskCategory] = useState("");
-  const userName = useState("");
+  // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
 
   const [btnClicked, setBtnClicked] = useState(false);
