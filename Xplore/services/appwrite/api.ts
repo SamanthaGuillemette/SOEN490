@@ -1,5 +1,13 @@
 import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
-import { Client, Databases, Account, ID, Models, Query } from "appwrite";
+import {
+  Client,
+  Databases,
+  Account,
+  ID,
+  Models,
+  Query,
+  Storage,
+} from "appwrite";
 
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
@@ -8,6 +16,9 @@ export const database = new Databases(client);
 
 const api = {
   query: Query,
+  storage: new Storage(client),
+  ID: ID,
+
   createAccount: (email: string, password: string, name: string) => {
     return account.create(ID.unique(), email, password, name);
   },

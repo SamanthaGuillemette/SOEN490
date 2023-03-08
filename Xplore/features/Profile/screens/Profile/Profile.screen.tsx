@@ -20,10 +20,7 @@ import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
-import {
-  useFetchUserDetails,
-  useFetchUserProjects,
-} from "../../../../services/api/userProfile";
+import { useFetchUserDetails } from "../../../../services/api/userProfile";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -75,12 +72,8 @@ const Profile = (props: ProfileProps) => {
     extrapolate: "clamp",
   });
 
-  // Get user data from DB, renamed 'data' to 'userdata' to avoid confusion
   const { data } = useFetchUserDetails();
   const userDetails = data?.documents[0];
-  console.log(JSON.stringify(data, null, 4));
-  const userProjects = useFetchUserProjects(userDetails?.projects);
-  console.log(JSON.stringify(userProjects, null, 4));
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );

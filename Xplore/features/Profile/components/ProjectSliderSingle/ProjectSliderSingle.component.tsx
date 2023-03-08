@@ -15,11 +15,12 @@ interface ProjectSliderSingleProps {
   itemWidth: number;
   name: string;
   description: string;
-  isComplete: string;
+  percentComplete: number;
 }
 
 export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
-  const { index, scrollY, itemWidth, name, description, isComplete } = props;
+  const { index, scrollY, itemWidth, name, description, percentComplete } =
+    props;
   const itemScaleStyle = useAnimatedStyle(() => {
     const input = [
       index * itemWidth - itemWidth,
@@ -62,7 +63,7 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
           darkColor={colors.dark.backgroundSecondary}
           lightColor={colors.light.backgroundSecondary}
         >
-          {isComplete ? "Completed" : "Under development"}
+          {percentComplete === 100 ? "Completed" : "Under development"}
         </Text>
         <Text variant="h3" color="generalGray">
           {name}

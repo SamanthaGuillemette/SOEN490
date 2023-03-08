@@ -1,12 +1,12 @@
 import { useQuery } from "react-query";
-import { PROJECT_COLLECTION_ID, USER_COLLECTION_ID } from "@env";
+import { USER_COLLECTION_ID, PROFILE_PICTURES_BUCKET_ID } from "@env";
 import api from "../appwrite/api";
 import { useAuth } from "../../hooks";
 
 const useFetchUserDetails = () => {
   const { accountToken } = useAuth();
   return useQuery({
-    queryKey: ["userDetails", accountToken!.$id],
+    queryKey: ["userDetails", accountToken?.$id],
     queryFn: () =>
       api.listDocuments(USER_COLLECTION_ID, [
         api.query.equal("userID", accountToken!.$id),
@@ -14,13 +14,17 @@ const useFetchUserDetails = () => {
   });
 };
 
-const useFetchUserProjects = (projectIDs: string[]) =>
-  useQuery({
-    queryKey: ["userProjects", projectIDs],
+const useUploadProfilePicture = async (profilePicture: any) => {
+  const res = await api.storage.createFile(
+    PROFILE_PICTURES_BUCKET_ID,
+    api.ID.unique(),
+    profilePicture
+  );
+  return useQuery({
+    queryKey: ["profilePictureURL", res.$id],
     queryFn: () =>
-      api.listDocuments(PROJECT_COLLECTION_ID, [
-        api.query.equal("$id", [...projectIDs]),
-      ]),
+      api.storage.getFilePreview(PROFILE_PICTURES_BUCKET_ID, res.$id),
   });
+};
 
-export { useFetchUserDetails, useFetchUserProjects };
+export { useFetchUserDetails };

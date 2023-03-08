@@ -1,5 +1,10 @@
 //removed useQuery import for the time being
-import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+  useQuery,
+} from "react-query";
 import { PROJECT_COLLECTION_ID } from "@env";
 import api from "../appwrite/api";
 
@@ -25,6 +30,15 @@ const useListProjectsPaginated = () => {
   });
 };
 
+const useFetchUserProjects = (projectIDs: string[]) =>
+  useQuery({
+    queryKey: ["userProjects", projectIDs],
+    queryFn: () =>
+      api.listDocuments(PROJECT_COLLECTION_ID, [
+        api.query.equal("$id", [...projectIDs]),
+      ]),
+  });
+
 const useCreateProject = (data: Project) => {
   return useMutation(() => api.createDocument(PROJECT_COLLECTION_ID, data));
 };
@@ -39,4 +53,9 @@ const useDeleteProject = (documentId: string) => {
   });
 };
 
-export { useCreateProject, useDeleteProject, useListProjectsPaginated };
+export {
+  useCreateProject,
+  useDeleteProject,
+  useListProjectsPaginated,
+  useFetchUserProjects,
+};
