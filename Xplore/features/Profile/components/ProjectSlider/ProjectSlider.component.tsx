@@ -7,16 +7,21 @@ import { deviceScreenWidth } from "../../../../constants";
 import { useThemeColor } from "../../../../hooks";
 import { ProjectSliderSingle } from "../ProjectSliderSingle";
 import styles from "./ProjectSlider.styles";
-
+import { useFetchUserProjects } from "../../../../services/api/userProfile";
 const itemWidth = deviceScreenWidth / 1.4;
+interface ProjectSliderProps {
+  projectIDs: string[];
+}
 
-export const ProjectSlider = () => {
+export const ProjectSlider = (props: ProjectSliderProps) => {
+  const { projectIDs } = props;
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.x;
   });
   const generalGray = useThemeColor("generalGray");
 
+  const { data } = useFetchUserProjects(projectIDs);
   return (
     <View style={[styles.mainContainer, { borderTopColor: generalGray }]}>
       <View style={styles.projectTitleContainer}>
@@ -28,13 +33,16 @@ export const ProjectSlider = () => {
 
       <View>
         <Animated.FlatList
-          data={[1, 2, 3, 4, 5]}
-          keyExtractor={(x) => x.toString()}
-          renderItem={({ index }) => (
+          data={data?.documents}
+          keyExtractor={(item, index) => String(index)}
+          renderItem={({ item, index }: any) => (
             <ProjectSliderSingle
               index={index}
               scrollY={scrollY}
               itemWidth={itemWidth}
+              name={item.name}
+              description={item.description}
+              isComplete={item.isComplete}
             />
           )}
           horizontal
