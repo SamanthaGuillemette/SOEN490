@@ -32,11 +32,12 @@ const useListProjectsPaginated = () => {
 
 const useFetchUserProjects = (projectIDs: string[]) =>
   useQuery({
-    queryKey: ["userProjects"],
+    queryKey: ["projects", projectIDs],
     queryFn: () =>
       api.listDocuments(PROJECT_COLLECTION_ID, [
         api.query.equal("$id", [...projectIDs]),
       ]),
+    retry: 2,
   });
 
 const useCreateProject = (data: Project) => {

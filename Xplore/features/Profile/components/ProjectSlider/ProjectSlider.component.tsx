@@ -22,7 +22,8 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
   });
   const generalGray = useThemeColor("generalGray");
 
-  const { data } = useFetchUserProjects(projectIDs);
+  const { data, status } = useFetchUserProjects(projectIDs);
+  console.log(JSON.stringify(data, null, 4));
 
   return (
     <View style={[styles.mainContainer, { borderTopColor: generalGray }]}>
@@ -34,31 +35,35 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
       </View>
 
       <View>
-        <Animated.FlatList
-          data={data?.documents}
-          keyExtractor={(index) => String(index)}
-          renderItem={({ item, index }: any) => (
-            <ProjectSliderSingle
-              index={index}
-              scrollY={scrollY}
-              itemWidth={itemWidth}
-              name={item.name}
-              description={item.description}
-              percentComplete={item.percentComplete}
-            />
-          )}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={[
-            styles.flatlistContentContainer,
-            {
-              paddingHorizontal: (deviceScreenWidth - itemWidth) / 2,
-            },
-          ]}
-          snapToInterval={itemWidth}
-          onScroll={scrollHandler}
-          decelerationRate="fast"
-        />
+        {status === "success" ? (
+          <Animated.FlatList
+            data={data?.documents}
+            keyExtractor={(index) => String(index)}
+            renderItem={({ item, index }: any) => (
+              <ProjectSliderSingle
+                index={index}
+                scrollY={scrollY}
+                itemWidth={itemWidth}
+                name={item.name}
+                description={item.description}
+                percentComplete={item.percentComplete}
+              />
+            )}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={[
+              styles.flatlistContentContainer,
+              {
+                paddingHorizontal: (deviceScreenWidth - itemWidth) / 2,
+              },
+            ]}
+            snapToInterval={itemWidth}
+            onScroll={scrollHandler}
+            decelerationRate="fast"
+          />
+        ) : (
+          <Text>loading...</Text>
+        )}
       </View>
     </View>
   );
