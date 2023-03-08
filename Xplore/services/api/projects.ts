@@ -5,7 +5,7 @@ import {
   useQueryClient,
   useQuery,
 } from "react-query";
-import { PROJECT_COLLECTION_ID } from "@env";
+import { PROJECT_COLLECTION_ID, PROJECT_PICTURES_BUCKET_ID } from "@env";
 import api from "../appwrite/api";
 
 //to be defined
@@ -32,7 +32,7 @@ const useListProjectsPaginated = () => {
 
 const useFetchUserProjects = (projectIDs: string[]) =>
   useQuery({
-    queryKey: ["userProjects", projectIDs],
+    queryKey: ["userProjects"],
     queryFn: () =>
       api.listDocuments(PROJECT_COLLECTION_ID, [
         api.query.equal("$id", [...projectIDs]),
@@ -53,9 +53,17 @@ const useDeleteProject = (documentId: string) => {
   });
 };
 
+const useUploadProjectPicture = async (projectPicture: any) => {
+  return useQuery({
+    queryKey: ["projectPicture", projectPicture],
+    queryFn: () => api.uploadImage(PROJECT_PICTURES_BUCKET_ID, projectPicture),
+  });
+};
+
 export {
   useCreateProject,
   useDeleteProject,
   useListProjectsPaginated,
   useFetchUserProjects,
+  useUploadProjectPicture,
 };

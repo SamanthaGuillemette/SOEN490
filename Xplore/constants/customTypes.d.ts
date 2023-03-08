@@ -10,4 +10,5 @@ declare module "@env" {
   export const PROJECT_COLLECTION_ID: string;
   export const USER_COLLECTION_ID: string;
   export const PROFILE_PICTURES_BUCKET_ID: string;
+  export const PROJECT_PICTURES_BUCKET_ID: string;
 }

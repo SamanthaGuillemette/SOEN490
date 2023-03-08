@@ -14,14 +14,11 @@ const useFetchUserDetails = () => {
   });
 };
 
-const useUploadProfilePicture = async (
-  bucketId: string,
-  profilePicture: any
-) => {
+const useUploadProfilePicture = async (profilePicture: any) => {
   return useQuery({
-    queryKey: ["profilePictureURL", profilePicture],
+    queryKey: ["profilePicture", profilePicture],
     queryFn: () => api.uploadImage(PROFILE_PICTURES_BUCKET_ID, profilePicture),
   });
 };
 
-export { useFetchUserDetails };
+export { useFetchUserDetails, useUploadProfilePicture };
