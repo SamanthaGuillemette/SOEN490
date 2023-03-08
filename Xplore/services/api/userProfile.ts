@@ -14,16 +14,13 @@ const useFetchUserDetails = () => {
   });
 };
 
-const useUploadProfilePicture = async (profilePicture: any) => {
-  const res = await api.storage.createFile(
-    PROFILE_PICTURES_BUCKET_ID,
-    api.ID.unique(),
-    profilePicture
-  );
+const useUploadProfilePicture = async (
+  bucketId: string,
+  profilePicture: any
+) => {
   return useQuery({
-    queryKey: ["profilePictureURL", res.$id],
-    queryFn: () =>
-      api.storage.getFilePreview(PROFILE_PICTURES_BUCKET_ID, res.$id),
+    queryKey: ["profilePictureURL", profilePicture],
+    queryFn: () => api.uploadImage(PROFILE_PICTURES_BUCKET_ID, profilePicture),
   });
 };
 
