@@ -35,10 +35,10 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
       </View>
 
       <View>
+        <></>
         {status === "success" ? (
           <Animated.FlatList
             data={data?.documents}
-            keyExtractor={(index) => String(index)}
             renderItem={({ item, index }: any) => (
               <ProjectSliderSingle
                 index={index}

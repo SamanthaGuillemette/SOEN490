@@ -2,23 +2,24 @@ import { LinearProgressBar, Text, View } from "../../../../components";
 import { fonts } from "../../../../constants";
 import styles from "./UserProgress.styles";
 
-export const UserProgress = () => {
+interface UserProgressProps {
+  xp: number;
+}
+
+export const UserProgress = (props: UserProgressProps) => {
+  const { xp } = props;
   return (
     <View style={styles.mainContainer}>
-      <LinearProgressBar progress={0.8} />
+      <LinearProgressBar progress={xp} />
 
       <View style={styles.userStatText}>
         <Text>
-          <Text variant="smBody" color="bodyText">
-            970/1000
-          </Text>
           <Text
             variant="smBody"
             color="bodyText"
             style={{ fontFamily: fonts.defaultBold }}
           >
-            {" "}
-            XP
+            {`${xp} / 1000 XP`}
           </Text>
         </Text>
         <Text>
@@ -27,11 +28,7 @@ export const UserProgress = () => {
             color="bodyText"
             style={{ fontFamily: fonts.defaultBold }}
           >
-            30 XP
-          </Text>
-          <Text variant="smBody" color="bodyText">
-            {" "}
-            to level up
+            {`${1000 - xp} required to level up`}
           </Text>
         </Text>
       </View>

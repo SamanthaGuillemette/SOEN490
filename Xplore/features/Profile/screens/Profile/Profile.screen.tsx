@@ -21,6 +21,7 @@ import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
 import { useFetchUserDetails } from "../../../../services/api/userProfile";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -93,10 +94,14 @@ const Profile = (props: ProfileProps) => {
       >
         {/* THIS IS EVERYTHING BELOW THE ANIMATED HEADER */}
         <View style={styles.belowHeaderContainer}>
-          <UserProgress />
+          <UserProgress xp={userDetails?.xp} />
           <StatBoxes />
           <Badges />
-          <ProjectSlider projectIDs={userDetails?.projects} />
+          {userDetails ? (
+            <ProjectSlider projectIDs={userDetails?.projects} />
+          ) : (
+            <Spinner />
+          )}
           <View style={styles.logoutButton}>
             <LogoutButton />
           </View>
