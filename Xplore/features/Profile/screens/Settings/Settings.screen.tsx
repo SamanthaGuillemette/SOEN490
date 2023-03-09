@@ -1,10 +1,11 @@
-import { StatusBar, StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Avatar, Icon, ShadowView, Text } from "../../../../components";
-import EditButton from "../../components/EditButton/EditButton.component";
+// import { TouchableOpacity } from "react-native-gesture-handler";
+import { Avatar, Icon, ShadowView } from "../../../../components";
+import { EditButton } from "../../components";
+import { deviceScreenWidth } from "../../../../constants";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -87,8 +88,8 @@ const styles = StyleSheet.create({
   editAvatarButton: {
     position: "absolute",
     bottom: 10,
-    right: -60,
-    zIndex: 5,
+    right: deviceScreenWidth / 2 - 60,
+    zIndex: 1,
   },
   editAvatarButtonShadow: {
     padding: 8,

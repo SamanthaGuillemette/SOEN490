@@ -8,7 +8,7 @@ interface EditButtonProps extends TouchableOpacityProps {
   label: string;
 }
 
-const EditButton = (props: EditButtonProps) => {
+export const EditButton = (props: EditButtonProps) => {
   const { iconName, label, ...restOfProps } = props;
 
   return (
@@ -22,5 +22,3 @@ const EditButton = (props: EditButtonProps) => {
     </TouchableOpacity>
   );
 };
-
-export default EditButton;
