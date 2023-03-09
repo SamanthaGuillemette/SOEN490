@@ -11,10 +11,17 @@ export default StyleSheet.create({
   },
 
   alignLeft: {
-    top: -10,
-    left: 20,
+    
+    alignItems: "flex-start",
   },
   mainContainer: {
     marginTop: 50,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
+
+  squareButton:{
+    padding:10,
+  }
 });

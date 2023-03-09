@@ -10,46 +10,40 @@ export const AllTasks = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.alignLeft}>
-        <Text color="titleText" variant="h3">
-          Click here to select a task
-        </Text>
-      </View>
-      <View style={styles.container}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.content}>
-            <TaskCard
-              taskType="Design"
-              taskName="UX Brainstorm"
-              taskDate="13/12/2022"
-            />
-            <TaskCard
-              taskType="Meeting"
-              taskName="Finish App UI"
-              taskDate="13/12/2022"
-            />
-            <TaskCard
-              taskType="Meeting"
-              taskName="Spring Meeting"
-              taskDate="13/12/2022"
-            />
-          </View>
-        </ScrollView>
+      <Text color="titleText" variant="h3" style={styles.alignLeft}>
+        Click here to select a task
+      </Text>
+      <TaskCard
+        taskType="Design"
+        taskName="UX Brainstorm"
+        taskDate="13/12/2022"
+      />
+      <TaskCard
+        taskType="Meeting"
+        taskName="Finish App UI"
+        taskDate="13/12/2022"
+      />
+      <TaskCard
+        taskType="Meeting"
+        taskName="Spring Meeting"
+        taskDate="13/12/2022"
+      />
+      <View style={styles.squareButton}>
         <SquaredButton
-          iconName="plus"
-          onPress={() => setShowModal(!showModal)}
+        iconName="plus"
+        onPress={() => setShowModal(!showModal)}
         />
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={showModal}
-          onRequestClose={() => setShowModal(!showModal)}
-        >
-          <SafeAreaView>
-            <TaskModal onPress={() => setShowModal(!showModal)} />
-          </SafeAreaView>
-        </Modal>
       </View>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showModal}
+        onRequestClose={() => setShowModal(!showModal)}
+      >
+        <SafeAreaView edges={["top"]} style={styles.mainContainer}>
+          <TaskModal onPress={() => setShowModal(!showModal)} />
+        </SafeAreaView>
+      </Modal>
     </View>
   );
 };
