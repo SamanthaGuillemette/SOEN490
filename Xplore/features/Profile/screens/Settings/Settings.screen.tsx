@@ -1,12 +1,10 @@
-import * as React from "react";
-import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import EditProfileBox from "../../components/settings-components/EditProfileBox";
-import PassBox from "../../components/settings-components/PassBox";
-import SaveButton from "../../components/settings-components/SaveButton";
-import TopicBox from "../../components/settings-components/TopicBox";
-import EditAvatar from "../../components/settings-components/EditAvatar";
+import { StatusBar, StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Avatar, Icon, ShadowView, Text } from "../../../../components";
+import EditButton from "../../components/EditButton/EditButton.component";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -15,13 +13,56 @@ interface SettingsProps {
 const Settings = (props: SettingsProps) => {
   const { navigation } = props;
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
+    <SafeAreaView edges={["top", "left", "right"]} style={styles.safeAreaStyle}>
       <ScrollView>
-        <EditAvatar onPress={() => navigation.navigate("BottomTabNavigator")} />
-        <EditProfileBox />
-        <PassBox />
-        <TopicBox />
-        <SaveButton />
+        <View style={styles.backButton}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            <Icon name="chevron-left" color="primary" />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.avatarContainer}>
+          <Avatar
+            size={135}
+            name="user avatar"
+            imageURL="https://picsum.photos/200"
+          />
+          <TouchableOpacity
+            style={styles.editAvatarButton}
+            onPress={() => {
+              alert("upload new image");
+            }}
+          >
+            <ShadowView
+              backgroundColor="white"
+              style={styles.editAvatarButtonShadow}
+            >
+              <Icon name="edit" size="small" />
+            </ShadowView>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.settingButtonsContainer}>
+          <EditButton
+            iconName="user"
+            label="Edit Profile"
+            onPress={() => alert("pressed!")}
+          />
+          <EditButton
+            iconName="lock"
+            label="Change Password"
+            onPress={() => alert("pressed!")}
+          />
+          <EditButton
+            iconName="smile"
+            label="Update Interests"
+            onPress={() => alert("pressed!")}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -33,5 +74,28 @@ const styles = StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
     marginTop: StatusBar.currentHeight ?? 0,
+  },
+  backButton: {
+    paddingTop: 25,
+    paddingLeft: 23,
+    paddingBottom: 16,
+    width: 80,
+  },
+  avatarContainer: {
+    alignItems: "center",
+  },
+  editAvatarButton: {
+    position: "absolute",
+    bottom: 10,
+    right: -60,
+    zIndex: 5,
+  },
+  editAvatarButtonShadow: {
+    padding: 8,
+    borderRadius: 50,
+  },
+  settingButtonsContainer: {
+    marginTop: 75,
+    paddingHorizontal: 30,
   },
 });
