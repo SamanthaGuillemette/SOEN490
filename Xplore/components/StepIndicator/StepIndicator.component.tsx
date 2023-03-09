@@ -142,16 +142,15 @@ export const StepIndicator = (props: StepIndicatorProps) => {
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <TopHeader
-      title={headerTitle}
-      icon1Name="search"
-      icon1Color="primaryBackground"
-      navigation={activeIndex === 0 ? navigation : goToPrevStep}
+        title={headerTitle}
+        icon1Name="search"
+        icon1Color="primaryBackground"
+        navigation={activeIndex === 0 ? navigation : goToPrevStep}
       />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: background }}
       >
-     
         <View style={styles.stepIndicator}>
           <Wizard
             containerStyle={styles.containerStyle}

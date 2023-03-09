@@ -1,4 +1,4 @@
-import { StyleSheet, StatusBar } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   alignBtn: {
@@ -12,7 +12,6 @@ export default StyleSheet.create({
   },
   safeAreaStyle: {
     flex: 1,
-    marginTop: StatusBar.currentHeight ?? 0,
   },
   spacingBottom: {
     paddingBottom: 100,
