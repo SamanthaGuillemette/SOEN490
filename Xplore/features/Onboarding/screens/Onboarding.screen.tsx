@@ -43,7 +43,7 @@ interface OnboardingProps {
 const Onboarding = (props: OnboardingProps) => {
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
-  const [onboarding, setOnboarding] = useState<any | null>(null);
+  var onboardingSeen = false;
 
   const scrollValue = useRef(new Animated.Value(0)).current;
   const translateX = scrollValue.interpolate({
@@ -55,6 +55,16 @@ const Onboarding = (props: OnboardingProps) => {
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
+  const { data: onboardingData } = useQuery("onboarding data", () =>
+    api.listDocuments(COLLECTION_ID_ONBOARDING, [
+      Query.equal("userID", userId),
+    ])
+  );
+
+  if(onboardingData?.total != 0 && userId){
+    onboardingSeen = true;
+  }
+
   useEffect(() => {
     const getOnboarding = async () => {
       try {
@@ -65,11 +75,6 @@ const Onboarding = (props: OnboardingProps) => {
         if(onboarding_response.total == 0 && userId){
           api.createDocument(COLLECTION_ID_ONBOARDING, {userID: userId, seen: true});
         }
-        else {
-          setOnboarding(
-            onboarding_response?.documents?.at(0)
-          );
-        }
       } catch (e) {
         console.log(e);
       }
@@ -78,7 +83,7 @@ const Onboarding = (props: OnboardingProps) => {
   }, [userId]);
   
   return (
-    onboarding != null && onboarding.seen == true ? <BottomTabNavigator/> :
+    onboardingSeen ? <BottomTabNavigator/> :
       <SafeAreaView
         style={[styles.safeAreaContainer, { backgroundColor: whiteBackground }]}
       >
