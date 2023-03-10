@@ -13,7 +13,7 @@ interface Chat {
   chatName?: any;
   lastMessage: any;
   seen: any;
-  updatedAt: string;
+  lastModifiedAt: string;
 }
 
 const getChats = async (collectionId: any, userId: any) => {
@@ -29,7 +29,7 @@ const getChats = async (collectionId: any, userId: any) => {
     chatName: collectionId === COLLECTION_ID_GROUP_CHATS ? doc.chatName : null,
     lastMessage: doc.lastMessage,
     seen: doc.seen,
-    updatedAt: doc.$updatedAt,
+    lastModifiedAt: doc.lastModifiedAt,
   }));
 };
 
@@ -48,8 +48,8 @@ const useListChats = (userId: any) => {
           const allChats = directChats.concat(groupChats);
           allChats.sort(
             (chat1: any, chat2: any) =>
-              new Date(chat2.updatedAt).getTime() -
-              new Date(chat1.updatedAt).getTime()
+              new Date(chat2.lastModifiedAt).getTime() -
+              new Date(chat1.lastModifiedAt).getTime()
           );
           setChats(allChats);
         }
@@ -78,6 +78,7 @@ const markAsSeen = async (chatType: string, chatID: any, userId: any) => {
       contactID: doc.contactID,
       chatName: doc.chatName,
       lastMessage: doc.message,
+      lastModifiedAt: doc.lastModifiedAt,
       seen: true,
     };
     api.updateDocument(collectionId, doc.$id, updateData);

@@ -29,9 +29,8 @@ const getMessages = async (chatID: any) => {
 
 const useListMessages = (chatID: any) => {
   const [messages, setMessages] = useState<any[]>([]);
-
   useEffect(() => {
-    const fetchData = async () => {
+    const interval = setInterval(async () => {
       try {
         const fetchedMessages = await getMessages(chatID);
         const groupedMessages = await groupMessagesByDate(fetchedMessages);
@@ -39,8 +38,8 @@ const useListMessages = (chatID: any) => {
       } catch (e) {
         console.log(e);
       }
-    };
-    fetchData();
+    }, 500);
+    return () => clearInterval(interval); // Clear the interval on component unmount
   }, [chatID]);
 
   const groupMessagesByDate = async (msgs: any) => {
@@ -81,6 +80,7 @@ const updateLastMessage = async (
         chatName: doc.chatName,
         chatID: chatID,
         lastMessage: msgData.message,
+        lastModifiedAt: new Date().toISOString(),
         seen: doc.userID === usrId ? true : false,
       });
     });
@@ -91,6 +91,7 @@ const updateLastMessage = async (
         contactID: doc.contactID,
         chatID: chatID,
         lastMessage: msgData.message,
+        lastModifiedAt: new Date().toISOString(),
         seen: doc.userID === usrId ? true : false,
       });
     });

@@ -46,11 +46,14 @@ const Chats = (props: ChatsProps) => {
                 chatType={chat.chatType}
                 lastText={chat.lastMessage}
                 seen={chat.seen}
-                time={new Date(chat.updatedAt).toLocaleDateString("en-us", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}
+                time={new Date(chat.lastModifiedAt).toLocaleDateString(
+                  "en-us",
+                  {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  }
+                )}
                 onPress={async () => {
                   try {
                     await markAsSeen(chat.chatType, chat.chatID, userId);
