@@ -6,10 +6,10 @@ import {
   DatePicker,
   Icon,
   InputField,
+  MemberChipAdder,
   ShadowView,
   Text,
 } from "../../../../components";
-import { MemberChipAdder } from "../../../../components/MemberChipAdder/MemberChipAdder.component";
 import { useThemeColor } from "../../../../hooks";
 
 interface TaskModalProps {
@@ -83,7 +83,6 @@ export const TaskModal = (props: TaskModalProps) => {
 
         {/* Testing the component, will be adjusted */}
       </View>
-
       <MemberChipAdder />
       <ShadowView
         style={[styles.button, { backgroundColor: primaryBackground }]}

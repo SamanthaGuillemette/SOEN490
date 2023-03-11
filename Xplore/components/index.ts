@@ -45,3 +45,4 @@ export * from "./ChatTextInput";
 export * from "./Conversation";
 export * from "./CategoryScrollBar";
 export * from "./AddMemberModal";
+export * from "./MemberChipAdder";
