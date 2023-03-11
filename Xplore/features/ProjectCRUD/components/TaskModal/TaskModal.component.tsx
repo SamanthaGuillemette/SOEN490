@@ -6,10 +6,10 @@ import {
   DatePicker,
   Icon,
   InputField,
-  MemberChipAdder,
   ShadowView,
   Text,
 } from "../../../../components";
+import { MemberChipAdder } from "../../../../components/MemberChipAdder/MemberChipAdder.component";
 import { useThemeColor } from "../../../../hooks";
 
 interface TaskModalProps {
