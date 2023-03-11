@@ -37,7 +37,6 @@ export * from "./TaskCard";
 export * from "./CircularPercentageBar";
 export * from "./MessageMember";
 export * from "./MemberChip";
-export * from "./MemberChipAdder";
 export * from "./RightBubble";
 export * from "./LeftBubble";
 export * from "./MessageTime";
