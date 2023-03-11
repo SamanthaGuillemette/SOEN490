@@ -9,7 +9,7 @@ import { Icon } from "../Icon";
 import { View } from "../View";
 import { MemberChip } from "../MemberChip";
 import styles from "./MemberChipAdder.styles";
-import { AddMemberModal } from "../../features/Chat/screens/ChatSettings/components/AddMemberModal/AddMemberModal.component";
+import { AddMemberModal } from "../AddMemberModal/AddMemberModal.component";
 import { useState } from "react";
 
 interface MemberChipAdderProps extends TouchableOpacityProps {
