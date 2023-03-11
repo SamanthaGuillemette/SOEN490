@@ -12,13 +12,13 @@ export const EditButton = (props: EditButtonProps) => {
   const { iconName, label, ...restOfProps } = props;
 
   return (
-    <TouchableOpacity {...restOfProps}>
-      <ShadowView style={styles.buttonView}>
+    <ShadowView style={styles.container}>
+      <TouchableOpacity {...restOfProps} style={styles.buttonContainer}>
         <Icon name={iconName} style={styles.buttonIcon} />
         <Text variant="body" color="bodyText">
           {label}
         </Text>
-      </ShadowView>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </ShadowView>
   );
 };

@@ -23,6 +23,7 @@
     "@types/react-native-dotenv": "^0.2.0",
     "appwrite": "^10.1.0",
     "expo": "~46.0.9",
+    "expo-image-picker": "~13.3.1",
     "expo-linking": "~3.2.4",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
