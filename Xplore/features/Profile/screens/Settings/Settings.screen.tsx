@@ -17,18 +17,19 @@ interface SettingsProps {
 const Settings = (props: SettingsProps) => {
   const { navigation } = props;
   const statusBarBg = useThemeColor("background"); // Status bar background (only required for Android)
-  const [image, setImage] = useState<any>();
+  const [image, setImage] = useState<string>();
 
   const handleUploadImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      // allowsEditing: true,
-      aspect: [4, 3],
+      allowsEditing: true,
+      aspect: [3, 3],
       quality: 1,
     });
 
-    console.log(result);
+    // LOG OUT the image info
+    console.log(JSON.stringify(result, null, 2));
 
     if (!result.cancelled) {
       setImage(result.uri);
@@ -54,16 +55,10 @@ const Settings = (props: SettingsProps) => {
           </View>
 
           <View style={styles.avatarContainer}>
-            <Avatar
-              size={135}
-              name="user avatar"
-              imageURL={image || "https://picsum.photos/200"}
-            />
+            <Avatar size={135} name="user avatar" imageURL={image} />
             <TouchableOpacity
               style={styles.editAvatarButton}
-              onPress={() => {
-                handleUploadImage;
-              }}
+              onPress={handleUploadImage}
             >
               <ShadowView
                 backgroundColor="white"
@@ -73,14 +68,6 @@ const Settings = (props: SettingsProps) => {
               </ShadowView>
             </TouchableOpacity>
           </View>
-
-          <TouchableOpacity
-            onPress={() => {
-              handleUploadImage;
-            }}
-          >
-            <Text>Testing image picker</Text>
-          </TouchableOpacity>
 
           <View style={styles.settingButtonsContainer}>
             <EditButton
