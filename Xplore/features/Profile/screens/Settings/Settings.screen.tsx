@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Avatar, Icon, ShadowView, Text } from "../../../../components";
+import { Avatar, Icon, ShadowView } from "../../../../components";
 import { EditButton } from "../../components";
 import { deviceScreenWidth } from "../../../../constants";
 import { useState } from "react";

@@ -1,10 +1,19 @@
 import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
-import { Client, Databases, Account, ID, Models, Query } from "appwrite";
+import {
+  Client,
+  Databases,
+  Account,
+  ID,
+  Models,
+  Query,
+  Storage,
+} from "appwrite";
 
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
-export const account = new Account(client);
-export const database = new Databases(client);
+const account = new Account(client);
+const database = new Databases(client);
+const storage = new Storage(client);
 
 const api = {
   query: Query,
@@ -84,6 +93,26 @@ const api = {
 
   deleteDocument: (collectionId: string, documentId: string) => {
     return database.deleteDocument(DATABASE_ID, collectionId, documentId);
+  },
+
+  createFile: (bucket: string, userId: string, file: File) => {
+    return storage.createFile(bucket, `${userId}-${ID.unique()}`, file);
+  },
+
+  getFilePreview: (bucket: string, fileId: string) => {
+    return storage.getFilePreview(bucket, fileId);
+  },
+
+  listFiles: (
+    bucket: string,
+    queries: string[] | undefined = undefined,
+    search?: string
+  ) => {
+    return storage.listFiles(bucket, queries, search);
+  },
+
+  deleteFile: (bucket: string, fileId: string) => {
+    return storage.deleteFile(bucket, fileId);
   },
 };
 
