@@ -9,6 +9,8 @@ import { deviceScreenWidth } from "../../../../constants";
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useThemeColor } from "../../../../hooks";
+import api from "../../../../services/appwrite/api";
+import { BUCKET_PROFILE_PIC, PROJECT_ID } from "@env";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -17,11 +19,83 @@ interface SettingsProps {
 const Settings = (props: SettingsProps) => {
   const { navigation } = props;
   const statusBarBg = useThemeColor("background"); // Status bar background (only required for Android)
-  const [image, setImage] = useState<string>();
+  const [localImage, setLocalImage] = useState<string>();
+
+  function sendXmlHttpRequest(data: any) {
+    const xhr = new XMLHttpRequest();
+
+    return new Promise((resolve, reject) => {
+      xhr.onreadystatechange = (e) => {
+        if (xhr.readyState !== 4) {
+          return;
+        }
+        console.log("xhr.status", xhr);
+
+        if (xhr.status === 201) {
+          resolve(JSON.parse(xhr.response));
+        } else {
+          reject("Request Failed");
+        }
+      };
+
+      xhr.open(
+        "POST",
+        `https://appwrite.vidyas.ca/v1/storage/buckets/${BUCKET_PROFILE_PIC}/files/`
+      );
+      xhr.withCredentials = true;
+      // xhr.setRequestHeader("content-type", "multipart/form-data");
+      xhr.setRequestHeader("X-Appwrite-Project", PROJECT_ID);
+      xhr.setRequestHeader("X-Appwrite-Response-Format", "0.15.0");
+      xhr.setRequestHeader("x-sdk-version", "appwrite:web:9.0.1");
+      xhr.send(data);
+    });
+  }
+
+  const uploadImageToServer = async (image: ImagePicker.ImageInfo) => {
+    // try {
+    //   const imgFromUri = await fetch(image.uri);
+    //   const imgBlob = await imgFromUri.blob();
+    //   const completedImage: File = new File([imgBlob], "avatar3.jpg", {
+    //     type: imgBlob.type,
+    //     lastModified: Date.now(),
+    //   });
+
+    //   const uploadedImage = await api.createFile(
+    //     BUCKET_PROFILE_PIC,
+    //     "contact.quangtran@gmail.com",
+    //     completedImage
+    //   );
+    //   console.log(JSON.stringify(uploadedImage, null, 2));
+    // } catch (error) {
+    //   console.log(error);
+    //   alert("Upload failed!");
+    // }
+
+    const fileName = image.uri.split("/").pop();
+    // Infer the type of the image
+    let match = /\.(\w+)$/.exec(image.uri);
+    let type = match ? `image/${match[1]}` : "image";
+
+    console.log("_--------------------------------------_");
+    let formData = new FormData();
+    formData.append("fileId", "unique()");
+    formData.append("file", {
+      uri: image.uri,
+      name: fileName,
+      type,
+    });
+    console.log("formData", formData);
+
+    const result = await sendXmlHttpRequest(formData);
+    console.log("result", result);
+
+    // TODO: Need to get the Preview URL from the response
+    // then set the local image to the preview URL
+  };
 
   const handleUploadImage = async () => {
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
+    let pickedImage = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [3, 3],
@@ -29,10 +103,13 @@ const Settings = (props: SettingsProps) => {
     });
 
     // LOG OUT the image info
-    console.log(JSON.stringify(result, null, 2));
+    console.log(JSON.stringify(pickedImage, null, 2));
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (!pickedImage.cancelled) {
+      // Set local image so that the picture is displayed right away.
+      setLocalImage(pickedImage.uri);
+      // Upload the image to the server
+      uploadImageToServer(pickedImage);
     }
   };
 
@@ -55,7 +132,7 @@ const Settings = (props: SettingsProps) => {
           </View>
 
           <View style={styles.avatarContainer}>
-            <Avatar size={135} name="user avatar" imageURL={image} />
+            <Avatar size={135} name="user avatar" imageURL={localImage} />
             <TouchableOpacity
               style={styles.editAvatarButton}
               onPress={handleUploadImage}
