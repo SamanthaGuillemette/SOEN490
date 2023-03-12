@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     marginTop: 50,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   editImageContainer: {
@@ -18,21 +20,22 @@ export default StyleSheet.create({
     left: 34,
     top: 34,
   },
-  containerTextInput: {
-    alignItems: "center",
-    justifyContent: "center",
+  containerTextInputName: {
+    width: 337,
+    height: 45,
+  },
+
+  containerTextInputDesc: {
+    width: 337,
+    height: 111,
   },
   alignProjectName: {
     marginTop: 23,
   },
   alignLeft: {
     top: 10,
-    left: 45,
   },
-  projectName: {
-    width: 337,
-    height: 45,
-  },
+  projectName: { width: 337, height: 45 },
   projectDesc: {
     width: 337,
     height: 111,

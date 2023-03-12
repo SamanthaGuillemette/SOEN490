@@ -21,7 +21,7 @@ export const Description = () => {
         </TouchableOpacity>
       </View>
       <View>
-        <View style={[styles.containerTextInput, styles.alignProjectName]}>
+        <View style={[styles.containerTextInputName, styles.alignProjectName]}>
           <InputField
             placeHolder="Project name"
             styleBox={styles.projectName}
@@ -32,7 +32,7 @@ export const Description = () => {
 
         <DatePicker title="Start" style={styles.alignLeft} />
 
-        <View style={styles.containerTextInput}>
+        <View style={styles.containerTextInputDesc}>
           <InputField
             placeHolder="Project description"
             styleBox={styles.projectDesc}
