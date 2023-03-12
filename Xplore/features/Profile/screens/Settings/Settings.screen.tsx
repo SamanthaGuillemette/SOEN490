@@ -10,7 +10,11 @@ import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";
-import { BUCKET_PROFILE_PIC, PROJECT_ID } from "@env";
+import { BUCKET_PROFILE_PIC } from "@env";
+import {
+  convertImagePathtoBinary,
+  sendXmlHttpRequest,
+} from "../../../../utils";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -20,74 +24,17 @@ const Settings = (props: SettingsProps) => {
   const { navigation } = props;
   const statusBarBg = useThemeColor("background"); // Status bar background (only required for Android)
   const [localImage, setLocalImage] = useState<string>();
+  const [uploadedImageId, setUploadedImageId] = useState<string>();
 
-  function sendXmlHttpRequest(data: any) {
-    const xhr = new XMLHttpRequest();
+  const uploadImageToServer = async (imagePath: string) => {
+    const completedImage = convertImagePathtoBinary(imagePath);
 
-    return new Promise((resolve, reject) => {
-      xhr.onreadystatechange = (e) => {
-        if (xhr.readyState !== 4) {
-          return;
-        }
-        console.log("xhr.status", xhr);
-
-        if (xhr.status === 201) {
-          resolve(JSON.parse(xhr.response));
-        } else {
-          reject("Request Failed");
-        }
-      };
-
-      xhr.open(
-        "POST",
-        `https://appwrite.vidyas.ca/v1/storage/buckets/${BUCKET_PROFILE_PIC}/files/`
-      );
-      xhr.withCredentials = true;
-      // xhr.setRequestHeader("content-type", "multipart/form-data");
-      xhr.setRequestHeader("X-Appwrite-Project", PROJECT_ID);
-      xhr.setRequestHeader("X-Appwrite-Response-Format", "0.15.0");
-      xhr.setRequestHeader("x-sdk-version", "appwrite:web:9.0.1");
-      xhr.send(data);
-    });
-  }
-
-  const uploadImageToServer = async (image: ImagePicker.ImageInfo) => {
-    // try {
-    //   const imgFromUri = await fetch(image.uri);
-    //   const imgBlob = await imgFromUri.blob();
-    //   const completedImage: File = new File([imgBlob], "avatar3.jpg", {
-    //     type: imgBlob.type,
-    //     lastModified: Date.now(),
-    //   });
-
-    //   const uploadedImage = await api.createFile(
-    //     BUCKET_PROFILE_PIC,
-    //     "contact.quangtran@gmail.com",
-    //     completedImage
-    //   );
-    //   console.log(JSON.stringify(uploadedImage, null, 2));
-    // } catch (error) {
-    //   console.log(error);
-    //   alert("Upload failed!");
-    // }
-
-    const fileName = image.uri.split("/").pop();
-    // Infer the type of the image
-    let match = /\.(\w+)$/.exec(image.uri);
-    let type = match ? `image/${match[1]}` : "image";
-
-    console.log("_--------------------------------------_");
-    let formData = new FormData();
-    formData.append("fileId", "unique()");
-    formData.append("file", {
-      uri: image.uri,
-      name: fileName,
-      type,
-    });
-    console.log("formData", formData);
-
-    const result = await sendXmlHttpRequest(formData);
-    console.log("result", result);
+    const uploadedImageResult: any = await sendXmlHttpRequest(
+      completedImage,
+      BUCKET_PROFILE_PIC
+    );
+    console.log("======> uploadedImageResult", uploadedImageResult);
+    setUploadedImageId(uploadedImageResult.$id);
 
     // TODO: Need to get the Preview URL from the response
     // then set the local image to the preview URL
@@ -108,8 +55,14 @@ const Settings = (props: SettingsProps) => {
     if (!pickedImage.cancelled) {
       // Set local image so that the picture is displayed right away.
       setLocalImage(pickedImage.uri);
-      // Upload the image to the server
-      uploadImageToServer(pickedImage);
+      uploadImageToServer(pickedImage.uri);
+
+      const imagePreview = await api.getFilePreview(
+        BUCKET_PROFILE_PIC,
+        uploadedImageId ?? ""
+      );
+      console.log("=====> imagePreview", imagePreview);
+      setLocalImage(imagePreview.toString());
     }
   };
 
