@@ -21,7 +21,7 @@ const Home = (props: ProjectsProps) => {
       <TopHeader
         screenName={"Projects"}
         navigation={props.navigation}
-        name="ProjectEdit"
+        name="edit"
       />
       <TouchableOpacity
         onPress={() => props.navigation.navigate("ProfileEdit")}

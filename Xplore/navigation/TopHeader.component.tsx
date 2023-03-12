@@ -23,8 +23,8 @@ const TopHeader = (props: TopHeaderProps) => {
         </TouchableOpacity>
         <Text variant="h2">{props.screenName}</Text>
       </View>
-      {props.name && (
-        <TouchableOpacity onPress={() => navigation.navigate(props.name)}>
+      {props.name === "edit" && (
+        <TouchableOpacity onPress={() => navigation.navigate("ProjectEdit")}>
           <Icon name="edit" style={styles.editIcon} />
         </TouchableOpacity>
       )}
