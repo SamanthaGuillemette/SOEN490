@@ -24,9 +24,9 @@ export default StyleSheet.create({
   },
   addedBtn: {
     width: 67,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  },
+  removedBtn: {
+    width: 86,
   },
   btn: {
     height: 24,
@@ -37,5 +37,10 @@ export default StyleSheet.create({
   alignIcon: {
     left: 265,
     bottom: 10,
+  },
+  Button: {
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
