@@ -5,11 +5,13 @@ import { TouchableOpacity } from "react-native";
 import { ListItem } from "@rneui/themed";
 import { useThemeColor } from "../../hooks";
 import styles from "./TaskCard.styles";
+import { NavigationProp } from "@react-navigation/native";
 
 interface taskContentProps {
   taskType: string;
   taskName: string;
   taskDate: string;
+  navigation: NavigationProp<any>;
 }
 
 export const actions = () => {
@@ -42,7 +44,16 @@ export const taskContent = (props: taskContentProps) => {
         <Text style={styles.taskType} variant="h4" color="linkText">
           {props.taskType}
         </Text>
-        <Icon style={styles.taskInfoIcon} size="medium" name="help-circle" />
+
+        <TouchableOpacity
+          onPress={() =>
+            props.navigation.navigate("IndividualTask", {
+              taskName: props.taskName,
+            })
+          }
+        >
+          <Icon style={styles.taskInfoIcon} size="medium" name="help-circle" />
+        </TouchableOpacity>
       </View>
       <Text style={styles.taskName} variant="h2" color="titleText">
         {props.taskName}

@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Projects from "../../features/Projects/screens/Projects.screen";
+import Projects from "../../features/Projects/Main/screens/Projects.screen";
 
 const ProjectStack = createNativeStackNavigator();
 
