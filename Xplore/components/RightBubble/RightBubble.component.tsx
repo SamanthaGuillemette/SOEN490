@@ -8,15 +8,16 @@ import styles from "./RightBubble.styles";
 
 interface RightBubbleProps {
   text: String;
+  msgTime: String;
   image: any;
 }
 
-export const RightBubble = ({ text, image }: RightBubbleProps) => {
+export const RightBubble = ({ text, msgTime, image }: RightBubbleProps) => {
   return (
     <View backgroundColor="background" style={styles.bubbleContainer}>
       <ShadowView style={styles.rightBubble}>
         <Text variant="body">{text}</Text>
-        <MessageTime time={"11:11 PM"} style={styles.msgTime} />
+        <MessageTime time={msgTime} style={styles.msgTime} />
       </ShadowView>
       <View backgroundColor="background">
         <Avatar

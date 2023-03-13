@@ -4,7 +4,9 @@ import { Icon, ShadowView, Text, View } from "../../../../../../components";
 import styles from "./ChatDetailsHeader.styles";
 
 interface ChatDetailsHeader {
+  chatID: String;
   username: String;
+  chatType: String;
   navigation: NavigationProp<any>;
 }
 
@@ -16,18 +18,19 @@ const ChatDetailsHeader = (props: ChatDetailsHeader) => {
       style={styles.headerBar}
     >
       <View style={styles.navLeftItems}>
-        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Chats")}>
           <Icon style={styles.arrowIcon} name="chevron-left" />
         </TouchableOpacity>
         <Text variant="h2">{props.username}</Text>
       </View>
       <View style={styles.navRightItems}>
-        <TouchableOpacity>
-          <Icon style={styles.phoneIcon} name="phone" />
-        </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
-            props.navigation.navigate("ChatSettings", { name: "Josh Lewis" })
+            props.navigation.navigate("ChatSettings", {
+              chatID: props.chatID,
+              username: props.username,
+              chatType: props.chatType,
+            })
           }
         >
           <Icon name="more-vertical" />

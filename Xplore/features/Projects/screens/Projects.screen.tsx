@@ -26,7 +26,7 @@ const Home = (props: ProjectsProps) => {
       <TouchableOpacity
         onPress={() => props.navigation.navigate("ProfileEdit")}
       />
-      <ProjectCoreScreen />
+      <ProjectCoreScreen navigation={props.navigation} />
     </SafeAreaView>
   );
 };
