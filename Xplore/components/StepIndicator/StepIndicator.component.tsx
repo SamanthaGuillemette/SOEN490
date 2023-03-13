@@ -194,10 +194,12 @@ export const StepIndicator = (props: StepIndicatorProps) => {
           testID={"projectSubmissionMsg"}
           visible={submissionMsg === "" ? false : true}
           position="bottom"
+          size="small"
           message={submissionMsg}
           style={[
             {
               backgroundColor: primary,
+              height: 50,
             },
             styles.spacingToast,
           ]}
