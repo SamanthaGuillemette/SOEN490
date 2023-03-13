@@ -22,7 +22,7 @@ export default StyleSheet.create({
   },
   padding: {
     paddingTop: 12,
-    paddingBottom: 40,
+    paddingBottom: 1,
   },
   btnContainer: {
     width: "83%",

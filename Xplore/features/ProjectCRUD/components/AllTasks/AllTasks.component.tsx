@@ -1,4 +1,4 @@
-import { ScrollView, Modal } from "react-native";
+import { Modal } from "react-native";
 import { useState } from "react";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -30,8 +30,8 @@ export const AllTasks = () => {
       />
       <View style={styles.squareButton}>
         <SquaredButton
-        iconName="plus"
-        onPress={() => setShowModal(!showModal)}
+          iconName="plus"
+          onPress={() => setShowModal(!showModal)}
         />
       </View>
       <Modal

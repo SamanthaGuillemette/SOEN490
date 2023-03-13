@@ -1,48 +1,47 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
+  containerTaskName: {
+    width: 337,
+    height: 45,
     marginTop: 23,
   },
-  containerParticipants: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    marginTop: 23,
-    marginHorizontal: 6,
+
+  containerTaskDesc: {
+    width: 337,
+    height: 111,
+    marginTop: 5,
   },
+
+  containerTaskCat: {
+    width: 337,
+    height: 45,
+    marginTop: 5,
+  },
+
   alignDatePicker: {
     flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    marginBottom: 10,
   },
   shadowView: {
     width: 357,
-    marginLeft: "auto",
-    marginRight: "auto",
     paddingBottom: 20,
     borderRadius: 10,
   },
-  alignLeft: {
-    top: 10,
-    left: 20,
+  inputFields: {
+    alignItems: "center",
+    justifyContent: "space-around",
   },
   alignRight: {
     top: 10,
     right: -120,
   },
-  taskName: {
-    width: 337,
-    height: 45,
-  },
-  taskDesc: {
-    width: 337,
-    height: 111,
-  },
-  taskCategory: {
-    width: 337,
-    height: 45,
-  },
+  taskName: {},
+  taskDesc: {},
+  taskCategory: {},
   styleText: {
     marginTop: 7,
   },
@@ -75,5 +74,15 @@ export default StyleSheet.create({
   },
   iconAdder: {
     margin: 10,
+  },
+
+  textViewAbout: {
+    paddingHorizontal: 20,
+    marginTop: 23,
+  },
+
+  textViewParticipant: {
+    paddingHorizontal: 20,
+    marginTop: 20,
   },
 });

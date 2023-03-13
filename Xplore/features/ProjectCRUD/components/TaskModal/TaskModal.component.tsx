@@ -22,6 +22,7 @@ export const TaskModal = (props: TaskModalProps) => {
   const [taskCategory, setTaskCategory] = useState("");
   // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
+  const test = useThemeColor("errorBackground");
 
   const [btnClicked, setBtnClicked] = useState(false);
   const { onPress } = props;
@@ -43,50 +44,48 @@ export const TaskModal = (props: TaskModalProps) => {
 
   return (
     <ShadowView style={styles.shadowView}>
-      <View style={styles.alignLeft}>
+      <View style={styles.textViewAbout}>
         <Text color="titleText" variant="h3">
           About
         </Text>
       </View>
-      <View style={styles.container}>
-        <InputField
-          placeHolder="Task name"
-          styleBox={styles.taskName}
-          styleText={styles.styleText}
-          onChangeText={(name) => setTaskName(name)}
-        />
-      </View>
-      <View style={styles.container}>
-        <InputField
-          placeHolder="Task description"
-          styleBox={styles.taskDesc}
-          styleText={styles.styleText}
-          onChangeText={(desc) => setTaskDesc(desc)}
-        />
-      </View>
-      <View style={styles.container}>
-        <InputField
-          placeHolder="Add a category"
-          styleBox={styles.taskCategory}
-          styleText={styles.styleText}
-          onChangeText={(name) => setTaskCategory(name)}
-        />
+      <View style={styles.inputFields}>
+        <View style={styles.containerTaskName}>
+          <InputField
+            placeHolder="Task name"
+            styleBox={styles.taskName}
+            styleText={styles.styleText}
+            onChangeText={(name) => setTaskName(name)}
+          />
+        </View>
+        <View style={styles.containerTaskDesc}>
+          <InputField
+            placeHolder="Task description"
+            styleBox={styles.taskDesc}
+            styleText={styles.styleText}
+            onChangeText={(desc) => setTaskDesc(desc)}
+          />
+        </View>
+        <View style={styles.containerTaskCat}>
+          <InputField
+            placeHolder="Add a category"
+            styleBox={styles.taskCategory}
+            styleText={styles.styleText}
+            onChangeText={(name) => setTaskCategory(name)}
+          />
+        </View>
       </View>
       <View style={styles.alignDatePicker}>
-        <DatePicker title="Starts" style={styles.alignLeft} />
-        <DatePicker title="Ends" style={styles.alignRight} />
+        <DatePicker title="Starts" />
+        <DatePicker title="Ends" />
       </View>
-      <View style={styles.alignLeft}>
+      <View style={styles.textViewParticipant}>
         <Text color="titleText" variant="h3">
           Participants
         </Text>
-
-        {/* Testing the component, will be adjusted */}
       </View>
       <MemberChipAdder />
-      <ShadowView
-        style={[styles.button, { backgroundColor: primaryBackground }]}
-      >
+      <ShadowView style={[styles.button]}>
         <TouchableOpacity
           style={[
             { backgroundColor: primaryBackground },

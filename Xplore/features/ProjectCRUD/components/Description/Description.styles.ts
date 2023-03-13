@@ -32,8 +32,9 @@ export default StyleSheet.create({
   alignProjectName: {
     marginTop: 23,
   },
-  alignLeft: {
+  dateAlign: {
     top: 10,
+    marginBottom: 40,
   },
   projectName: { width: 337, height: 45 },
   projectDesc: {
