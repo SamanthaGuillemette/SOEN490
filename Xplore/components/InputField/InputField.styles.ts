@@ -6,9 +6,6 @@ export default StyleSheet.create({
   },
   ShadowView: {
     borderRadius: 4,
-  },
-  InputField: {
-    padding: 1,
-    borderRadius: 4,
+    borderWidth: 1,
   },
 });

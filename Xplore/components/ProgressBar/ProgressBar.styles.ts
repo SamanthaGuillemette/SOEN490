@@ -1,14 +1,13 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../constants";
 
 export default StyleSheet.create({
   BiggerRectangle: {
-    height: 5,
+    height: 8,
     borderRadius: 100,
   },
   Rectangle: {
-    height: 3,
-    backgroundColor: colors.light.backgroundSecondary,
+    height: 4,
     borderRadius: 100,
+    marginTop: 2,
   },
 });
