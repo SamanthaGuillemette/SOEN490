@@ -18,7 +18,11 @@ const Home = (props: ProjectsProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
-      <TopHeader screenName={"Projects"} navigation={props.navigation} />
+      <TopHeader
+        screenName={"Projects"}
+        navigation={props.navigation}
+        name="edit"
+      />
       <TouchableOpacity
         onPress={() => props.navigation.navigate("ProfileEdit")}
       />

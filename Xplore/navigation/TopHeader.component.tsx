@@ -5,6 +5,7 @@ import { Icon, ShadowView, Text, View } from "../components";
 interface TopHeaderProps {
   screenName: String;
   navigation: NavigationProp<any>;
+  name?: string; // Optional name property
 }
 
 const TopHeader = (props: TopHeaderProps) => {
@@ -22,13 +23,13 @@ const TopHeader = (props: TopHeaderProps) => {
         </TouchableOpacity>
         <Text variant="h2">{props.screenName}</Text>
       </View>
+      {props.name === "edit" && (
+        <TouchableOpacity onPress={() => navigation.navigate("ProjectEdit")}>
+          <Icon name="edit" style={styles.editIcon} />
+        </TouchableOpacity>
+      )}
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("ProjectEdit")}
-      >
-        <Icon name="edit" style={styles.editIcon} />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate("BottomTabNavigator")}
+        onPress={() => navigation.navigate("BottomTabNavigator")}
       >
         <Icon name="search" />
       </TouchableOpacity>
