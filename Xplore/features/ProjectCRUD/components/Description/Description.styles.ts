@@ -24,7 +24,6 @@ export default StyleSheet.create({
     width: 337,
     height: 45,
   },
-
   containerTextInputDesc: {
     width: 337,
     height: 111,
@@ -35,11 +34,6 @@ export default StyleSheet.create({
   dateAlign: {
     top: 10,
     marginBottom: 40,
-  },
-  projectName: { width: 337, height: 45 },
-  projectDesc: {
-    width: 337,
-    height: 111,
   },
   styleText: {
     marginTop: 7,

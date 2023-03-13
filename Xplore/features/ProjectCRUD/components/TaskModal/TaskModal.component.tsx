@@ -53,7 +53,6 @@ export const TaskModal = (props: TaskModalProps) => {
         <View style={styles.containerTaskName}>
           <InputField
             placeHolder="Task name"
-            styleBox={styles.taskName}
             styleText={styles.styleText}
             onChangeText={(name) => setTaskName(name)}
           />
@@ -61,7 +60,6 @@ export const TaskModal = (props: TaskModalProps) => {
         <View style={styles.containerTaskDesc}>
           <InputField
             placeHolder="Task description"
-            styleBox={styles.taskDesc}
             styleText={styles.styleText}
             onChangeText={(desc) => setTaskDesc(desc)}
           />
@@ -69,7 +67,6 @@ export const TaskModal = (props: TaskModalProps) => {
         <View style={styles.containerTaskCat}>
           <InputField
             placeHolder="Add a category"
-            styleBox={styles.taskCategory}
             styleText={styles.styleText}
             onChangeText={(name) => setTaskCategory(name)}
           />

@@ -39,9 +39,6 @@ export default StyleSheet.create({
     top: 10,
     right: -120,
   },
-  taskName: {},
-  taskDesc: {},
-  taskCategory: {},
   styleText: {
     marginTop: 7,
   },
@@ -49,7 +46,6 @@ export default StyleSheet.create({
     alignItems: "center",
     marginTop: 23,
   },
-
   button: {
     width: 45,
     height: 45,
@@ -75,12 +71,10 @@ export default StyleSheet.create({
   iconAdder: {
     margin: 10,
   },
-
   textViewAbout: {
     paddingHorizontal: 20,
     marginTop: 23,
   },
-
   textViewParticipant: {
     paddingHorizontal: 20,
     marginTop: 20,

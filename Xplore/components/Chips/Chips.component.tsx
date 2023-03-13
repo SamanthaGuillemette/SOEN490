@@ -14,7 +14,6 @@ import styles from "./Chips.styles";
 import { useThemeColor } from "../../hooks";
 interface ChipsProps {
   placeHolder: string;
-  styleBox: StyleProp<ViewStyle>;
 }
 
 export const Chips = (props: ChipsProps) => {
@@ -23,17 +22,13 @@ export const Chips = (props: ChipsProps) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const titleText = useThemeColor("titleText");
   const bodyText = useThemeColor("bodyText");
-  const { placeHolder, styleBox } = props;
+  const { placeHolder } = props;
   const [chips, setChips] = useState<ChipsInputChipProps[] | undefined>([]);
 
   return (
     <ScrollView>
       <ShadowView
-        style={[
-          styles.ShadowView,
-          styleBox,
-          { borderColor: backgroundSecondary },
-        ]}
+        style={[styles.ShadowView, { borderColor: backgroundSecondary }]}
         isInnerShadow={true}
         backgroundColor={"primaryBackgroundOpaque"}
       >

@@ -24,7 +24,6 @@ export const Description = () => {
         <View style={[styles.containerTextInputName, styles.alignProjectName]}>
           <InputField
             placeHolder="Project name"
-            styleBox={styles.projectName}
             styleText={styles.styleText}
             // onChangeText={(name) => setProjName(name)}
           />
@@ -35,7 +34,6 @@ export const Description = () => {
         <View style={styles.containerTextInputDesc}>
           <InputField
             placeHolder="Project description"
-            styleBox={styles.projectDesc}
             styleText={styles.styleText}
             // onChangeText={(desc) => setProjDesc(desc)}
           />

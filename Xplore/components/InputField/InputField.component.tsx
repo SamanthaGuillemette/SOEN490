@@ -10,22 +10,17 @@ import { useThemeColor } from "../../hooks";
 
 interface InputFieldProps extends RNTextInputProps {
   placeHolder: string;
-  styleBox: StyleProp<ViewStyle>;
   styleText?: StyleProp<ViewStyle>;
 }
 
 export const InputField = (props: InputFieldProps) => {
-  const { placeHolder, styleBox, styleText, ...restOfProps } = props;
+  const { placeHolder, styleText, ...restOfProps } = props;
   const bodyText = useThemeColor("bodyText");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   return (
     <ShadowView
-      style={[
-        styles.ShadowView,
-        styleBox,
-        { borderColor: backgroundSecondary },
-      ]}
+      style={[styles.ShadowView, { borderColor: backgroundSecondary }]}
       isInnerShadow={true}
       backgroundColor={"primaryBackgroundOpaque"}
     >

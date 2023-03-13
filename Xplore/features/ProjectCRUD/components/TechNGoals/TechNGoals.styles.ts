@@ -15,8 +15,7 @@ export default StyleSheet.create({
     width: 337,
     height: 200,
   },
-  projectTech: {},
-  projectGoals: {},
+
   styleTextGoals: {
     marginTop: 7,
   },

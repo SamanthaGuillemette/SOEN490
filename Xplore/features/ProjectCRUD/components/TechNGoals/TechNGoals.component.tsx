@@ -9,13 +9,12 @@ export const TechNGoals = () => {
     <View style={styles.container}>
       <View>
         <View style={styles.containerTech}>
-          <Chips styleBox={styles.projectTech} placeHolder={"Technologies"} />
+          <Chips placeHolder={"Technologies"} />
         </View>
 
         <View style={styles.containerGoal}>
           <InputField
             placeHolder="Project Goals"
-            styleBox={styles.projectGoals}
             styleText={styles.styleTextGoals}
             // onChangeText={(goals) => setProjectGoals(goals)}
           />
