@@ -11,7 +11,7 @@ afterAll(() => {
 
 describe("LinearProgressBar should render", () => {
   it("should render the progress bar", () => {
-    const bar = renderer.create(<LinearProgressBar progress={20} />);
+    const bar = renderer.create(<LinearProgressBar progress={0.2} />);
     expect(bar).toMatchSnapshot();
   });
 });

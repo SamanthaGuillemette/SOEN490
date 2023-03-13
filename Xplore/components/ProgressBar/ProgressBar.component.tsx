@@ -1,8 +1,7 @@
 import { colors } from "../../constants";
-import { View } from "../View";
-import { StyleSheet } from "react-native";
+import { View } from "react-native";
 import { useThemeColor } from "../../hooks";
-//import styles from "./ProgressBar.styles";
+import styles from "./ProgressBar.styles";
 
 interface ProgressBarProps {
   completionPercentage: number;
@@ -13,6 +12,7 @@ interface ProgressBarProps {
 export const ProgressBar = (props: ProgressBarProps) => {
   const { completionPercentage, barColor, width } = props;
   const greyBackground = useThemeColor("background");
+  const rectangleColor = useThemeColor(barColor);
 
   return (
     <View
@@ -26,7 +26,7 @@ export const ProgressBar = (props: ProgressBarProps) => {
           styles.Rectangle,
           {
             width: completionPercentage * width,
-            backgroundColor: barColor,
+            backgroundColor: rectangleColor,
           },
         ]}
       ></View>
@@ -35,15 +35,3 @@ export const ProgressBar = (props: ProgressBarProps) => {
 };
 
 export default ProgressBar;
-
-const styles = StyleSheet.create({
-  BiggerRectangle: {
-    height: 8,
-    borderRadius: 100,
-  },
-  Rectangle: {
-    height: 4,
-    borderRadius: 100,
-    marginTop: 2,
-  },
-});

@@ -1,7 +1,6 @@
 # Xplorify
 
-[![Quality Gate Status](https://sonarqube.vidyas.ca/api/project_badges/measure?project=XplorifyMain&metric=alert_status&token=5113a307c9b73108e245e414e42717f4895a3b71)](https://sonarqube.vidyas.ca/dashboard?id=XplorifyMain) [![Coverage](https://sonarqube.vidyas.ca/api/project_badges/measure?project=XplorifyMain&metric=coverage&token=5113a307c9b73108e245e414e42717f4895a3b71)](https://sonarqube.vidyas.ca/dashboard?id=XplorifyMain) [![Lines of Code](https://sonarqube.vidyas.ca/api/project_badges/measure?project=XplorifyMain&metric=ncloc&token=5113a307c9b73108e245e414e42717f4895a3b71)](https://sonarqube.vidyas.ca/dashboard?id=XplorifyMain)
-
+[![Quality Gate Status](https://sonarqube.vidyas.ca/api/project_badges/measure?project=XplorifyDev&metric=alert_status&token=2bb42d7026ff4a75a65a7bf7125a01eeee7a14e9)](https://sonarqube.vidyas.ca/dashboard?id=XplorifyDev) [![Coverage](https://sonarqube.vidyas.ca/api/project_badges/measure?project=XplorifyDev&metric=coverage&token=2bb42d7026ff4a75a65a7bf7125a01eeee7a14e9)](https://sonarqube.vidyas.ca/dashboard?id=XplorifyDev) [![Lines of Code](https://sonarqube.vidyas.ca/api/project_badges/measure?project=XplorifyDev&metric=ncloc&token=2bb42d7026ff4a75a65a7bf7125a01eeee7a14e9)](https://sonarqube.vidyas.ca/dashboard?id=XplorifyDev)
 This project is a part of SOEN 490 - Capstone Software Engineering Design Project - at Concordia University.
 
 ## Project Description

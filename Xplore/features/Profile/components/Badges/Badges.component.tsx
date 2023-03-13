@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { LinkButton, Text, Badge } from "../../../../components";
 import { ScrollView } from "react-native";
 import { useThemeColor } from "../../../../hooks";
-import styles from "./Badges.styles";
+import styles from ".//Badges.styles";
 
 export const Badges = () => {
   const generalGray = useThemeColor("generalGray");

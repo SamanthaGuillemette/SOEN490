@@ -15,6 +15,7 @@ const TopicBox = () => {
         style={styles.UpdateBtn}
         backgroundColor="backgroundSecondary"
         textColor="primary"
+        borderColor="primary"
       >
         UPDATE
       </Button>

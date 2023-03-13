@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { View, ConfirmationModal, AlertModal } from "../../../../../components";
+import {
+  View,
+  ConfirmationModal,
+  AlertModal,
+  AddMemberModal,
+} from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
-import { AddMemberModal } from "../components/AddMemberModal/AddMemberModal.component";
 import { AddAdminModal } from "../components/AddAdminModal/AddAdminModal.component";
 import { RemoveMemberModal } from "../components/RemoveMemberModal/RemoveMemberModal.component";
 import styles from "./SettingsOptions.styles";

@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Modal, View } from "react-native";
-import { useThemeColor } from "../../../../../../hooks/useThemeColor";
-import {
-  ShadowView,
-  PrimaryButton,
-  SecondaryButton,
-  UsersList,
-  SearchBar,
-  Text,
-} from "../../../../../../components";
+import { useThemeColor } from "../../hooks/useThemeColor";
+import { ShadowView } from "../ShadowView";
+import { PrimaryButton } from "../PrimaryButton";
+import { SecondaryButton } from "../SecondaryButton";
+import { UsersList } from "../UsersList";
+import { SearchBar } from "../SearchBar";
+import { Text } from "../Text";
 import styles from "./AddMemberModal.styles";
 
 interface AddMemberModalProps {

@@ -16,7 +16,7 @@ interface ShadowViewProps extends RNViewProps {
   lightColor?: string;
   darkColor?: string;
   style?: StyleProp<ViewStyle>;
-  isInnerShadow: boolean;
+  isInnerShadow?: boolean;
 }
 
 export const ShadowView = (props: ShadowViewProps) => {
@@ -27,7 +27,7 @@ export const ShadowView = (props: ShadowViewProps) => {
     lightColor,
     darkColor,
     style,
-    isInnerShadow,
+    isInnerShadow = false,
     ...restOfProps
   } = props;
 
@@ -56,7 +56,7 @@ export const ShadowView = (props: ShadowViewProps) => {
   ) : (
     <InsetShadow
       shadowColor={customShadowColor}
-      containerStyle={[style, { backgroundColor: bgColor }]}
+      containerStyle={{ style, backgroundColor: bgColor }}
       shadowOffset={shadowOffset}
     >
       <RNView>{children}</RNView>
