@@ -51,7 +51,7 @@ interface UsersListProps {
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
   return (
-    <ScrollView>
+    <ScrollView pagingEnabled={true}>
       {props.data.map((user: UsersType) => (
         <UserItem
           key={user.id}
