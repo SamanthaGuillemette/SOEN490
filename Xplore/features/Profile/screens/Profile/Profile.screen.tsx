@@ -21,11 +21,32 @@ import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
 import { useFetchUserDetails } from "../../../../services/api/userProfile";
-import Spinner from "react-native-loading-spinner-overlay/lib";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
 const imageSize = (headerHeight / 3) * 2;
+
+const getUserXPlevel = (xp: number) => {
+  if (xp >= 250 && xp < 500) {
+    return 1;
+  } else if (xp >= 500 && xp < 1000) {
+    return 2;
+  } else if (xp >= 1000 && xp < 2500) {
+    return 3;
+  } else if (xp >= 2500 && xp < 5000) {
+    return 4;
+  } else if (xp >= 5000 && xp < 10000) {
+    return 5;
+  } else if (xp >= 10000 && xp < 25000) {
+    return 6;
+  } else if (xp >= 25000 && xp < 50000) {
+    return 7;
+  } else if (xp >= 50000) {
+    return 8;
+  } else {
+    return 0;
+  }
+};
 
 interface ProfileProps {
   navigation: NavigationProp<any>;
@@ -78,6 +99,7 @@ const Profile = (props: ProfileProps) => {
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
+  console.log(JSON.stringify(userDetails, null, 4));
 
   return (
     <SafeAreaView
@@ -95,13 +117,14 @@ const Profile = (props: ProfileProps) => {
         {/* THIS IS EVERYTHING BELOW THE ANIMATED HEADER */}
         <View style={styles.belowHeaderContainer}>
           <UserProgress xp={userDetails?.xp} />
-          <StatBoxes />
-          <Badges />
-          {userDetails ? (
-            <ProjectSlider projectIDs={userDetails?.projects} />
-          ) : (
-            <Spinner />
-          )}
+          <StatBoxes
+            numBadges={userDetails?.badges.length}
+            numProjects={userDetails?.projects.length}
+            xpLevel={getUserXPlevel(userDetails?.xp)}
+          />
+          <Badges xpLevel={getUserXPlevel(userDetails?.xp)} />
+          <ProjectSlider projectIDs={userDetails?.projects} />
+
           <View style={styles.logoutButton}>
             <LogoutButton />
           </View>
