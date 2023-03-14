@@ -79,7 +79,7 @@ export const NewProjects = (props: NewProjectsProps) => {
           )}
         </ScrollView>
 
-        <RNView style={theme.indicatorConatiner} pointerEvents="none">
+        <RNView style={theme.indicatorContainer} pointerEvents="none">
           {indicators.map((x) => (
             <Indicator key={x} />
           ))}
@@ -100,7 +100,7 @@ function Indicator() {
 }
 
 const theme = StyleSheet.create({
-  indicatorConatiner: {
+  indicatorContainer: {
     alignSelf: "center",
     position: "relative",
     bottom: 25,
