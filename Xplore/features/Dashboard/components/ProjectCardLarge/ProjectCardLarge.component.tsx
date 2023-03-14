@@ -42,7 +42,7 @@ export const ProjectCardLarge = (props: ProjectCardLargeProps) => {
               variant="smBody"
               style={[styles.whiteText, styles.textContent]}
             >
-              {duration} days
+              {duration} days left
             </Text>
           </View>
 

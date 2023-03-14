@@ -8,6 +8,7 @@ import { deviceScreenWidth } from "../../../../constants";
 import { ProjectCardLarge } from "../ProjectCardLarge/ProjectCardLarge.component";
 import styles from "./NewProjects.styles";
 import { useNewProjects } from "../../../../services/api/projects";
+import { DateTime } from "luxon";
 
 const indicators = ["brown", "orange", "red", "blue", "green"];
 
@@ -61,8 +62,14 @@ export const NewProjects = (props: NewProjectsProps) => {
                   .split(" ")
                   .slice(0, 5)
                   .join(" ")}...`}
-                duration={100}
-                members={8}
+                duration={Math.ceil(
+                  DateTime.fromISO(project.endDate).diff(
+                    DateTime.fromISO(project.startDate),
+                    "days"
+                  ).days
+                )}
+                members={project.members.length}
+                //the url will be replaced once project creation is complete
                 imageURL="https://picsum.photos/300/200"
                 key={project.name}
               />
