@@ -11,6 +11,8 @@ import api from "../services/appwrite/api";
 import { useQuery } from "react-query";
 import { Query } from "appwrite";
 import { COLLECTION_ID_ONBOARDING } from "@env";
+import ProjectEdit from "../features/ProjectCRUD/screens/ProjectEdit.screen";
+import ProjectCreation from "../features/ProjectCRUD/screens/ProjectCreation.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -58,6 +60,8 @@ const AppStack = () => {
       <Stack.Screen name="ChatDetails" component={ChatDetails} />
       <Stack.Screen name="ChatSettings" component={ChatSettings} />
       <Stack.Screen name="TopicSelection" component={TopicSelection} />
+      <Stack.Screen name="ProjectCreation" component={ProjectCreation} />
+      <Stack.Screen name="ProjectEdit" component={ProjectEdit} />
     </Stack.Navigator>
   );
 };

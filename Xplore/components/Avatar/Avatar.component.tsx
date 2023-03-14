@@ -1,11 +1,13 @@
 import { useThemeColor } from "../../hooks";
 import { Image, StyleProp, ViewProps, ViewStyle } from "react-native";
 import styles from "./Avatar.styles";
+import { Icon } from "../Icon";
 import { View } from "../View";
 import { Text } from "../Text";
 
 interface AvatarProps extends ViewProps {
   name: string;
+  groupChat?: boolean;
   avatarCount?: number;
   imageURL?: string;
   size?: number;
@@ -17,6 +19,7 @@ export const Avatar = (props: AvatarProps) => {
   const {
     name,
     imageURL,
+    groupChat,
     size = 60,
     style,
     avatarCount,
@@ -32,7 +35,21 @@ export const Avatar = (props: AvatarProps) => {
       style={[style, styles.avatarContainer, { shadowColor: primary }]}
       {...restOfProps}
     >
-      {imageURL ? (
+      {groupChat ? (
+        <Icon
+          name="users"
+          style={[
+            styles.chatBox_groupAvatar,
+            {
+              backgroundColor: backgroundSecondary,
+              borderColor: backgroundSecondary,
+              width: size,
+              height: size,
+              borderRadius: size / 2,
+            },
+          ]}
+        />
+      ) : imageURL ? (
         <Image
           style={[
             styles.avatar,

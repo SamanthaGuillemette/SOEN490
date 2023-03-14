@@ -5,6 +5,7 @@ import { Icon, ShadowView, Text, View } from "../components";
 interface TopHeaderProps {
   screenName: String;
   navigation: NavigationProp<any>;
+  name?: string; // Optional name property
 }
 
 const TopHeader = (props: TopHeaderProps) => {
@@ -22,7 +23,14 @@ const TopHeader = (props: TopHeaderProps) => {
         </TouchableOpacity>
         <Text variant="h2">{props.screenName}</Text>
       </View>
-      <TouchableOpacity>
+      {props.name === "edit" && (
+        <TouchableOpacity onPress={() => navigation.navigate("ProjectEdit")}>
+          <Icon name="edit" style={styles.editIcon} />
+        </TouchableOpacity>
+      )}
+      <TouchableOpacity
+        onPress={() => navigation.navigate("BottomTabNavigator")}
+      >
         <Icon name="search" />
       </TouchableOpacity>
     </ShadowView>
@@ -55,5 +63,9 @@ const styles = StyleSheet.create({
   },
   screenName: {
     paddingLeft: 20,
+  },
+  editIcon: {
+    flexDirection: "row",
+    marginLeft: 120,
   },
 });
