@@ -61,6 +61,7 @@ export const TopHeader = (props: TopHeaderProps) => {
         </Text>
         {isMessaging ? (
           <View
+            testID="messaging"
             style={[
               styles.active,
               isActive
