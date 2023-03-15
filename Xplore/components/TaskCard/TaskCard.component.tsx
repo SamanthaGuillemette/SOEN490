@@ -40,30 +40,30 @@ export const actions = () => {
 export const taskContent = (props: taskContentProps) => {
   return (
     <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
-      <View style={styles.taskContentContainer}>
-        <Text style={styles.taskType} variant="h4" color="linkText">
-          {props.taskType}
-        </Text>
+      <TouchableOpacity
+        onPress={() =>
+          props.navigation.navigate("IndividualTask", {
+            taskName: props.taskName,
+          })
+        }
+      >
+        <View style={styles.taskContentContainer}>
+          <Text style={styles.taskType} variant="h4" color="linkText">
+            {props.taskType}
+          </Text>
 
-        <TouchableOpacity
-          onPress={() =>
-            props.navigation.navigate("IndividualTask", {
-              taskName: props.taskName,
-            })
-          }
-        >
           <Icon style={styles.taskInfoIcon} size="medium" name="help-circle" />
-        </TouchableOpacity>
-      </View>
-      <Text style={styles.taskName} variant="h2" color="titleText">
-        {props.taskName}
-      </Text>
-      <View style={styles.dateContainer}>
-        <Icon style={styles.calenderIcon} size="medium" name="calendar" />
-        <Text style={styles.date} variant="smBody" color="bodyText">
-          {props.taskDate}
+        </View>
+        <Text style={styles.taskName} variant="h2" color="titleText">
+          {props.taskName}
         </Text>
-      </View>
+        <View style={styles.dateContainer}>
+          <Icon style={styles.calenderIcon} size="medium" name="calendar" />
+          <Text style={styles.date} variant="smBody" color="bodyText">
+            {props.taskDate}
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
