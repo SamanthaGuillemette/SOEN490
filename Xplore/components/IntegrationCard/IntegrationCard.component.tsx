@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useThemeColor } from "../../hooks";
 
 interface IntegrationCardProps {
-  testID: string;
+  testID?: string;
   title: string;
   description: string;
   iconName: keyof typeof FontAwesome5.glyphMap;
@@ -26,6 +26,7 @@ export const IntegrationCard = (props: IntegrationCardProps) => {
     bgColor,
     iconName,
     editableIntegration,
+    testID = "test",
   } = props;
   const [btnState, setBtnState] = useState(btnType);
   const success = useThemeColor("success");
@@ -42,7 +43,7 @@ export const IntegrationCard = (props: IntegrationCardProps) => {
   };
 
   return (
-    <View style={[styles.container]}>
+    <View testID={testID} style={[styles.container]}>
       <ShadowView style={[styles.boxSize]}>
         <View
           backgroundColor={
