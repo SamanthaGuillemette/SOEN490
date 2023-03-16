@@ -35,7 +35,7 @@ const AppStack = () => {
         }
         else {
           setOnboarding(
-            onboarding_response?.documents?.at(0)
+            onboarding_response?.documents[0]
           );
         }
       } catch (e) {
