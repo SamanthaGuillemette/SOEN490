@@ -8,6 +8,7 @@ import TopicSelection from "../features/TopicSelection/screen/TopicSelection.scr
 import ProjectEdit from "../features/ProjectCRUD/screens/ProjectEdit.screen";
 import ProjectCreation from "../features/ProjectCRUD/screens/ProjectCreation.screen";
 import BottomTabNavigator from "./BottomTabNavigator";
+import Search from "../features/Searching/Search.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ const AppStack = () => {
       <Stack.Screen name="TopicSelection" component={TopicSelection} />
       <Stack.Screen name="ProjectCreation" component={ProjectCreation} />
       <Stack.Screen name="ProjectEdit" component={ProjectEdit} />
+      <Stack.Screen name="Search" component={Search} />
     </Stack.Navigator>
   );
 };
