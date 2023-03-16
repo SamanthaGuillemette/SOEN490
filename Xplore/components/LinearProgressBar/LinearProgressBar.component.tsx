@@ -7,12 +7,12 @@ import styles from "./LinearProgressBar.styles";
 
 interface LinearProgressBarProps {
   color?: keyof typeof colors.light & keyof typeof colors.dark;
-  progress: number; // Range 0 - 1  ==> Example: 0.3, 0.5, 0.8, etc.
+  progress: number; // Range 0 - 100  ==> Example: 30, 50, 80, etc.
   style?: StyleProp<ViewStyle>;
 }
 
 export const LinearProgressBar = (props: LinearProgressBarProps) => {
-  const { color = "primary", progress = 0.8, style } = props;
+  const { color = "primary", progress, style } = props;
   const customProgressColor = useThemeColor(color);
   const background = useThemeColor("background");
 

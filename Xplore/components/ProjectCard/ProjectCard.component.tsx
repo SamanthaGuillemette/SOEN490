@@ -8,11 +8,11 @@ import { LinearProgressBar } from "../LinearProgressBar";
 
 interface ProjectCardProps {
   item: {
-    name: string;
+    title: string;
     description: string;
     projectImage?: string;
     tasks?: number;
-    conversations?: number;
+    conversation?: number;
     members?: number;
     percentComplete: number;
   };
@@ -24,7 +24,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
     <ShadowView
       backgroundColor="backgroundSecondary"
       style={styles.cardContainer}
-      key={item.name}
+      key={item.title}
     >
       <Image
         source={{ uri: "https://picsum.photos/200" }}
@@ -37,7 +37,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
           lineBreakMode="tail"
           numberOfLines={1}
         >
-          {item.name}
+          {item.title}
         </Text>
         <Text
           variant="body"
@@ -60,7 +60,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
           <View style={styles.statIcon}>
             <Icon name="message-circle" size="medium" style={styles.icon} />
             <Text variant="smBody" color="bodyText">
-              {item.conversations}
+              {item.conversation}
             </Text>
           </View>
 
