@@ -40,7 +40,7 @@ const ChatBox = ({
           />
         ) : (
           <Avatar
-            name="Username"
+            name={username}
             imageURL={image}
             size={45}
             style={styles.chatBox_avatar}

@@ -6,10 +6,10 @@ import { View } from "../View";
 import { Text } from "../Text";
 
 interface AvatarProps extends ViewProps {
-  name: string;
+  name: String;
   groupChat?: boolean;
   avatarCount?: number;
-  imageURL?: string;
+  imageURL?: String;
   size?: number;
   style?: StyleProp<ViewStyle>;
 }
@@ -49,7 +49,7 @@ export const Avatar = (props: AvatarProps) => {
             },
           ]}
         />
-      ) : imageURL !== "null" ? (
+      ) : imageURL !== "null" && imageURL ? (
         <Image
           style={[
             styles.avatar,

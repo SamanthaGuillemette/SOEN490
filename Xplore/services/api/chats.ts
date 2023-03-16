@@ -1,4 +1,8 @@
-import { COLLECTION_ID_GROUP_CHATS, COLLECTION_ID_DIRECT_CHATS } from "@env";
+import {
+  COLLECTION_ID_GROUP_CHATS,
+  COLLECTION_ID_DIRECT_CHATS,
+  COLLECTION_ID_USERS,
+} from "@env";
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
@@ -16,21 +20,50 @@ interface Chat {
   lastModifiedAt: string;
 }
 
+const getContactInfo = async (contactID: any) => {
+  const response = await api.listDocuments(COLLECTION_ID_USERS, [
+    Query.equal("userID", contactID),
+  ]);
+  const data = await Promise.all(
+    response?.documents?.map(async (doc) => ({
+      id: doc.userID,
+      username: doc.username,
+      avatar: doc.profilePicture,
+      xp: doc.xp,
+    }))
+  );
+  return data;
+};
+
 const getChats = async (collectionId: any, userId: any) => {
   const response = await api.listDocuments(collectionId, [
     Query.equal("userID", userId),
   ]);
-  return response?.documents?.map((doc) => ({
-    chatIndex: doc.$id,
-    chatID: doc.chatID,
-    userID: doc.userID,
-    contactID: doc.contactID,
-    chatType: collectionId === COLLECTION_ID_DIRECT_CHATS ? "direct" : "group",
-    chatName: collectionId === COLLECTION_ID_GROUP_CHATS ? doc.chatName : null,
-    lastMessage: doc.lastMessage,
-    seen: doc.seen,
-    lastModifiedAt: doc.lastModifiedAt,
-  }));
+  const chats = await Promise.all(
+    response?.documents?.map(async (doc) => {
+      let contactInfo: any = null;
+      if (collectionId === COLLECTION_ID_DIRECT_CHATS) {
+        contactInfo = await getContactInfo(doc.contactID);
+      }
+      return {
+        chatIndex: doc.$id,
+        chatID: doc.chatID,
+        userID: doc.userID,
+        chatType:
+          collectionId === COLLECTION_ID_DIRECT_CHATS ? "direct" : "group",
+        chatName:
+          collectionId === COLLECTION_ID_GROUP_CHATS
+            ? doc.chatName
+            : contactInfo && contactInfo[0]?.username,
+        contactAvatar: contactInfo && contactInfo[0]?.avatar,
+        lastMessage: doc.lastMessage,
+        seen: doc.seen,
+        lastModifiedAt: doc.lastModifiedAt,
+      };
+    })
+  );
+  console.log(chats);
+  return chats;
 };
 
 const useListChats = (userId: any) => {
