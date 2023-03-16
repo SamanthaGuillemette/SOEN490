@@ -1,7 +1,7 @@
 import { SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../hooks";
 import TopHeader from "../../../navigation/TopHeader.component";
-import { ProjectCard, SegmentedButton, Text } from "../../../components";
+import { ProjectCard, SegmentedButton, View } from "../../../components";
 import { useState } from "react";
 import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
@@ -108,15 +108,20 @@ export const fakeProjectCompletedData = [
 ];
 
 const UserProjects = (props: UserProjectsProps) => {
-  const homeBackground = useThemeColor("backgroundSecondary");
+  const background = useThemeColor("background");
   const [screen, setScreen] = useState(0);
 
   return (
     <SafeAreaView
-      style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
+      style={[styles.safeAreaStyle, { backgroundColor: background }]}
     >
       <TopHeader screenName={"Projects"} navigation={props.navigation} />
-      <SegmentedButton labels={["CURRENT", "COMPLETED"]} setIndex={setScreen} />
+      <View style={styles.segmentContainer}>
+        <SegmentedButton
+          labels={["CURRENT", "COMPLETED"]}
+          setIndex={setScreen}
+        />
+      </View>
       {screen === 0 && (
         <FlashList
           data={fakeProjectCurrentData}
