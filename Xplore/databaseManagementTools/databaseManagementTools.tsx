@@ -1,5 +1,5 @@
 import api from "../services/appwrite/api";
-import { PROJECT_COLLECTION_ID } from "@env";
+import { COLLECTION_ID_PROJECT } from "@env";
 import { Button, Text } from "react-native";
 import { projects } from "./projects_database_seed";
 import { users } from "./users_database_seed";
@@ -16,7 +16,7 @@ const createBulkProjects = async (data) => {
   for (const d of data) {
     try {
       console.log(d);
-      await api.createDocument(PROJECT_COLLECTION_ID, d);
+      await api.createDocument(COLLECTION_ID_PROJECT, d);
     } catch (e) {
       console.log(e);
     }
@@ -49,7 +49,7 @@ export const DatabaseApiTesting = () => {
       <Button title="seed users" onPress={() => createBulkUsers(users)} />
       <Button
         title="delete all projects"
-        onPress={() => deleteAllDocuments(PROJECT_COLLECTION_ID)}
+        onPress={() => deleteAllDocuments(COLLECTION_ID_PROJECT)}
       />
       <Text>-------------------------------------------</Text>
     </>
