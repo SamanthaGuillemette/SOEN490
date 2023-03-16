@@ -16,4 +16,10 @@ export default StyleSheet.create({
   resultsContainer: {
     marginBottom: 120,
   },
+  noResultsView: {
+    flexDirection: "column",
+    alignItems: "center",
+    marginHorizontal: 50,
+    marginTop: 160,
+  },
 });

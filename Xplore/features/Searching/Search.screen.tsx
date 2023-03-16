@@ -1,7 +1,8 @@
 import { NavigationProp } from "@react-navigation/native";
+import { useState } from "react";
 import { SafeAreaView } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { Icon, SearchBar, UsersList, View } from "../../components";
+import { Icon, SearchBar, UsersList, View, Text } from "../../components";
 import { useThemeColor } from "../../hooks/useThemeColor";
 import styles from "./Search.styles";
 
@@ -70,6 +71,12 @@ const Users: UsersType[] = [
 const Search = (props: SearchProps) => {
   const { navigation } = props;
   const background = useThemeColor("background");
+  const [query, setQuery] = useState<string>(""); // Add state for the search query
+
+  // Filter the Users array based on the search query
+  const filteredUsers = Users.filter((user) =>
+    user.username.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <SafeAreaView
@@ -79,10 +86,23 @@ const Search = (props: SearchProps) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon style={styles.arrowIcon} name="chevron-left" />
         </TouchableOpacity>
-        <SearchBar />
+        <SearchBar onQueryChange={setQuery} />
       </View>
       <View style={styles.resultsContainer}>
-        <UsersList data={Users} selectUserList={false} messageUserList={true} />
+        {filteredUsers.length === 0 ? (
+          <View style={styles.noResultsView}>
+            <Text variant="h4" color="bodyText">
+              No results found!{" "}
+              <Icon name="meh" size="medium" color="primary" />
+            </Text>
+          </View>
+        ) : (
+          <UsersList
+            data={filteredUsers}
+            selectUserList={false}
+            messageUserList={true}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
