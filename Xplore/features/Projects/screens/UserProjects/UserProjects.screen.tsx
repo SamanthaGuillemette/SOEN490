@@ -1,7 +1,7 @@
 import { SafeAreaView } from "react-native";
-import { useThemeColor } from "../../../hooks";
-import TopHeader from "../../../navigation/TopHeader.component";
-import { ProjectCard, SegmentedButton, View } from "../../../components";
+import { useThemeColor } from "../../../../hooks";
+import TopHeader from "../../../../navigation/TopHeader.component";
+import { ProjectCard, SegmentedButton, View } from "../../../../components";
 import { useState } from "react";
 import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
@@ -110,6 +110,7 @@ export const fakeProjectCompletedData = [
 const UserProjects = (props: UserProjectsProps) => {
   const background = useThemeColor("background");
   const [screen, setScreen] = useState(0);
+  const { navigation } = props;
 
   return (
     <SafeAreaView
@@ -125,7 +126,9 @@ const UserProjects = (props: UserProjectsProps) => {
       {screen === 0 && (
         <FlashList
           data={fakeProjectCurrentData}
-          renderItem={({ item }) => <ProjectCard item={item} />}
+          renderItem={({ item }) => (
+            <ProjectCard navigation={navigation} item={item} />
+          )}
           estimatedItemSize={350}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.flashListContainer}
@@ -134,7 +137,9 @@ const UserProjects = (props: UserProjectsProps) => {
       {screen === 1 && (
         <FlashList
           data={fakeProjectCompletedData}
-          renderItem={({ item }) => <ProjectCard item={item} />}
+          renderItem={({ item }) => (
+            <ProjectCard navigation={navigation} item={item} />
+          )}
           estimatedItemSize={350}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.flashListContainer}

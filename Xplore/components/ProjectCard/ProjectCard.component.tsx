@@ -5,8 +5,10 @@ import styles from "./ProjectCard.style";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { LinearProgressBar } from "../LinearProgressBar";
+import { NavigationProp } from "@react-navigation/native";
 
 interface ProjectCardProps {
+  navigation: NavigationProp<any>;
   item: {
     title: string;
     description: string;
@@ -21,7 +23,9 @@ export const ProjectCard = (props: ProjectCardProps) => {
   const { item } = props;
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => props.navigation.navigate("ProjectDetails")}
+    >
       <ShadowView
         backgroundColor="backgroundSecondary"
         style={styles.cardContainer}
