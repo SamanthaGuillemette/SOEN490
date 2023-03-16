@@ -18,7 +18,7 @@ export const User = (props: UserProps) => {
   return (
     <View style={[styles.user_container, style]}>
       <Avatar
-        name="Username"
+        name={username}
         imageURL={avatar}
         size={45}
         style={styles.user_avatar}

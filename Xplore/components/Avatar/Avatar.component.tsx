@@ -49,7 +49,7 @@ export const Avatar = (props: AvatarProps) => {
             },
           ]}
         />
-      ) : imageURL ? (
+      ) : imageURL !== "null" ? (
         <Image
           style={[
             styles.avatar,

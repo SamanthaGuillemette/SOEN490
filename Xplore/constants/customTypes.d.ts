@@ -11,5 +11,5 @@ declare module "@env" {
   export const COLLECTION_ID_DIRECT_CHATS: string;
   export const COLLECTION_ID_GROUP_CHATS: string;
   export const COLLECTION_ID_MESSAGES: string;
-  export const PROJECT_COLLECTION_ID: string;
+  export const COLLECTION_ID_PROJECTS: string;
 }
