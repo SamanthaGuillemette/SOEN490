@@ -11,71 +11,12 @@ interface SearchProps {
   navigation: NavigationProp<any>;
 }
 
-// interface UsersType {
-//   id: string;
-//   username: string;
-//   avatar: string;
-//   xp: number;
-// }
-
-// const Users: UsersType[] = [
-//   {
-//     id: "1",
-//     username: "Josh Lewis",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "2",
-//     username: "Amy Lucas",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "3",
-//     username: "Landon Clayton",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "4",
-//     username: "Elva Moore",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "5",
-//     username: "Martin Garza",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "6",
-//     username: "Bernice Lewis",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "7",
-//     username: "Landon Clayton",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "8",
-//     username: "Martin Garza",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-// ];
-
 const Search = (props: SearchProps) => {
   const { navigation } = props;
   const background = useThemeColor("background");
-  const [query, setQuery] = useState<string>(""); // Add state for the search query
+  const [query, setQuery] = useState<string>("");
 
   const Users = useListUsers();
-  console.log(Users);
 
   // Filter the Users array based on the search query
   const filteredUsers = Users.filter((user) =>
@@ -105,6 +46,7 @@ const Search = (props: SearchProps) => {
             data={filteredUsers}
             selectUserList={false}
             messageUserList={true}
+            navigation={navigation}
           />
         )}
       </View>

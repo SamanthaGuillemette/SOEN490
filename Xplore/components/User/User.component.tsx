@@ -6,6 +6,7 @@ import { useThemeColor } from "../../hooks";
 import styles from "./User.styles";
 
 interface UserProps {
+  id: string;
   avatar: string;
   username: string;
   xp: number;
