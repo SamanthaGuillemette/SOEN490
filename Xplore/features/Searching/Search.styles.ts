@@ -13,4 +13,7 @@ export default StyleSheet.create({
     paddingRight: 10,
     marginTop: 15,
   },
+  resultsContainer: {
+    marginBottom: 120,
+  },
 });

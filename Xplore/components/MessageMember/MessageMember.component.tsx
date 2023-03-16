@@ -9,10 +9,10 @@ import { ChipButton } from "../ChipButton";
 import styles from "./MessageMember.styles";
 
 interface MemberProps {
-  navigation: NavigationProp<any>;
+  navigation?: NavigationProp<any>;
   avatar: string;
   username: string;
-  email: string;
+  email?: string;
   xp: number;
 }
 
@@ -22,10 +22,10 @@ export const MessageMember = (props: MemberProps) => {
   let userId: string = userdata?.$id as string;
 
   // Define chat data to be created
-  const chatData = {
-    userID: userId,
-    contactID: props.email,
-  };
+  // const chatData = {
+  //   userID: userId,
+  //   contactID: props.email,
+  // };
 
   // // Check if the chat exist
   // const response = api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
