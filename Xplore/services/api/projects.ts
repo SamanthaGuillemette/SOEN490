@@ -5,7 +5,7 @@ import {
   useQueryClient,
   useQuery,
 } from "react-query";
-import { PROJECT_COLLECTION_ID, PROJECT_PICTURES_BUCKET_ID } from "@env";
+import { COLLECTION_ID_PROJECT, PROJECT_PICTURES_BUCKET_ID } from "@env";
 import api from "../appwrite/api";
 
 //to be defined
@@ -16,7 +16,7 @@ const useListProjectsPaginated = () => {
   return useInfiniteQuery({
     queryKey: "projects",
     queryFn: async ({ pageParam = 0 }) => {
-      const res = await api.listDocuments(PROJECT_COLLECTION_ID, [
+      const res = await api.listDocuments(COLLECTION_ID_PROJECT, [
         api.query.offset(LIMIT * pageParam),
         api.query.limit(LIMIT),
       ]);
@@ -34,20 +34,20 @@ const useFetchUserProjects = (projectIDs: string[]) =>
   useQuery({
     queryKey: ["projects", projectIDs],
     queryFn: () =>
-      api.listDocuments(PROJECT_COLLECTION_ID, [
+      api.listDocuments(COLLECTION_ID_PROJECT, [
         api.query.equal("$id", [...projectIDs]),
       ]),
     retry: 2,
   });
 
 const useCreateProject = (data: Project) => {
-  return useMutation(() => api.createDocument(PROJECT_COLLECTION_ID, data));
+  return useMutation(() => api.createDocument(COLLECTION_ID_PROJECT, data));
 };
 
 const useDeleteProject = (documentId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => api.deleteDocument(PROJECT_COLLECTION_ID, documentId),
+    mutationFn: () => api.deleteDocument(COLLECTION_ID_PROJECT, documentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["projects"] });
     },

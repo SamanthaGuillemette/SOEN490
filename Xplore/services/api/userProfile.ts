@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { USER_COLLECTION_ID, PROFILE_PICTURES_BUCKET_ID } from "@env";
+import { COLLECTION_ID_USERS, PROFILE_PICTURES_BUCKET_ID } from "@env";
 import api from "../appwrite/api";
 import { useAuth } from "../../hooks";
 
@@ -8,7 +8,7 @@ const useFetchUserDetails = () => {
   return useQuery({
     queryKey: ["userDetails", accountToken?.$id],
     queryFn: () =>
-      api.listDocuments(USER_COLLECTION_ID, [
+      api.listDocuments(COLLECTION_ID_USERS, [
         api.query.equal("userID", accountToken!.$id),
       ]),
   });
