@@ -1,4 +1,4 @@
-import { StyleSheet, StatusBar } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   scrollViewStyle: {
@@ -13,6 +13,5 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 30,
-    //paddingTop: 100,
   },
 });

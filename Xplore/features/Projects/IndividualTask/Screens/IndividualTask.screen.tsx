@@ -3,8 +3,6 @@ import styles from "./IndividualTask.styles";
 import { ScrollView } from "react-native";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
-// import { TaskIllustration } from "../components/TaskIllustration/taskIllustration.component";
-// import { TaskIllustration } from "../components/TaskIllustration";
 import { TaskIllustration } from "../components/TaskIllustration/TaskIllustration.component";
 import { DescriptionCard } from "../components/DescriptionCard/DescriptionCard.component";
 interface IndividualTaskScreenProps {
