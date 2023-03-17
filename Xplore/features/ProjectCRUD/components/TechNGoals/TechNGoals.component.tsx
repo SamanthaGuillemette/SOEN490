@@ -1,16 +1,18 @@
 import { View } from "react-native";
 import styles from "./TechNGoals.styles";
-import { Chips, InputField, DropdownField, Text } from "../../../../components";
-import { Picker } from "@react-native-picker/picker";
+import { Chips, InputField, Text } from "../../../../components";
 import { useState } from "react";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
+import { DropdownField } from "../../../../components";
 
 export const TechNGoals = () => {
-  // const [projectGoals, setProjectGoals] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
+  const [categoryText, setCategoryText] = useState("Category");
 
   const handleValueChange = (value: string) => {
     setSelectedValue(value);
+    const selectedOption = options.find((option) => option.value === value);
+    setCategoryText(selectedOption?.label || "Category");
   };
 
   const options = [
@@ -31,12 +33,11 @@ export const TechNGoals = () => {
     <View style={styles.container}>
       <View>
         <View style={styles.containerTech}>
-          {/* <Chips placeHolder={"Technologies"} /> */}
           <Text color="titleText" variant="h3">
             Category
           </Text>
           <DropdownField
-            label="Options"
+            label={categoryText}
             options={sortedOptions}
             onValueChange={handleValueChange}
           />
@@ -46,21 +47,18 @@ export const TechNGoals = () => {
           <InputField
             placeHolder="Project Goal #1"
             styleText={styles.styleTextGoals}
-            // onChangeText={(goals) => setProjectGoals(goals)}
           />
         </View>
         <View style={styles.containerGoal}>
           <InputField
             placeHolder="Project Goal #2"
             styleText={styles.styleTextGoals}
-            // onChangeText={(goals) => setProjectGoals(goals)}
           />
         </View>
         <View style={styles.containerGoal}>
           <InputField
             placeHolder="Project Goal #3"
             styleText={styles.styleTextGoals}
-            // onChangeText={(goals) => setProjectGoals(goals)}
           />
         </View>
       </View>

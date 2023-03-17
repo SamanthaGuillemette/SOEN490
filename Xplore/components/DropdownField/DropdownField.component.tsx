@@ -1,44 +1,53 @@
-import { useState } from "react";
-import { Picker } from "@react-native-picker/picker";
-import { colors } from "../../constants";
+import React, { useState } from "react";
+import { View, Modal, TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../hooks";
-import { StyleProp, ViewStyle } from "react-native";
+import { Text } from "../Text";
 
-interface PickerProps {
+interface DropdownProps {
   label: string;
   options: { label: string; value: string }[];
   onValueChange: (value: string) => void;
-  itemStyle?: object;
-  style?: StyleProp<ViewStyle>;
+  style?: object;
+  selectedValue?: string;
 }
 
-export const DropdownField = (props: PickerProps) => {
-  const [selectedValue, setSelectedValue] = useState("");
-  const { label, options, onValueChange, style, itemStyle } = props;
-  const bodyText = useThemeColor("bodyText");
-  const background = useThemeColor("primaryBackgroundOpaque");
+export const DropdownField = (props: DropdownProps) => {
+  const { label, options, onValueChange, style, selectedValue } = props;
+  const [modalVisible, setModalVisible] = useState(false);
+  const backgroundColor = useThemeColor("primaryBackgroundOpaque");
+
+  const handleValueChange = (value: string) => {
+    setModalVisible(false);
+    onValueChange(value);
+  };
 
   return (
-    <>
-      <Picker
-        selectedValue={selectedValue}
-        style={[style, { color: bodyText, backgroundColor: background }]}
-        itemStyle={itemStyle}
-        onValueChange={(itemValue, itemIndex) => {
-          setSelectedValue(itemValue);
-          onValueChange(itemValue);
-        }}
+    <View style={style}>
+      <TouchableOpacity
+        style={[style, { backgroundColor: backgroundColor }]}
+        onPress={() => setModalVisible(true)}
       >
-        {options.map((option) => (
-          <Picker.Item
-            key={option.value}
-            label={option.label}
-            value={option.value}
-          />
-        ))}
-      </Picker>
-    </>
+        <Text>{label}</Text>
+
+        <Text color="bodyText" variant="body">
+          {selectedValue}
+        </Text>
+      </TouchableOpacity>
+      <Modal visible={modalVisible} animationType="slide">
+        <View style={{ flex: 1 }}>
+          <TouchableOpacity onPress={() => setModalVisible(false)}>
+            <Text>Close</Text>
+          </TouchableOpacity>
+          {options.map((option) => (
+            <TouchableOpacity
+              key={option.value}
+              onPress={() => handleValueChange(option.value)}
+            >
+              <Text>{option.label}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </Modal>
+    </View>
   );
 };
-
-export default DropdownField;
