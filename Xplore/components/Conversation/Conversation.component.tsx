@@ -36,16 +36,18 @@ export const Conversation = (props: ConversationProps) => {
         {item.userID === currUserID ? (
           <RightBubble
             key={item.id}
+            username={item.username}
             text={item.message}
             msgTime={item.createdAt}
-            image={"https://picsum.photos/200"}
+            image={item.avatar}
           />
         ) : (
           <LeftBubble
             key={item.id}
+            username={item.username}
             text={item.message}
             msgTime={item.createdAt}
-            image={"https://picsum.photos/200"}
+            image={item.avatar}
           />
         )}
       </RNView>

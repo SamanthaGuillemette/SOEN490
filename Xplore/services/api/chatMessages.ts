@@ -2,29 +2,51 @@ import {
   COLLECTION_ID_MESSAGES,
   COLLECTION_ID_GROUP_CHATS,
   COLLECTION_ID_DIRECT_CHATS,
+  COLLECTION_ID_USERS,
 } from "@env";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
 import api from "../appwrite/api";
 
+const getUserInfo = async (contactID: any) => {
+  const response = await api.listDocuments(COLLECTION_ID_USERS, [
+    Query.equal("userID", contactID),
+  ]);
+  const data = await Promise.all(
+    response?.documents?.map(async (doc) => ({
+      id: doc.userID,
+      username: doc.username,
+      avatar: doc.profilePicture,
+      xp: doc.xp,
+    }))
+  );
+  return data[0];
+};
+
 const getMessages = async (chatID: any) => {
   const response = await api.listDocuments(COLLECTION_ID_MESSAGES, [
     Query.equal("chatID", chatID),
   ]);
-  return response?.documents?.map((doc: any) => {
-    const createdAt = new Date(doc.$createdAt);
-    return {
-      id: doc.$id,
-      chatID: doc.chatID,
-      userID: doc.userID,
-      message: doc.message,
-      createdAt: createdAt.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-      date: doc.$updatedAt.slice(0, 10),
-    };
-  });
+  const messages = await Promise.all(
+    response?.documents?.map(async (doc: any) => {
+      const createdAt = new Date(doc.$createdAt);
+      const sender = await getUserInfo(doc.userID);
+      return {
+        id: doc.$id,
+        chatID: doc.chatID,
+        userID: doc.userID,
+        message: doc.message,
+        createdAt: createdAt.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        date: doc.$updatedAt.slice(0, 10),
+        avatar: sender?.avatar,
+        username: sender?.username,
+      };
+    })
+  );
+  return messages;
 };
 
 const useListMessages = (chatID: any) => {
