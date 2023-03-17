@@ -16,16 +16,13 @@ export const DropdownField = (props: PickerProps) => {
   const [selectedValue, setSelectedValue] = useState("");
   const { label, options, onValueChange, style, itemStyle } = props;
   const bodyText = useThemeColor("bodyText");
-  const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const background = useThemeColor("primaryBackgroundOpaque");
 
   return (
     <>
       <Picker
         selectedValue={selectedValue}
-        style={[
-          style,
-          { color: bodyText, backgroundColor: backgroundSecondary },
-        ]}
+        style={[style, { color: bodyText, backgroundColor: background }]}
         itemStyle={itemStyle}
         onValueChange={(itemValue, itemIndex) => {
           setSelectedValue(itemValue);
