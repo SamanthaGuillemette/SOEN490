@@ -14,7 +14,21 @@ export const TechNGoals = () => {
 
         <View style={styles.containerGoal}>
           <InputField
-            placeHolder="Project Goals"
+            placeHolder="Project Goal #1"
+            styleText={styles.styleTextGoals}
+            // onChangeText={(goals) => setProjectGoals(goals)}
+          />
+        </View>
+        <View style={styles.containerGoal}>
+          <InputField
+            placeHolder="Project Goal #2"
+            styleText={styles.styleTextGoals}
+            // onChangeText={(goals) => setProjectGoals(goals)}
+          />
+        </View>
+        <View style={styles.containerGoal}>
+          <InputField
+            placeHolder="Project Goal #3"
             styleText={styles.styleTextGoals}
             // onChangeText={(goals) => setProjectGoals(goals)}
           />
