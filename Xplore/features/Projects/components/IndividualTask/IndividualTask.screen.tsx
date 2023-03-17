@@ -3,8 +3,8 @@ import styles from "./IndividualTask.styles";
 import { ScrollView, SafeAreaView } from "react-native";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
-import { TaskIllustration } from "../components/TaskIllustration/TaskIllustration.component";
-import { DescriptionCard } from "../components/DescriptionCard/DescriptionCard.component";
+import { TaskIllustration } from "./TaskIllustration/TaskIllustration.component";
+import { DescriptionCard } from "./DescriptionCard/DescriptionCard.component";
 import { View } from "../../../../components";
 interface IndividualTaskScreenProps {
   navigation: NavigationProp<any>;

@@ -1,7 +1,7 @@
 import { ScrollView } from "react-native";
-import { NavigationProp } from "@react-navigation/native";
-import { SquaredButton, View, MessageMember } from "../../../../components";
+import { MessageMember, SquaredButton, View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
+import { NavigationProp } from "@react-navigation/native";
 
 interface ProjectMembersProps {
   navigation: NavigationProp<any>;

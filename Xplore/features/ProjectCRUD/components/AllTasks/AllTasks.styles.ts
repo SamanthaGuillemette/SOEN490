@@ -11,7 +11,6 @@ export default StyleSheet.create({
   },
 
   alignLeft: {
-    
     alignItems: "flex-start",
   },
   mainContainer: {
@@ -21,7 +20,7 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
 
-  squareButton:{
-    padding:10,
-  }
+  squareButton: {
+    padding: 10,
+  },
 });

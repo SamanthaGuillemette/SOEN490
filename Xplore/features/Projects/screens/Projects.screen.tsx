@@ -1,10 +1,10 @@
 import * as React from "react";
 import { SafeAreaView, TouchableOpacity } from "react-native";
+import { useThemeColor } from "../../../hooks";
 import ProjectCoreScreen from "./ProjectCoreScreen/ProjectCoreScreen.component";
 import TopHeader from "../../../navigation/TopHeader.component";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./Projects.styles";
-import { useThemeColor } from "../../../hooks";
 
 interface ProjectsProps {
   navigation: NavigationProp<any>;

@@ -3,8 +3,8 @@ import {
   Text,
   Icon,
   CircularPercentageBar,
-} from "../../../../../../../components";
-import { useThemeColor } from "../../../../../../../hooks";
+} from "../../../../components";
+import { useThemeColor } from "../../../../hooks";
 import styles from "./ProjectStatusBox.styles";
 
 interface ProjectStats {

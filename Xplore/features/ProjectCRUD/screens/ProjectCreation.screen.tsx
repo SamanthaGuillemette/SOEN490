@@ -7,12 +7,11 @@ import {
   Description,
   TechNGoals,
 } from "../components";
-interface HeaderProps {
+interface ProjectCreationProps {
   navigation: NavigationProp<any>;
 }
 
-const ProjectCreation = (props: HeaderProps) => {
-  const { navigation } = props;
+const ProjectCreation = (props: ProjectCreationProps) => {
   return (
     <StepIndicator
       headerTitle={"Create Projects"}
@@ -27,7 +26,7 @@ const ProjectCreation = (props: HeaderProps) => {
       screens={[
         <Description />,
         <TechNGoals />,
-        <AllTasks navigation={navigation} />,
+        <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,
       ]}
