@@ -6,11 +6,14 @@ import {
   InputField,
   ShadowView,
 } from "../../../../components";
+import { useState } from "react";
 
-export const Description = () => {
-  // const [projName, setProjName] = useState("");
-  // const [projDesc, setProjDesc] = useState("");
+interface DescriptionProps {
+  setDescription: (desc: string) => void;
+  setProjectName: (name: string) => void;
+}
 
+export const Description = (props: DescriptionProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.editImageContainer}>
@@ -25,7 +28,7 @@ export const Description = () => {
           <InputField
             placeHolder="Project name"
             styleText={styles.styleText}
-            // onChangeText={(name) => setProjName(name)}
+            onChangeText={(projName) => props.setProjectName(projName)}
           />
         </View>
 
@@ -35,7 +38,7 @@ export const Description = () => {
           <InputField
             placeHolder="Project description"
             styleText={styles.styleText}
-            // onChangeText={(desc) => setProjDesc(desc)}
+            onChangeText={(desc) => props.setDescription(desc)}
           />
         </View>
       </View>

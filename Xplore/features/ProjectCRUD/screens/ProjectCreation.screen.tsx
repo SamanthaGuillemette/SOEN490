@@ -1,5 +1,6 @@
 import { StepIndicator } from "../../../components";
 import { NavigationProp } from "@react-navigation/native";
+import { useState } from "react";
 import {
   AddLinks,
   AddMembers,
@@ -12,6 +13,16 @@ interface HeaderProps {
 }
 
 const ProjectCreation = (props: HeaderProps) => {
+  const [description, setDescription] = useState("");
+  const [tech, setTech] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
+  const [allMembers, setAllMembers] = useState([]);
+  const [allLinks, setAllLinks] = useState([]);
+  const [projName, setProjectName] = useState("");
+  const [projectGoals, setProjectGoals] = useState("");
+  const [Technologies, setTechnologies] = useState("");
+  const [projectCategory, setProjectCategory] = useState("");
+
   return (
     <StepIndicator
       headerTitle={"Create Projects"}
@@ -24,7 +35,10 @@ const ProjectCreation = (props: HeaderProps) => {
       ]}
       numOfSteps={5}
       screens={[
-        <Description />,
+        <Description
+          setDescription={setDescription}
+          setProjectName={setProjectName}
+        />,
         <TechNGoals />,
         <AllTasks />,
         <AddMembers />,
