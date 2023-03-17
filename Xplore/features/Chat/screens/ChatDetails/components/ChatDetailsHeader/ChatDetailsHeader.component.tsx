@@ -18,7 +18,9 @@ const ChatDetailsHeader = (props: ChatDetailsHeader) => {
       style={styles.headerBar}
     >
       <View style={styles.navLeftItems}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Chats")}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("BottomTabNavigator")}
+        >
           <Icon style={styles.arrowIcon} name="chevron-left" />
         </TouchableOpacity>
         <Text variant="h2">{props.username}</Text>

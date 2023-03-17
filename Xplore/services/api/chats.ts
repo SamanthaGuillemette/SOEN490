@@ -62,7 +62,6 @@ const getChats = async (collectionId: any, userId: any) => {
       };
     })
   );
-  console.log(chats);
   return chats;
 };
 
@@ -118,4 +117,4 @@ const markAsSeen = async (chatType: string, chatID: any, userId: any) => {
   });
 };
 
-export { useListChats, markAsSeen };
+export { useListChats, markAsSeen, getContactInfo };

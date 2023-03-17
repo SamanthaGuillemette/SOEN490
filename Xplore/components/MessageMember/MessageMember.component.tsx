@@ -3,7 +3,7 @@ import { NavigationProp } from "@react-navigation/native";
 import { useQuery } from "react-query";
 import api from "../../services/appwrite/api";
 import { Query } from "appwrite";
-import { markAsSeen } from "../../services/api/chats";
+import { markAsSeen, getContactInfo } from "../../services/api/chats";
 import { View } from "../View";
 import { User } from "../User";
 import { ChipButton } from "../ChipButton";
@@ -24,7 +24,6 @@ export const MessageMember = (props: MemberProps) => {
   let userId: string = userdata?.$id as string;
 
   const onMessageClick = async () => {
-    console.log("here: ", userId, props.id);
     try {
       const chatData = await api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
         Query.equal("userID", userId),
@@ -32,31 +31,20 @@ export const MessageMember = (props: MemberProps) => {
       ]);
       console.log(chatData);
       // If the chat exists, mark it as seen and navigate to ChatDetails screen
-      if (chatData) {
+      if (chatData.total === 1) {
         await markAsSeen("direct", chatData.documents[0].chatID, userId);
         props.navigation?.navigate("ChatDetails", {
           chatID: chatData.documents[0].chatID,
           chatType: "direct",
           username: props.username,
         });
+      } else {
+        const contactInfo = await getContactInfo(props.id);
+        props.navigation?.navigate("ChatDetails", {
+          chatType: "direct",
+          username: contactInfo[0].username,
+        });
       }
-      // // If the chat does not exist, create a new chat and navigate to ChatDetails screen
-      // else {
-      //   const newChatData = {
-      //     userID: userId,
-      //     contactID: props.id,
-      //   };
-      //   const newChat = await api.createDocument(
-      //     COLLECTION_ID_DIRECT_CHATS,
-      //     newChatData
-      //   );
-      //   await markAsSeen("direct", newChat.$id, userId);
-      //   props.navigation?.navigate("ChatDetails", {
-      //     chatID: newChat.$id,
-      //     chatType: "direct",
-      //     username: props.username,
-      //   });
-      // }
     } catch (error) {
       console.log(error);
     }
