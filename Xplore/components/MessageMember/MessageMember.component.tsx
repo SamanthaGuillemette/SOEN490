@@ -50,16 +50,6 @@ export const MessageMember = (props: MemberProps) => {
           userID: userId,
           contactID: props.id,
           chatID: chatID,
-          seen: true,
-          lastModifiedAt: new Date().toISOString(),
-        });
-        // For contact
-        await createNewChat({
-          userID: props.id,
-          contactID: userId,
-          chatID: chatID,
-          seen: false,
-          lastModifiedAt: new Date().toISOString(),
         });
         props.navigation?.navigate("ChatDetails", {
           chatID: chatID,
