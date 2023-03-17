@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, Modal, TouchableOpacity, Text } from "react-native";
+import { View, Modal, TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../hooks";
+import { Text } from "../Text";
 
 interface DropdownProps {
   label: string;
@@ -26,7 +27,7 @@ export const DropdownField = (props: DropdownProps) => {
         style={[style, { backgroundColor: backgroundColor }]}
         onPress={() => setModalVisible(true)}
       >
-        <Text>{label}</Text>
+        <Text color="bodyText">{label}</Text>
 
         <Text color="bodyText" variant="body">
           {selectedValue}
