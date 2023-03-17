@@ -25,6 +25,8 @@ export const TechNGoals = () => {
     { label: "Mobile Development", value: "option9" },
   ];
 
+  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
+
   return (
     <View style={styles.container}>
       <View>
@@ -35,7 +37,7 @@ export const TechNGoals = () => {
           </Text>
           <DropdownField
             label="Options"
-            options={options}
+            options={sortedOptions}
             onValueChange={handleValueChange}
           />
         </View>
