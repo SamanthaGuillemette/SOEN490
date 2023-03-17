@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { View, Modal, TouchableOpacity } from "react-native";
+import { View, Modal, TouchableOpacity, Text } from "react-native";
 import { useThemeColor } from "../../hooks";
-import { Text } from "../Text";
 
 interface DropdownProps {
   label: string;
@@ -36,14 +35,22 @@ export const DropdownField = (props: DropdownProps) => {
       <Modal visible={modalVisible} animationType="slide">
         <View style={{ flex: 1 }}>
           <TouchableOpacity onPress={() => setModalVisible(false)}>
-            <Text>Close</Text>
+            <Text style={[style, { textAlign: "center", marginTop: 10 }]}>
+              Close
+            </Text>
           </TouchableOpacity>
           {options.map((option) => (
             <TouchableOpacity
               key={option.value}
               onPress={() => handleValueChange(option.value)}
             >
-              <Text>{option.label}</Text>
+              <Text
+                variant="body"
+                color="bodyText"
+                style={[style, { textAlign: "center" }]}
+              >
+                {option.label}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
