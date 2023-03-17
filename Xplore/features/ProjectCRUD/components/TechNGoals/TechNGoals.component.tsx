@@ -14,9 +14,15 @@ export const TechNGoals = () => {
   };
 
   const options = [
-    { label: "Option 1", value: "option1" },
-    { label: "Option 2", value: "option2" },
-    { label: "Option 3", value: "option3" },
+    { label: "Data Science", value: "option1" },
+    { label: "Web Development", value: "option2" },
+    { label: "Embedded Systems", value: "option3" },
+    { label: "Security Systems", value: "option4" },
+    { label: "Social Networking", value: "option5" },
+    { label: "Game Development", value: "option6" },
+    { label: "Software Optimization", value: "option7" },
+    { label: "Finance/Blockchain", value: "option8" },
+    { label: "Mobile Development", value: "option9" },
   ];
 
   return (
