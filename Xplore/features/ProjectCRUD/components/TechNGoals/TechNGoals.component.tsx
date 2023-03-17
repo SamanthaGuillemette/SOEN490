@@ -1,9 +1,7 @@
 import { View } from "react-native";
 import styles from "./TechNGoals.styles";
-import { Chips, InputField, Text } from "../../../../components";
+import { DropdownField, InputField, Text } from "../../../../components";
 import { useState } from "react";
-import { useThemeColor } from "../../../../hooks/useThemeColor";
-import { DropdownField } from "../../../../components";
 
 export const TechNGoals = () => {
   const [selectedValue, setSelectedValue] = useState("");
