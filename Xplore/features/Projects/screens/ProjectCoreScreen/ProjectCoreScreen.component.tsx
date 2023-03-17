@@ -6,12 +6,11 @@ import { NavigationProp } from "@react-navigation/native";
 interface ProjectCoreProps {
   navigation: NavigationProp<any>;
 }
-
 const ProjectCore = (props: ProjectCoreProps) => {
   const { navigation } = props;
   return (
     <View backgroundColor="background">
-      <FeaturedImage projectName="Snake Robot" />
+      <FeaturedImage projectName="Snake Robot" source="" />
       <ProjectNavBar navigation={navigation} />
     </View>
   );
