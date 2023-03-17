@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Projects from "../../features/Projects/screens/Projects.screen";
+import ProjectDetails from "../../features/Projects/screens/ProjectDetails/ProjectDetails.screen";
 
 const ProjectStack = createNativeStackNavigator();
 
@@ -10,7 +10,7 @@ const ProjectTab = () => {
         headerShown: false,
       }}
     >
-      <ProjectStack.Screen name="ProjectsScreen" component={Projects} />
+      <ProjectStack.Screen name="ProjectDetails" component={ProjectDetails} />
     </ProjectStack.Navigator>
   );
 };
