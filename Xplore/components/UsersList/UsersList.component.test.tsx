@@ -1,9 +1,9 @@
+import { render, fireEvent } from "@testing-library/react-native";
 import React from "react";
-import { render } from "react-native-testing-library";
 import { UsersList, UserItem } from "./UsersList.component";
 
 describe("UserItem should render correctly", () => {
-  it("should render UserItem correctly", () => {
+  it("should render UserItem correctly and select it", () => {
     const { queryByText } = render(
       <UserItem
         avatar="TestAvatar"
@@ -56,5 +56,13 @@ describe("UserList should render correctly", () => {
     expect(queryByText("Josh Lewis")).not.toBeNull();
     expect(queryByText("Amy Lucas")).not.toBeNull();
     expect(queryByText("Landon Clayton")).not.toBeNull();
+  });
+
+  it("should be able to select users", () => {
+    const { getByText, getAllByTestId } = render(<UsersList data={Users} />);
+    expect(getAllByTestId("circle")).toHaveLength(3);
+    fireEvent.press(getByText("Josh Lewis"));
+    expect(getAllByTestId("circle")).toHaveLength(2);
+    expect(getAllByTestId("check-circle")).toHaveLength(1);
   });
 });

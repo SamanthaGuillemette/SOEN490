@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AvatarGroup should render correctly should render correctly 1`] = `[Function]`;
+exports[`AvatarGroup should change after rendering more than 4 avatars should render less than 5 avatars correctly 1`] = `[Function]`;
+
+exports[`AvatarGroup should render correctly should render less than 4 avatars correctly 1`] = `[Function]`;
