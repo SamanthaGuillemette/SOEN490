@@ -109,6 +109,7 @@ export const fakeProjectCompletedData = [
 
 const UserProjects = (props: UserProjectsProps) => {
   const background = useThemeColor("background");
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
   const [screen, setScreen] = useState(0);
 
   return (
@@ -116,7 +117,12 @@ const UserProjects = (props: UserProjectsProps) => {
       style={[styles.safeAreaStyle, { backgroundColor: background }]}
     >
       <TopHeader screenName={"Projects"} navigation={props.navigation} />
-      <View style={styles.segmentContainer}>
+      <View
+        style={[
+          styles.segmentContainer,
+          { backgroundColor: backgroundSecondary },
+        ]}
+      >
         <SegmentedButton
           labels={["CURRENT", "COMPLETED"]}
           setIndex={setScreen}
