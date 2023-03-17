@@ -8,11 +8,11 @@ import {
   TechNGoals,
 } from "../components";
 
-interface HeaderProps {
+interface ProjectEditProps {
   navigation: NavigationProp<any>;
 }
 
-const ProjectEdit = (props: HeaderProps) => {
+const ProjectEdit = (props: ProjectEditProps) => {
   return (
     <StepIndicator
       headerTitle={"Edit Projects"}
@@ -27,7 +27,7 @@ const ProjectEdit = (props: HeaderProps) => {
       screens={[
         <Description />,
         <TechNGoals />,
-        <AllTasks />,
+        <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,
       ]}

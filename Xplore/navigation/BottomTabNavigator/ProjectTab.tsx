@@ -13,6 +13,7 @@ const ProjectTab = () => {
     >
       <ProjectStack.Screen name="UserProjectsScreen" component={Projects} />
       <ProjectStack.Screen name="Search" component={Search} />
+      <ProjectStack.Screen name="ProjectsScreen" component={Projects} />
     </ProjectStack.Navigator>
   );
 };

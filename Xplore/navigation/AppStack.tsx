@@ -12,6 +12,7 @@ import { useQuery } from "react-query";
 import ProjectEdit from "../features/ProjectCRUD/screens/ProjectEdit.screen";
 import ProjectCreation from "../features/ProjectCRUD/screens/ProjectCreation.screen";
 import Search from "../features/Searching/Search.screen";
+import IndividualTask from "../features/Projects/components/IndividualTask/IndividualTask.screen";
 import { useUpdateOnboarding } from "../services/api/onboarding";
 
 const Stack = createNativeStackNavigator();
@@ -45,6 +46,7 @@ const AppStack = () => {
       <Stack.Screen name="ProjectCreation" component={ProjectCreation} />
       <Stack.Screen name="ProjectEdit" component={ProjectEdit} />
       <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="IndividualTask" component={IndividualTask} />
     </Stack.Navigator>
   );
 };
