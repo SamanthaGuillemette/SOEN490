@@ -8,8 +8,9 @@ declare module "@env" {
   export const DATABASE_ID: string;
   export const COLLECTION_ID_TEST: string;
   export const COLLECTION_ID_USERS: string;
-  export const COLLECTION_ID_PROJECT: string;
   export const COLLECTION_ID_DIRECT_CHATS: string;
   export const COLLECTION_ID_GROUP_CHATS: string;
   export const COLLECTION_ID_MESSAGES: string;
+  export const PROJECT_COLLECTION_ID: string;
+  export const COLLECTION_ID_ONBOARDING: string;
 }
