@@ -8,7 +8,6 @@ import { useThemeColor } from "../../../../hooks/useThemeColor";
 export const TechNGoals = () => {
   // const [projectGoals, setProjectGoals] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
-  const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   const handleValueChange = (value: string) => {
     setSelectedValue(value);
@@ -25,13 +24,14 @@ export const TechNGoals = () => {
       <View>
         <View style={styles.containerTech}>
           {/* <Chips placeHolder={"Technologies"} /> */}
-          <Text>Select an option:</Text>
+          <Text color="titleText" variant="h3">
+            Category
+          </Text>
           <DropdownField
             label="Options"
             options={options}
             onValueChange={handleValueChange}
           />
-          <Text>Selected option: {selectedValue}</Text>
         </View>
 
         <View style={styles.containerGoal}>
