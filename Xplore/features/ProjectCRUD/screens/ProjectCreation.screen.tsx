@@ -12,6 +12,7 @@ interface HeaderProps {
 }
 
 const ProjectCreation = (props: HeaderProps) => {
+  const { navigation } = props;
   return (
     <StepIndicator
       headerTitle={"Create Projects"}
@@ -26,7 +27,7 @@ const ProjectCreation = (props: HeaderProps) => {
       screens={[
         <Description />,
         <TechNGoals />,
-        <AllTasks />,
+        <AllTasks navigation={navigation} />,
         <AddMembers />,
         <AddLinks />,
       ]}
