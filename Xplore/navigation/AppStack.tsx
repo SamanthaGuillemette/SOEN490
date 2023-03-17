@@ -14,6 +14,7 @@ import ProjectCreation from "../features/ProjectCRUD/screens/ProjectCreation.scr
 import Search from "../features/Searching/Search.screen";
 import IndividualTask from "../features/Projects/components/IndividualTask/IndividualTask.screen";
 import { useUpdateOnboarding } from "../services/api/onboarding";
+import ProjectDetails from "../features/Projects/screens/ProjectDetails/ProjectDetails.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +45,7 @@ const AppStack = () => {
       <Stack.Screen name="ChatSettings" component={ChatSettings} />
       <Stack.Screen name="TopicSelection" component={TopicSelection} />
       <Stack.Screen name="ProjectCreation" component={ProjectCreation} />
+      <Stack.Screen name="ProjectDetails" component={ProjectDetails} />
       <Stack.Screen name="ProjectEdit" component={ProjectEdit} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="IndividualTask" component={IndividualTask} />
