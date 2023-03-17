@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react-native";
 import renderer from "react-test-renderer";
-import Projects from "./ProjectDetails.screen";
+import ProjectDetails from "../ProjectDetails/ProjectDetails.screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 function ProjectsWithNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Screen name="Home2" component={Projects} />
+      <Stack.Screen name="Home2" component={ProjectDetails} />
     </NavigationContainer>
   );
 }
