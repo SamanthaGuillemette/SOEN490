@@ -18,7 +18,6 @@ const IndividualTask = (props: IndividualTaskScreenProps) => {
 
   let { taskName }: any = route.params;
 
-  const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}

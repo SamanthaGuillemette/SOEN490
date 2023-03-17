@@ -17,7 +17,18 @@ const Home = (props: ProjectsProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
+<<<<<<< HEAD:Xplore/features/Projects/Main/screens/Projects.screen.tsx
       <TopHeader screenName={"Projects"} navigation={props.navigation} />
+=======
+      <TopHeader
+        screenName={"Projects"}
+        navigation={props.navigation}
+        name="edit"
+      />
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("ProfileEdit")}
+      />
+>>>>>>> develop:Xplore/features/Projects/screens/Projects.screen.tsx
       <ProjectCoreScreen navigation={props.navigation} />
     </SafeAreaView>
   );

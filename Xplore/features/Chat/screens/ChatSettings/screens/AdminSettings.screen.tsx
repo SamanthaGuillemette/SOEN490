@@ -2,26 +2,26 @@ import { useState } from "react";
 import {
   View,
   ConfirmationModal,
-  AlertModal,
   AddMemberModal,
 } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
-import { AddAdminModal } from "../components/AddAdminModal/AddAdminModal.component";
 import { RemoveMemberModal } from "../components/RemoveMemberModal/RemoveMemberModal.component";
+import { deleteMessages } from "../../../../../services/api/chatSettings";
 import styles from "./SettingsOptions.styles";
 
-interface AdminSettingsProps {}
+interface AdminSettingsProps {
+  chatID: string;
+}
 
 const AdminSettings = (props: AdminSettingsProps) => {
   const [chatNameModalVisible, setChatNameModalVisible] = useState<any>(false);
-  const [inviteModalVisible, setInviteModalVisible] = useState<any>(false);
   const [addMemberModalVisible, setAddMemberModalVisible] =
     useState<any>(false);
-  const [addAdminModalVisible, setAddAdminModalVisible] = useState<any>(false);
   const [removeModalVisible, setRemoveModalVisible] = useState<any>(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState<any>(false);
   const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
+
   return (
     <View style={styles.settingsContainer}>
       <SettingBox
@@ -30,17 +30,9 @@ const AdminSettings = (props: AdminSettingsProps) => {
         onPress={() => setChatNameModalVisible(true)}
       />
       {chatNameModalVisible === true && (
-        <ChatNameModal setChatNameModalVisible={setChatNameModalVisible} />
-      )}
-      <SettingBox
-        settingName="Copy invite link"
-        iconName="share-2"
-        onPress={() => setInviteModalVisible(true)}
-      />
-      {inviteModalVisible === true && (
-        <AlertModal
-          setAlertModalVisible={setInviteModalVisible}
-          alertMsg="Invite link copied to clipboard"
+        <ChatNameModal
+          chatID={props.chatID}
+          setChatNameModalVisible={setChatNameModalVisible}
         />
       )}
       <SettingBox
@@ -50,14 +42,6 @@ const AdminSettings = (props: AdminSettingsProps) => {
       />
       {addMemberModalVisible === true && (
         <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
-      )}
-      <SettingBox
-        settingName="Add admin"
-        iconName="user-plus"
-        onPress={() => setAddAdminModalVisible(true)}
-      />
-      {addAdminModalVisible === true && (
-        <AddAdminModal setAddModalVisible={setAddAdminModalVisible} />
       )}
       <SettingBox
         settingName="Remove a member"
@@ -78,6 +62,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
           confirmMsg="Are you sure you want to delete the chat?"
           primaryText="Delete chat"
           secondaryText="Cancel"
+          primaryAction={() => deleteMessages(props.chatID, "group")}
         />
       )}
       <SettingBox

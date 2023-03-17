@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.1",
+    "@expo/ngrok": "^4.1.0",
     "@react-native-community/datetimepicker": "6.2.0",
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/native": "^6.0.12",
@@ -88,7 +89,8 @@
       "!**/coverage/**",
       "!**/node_modules/**",
       "!**/babel.config.js",
-      "!**/jest.setup.js"
+      "!**/jest.setup.js",
+      "!**/index.ts"
     ]
   },
   "private": true

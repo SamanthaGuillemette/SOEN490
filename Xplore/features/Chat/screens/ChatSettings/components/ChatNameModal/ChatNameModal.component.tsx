@@ -7,17 +7,22 @@ import {
   PrimaryButton,
   SecondaryButton,
 } from "../../../../../../components";
+import { changeChatName } from "../../../../../../services/api/chatSettings";
 import styles from "./ChatNameModal.styles";
 
 interface ChatNameModalProps {
+  chatID: String;
   setChatNameModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ChatNameModal = ({
   setChatNameModalVisible,
+  chatID,
 }: ChatNameModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const [name, setName] = useState("");
+
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
     setChatNameModalVisible(!modalVisible);
@@ -38,11 +43,22 @@ export const ChatNameModal = ({
             <TextInput
               placeHolder="Group Name"
               iconName="user"
+              onChangeText={(thisName) => setName(thisName)}
               style={styles.textInput}
             />
             <PrimaryButton
               label="Change Name"
-              onPress={handleIndexSelect}
+              onPress={() => {
+                if (name !== "") {
+                  const nameData = {
+                    chatID: chatID,
+                    chatName: name,
+                  };
+                  changeChatName(nameData, chatID);
+                  setName("");
+                  handleIndexSelect();
+                }
+              }}
               style={styles.primaryButton}
             />
             <SecondaryButton

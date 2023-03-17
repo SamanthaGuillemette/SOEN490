@@ -150,6 +150,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: background }}
+        testID="ScrollViewTest"
       >
         <View style={styles.stepIndicator}>
           <Wizard

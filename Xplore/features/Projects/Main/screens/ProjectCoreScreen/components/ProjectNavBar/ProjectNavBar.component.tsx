@@ -14,10 +14,11 @@ import { useThemeColor } from "../../../../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectNavBar.styles";
 
-interface ProjectNavBar {
+interface ProjectNavBarProps {
   navigation: NavigationProp<any>;
 }
 
+<<<<<<< HEAD:Xplore/features/Projects/Main/screens/ProjectCoreScreen/components/ProjectNavBar/ProjectNavBar.component.tsx
 function ProjectNavBar(props: ProjectNavBar) {
   const { navigation } = props;
   const { width } = Dimensions.get("window");
@@ -29,6 +30,21 @@ function ProjectNavBar(props: ProjectNavBar) {
     <ProjectMembers />,
     <Links />,
   ];
+=======
+function ProjectNavBar(props: ProjectNavBarProps) {
+  const { navigation } = props;
+  const { width } = Dimensions.get("window");
+  const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
+
+  const projectScreenPages = [
+    <DescriptionScreen />,
+    <TasksScreen />,
+    <DiscussionScreen />,
+    <ProjectMembersScreen navigation={navigation} />,
+    <LinksScreen />,
+  ];
+
+>>>>>>> develop:Xplore/features/Projects/screens/ProjectCoreScreen/components/ProjectNavBar/ProjectNavBar.component.tsx
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
