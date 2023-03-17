@@ -3,7 +3,12 @@ import { NavigationProp } from "@react-navigation/native";
 import { useQuery } from "react-query";
 import api from "../../services/appwrite/api";
 import { Query } from "appwrite";
-import { markAsSeen, getContactInfo } from "../../services/api/chats";
+import {
+  markAsSeen,
+  getContactInfo,
+  createNewChat,
+  generateRandomChatID,
+} from "../../services/api/chats";
 import { View } from "../View";
 import { User } from "../User";
 import { ChipButton } from "../ChipButton";
@@ -29,7 +34,6 @@ export const MessageMember = (props: MemberProps) => {
         Query.equal("userID", userId),
         Query.equal("contactID", props.id),
       ]);
-      console.log(chatData);
       // If the chat exists, mark it as seen and navigate to ChatDetails screen
       if (chatData.total === 1) {
         await markAsSeen("direct", chatData.documents[0].chatID, userId);
@@ -40,7 +44,25 @@ export const MessageMember = (props: MemberProps) => {
         });
       } else {
         const contactInfo = await getContactInfo(props.id);
+        const chatID = generateRandomChatID();
+        // For curr user
+        await createNewChat({
+          userID: userId,
+          contactID: props.id,
+          chatID: chatID,
+          seen: true,
+          lastModifiedAt: new Date().toISOString(),
+        });
+        // For contact
+        await createNewChat({
+          userID: props.id,
+          contactID: userId,
+          chatID: chatID,
+          seen: false,
+          lastModifiedAt: new Date().toISOString(),
+        });
         props.navigation?.navigate("ChatDetails", {
+          chatID: chatID,
           chatType: "direct",
           username: contactInfo[0].username,
         });

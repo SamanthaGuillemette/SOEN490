@@ -20,6 +20,15 @@ interface Chat {
   lastModifiedAt: string;
 }
 
+function generateRandomChatID() {
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let id = "";
+  for (let i = 0; i < 20; i++) {
+    id += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return id;
+}
+
 const getContactInfo = async (contactID: any) => {
   const response = await api.listDocuments(COLLECTION_ID_USERS, [
     Query.equal("userID", contactID),
@@ -33,6 +42,10 @@ const getContactInfo = async (contactID: any) => {
     }))
   );
   return data;
+};
+
+const createNewChat = async (chatData: any) => {
+  api.createDocument(COLLECTION_ID_DIRECT_CHATS, chatData);
 };
 
 const getChats = async (collectionId: any, userId: any) => {
@@ -117,4 +130,10 @@ const markAsSeen = async (chatType: string, chatID: any, userId: any) => {
   });
 };
 
-export { useListChats, markAsSeen, getContactInfo };
+export {
+  useListChats,
+  createNewChat,
+  generateRandomChatID,
+  markAsSeen,
+  getContactInfo,
+};
