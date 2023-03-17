@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ChatDetails from "../features/Chat/screens/ChatDetails/ChatDetails.screen";
 import ChatSettings from "../features/Chat/screens/ChatSettings/ChatSettings.screen";
@@ -9,47 +8,26 @@ import TopicSelection from "../features/TopicSelection/screen/TopicSelection.scr
 import BottomTabNavigator from "./BottomTabNavigator/BottomTabNavigator";
 import api from "../services/appwrite/api";
 import { useQuery } from "react-query";
-import { Query } from "appwrite";
-import { COLLECTION_ID_ONBOARDING } from "@env";
 import ProjectEdit from "../features/ProjectCRUD/screens/ProjectEdit.screen";
 import ProjectCreation from "../features/ProjectCRUD/screens/ProjectCreation.screen";
+import { updateOnboarding } from "../services/api/onboarding";
 
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
-  const [onboarding, setOnboarding] = useState<any | false>(false);
+  var onboardingSeen: any;
 
   // Current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
-
-  useEffect(() => {
-    const getOnboarding = async () => {
-      try {
-        const onboarding_response = await api.listDocuments(
-          COLLECTION_ID_ONBOARDING,
-          [Query.equal("userID", userId)]
-        );
-        if(onboarding_response.total == 0 && userId){
-          api.createDocument(COLLECTION_ID_ONBOARDING, {userID: userId, seen: true});
-        }
-        else {
-          setOnboarding(
-            onboarding_response?.documents[0]
-          );
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getOnboarding();
-  }, [userId]);
+  
+  onboardingSeen = updateOnboarding(userId);
 
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
     >
-      {onboarding == undefined ? 
+      {onboardingSeen == undefined ? 
         <Stack.Screen name="Onboarding" component={Onboarding} />
         :
         <Stack.Screen name="ConditionalBottomTabNavigator" component={BottomTabNavigator} />
