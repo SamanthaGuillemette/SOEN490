@@ -1,13 +1,7 @@
-<<<<<<< HEAD:Xplore/features/Projects/Main/components/ProjectMembersScreen/ProjectMembers.component.tsx
-import MessageMember from "../../../../../components/MessageMember/MessageMember.component";
 import { ScrollView } from "react-native";
-import { SquaredButton, View } from "../../../../../components";
-=======
-import { ScrollView } from "react-native";
-import { NavigationProp } from "@react-navigation/native";
-import { SquaredButton, View, MessageMember } from "../../../../components";
->>>>>>> develop:Xplore/features/Projects/components/ProjectMembersScreen/ProjectMembers.component.tsx
+import { MessageMember, SquaredButton, View } from "../../../../../components";
 import styles from "./ProjectMembers.styles";
+import { NavigationProp } from "@react-navigation/native";
 
 interface ProjectMembersProps {
   navigation: NavigationProp<any>;

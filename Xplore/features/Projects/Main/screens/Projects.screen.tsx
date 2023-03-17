@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, TouchableOpacity } from "react-native";
 import { useThemeColor } from "../../../../hooks";
 import ProjectCoreScreen from "./ProjectCoreScreen/ProjectCoreScreen.component";
 import TopHeader from "../../../../navigation/TopHeader.component";
@@ -17,9 +17,6 @@ const Home = (props: ProjectsProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
-<<<<<<< HEAD:Xplore/features/Projects/Main/screens/Projects.screen.tsx
-      <TopHeader screenName={"Projects"} navigation={props.navigation} />
-=======
       <TopHeader
         screenName={"Projects"}
         navigation={props.navigation}
@@ -28,7 +25,6 @@ const Home = (props: ProjectsProps) => {
       <TouchableOpacity
         onPress={() => props.navigation.navigate("ProfileEdit")}
       />
->>>>>>> develop:Xplore/features/Projects/screens/Projects.screen.tsx
       <ProjectCoreScreen navigation={props.navigation} />
     </SafeAreaView>
   );

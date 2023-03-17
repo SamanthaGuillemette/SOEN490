@@ -22,9 +22,9 @@ const IndividualTask = (props: IndividualTaskScreenProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
+      <TopHeader screenName={taskName} navigation={navigation} />
       <ScrollView>
         <View style={styles.viewMain}>
-          <TopHeader screenName={taskName} navigation={navigation} />
           <TaskIllustration />
           <DescriptionCard />
         </View>
