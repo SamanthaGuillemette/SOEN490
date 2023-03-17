@@ -10,7 +10,7 @@ import { NavigationProp } from "@react-navigation/native";
 interface ProjectCardProps {
   navigation: NavigationProp<any>;
   item: {
-    title: string;
+    name: string;
     description: string;
     projectImage?: string;
     tasks?: number;
@@ -29,7 +29,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
       <ShadowView
         backgroundColor="backgroundSecondary"
         style={styles.cardContainer}
-        key={item.title}
+        key={item.name}
       >
         <Image
           source={{ uri: "https://picsum.photos/200" }}
@@ -43,7 +43,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
             lineBreakMode="tail"
             numberOfLines={1}
           >
-            {item.title}
+            {item.name}
           </Text>
           <Text
             variant="body"

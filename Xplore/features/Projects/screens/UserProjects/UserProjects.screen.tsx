@@ -13,7 +13,7 @@ interface UserProjectsProps {
 
 export const fakeProjectCurrentData = [
   {
-    title: "Snake Robot",
+    name: "Snake Robot",
     description: "World's first unique soft robot",
     projectImage: "https://picsum.photos/200",
     tasks: 12,
@@ -22,7 +22,7 @@ export const fakeProjectCurrentData = [
     percentComplete: 80,
   },
   {
-    title: "UX for Seniors",
+    name: "UX for Seniors",
     description: "Designing for the elderly",
     projectImage: "https://picsum.photos/200",
     tasks: 10,
@@ -31,7 +31,7 @@ export const fakeProjectCurrentData = [
     percentComplete: 60,
   },
   {
-    title: "Visual Software Tester",
+    name: "Visual Software Tester",
     description: "Build simple visual QA tool",
     projectImage: "https://picsum.photos/200",
     tasks: 8,
@@ -40,7 +40,7 @@ export const fakeProjectCurrentData = [
     percentComplete: 40,
   },
   {
-    title: "Train Ticketing System",
+    name: "Train Ticketing System",
     description: "A new way to buy train tickets",
     projectImage: "https://picsum.photos/200",
     tasks: 12,
@@ -49,7 +49,7 @@ export const fakeProjectCurrentData = [
     percentComplete: 80,
   },
   {
-    title: "UX for Seniors 2",
+    name: "UX for Seniors 2",
     description: "Designing for the elderly....",
     projectImage: "https://picsum.photos/200",
     tasks: 10,
@@ -61,7 +61,7 @@ export const fakeProjectCurrentData = [
 
 export const fakeProjectCompletedData = [
   {
-    title: "Snake Robot",
+    name: "Snake Robot",
     description: "World's first unique soft robot",
     projectImage: "https://picsum.photos/200",
     tasks: 12,
@@ -70,7 +70,7 @@ export const fakeProjectCompletedData = [
     percentComplete: 80,
   },
   {
-    title: "UX for Seniors",
+    name: "UX for Seniors",
     description: "Designing for the elderly",
     projectImage: "https://picsum.photos/200",
     tasks: 10,
@@ -79,7 +79,7 @@ export const fakeProjectCompletedData = [
     percentComplete: 60,
   },
   {
-    title: "Visual Software Tester",
+    name: "Visual Software Tester",
     description: "Build simple visual QA tool",
     projectImage: "https://picsum.photos/200",
     tasks: 8,
@@ -88,7 +88,7 @@ export const fakeProjectCompletedData = [
     percentComplete: 40,
   },
   {
-    title: "Train Ticketing System",
+    name: "Train Ticketing System",
     description: "A new way to buy train tickets",
     projectImage: "https://picsum.photos/200",
     tasks: 12,
@@ -97,7 +97,7 @@ export const fakeProjectCompletedData = [
     percentComplete: 80,
   },
   {
-    title: "UX for Seniors 2",
+    name: "UX for Seniors 2",
     description: "Designing for the elderly....",
     projectImage: "https://picsum.photos/200",
     tasks: 10,
@@ -110,7 +110,6 @@ export const fakeProjectCompletedData = [
 const UserProjects = (props: UserProjectsProps) => {
   const background = useThemeColor("background");
   const [screen, setScreen] = useState(0);
-  const { navigation } = props;
 
   return (
     <SafeAreaView
@@ -127,7 +126,7 @@ const UserProjects = (props: UserProjectsProps) => {
         <FlashList
           data={fakeProjectCurrentData}
           renderItem={({ item }) => (
-            <ProjectCard navigation={navigation} item={item} />
+            <ProjectCard navigation={props.navigation} item={item} />
           )}
           estimatedItemSize={350}
           showsVerticalScrollIndicator={false}
@@ -138,7 +137,7 @@ const UserProjects = (props: UserProjectsProps) => {
         <FlashList
           data={fakeProjectCompletedData}
           renderItem={({ item }) => (
-            <ProjectCard navigation={navigation} item={item} />
+            <ProjectCard navigation={props.navigation} item={item} />
           )}
           estimatedItemSize={350}
           showsVerticalScrollIndicator={false}
