@@ -1,15 +1,37 @@
 import { View } from "react-native";
 import styles from "./TechNGoals.styles";
-import { Chips, InputField } from "../../../../components";
+import { Chips, InputField, DropdownField, Text } from "../../../../components";
+import { Picker } from "@react-native-picker/picker";
+import { useState } from "react";
+import { useThemeColor } from "../../../../hooks/useThemeColor";
 
 export const TechNGoals = () => {
   // const [projectGoals, setProjectGoals] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
+
+  const handleValueChange = (value: string) => {
+    setSelectedValue(value);
+  };
+
+  const options = [
+    { label: "Option 1", value: "option1" },
+    { label: "Option 2", value: "option2" },
+    { label: "Option 3", value: "option3" },
+  ];
 
   return (
     <View style={styles.container}>
       <View>
         <View style={styles.containerTech}>
-          <Chips placeHolder={"Technologies"} />
+          {/* <Chips placeHolder={"Technologies"} /> */}
+          <Text>Select an option:</Text>
+          <DropdownField
+            label="Options"
+            options={options}
+            onValueChange={handleValueChange}
+          />
+          <Text>Selected option: {selectedValue}</Text>
         </View>
 
         <View style={styles.containerGoal}>
