@@ -1,10 +1,11 @@
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./IndividualTask.styles";
-import { ScrollView } from "react-native";
+import { ScrollView, SafeAreaView } from "react-native";
 import TopHeader from "../../../../navigation/TopHeader.component";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
 import { TaskIllustration } from "../components/TaskIllustration/TaskIllustration.component";
 import { DescriptionCard } from "../components/DescriptionCard/DescriptionCard.component";
+import { View } from "../../../../components";
 interface IndividualTaskScreenProps {
   navigation: NavigationProp<any>;
   taskName: string;
@@ -13,17 +14,23 @@ interface IndividualTaskScreenProps {
 const IndividualTask = (props: IndividualTaskScreenProps) => {
   const { navigation } = props;
   const route = useRoute();
+  const homeBackground = useThemeColor("backgroundSecondary");
+
   let { taskName }: any = route.params;
 
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <ScrollView
-      style={[styles.scrollViewStyle, { backgroundColor: backgroundSecondary }]}
+    <SafeAreaView
+      style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
-      <TopHeader screenName={taskName} navigation={navigation} />
-      <TaskIllustration />
-      <DescriptionCard />
-    </ScrollView>
+      <ScrollView>
+        <View style={styles.viewMain}>
+          <TopHeader screenName={taskName} navigation={navigation} />
+          <TaskIllustration />
+          <DescriptionCard />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 export default IndividualTask;

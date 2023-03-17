@@ -1,9 +1,13 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 
 export default StyleSheet.create({
-  scrollViewStyle: {
+  safeAreaStyle: {
     flex: 1,
-    paddingTop: 65,
+    marginTop: StatusBar.currentHeight ?? 0,
+  },
+  viewMain: {
+    flex: 1,
+    paddingBottom: 200,
   },
   taskImage: {
     height: 291.92,
