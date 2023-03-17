@@ -1,15 +1,56 @@
-import { ChatTextInput, Conversation, View } from "../../../../components";
+import { TouchableOpacity } from "react-native";
+import { ShadowView, Avatar, View, Text } from "../../../../../components";
+import { useThemeColor } from "../../../../../hooks";
 import styles from "./Discussion.styles";
 
-const ChatDetails = () => {
+interface ChatBoxProps {
+  image: string;
+  username: String;
+  lastText?: String;
+  time?: String;
+  onPress?: any;
+}
+
+const ChatBox = ({
+  image,
+  username,
+  lastText,
+  time,
+  ...restOfProps
+}: ChatBoxProps) => {
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Conversation />
-        <ChatTextInput />
-      </View>
-    </View>
+    <TouchableOpacity {...restOfProps}>
+      <ShadowView
+        style={[
+          styles.chatBox_container,
+          { backgroundColor: backgroundSecondary },
+        ]}
+      >
+        <Avatar
+          name="Username"
+          imageURL={image}
+          size={45}
+          style={styles.chatBox_avatar}
+        />
+        <View style={{ backgroundColor: backgroundSecondary }}>
+          <Text variant="h3" style={styles.chatBox_username}>
+            {username}
+          </Text>
+          <Text
+            variant="smBody"
+            color="smallText"
+            style={styles.chatBox_lastText}
+          >
+            {lastText}
+          </Text>
+        </View>
+        <Text variant="smLabel" color="smallText" style={styles.chatBox_time}>
+          {time}
+        </Text>
+      </ShadowView>
+    </TouchableOpacity>
   );
 };
 
-export default ChatDetails;
+export default ChatBox;
