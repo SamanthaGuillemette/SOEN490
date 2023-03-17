@@ -3,7 +3,7 @@ import api from "../../services/appwrite/api";
 import { Query } from "appwrite";
 import { COLLECTION_ID_ONBOARDING } from "@env";
 
-const updateOnboarding = (userId: any) => {
+const useUpdateOnboarding = (userId: any) => {
   const [onboarding, setOnboarding] = useState<any | false>(false);
   useEffect(() => {
     const getOnboarding = async () => {
@@ -12,13 +12,13 @@ const updateOnboarding = (userId: any) => {
           COLLECTION_ID_ONBOARDING,
           [Query.equal("userID", userId)]
         );
-        if(onboarding_response.total == 0 && userId){
-          api.createDocument(COLLECTION_ID_ONBOARDING, {userID: userId, seen: true});
-        }
-        else {
-          setOnboarding(
-            onboarding_response?.documents[0]
-          );
+        if (onboarding_response.total === 0 && userId) {
+          api.createDocument(COLLECTION_ID_ONBOARDING, {
+            userID: userId,
+            seen: true,
+          })
+        } else {
+          setOnboarding(onboarding_response?.documents[0]);
         }
       } catch (e) {
         console.log(e);
@@ -29,4 +29,4 @@ const updateOnboarding = (userId: any) => {
   return onboarding;
 };
 
-export { updateOnboarding };
+export { useUpdateOnboarding };

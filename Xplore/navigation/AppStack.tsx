@@ -10,7 +10,7 @@ import api from "../services/appwrite/api";
 import { useQuery } from "react-query";
 import ProjectEdit from "../features/ProjectCRUD/screens/ProjectEdit.screen";
 import ProjectCreation from "../features/ProjectCRUD/screens/ProjectCreation.screen";
-import { updateOnboarding } from "../services/api/onboarding";
+import { useUpdateOnboarding } from "../services/api/onboarding";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,18 +20,19 @@ const AppStack = () => {
   // Current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
-  
-  onboardingSeen = updateOnboarding(userId);
+
+  onboardingSeen = useUpdateOnboarding(userId);
 
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-    >
-      {onboardingSeen == undefined ? 
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {onboardingSeen === undefined ? (
         <Stack.Screen name="Onboarding" component={Onboarding} />
-        :
-        <Stack.Screen name="ConditionalBottomTabNavigator" component={BottomTabNavigator} />
-      }
+      ) : (
+        <Stack.Screen
+          name="ConditionalBottomTabNavigator"
+          component={BottomTabNavigator}
+        />
+      )}
       <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
       <Stack.Screen name="Completion" component={Completion} />
       <Stack.Screen name="LevelUp" component={LevelUp} />
