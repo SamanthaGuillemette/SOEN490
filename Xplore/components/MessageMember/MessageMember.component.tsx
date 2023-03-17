@@ -7,7 +7,6 @@ import {
   markAsSeen,
   getContactInfo,
   createNewChat,
-  generateRandomChatID,
 } from "../../services/api/chats";
 import { View } from "../View";
 import { User } from "../User";
@@ -34,29 +33,30 @@ export const MessageMember = (props: MemberProps) => {
         Query.equal("userID", userId),
         Query.equal("contactID", props.id),
       ]);
-      // If the chat exists, mark it as seen and navigate to ChatDetails screen
-      if (chatData.total === 1) {
-        await markAsSeen("direct", chatData.documents[0].chatID, userId);
-        props.navigation?.navigate("ChatDetails", {
-          chatID: chatData.documents[0].chatID,
-          chatType: "direct",
-          username: props.username,
-        });
+      const chatExists = chatData.total === 1;
+      const chatID = chatExists ? chatData.documents[0].chatID : null;
+      const username = chatExists
+        ? props.username
+        : (await getContactInfo(props.id))[0].username;
+      const chatInfo = {
+        chatID,
+        chatType: "direct",
+        username,
+      };
+      if (chatExists) {
+        await markAsSeen("direct", chatID, userId);
       } else {
-        const contactInfo = await getContactInfo(props.id);
-        const chatID = generateRandomChatID();
-        // For curr user
         await createNewChat({
           userID: userId,
           contactID: props.id,
-          chatID: chatID,
         });
-        props.navigation?.navigate("ChatDetails", {
-          chatID: chatID,
-          chatType: "direct",
-          username: contactInfo[0].username,
-        });
+        const newChatData = await api.listDocuments(
+          COLLECTION_ID_DIRECT_CHATS,
+          [Query.equal("userID", userId), Query.equal("contactID", props.id)]
+        );
+        chatInfo.chatID = newChatData.documents[0].chatID;
       }
+      props.navigation?.navigate("ChatDetails", chatInfo);
     } catch (error) {
       console.log(error);
     }

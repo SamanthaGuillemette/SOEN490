@@ -45,17 +45,18 @@ const getContactInfo = async (contactID: any) => {
 };
 
 const createNewChat = async (chatData: any) => {
+  const chatID = generateRandomChatID();
   await api.createDocument(COLLECTION_ID_DIRECT_CHATS, {
     userID: chatData.userID,
     contactID: chatData.contactID,
-    chatID: chatData.chatID,
+    chatID,
     seen: true,
     lastModifiedAt: new Date().toISOString(),
   });
   await api.createDocument(COLLECTION_ID_DIRECT_CHATS, {
     userID: chatData.contactID,
     contactID: chatData.userID,
-    chatID: chatData.chatID,
+    chatID,
     seen: false,
     lastModifiedAt: new Date().toISOString(),
   });
