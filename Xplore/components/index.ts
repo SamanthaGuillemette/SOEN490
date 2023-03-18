@@ -47,3 +47,4 @@ export * from "./CategoryScrollBar";
 export * from "./AddMemberModal";
 export * from "./MemberChipAdder";
 export * from "./DropdownField";
+export * from "./ProjectCard";

@@ -3,4 +3,3 @@ export * from "./ExploreProjects";
 export * from "./TodayStats";
 export * from "./NewProjects";
 export * from "./ProjectCardLarge";
-export * from "./AllProjectsCard";

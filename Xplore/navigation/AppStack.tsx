@@ -5,28 +5,46 @@ import Completion from "../features/Completion/screens/Completion/Completion.scr
 import LevelUp from "../features/Completion/screens/LevelUp/LevelUp.screen";
 import Onboarding from "../features/Onboarding/screens/Onboarding.screen";
 import TopicSelection from "../features/TopicSelection/screen/TopicSelection.screen";
+import BottomTabNavigator from "./BottomTabNavigator/BottomTabNavigator";
+import api from "../services/appwrite/api";
+import { useQuery } from "react-query";
 import ProjectEdit from "../features/ProjectCRUD/screens/ProjectEdit.screen";
 import ProjectCreation from "../features/ProjectCRUD/screens/ProjectCreation.screen";
-import BottomTabNavigator from "./BottomTabNavigator";
+import IndividualTask from "../features/Projects/components/IndividualTask/IndividualTask.screen";
+import { useUpdateOnboarding } from "../services/api/onboarding";
+import ProjectDetails from "../features/Projects/screens/ProjectDetails/ProjectDetails.screen";
 
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
+  var onboardingSeen: any;
+
+  // Current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+
+  onboardingSeen = useUpdateOnboarding(userId);
+
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName="Onboarding"
-      // initialRouteName="Completion"
-    >
-      <Stack.Screen name="Onboarding" component={Onboarding} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {onboardingSeen === undefined ? (
+        <Stack.Screen name="Onboarding" component={Onboarding} />
+      ) : (
+        <Stack.Screen
+          name="ConditionalBottomTabNavigator"
+          component={BottomTabNavigator}
+        />
+      )}
+      <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
       <Stack.Screen name="Completion" component={Completion} />
       <Stack.Screen name="LevelUp" component={LevelUp} />
       <Stack.Screen name="ChatDetails" component={ChatDetails} />
       <Stack.Screen name="ChatSettings" component={ChatSettings} />
-      <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
       <Stack.Screen name="TopicSelection" component={TopicSelection} />
       <Stack.Screen name="ProjectCreation" component={ProjectCreation} />
+      <Stack.Screen name="ProjectDetails" component={ProjectDetails} />
       <Stack.Screen name="ProjectEdit" component={ProjectEdit} />
+      <Stack.Screen name="IndividualTask" component={IndividualTask} />
     </Stack.Navigator>
   );
 };

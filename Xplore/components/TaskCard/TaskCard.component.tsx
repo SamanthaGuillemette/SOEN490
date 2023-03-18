@@ -5,11 +5,13 @@ import { TouchableOpacity } from "react-native";
 import { ListItem } from "@rneui/themed";
 import { useThemeColor } from "../../hooks";
 import styles from "./TaskCard.styles";
+import { NavigationProp } from "@react-navigation/native";
 
 interface taskContentProps {
   taskType: string;
   taskName: string;
   taskDate: string;
+  navigation: NavigationProp<any>;
 }
 
 export const actions = () => {
@@ -38,21 +40,30 @@ export const actions = () => {
 export const taskContent = (props: taskContentProps) => {
   return (
     <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
-      <View style={styles.taskContentContainer}>
-        <Text style={styles.taskType} variant="h4" color="linkText">
-          {props.taskType}
+      <TouchableOpacity
+        onPress={() =>
+          props.navigation.navigate("IndividualTask", {
+            taskName: props.taskName,
+          })
+        }
+      >
+        <View style={styles.taskContentContainer}>
+          <Text style={styles.taskType} variant="h4" color="linkText">
+            {props.taskType}
+          </Text>
+
+          <Icon style={styles.taskInfoIcon} size="medium" name="help-circle" />
+        </View>
+        <Text style={styles.taskName} variant="h2" color="titleText">
+          {props.taskName}
         </Text>
-        <Icon style={styles.taskInfoIcon} size="medium" name="help-circle" />
-      </View>
-      <Text style={styles.taskName} variant="h2" color="titleText">
-        {props.taskName}
-      </Text>
-      <View style={styles.dateContainer}>
-        <Icon style={styles.calenderIcon} size="medium" name="calendar" />
-        <Text style={styles.date} variant="smBody" color="bodyText">
-          {props.taskDate}
-        </Text>
-      </View>
+        <View style={styles.dateContainer}>
+          <Icon style={styles.calenderIcon} size="medium" name="calendar" />
+          <Text style={styles.date} variant="smBody" color="bodyText">
+            {props.taskDate}
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
