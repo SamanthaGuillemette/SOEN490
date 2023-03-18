@@ -1,6 +1,7 @@
 /**
  *  This is a workaround for the issue with the Appwrite SDK. It uses an "outdated"
  *  method to "talk" to the server.
+ *  Read more: https://github.com/appwrite/sdk-for-web/issues/27
  *
  *  This was what I tried previously (it results with a blank image on the server)
  *
@@ -33,7 +34,7 @@ export function sendXmlHttpRequest(data: FormData, bucket: string) {
       if (xhr.readyState !== 4) {
         return;
       }
-      console.log("xhr.status", xhr);
+      // console.log("====> XHR STATUS", JSON.stringify(xhr, null, 2));
 
       if (xhr.status === 201) {
         resolve(JSON.parse(xhr.response));

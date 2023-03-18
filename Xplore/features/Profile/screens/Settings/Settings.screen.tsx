@@ -6,15 +6,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Avatar, Icon, ShadowView } from "../../../../components";
 import { EditButton } from "../../components";
 import { deviceScreenWidth } from "../../../../constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";
 import { BUCKET_PROFILE_PIC } from "@env";
-import {
-  convertImagePathtoBinary,
-  sendXmlHttpRequest,
-} from "../../../../utils";
+import { uploadImageToServer } from "../../../../utils";
+import { useQuery } from "react-query";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -24,21 +22,12 @@ const Settings = (props: SettingsProps) => {
   const { navigation } = props;
   const statusBarBg = useThemeColor("background"); // Status bar background (only required for Android)
   const [localImage, setLocalImage] = useState<string>();
-  const [uploadedImageId, setUploadedImageId] = useState<string>();
+  const [uploadedImageId, setUploadedImageId] = useState();
 
-  const uploadImageToServer = async (imagePath: string) => {
-    const completedImage = convertImagePathtoBinary(imagePath);
-
-    const uploadedImageResult: any = await sendXmlHttpRequest(
-      completedImage,
-      BUCKET_PROFILE_PIC
-    );
-    console.log("======> uploadedImageResult", uploadedImageResult);
-    setUploadedImageId(uploadedImageResult.$id);
-
-    // TODO: Need to get the Preview URL from the response
-    // then set the local image to the preview URL
-  };
+  const { data } = useQuery("profileImage", () =>
+    api.getFilePreview(BUCKET_PROFILE_PIC, uploadedImageId || "")
+  );
+  console.log("====> React Query data: ", data);
 
   const handleUploadImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -48,21 +37,29 @@ const Settings = (props: SettingsProps) => {
       aspect: [3, 3],
       quality: 1,
     });
-
-    // LOG OUT the image info
-    console.log(JSON.stringify(pickedImage, null, 2));
+    // console.log(JSON.stringify(pickedImage, null, 2));
 
     if (!pickedImage.cancelled) {
-      // Set local image so that the picture is displayed right away.
-      setLocalImage(pickedImage.uri);
-      uploadImageToServer(pickedImage.uri);
+      setLocalImage(pickedImage.uri); // Set local image so that the picture is displayed right away.
 
-      const imagePreview = await api.getFilePreview(
-        BUCKET_PROFILE_PIC,
-        uploadedImageId ?? ""
+      const uploadedImageResult: any = await uploadImageToServer(
+        pickedImage.uri,
+        BUCKET_PROFILE_PIC
       );
-      console.log("=====> imagePreview", imagePreview);
-      setLocalImage(imagePreview.toString());
+      // console.log(
+      //   "======> uploadedImageResult",
+      //   JSON.stringify(uploadedImageResult, null, 2)
+      // );
+
+      setUploadedImageId(uploadedImageResult?.$id); // Capture the uploaded image id
+
+      if (uploadedImageId) {
+        // const imagePreview = api.getFilePreview(
+        //   BUCKET_PROFILE_PIC,
+        //   uploadedImageId
+        // );
+        // setLocalImage(imagePreview.toString());
+      }
     }
   };
 

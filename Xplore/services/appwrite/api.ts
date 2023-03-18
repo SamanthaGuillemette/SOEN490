@@ -97,7 +97,6 @@ const api = {
 
   createFile: (bucket: string, userId: string, file: File) => {
     // return storage.createFile(bucket, `${userId}-${ID.unique()}`, file);
-    // return storage.createFile(bucket, `${ID.unique()}`, file);
     return storage.createFile(bucket, `${ID.unique()}`, file);
   },
 
