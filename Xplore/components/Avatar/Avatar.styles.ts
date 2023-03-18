@@ -16,6 +16,11 @@ export default StyleSheet.create({
   avatar: {
     borderWidth: 4,
   },
+  chatBox_groupAvatar: {
+    borderWidth: 4,
+    padding: Platform.OS === "ios" ? 5 : 10,
+    overflow: "hidden",
+  },
   textAvatar: {
     justifyContent: "center",
     alignItems: "center",

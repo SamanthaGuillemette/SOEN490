@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TouchableOpacity, FlatList } from "react-native";
+import { TouchableOpacity, ScrollView } from "react-native";
 import { View } from "../View";
 import { User } from "../User";
 import styles from "./UsersList.styles";
@@ -12,10 +12,6 @@ interface UsersType {
   xp: number;
 }
 
-interface UserTypeItem {
-  item: UsersType;
-  index: number;
-}
 //  UsersItem component creates user and sets selected to false initially
 export const UserItem = (props: UsersType) => {
   const [selected, setSelected] = useState(false);
@@ -54,22 +50,17 @@ interface UsersListProps {
 
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
-  const renderUsers = ({ item }: UserTypeItem) => {
-    return (
-      <UserItem
-        username={item.username}
-        avatar={item.avatar}
-        xp={item.xp}
-        id={item.id}
-      />
-    );
-  };
-
   return (
-    <FlatList
-      data={props.data}
-      renderItem={renderUsers}
-      keyExtractor={({ id }) => id}
-    />
+    <ScrollView pagingEnabled={true}>
+      {props.data.map((user: UsersType) => (
+        <UserItem
+          key={user.id}
+          username={user.username}
+          avatar={user.avatar}
+          xp={user.xp}
+          id={user.id}
+        />
+      ))}
+    </ScrollView>
   );
 };

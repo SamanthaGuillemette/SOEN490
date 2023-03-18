@@ -5,4 +5,8 @@ export default StyleSheet.create({
     flex: 1,
     marginTop: 5,
   },
+  startChat: {
+    marginTop: 30,
+    alignItems: "center",
+  },
 });

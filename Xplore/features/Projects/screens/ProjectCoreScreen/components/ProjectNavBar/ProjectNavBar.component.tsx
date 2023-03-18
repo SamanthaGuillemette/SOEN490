@@ -2,36 +2,33 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
-  KeyboardAvoidingView,
   Text,
   TouchableHighlight,
   View,
 } from "react-native";
-import DescriptionScreen from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
-import TasksScreen from "../../../../components/ProjectTasksScreen/Tasks.component";
-import DiscussionScreen from "../../../../components/ProjectDiscussionScreen/Discussion.component";
-import ProjectMembersScreen from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
-import LinksScreen from "../../../../components/LinksScreen/Links.component";
+import ProjectDescription from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
+import ProjectMembers from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
+import Links from "../../../../components/LinksScreen/Links.component";
+import Tasks from "../../../../components/ProjectTasksScreen/Tasks.component";
 import { useThemeColor } from "../../../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectNavBar.styles";
 
-interface ProjectNavBar {
+interface ProjectNavBarProps {
   navigation: NavigationProp<any>;
 }
 
-const { width } = Dimensions.get("window");
-const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
-
-const projectScreenPages = [
-  <DescriptionScreen />,
-  <TasksScreen />,
-  <DiscussionScreen />,
-  <ProjectMembersScreen />,
-  <LinksScreen />,
-];
-
-function ProjectNavBar() {
+function ProjectNavBar(props: ProjectNavBarProps) {
+  const { navigation } = props;
+  const { width } = Dimensions.get("window");
+  const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
+  const projectScreenPages = [
+    <ProjectDescription />,
+    <Tasks navigation={navigation} />, // tasks
+    <ProjectDescription />, // discussion placeholder
+    <ProjectMembers navigation={navigation} />,
+    <Links />,
+  ];
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primary = useThemeColor("primary");
@@ -41,6 +38,7 @@ function ProjectNavBar() {
   const [active, setActive] = useState(0);
   const headerScrollView = useRef<any>(null);
   const itemScrollView = useRef<any>(null);
+
   useEffect(() => {
     headerScrollView.current.scrollToIndex({
       index: active,
@@ -115,16 +113,12 @@ function ProjectNavBar() {
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={onMomentumScrollEnd}
         renderItem={({ item, index }) => (
-          <KeyboardAvoidingView
+          <View
             key={item}
-            behavior="height"
-            style={[
-              index === 2 ? styles.discussion : styles.mainItem,
-              { borderTopColor: background },
-            ]}
+            style={[styles.mainItem, { borderTopColor: background }]}
           >
             {projectScreenPages[index]}
-          </KeyboardAvoidingView>
+          </View>
         )}
       />
     </View>

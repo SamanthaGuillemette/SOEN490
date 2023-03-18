@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Avatar, Icon, ShadowView } from "../../../../components";
 import { EditButton } from "../../components";
 import { deviceScreenWidth } from "../../../../constants";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";

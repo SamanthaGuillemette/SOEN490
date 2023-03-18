@@ -22,7 +22,7 @@ exports[`LinearProgressBar should render should render the progress bar 1`] = `
       Object {
         "max": 100,
         "min": 0,
-        "now": 20,
+        "now": 0.2,
       }
     }
     accessible={true}

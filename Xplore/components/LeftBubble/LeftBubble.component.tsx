@@ -7,10 +7,11 @@ import styles from "./LeftBubble.styles";
 
 interface LeftBubbleProps {
   text: String;
+  msgTime: String;
   image: any;
 }
 
-export const LeftBubble = ({ text, image }: LeftBubbleProps) => {
+export const LeftBubble = ({ text, msgTime, image }: LeftBubbleProps) => {
   return (
     <View backgroundColor="background" style={styles.bubbleContainer}>
       <View backgroundColor="background">
@@ -23,7 +24,7 @@ export const LeftBubble = ({ text, image }: LeftBubbleProps) => {
       </View>
       <ShadowView style={styles.leftBubble}>
         <Text variant="body">{text}</Text>
-        <MessageTime time={"11:11 PM"} style={styles.msgTime} />
+        <MessageTime time={msgTime} style={styles.msgTime} />
       </ShadowView>
     </View>
   );
