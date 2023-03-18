@@ -1,9 +1,9 @@
 import { View } from "react-native";
-import styles from "./TechNGoals.styles";
-import { DropdownField, InputField, Text } from "../../../../components";
+import styles from "./CategoryNGoals.styles";
+import { CategoryModal, InputField, Text } from "../../../../components";
 import { useState } from "react";
 
-export const TechNGoals = () => {
+export const CategoryNGoals = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [categoryText, setCategoryText] = useState("Category");
 
@@ -34,7 +34,7 @@ export const TechNGoals = () => {
           <Text color="titleText" variant="h3" style={styles.categoryTitle}>
             Category
           </Text>
-          <DropdownField
+          <CategoryModal
             label={categoryText}
             options={sortedOptions}
             onValueChange={handleValueChange}

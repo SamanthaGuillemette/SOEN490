@@ -46,5 +46,5 @@ export * from "./Conversation";
 export * from "./CategoryScrollBar";
 export * from "./AddMemberModal";
 export * from "./MemberChipAdder";
-export * from "./DropdownField";
+export * from "./CategoryModal";
 export * from "./ProjectCard";

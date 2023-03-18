@@ -5,7 +5,7 @@ import {
   AddMembers,
   AllTasks,
   Description,
-  TechNGoals,
+  CategoryNGoals,
 } from "../components";
 
 interface ProjectEditProps {
@@ -26,7 +26,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
       numOfSteps={5}
       screens={[
         <Description />,
-        <TechNGoals />,
+        <CategoryNGoals />,
         <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,

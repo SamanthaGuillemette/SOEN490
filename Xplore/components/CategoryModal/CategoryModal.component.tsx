@@ -3,10 +3,10 @@ import { View, Modal, TouchableOpacity, ScrollView } from "react-native";
 import { useThemeColor } from "../../hooks";
 import { Text } from "../Text";
 import { ShadowView } from "../ShadowView";
-import styles from "./DropdownField.style";
+import styles from "./CategoryModal.style";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-interface DropdownProps {
+interface CategoryModalProps {
   label: string;
   options: { label: string; value: string }[];
   onValueChange: (value: string) => void;
@@ -14,7 +14,7 @@ interface DropdownProps {
   selectedValue?: string;
 }
 
-export const DropdownField = (props: DropdownProps) => {
+export const CategoryModal = (props: CategoryModalProps) => {
   const { label, options, onValueChange, style, selectedValue } = props;
   const [modalVisible, setModalVisible] = useState(false);
   const backgroundColor = useThemeColor("primaryBackgroundOpaque");
