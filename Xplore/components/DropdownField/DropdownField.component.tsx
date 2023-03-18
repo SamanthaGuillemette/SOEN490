@@ -42,7 +42,10 @@ export const DropdownField = (props: DropdownProps) => {
       <Modal visible={modalVisible} animationType="slide" transparent={true}>
         <SafeAreaView
           edges={["top"]}
-          style={[styles.mainContainer, { backgroundColor: backgroundColor }]}
+          style={[
+            styles.mainContainer,
+            { backgroundColor: modalBackgroundColor },
+          ]}
         >
           <ShadowView style={styles.shadowView}>
             <View style={{ flex: 1 }}>
