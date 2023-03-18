@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { View, Modal, TouchableOpacity } from "react-native";
+import { View, Modal, TouchableOpacity, ScrollView } from "react-native";
 import { useThemeColor } from "../../hooks";
 import { Text } from "../Text";
+import { ShadowView } from "../ShadowView";
+import styles from "./DropdownField.style";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface DropdownProps {
   label: string;
@@ -15,6 +18,7 @@ export const DropdownField = (props: DropdownProps) => {
   const { label, options, onValueChange, style, selectedValue } = props;
   const [modalVisible, setModalVisible] = useState(false);
   const backgroundColor = useThemeColor("primaryBackgroundOpaque");
+  const modalBackgroundColor = useThemeColor("background");
 
   const handleValueChange = (value: string) => {
     setModalVisible(false);
@@ -27,34 +31,45 @@ export const DropdownField = (props: DropdownProps) => {
         style={[style, { backgroundColor: backgroundColor }]}
         onPress={() => setModalVisible(true)}
       >
-        <Text color="bodyText">{label}</Text>
+        <Text style={styles.labelText} color="bodyText">
+          {label}
+        </Text>
 
         <Text color="bodyText" variant="body">
           {selectedValue}
         </Text>
       </TouchableOpacity>
-      <Modal visible={modalVisible} animationType="slide">
-        <View style={{ flex: 1 }}>
-          <TouchableOpacity onPress={() => setModalVisible(false)}>
-            <Text style={[style, { textAlign: "center", marginTop: 10 }]}>
-              Close
-            </Text>
-          </TouchableOpacity>
-          {options.map((option) => (
-            <TouchableOpacity
-              key={option.value}
-              onPress={() => handleValueChange(option.value)}
-            >
-              <Text
-                variant="body"
-                color="bodyText"
-                style={[style, { textAlign: "center" }]}
-              >
-                {option.label}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+      <Modal visible={modalVisible} animationType="slide" transparent={true}>
+        <SafeAreaView
+          edges={["top"]}
+          style={[styles.mainContainer, { backgroundColor: backgroundColor }]}
+        >
+          <ShadowView style={styles.shadowView}>
+            <View style={{ flex: 1 }}>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <Text style={styles.closeText} variant="h3">
+                  CLOSE
+                </Text>
+              </TouchableOpacity>
+              <ScrollView style={styles.scrollView}>
+                {options.map((option) => (
+                  <TouchableOpacity
+                    key={option.value}
+                    onPress={() => handleValueChange(option.value)}
+                  >
+                    <Text
+                      variant="body"
+                      color="bodyText"
+                      style={styles.optionText}
+                    >
+                      {option.label}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          </ShadowView>
+        </SafeAreaView>
       </Modal>
     </View>
   );

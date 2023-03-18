@@ -31,7 +31,7 @@ export const TechNGoals = () => {
     <View style={styles.container}>
       <View>
         <View style={styles.containerTech}>
-          <Text color="titleText" variant="h3">
+          <Text color="titleText" variant="h3" style={styles.categoryTitle}>
             Category
           </Text>
           <DropdownField

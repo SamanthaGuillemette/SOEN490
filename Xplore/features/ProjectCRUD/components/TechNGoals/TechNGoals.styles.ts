@@ -20,4 +20,8 @@ export default StyleSheet.create({
   styleTextGoals: {
     marginTop: 7,
   },
+
+  categoryTitle: {
+    marginBottom: 10,
+  },
 });
