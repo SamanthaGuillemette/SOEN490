@@ -17,7 +17,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       headerTitle={"Create Projects"}
       stepLabels={[
         "Description",
-        "Tech & Goals",
+        "Category & Goals",
         "All Tasks",
         "Add Members",
         "Add Links",

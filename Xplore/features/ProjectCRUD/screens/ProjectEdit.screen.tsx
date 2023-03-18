@@ -18,7 +18,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
       headerTitle={"Edit Projects"}
       stepLabels={[
         "Description",
-        "Tech & Goals",
+        "Category & Goals",
         "All Tasks",
         "Add Members",
         "Add Links",
