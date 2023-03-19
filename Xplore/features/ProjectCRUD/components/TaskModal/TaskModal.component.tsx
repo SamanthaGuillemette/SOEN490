@@ -3,6 +3,7 @@ import { View } from "react-native";
 import styles from "./TaskModal.styles";
 import { TouchableOpacity } from "react-native";
 import {
+  CategoryModal,
   DatePicker,
   Icon,
   InputField,
@@ -22,7 +23,6 @@ export const TaskModal = (props: TaskModalProps) => {
   const [taskCategory, setTaskCategory] = useState("");
   // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
-  const test = useThemeColor("errorBackground");
 
   const [btnClicked, setBtnClicked] = useState(false);
   const { onPress } = props;
@@ -41,6 +41,30 @@ export const TaskModal = (props: TaskModalProps) => {
     setTaskDesc("");
     setTaskCategory("");
   };
+
+  const [selectedValue, setSelectedValue] = useState("");
+  const [categoryText, setCategoryText] = useState("Category");
+
+  const handleValueChange = (value: string) => {
+    setSelectedValue(value);
+    const selectedOption = options.find((option) => option.value === value);
+    setCategoryText(selectedOption?.label || "Category");
+  };
+
+  const options = [
+    { label: "Meeting", value: "option1" },
+    { label: "Planning-Research", value: "option2" },
+    { label: "Planning-Budget", value: "option3" },
+    { label: "Design-UI design", value: "option4" },
+    { label: "Design-Brainstorming", value: "option5" },
+    { label: "Development-Frontend", value: "option6" },
+    { label: "Development-Backend", value: "option7" },
+    { label: "Testing-unit testing", value: "option8" },
+    { label: "Testing-System Testing", value: "option9" },
+    { label: "Deployment", value: "option10" },
+  ];
+
+  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
 
   return (
     <ShadowView style={styles.shadowView}>
@@ -65,10 +89,10 @@ export const TaskModal = (props: TaskModalProps) => {
           />
         </View>
         <View style={styles.containerTaskCat}>
-          <InputField
-            placeHolder="Add a category"
-            styleText={styles.styleText}
-            onChangeText={(name) => setTaskCategory(name)}
+          <CategoryModal
+            label={categoryText}
+            options={sortedOptions}
+            onValueChange={handleValueChange}
           />
         </View>
       </View>
