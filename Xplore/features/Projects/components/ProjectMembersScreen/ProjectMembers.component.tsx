@@ -39,7 +39,6 @@ const ProjectMembers = (props: ProjectMembersProps) => {
             xp={103597}
             navigation={props.navigation}
           />
-          <SquaredButton iconName="plus" />
         </View>
       </ScrollView>
     </View>
