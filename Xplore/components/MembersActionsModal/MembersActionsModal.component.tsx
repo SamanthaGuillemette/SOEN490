@@ -11,10 +11,12 @@ import styles from "./MembersActionsModal.styles";
 
 interface MembersActionsModalProps {
   setActionsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  action: string; // this is used to label primary action button
 }
 
 export const MembersActionsModal = ({
   setActionsModalVisible: setActionsModalVisible,
+  action,
 }: MembersActionsModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
@@ -49,7 +51,7 @@ export const MembersActionsModal = ({
               messageUserList={false}
             />
             <PrimaryButton
-              label="ADD"
+              label={action}
               onPress={handleIndexSelect}
               style={styles.primaryButton}
             />

@@ -43,6 +43,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
       {addMemberModalVisible === true && (
         <MembersActionsModal
           setActionsModalVisible={setAddMemberModalVisible}
+          action="Add"
         />
       )}
       <SettingBox
@@ -51,7 +52,10 @@ const AdminSettings = (props: AdminSettingsProps) => {
         onPress={() => setRemoveModalVisible(true)}
       />
       {removeModalVisible === true && (
-        <RemoveMemberModal setRemoveModalVisible={setRemoveModalVisible} />
+        <MembersActionsModal
+          setActionsModalVisible={setRemoveModalVisible}
+          action="Remove"
+        />
       )}
       <SettingBox
         settingName="Delete chat"
