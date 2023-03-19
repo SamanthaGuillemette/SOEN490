@@ -12,8 +12,8 @@ export default StyleSheet.create({
   },
 
   shadowView: {
-    width: 250,
-    height: 285,
+    width: 280,
+    height: 300,
     alignItems: "center",
     justifyContent: "space-between",
     borderRadius: 10,
@@ -24,7 +24,7 @@ export default StyleSheet.create({
 
   scrollView: {
     marginTop: 7,
-    width: 220,
+    width: 250,
   },
 
   optionText: { textAlign: "center", marginTop: 5 },
