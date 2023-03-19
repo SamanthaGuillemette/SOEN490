@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { View, Modal, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Modal,
+  TouchableOpacity,
+  ScrollView,
+  TextInputProps as RNTextInputProps,
+} from "react-native";
 import { useThemeColor } from "../../hooks";
 import { Text } from "../Text";
 import { ShadowView } from "../ShadowView";
 import styles from "./CategoryModal.style";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-interface CategoryModalProps {
+interface CategoryModalProps extends RNTextInputProps {
   label: string;
   options: { label: string; value: string }[];
   onValueChange: (value: string) => void;

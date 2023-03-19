@@ -3,7 +3,11 @@ import styles from "./CategoryNGoals.styles";
 import { CategoryModal, InputField, Text } from "../../../../components";
 import { useState } from "react";
 
-export const CategoryNGoals = () => {
+interface CategoryNGoalsProps {
+  setCategory: (category: string) => void;
+}
+
+export const CategoryNGoals = (props: CategoryNGoalsProps) => {
   const [selectedValue, setSelectedValue] = useState("");
   const [categoryText, setCategoryText] = useState("Category");
 
@@ -38,6 +42,7 @@ export const CategoryNGoals = () => {
             label={categoryText}
             options={sortedOptions}
             onValueChange={handleValueChange}
+            onChangeText={(category) => props.setCategory(category)}
           />
         </View>
 

@@ -22,7 +22,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
   const [projName, setProjectName] = useState("");
   const [projectGoals, setProjectGoals] = useState("");
   const [Technologies, setTechnologies] = useState("");
-  const [projectCategory, setProjectCategory] = useState("");
+  const [projectCategory, setCategory] = useState("");
   return (
     <StepIndicator
       headerTitle={"Edit Projects"}
@@ -39,7 +39,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
           setProjectName={setProjectName}
           setDescription={setDescription}
         />,
-        <CategoryNGoals />,
+        <CategoryNGoals setCategory={setCategory} />,
         <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,

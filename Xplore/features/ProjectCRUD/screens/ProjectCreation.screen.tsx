@@ -14,12 +14,12 @@ interface ProjectCreationProps {
 
 const ProjectCreation = (props: ProjectCreationProps) => {
   const [description, setDescription] = useState("");
-  const [tech, setTech] = useState([]);
+  const [category, setCategory] = useState("");
   const [allTasks, setAllTasks] = useState([]);
   const [allMembers, setAllMembers] = useState([]);
   const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
-  const [projectGoals, setProjectGoals] = useState("");
+  const [projectGoals, setGoals] = useState([]);
   const [Technologies, setTechnologies] = useState("");
   const [projectCategory, setProjectCategory] = useState("");
   return (
@@ -38,7 +38,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           setProjectName={setProjectName}
           setDescription={setDescription}
         />,
-        <CategoryNGoals />,
+        <CategoryNGoals setCategory={setProjectCategory} />,
         <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,
