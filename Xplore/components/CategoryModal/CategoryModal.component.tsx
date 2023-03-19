@@ -54,7 +54,7 @@ export const CategoryModal = (props: CategoryModalProps) => {
                   CLOSE
                 </Text>
               </TouchableOpacity>
-              <ScrollView style={styles.scrollView}>
+              <ScrollView style={styles.scrollView} persistentScrollbar={true}>
                 {options.map((option) => (
                   <TouchableOpacity
                     key={option.value}
