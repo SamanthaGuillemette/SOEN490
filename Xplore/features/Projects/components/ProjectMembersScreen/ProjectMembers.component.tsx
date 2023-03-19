@@ -1,5 +1,5 @@
 import { ScrollView } from "react-native";
-import { MessageMember, SquaredButton, View } from "../../../../components";
+import { MessageMember, View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
 import { NavigationProp } from "@react-navigation/native";
 

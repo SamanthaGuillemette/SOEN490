@@ -21,11 +21,10 @@ interface ProjectNavBarProps {
 function ProjectNavBar(props: ProjectNavBarProps) {
   const { navigation } = props;
   const { width } = Dimensions.get("window");
-  const headers = ["Description", "Tasks", "Discussion", "Members", "Links"];
+  const headers = ["Description", "Tasks", "Members", "Links"];
   const projectScreenPages = [
     <ProjectDescription />,
     <Tasks navigation={navigation} />, // tasks
-    <ProjectDescription />, // discussion placeholder
     <ProjectMembers navigation={navigation} />,
     <Links />,
   ];
