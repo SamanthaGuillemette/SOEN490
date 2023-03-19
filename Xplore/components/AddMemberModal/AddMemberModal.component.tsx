@@ -95,7 +95,11 @@ export const AddMemberModal = ({ setAddModalVisible }: AddMemberModalProps) => {
               Add new members
             </Text>
             <SearchBar style={styles.searchBar} />
-            <UsersList data={Users} />
+            <UsersList
+              data={Users}
+              selectUserList={true}
+              messageUserList={false}
+            />
             <PrimaryButton
               label="ADD"
               onPress={handleIndexSelect}

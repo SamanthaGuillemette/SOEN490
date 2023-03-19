@@ -7,12 +7,18 @@ import { MessageTime } from "../MessageTime";
 import styles from "./RightBubble.styles";
 
 interface RightBubbleProps {
-  text: String;
-  msgTime: String;
-  image: any;
+  text: string;
+  username: string;
+  msgTime: string;
+  image: string;
 }
 
-export const RightBubble = ({ text, msgTime, image }: RightBubbleProps) => {
+export const RightBubble = ({
+  text,
+  username,
+  msgTime,
+  image,
+}: RightBubbleProps) => {
   return (
     <View backgroundColor="background" style={styles.bubbleContainer}>
       <ShadowView style={styles.rightBubble}>
@@ -21,7 +27,7 @@ export const RightBubble = ({ text, msgTime, image }: RightBubbleProps) => {
       </ShadowView>
       <View backgroundColor="background">
         <Avatar
-          name="Username"
+          name={username}
           size={45}
           imageURL={image}
           style={styles.rightBubbleAvatar}

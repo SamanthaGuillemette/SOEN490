@@ -1,4 +1,8 @@
-import { COLLECTION_ID_GROUP_CHATS, COLLECTION_ID_DIRECT_CHATS } from "@env";
+import {
+  COLLECTION_ID_GROUP_CHATS,
+  COLLECTION_ID_DIRECT_CHATS,
+  COLLECTION_ID_USERS,
+} from "@env";
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
@@ -16,21 +20,85 @@ interface Chat {
   lastModifiedAt: string;
 }
 
+function generateRandomChatID() {
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let id = "";
+  for (let i = 0; i < 20; i++) {
+    id += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return id;
+}
+
+const getContactInfo = async (contactID: any) => {
+  const response = await api.listDocuments(COLLECTION_ID_USERS, [
+    Query.equal("userID", contactID),
+  ]);
+  const data = await Promise.all(
+    response?.documents?.map(async (doc) => ({
+      id: doc.userID,
+      username: doc.username,
+      avatar: doc.profilePicture,
+      xp: doc.xp,
+    }))
+  );
+  return data;
+};
+
+const createNewChat = async (chatData: any) => {
+  const chatID = generateRandomChatID();
+  await api.createDocument(COLLECTION_ID_DIRECT_CHATS, {
+    userID: chatData.userID,
+    contactID: chatData.contactID,
+    chatID,
+    seen: true,
+    lastModifiedAt: new Date().toISOString(),
+  });
+  await api.createDocument(COLLECTION_ID_DIRECT_CHATS, {
+    userID: chatData.contactID,
+    contactID: chatData.userID,
+    chatID,
+    seen: false,
+    lastModifiedAt: new Date().toISOString(),
+  });
+};
+
 const getChats = async (collectionId: any, userId: any) => {
   const response = await api.listDocuments(collectionId, [
     Query.equal("userID", userId),
   ]);
-  return response?.documents?.map((doc) => ({
-    chatIndex: doc.$id,
-    chatID: doc.chatID,
-    userID: doc.userID,
-    contactID: doc.contactID,
-    chatType: collectionId === COLLECTION_ID_DIRECT_CHATS ? "direct" : "group",
-    chatName: collectionId === COLLECTION_ID_GROUP_CHATS ? doc.chatName : null,
-    lastMessage: doc.lastMessage,
-    seen: doc.seen,
-    lastModifiedAt: doc.lastModifiedAt,
-  }));
+
+  const chats = await Promise.all(
+    response?.documents?.map(async (doc) => {
+      let contactInfo: any = null;
+      if (collectionId === COLLECTION_ID_DIRECT_CHATS) {
+        contactInfo = await getContactInfo(doc.contactID);
+      }
+
+      // filter out chats with seen=false and lastMessage="Start chatting!"
+      if (doc.lastMessage !== "Start chatting!") {
+        return {
+          chatIndex: doc.$id,
+          chatID: doc.chatID,
+          userID: doc.userID,
+          chatType:
+            collectionId === COLLECTION_ID_DIRECT_CHATS ? "direct" : "group",
+          chatName:
+            collectionId === COLLECTION_ID_GROUP_CHATS
+              ? doc.chatName
+              : contactInfo && contactInfo[0]?.username,
+          contactAvatar: contactInfo && contactInfo[0]?.avatar,
+          lastMessage: doc.lastMessage,
+          seen: doc.seen,
+          lastModifiedAt: doc.lastModifiedAt,
+        };
+      } else {
+        return null; // filter out unwanted chats
+      }
+    })
+  );
+
+  // filter out null values
+  return chats.filter((chat) => chat !== null);
 };
 
 const useListChats = (userId: any) => {
@@ -45,7 +113,7 @@ const useListChats = (userId: any) => {
             userId
           );
           const groupChats = await getChats(COLLECTION_ID_GROUP_CHATS, userId);
-          const allChats = directChats.concat(groupChats);
+          const allChats = directChats.concat(groupChats) as Chat[]; // Type assertion here
           allChats.sort(
             (chat1: any, chat2: any) =>
               new Date(chat2.lastModifiedAt).getTime() -
@@ -85,4 +153,10 @@ const markAsSeen = async (chatType: string, chatID: any, userId: any) => {
   });
 };
 
-export { useListChats, markAsSeen };
+export {
+  useListChats,
+  createNewChat,
+  generateRandomChatID,
+  markAsSeen,
+  getContactInfo,
+};

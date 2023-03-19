@@ -28,9 +28,7 @@ const TopHeader = (props: TopHeaderProps) => {
           <Icon name="edit" style={styles.editIcon} />
         </TouchableOpacity>
       )}
-      <TouchableOpacity
-        onPress={() => navigation.navigate("BottomTabNavigator")}
-      >
+      <TouchableOpacity onPress={() => navigation.navigate("Search")}>
         <Icon name="search" />
       </TouchableOpacity>
     </ShadowView>

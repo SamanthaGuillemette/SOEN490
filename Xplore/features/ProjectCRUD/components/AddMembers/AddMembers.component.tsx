@@ -65,7 +65,7 @@ export const AddMembers = () => {
       {/* Needed components */}
 
       <SearchBar style={styles.searchBar} />
-      <UsersList data={Users} />
+      <UsersList data={Users} messageUserList={false} selectUserList={true} />
     </View>
   );
 };
