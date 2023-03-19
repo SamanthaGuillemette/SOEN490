@@ -20,8 +20,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
   const [projectGoals, setGoals] = useState([]);
-  const [Technologies, setTechnologies] = useState("");
-  const [projectCategory, setProjectCategory] = useState("");
   return (
     <StepIndicator
       headerTitle={"Create Projects"}
@@ -38,7 +36,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           setProjectName={setProjectName}
           setDescription={setDescription}
         />,
-        <CategoryNGoals setCategory={setProjectCategory} />,
+        <CategoryNGoals setCategory={setCategory} />,
         <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,

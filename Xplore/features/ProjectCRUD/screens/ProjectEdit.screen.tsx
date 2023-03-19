@@ -15,13 +15,11 @@ interface ProjectEditProps {
 
 const ProjectEdit = (props: ProjectEditProps) => {
   const [description, setDescription] = useState("");
-  const [tech, setTech] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
   const [allMembers, setAllMembers] = useState([]);
   const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
   const [projectGoals, setProjectGoals] = useState("");
-  const [Technologies, setTechnologies] = useState("");
   const [projectCategory, setCategory] = useState("");
   return (
     <StepIndicator
