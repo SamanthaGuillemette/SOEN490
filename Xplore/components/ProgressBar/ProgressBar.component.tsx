@@ -20,6 +20,7 @@ export const ProgressBar = (props: ProgressBarProps) => {
         styles.BiggerRectangle,
         { backgroundColor: greyBackground, width: width },
       ]}
+      testID={completionPercentage.toString() + width.toString()}
     >
       <View
         style={[
@@ -29,7 +30,7 @@ export const ProgressBar = (props: ProgressBarProps) => {
             backgroundColor: rectangleColor,
           },
         ]}
-      ></View>
+      />
     </View>
   );
 };

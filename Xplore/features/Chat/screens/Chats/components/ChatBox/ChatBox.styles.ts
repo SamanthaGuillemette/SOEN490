@@ -22,7 +22,7 @@ export default StyleSheet.create({
   },
   chatBox_time: {
     position: "absolute",
-    top: 30,
+    top: 23,
     right: 20,
   },
 });

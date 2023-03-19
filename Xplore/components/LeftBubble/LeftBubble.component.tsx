@@ -6,16 +6,23 @@ import { MessageTime } from "../MessageTime";
 import styles from "./LeftBubble.styles";
 
 interface LeftBubbleProps {
-  text: String;
-  image: any;
+  text: string;
+  username: string;
+  msgTime: string;
+  image: string;
 }
 
-export const LeftBubble = ({ text, image }: LeftBubbleProps) => {
+export const LeftBubble = ({
+  text,
+  username,
+  msgTime,
+  image,
+}: LeftBubbleProps) => {
   return (
     <View backgroundColor="background" style={styles.bubbleContainer}>
       <View backgroundColor="background">
         <Avatar
-          name="Username"
+          name={username}
           size={45}
           imageURL={image}
           style={styles.leftBubbleAvatar}
@@ -23,7 +30,7 @@ export const LeftBubble = ({ text, image }: LeftBubbleProps) => {
       </View>
       <ShadowView style={styles.leftBubble}>
         <Text variant="body">{text}</Text>
-        <MessageTime time={"11:11 PM"} style={styles.msgTime} />
+        <MessageTime time={msgTime} style={styles.msgTime} />
       </ShadowView>
     </View>
   );

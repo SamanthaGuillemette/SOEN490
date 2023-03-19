@@ -5,19 +5,19 @@ import {
   AddMembers,
   AllTasks,
   Description,
-  TechNGoals,
+  CategoryNGoals,
 } from "../components";
-interface HeaderProps {
+interface ProjectCreationProps {
   navigation: NavigationProp<any>;
 }
 
-const ProjectCreation = (props: HeaderProps) => {
+const ProjectCreation = (props: ProjectCreationProps) => {
   return (
     <StepIndicator
       headerTitle={"Create Projects"}
       stepLabels={[
         "Description",
-        "Tech & Goals",
+        "Category & Goals",
         "All Tasks",
         "Add Members",
         "Add Links",
@@ -25,8 +25,8 @@ const ProjectCreation = (props: HeaderProps) => {
       numOfSteps={5}
       screens={[
         <Description />,
-        <TechNGoals />,
-        <AllTasks />,
+        <CategoryNGoals />,
+        <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,
       ]}

@@ -27,7 +27,7 @@ export const ProjectCardLarge = (props: ProjectCardLargeProps) => {
           </Text>
 
           <View style={styles.textIconLine}>
-            <Icon name="award" color="generalGray" />
+            <Icon name="award" color="white" />
             <Text
               variant="smBody"
               style={[styles.whiteText, styles.textContent]}
@@ -37,7 +37,7 @@ export const ProjectCardLarge = (props: ProjectCardLargeProps) => {
           </View>
 
           <View style={styles.textIconLine}>
-            <Icon name="clock" color="generalGray" />
+            <Icon name="clock" color="white" />
             <Text
               variant="smBody"
               style={[styles.whiteText, styles.textContent]}
@@ -47,7 +47,7 @@ export const ProjectCardLarge = (props: ProjectCardLargeProps) => {
           </View>
 
           <View style={styles.textIconLine}>
-            <Icon name="users" color="generalGray" />
+            <Icon name="users" color="white" />
             <Text
               variant="smBody"
               style={[styles.whiteText, styles.textContent]}

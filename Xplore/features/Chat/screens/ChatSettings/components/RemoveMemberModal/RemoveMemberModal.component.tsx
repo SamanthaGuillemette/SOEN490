@@ -98,7 +98,11 @@ export const RemoveMemberModal = ({
               Remove members
             </Text>
             <SearchBar style={styles.searchBar} />
-            <UsersList data={Users} />
+            <UsersList
+              data={Users}
+              selectUserList={true}
+              messageUserList={false}
+            />
             <PrimaryButton
               label="REMOVE"
               onPress={handleIndexSelect}

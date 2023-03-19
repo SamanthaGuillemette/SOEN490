@@ -5,7 +5,7 @@ import { useCachedResources, useColorScheme, useThemeColor } from "./hooks";
 import Main from "./navigation/Main";
 import { AuthProvider } from "./services/authentication";
 import { QueryClient, QueryClientProvider } from "react-query";
-
+// This is a test comment.
 const App = () => {
   const colorScheme = useColorScheme();
   const isLoadingComplete = useCachedResources(); // Load resources we need (under splash screen) prior to rendering the app
@@ -19,9 +19,9 @@ const App = () => {
     return (
       <SafeAreaProvider>
         <PaperProvider>
-          <StatusBar style="auto" backgroundColor={statusBarBg} />
           <AuthProvider>
             <QueryClientProvider client={queryClient}>
+              <StatusBar style="auto" backgroundColor={statusBarBg} />
               <Main colorScheme={colorScheme} />
             </QueryClientProvider>
           </AuthProvider>
