@@ -6,6 +6,8 @@ declare module "@env" {
   export const ENDPOINT: string;
   export const PROJECT_ID: string;
   export const DATABASE_ID: string;
+  export const BUCKET_PROFILE_PIC: string;
+  export const BUCKET_PROJECT_PIC: string;
   export const COLLECTION_ID_TEST: string;
   export const COLLECTION_ID_USERS: string;
   export const COLLECTION_ID_PROJECT: string;

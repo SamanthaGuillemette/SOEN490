@@ -34,6 +34,14 @@
       "eas": {
         "projectId": "44263ee1-ac24-4f5b-86e9-275197feba9f"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Xplorify to access your photos?"
+        }
+      ]
+    ]
   }
 }

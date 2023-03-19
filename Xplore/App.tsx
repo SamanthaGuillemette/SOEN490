@@ -19,9 +19,9 @@ const App = () => {
     return (
       <SafeAreaProvider>
         <PaperProvider>
-          <StatusBar style="auto" backgroundColor={statusBarBg} />
           <AuthProvider>
             <QueryClientProvider client={queryClient}>
+              <StatusBar style="auto" backgroundColor={statusBarBg} />
               <Main colorScheme={colorScheme} />
             </QueryClientProvider>
           </AuthProvider>
