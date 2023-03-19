@@ -9,21 +9,18 @@ export default StyleSheet.create({
   },
   centeredView: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     paddingVertical: 80,
   },
   modalView: {
     margin: 20,
     borderRadius: 8,
     padding: 35,
-    alignItems: "center",
   },
   alertText: {
     marginBottom: 10,
   },
   searchBar: {
-    width: 250,
+    width: 280,
   },
   primaryButton: {
     marginTop: 5,

@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   View,
   ConfirmationModal,
-  AddMemberModal,
+  MembersActionsModal,
 } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
@@ -41,7 +41,9 @@ const AdminSettings = (props: AdminSettingsProps) => {
         onPress={() => setAddMemberModalVisible(true)}
       />
       {addMemberModalVisible === true && (
-        <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
+        <MembersActionsModal
+          setActionsModalVisible={setAddMemberModalVisible}
+        />
       )}
       <SettingBox
         settingName="Remove a member"
