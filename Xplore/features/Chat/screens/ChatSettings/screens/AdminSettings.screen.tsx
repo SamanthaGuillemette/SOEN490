@@ -6,7 +6,6 @@ import {
 } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
-import { RemoveMemberModal } from "../components/RemoveMemberModal/RemoveMemberModal.component";
 import { deleteMessages } from "../../../../../services/api/chatSettings";
 import styles from "./SettingsOptions.styles";
 

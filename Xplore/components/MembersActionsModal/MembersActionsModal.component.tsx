@@ -20,10 +20,18 @@ export const MembersActionsModal = ({
 }: MembersActionsModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+
+  // Create a state variable to hold the selected users' ids
+  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
     setActionsModalVisible(!modalVisible);
+
+    // Log the selected user ids to the console
+    console.log(selectedUsers);
   }
+
   const Users = useListUsers();
   const [query, setQuery] = useState<string>("");
 
@@ -49,6 +57,13 @@ export const MembersActionsModal = ({
               data={filteredUsers}
               selectUserList={true}
               messageUserList={false}
+              // Pass a function to handle the selection of users
+              onSelect={(id: string) =>
+                setSelectedUsers((prevSelectedUsers) => [
+                  ...prevSelectedUsers,
+                  id,
+                ])
+              }
             />
             <PrimaryButton
               label={action}
