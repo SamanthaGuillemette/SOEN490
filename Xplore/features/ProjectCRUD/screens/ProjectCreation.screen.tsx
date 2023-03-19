@@ -7,11 +7,21 @@ import {
   Description,
   CategoryNGoals,
 } from "../components";
+import { useState } from "react";
 interface ProjectCreationProps {
   navigation: NavigationProp<any>;
 }
 
 const ProjectCreation = (props: ProjectCreationProps) => {
+  const [description, setDescription] = useState("");
+  const [tech, setTech] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
+  const [allMembers, setAllMembers] = useState([]);
+  const [allLinks, setAllLinks] = useState([]);
+  const [projName, setProjectName] = useState("");
+  const [projectGoals, setProjectGoals] = useState("");
+  const [Technologies, setTechnologies] = useState("");
+  const [projectCategory, setProjectCategory] = useState("");
   return (
     <StepIndicator
       headerTitle={"Create Projects"}
@@ -24,7 +34,10 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       ]}
       numOfSteps={5}
       screens={[
-        <Description />,
+        <Description
+          setProjectName={setProjectName}
+          setDescription={setDescription}
+        />,
         <CategoryNGoals />,
         <AllTasks navigation={props.navigation} />,
         <AddMembers />,
