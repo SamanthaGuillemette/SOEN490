@@ -149,4 +149,22 @@ const useListChatUsers = (chatID: any, areMembers: boolean) => {
   return users;
 };
 
-export { changeChatName, deleteMessages, useListAvatars, useListChatUsers };
+const addToChat = async (chatData: any, chatID: any) => {
+  for (const userID of chatData) {
+    await api.createDocument(COLLECTION_ID_GROUP_CHATS, {
+      userID,
+      chatID,
+      chatName: "My Group Chat",
+      seen: false,
+      lastModifiedAt: new Date().toISOString(),
+    });
+  }
+};
+
+export {
+  changeChatName,
+  deleteMessages,
+  useListAvatars,
+  useListChatUsers,
+  addToChat,
+};

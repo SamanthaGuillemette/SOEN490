@@ -9,18 +9,21 @@ import { SearchBar } from "../SearchBar";
 import { useQuery } from "react-query";
 import api from "../../services/appwrite/api";
 import { createNewGroupChat } from "../../services/api/chats";
+import { addToChat } from "../../services/api/chatSettings";
 import styles from "./MembersActionsModal.styles";
 
 interface MembersActionsModalProps {
   setActionsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   action: string; // this is used to label primary action button
   users: any;
+  chatID?: string;
 }
 
 export const MembersActionsModal = ({
   setActionsModalVisible: setActionsModalVisible,
   action,
   users,
+  chatID,
 }: MembersActionsModalProps) => {
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
@@ -38,6 +41,9 @@ export const MembersActionsModal = ({
     if (action === "Create Group" && selectedUsers) {
       const groupMembers = [...selectedUsers, userId];
       createNewGroupChat(groupMembers);
+    }
+    if (action === "Add Members" && selectedUsers) {
+      addToChat(selectedUsers, chatID);
     }
   }
 

@@ -48,8 +48,9 @@ const AdminSettings = (props: AdminSettingsProps) => {
       {addMemberModalVisible === true && (
         <MembersActionsModal
           setActionsModalVisible={setAddMemberModalVisible}
-          action="Add"
+          action="Add Members"
           users={addUsers}
+          chatID={props.chatID}
         />
       )}
       <SettingBox
@@ -62,6 +63,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
           setActionsModalVisible={setRemoveModalVisible}
           action="Remove"
           users={removeUsers}
+          chatID={props.chatID}
         />
       )}
       <SettingBox
