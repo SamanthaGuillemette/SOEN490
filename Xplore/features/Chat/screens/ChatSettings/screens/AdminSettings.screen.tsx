@@ -61,7 +61,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
       {removeModalVisible === true && (
         <MembersActionsModal
           setActionsModalVisible={setRemoveModalVisible}
-          action="Remove"
+          action="Remove Members"
           users={removeUsers}
           chatID={props.chatID}
         />

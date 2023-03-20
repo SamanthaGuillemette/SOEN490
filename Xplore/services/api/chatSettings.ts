@@ -161,10 +161,23 @@ const addToChat = async (chatData: any, chatID: any) => {
   }
 };
 
+const removeFromChat = async (chatData: any, chatID: any) => {
+  for (const userID of chatData) {
+    const response = await api.listDocuments(COLLECTION_ID_GROUP_CHATS, [
+      Query.equal("chatID", chatID),
+      Query.equal("userID", userID),
+    ]);
+    response.documents.forEach((doc: any) => {
+      api.deleteDocument(COLLECTION_ID_GROUP_CHATS, doc.$id);
+    });
+  }
+};
+
 export {
   changeChatName,
   deleteMessages,
   useListAvatars,
   useListChatUsers,
   addToChat,
+  removeFromChat,
 };

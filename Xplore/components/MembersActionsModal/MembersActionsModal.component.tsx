@@ -9,7 +9,7 @@ import { SearchBar } from "../SearchBar";
 import { useQuery } from "react-query";
 import api from "../../services/appwrite/api";
 import { createNewGroupChat } from "../../services/api/chats";
-import { addToChat } from "../../services/api/chatSettings";
+import { addToChat, removeFromChat } from "../../services/api/chatSettings";
 import styles from "./MembersActionsModal.styles";
 
 interface MembersActionsModalProps {
@@ -44,6 +44,9 @@ export const MembersActionsModal = ({
     }
     if (action === "Add Members" && selectedUsers) {
       addToChat(selectedUsers, chatID);
+    }
+    if (action === "Remove Members" && selectedUsers) {
+      removeFromChat(selectedUsers, chatID);
     }
   }
 
