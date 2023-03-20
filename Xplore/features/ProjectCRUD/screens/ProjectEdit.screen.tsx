@@ -19,7 +19,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
   const [allMembers, setAllMembers] = useState([]);
   const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
-  const [projectGoals, setProjectGoals] = useState("");
+  const [projectGoals, setGoals] = useState<string[]>([]);
   const [projectCategory, setCategory] = useState("");
   return (
     <StepIndicator
@@ -37,7 +37,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
           setProjectName={setProjectName}
           setDescription={setDescription}
         />,
-        <CategoryNGoals setCategory={setCategory} />,
+        <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
         <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,

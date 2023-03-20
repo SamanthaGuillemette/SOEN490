@@ -19,7 +19,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [allMembers, setAllMembers] = useState([]);
   const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
-  const [projectGoals, setGoals] = useState([]);
+  const [projectGoals, setGoals] = useState<string[]>([]);
+
   return (
     <StepIndicator
       headerTitle={"Create Projects"}

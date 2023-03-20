@@ -5,7 +5,7 @@ import { useState } from "react";
 
 interface CategoryNGoalsProps {
   setCategory: (category: string) => void;
-  setGoals: (value: any) => void;
+  setGoals: (value: string[]) => void;
 }
 
 export const CategoryNGoals = (props: CategoryNGoalsProps) => {
