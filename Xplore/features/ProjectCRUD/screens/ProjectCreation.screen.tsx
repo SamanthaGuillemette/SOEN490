@@ -36,7 +36,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           setProjectName={setProjectName}
           setDescription={setDescription}
         />,
-        <CategoryNGoals setCategory={setCategory} />,
+        <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
         <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,
