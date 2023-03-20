@@ -1,6 +1,14 @@
 import { NavigationProp } from "@react-navigation/native";
+import { useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { Icon, ShadowView, Text, View } from "../components";
+import {
+  Icon,
+  MembersActionsModal,
+  ShadowView,
+  Text,
+  View,
+} from "../components";
+import { useListUsers } from "../services/api/search";
 
 interface TopHeaderProps {
   screenName: String;
@@ -10,7 +18,8 @@ interface TopHeaderProps {
 
 const TopHeader = (props: TopHeaderProps) => {
   const { navigation } = props;
-
+  const [createGroupVisible, setCreateGroupVisible] = useState<any>(false);
+  const users = useListUsers();
   return (
     <ShadowView
       shadowOffset={4}
@@ -27,6 +36,18 @@ const TopHeader = (props: TopHeaderProps) => {
         <TouchableOpacity onPress={() => navigation.navigate("ProjectEdit")}>
           <Icon name="edit" style={styles.editIcon} />
         </TouchableOpacity>
+      )}
+      {props.name === "group_chat" && (
+        <TouchableOpacity onPress={() => setCreateGroupVisible(true)}>
+          <Icon name="plus" style={styles.editIcon} />
+        </TouchableOpacity>
+      )}
+      {createGroupVisible === true && (
+        <MembersActionsModal
+          setActionsModalVisible={setCreateGroupVisible}
+          action="Add"
+          users={users}
+        />
       )}
       <TouchableOpacity onPress={() => navigation.navigate("Search")}>
         <Icon name="search" />
