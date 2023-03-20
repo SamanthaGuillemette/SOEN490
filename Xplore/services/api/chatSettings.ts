@@ -149,8 +149,8 @@ const useListChatUsers = (chatID: any, areMembers: boolean) => {
   return users;
 };
 
-const addToChat = async (chatData: any, chatID: any) => {
-  for (const userID of chatData) {
+const addToChat = async (users: any, chatID: any) => {
+  for (const userID of users) {
     await api.createDocument(COLLECTION_ID_GROUP_CHATS, {
       userID,
       chatID,
@@ -161,8 +161,8 @@ const addToChat = async (chatData: any, chatID: any) => {
   }
 };
 
-const removeFromChat = async (chatData: any, chatID: any) => {
-  for (const userID of chatData) {
+const removeFromChat = async (users: any, chatID: any) => {
+  for (const userID of users) {
     const response = await api.listDocuments(COLLECTION_ID_GROUP_CHATS, [
       Query.equal("chatID", chatID),
       Query.equal("userID", userID),
@@ -173,6 +173,16 @@ const removeFromChat = async (chatData: any, chatID: any) => {
   }
 };
 
+const leaveGroup = async (chatID: any, userID: any) => {
+  const response = await api.listDocuments(COLLECTION_ID_GROUP_CHATS, [
+    Query.equal("chatID", chatID),
+    Query.equal("userID", userID),
+  ]);
+  response.documents.forEach((doc: any) => {
+    api.deleteDocument(COLLECTION_ID_GROUP_CHATS, doc.$id);
+  });
+};
+
 export {
   changeChatName,
   deleteMessages,
@@ -180,4 +190,5 @@ export {
   useListChatUsers,
   addToChat,
   removeFromChat,
+  leaveGroup,
 };

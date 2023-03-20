@@ -38,11 +38,11 @@ export const MembersActionsModal = ({
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
     setActionsModalVisible(!modalVisible);
-    if (action === "Create Group" && selectedUsers) {
+    if (action === "Create Group" && selectedUsers.length > 0) {
       const groupMembers = [...selectedUsers, userId];
       createNewGroupChat(groupMembers);
     }
-    if (action === "Add Members" && selectedUsers) {
+    if (action === "Add Members" && selectedUsers.length > 0) {
       addToChat(selectedUsers, chatID);
     }
     if (action === "Remove Members" && selectedUsers) {
