@@ -22,6 +22,9 @@ export default StyleSheet.create({
   searchBar: {
     width: 280,
   },
+  buttons: {
+    alignItems: "center",
+  },
   primaryButton: {
     marginTop: 5,
   },

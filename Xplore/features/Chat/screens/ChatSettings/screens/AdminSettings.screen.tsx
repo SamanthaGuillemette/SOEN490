@@ -6,7 +6,10 @@ import {
 } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
-import { deleteMessages } from "../../../../../services/api/chatSettings";
+import {
+  deleteMessages,
+  useListChatUsers,
+} from "../../../../../services/api/chatSettings";
 import styles from "./SettingsOptions.styles";
 
 interface AdminSettingsProps {
@@ -20,6 +23,9 @@ const AdminSettings = (props: AdminSettingsProps) => {
   const [removeModalVisible, setRemoveModalVisible] = useState<any>(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState<any>(false);
   const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
+
+  const addUsers = useListChatUsers(props.chatID, false);
+  const removeUsers = useListChatUsers(props.chatID, true);
 
   return (
     <View style={styles.settingsContainer}>
@@ -43,6 +49,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
         <MembersActionsModal
           setActionsModalVisible={setAddMemberModalVisible}
           action="Add"
+          users={addUsers}
         />
       )}
       <SettingBox
@@ -54,6 +61,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
         <MembersActionsModal
           setActionsModalVisible={setRemoveModalVisible}
           action="Remove"
+          users={removeUsers}
         />
       )}
       <SettingBox

@@ -6,6 +6,9 @@ import {
 } from "@env";
 import { Query } from "appwrite";
 import { useState, useEffect } from "react";
+import { useIsFocused } from "@react-navigation/native";
+import { useQuery } from "react-query";
+import { useListUsers } from "./search";
 import api from "../appwrite/api";
 
 const updateLastMessage = async (chatID: any, chatType: any) => {
@@ -108,4 +111,42 @@ const useListAvatars = (chatID: any, chatType: any) => {
   return avatars;
 };
 
-export { changeChatName, deleteMessages, useListAvatars };
+const useListChatUsers = (chatID: any, areMembers: boolean) => {
+  const isFocused = useIsFocused();
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  const userId = userdata?.$id as string;
+  const [users, setUsers] = useState<any[]>([]);
+  const userList = useListUsers();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (isFocused) {
+          const chatUsersResponse = await api.listDocuments(
+            COLLECTION_ID_GROUP_CHATS,
+            [Query.equal("chatID", chatID)]
+          );
+          const chatUserIDs =
+            chatUsersResponse?.documents?.map((doc: any) => doc.userID) || [];
+          if (areMembers) {
+            setUsers(
+              userList.filter((user: any) => chatUserIDs.includes(user?.id))
+            );
+          } else {
+            setUsers(
+              userList.filter((user: any) => !chatUserIDs.includes(user?.id))
+            );
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [isFocused, userId, chatID, userList, areMembers]);
+
+  return users;
+};
+
+export { changeChatName, deleteMessages, useListAvatars, useListChatUsers };

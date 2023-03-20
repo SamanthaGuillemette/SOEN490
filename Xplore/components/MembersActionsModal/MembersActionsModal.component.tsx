@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Modal, View } from "react-native";
-import { useListUsers } from "../../services/api/search";
 import { useThemeColor } from "../../hooks/useThemeColor";
 import { ShadowView } from "../ShadowView";
 import { PrimaryButton } from "../PrimaryButton";
@@ -12,11 +11,13 @@ import styles from "./MembersActionsModal.styles";
 interface MembersActionsModalProps {
   setActionsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   action: string; // this is used to label primary action button
+  users: any;
 }
 
 export const MembersActionsModal = ({
   setActionsModalVisible: setActionsModalVisible,
   action,
+  users,
 }: MembersActionsModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
@@ -27,16 +28,14 @@ export const MembersActionsModal = ({
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
     setActionsModalVisible(!modalVisible);
-
     // Log the selected user ids to the console
     console.log(selectedUsers);
   }
 
-  const Users = useListUsers();
   const [query, setQuery] = useState<string>("");
 
   // Filter the Users array based on the search query
-  const filteredUsers = Users.filter((user) =>
+  const filteredUsers = users.filter((user: any) =>
     user.username.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -57,7 +56,6 @@ export const MembersActionsModal = ({
               data={filteredUsers}
               selectUserList={true}
               messageUserList={false}
-              // Pass a function to handle the selection of users
               onSelect={(id: string) =>
                 setSelectedUsers((prevSelectedUsers) => [
                   ...prevSelectedUsers,
@@ -65,16 +63,18 @@ export const MembersActionsModal = ({
                 ])
               }
             />
-            <PrimaryButton
-              label={action}
-              onPress={handleIndexSelect}
-              style={styles.primaryButton}
-            />
-            <SecondaryButton
-              label="Cancel"
-              onPress={handleIndexSelect}
-              style={styles.secondaryButton}
-            />
+            <View style={styles.buttons}>
+              <PrimaryButton
+                label={action}
+                onPress={handleIndexSelect}
+                style={styles.primaryButton}
+              />
+              <SecondaryButton
+                label="Cancel"
+                onPress={handleIndexSelect}
+                style={styles.secondaryButton}
+              />
+            </View>
           </ShadowView>
         </View>
       </View>
