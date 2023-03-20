@@ -45,7 +45,7 @@ const TopHeader = (props: TopHeaderProps) => {
       {createGroupVisible === true && (
         <MembersActionsModal
           setActionsModalVisible={setCreateGroupVisible}
-          action="Add"
+          action="Create Group"
           users={users}
         />
       )}

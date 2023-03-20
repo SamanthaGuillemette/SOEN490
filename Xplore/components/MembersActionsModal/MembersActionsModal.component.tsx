@@ -6,6 +6,9 @@ import { PrimaryButton } from "../PrimaryButton";
 import { SecondaryButton } from "../SecondaryButton";
 import { UsersList } from "../UsersList";
 import { SearchBar } from "../SearchBar";
+import { useQuery } from "react-query";
+import api from "../../services/appwrite/api";
+import { createNewGroupChat } from "../../services/api/chats";
 import styles from "./MembersActionsModal.styles";
 
 interface MembersActionsModalProps {
@@ -19,6 +22,10 @@ export const MembersActionsModal = ({
   action,
   users,
 }: MembersActionsModalProps) => {
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
@@ -28,8 +35,10 @@ export const MembersActionsModal = ({
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
     setActionsModalVisible(!modalVisible);
-    // Log the selected user ids to the console
-    console.log(selectedUsers);
+    if (action === "Create Group" && selectedUsers) {
+      const groupMembers = [...selectedUsers, userId];
+      createNewGroupChat(groupMembers);
+    }
   }
 
   const [query, setQuery] = useState<string>("");
