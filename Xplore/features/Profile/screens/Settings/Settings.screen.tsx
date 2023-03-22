@@ -1,11 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Avatar, Icon, ShadowView } from "../../../../components";
 import { EditButton } from "../../components";
-import { deviceScreenWidth } from "../../../../constants";
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useThemeColor } from "../../../../hooks";
@@ -13,6 +12,7 @@ import api from "../../../../services/appwrite/api";
 import { BUCKET_PROFILE_PIC } from "@env";
 import { uploadImageToServer } from "../../../../utils";
 import { useQuery } from "react-query";
+import styles from "./Settings.styles";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -122,32 +122,3 @@ const Settings = (props: SettingsProps) => {
 };
 
 export default Settings;
-
-const styles = StyleSheet.create({
-  safeAreaStyle: {
-    flex: 1,
-  },
-  backButton: {
-    paddingTop: 25,
-    paddingLeft: 23,
-    paddingBottom: 16,
-    width: 80,
-  },
-  avatarContainer: {
-    alignItems: "center",
-  },
-  editAvatarButton: {
-    position: "absolute",
-    bottom: 10,
-    right: deviceScreenWidth / 2 - 60,
-    zIndex: 1,
-  },
-  editAvatarButtonShadow: {
-    padding: 8,
-    borderRadius: 50,
-  },
-  settingButtonsContainer: {
-    marginTop: 75,
-    paddingHorizontal: 30,
-  },
-});
