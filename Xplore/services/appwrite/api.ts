@@ -25,6 +25,14 @@ const api = {
     return account.get();
   },
 
+  updateUsername: (newName: string) => {
+    return account.updateName(newName);
+  },
+
+  updatePassword: (newPassword: string) => {
+    return account.updatePassword(newPassword);
+  },
+
   getSession: (sessionId: string) => {
     return account.getSession(sessionId);
   },
