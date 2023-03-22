@@ -15,6 +15,7 @@ import Search from "../features/Searching/Search.screen";
 import IndividualTask from "../features/Projects/components/IndividualTask/IndividualTask.screen";
 import { useUpdateOnboarding } from "../services/api/onboarding";
 import ProjectDetails from "../features/Projects/screens/ProjectDetails/ProjectDetails.screen";
+import { UserProjects } from "../features/Projects/screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +50,7 @@ const AppStack = () => {
       <Stack.Screen name="ProjectEdit" component={ProjectEdit} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="IndividualTask" component={IndividualTask} />
+      <Stack.Screen name="UserProjects" component={UserProjects} />
     </Stack.Navigator>
   );
 };

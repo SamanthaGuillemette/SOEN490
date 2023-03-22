@@ -1,3 +1,4 @@
+import { NavigationProp } from "@react-navigation/native";
 import {
   Avatar,
   LinkButton,
@@ -6,8 +7,11 @@ import {
   View,
 } from "../../../../components";
 import styles from "./HomeHeader.styles";
-
-export const HomeHeader = () => {
+interface HomeHeaderProps {
+  navigation: NavigationProp<any>;
+}
+export const HomeHeader = (props: HomeHeaderProps) => {
+  const { navigation } = props;
   return (
     <ShadowView
       shadowOffset={4}
@@ -21,7 +25,12 @@ export const HomeHeader = () => {
         <Text variant="body" color="bodyText">
           Ready for a new challenge?
         </Text>
-        <LinkButton style={styles.linkButton}>View your projects</LinkButton>
+        <LinkButton
+          style={styles.linkButton}
+          onPress={() => navigation.navigate("UserProjects")}
+        >
+          View your projects
+        </LinkButton>
       </View>
       <View>
         <Avatar name="Josh" imageURL="https://picsum.photos/200" size={60} />
