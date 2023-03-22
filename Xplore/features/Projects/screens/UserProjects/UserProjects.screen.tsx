@@ -1,11 +1,19 @@
 import { SafeAreaView } from "react-native";
 import { useThemeColor } from "../../../../hooks";
 import TopHeader from "../../../../navigation/TopHeader.component";
-import { ProjectCard, SegmentedButton, View } from "../../../../components";
+import {
+  ProjectCard,
+  SegmentedButton,
+  View,
+  Text,
+} from "../../../../components";
 import { useState } from "react";
 import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 import styles from "./UserProjects.style";
+import { useQuery } from "react-query";
+import api from "../../../../services/appwrite/api";
+import { useUserProjects } from "../../../../services/api/projects";
 
 interface UserProjectsProps {
   navigation: NavigationProp<any>;
@@ -111,6 +119,13 @@ const UserProjects = (props: UserProjectsProps) => {
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const [screen, setScreen] = useState(0);
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+  const userprojects = useUserProjects(userId);
+
+  // const currentProjects = userId;
+  // const completedProjects = userId;
 
   return (
     <SafeAreaView
@@ -123,6 +138,8 @@ const UserProjects = (props: UserProjectsProps) => {
           { backgroundColor: backgroundSecondary },
         ]}
       >
+        {/* Testing to see if we are pulling the project ids from User Collection */}
+        <Text>{userprojects[0].projects[0]}</Text>
         <SegmentedButton
           labels={["CURRENT", "COMPLETED"]}
           setIndex={setScreen}
