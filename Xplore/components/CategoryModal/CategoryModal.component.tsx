@@ -18,6 +18,7 @@ interface CategoryModalProps extends RNTextInputProps {
   onValueChange: (value: string) => void;
   style?: object;
   selectedValue?: string;
+  setCategory: (category: string) => void;
 }
 
 export const CategoryModal = (props: CategoryModalProps) => {
@@ -63,8 +64,8 @@ export const CategoryModal = (props: CategoryModalProps) => {
               <ScrollView style={styles.scrollView} persistentScrollbar={true}>
                 {options.map((option) => (
                   <TouchableOpacity
-                    key={option.value}
-                    onPress={() => handleValueChange(option.value)}
+                    key={option.label}
+                    onPress={() => handleValueChange(option.label)}
                   >
                     <Text
                       variant="body"

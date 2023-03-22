@@ -10,6 +10,8 @@ import { Calendar } from "react-native-calendars";
 interface DatePickerProps {
   title: string;
   style?: StyleProp<ViewStyle>;
+  setStartDate?: (date: string) => void;
+  setEndDate?: (date: string) => void;
 }
 
 export const DatePicker = (props: DatePickerProps) => {

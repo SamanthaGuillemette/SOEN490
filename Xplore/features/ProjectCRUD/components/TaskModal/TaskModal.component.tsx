@@ -12,6 +12,7 @@ import {
   Text,
 } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
+import { useCreateNewTask } from "../../../../services/api/projects";
 
 interface TaskModalProps {
   onPress?: any;
@@ -21,6 +22,9 @@ export const TaskModal = (props: TaskModalProps) => {
   const [taskName, setTaskName] = useState("");
   const [taskDesc, setTaskDesc] = useState("");
   const [taskCategory, setTaskCategory] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  // const [setTask] = useState("");
   // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
 
@@ -42,12 +46,11 @@ export const TaskModal = (props: TaskModalProps) => {
     setTaskCategory("");
   };
 
-  const [selectedValue, setSelectedValue] = useState("");
   const [categoryText, setCategoryText] = useState("Category");
 
-  const handleValueChange = (value: string) => {
-    setSelectedValue(value);
-    const selectedOption = options.find((option) => option.value === value);
+  const handleValueChange = (label: string) => {
+    setTaskCategory(label);
+    const selectedOption = options.find((option) => option.label === label);
     setCategoryText(selectedOption?.label || "Category");
   };
 
@@ -65,7 +68,8 @@ export const TaskModal = (props: TaskModalProps) => {
   ];
 
   const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
-
+  const createTask = useCreateNewTask();
+  console.log(createTask.data);
   return (
     <ShadowView style={styles.shadowView}>
       <View style={styles.textViewAbout}>
@@ -93,19 +97,20 @@ export const TaskModal = (props: TaskModalProps) => {
             label={categoryText}
             options={sortedOptions}
             onValueChange={handleValueChange}
+            setCategory={setTaskCategory}
           />
         </View>
       </View>
       <View style={styles.alignDatePicker}>
-        <DatePicker title="Starts" />
-        <DatePicker title="Ends" />
+        <DatePicker title="Starts" setStartDate={setStartDate} />
+        <DatePicker title="Ends" setEndDate={setEndDate} />
       </View>
       <View style={styles.textViewParticipant}>
-        <Text color="titleText" variant="h3">
+        {/* <Text color="titleText" variant="h3">
           Participants
-        </Text>
+        </Text> */}
       </View>
-      <MemberChipAdder />
+      {/* <MemberChipAdder /> */}
       <ShadowView style={[styles.button]}>
         <TouchableOpacity
           style={[
@@ -115,6 +120,13 @@ export const TaskModal = (props: TaskModalProps) => {
           onPress={() => {
             added();
             reset();
+            createTask.mutateAsync({
+              name: taskName,
+              description: taskDesc,
+              category: taskCategory,
+              startDate: startDate,
+              endDate: endDate,
+            });
           }}
         >
           <Icon
