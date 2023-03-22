@@ -60,7 +60,7 @@ const useListMessages = (chatID: any) => {
       } catch (e) {
         console.log(e);
       }
-    }, 500);
+    }, 800);
     return () => clearInterval(interval); // Clear the interval on component unmount
   }, [chatID]);
 

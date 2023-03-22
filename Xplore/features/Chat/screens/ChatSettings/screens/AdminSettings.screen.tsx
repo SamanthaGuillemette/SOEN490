@@ -2,12 +2,17 @@ import { useState } from "react";
 import {
   View,
   ConfirmationModal,
-  AddMemberModal,
+  MembersActionsModal,
 } from "../../../../../components";
 import SettingBox from "../components/SettingBox/SettingBox.component";
 import { ChatNameModal } from "../components/ChatNameModal/ChatNameModal.component";
-import { RemoveMemberModal } from "../components/RemoveMemberModal/RemoveMemberModal.component";
-import { deleteMessages } from "../../../../../services/api/chatSettings";
+import {
+  deleteMessages,
+  leaveGroup,
+  useListChatUsers,
+} from "../../../../../services/api/chatSettings";
+import { useQuery } from "react-query";
+import api from "../../../../../services/appwrite/api";
 import styles from "./SettingsOptions.styles";
 
 interface AdminSettingsProps {
@@ -21,6 +26,12 @@ const AdminSettings = (props: AdminSettingsProps) => {
   const [removeModalVisible, setRemoveModalVisible] = useState<any>(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState<any>(false);
   const [confirmLeaveVisible, setConfirmLeaveVisible] = useState<any>(false);
+
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  const userId = userdata?.$id as string;
+
+  const addUsers = useListChatUsers(props.chatID, false);
+  const removeUsers = useListChatUsers(props.chatID, true);
 
   return (
     <View style={styles.settingsContainer}>
@@ -41,7 +52,12 @@ const AdminSettings = (props: AdminSettingsProps) => {
         onPress={() => setAddMemberModalVisible(true)}
       />
       {addMemberModalVisible === true && (
-        <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
+        <MembersActionsModal
+          setActionsModalVisible={setAddMemberModalVisible}
+          action="Add Members"
+          users={addUsers}
+          chatID={props.chatID}
+        />
       )}
       <SettingBox
         settingName="Remove a member"
@@ -49,7 +65,12 @@ const AdminSettings = (props: AdminSettingsProps) => {
         onPress={() => setRemoveModalVisible(true)}
       />
       {removeModalVisible === true && (
-        <RemoveMemberModal setRemoveModalVisible={setRemoveModalVisible} />
+        <MembersActionsModal
+          setActionsModalVisible={setRemoveModalVisible}
+          action="Remove Members"
+          users={removeUsers}
+          chatID={props.chatID}
+        />
       )}
       <SettingBox
         settingName="Delete chat"
@@ -59,7 +80,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
       {confirmDeleteVisible === true && (
         <ConfirmationModal
           setConfirmModalVisible={setConfirmDeleteVisible}
-          confirmMsg="Are you sure you want to delete the chat?"
+          confirmMsg="Are you sure you want to delete the chat? This action will delete chat for all user."
           primaryText="Delete chat"
           secondaryText="Cancel"
           primaryAction={() => deleteMessages(props.chatID, "group")}
@@ -76,6 +97,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
           confirmMsg="Are you sure you want to leave the group?"
           primaryText="Leave Group"
           secondaryText="Cancel"
+          primaryAction={() => leaveGroup(props.chatID, userId)}
         />
       )}
     </View>

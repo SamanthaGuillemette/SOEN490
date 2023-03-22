@@ -44,7 +44,7 @@ export * from "./ChatDate";
 export * from "./ChatTextInput";
 export * from "./Conversation";
 export * from "./CategoryScrollBar";
-export * from "./AddMemberModal";
+export * from "./MembersActionsModal";
 export * from "./MemberChipAdder";
 export * from "./CategoryModal";
 export * from "./ProjectCard";
