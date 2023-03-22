@@ -118,7 +118,7 @@ const Profile = (props: ProfileProps) => {
         <View style={styles.belowHeaderContainer}>
           <UserProgress xp={userDetails?.xp} />
           <StatBoxes
-            numBadges={userDetails?.badges.length}
+            numBadges={getUserXPlevel(userDetails?.xp)}
             numProjects={userDetails?.projects.length}
             xpLevel={getUserXPlevel(userDetails?.xp)}
           />

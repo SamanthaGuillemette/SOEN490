@@ -16,11 +16,11 @@ export const Badges = (props: BadgesProps) => {
         <Text variant="h3" color="titleText">
           BADGES
         </Text>
-        {props.xpLevel > 250 ? <LinkButton>View all</LinkButton> : <></>}
+        {props.xpLevel > 0 ? <LinkButton>View all</LinkButton> : <></>}
       </View>
 
       <View>
-        {props.xpLevel > 250 ? (
+        {props.xpLevel > 0 ? (
           <>
             <ScrollView
               horizontal={true}
