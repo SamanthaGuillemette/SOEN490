@@ -22,15 +22,19 @@ const Settings = (props: SettingsProps) => {
   const { navigation } = props;
   const statusBarBg = useThemeColor("background"); // Status bar background (only required for Android)
   const [localImage, setLocalImage] = useState<string>();
-  const [uploadedImageId, setUploadedImageId] = useState();
+  const [latestProfileImageId, setLatestProfileImageId] = useState();
 
-  const { data } = useQuery("profileImage", () =>
-    api.getFilePreview(BUCKET_PROFILE_PIC, uploadedImageId || "")
+  // TODO: Get the lastest imageID (string) user uploaded (last item from the array "profileImages") - User collection
+  // const { data } = useQuery("profileImages", () => ....
+
+  // TODO: "latestProfileImageId" should come from the result we got above
+  const { data } = useQuery("latest profile image", () =>
+    api.getFilePreview(BUCKET_PROFILE_PIC, latestProfileImageId || "")
   );
   console.log("====> React Query data: ", data);
 
   const handleUploadImage = async () => {
-    // No permissions request is necessary for launching the image library
+    // No permissions request is necessary for launching the image gallery
     let pickedImage = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -51,15 +55,10 @@ const Settings = (props: SettingsProps) => {
       //   JSON.stringify(uploadedImageResult, null, 2)
       // );
 
-      setUploadedImageId(uploadedImageResult?.$id); // Capture the uploaded image id
+      setLatestProfileImageId(uploadedImageResult?.$id); // Capture the uploaded image id
 
-      if (uploadedImageId) {
-        // const imagePreview = api.getFilePreview(
-        //   BUCKET_PROFILE_PIC,
-        //   uploadedImageId
-        // );
-        // setLocalImage(imagePreview.toString());
-      }
+      // TODO: Add this imageID to the user's profileImages array (in the User collection)
+      // spread out the existing profileImages array and add the new imageID to it
     }
   };
 
