@@ -104,7 +104,7 @@ const Settings = (props: SettingsProps) => {
             <EditButton
               iconName="lock"
               label="Change Password"
-              onPress={() => alert("pressed!")}
+              onPress={() => navigation.navigate("UpdatePassword")}
             />
             <EditButton
               iconName="smile"
