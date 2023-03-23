@@ -22,7 +22,7 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
   });
   const generalGray = useThemeColor("generalGray");
 
-  const { data, status } = useFetchUserProjects(projectIDs);
+  const { data } = useFetchUserProjects(projectIDs);
   console.log(JSON.stringify(data, null, 4));
 
   return (
@@ -35,35 +35,31 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
       </View>
 
       <View>
-        <></>
-        {status === "success" ? (
-          <Animated.FlatList
-            data={data?.documents}
-            renderItem={({ item, index }: any) => (
-              <ProjectSliderSingle
-                index={index}
-                scrollY={scrollY}
-                itemWidth={itemWidth}
-                name={item.name}
-                description={item.description}
-                percentComplete={item.percentComplete}
-              />
-            )}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={[
-              styles.flatlistContentContainer,
-              {
-                paddingHorizontal: (deviceScreenWidth - itemWidth) / 2,
-              },
-            ]}
-            snapToInterval={itemWidth}
-            onScroll={scrollHandler}
-            decelerationRate="fast"
-          />
-        ) : (
-          <Text>loading...</Text>
-        )}
+        <Animated.FlatList
+          data={data?.documents}
+          renderItem={({ item, index }: any) => (
+            <ProjectSliderSingle
+              key={item}
+              index={index}
+              scrollY={scrollY}
+              itemWidth={itemWidth}
+              name={item.name}
+              description={item.description}
+              percentComplete={item.percentComplete}
+            />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={[
+            styles.flatlistContentContainer,
+            {
+              paddingHorizontal: (deviceScreenWidth - itemWidth) / 2,
+            },
+          ]}
+          snapToInterval={itemWidth}
+          onScroll={scrollHandler}
+          decelerationRate="fast"
+        />
       </View>
     </View>
   );

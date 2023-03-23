@@ -30,7 +30,7 @@ export const Badges = (props: BadgesProps) => {
               {Array(props.xpLevel)
                 .fill(0)
                 .map((_, i) => (
-                  <Badge xpLevel={i} />
+                  <Badge xpLevel={i} key={i} />
                 ))}
             </ScrollView>
           </>

@@ -97,10 +97,10 @@ const Profile = (props: ProfileProps) => {
 
   const { data, status } = useFetchUserDetails();
   const userDetails = data?.documents[0];
+  const XPlevel = getUserXPlevel(userDetails?.xp);
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
-  console.log(JSON.stringify(userDetails, null, 4));
 
   return status === "loading" ? (
     <Spinner visible={true} />
@@ -121,11 +121,11 @@ const Profile = (props: ProfileProps) => {
         <View style={styles.belowHeaderContainer}>
           <UserProgress xp={userDetails?.xp} />
           <StatBoxes
-            numBadges={getUserXPlevel(userDetails?.xp)}
+            numBadges={XPlevel}
             numProjects={userDetails?.projects.length}
-            xpLevel={getUserXPlevel(userDetails?.xp)}
+            xpLevel={XPlevel}
           />
-          <Badges xpLevel={getUserXPlevel(userDetails?.xp)} />
+          <Badges xpLevel={XPlevel} />
           <ProjectSlider projectIDs={userDetails?.projects} />
 
           <View style={styles.logoutButton}>
