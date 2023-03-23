@@ -21,6 +21,7 @@ import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
 import { useFetchUserDetails } from "../../../../services/api/userProfile";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -94,14 +95,16 @@ const Profile = (props: ProfileProps) => {
     extrapolate: "clamp",
   });
 
-  const { data } = useFetchUserDetails();
+  const { data, status } = useFetchUserDetails();
   const userDetails = data?.documents[0];
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
   console.log(JSON.stringify(userDetails, null, 4));
 
-  return (
+  return status === "loading" ? (
+    <Spinner visible={true} />
+  ) : (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: whiteBackground }]}
     >
