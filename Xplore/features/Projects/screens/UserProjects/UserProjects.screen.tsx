@@ -6,6 +6,7 @@ import { useState } from "react";
 import { NavigationProp } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 import styles from "./UserProjects.style";
+import { StatusBar } from "expo-status-bar";
 
 interface UserProjectsProps {
   navigation: NavigationProp<any>;
@@ -108,13 +109,12 @@ export const fakeProjectCompletedData = [
 ];
 
 const UserProjects = (props: UserProjectsProps) => {
-  const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const [screen, setScreen] = useState(0);
 
   return (
     <SafeAreaView
-      style={[styles.safeAreaStyle, { backgroundColor: background }]}
+      style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <TopHeader screenName={"Projects"} navigation={props.navigation} />
       <View
