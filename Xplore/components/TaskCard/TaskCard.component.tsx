@@ -8,7 +8,7 @@ import styles from "./TaskCard.styles";
 import { NavigationProp } from "@react-navigation/native";
 
 interface taskContentProps {
-  taskType: string;
+  taskCategory: string;
   taskName: string;
   taskDate: string;
   navigation: NavigationProp<any>;
@@ -48,8 +48,8 @@ export const taskContent = (props: taskContentProps) => {
         }
       >
         <View style={styles.taskContentContainer}>
-          <Text style={styles.taskType} variant="h4" color="linkText">
-            {props.taskType}
+          <Text style={styles.taskCategory} variant="h4" color="linkText">
+            {props.taskCategory}
           </Text>
 
           <Icon style={styles.taskInfoIcon} size="medium" name="help-circle" />

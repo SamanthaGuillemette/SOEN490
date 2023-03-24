@@ -9,14 +9,14 @@ interface CategoryNGoalsProps {
 }
 
 export const CategoryNGoals = (props: CategoryNGoalsProps) => {
-  const [selectedValue, setSelectedValue] = useState("");
+  //const [selectedValue, setSelectedValue] = useState(""); dont need
   const [categoryText, setCategoryText] = useState("Category");
   const [goal1, setGoal1] = useState("");
   const [goal2, setGoal2] = useState("");
   const [goal3, setGoal3] = useState("");
 
   const handleValueChange = (value: string) => {
-    setSelectedValue(value);
+    //setSelectedValue(value);
     const selectedOption = options.find((option) => option.value === value);
     setCategoryText(selectedOption?.label || "Category");
   };

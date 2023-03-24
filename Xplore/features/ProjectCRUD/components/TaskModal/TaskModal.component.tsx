@@ -7,15 +7,16 @@ import {
   DatePicker,
   Icon,
   InputField,
-  MemberChipAdder,
+  //MemberChipAdder,
   ShadowView,
   Text,
 } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
-import { useCreateNewTask } from "../../../../services/api/projects";
 
 interface TaskModalProps {
   onPress?: any;
+  setTasks: (value: Object[]) => void;
+  tasks: Object[];
 }
 
 export const TaskModal = (props: TaskModalProps) => {
@@ -29,7 +30,7 @@ export const TaskModal = (props: TaskModalProps) => {
   const primaryBackground = useThemeColor("primaryBackground");
 
   const [btnClicked, setBtnClicked] = useState(false);
-  const { onPress } = props;
+  const { onPress, tasks, setTasks } = props;
 
   const added = () => {
     setBtnClicked(true);
@@ -68,8 +69,8 @@ export const TaskModal = (props: TaskModalProps) => {
   ];
 
   const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
-  const createTask = useCreateNewTask();
-  console.log(createTask.data);
+
+  // const { data, status } = useCreateNewTask();
   return (
     <ShadowView style={styles.shadowView}>
       <View style={styles.textViewAbout}>
@@ -102,8 +103,8 @@ export const TaskModal = (props: TaskModalProps) => {
         </View>
       </View>
       <View style={styles.alignDatePicker}>
-        <DatePicker title="Starts" setStartDate={setStartDate} />
-        <DatePicker title="Ends" setEndDate={setEndDate} />
+        <DatePicker title="Starts" setDate={setStartDate} />
+        <DatePicker title="Ends" setDate={setEndDate} />
       </View>
       <View style={styles.textViewParticipant}>
         {/* <Text color="titleText" variant="h3">
@@ -117,16 +118,19 @@ export const TaskModal = (props: TaskModalProps) => {
             { backgroundColor: primaryBackground },
             styles.alignTouchable,
           ]}
-          onPress={() => {
+          onPress={async () => {
             added();
             reset();
-            createTask.mutateAsync({
+            const newTask = {
               name: taskName,
               description: taskDesc,
               category: taskCategory,
               startDate: startDate,
               endDate: endDate,
-            });
+            };
+            console.log(newTask);
+            setTasks([...tasks, newTask]);
+            console.log(tasks);
           }}
         >
           <Icon

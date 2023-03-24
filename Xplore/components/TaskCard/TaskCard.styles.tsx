@@ -24,7 +24,7 @@ export default StyleSheet.create({
   taskContentContainer: {
     flexDirection: "row",
   },
-  taskType: {
+  taskCategory: {
     marginLeft: 32,
   },
   taskInfoIcon: {

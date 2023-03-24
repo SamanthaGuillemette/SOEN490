@@ -8,9 +8,9 @@ import { MessageMember } from "../MessageMember";
 import { NavigationProp } from "@react-navigation/native";
 
 interface UsersType {
-  id: string;
+  userid: string;
   username: string;
-  avatar: string;
+  profilepicture: string;
   xp: number;
   navigation?: NavigationProp<any>;
 }
@@ -22,10 +22,10 @@ export const UserItemSelect = (props: UsersType) => {
     <View style={styles.listContainer}>
       <TouchableOpacity onPress={() => setSelected(!selected)}>
         <User
-          avatar={props.avatar}
+          avatar={props.profilepicture}
           username={props.username}
           xp={props.xp}
-          id={props.id}
+          id={props.userid}
           style={styles.user}
         />
         {selected ? (
@@ -53,8 +53,8 @@ export const UserItemMessage = (props: UsersType) => {
   return (
     <View>
       <MessageMember
-        id={props.id}
-        avatar={props.avatar}
+        id={props.userid}
+        avatar={props.profilepicture}
         username={props.username}
         xp={props.xp}
         navigation={props.navigation}
@@ -77,11 +77,11 @@ export const UsersList = (props: UsersListProps) => {
       {props.selectUserList
         ? props.data.map((user: UsersType) => (
             <UserItemSelect
-              key={user.id}
+              key={user.userid}
               username={user.username}
-              avatar={user.avatar}
+              profilepicture={user.profilepicture}
               xp={user.xp}
-              id={user.id}
+              userid={user.userid}
               navigation={props.navigation}
             />
           ))
@@ -89,11 +89,11 @@ export const UsersList = (props: UsersListProps) => {
       {props.messageUserList
         ? props.data.map((user: UsersType) => (
             <UserItemMessage
-              key={user.id}
+              key={user.userid}
               username={user.username}
-              avatar={user.avatar}
+              profilepicture={user.profilepicture}
               xp={user.xp}
-              id={user.id}
+              userid={user.userid}
               navigation={props.navigation}
             />
           ))

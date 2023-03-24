@@ -15,19 +15,19 @@ export const Tasks = (props: TasksProps) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <TaskCard
-            taskType="Design"
+            taskCategory="Design"
             taskName="UX Brainstorm"
             taskDate="13/12/2022"
             navigation={navigation}
           />
           <TaskCard
-            taskType="Meeting"
+            taskCategory="Meeting"
             taskName="Finish App UI"
             taskDate="13/12/2022"
             navigation={navigation}
           />
           <TaskCard
-            taskType="Meeting"
+            taskCategory="Meeting"
             taskName="Spring Meeting"
             taskDate="13/12/2022"
             navigation={navigation}

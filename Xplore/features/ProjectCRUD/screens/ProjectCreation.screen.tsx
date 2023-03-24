@@ -15,7 +15,7 @@ interface ProjectCreationProps {
 const ProjectCreation = (props: ProjectCreationProps) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [allTasks, setAllTasks] = useState([]);
+  const [tasks, setTasks] = useState<Object[]>([]);
   const [allMembers, setAllMembers] = useState([]);
   const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
@@ -38,7 +38,11 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           setDescription={setDescription}
         />,
         <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
-        <AllTasks navigation={props.navigation} />,
+        <AllTasks
+          navigation={props.navigation}
+          setTasks={setTasks}
+          tasks={tasks}
+        />,
         <AddMembers />,
         <AddLinks />,
       ]}
