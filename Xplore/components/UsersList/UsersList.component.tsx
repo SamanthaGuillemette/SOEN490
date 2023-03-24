@@ -8,7 +8,7 @@ import { MessageMember } from "../MessageMember";
 import { NavigationProp } from "@react-navigation/native";
 
 interface UsersItemSelectProps {
-  userid: string;
+  userID: string;
   username: string;
   profilepicture: string;
   xp: number;
@@ -19,21 +19,21 @@ interface UsersItemSelectProps {
 
 //  UsersItem component creates user and sets selected to false initially
 export const UserItemSelect = (props: UsersItemSelectProps) => {
-  const { setAllMembers, allMembers, userid } = props;
+  const { setAllMembers, allMembers, userID } = props;
   const [selected, setSelected] = useState(false);
   return (
     <View style={styles.listContainer}>
       <TouchableOpacity
         onPress={() => {
           setSelected(!selected);
-          setAllMembers([...allMembers, userid]);
+          setAllMembers([...allMembers, userID]);
         }}
       >
         <User
           avatar={props.profilepicture}
           username={props.username}
           xp={props.xp}
-          id={props.userid}
+          id={props.userID}
           style={styles.user}
         />
         {selected ? (
@@ -98,7 +98,7 @@ export const UsersList = (props: UsersListProps) => {
               username={user.username}
               profilepicture={user.profilepicture}
               xp={user.xp}
-              userid={user.userid}
+              userID={user.userID}
               navigation={props.navigation}
             />
           ))
@@ -110,7 +110,7 @@ export const UsersList = (props: UsersListProps) => {
               username={user.username}
               profilepicture={user.profilepicture}
               xp={user.xp}
-              userid={user.userid}
+              userid={user.userID}
               navigation={props.navigation}
             />
           ))
