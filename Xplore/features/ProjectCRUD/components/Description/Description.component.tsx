@@ -31,7 +31,7 @@ export const Description = (props: DescriptionProps) => {
           />
         </View>
 
-        <DatePicker title="Start" style={styles.dateAlign} />
+        <DatePicker title="Start" style={styles.dateAlign} setDate={setDate} />
 
         <View style={styles.containerTextInputDesc}>
           <InputField

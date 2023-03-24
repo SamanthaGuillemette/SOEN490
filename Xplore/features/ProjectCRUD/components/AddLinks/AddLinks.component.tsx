@@ -1,11 +1,15 @@
 import styles from "./AddLinks.styles";
-import { IntegrationCard, View } from "../../../../components";
+import { Button, View } from "../../../../components";
 
-export const AddLinks = () => {
+interface BuildProjectProps {
+  setBuildProject: (value: boolean) => void;
+}
+
+export const BuildProject = (props: BuildProjectProps) => {
+  const { setBuildProject } = props;
   return (
     <View style={styles.container}>
-      <View style={styles.containerIntegration}>
-        <IntegrationCard
+      {/* <IntegrationCard
           testID={"ProjCreation_GitHubIntegration"}
           title={"GitHub Integration"}
           description={"Description"}
@@ -31,8 +35,7 @@ export const AddLinks = () => {
           bgColor={"white"}
           btnType={"add"}
           editableIntegration={true}
-        />
-      </View>
+        /> */}
     </View>
   );
 };

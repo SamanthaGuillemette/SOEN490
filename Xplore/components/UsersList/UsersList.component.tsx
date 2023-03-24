@@ -25,8 +25,10 @@ export const UserItemSelect = (props: UsersItemSelectProps) => {
     <View style={styles.listContainer}>
       <TouchableOpacity
         onPress={() => {
+          !selected
+            ? setAllMembers([...allMembers, userID])
+            : setAllMembers(allMembers.filter((id) => id !== userID));
           setSelected(!selected);
-          setAllMembers([...allMembers, userID]);
         }}
       >
         <User
