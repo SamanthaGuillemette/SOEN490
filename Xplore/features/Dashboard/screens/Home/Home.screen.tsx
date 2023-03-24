@@ -17,16 +17,6 @@ import {
   NewProjects,
 } from "../../components";
 import styles from "./Home.styles";
-import {
-  deleteAllDocuments,
-  seedUsersFromAuth,
-} from "../../../../databaseManagementTools/databaseManagementTools";
-import { COLLECTION_ID_USERS } from "@env";
-import {
-  deleteAllDocuments,
-  seedUsersFromAuth,
-} from "../../../../databaseManagementTools/databaseManagementTools";
-import { COLLECTION_ID_USERS } from "@env";
 
 interface HomeProps {
   navigation: NavigationProp<any>;
@@ -46,8 +36,6 @@ const Home = (props: HomeProps) => {
 
     setIsButtonExpanded(currentScrollPosition <= 0);
   };
-  //deleteAllDocuments(COLLECTION_ID_USERS);
-  //seedUsersFromAuth();
 
   return (
     <SafeAreaView

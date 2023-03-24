@@ -69,7 +69,7 @@ const formatUserListData = (data: any) => {
   return formattedData;
 };
 export const AddMembers = () => {
-  const { data, isLoading } = useListUsersPaginated();
+  const { data, isLoading, fetchNextPage } = useListUsersPaginated();
   return (
     <View style={styles.container}>
       {/* Needed components */}
@@ -79,6 +79,7 @@ export const AddMembers = () => {
         <Spinner visible={true} />
       ) : (
         <UsersList
+          fetchMoreUsers={fetchNextPage}
           data={formatUserListData(data)}
           messageUserList={false}
           selectUserList={true}

@@ -68,12 +68,16 @@ interface UsersListProps {
   messageUserList: boolean;
   selectUserList: boolean;
   navigation?: NavigationProp<any>;
+  fetchMoreUsers: () => void;
 }
 
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
   return (
-    <ScrollView pagingEnabled={true}>
+    <ScrollView
+      pagingEnabled={true}
+      onMomentumScrollBegin={props.fetchMoreUsers}
+    >
       {props.selectUserList
         ? props.data.map((user: UsersType) => (
             <UserItemSelect
