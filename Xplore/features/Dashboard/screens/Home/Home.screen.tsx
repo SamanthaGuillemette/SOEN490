@@ -17,6 +17,11 @@ import {
   NewProjects,
 } from "../../components";
 import styles from "./Home.styles";
+import {
+  deleteAllDocuments,
+  seedUsersFromAuth,
+} from "../../../../databaseManagementTools/databaseManagementTools";
+import { COLLECTION_ID_USERS } from "@env";
 
 interface HomeProps {
   navigation: NavigationProp<any>;
