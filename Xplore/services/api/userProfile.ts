@@ -7,7 +7,7 @@ import api from "../appwrite/api";
 import { useInfiniteQuery } from "react-query";
 
 const useListUsersPaginated = () => {
-  const LIMIT = 5;
+  const LIMIT = 15;
   return useInfiniteQuery({
     queryKey: "potentialProjectMembers",
     queryFn: async ({ pageParam = 0 }) => {

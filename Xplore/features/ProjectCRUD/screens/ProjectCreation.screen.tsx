@@ -16,10 +16,12 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [tasks, setTasks] = useState<Object[]>([]);
-  const [allMembers, setAllMembers] = useState([]);
+  const [allMembers, setAllMembers] = useState<any[]>([]);
   const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
   const [projectGoals, setGoals] = useState<string[]>([]);
+
+  console.log(allMembers);
 
   return (
     <StepIndicator
@@ -43,7 +45,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           setTasks={setTasks}
           tasks={tasks}
         />,
-        <AddMembers />,
+        <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,
         <AddLinks />,
       ]}
       navigation={props.navigation}

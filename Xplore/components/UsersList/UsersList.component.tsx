@@ -7,20 +7,28 @@ import { Icon } from "../Icon";
 import { MessageMember } from "../MessageMember";
 import { NavigationProp } from "@react-navigation/native";
 
-interface UsersType {
+interface UsersItemSelectProps {
   userid: string;
   username: string;
   profilepicture: string;
   xp: number;
   navigation?: NavigationProp<any>;
+  setAllMembers: (value: any[]) => void;
+  allMembers: any[];
 }
 
 //  UsersItem component creates user and sets selected to false initially
-export const UserItemSelect = (props: UsersType) => {
+export const UserItemSelect = (props: UsersItemSelectProps) => {
+  const { setAllMembers, allMembers, userid } = props;
   const [selected, setSelected] = useState(false);
   return (
     <View style={styles.listContainer}>
-      <TouchableOpacity onPress={() => setSelected(!selected)}>
+      <TouchableOpacity
+        onPress={() => {
+          setSelected(!selected);
+          setAllMembers([...allMembers, userid]);
+        }}
+      >
         <User
           avatar={props.profilepicture}
           username={props.username}
@@ -49,7 +57,7 @@ export const UserItemSelect = (props: UsersType) => {
 };
 
 //  UsersItem component creates user
-export const UserItemMessage = (props: UsersType) => {
+export const UserItemMessage = (props: any) => {
   return (
     <View>
       <MessageMember
@@ -69,19 +77,24 @@ interface UsersListProps {
   selectUserList: boolean;
   navigation?: NavigationProp<any>;
   fetchMoreUsers: () => void;
+  setAllMembers: (value: any) => void;
+  allMembers: any;
 }
 
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
+  const { setAllMembers, allMembers } = props;
   return (
     <ScrollView
       pagingEnabled={true}
       onMomentumScrollBegin={props.fetchMoreUsers}
     >
       {props.selectUserList
-        ? props.data.map((user: UsersType) => (
+        ? props.data.map((user: any, index) => (
             <UserItemSelect
-              key={user.userid}
+              setAllMembers={setAllMembers}
+              allMembers={allMembers}
+              key={index}
               username={user.username}
               profilepicture={user.profilepicture}
               xp={user.xp}
@@ -91,9 +104,9 @@ export const UsersList = (props: UsersListProps) => {
           ))
         : null}
       {props.messageUserList
-        ? props.data.map((user: UsersType) => (
+        ? props.data.map((user: any, index) => (
             <UserItemMessage
-              key={user.userid}
+              key={index}
               username={user.username}
               profilepicture={user.profilepicture}
               xp={user.xp}

@@ -9,57 +9,10 @@ import Spinner from "react-native-loading-spinner-overlay/lib";
 //   avatar: string;
 //   xp: number;
 // }
-
-// const Users: UsersType[] = [
-//   {
-//     id: "1",
-//     username: "Josh Lewis",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "2",
-//     username: "Amy Lucas",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "3",
-//     username: "Landon Clayton",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "4",
-//     username: "Elva Moore",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "5",
-//     username: "Martin Garza",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "6",
-//     username: "Bernice Lewis",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "7",
-//     username: "Landon Clayton",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-//   {
-//     id: "8",
-//     username: "Martin Garza",
-//     avatar: "https://picsum.photos/200",
-//     xp: 103597,
-//   },
-// ];
+interface AddMembersProps {
+  setAllMembers: (value: any[]) => void;
+  allMembers: any;
+}
 
 const formatUserListData = (data: any) => {
   const formattedData: any = [];
@@ -68,7 +21,8 @@ const formatUserListData = (data: any) => {
   );
   return formattedData;
 };
-export const AddMembers = () => {
+export const AddMembers = (props: AddMembersProps) => {
+  const { setAllMembers, allMembers } = props;
   const { data, isLoading, fetchNextPage } = useListUsersPaginated();
   return (
     <View style={styles.container}>
@@ -79,6 +33,8 @@ export const AddMembers = () => {
         <Spinner visible={true} />
       ) : (
         <UsersList
+          setAllMembers={setAllMembers}
+          allMembers={allMembers}
           fetchMoreUsers={fetchNextPage}
           data={formatUserListData(data)}
           messageUserList={false}
