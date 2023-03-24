@@ -1,4 +1,4 @@
-export enum interests {
+export enum categories {
   frontendDev = "Frontend Development",
   backendDev = "Backend Development",
   webDev = "Web Development",
