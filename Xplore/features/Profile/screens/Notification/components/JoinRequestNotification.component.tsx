@@ -5,6 +5,7 @@ interface NotificationProps {
   badgeName?: string;
   username: string;
   image: string;
+  projectID?: string;
 }
 
 export const JoinRequestNotification = (props: NotificationProps) => {

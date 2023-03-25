@@ -4,6 +4,7 @@ import styles from "./Notif.styles";
 interface NotificationProps {
   badgeName?: string;
   groupName: string;
+  chatID?: string;
 }
 
 export const GroupAddNotification = (props: NotificationProps) => {

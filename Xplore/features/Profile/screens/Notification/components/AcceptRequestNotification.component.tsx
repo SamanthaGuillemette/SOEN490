@@ -5,6 +5,7 @@ interface NotificationProps {
   badgeName?: string;
   username: string;
   groupName: string;
+  projectID?: string;
   image: string;
 }
 

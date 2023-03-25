@@ -66,8 +66,10 @@ const getNotifs = async (userID: any) => {
     response?.documents?.map(async (doc) => {
       return {
         //for all notifs
+        id: doc.$id,
         notificationType: doc.notificationType,
         createdAt: doc.createdAt,
+        seen: doc.seen,
 
         //for group chats add
         groupName: doc.groupName,
@@ -86,7 +88,7 @@ const getNotifs = async (userID: any) => {
   return notifs;
 };
 
-const useListNotifications = async (userID: any) => {
+const useListNotifications = (userID: any) => {
   const [notifs, setNotifs] = useState<Notifications[]>([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -104,6 +106,7 @@ const useListNotifications = async (userID: any) => {
     };
     fetchData();
   }, [userID]);
+
   return notifs;
 };
 
