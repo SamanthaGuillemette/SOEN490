@@ -44,9 +44,6 @@ export const MembersActionsModal = ({
     if (action === "Create Group" && selectedUsers.length > 0) {
       const groupMembers = [...selectedUsers, userId];
       createNewGroupChat(groupMembers);
-      for (const userID of selectedUsers) {
-        createGroupAddNotif(userID, chatID, "My Group Chat");
-      }
     }
     if (action === "Add Members" && selectedUsers.length > 0) {
       addToChat(selectedUsers, chatID);
