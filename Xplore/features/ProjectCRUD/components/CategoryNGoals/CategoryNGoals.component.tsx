@@ -10,14 +10,16 @@ interface CategoryNGoalsProps {
 
 export const CategoryNGoals = (props: CategoryNGoalsProps) => {
   //const [selectedValue, setSelectedValue] = useState(""); dont need
+
   const [categoryText, setCategoryText] = useState("Category");
   const [goal1, setGoal1] = useState("");
   const [goal2, setGoal2] = useState("");
   const [goal3, setGoal3] = useState("");
+  console.log(categoryText);
 
-  const handleValueChange = (value: string) => {
+  const handleValueChange = (label: string) => {
     //setSelectedValue(value);
-    const selectedOption = options.find((option) => option.value === value);
+    const selectedOption = options.find((option) => option.label === label);
     setCategoryText(selectedOption?.label || "Category");
   };
 
@@ -51,6 +53,8 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
     props.setGoals([goal1, goal2, goal3]);
   };
 
+  console.log(goal1, goal2, goal3);
+
   return (
     <View style={styles.container}>
       <View style={styles.containerTech}>
@@ -61,6 +65,7 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
           label={categoryText}
           options={sortedOptions}
           onValueChange={handleValueChange}
+          setCategory={setCategoryText}
           onChangeText={(category) => props.setCategory(category)}
         />
       </View>

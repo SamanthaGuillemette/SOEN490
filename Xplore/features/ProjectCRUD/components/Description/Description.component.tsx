@@ -6,6 +6,7 @@ import {
   InputField,
   ShadowView,
 } from "../../../../components";
+import { useState } from "react";
 
 interface DescriptionProps {
   setDescription: (desc: string) => void;
@@ -13,6 +14,7 @@ interface DescriptionProps {
 }
 
 export const Description = (props: DescriptionProps) => {
+  const [date, setDate] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.editImageContainer}>
@@ -30,9 +32,7 @@ export const Description = (props: DescriptionProps) => {
             onChangeText={(projName) => props.setProjectName(projName)}
           />
         </View>
-
         <DatePicker title="Start" style={styles.dateAlign} setDate={setDate} />
-
         <View style={styles.containerTextInputDesc}>
           <InputField
             placeHolder="Project description"

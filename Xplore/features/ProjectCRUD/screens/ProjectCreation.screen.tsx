@@ -25,18 +25,18 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [buildProject, setBuildProject] = useState(false);
   const { mutateAsync, isLoading } = useCreateProject();
 
-  if (buildProject) {
-    mutateAsync({
-      name: projName,
-      description: description,
-      category: category,
-      tasks: tasks,
-      startDate,
-      endDate,
-      goals: projectGoals,
-      members: allMembers,
-    });
-  }
+  // if (buildProject) {
+  //   mutateAsync({
+  //     name: projName,
+  //     description: description,
+  //     category: category,
+  //     tasks: tasks,
+  //     startDate,
+  //     endDate,
+  //     goals: projectGoals,
+  //     members: allMembers,
+  //   });
+  // }
 
   console.log(allMembers);
 
