@@ -94,8 +94,8 @@ const useListNotifications = async (userID: any) => {
         const notifications = await getNotifs(userID);
         notifications.sort(
           (notif1: any, notif2: any) =>
-            new Date(notif2.lastModifiedAt).getTime() -
-            new Date(notif1.lastModifiedAt).getTime()
+            new Date(notif2.createdAt).getTime() -
+            new Date(notif1.createdAt).getTime()
         );
         setNotifs(notifications);
       } catch (error) {

@@ -17,6 +17,7 @@ import styles from "./SettingsOptions.styles";
 
 interface AdminSettingsProps {
   chatID: string;
+  chatName: string;
 }
 
 const AdminSettings = (props: AdminSettingsProps) => {
@@ -57,6 +58,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
           action="Add Members"
           users={addUsers}
           chatID={props.chatID}
+          chatName={props.chatName}
         />
       )}
       <SettingBox
@@ -70,6 +72,7 @@ const AdminSettings = (props: AdminSettingsProps) => {
           action="Remove Members"
           users={removeUsers}
           chatID={props.chatID}
+          chatName={props.chatName}
         />
       )}
       <SettingBox
