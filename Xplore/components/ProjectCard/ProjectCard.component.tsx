@@ -32,7 +32,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
         key={item.name}
       >
         <Image
-          source={{ uri: "https://picsum.photos/200" }}
+          source={{ uri: item.projectImage }}
           style={styles.projectImage}
         />
 
