@@ -24,7 +24,9 @@ export const ProjectCard = (props: ProjectCardProps) => {
 
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate("ProjectDetails")}
+      onPress={() =>
+        props.navigation.navigate("ProjectDetails", { item: item })
+      }
     >
       <ShadowView
         backgroundColor="backgroundSecondary"

@@ -2,27 +2,29 @@ import { ScrollView } from "react-native-gesture-handler";
 import { View, RequestJoin } from "../../../../components";
 import Accordion from "../../../../components/Accordion/Accordion.component";
 import ProjectStatusBox from "./ProjectStatusBox.Component";
+import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectDescription.styles";
 
 interface ProjectDescriptionProps {
-  /*task: number;
-  conv: string;
-  sDate: string;
-  percentComplete: number;*/
+  navigation: NavigationProp<any>;
+  route: any;
 }
 
 const ProjectDescription = (props: ProjectDescriptionProps) => {
+  const item = props.route.params.item;
+  const endDate = item.endDate.substring(0, item.endDate.indexOf("T"));
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <ProjectStatusBox
-            tasks={""}
-            conversations={""}
-            date={"sDate"}
-            percent={10}
+            tasks={item.tasks.toString()}
+            conversations={item.conversation.toString()}
+            date={endDate}
+            percent={item.percentComplete}
           />
-          <Accordion />
+          <Accordion item={item} />
           <RequestJoin />
         </View>
       </ScrollView>

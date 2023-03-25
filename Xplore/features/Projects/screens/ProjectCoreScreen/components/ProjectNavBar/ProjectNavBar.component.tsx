@@ -16,6 +16,7 @@ import styles from "./ProjectNavBar.styles";
 
 interface ProjectNavBarProps {
   navigation: NavigationProp<any>;
+  route: any;
 }
 
 function ProjectNavBar(props: ProjectNavBarProps) {
@@ -23,7 +24,7 @@ function ProjectNavBar(props: ProjectNavBarProps) {
   const { width } = Dimensions.get("window");
   const headers = ["Description", "Tasks", "Members", "Links"];
   const projectScreenPages = [
-    <ProjectDescription />,
+    <ProjectDescription navigation={navigation} route={props.route} />,
     <Tasks navigation={navigation} />, // tasks
     <ProjectMembers navigation={navigation} />,
     <Links />,

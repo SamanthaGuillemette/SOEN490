@@ -9,6 +9,7 @@ import { TouchableOpacity } from "react-native-ui-lib";
 
 interface ProjectsProps {
   navigation: NavigationProp<any>;
+  route: any;
 }
 
 const ProjectDetails = (props: ProjectsProps) => {
@@ -26,7 +27,7 @@ const ProjectDetails = (props: ProjectsProps) => {
       <TouchableOpacity
         onPress={() => props.navigation.navigate("ProfileEdit")}
       />
-      <ProjectCoreScreen navigation={props.navigation} />
+      <ProjectCoreScreen navigation={props.navigation} route={props.route} />
     </SafeAreaView>
   );
 };
