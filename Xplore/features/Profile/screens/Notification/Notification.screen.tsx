@@ -70,8 +70,8 @@ const Notification = (props: NotificationProps) => {
   const userId = userdata?.$id as string;
   const notifications = useListNotifications(userId);
 
-  const recentNotifs = notifications.filter((notif: any) => notif.seen);
-  const previousNotifs = notifications.filter((notif: any) => !notif.seen);
+  const recentNotifs = notifications.filter((notif: any) => !notif.seen);
+  const previousNotifs = notifications.filter((notif: any) => notif.seen);
 
   return (
     <SafeAreaView
@@ -99,19 +99,23 @@ const Notification = (props: NotificationProps) => {
         style={[styles.modalView, { backgroundColor: backgroundSecondary }]}
       >
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.text}>
-            <Text variant="h3" color="titleText">
-              Recent
-            </Text>
-          </View>
+          {recentNotifs.length > 0 ? (
+            <View style={styles.text}>
+              <Text variant="h3" color="titleText">
+                Recent
+              </Text>
+            </View>
+          ) : null}
           {recentNotifs.map((notif: any) => (
             <NotificationComponent key={notif.id} notif={notif} />
           ))}
-          <View style={styles.text}>
-            <Text variant="h3" color="titleText">
-              Previous
-            </Text>
-          </View>
+          {previousNotifs.length > 0 ? (
+            <View style={styles.text}>
+              <Text variant="h3" color="titleText">
+                Previous
+              </Text>
+            </View>
+          ) : null}
           {previousNotifs.map((notif: any) => (
             <NotificationComponent key={notif.id} notif={notif} />
           ))}
