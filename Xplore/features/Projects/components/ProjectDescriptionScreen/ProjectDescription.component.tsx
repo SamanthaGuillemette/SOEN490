@@ -20,7 +20,6 @@ const ProjectDescription = (props: ProjectDescriptionProps) => {
         <View style={styles.content}>
           <ProjectStatusBox
             tasks={item.tasks.length}
-            conversations={item.conversation.toString()}
             date={endDate}
             percent={item.percentComplete}
           />

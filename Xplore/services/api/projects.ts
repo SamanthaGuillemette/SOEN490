@@ -47,7 +47,6 @@ const useProjectCardInfo = (contactID: any) => {
             name: response.name,
             description: response.description,
             projectImage: response.imageURL,
-            conversation: 38, // HARDCODED
             members: response.members,
             percentComplete: response.percentComplete,
             category: response.category,
@@ -55,7 +54,7 @@ const useProjectCardInfo = (contactID: any) => {
             endDate: response.endDate,
             tasks: response.tasks,
             goals: response.goals,
-            requestJoin: false, // HARDCODED
+            requestJoin: false,
           };
 
           // Filling different array based on if completed or incomplete project
