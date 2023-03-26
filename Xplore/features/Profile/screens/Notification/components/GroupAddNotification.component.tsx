@@ -1,8 +1,9 @@
+import { NavigationProp } from "@react-navigation/native";
 import { View, Text, Icon, ChipButton } from "../../../../../components";
 import styles from "./Notif.styles";
 
 interface NotificationProps {
-  badgeName?: string;
+  navigation: NavigationProp<any>;
   groupName: string;
   chatID?: string;
 }
@@ -26,7 +27,17 @@ export const GroupAddNotification = (props: NotificationProps) => {
         </Text>
       </View>
       <View style={styles.chipButton}>
-        <ChipButton label="View" />
+        <ChipButton
+          label="View"
+          onPress={() => {
+            props.navigation.navigate("ChatDetails", {
+              chatID: props.chatID,
+              chatType: "group",
+              username: props.groupName,
+              navigation: props.navigation,
+            });
+          }}
+        />
       </View>
     </View>
   );

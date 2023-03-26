@@ -22,10 +22,14 @@ interface NotificationProps {
 }
 
 interface NotificationComponentProps {
+  navigation: NavigationProp<any>;
   notif: any;
 }
 
-const NotificationComponent = ({ notif }: NotificationComponentProps) => {
+const NotificationComponent = ({
+  notif,
+  navigation,
+}: NotificationComponentProps) => {
   switch (notif.notificationType) {
     case "badge":
       return <BadgeNotification badgeName={notif.badgeName} />;
@@ -34,6 +38,7 @@ const NotificationComponent = ({ notif }: NotificationComponentProps) => {
         <GroupAddNotification
           groupName={notif.groupName}
           chatID={notif.chatID}
+          navigation={navigation}
         />
       );
     case "joinRequest":
@@ -107,7 +112,11 @@ const Notification = (props: NotificationProps) => {
             </View>
           ) : null}
           {recentNotifs.map((notif: any) => (
-            <NotificationComponent key={notif.id} notif={notif} />
+            <NotificationComponent
+              key={notif.id}
+              notif={notif}
+              navigation={props.navigation}
+            />
           ))}
           {previousNotifs.length > 0 ? (
             <View style={styles.text}>
@@ -117,7 +126,11 @@ const Notification = (props: NotificationProps) => {
             </View>
           ) : null}
           {previousNotifs.map((notif: any) => (
-            <NotificationComponent key={notif.id} notif={notif} />
+            <NotificationComponent
+              key={notif.id}
+              notif={notif}
+              navigation={props.navigation}
+            />
           ))}
           {recentNotifs.length === 0 && previousNotifs.length === 0 ? (
             <View style={styles.noResultsView}>

@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Notification from "../features/Profile/screens/Notification/Notification.screen";
 import Chats from "../features/Chat/screens/Chats/Chats.screen";
 import ChatDetails from "../features/Chat/screens/ChatDetails/ChatDetails.screen";
 import ChatSettings from "../features/Chat/screens/ChatSettings/ChatSettings.screen";
@@ -43,6 +44,7 @@ const AppStack = () => {
       <Stack.Screen name="Chats" component={Chats} />
       <Stack.Screen name="ChatDetails" component={ChatDetails} />
       <Stack.Screen name="ChatSettings" component={ChatSettings} />
+      <Stack.Screen name="Notification" component={Notification} />
       <Stack.Screen name="TopicSelection" component={TopicSelection} />
       <Stack.Screen name="ProjectCreation" component={ProjectCreation} />
       <Stack.Screen name="ProjectDetails" component={ProjectDetails} />
