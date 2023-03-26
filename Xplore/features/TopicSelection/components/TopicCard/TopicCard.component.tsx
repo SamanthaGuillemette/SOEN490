@@ -9,6 +9,9 @@ import { Text, View } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./TopicCard.styles";
 import { categories } from "../../../../constants";
+import api from "../../../../services/appwrite/api";
+import { useQuery } from "react-query";
+import { updateInterests } from "../../../../services/api/interests";
 
 interface TopicCardProps {
   topicName: string;
@@ -22,6 +25,11 @@ export const TopicCard = (props: TopicCardProps) => {
   const success = useThemeColor("success");
   const { topicName, imageURL } = props;
   const [showImage, setShowImage] = useState(false);
+
+  // Current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+  
   const handleShowImage = () => {
     setShowImage(!showImage);
   };
@@ -56,6 +64,7 @@ export const TopicCard = (props: TopicCardProps) => {
       onPress={() => {
         handleShowImage();
         handleSetCategory();
+        updateInterests(userId, interests);
       }}
     >
       <ImageBackground
