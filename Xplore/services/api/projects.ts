@@ -25,17 +25,34 @@ const useListProjectsPaginated = () => {
   });
 };
 
-const useCreateProject = (data: Project) => {
-  return useMutation(() => api.createDocument(COLLECTION_ID_PROJECT, data));
-};
-
 const useCreateNewProject = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: any) => api.createDocument(COLLECTION_ID_PROJECT, data),
+    mutationFn: async (data: any) => {
+      console.log(data);
+      let taskIDs: string[] = [];
+      for (const task of data.tasks) {
+        try {
+          const res = await api.createDocument(
+            COLLECTION_ID_PROJECT_TASKS,
+            task
+          );
+          taskIDs.push(res.$id);
+        } catch (e) {
+          console.log(
+            "shit got fucked up yo, this is what the server said: ${e}"
+          );
+        }
+      }
+      return api.createDocument(COLLECTION_ID_PROJECT, {
+        ...data.project,
+        tasks: taskIDs,
+      });
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["projects"] });
     },
+    retry: 2,
   });
 };
 
@@ -61,7 +78,6 @@ const useCreateNewTask = () => {
 };
 
 export {
-  useCreateProject,
   useDeleteProject,
   useListProjectsPaginated,
   useCreateNewTask,

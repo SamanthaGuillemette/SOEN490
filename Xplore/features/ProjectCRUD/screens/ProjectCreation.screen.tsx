@@ -6,13 +6,9 @@ import {
   AllTasks,
   Description,
   CategoryNGoals,
-  BuildProject,
 } from "../components";
 import { useState } from "react";
-import {
-  useCreateNewProject,
-  useCreateProject,
-} from "../../../services/api/projects";
+import { useCreateNewProject } from "../../../services/api/projects";
 interface ProjectCreationProps {
   navigation: NavigationProp<any>;
 }
@@ -27,9 +23,10 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [projectGoals, setGoals] = useState<string[]>([]);
   const [buildProject, setBuildProject] = useState(false);
   const newProject = useCreateNewProject();
+  const date = new Date().toISOString();
 
   if (buildProject) {
-    newProject.mutateAsync({
+    console.log({
       name: projName,
       description: description,
       category: category,
@@ -39,10 +36,24 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       goals: projectGoals,
       members: allMembers,
     });
+    newProject.mutateAsync({
+      project: {
+        name: projName,
+        description: description,
+        category: category,
+        startDate: date,
+        endDate: date,
+        goals: projectGoals,
+        members: allMembers,
+        percentComplete: 0,
+      },
+      tasks: tasks,
+    });
+    setBuildProject(false);
   }
-
+  console.log(projName, "projectName");
   console.log(allMembers);
-  console.log(newProject);
+  console.log(newProject.data);
 
   return (
     <StepIndicator
