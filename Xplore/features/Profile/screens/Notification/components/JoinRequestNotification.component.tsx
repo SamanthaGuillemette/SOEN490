@@ -1,4 +1,11 @@
-import { View, Text, Avatar, ChipButton } from "../../../../../components";
+import { useState } from "react";
+import {
+  View,
+  Text,
+  Avatar,
+  ChipButton,
+  ConfirmationModal,
+} from "../../../../../components";
 import { useGetUserInfo } from "../../../../../services/api/search";
 import styles from "./Notif.styles";
 
@@ -9,6 +16,7 @@ interface NotificationProps {
 }
 
 export const JoinRequestNotification = (props: NotificationProps) => {
+  const [requestActionVisible, setRequestActionVisible] = useState<any>(false);
   const userRequestingInfo = useGetUserInfo(props.memberRequestingID);
   if (!userRequestingInfo) {
     return null; // return null or some placeholder while waiting for API response
@@ -41,8 +49,26 @@ export const JoinRequestNotification = (props: NotificationProps) => {
         </Text>
       </View>
       <View style={styles.chipButton}>
-        <ChipButton label="View" />
+        <ChipButton
+          label="View"
+          onPress={() => setRequestActionVisible(true)}
+        />
       </View>
+      {requestActionVisible === true && (
+        <ConfirmationModal
+          setConfirmModalVisible={setRequestActionVisible}
+          confirmMsg={
+            "Accept " +
+            userRequestingInfo[0].username +
+            "'s join request to " +
+            props.projectName +
+            "?"
+          }
+          primaryText="Accept Request"
+          secondaryText="Deny Request"
+          primaryAction={() => console.log("action")}
+        />
+      )}
     </View>
   );
 };
