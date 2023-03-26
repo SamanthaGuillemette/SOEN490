@@ -1,12 +1,7 @@
 import styles from "./AddLinks.styles";
 import { Button, View } from "../../../../components";
 
-interface BuildProjectProps {
-  setBuildProject: (value: boolean) => void;
-}
-
-export const BuildProject = (props: BuildProjectProps) => {
-  const { setBuildProject } = props;
+export const AddLinks = () => {
   return (
     <View style={styles.container}>
       {/* <IntegrationCard

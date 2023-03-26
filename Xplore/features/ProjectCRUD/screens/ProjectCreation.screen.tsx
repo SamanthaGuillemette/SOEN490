@@ -9,7 +9,10 @@ import {
   BuildProject,
 } from "../components";
 import { useState } from "react";
-import { useCreateProject } from "../../../services/api/projects";
+import {
+  useCreateNewProject,
+  useCreateProject,
+} from "../../../services/api/projects";
 interface ProjectCreationProps {
   navigation: NavigationProp<any>;
 }
@@ -19,26 +22,27 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [category, setCategory] = useState("");
   const [tasks, setTasks] = useState<Object[]>([]);
   const [allMembers, setAllMembers] = useState<any[]>([]);
-  const [allLinks, setAllLinks] = useState([]);
+  // const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
   const [projectGoals, setGoals] = useState<string[]>([]);
   const [buildProject, setBuildProject] = useState(false);
-  const { mutateAsync, isLoading } = useCreateProject();
+  const newProject = useCreateNewProject();
 
-  // if (buildProject) {
-  //   mutateAsync({
-  //     name: projName,
-  //     description: description,
-  //     category: category,
-  //     tasks: tasks,
-  //     startDate,
-  //     endDate,
-  //     goals: projectGoals,
-  //     members: allMembers,
-  //   });
-  // }
+  if (buildProject) {
+    newProject.mutateAsync({
+      name: projName,
+      description: description,
+      category: category,
+      tasks: tasks,
+      startDate: Date.now().toString(),
+      endDate: Date.now().toString(),
+      goals: projectGoals,
+      members: allMembers,
+    });
+  }
 
   console.log(allMembers);
+  console.log(newProject);
 
   return (
     <StepIndicator
@@ -49,8 +53,9 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         "Category & Goals",
         "All Tasks",
         "Add Members",
+        "Add Links",
       ]}
-      numOfSteps={4}
+      numOfSteps={5}
       screens={[
         <Description
           setProjectName={setProjectName}
@@ -63,6 +68,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           tasks={tasks}
         />,
         <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,
+        <AddLinks />,
       ]}
       navigation={props.navigation}
       onSubmitMsg={"Project Created!"}

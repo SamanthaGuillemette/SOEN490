@@ -29,6 +29,16 @@ const useCreateProject = (data: Project) => {
   return useMutation(() => api.createDocument(COLLECTION_ID_PROJECT, data));
 };
 
+const useCreateNewProject = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: any) => api.createDocument(COLLECTION_ID_PROJECT, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+    },
+  });
+};
+
 const useDeleteProject = (documentId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -55,4 +65,5 @@ export {
   useDeleteProject,
   useListProjectsPaginated,
   useCreateNewTask,
+  useCreateNewProject,
 };

@@ -15,12 +15,13 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
   const [goal1, setGoal1] = useState("");
   const [goal2, setGoal2] = useState("");
   const [goal3, setGoal3] = useState("");
-  console.log(categoryText);
+  const [taskCategory, setTaskCategory] = useState("");
 
   const handleValueChange = (label: string) => {
-    //setSelectedValue(value);
+    props.setCategory(label);
     const selectedOption = options.find((option) => option.label === label);
     setCategoryText(selectedOption?.label || "Category");
+    setTaskCategory(label);
   };
 
   const options = [
@@ -54,6 +55,7 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
   };
 
   console.log(goal1, goal2, goal3);
+  console.log(setTaskCategory);
 
   return (
     <View style={styles.container}>
@@ -65,8 +67,8 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
           label={categoryText}
           options={sortedOptions}
           onValueChange={handleValueChange}
-          setCategory={setCategoryText}
-          onChangeText={(category) => props.setCategory(category)}
+          setCategory={setTaskCategory}
+          onChangeText={(taskCategory) => props.setCategory(taskCategory)}
         />
       </View>
 
