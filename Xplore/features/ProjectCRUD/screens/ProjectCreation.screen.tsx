@@ -64,9 +64,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         "Category & Goals",
         "All Tasks",
         "Add Members",
-        "Add Links",
       ]}
-      numOfSteps={5}
+      numOfSteps={4}
       screens={[
         <Description
           setProjectName={setProjectName}
@@ -79,7 +78,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           tasks={tasks}
         />,
         <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,
-        <AddLinks />,
       ]}
       navigation={props.navigation}
       onSubmitMsg={"Project Created!"}
