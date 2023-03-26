@@ -40,6 +40,6 @@ export default StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     marginHorizontal: 50,
-    marginTop: 160,
+    marginTop: 200,
   },
 });

@@ -6,7 +6,7 @@ import {
   Image,
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { View, Text, ShadowView } from "../../../../components";
+import { View, Text, ShadowView, Icon } from "../../../../components";
 import { useThemeColor, useColorScheme } from "../../../../hooks";
 import { BadgeNotification } from "./components/BadgeNotification.component";
 import { GroupAddNotification } from "./components/GroupAddNotification.component";
@@ -119,6 +119,14 @@ const Notification = (props: NotificationProps) => {
           {previousNotifs.map((notif: any) => (
             <NotificationComponent key={notif.id} notif={notif} />
           ))}
+          {recentNotifs.length === 0 && previousNotifs.length === 0 ? (
+            <View style={styles.noResultsView}>
+              <Text variant="h4" color="bodyText">
+                No notifications yet!{" "}
+                <Icon name="meh" size="medium" color="primary" />
+              </Text>
+            </View>
+          ) : null}
         </ScrollView>
       </ShadowView>
     </SafeAreaView>
