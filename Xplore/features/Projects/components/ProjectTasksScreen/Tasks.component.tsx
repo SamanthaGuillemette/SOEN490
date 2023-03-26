@@ -20,7 +20,7 @@ export const Tasks = (props: TasksProps) => {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {allTasks.map((singleTask) => (
+          {allTasks.map((singleTask, i) => (
             <TaskCard
               taskType={singleTask.category}
               taskName={singleTask.name}
@@ -30,6 +30,7 @@ export const Tasks = (props: TasksProps) => {
               )}
               navigation={navigation}
               taskInfo={singleTask}
+              key={i}
             />
           ))}
         </View>

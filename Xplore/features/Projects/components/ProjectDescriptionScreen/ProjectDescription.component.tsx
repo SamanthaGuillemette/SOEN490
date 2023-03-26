@@ -2,14 +2,10 @@ import { ScrollView } from "react-native-gesture-handler";
 import { View, RequestJoin } from "../../../../components";
 import Accordion from "../../../../components/Accordion/Accordion.component";
 import ProjectStatusBox from "./ProjectStatusBox.Component";
-import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectDescription.styles";
 import { useRoute } from "@react-navigation/native";
-interface ProjectDescriptionProps {
-  navigation: NavigationProp<any>;
-}
 
-const ProjectDescription = (props: ProjectDescriptionProps) => {
+const ProjectDescription = () => {
   const route = useRoute();
   let { item }: any = route.params;
   const endDate = item.endDate.substring(0, item.endDate.indexOf("T"));

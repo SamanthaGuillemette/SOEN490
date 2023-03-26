@@ -10,7 +10,19 @@ import { Query } from "appwrite";
 import { useState, useEffect } from "react";
 
 //to be defined
-interface Project {}
+interface Project {
+  name: string;
+  description: string;
+  imageURL?: string;
+  tasks: string[];
+  members: string[];
+  percentComplete: number;
+  category: string;
+  startDate: string;
+  endDate: string;
+  goals: string[];
+  requestJoin?: boolean;
+}
 
 // Getting all projects assigned to logged in user
 const getProjectsList = async (contactID: any) => {
@@ -29,21 +41,18 @@ const getProjectsList = async (contactID: any) => {
 
 // Getting information to display on the Project Card
 const useProjectCardInfo = (contactID: any) => {
-  const [completedProjects, setCompletedProjects] = useState<any[]>([]);
-  const [incompleteProjects, setIncompleteProjects] = useState<any[]>([]);
+  const [completedProjects, setCompletedProjects] = useState<Project[]>([]);
+  const [incompleteProjects, setIncompleteProjects] = useState<Project[]>([]);
 
   useEffect(() => {
     const fetchInfo = async () => {
       try {
         const projectList = await getProjectsList(contactID);
-        let tempCompArray = [];
-        let tempIncArray = [];
 
         // Looping through list of projects
         for (const docID of projectList) {
           const response = await api.getDocument(COLLECTION_ID_PROJECT, docID);
-
-          const data = {
+          const data: Project = {
             name: response.name,
             description: response.description,
             imageURL: response.imageURL,
@@ -59,12 +68,9 @@ const useProjectCardInfo = (contactID: any) => {
 
           // Filling different array based on if completed or incomplete project
           data.percentComplete === 100
-            ? tempCompArray.push(data)
-            : tempIncArray.push(data);
+            ? setCompletedProjects((oldArray) => [...oldArray, data])
+            : setIncompleteProjects((oldArray) => [...oldArray, data]);
         }
-
-        setCompletedProjects(tempCompArray);
-        setIncompleteProjects(tempIncArray);
       } catch (e) {
         console.log(e);
       }
@@ -83,7 +89,6 @@ const useAllTasksInfo = (listOfTasks: any) => {
     const fetchInfo = async () => {
       try {
         const tasksList = listOfTasks;
-        let tempArray = [];
 
         // Looping through list of tasks
         for (let index in tasksList) {
@@ -99,9 +104,8 @@ const useAllTasksInfo = (listOfTasks: any) => {
             startDate: response.startDate,
             endDate: response.endDate,
           };
-          tempArray.push(data); // pushing to array
+          setAllTasks((oldArray) => [...oldArray, data]); // pushing to array
         }
-        setAllTasks(tempArray);
       } catch (e) {
         console.log(e);
       }
@@ -120,7 +124,6 @@ const useAllMembersInfo = (listOfMembers: any) => {
     const fetchInfo = async () => {
       try {
         const membersList = listOfMembers;
-        let tempArray = [];
 
         // Looping through list of members
         for (let index in membersList) {
@@ -136,9 +139,8 @@ const useAllMembersInfo = (listOfMembers: any) => {
               userID: doc.userID,
             }))
           );
-          tempArray.push(data[0]); // pushing to array
+          setAllMembers((oldArray) => [...oldArray, data[0]]); // pushing to array
         }
-        setAllMembers(tempArray);
       } catch (e) {
         console.log(e);
       }

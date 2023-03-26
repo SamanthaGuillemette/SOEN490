@@ -18,13 +18,14 @@ const ProjectMembers = (props: ProjectMembersProps) => {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {allMembers.map((singleMember) => (
+          {allMembers.map((singleMember, i) => (
             <MessageMember
               id={singleMember.userID}
               avatar={singleMember.profilePicture}
               username={singleMember.username}
               xp={singleMember.xp}
               navigation={navigation}
+              key={i}
             />
           ))}
         </View>
