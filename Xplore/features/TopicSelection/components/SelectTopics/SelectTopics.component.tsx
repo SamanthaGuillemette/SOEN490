@@ -1,5 +1,5 @@
 import { FlatList } from "react-native";
-import { View, SearchBar, NextButton } from "../../../../components";
+import { View, SearchBar, SaveButton } from "../../../../components";
 import { TopicCard } from "../TopicCard";
 import { TopicSelectionHeader } from "../TopicSelectionHeader";
 import { NavigationProp } from "@react-navigation/native";
@@ -104,7 +104,7 @@ export const SelectTopics = (props: SelectTopicsProps) => {
         }
         ListHeaderComponentStyle={styles.headerComponentStyle}
         ListFooterComponent={
-          <NextButton 
+          <SaveButton 
             onPress={() => {
               navigation.navigate("BottomTabNavigator")
             }}

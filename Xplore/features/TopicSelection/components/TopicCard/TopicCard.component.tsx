@@ -64,7 +64,7 @@ export const TopicCard = (props: TopicCardProps) => {
       onPress={() => {
         handleShowImage();
         handleSetCategory();
-        updateInterests(userId, interests);
+        updateInterests(userId, interests.filter(String));
       }}
     >
       <ImageBackground
