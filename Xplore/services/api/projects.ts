@@ -113,6 +113,43 @@ const useAllTasksInfo = (listOfTasks: any) => {
   return allTasks; // returning array of all tasks for specific project
 };
 
+// Getting information for all members in a project
+const useAllMembersInfo = (listOfMembers: any) => {
+  const [allMembers, setAllMembers] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const membersList = listOfMembers;
+        let tempArray = [];
+
+        // Looping through list of members
+        for (let index in membersList) {
+          const response = await api.listDocuments(COLLECTION_ID_USERS, [
+            Query.equal("userID", membersList[index]),
+          ]);
+
+          const data = await Promise.all(
+            response?.documents?.map(async (doc) => ({
+              username: doc.username,
+              profilePicture: doc.imageURL,
+              xp: doc.xp,
+              userID: doc.userID,
+            }))
+          );
+          tempArray.push(data[0]); // pushing to array
+        }
+        setAllMembers(tempArray);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchInfo();
+  }, [listOfMembers]);
+
+  return allMembers; // returning array of all members for specific project
+};
+
 const useListProjectsPaginated = () => {
   const LIMIT = 5;
   return useInfiniteQuery({
@@ -152,4 +189,5 @@ export {
   useListProjectsPaginated,
   useProjectCardInfo,
   useAllTasksInfo,
+  useAllMembersInfo,
 };
