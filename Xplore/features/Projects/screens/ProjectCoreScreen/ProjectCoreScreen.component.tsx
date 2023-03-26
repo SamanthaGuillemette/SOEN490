@@ -14,10 +14,7 @@ const ProjectCore = (props: ProjectCoreProps) => {
 
   return (
     <View backgroundColor="background">
-      <FeaturedImage
-        projectName={item.name}
-        source="https://picsum.photos/200"
-      />
+      <FeaturedImage projectName={item.name} source={item.projectImage} />
       <ProjectNavBar navigation={navigation} route={props.route} />
     </View>
   );

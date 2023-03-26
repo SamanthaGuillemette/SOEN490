@@ -3,6 +3,7 @@ import { ScrollView } from "react-native";
 import { View } from "../../../../components";
 import { TaskCard } from "../../../../components/TaskCard";
 import styles from "./Tasks.styles";
+import { useAllTasksInfo } from "../../../../services/api/projects";
 
 interface TasksProps {
   navigation: NavigationProp<any>;
@@ -12,29 +13,23 @@ interface TasksProps {
 export const Tasks = (props: TasksProps) => {
   const item = props.route.params.item;
   const { navigation } = props;
+  const allTasks = useAllTasksInfo(item.tasks);
 
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <TaskCard
-            taskType="Design"
-            taskName="UX Brainstorm"
-            taskDate="13/12/2022"
-            navigation={navigation}
-          />
-          <TaskCard
-            taskType="Meeting"
-            taskName="Finish App UI"
-            taskDate="13/12/2022"
-            navigation={navigation}
-          />
-          <TaskCard
-            taskType="Meeting"
-            taskName="Spring Meeting"
-            taskDate="13/12/2022"
-            navigation={navigation}
-          />
+          {allTasks.map((singleTask) => (
+            <TaskCard
+              taskType={singleTask.category}
+              taskName={singleTask.name}
+              taskDate={singleTask.endDate.substring(
+                0,
+                singleTask.endDate.indexOf("T")
+              )}
+              navigation={navigation}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

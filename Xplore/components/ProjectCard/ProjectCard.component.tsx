@@ -21,7 +21,6 @@ interface ProjectCardProps {
 }
 export const ProjectCard = (props: ProjectCardProps) => {
   const { item } = props;
-  //console.log(item, "\n");
 
   return (
     <TouchableOpacity

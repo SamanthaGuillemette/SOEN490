@@ -1,6 +1,10 @@
 //removed useQuery import for the time being
 import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
-import { COLLECTION_ID_PROJECT, COLLECTION_ID_USERS } from "@env";
+import {
+  COLLECTION_ID_PROJECT,
+  COLLECTION_ID_PROJECT_TASKS,
+  COLLECTION_ID_USERS,
+} from "@env";
 import api from "../appwrite/api";
 import { Query } from "appwrite";
 import { useState, useEffect } from "react";
@@ -28,7 +32,6 @@ const useProjectCardInfo = (contactID: any) => {
   const [completedProjects, setCompletedProjects] = useState<any[]>([]);
   const [incompleteProjects, setIncompleteProjects] = useState<any[]>([]);
 
-  // Looping through list of projects
   useEffect(() => {
     const fetchInfo = async () => {
       try {
@@ -36,13 +39,14 @@ const useProjectCardInfo = (contactID: any) => {
         let tempCompArray = [];
         let tempIncArray = [];
 
+        // Looping through list of projects
         for (const docID of projectList) {
           const response = await api.getDocument(COLLECTION_ID_PROJECT, docID);
 
           const data = {
             name: response.name,
             description: response.description,
-            projectImage: "https://picsum.photos/200", // HARDCODED
+            projectImage: response.imageURL,
             conversation: 38, // HARDCODED
             members: response.members,
             percentComplete: response.percentComplete,
@@ -53,8 +57,6 @@ const useProjectCardInfo = (contactID: any) => {
             goals: response.goals,
             requestJoin: false, // HARDCODED
           };
-
-          console.log(response);
 
           // Filling different array based on if completed or incomplete project
           data.percentComplete === 100
@@ -72,6 +74,43 @@ const useProjectCardInfo = (contactID: any) => {
   }, [contactID]);
 
   return [incompleteProjects, completedProjects]; // returning array of all projects
+};
+
+// Getting information for all tasks in a project
+const useAllTasksInfo = (listOfTasks: any) => {
+  const [allTasks, setAllTasks] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const tasksList = listOfTasks;
+        let tempArray = [];
+
+        // Looping through list of tasks
+        for (let index in tasksList) {
+          const response = await api.getDocument(
+            COLLECTION_ID_PROJECT_TASKS,
+            tasksList[index]
+          );
+
+          const data = {
+            name: response.name,
+            category: response.category,
+            description: response.description,
+            startDate: response.startDate,
+            endDate: response.endDate,
+          };
+          tempArray.push(data); // pushing to array
+        }
+        setAllTasks(tempArray);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchInfo();
+  }, [listOfTasks]);
+
+  return allTasks; // returning array of all tasks for specific project
 };
 
 const useListProjectsPaginated = () => {
@@ -112,4 +151,5 @@ export {
   useDeleteProject,
   useListProjectsPaginated,
   useProjectCardInfo,
+  useAllTasksInfo,
 };
