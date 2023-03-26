@@ -5,14 +5,20 @@ import { NavigationProp } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Avatar, Icon, ShadowView } from "../../../../components";
 import { EditButton } from "../../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import { useThemeColor } from "../../../../hooks";
+import { useAuth, useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";
-import { BUCKET_PROFILE_PIC } from "@env";
+import { BUCKET_PROFILE_PIC, COLLECTION_ID_USERS } from "@env";
 import { uploadImageToServer } from "../../../../utils";
-import { useQuery } from "react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 import styles from "./Settings.styles";
+import { Query } from "appwrite";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -20,18 +26,72 @@ interface SettingsProps {
 
 const Settings = (props: SettingsProps) => {
   const { navigation } = props;
-  const statusBarBg = useThemeColor("background"); // Status bar background (only required for Android)
-  const [localImage, setLocalImage] = useState<string>();
+  const { sessionToken } = useAuth();
+  const statusBarBg = useThemeColor("background");
+  const [userId] = useState<string>(sessionToken?.userId!);
+  const [userDocumentId, setUserDocumentId] = useState<string>();
+  const [localImage, setLocalImage] = useState<any>();
   const [latestProfileImageId, setLatestProfileImageId] = useState();
 
-  // TODO: Get the lastest imageID (string) user uploaded (last item from the array "profileImages") - User collection
-  // const { data } = useQuery("profileImages", () => ....
+  // TODO: Move this function to a separate file later
+  const getUserInfo = async (userID: string) => {
+    const response = await api.listDocuments(COLLECTION_ID_USERS, [
+      Query.equal("userID", userID),
+    ]);
+    return response?.documents[0];
+  };
 
-  // TODO: "latestProfileImageId" should come from the result we got above
-  const { data } = useQuery("latest profile image", () =>
-    api.getFilePreview(BUCKET_PROFILE_PIC, latestProfileImageId || "")
+  // TODO: Move this function to a separate file later
+  const updateUserInfo = async (userID: string, data: any) => {
+    const response = await api.updateDocument(
+      COLLECTION_ID_USERS,
+      userID,
+      data
+    );
+    return response;
+  };
+
+  const { data: userObject } = useQuery("user", () => getUserInfo(userId), {
+    // This query will be enabled if "sessionToken" is valid
+    enabled: !!sessionToken,
+  });
+
+  useEffect(() => {
+    console.log(
+      "====> INSIDE Settings.screen - userObject: ",
+      JSON.stringify(userObject, null, 2)
+    );
+    // setUserId(userObject?.userID);
+    setUserDocumentId(userObject?.$id);
+  }, [userObject]);
+
+  const { data: profileImage } = useQuery(
+    "profile image",
+    () => api.getFilePreview(BUCKET_PROFILE_PIC, userObject?.profileImage),
+    {
+      // This query will only run if "userObject.profileImage" is valid
+      enabled: !!userObject?.profileImage,
+    }
   );
-  console.log("====> React Query data: ", data);
+  // console.log("====> React Query data: ", profileImage);
+
+  useEffect(() => {
+    if (profileImage) {
+      setLocalImage(profileImage);
+    }
+  }, [profileImage]);
+
+  // const queryClient = useQueryClient();
+  // const mutation = useMutation(updateUserInfo, {
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries("profile image");
+  //   },
+  // });
+  // const mutation = useMutation((updatedProfieImageId: string) => {
+  //   return updateUserInfo(sessionToken?.userId!, {
+  //     profilePicture: updatedProfieImageId,
+  //   });
+  // });
 
   const handleUploadImage = async () => {
     // No permissions request is necessary for launching the image gallery
@@ -50,17 +110,33 @@ const Settings = (props: SettingsProps) => {
         pickedImage.uri,
         BUCKET_PROFILE_PIC
       );
-      // console.log(
-      //   "======> uploadedImageResult",
-      //   JSON.stringify(uploadedImageResult, null, 2)
-      // );
+      console.log(
+        "======> uploadedImageResult",
+        JSON.stringify(uploadedImageResult, null, 2)
+      );
 
       setLatestProfileImageId(uploadedImageResult?.$id); // Capture the uploaded image id
 
-      // TODO: Add this imageID to the user's profileImages array (in the User collection)
-      // spread out the existing profileImages array and add the new imageID to it
+      // TODO: Add this imageID to the user's profileImage (in the User collection)
+      // mutation.mutate(uploadedImageResult?.$id);
     }
   };
+
+  useEffect(() => {
+    if (latestProfileImageId && userDocumentId) {
+      console.log("====> latestProfileImageId: ", latestProfileImageId);
+      // mutation.mutate(latestProfileImageId);
+      updateUserInfo(userDocumentId, {
+        profilePicture: latestProfileImageId,
+      })
+        .then((result) => {
+          console.log("====> uploaded profile pic result: ", result);
+        })
+        .catch((error) => {
+          console.log("====> Update profile picture error: ", error);
+        });
+    }
+  }, [latestProfileImageId, userDocumentId]);
 
   return (
     <>
