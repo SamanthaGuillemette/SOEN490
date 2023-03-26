@@ -2,6 +2,7 @@
 import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
 import { COLLECTION_ID_PROJECT } from "@env";
 import api from "../appwrite/api";
+import { useEffect, useState } from "react";
 
 //to be defined
 interface Project {}

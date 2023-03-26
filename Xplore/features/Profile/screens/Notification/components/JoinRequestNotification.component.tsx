@@ -3,8 +3,9 @@ import { useGetUserInfo } from "../../../../../services/api/search";
 import styles from "./Notif.styles";
 
 interface NotificationProps {
-  projectID?: string;
-  memberRequestingID?: string;
+  projectID?: any;
+  memberRequestingID?: any;
+  projectName?: any;
 }
 
 export const JoinRequestNotification = (props: NotificationProps) => {
@@ -34,7 +35,7 @@ export const JoinRequestNotification = (props: NotificationProps) => {
           </Text>{" "}
           is requesting to join{" "}
           <Text style={styles.bodyText} color="primary">
-            {props.projectID}
+            {props.projectName}
           </Text>
           .
         </Text>

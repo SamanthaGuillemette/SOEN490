@@ -45,6 +45,7 @@ const NotificationComponent = ({
       return (
         <JoinRequestNotification
           projectID={notif.projectID}
+          projectName={notif.projectName}
           memberRequestingID={notif.memberRequestingID}
         />
       );
@@ -52,10 +53,8 @@ const NotificationComponent = ({
       return (
         <AcceptRequestNotification
           projectID={notif.projectID}
-          username="Berince"
-          groupName="Databases"
-          image="https://picsum.photos/200"
-          //memberAcceptedRequestID={notif.memberAcceptedRequestID}
+          projectName={notif.projectName}
+          memberAcceptingID={notif.memberAcceptedRequestID}
         />
       );
     default:

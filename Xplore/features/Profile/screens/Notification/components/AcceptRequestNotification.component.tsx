@@ -1,20 +1,23 @@
 import { View, Text, Avatar, ChipButton } from "../../../../../components";
+import { useGetUserInfo } from "../../../../../services/api/search";
 import styles from "./Notif.styles";
 
 interface NotificationProps {
-  badgeName?: string;
-  username: string;
-  groupName: string;
-  projectID?: string;
-  image: string;
+  projectID?: any;
+  memberAcceptingID?: any;
+  projectName?: any;
 }
 
 export const AcceptRequestNotification = (props: NotificationProps) => {
+  const userAcceptingInfo = useGetUserInfo(props.memberAcceptingID);
+  if (!userAcceptingInfo) {
+    return null; // return null or some placeholder while waiting for API response
+  }
   return (
     <View style={styles.container}>
       <Avatar
-        name="Username"
-        imageURL={props.image}
+        name={userAcceptingInfo[0].username}
+        imageURL={userAcceptingInfo[0].avatar}
         size={45}
         style={styles.avatar}
       />
@@ -25,12 +28,12 @@ export const AcceptRequestNotification = (props: NotificationProps) => {
           style={styles.bodyText}
           color="primary"
         >
-          {props.username}
+          {userAcceptingInfo[0].username}
           <Text variant="body" color="bodyText" style={styles.bodyText}>
             {" "}
             accepted your join request to{" "}
             <Text style={styles.bodyText} color="primary">
-              {props.groupName}
+              {props.projectName}
             </Text>
           </Text>
         </Text>

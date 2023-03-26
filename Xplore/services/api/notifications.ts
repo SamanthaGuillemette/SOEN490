@@ -38,22 +38,32 @@ const createGroupAddNotif = async (
   });
 };
 
-const createRequestJoinNotif = async (userID: any, projectID: any) => {
+const createRequestJoinNotif = async (
+  userID: any,
+  projectID: any,
+  projectName: any
+) => {
   await api.createDocument(COLLECTION_ID_NOTIFICATIONS, {
     userID: userID, // project owner
     memberRequestingID: userID, // member who sent the request
     notificationType: "joinRequest",
     projectID: projectID,
+    projectName: projectName,
     createdAt: new Date().toISOString(),
   });
 };
 
-const createAcceptJoinNotif = async (userID: any, projectID: any) => {
+const createAcceptJoinNotif = async (
+  userID: any,
+  projectID: any,
+  projectName: any
+) => {
   await api.createDocument(COLLECTION_ID_NOTIFICATIONS, {
     userID: userID, // user whose request got accepted
     memberAcceptedRequestID: userID, // admin who accepted the request
     notificationType: "joinAccept",
     projectID: projectID,
+    projectName: projectName,
     createdAt: new Date().toISOString(),
   });
 };
@@ -77,6 +87,7 @@ const getNotifs = async (userID: any) => {
 
         //for project joining
         projectID: doc.projectID,
+        projectName: doc.projectName,
         memberRequestingID: doc.memberRequestingID,
         memberAcceptedRequestID: doc.memberAcceptedRequestID,
 
