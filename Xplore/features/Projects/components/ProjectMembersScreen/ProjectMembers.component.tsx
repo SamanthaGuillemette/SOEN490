@@ -5,6 +5,7 @@ import { NavigationProp } from "@react-navigation/native";
 
 interface ProjectMembersProps {
   navigation: NavigationProp<any>;
+  route: any;
 }
 const ProjectMembers = (props: ProjectMembersProps) => {
   return (

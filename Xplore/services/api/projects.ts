@@ -43,16 +43,18 @@ const useProjectCardInfo = (contactID: any) => {
             name: response.name,
             description: response.description,
             projectImage: "https://picsum.photos/200", // HARDCODED
-            tasks: response.tasks.length,
             conversation: 38, // HARDCODED
             members: response.members,
             percentComplete: response.percentComplete,
             category: response.category,
             startDate: response.startDate,
             endDate: response.endDate,
-            tasksList: response.tasks,
+            tasks: response.tasks,
             goals: response.goals,
+            requestJoin: false, // HARDCODED
           };
+
+          console.log(response);
 
           // Filling different array based on if completed or incomplete project
           data.percentComplete === 100

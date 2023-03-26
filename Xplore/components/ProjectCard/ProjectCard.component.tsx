@@ -13,14 +13,15 @@ interface ProjectCardProps {
     name: string;
     description: string;
     projectImage?: string;
-    tasks?: number;
+    tasks?: [];
     conversation?: number;
-    members?: number;
+    members?: [];
     percentComplete: number;
   };
 }
 export const ProjectCard = (props: ProjectCardProps) => {
   const { item } = props;
+  //console.log(item, "\n");
 
   return (
     <TouchableOpacity
@@ -61,7 +62,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
             <View style={styles.statIcon}>
               <Icon name="file-text" size="medium" style={styles.icon} />
               <Text variant="smBody" color="bodyText">
-                {item.tasks}
+                {item.tasks?.length}
               </Text>
             </View>
 
@@ -75,7 +76,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
             <View style={styles.statIcon}>
               <Icon name="users" size="medium" style={styles.icon} />
               <Text variant="smBody" color="bodyText">
-                {item.members}
+                {item.members?.length}
               </Text>
             </View>
           </View>

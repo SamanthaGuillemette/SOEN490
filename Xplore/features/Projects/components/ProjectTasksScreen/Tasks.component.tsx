@@ -6,10 +6,13 @@ import styles from "./Tasks.styles";
 
 interface TasksProps {
   navigation: NavigationProp<any>;
+  route: any;
 }
 
 export const Tasks = (props: TasksProps) => {
+  const item = props.route.params.item;
   const { navigation } = props;
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>

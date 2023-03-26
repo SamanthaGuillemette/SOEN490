@@ -19,13 +19,13 @@ const ProjectDescription = (props: ProjectDescriptionProps) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <ProjectStatusBox
-            tasks={item.tasks.toString()}
+            tasks={item.tasks.length}
             conversations={item.conversation.toString()}
             date={endDate}
             percent={item.percentComplete}
           />
           <Accordion item={item} />
-          <RequestJoin />
+          {item.requestJoin ? <RequestJoin /> : <></>}
         </View>
       </ScrollView>
     </View>

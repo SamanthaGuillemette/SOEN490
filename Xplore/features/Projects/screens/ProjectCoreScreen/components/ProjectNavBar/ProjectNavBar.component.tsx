@@ -22,12 +22,11 @@ interface ProjectNavBarProps {
 function ProjectNavBar(props: ProjectNavBarProps) {
   const { navigation } = props;
   const { width } = Dimensions.get("window");
-  const headers = ["Description", "Tasks", "Members", "Links"];
+  const headers = ["Description", "Tasks", "Members"];
   const projectScreenPages = [
     <ProjectDescription navigation={navigation} route={props.route} />,
-    <Tasks navigation={navigation} />, // tasks
-    <ProjectMembers navigation={navigation} />,
-    <Links />,
+    <Tasks navigation={navigation} route={props.route} />, // tasks
+    <ProjectMembers navigation={navigation} route={props.route} />,
   ];
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");

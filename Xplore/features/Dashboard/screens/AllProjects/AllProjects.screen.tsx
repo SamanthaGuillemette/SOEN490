@@ -39,6 +39,8 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
   const { data, fetchNextPage } = useListProjectsPaginated();
 
+  //console.log(data?.pages[0].projects);
+
   return (
     <SafeAreaView edges={["top"]} style={styles.mainContainer}>
       <View style={styles.header}>

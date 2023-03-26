@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import styles from "./Accordion.styles";
 
-const accordionNames = ["About", "Technologies", "Goals"];
+const accordionNames = ["About", "Category", "Goals"];
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -19,8 +19,6 @@ if (Platform.OS === "android") {
 
 export default function Accordion(item: any) {
   let goals = item.item.goals;
-  let tech = ["Tech 1", "Tech 2"];
-  let newTech = tech.join("\n\n"); // adding new line after each goal
   let newGoals = goals.join("\n\n"); // adding new line after each goal
 
   const [active, setActive] = useState(null);
@@ -32,7 +30,7 @@ export default function Accordion(item: any) {
           active={active}
           i={i}
           setActive={setActive}
-          content={["About accordion tab", newTech, newGoals]}
+          content={[item.item.description, item.item.category, newGoals]}
         />
       ))}
     </View>
