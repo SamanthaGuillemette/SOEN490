@@ -16,46 +16,46 @@ interface TopicCardProps {
   index: number;
 }
 
+let interests = ["", "", "", "", "", "", "", "", "", ""];
+
 export const TopicCard = (props: TopicCardProps) => {
   const success = useThemeColor("success");
   const { topicName, imageURL } = props;
   const [showImage, setShowImage] = useState(false);
-  
-  // The different categories
-  const [frontendDev, setFrontendDev] = useState(false);
-  const [backendDev, setBackendDev] = useState(false);
-  const [webDev, setWebDev] = useState(false);
-  const [mobileDev, setMobileDev] = useState(false);
-  const [gameDev, setGameDev] = useState(false);
-  const [embeddedSystems, setEmbeddedSystems] = useState(false);
-  const [algorithms, setAlgorithms] = useState(false);
-  const [softwareOptimization, setSoftwareOptimization] = useState(false);
-  const [security, setSecurity] = useState(false);
-  const [blockchain, setBlockchain] = useState(false);
-
   const handleShowImage = () => {
     setShowImage(!showImage);
   };
 
   const handleSetCategory = () => {
-    if (topicName == categories.frontendDev) { setFrontendDev(!frontendDev) }
-    else if (topicName == categories.backendDev) { setBackendDev(!backendDev) }
-    else if (topicName == categories.webDev) { setWebDev(!webDev) }
-    else if (topicName == categories.mobileDev) { setMobileDev(!mobileDev) }
-    else if (topicName == categories.gameDev) { setGameDev(!gameDev) }
-    else if (topicName == categories.embeddedSystems) { setEmbeddedSystems(!embeddedSystems) }
-    else if (topicName == categories.algorithms) { setAlgorithms(!algorithms) }
-    else if (topicName == categories.softwareOptimization) { setSoftwareOptimization(!softwareOptimization) }
-    else if (topicName == categories.security) { setSecurity(!security) }
-    else if (topicName == categories.blockchain) { setBlockchain(!blockchain) }
+    if (topicName === categories.frontendDev) {
+      showImage ? (interests[0] = "") : (interests[0] = topicName);
+    } else if (topicName === categories.backendDev) {
+      showImage ? (interests[1] = "") : (interests[1] = topicName);
+    } else if (topicName === categories.webDev) {
+      showImage ? (interests[2] = "") : (interests[2] = topicName);
+    } else if (topicName === categories.mobileDev) {
+      showImage ? (interests[3] = "") : (interests[3] = topicName);
+    } else if (topicName === categories.gameDev) {
+      showImage ? (interests[4] = "") : (interests[4] = topicName);
+    } else if (topicName === categories.embeddedSystems) {
+      showImage ? (interests[5] = "") : (interests[5] = topicName);
+    } else if (topicName === categories.algorithms) {
+      showImage ? (interests[6] = "") : (interests[6] = topicName);
+    } else if (topicName === categories.softwareOptimization) {
+      showImage ? (interests[7] = "") : (interests[7] = topicName);
+    } else if (topicName === categories.security) {
+      showImage ? (interests[8] = "") : (interests[8] = topicName);
+    } else if (topicName === categories.blockchain) {
+      showImage ? (interests[9] = "") : (interests[9] = topicName);
+    }
   };
 
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        handleShowImage()
-        handleSetCategory()
+        handleShowImage();
+        handleSetCategory();
       }}
     >
       <ImageBackground
