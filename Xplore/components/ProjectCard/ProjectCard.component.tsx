@@ -12,10 +12,10 @@ interface ProjectCardProps {
   item: {
     name: string;
     description: string;
-    projectImage?: string;
-    tasks?: [];
+    imageURL?: string;
+    tasks?: string[];
     conversation?: number;
-    members?: [];
+    members?: string[];
     percentComplete: number;
   };
 }
@@ -33,10 +33,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
         style={styles.cardContainer}
         key={item.name}
       >
-        <Image
-          source={{ uri: item.projectImage }}
-          style={styles.projectImage}
-        />
+        <Image source={{ uri: item.imageURL }} style={styles.projectImage} />
 
         <View style={styles.projectInfo}>
           <Text

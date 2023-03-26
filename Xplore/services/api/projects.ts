@@ -46,7 +46,7 @@ const useProjectCardInfo = (contactID: any) => {
           const data = {
             name: response.name,
             description: response.description,
-            projectImage: response.imageURL,
+            imageURL: response.imageURL,
             members: response.members,
             percentComplete: response.percentComplete,
             category: response.category,

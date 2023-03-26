@@ -15,7 +15,7 @@ const ProjectCore = (props: ProjectCoreProps) => {
 
   return (
     <View backgroundColor="background">
-      <FeaturedImage projectName={item.name} source={item.projectImage} />
+      <FeaturedImage projectName={item.name} source={item.imageURL} />
       <ProjectNavBar navigation={navigation} />
     </View>
   );

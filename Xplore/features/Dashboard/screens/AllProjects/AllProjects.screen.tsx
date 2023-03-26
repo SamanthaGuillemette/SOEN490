@@ -12,26 +12,45 @@ import styles from "./AllProjects.styles";
 import { useListProjectsPaginated } from "../../../../services/api/projects";
 import { Models } from "appwrite";
 import { NavigationProp } from "@react-navigation/native";
+import { useQuery } from "react-query";
+import api from "../../../../services/appwrite/api";
 
 interface ProjectData extends Models.Document {
   name: string;
   description: string;
   projectImage?: string;
-  tasks?: number;
-  conversations?: number;
-  members?: number;
+  tasks: string[];
+  members: string[];
   percentComplete: number;
+  category: string;
+  startDate: string;
+  endDate: string;
+  goals: string[];
 }
 
-const formatProjectData = (data: ProjectData | undefined) => {
+const formatProjectData = (data: ProjectData | undefined, userID: any) => {
   const formattedData: ProjectData[] = [];
   data?.pages.forEach((page: { projects: ProjectData[] }) =>
     page.projects.forEach((project: ProjectData) =>
       formattedData.push(project as ProjectData)
     )
   );
+
+  // For each project add key "requestJoin" and its value
+  formattedData.forEach((project) => {
+    let memberList = project.members;
+    let foundUser = false;
+
+    // Looping through member list and setting foundUser
+    memberList.forEach(
+      (memberID) => (memberID === userID ? (foundUser = true) : "") // if userID is found in list of members
+    );
+
+    project["requestJoin"] = !foundUser;
+  });
   return formattedData;
 };
+
 interface ExploreProjectsProps {
   navigation: NavigationProp<any>;
 }
@@ -39,7 +58,9 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
   const { data, fetchNextPage } = useListProjectsPaginated();
 
-  //console.log(data?.pages[0].projects);
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
 
   return (
     <SafeAreaView edges={["top"]} style={styles.mainContainer}>
@@ -63,7 +84,7 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
       )}
 
       <FlashList
-        data={formatProjectData(data as any)}
+        data={formatProjectData(data as any, userId)}
         renderItem={({ item }) => (
           <ProjectCard navigation={props.navigation} item={item} />
         )}
