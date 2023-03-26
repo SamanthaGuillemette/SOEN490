@@ -51,18 +51,14 @@ const Settings = (props: SettingsProps) => {
     return response;
   };
 
-  const { data: userObject } = useQuery("user", () => getUserInfo(userId), {
-    // This query will be enabled if "sessionToken" is valid
-    enabled: !!sessionToken,
-  });
+  const { data: userObject } = useQuery("user", () => getUserInfo(userId));
 
   useEffect(() => {
     console.log(
       "====> INSIDE Settings.screen - userObject: ",
       JSON.stringify(userObject, null, 2)
     );
-    // setUserId(userObject?.userID);
-    setUserDocumentId(userObject?.$id);
+    setUserDocumentId(userObject?.$id); // This is the actual document Id - DIFFERENT from the 'userId'
   }, [userObject]);
 
   const { data: profileImage } = useQuery(
@@ -73,25 +69,26 @@ const Settings = (props: SettingsProps) => {
       enabled: !!userObject?.profileImage,
     }
   );
-  // console.log("====> React Query data: ", profileImage);
 
   useEffect(() => {
-    if (profileImage) {
-      setLocalImage(profileImage);
-    }
+    setLocalImage(profileImage);
   }, [profileImage]);
 
-  // const queryClient = useQueryClient();
-  // const mutation = useMutation(updateUserInfo, {
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries("profile image");
-  //   },
-  // });
-  // const mutation = useMutation((updatedProfieImageId: string) => {
-  //   return updateUserInfo(sessionToken?.userId!, {
-  //     profilePicture: updatedProfieImageId,
-  //   });
-  // });
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    (updatedProfieImageId: string) => {
+      return updateUserInfo(userDocumentId!, {
+        profilePicture: updatedProfieImageId,
+      });
+    },
+    {
+      // On success of this action, invalidate & refetch the "user" query
+      onSuccess: () => {
+        queryClient.invalidateQueries("user");
+        queryClient.invalidateQueries("profile image");
+      },
+    }
+  );
 
   const handleUploadImage = async () => {
     // No permissions request is necessary for launching the image gallery
@@ -116,26 +113,28 @@ const Settings = (props: SettingsProps) => {
       );
 
       setLatestProfileImageId(uploadedImageResult?.$id); // Capture the uploaded image id
-
-      // TODO: Add this imageID to the user's profileImage (in the User collection)
-      // mutation.mutate(uploadedImageResult?.$id);
     }
   };
 
   useEffect(() => {
     if (latestProfileImageId && userDocumentId) {
       console.log("====> latestProfileImageId: ", latestProfileImageId);
-      // mutation.mutate(latestProfileImageId);
-      updateUserInfo(userDocumentId, {
-        profilePicture: latestProfileImageId,
-      })
-        .then((result) => {
-          console.log("====> uploaded profile pic result: ", result);
-        })
-        .catch((error) => {
-          console.log("====> Update profile picture error: ", error);
-        });
+
+      mutation.mutate(latestProfileImageId);
+
+      // updateUserInfo(userDocumentId, {
+      //   profilePicture: latestProfileImageId,
+      // })
+      //   .then((result) => {
+      //     console.log("====> uploaded profile pic result: ", result);
+      //   })
+      //   .catch((error) => {
+      //     console.log("====> Update profile picture error: ", error);
+      //   });
     }
+    // }, [latestProfileImageId, userDocumentId]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [latestProfileImageId, userDocumentId]);
 
   return (
