@@ -66,13 +66,6 @@ export const ProjectCard = (props: ProjectCardProps) => {
             </View>
 
             <View style={styles.statIcon}>
-              <Icon name="message-circle" size="medium" style={styles.icon} />
-              <Text variant="smBody" color="bodyText">
-                {item.conversation}
-              </Text>
-            </View>
-
-            <View style={styles.statIcon}>
               <Icon name="users" size="medium" style={styles.icon} />
               <Text variant="smBody" color="bodyText">
                 {item.members?.length}
