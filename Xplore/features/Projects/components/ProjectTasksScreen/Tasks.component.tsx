@@ -4,14 +4,15 @@ import { View } from "../../../../components";
 import { TaskCard } from "../../../../components/TaskCard";
 import styles from "./Tasks.styles";
 import { useAllTasksInfo } from "../../../../services/api/projects";
+import { useRoute } from "@react-navigation/native";
 
 interface TasksProps {
   navigation: NavigationProp<any>;
-  route: any;
 }
 
 export const Tasks = (props: TasksProps) => {
-  const item = props.route.params.item;
+  const route = useRoute();
+  let { item }: any = route.params;
   const { navigation } = props;
   const allTasks = useAllTasksInfo(item.tasks);
 
@@ -28,6 +29,7 @@ export const Tasks = (props: TasksProps) => {
                 singleTask.endDate.indexOf("T")
               )}
               navigation={navigation}
+              taskInfo={singleTask}
             />
           ))}
         </View>

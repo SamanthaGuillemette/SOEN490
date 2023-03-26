@@ -3,13 +3,14 @@ import { MessageMember, View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
 import { NavigationProp } from "@react-navigation/native";
 import { useAllMembersInfo } from "../../../../services/api/projects";
+import { useRoute } from "@react-navigation/native";
 
 interface ProjectMembersProps {
   navigation: NavigationProp<any>;
-  route: any;
 }
 const ProjectMembers = (props: ProjectMembersProps) => {
-  const item = props.route.params.item;
+  const route = useRoute();
+  let { item }: any = route.params;
   const { navigation } = props;
   const allMembers = useAllMembersInfo(item.members);
 

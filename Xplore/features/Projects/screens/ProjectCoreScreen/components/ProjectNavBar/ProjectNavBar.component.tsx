@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import ProjectDescription from "../../../../components/ProjectDescriptionScreen/ProjectDescription.component";
 import ProjectMembers from "../../../../components/ProjectMembersScreen/ProjectMembers.component";
-import Links from "../../../../components/LinksScreen/Links.component";
 import Tasks from "../../../../components/ProjectTasksScreen/Tasks.component";
 import { useThemeColor } from "../../../../../../hooks";
 import { NavigationProp } from "@react-navigation/native";
@@ -16,7 +15,6 @@ import styles from "./ProjectNavBar.styles";
 
 interface ProjectNavBarProps {
   navigation: NavigationProp<any>;
-  route: any;
 }
 
 function ProjectNavBar(props: ProjectNavBarProps) {
@@ -24,9 +22,9 @@ function ProjectNavBar(props: ProjectNavBarProps) {
   const { width } = Dimensions.get("window");
   const headers = ["Description", "Tasks", "Members"];
   const projectScreenPages = [
-    <ProjectDescription navigation={navigation} route={props.route} />,
-    <Tasks navigation={navigation} route={props.route} />, // tasks
-    <ProjectMembers navigation={navigation} route={props.route} />,
+    <ProjectDescription navigation={navigation} />,
+    <Tasks navigation={navigation} />, // tasks
+    <ProjectMembers navigation={navigation} />,
   ];
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");

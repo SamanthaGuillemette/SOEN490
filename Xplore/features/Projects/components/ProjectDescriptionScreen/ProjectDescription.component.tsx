@@ -4,14 +4,14 @@ import Accordion from "../../../../components/Accordion/Accordion.component";
 import ProjectStatusBox from "./ProjectStatusBox.Component";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectDescription.styles";
-
+import { useRoute } from "@react-navigation/native";
 interface ProjectDescriptionProps {
   navigation: NavigationProp<any>;
-  route: any;
 }
 
 const ProjectDescription = (props: ProjectDescriptionProps) => {
-  const item = props.route.params.item;
+  const route = useRoute();
+  let { item }: any = route.params;
   const endDate = item.endDate.substring(0, item.endDate.indexOf("T"));
 
   return (

@@ -12,6 +12,7 @@ interface taskContentProps {
   taskName: string;
   taskDate: string;
   navigation: NavigationProp<any>;
+  taskInfo: any;
 }
 
 export const actions = () => {
@@ -43,7 +44,7 @@ export const taskContent = (props: taskContentProps) => {
       <TouchableOpacity
         onPress={() =>
           props.navigation.navigate("IndividualTask", {
-            taskName: props.taskName,
+            taskInfo: props.taskInfo,
           })
         }
       >
