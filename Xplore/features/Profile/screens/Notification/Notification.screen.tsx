@@ -47,7 +47,7 @@ const NotificationComponent = ({
           username="Berince"
           image="https://picsum.photos/200"
           projectID={notif.projectID}
-          //memberRequestingID={notif.memberRequestingID}
+          memberRequestingID={notif.memberRequestingID}
         />
       );
     case "joinAccept":

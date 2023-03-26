@@ -1,19 +1,19 @@
 import { View, Text, Avatar, ChipButton } from "../../../../../components";
+import { useGetUserInfo } from "../../../../../services/api/search";
 import styles from "./Notif.styles";
 
 interface NotificationProps {
-  badgeName?: string;
-  username: string;
-  image: string;
   projectID?: string;
+  memberRequestingID?: string;
 }
 
 export const JoinRequestNotification = (props: NotificationProps) => {
+  const userRequestingInfo = useGetUserInfo(props.memberRequestingID);
   return (
     <View style={styles.container}>
       <Avatar
-        name="Username"
-        imageURL={props.image}
+        name={userRequestingInfo[0].username}
+        imageURL={userRequestingInfo[0].avatar}
         size={45}
         style={styles.avatar}
       />
@@ -26,9 +26,13 @@ export const JoinRequestNotification = (props: NotificationProps) => {
           ellipsizeMode="tail"
         >
           <Text style={styles.bodyText} color="primary">
-            {props.username}
+            {userRequestingInfo[0].username}
           </Text>{" "}
-          is requesting to join Snake Robot.
+          is requesting to join{" "}
+          <Text style={styles.bodyText} color="primary">
+            {props.projectID}
+          </Text>
+          .
         </Text>
       </View>
       <View style={styles.chipButton}>

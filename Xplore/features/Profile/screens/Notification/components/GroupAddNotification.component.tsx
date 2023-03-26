@@ -20,21 +20,21 @@ export const GroupAddNotification = (props: NotificationProps) => {
           numberOfLines={3}
           ellipsizeMode="tail"
         >
+          You are a part of{" "}
           <Text style={styles.bodyText} color="primary">
             {props.groupName}
           </Text>{" "}
-          added you!
+          now!
         </Text>
       </View>
       <View style={styles.chipButton}>
         <ChipButton
-          label="View"
+          label="Message"
           onPress={() => {
             props.navigation.navigate("ChatDetails", {
               chatID: props.chatID,
               chatType: "group",
               username: props.groupName,
-              navigation: props.navigation,
             });
           }}
         />

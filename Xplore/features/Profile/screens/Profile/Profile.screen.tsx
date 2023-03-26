@@ -126,9 +126,7 @@ const Profile = (props: ProfileProps) => {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Notification", {
-                navigation: props.navigation,
-              });
+              navigation.navigate("Notification");
             }}
           >
             <Icon name="bell" color="primary" size="large" />
