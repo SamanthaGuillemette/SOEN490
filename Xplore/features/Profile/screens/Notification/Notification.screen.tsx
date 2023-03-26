@@ -44,8 +44,6 @@ const NotificationComponent = ({
     case "joinRequest":
       return (
         <JoinRequestNotification
-          username="Berince"
-          image="https://picsum.photos/200"
           projectID={notif.projectID}
           memberRequestingID={notif.memberRequestingID}
         />

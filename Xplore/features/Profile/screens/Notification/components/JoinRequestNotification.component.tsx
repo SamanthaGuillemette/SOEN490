@@ -9,6 +9,10 @@ interface NotificationProps {
 
 export const JoinRequestNotification = (props: NotificationProps) => {
   const userRequestingInfo = useGetUserInfo(props.memberRequestingID);
+  if (!userRequestingInfo) {
+    return null; // return null or some placeholder while waiting for API response
+  }
+
   return (
     <View style={styles.container}>
       <Avatar
