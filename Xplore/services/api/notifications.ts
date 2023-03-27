@@ -133,6 +133,24 @@ const markAsSeen = async (userID: any) => {
   await Promise.all(updatePromises);
 };
 
+const useNewNotificationsCount = (userID: any) => {
+  const [newNotificationsCount, setNewNotificationsCount] = useState(0);
+
+  useEffect(() => {
+    const getNewNotificationsCount = async () => {
+      const notifs = await getNotifs(userID);
+      const count = notifs.filter((notif) => !notif.seen).length;
+      setNewNotificationsCount(count);
+    };
+
+    if (userID) {
+      getNewNotificationsCount();
+    }
+  }, [userID]);
+
+  return newNotificationsCount;
+};
+
 export {
   createBadgeNotif,
   createGroupAddNotif,
@@ -140,4 +158,5 @@ export {
   createAcceptJoinNotif,
   useListNotifications,
   markAsSeen,
+  useNewNotificationsCount,
 };
