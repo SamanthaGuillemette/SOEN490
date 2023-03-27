@@ -1,6 +1,4 @@
-// Custom type definitions/declarations
 declare module "react-native-inset-shadow";
-
 declare module "@env" {
   export const APP_URL: string;
   export const ENDPOINT: string;
