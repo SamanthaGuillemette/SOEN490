@@ -88,7 +88,6 @@ const Notification = (props: NotificationProps) => {
           onPress={() => {
             navigation.goBack();
             markAsSeen(userId);
-            console.log("return");
           }}
         >
           {colorScheme === "dark" ? (
