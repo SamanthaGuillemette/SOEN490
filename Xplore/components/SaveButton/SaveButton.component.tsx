@@ -6,23 +6,23 @@ import {
 } from "react-native";
 import { useThemeColor } from "../../hooks";
 import { Text } from "../Text";
-import styles from "./NextButton.styles";
+import styles from "./SaveButton.styles";
 
-interface NextButtonProps extends TouchableOpacityProps {
+interface SaveButtonProps extends TouchableOpacityProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const NextButton = (props: NextButtonProps) => {
+export const SaveButton = (props: SaveButtonProps) => {
   const { style, ...restOfProps } = props;
   const primary = useThemeColor("primary");
 
   return (
     <TouchableOpacity
-      style={[style, styles.nextButton, { backgroundColor: primary }]}
+      style={[style, styles.saveButton, { backgroundColor: primary }]}
       {...restOfProps}
     >
       <Text variant="label" style={styles.textStyle}>
-        {"NEXT"}
+        {"SAVE"}
       </Text>
     </TouchableOpacity>
   );
