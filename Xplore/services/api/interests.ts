@@ -1,5 +1,4 @@
 import api from "../../services/appwrite/api";
-import { useQuery } from "react-query";
 import { Query } from "appwrite";
 import { COLLECTION_ID_USERS } from "@env";
 

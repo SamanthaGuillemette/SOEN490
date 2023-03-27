@@ -34,7 +34,7 @@ export const TopicCard = (props: TopicCardProps) => {
     setShowImage(!showImage);
   };
 
-  const handleSetCategory = () => {
+  const handleSetInterests = () => {
     if (topicName === categories.frontendDev) {
       showImage ? (interests[0] = "") : (interests[0] = topicName);
     } else if (topicName === categories.backendDev) {
@@ -63,7 +63,7 @@ export const TopicCard = (props: TopicCardProps) => {
       style={styles.container}
       onPress={() => {
         handleShowImage();
-        handleSetCategory();
+        handleSetInterests();
         updateInterests(userId, interests.filter(String));
       }}
     >
