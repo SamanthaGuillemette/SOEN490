@@ -1,94 +1,89 @@
-import React from "react";
-import { FlatList, View } from "react-native";
+import React, { useRef } from "react";
+import { useQuery } from "react-query";
+import { SectionList, View as RNView } from "react-native";
+import api from "../../services/appwrite/api";
 import { NavigationProp } from "@react-navigation/native";
 import { useThemeColor } from "../../hooks/useThemeColor";
 import { ChatDate } from "../ChatDate";
 import { RightBubble } from "../RightBubble";
 import { LeftBubble } from "../LeftBubble";
+import { View } from "../View";
+import { Text } from "../Text";
 import styles from "./Conversation.styles";
+import { useListMessages } from "../../services/api/chatMessages";
 
 interface ConversationProps {
   navigation?: NavigationProp<any>;
+  chatID: string;
 }
 
-export const Conversation = ({}: ConversationProps) => {
+export const Conversation = (props: ConversationProps) => {
   const background = useThemeColor("background");
-  const ref = React.useRef<FlatList>(null);
-  const messages = [
-    {
-      id: "1",
-      user: "left",
-      text: "hello",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "2",
-      user: "left",
-      text: "It's Meeee",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "3",
-      user: "left",
-      text: "Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur...",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "4",
-      user: "right",
-      text: "Alright",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "5",
-      user: "right",
-      text: "OKAYYYYYYYYY",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "6",
-      user: "right",
-      text: "Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur...",
-      image: "https://picsum.photos/200",
-    },
-    {
-      id: "7",
-      user: "left",
-      text: "OHH",
-      image: "https://picsum.photos/200",
-    },
-  ];
+  const sectionListRef = useRef(null);
+  var messages: any;
+  messages = useListMessages(props.chatID);
 
-  const rendeMessages = ({ item }) => (
-    <View style={{ backgroundColor: background }}>
-      {item.user === "right" ? (
-        <RightBubble text={item.text} image={item.image} />
-      ) : (
-        <LeftBubble text={item.text} image={item.image} />
-      )}
-    </View>
-  );
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let currUserID: string = userdata?.$id as string;
 
-  const getChatDate = () => {
-    return <ChatDate date={"Jun 25, 2022"} />;
+  const rendeMessages = ({ item }) => {
+    if (!item) {
+      return null; // or some other fallback behavior
+    }
+    return (
+      <RNView key={item.id} style={{ backgroundColor: background }}>
+        {item.userID === currUserID ? (
+          <RightBubble
+            key={item.id}
+            username={item.username}
+            text={item.message}
+            msgTime={item.createdAt}
+            image={item.avatar}
+          />
+        ) : (
+          <LeftBubble
+            key={item.id}
+            username={item.username}
+            text={item.message}
+            msgTime={item.createdAt}
+            image={item.avatar}
+          />
+        )}
+      </RNView>
+    );
   };
 
-  function handleScrollToEnd(width: number, height: number) {
-    if (ref.current) {
-      ref.current.scrollToOffset({ offset: height });
-    }
-  }
-
   return (
-    <View style={[styles.messages_container, { backgroundColor: background }]}>
-      <FlatList
-        data={messages}
-        renderItem={rendeMessages}
-        keyExtractor={(item) => item.id}
-        ListHeaderComponent={getChatDate}
-        ref={ref}
-        onContentSizeChange={handleScrollToEnd}
-      />
-    </View>
+    <RNView
+      style={[styles.messages_container, { backgroundColor: background }]}
+    >
+      {messages.length > 0 ? (
+        <SectionList
+          sections={messages}
+          keyExtractor={(item, index) => item + index}
+          renderItem={rendeMessages}
+          renderSectionFooter={({ section }) => (
+            <ChatDate
+              date={new Date(section.title).toLocaleDateString("en-us", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            />
+          )}
+          stickySectionHeadersEnabled={false}
+          ref={sectionListRef}
+          refreshing={true}
+          inverted={true}
+        />
+      ) : (
+        <View backgroundColor="background" style={styles.startChat}>
+          <Text color="primary" variant="body">
+            Start Chatting!
+          </Text>
+        </View>
+      )}
+    </RNView>
   );
 };

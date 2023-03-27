@@ -1,48 +1,35 @@
-import { StyleProp, ViewStyle } from "react-native";
-import { colors } from "../../constants";
-import { Text } from "../Text";
-import { View } from "../View";
+import {
+  StyleProp,
+  ViewStyle,
+  TextInput as RNTextInput,
+  TextInputProps as RNTextInputProps,
+} from "react-native";
 import { ShadowView } from "../ShadowView";
 import styles from "./InputField.styles";
+import { useThemeColor } from "../../hooks";
 
-interface InputFieldProps {
-  children: string;
-  lightTextColor:
-    | "titleText"
-    | "bodyText"
-    | "smallText"
-    | "generalGray"
-    | "linkText";
-  style?: StyleProp<ViewStyle>;
-  lightBorderColor: string;
+interface InputFieldProps extends RNTextInputProps {
+  placeHolder: string;
+  styleText?: StyleProp<ViewStyle>;
 }
 
 export const InputField = (props: InputFieldProps) => {
-  const { children, lightTextColor, style, lightBorderColor } = props;
+  const { placeHolder, styleText, ...restOfProps } = props;
+  const bodyText = useThemeColor("bodyText");
+  const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   return (
-    <ShadowView style={[style, styles.InputField]} isInnerShadow={false}>
-      <View
-        style={styles.InputField}
-        lightColor={lightBorderColor}
-        darkColor={colors.dark.backgroundSecondary}
-      >
-        <ShadowView
-          style={styles.ShadowView}
-          isInnerShadow={true}
-          lightColor={colors.light.primaryBackgroundOpaque}
-          darkColor={colors.dark.primaryBackground}
-        >
-          <Text
-            lightColor={lightTextColor}
-            darkColor={colors.light.backgroundSecondary}
-            variant="smBody"
-            style={styles.Text}
-          >
-            {children}
-          </Text>
-        </ShadowView>
-      </View>
+    <ShadowView
+      style={[styles.ShadowView, { borderColor: backgroundSecondary }]}
+      isInnerShadow={true}
+      backgroundColor={"primaryBackgroundOpaque"}
+    >
+      <RNTextInput
+        placeholderTextColor={bodyText}
+        placeholder={placeHolder}
+        style={[styles.Text, styleText, { color: bodyText }]}
+        {...restOfProps}
+      />
     </ShadowView>
   );
 };

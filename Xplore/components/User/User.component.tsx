@@ -6,6 +6,7 @@ import { useThemeColor } from "../../hooks";
 import styles from "./User.styles";
 
 interface UserProps {
+  id: string;
   avatar: string;
   username: string;
   xp: number;
@@ -18,7 +19,7 @@ export const User = (props: UserProps) => {
   return (
     <View style={[styles.user_container, style]}>
       <Avatar
-        name="Username"
+        name={username}
         imageURL={avatar}
         size={45}
         style={styles.user_avatar}

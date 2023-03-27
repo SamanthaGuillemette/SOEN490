@@ -36,4 +36,10 @@ export default StyleSheet.create({
     paddingTop: 30,
     marginLeft: 15,
   },
+  noResultsView: {
+    flexDirection: "column",
+    alignItems: "center",
+    marginHorizontal: 50,
+    marginTop: 200,
+  },
 });

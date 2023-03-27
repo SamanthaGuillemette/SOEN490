@@ -5,20 +5,24 @@ import { AvatarGroup, Text, View } from "../../../../components";
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
 import AdminSettings from "./screens/AdminSettings.screen";
-import MemberSettings from "./screens/MemberSettings.screen";
 import PrivateChatSettings from "./screens/PrivateChatSettings.screen";
+import { useListAvatars } from "../../../../services/api/chatSettings";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 interface ChatSettingsProps {
   navigation: NavigationProp<any>;
+  chatID: string;
+  username: string;
+  chatType: string;
 }
 
 const ChatSettings = (props: ChatSettingsProps) => {
   const route = useRoute();
-  let { name }: any = route.params;
-  const userRole = "admin";
+  let { chatID, username, chatType }: any = route.params;
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const avatars: any = useListAvatars(chatID, chatType);
+  console.log(username);
   return (
     <SafeAreaView
       edges={["top", "left", "right"]}
@@ -28,25 +32,15 @@ const ChatSettings = (props: ChatSettingsProps) => {
       <ScrollView style={{ backgroundColor: background }}>
         <View style={styles.settingsContainer}>
           <Text style={styles.contactName} variant="h2">
-            {name}
+            {username}
           </Text>
           <View style={styles.avatarGroup}>
-            <AvatarGroup
-              usersAvatars={[
-                "https://picsum.photos/200",
-                "https://picsum.photos/200",
-                "https://picsum.photos/200",
-                "https://picsum.photos/200",
-                "https://picsum.photos/200",
-              ]}
-            />
+            <AvatarGroup usersAvatars={avatars} />
           </View>
-          {userRole === "admin" ? (
-            <AdminSettings />
-          ) : userRole === "member" ? (
-            <MemberSettings />
+          {chatType === "group" ? (
+            <AdminSettings chatID={chatID} chatName={username} />
           ) : (
-            <PrivateChatSettings contactName={name} />
+            <PrivateChatSettings contactName={chatID} chatID={chatID} />
           )}
         </View>
       </ScrollView>

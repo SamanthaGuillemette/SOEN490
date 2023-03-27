@@ -61,10 +61,10 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
         >
           Completed
         </Text>
-        <Text variant="h3" color="generalGray">
+        <Text variant="h3" color="white">
           Snake robot
         </Text>
-        <Text variant="smBody" color="generalGray">
+        <Text variant="smBody" color="white">
           Unique soft robot
         </Text>
       </View>
