@@ -71,8 +71,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       stepLabels={[
         "Description",
         "Category & Goals",
-        "All Tasks",
         "Add Members",
+        "All Tasks",
       ]}
       numOfSteps={4}
       screens={[
@@ -84,12 +84,12 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           // setImageURL={setImageURL}
         />,
         <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
+        <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,
         <AllTasks
           navigation={props.navigation}
           setTasks={setTasks}
           tasks={tasks}
         />,
-        <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,
       ]}
       navigation={props.navigation}
       onSubmitMsg={"Project Created!"}

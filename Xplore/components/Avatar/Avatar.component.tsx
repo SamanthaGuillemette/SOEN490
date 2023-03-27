@@ -28,7 +28,7 @@ export const Avatar = (props: AvatarProps) => {
 
   const primary = useThemeColor("primary");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
-  const avatarDisplayName = name.charAt(0).toUpperCase();
+  const avatarDisplayName = name?.charAt(0)?.toUpperCase();
 
   return (
     <View

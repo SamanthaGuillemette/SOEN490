@@ -7,7 +7,7 @@ import {
   DatePicker,
   Icon,
   InputField,
-  //MemberChipAdder,
+  MemberChipAdder,
   ShadowView,
   Text,
 } from "../../../../components";
@@ -107,11 +107,11 @@ export const TaskModal = (props: TaskModalProps) => {
         <DatePicker title="Ends" setDate={setEndDate} />
       </View>
       <View style={styles.textViewParticipant}>
-        {/* <Text color="titleText" variant="h3">
+        <Text color="titleText" variant="h3">
           Participants
-        </Text> */}
+        </Text>
       </View>
-      {/* <MemberChipAdder /> */}
+      <MemberChipAdder />
       <ShadowView style={[styles.button]}>
         <TouchableOpacity
           style={[

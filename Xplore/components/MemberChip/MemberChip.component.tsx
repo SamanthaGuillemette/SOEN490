@@ -12,7 +12,7 @@ import { View } from "../View";
 import styles from "./MemberChip.styles";
 
 interface MemberChipProps extends TouchableOpacityProps {
-  userName: string;
+  username: string;
   avatar: string;
   style?: StyleProp<ViewStyle>;
 }
@@ -26,9 +26,9 @@ export const MemberChip = (props: MemberChipProps) => {
       backgroundColor="background"
       style={[props.style, styles.button, { borderColor: generalGray }]}
     >
-      <Avatar name={props.userName} imageURL={props.avatar} size={45} />
+      <Avatar name={props.username} imageURL={props.avatar} size={45} />
       <Text variant="label" style={[styles.textStyle, { color: titleText }]}>
-        {props.userName}
+        {props.username}
       </Text>
       <TouchableOpacity>
         <Icon name="x" size="large" color="primaryBackground" />

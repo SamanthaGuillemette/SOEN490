@@ -22,6 +22,7 @@ export const MemberChipAdder = () => {
 
   const [addMemberModalVisible, setAddMemberModalVisible] =
     useState<any>(false);
+  const [allMembers, setAllMembers] = useState<any[]>([]);
 
   return (
     <View style={styles.containerParticipants}>
@@ -39,11 +40,19 @@ export const MemberChipAdder = () => {
           style={styles.iconAdder}
         />
         {addMemberModalVisible === true && (
-          <AddMemberModal setAddModalVisible={setAddMemberModalVisible} />
+          <AddMemberModal
+            setAllMembers={setAllMembers}
+            allMembers={allMembers}
+            setAddModalVisible={setAddMemberModalVisible}
+          />
         )}
       </TouchableOpacity>
-      <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
-      <MemberChip userName="Bernice" avatar="https://picsum.photos/201" />
+      {allMembers.map((member: any, index) => {
+        console.log(member.name); // add this line to log the value of member
+        return (
+          <MemberChip key={index} username={member} avatar={member.avatar} />
+        );
+      })}
     </View>
   );
 };
