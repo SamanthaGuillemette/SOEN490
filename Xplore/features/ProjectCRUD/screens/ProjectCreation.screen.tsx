@@ -9,6 +9,9 @@ import {
 } from "../components";
 import { useState } from "react";
 import { useCreateNewProject } from "../../../services/api/projects";
+import { useQuery } from "react-query";
+import api from "../../../services/appwrite/api";
+
 interface ProjectCreationProps {
   navigation: NavigationProp<any>;
 }
@@ -24,6 +27,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [buildProject, setBuildProject] = useState(false);
   const newProject = useCreateNewProject();
   const date = new Date().toISOString();
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
 
   if (buildProject) {
     console.log({
@@ -46,6 +51,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         goals: projectGoals,
         members: allMembers,
         percentComplete: 0,
+        projectOwner: userId,
       },
       tasks: tasks,
     });
