@@ -71,4 +71,5 @@ export {
   useDeleteProject,
   useListProjectsPaginated,
   useNewProjects,
+  useFetchUserProjects,
 };

@@ -22,6 +22,7 @@ import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
 import { useFetchUserDetails } from "../../../../services/api/userProfile";
+import { useNewNotificationsCount } from "../../../../services/api/notifications";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 
 const headerHeight = 300;
@@ -102,7 +103,7 @@ const Profile = (props: ProfileProps) => {
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
-  const newNotifsCount = useNewNotificationsCount(userdata?.$id);
+  const newNotifsCount = useNewNotificationsCount(userPrefs?.$id);
 
   return status === "loading" ? (
     <Spinner visible={true} />
