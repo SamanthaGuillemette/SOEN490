@@ -7,7 +7,6 @@ import {
 } from "react-query";
 import { COLLECTION_ID_PROJECT } from "@env";
 import api from "../appwrite/api";
-import { useEffect, useState } from "react";
 
 //to be defined
 interface Project {}
@@ -30,7 +29,6 @@ const useListProjectsPaginated = () => {
     queryKey: "projects",
     queryFn: async ({ pageParam = 0 }) => {
       const res = await api.listDocuments(COLLECTION_ID_PROJECT, [
-      const res = await api.listDocuments(COLLECTION_ID_PROJECT, [
         api.query.offset(LIMIT * pageParam),
         api.query.limit(LIMIT),
       ]);
@@ -46,13 +44,11 @@ const useListProjectsPaginated = () => {
 
 const useCreateProject = (data: Project) => {
   return useMutation(() => api.createDocument(COLLECTION_ID_PROJECT, data));
-  return useMutation(() => api.createDocument(COLLECTION_ID_PROJECT, data));
 };
 
 const useDeleteProject = (documentId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => api.deleteDocument(COLLECTION_ID_PROJECT, documentId),
     mutationFn: () => api.deleteDocument(COLLECTION_ID_PROJECT, documentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["projects"] });
