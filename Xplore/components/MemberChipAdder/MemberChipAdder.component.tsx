@@ -11,6 +11,7 @@ import { MemberChip } from "../MemberChip";
 import styles from "./MemberChipAdder.styles";
 import { AddMemberModal } from "../AddMemberModal";
 import { useState } from "react";
+import { useAllMembersInfo } from "../../services/api/projects";
 
 interface MemberChipAdderProps extends TouchableOpacityProps {
   style?: StyleProp<ViewStyle>;
@@ -22,7 +23,6 @@ export const MemberChipAdder = () => {
 
   const [addMemberModalVisible, setAddMemberModalVisible] =
     useState<any>(false);
-  const [allMembers, setAllMembers] = useState<any[]>([]);
 
   return (
     <View style={styles.containerParticipants}>

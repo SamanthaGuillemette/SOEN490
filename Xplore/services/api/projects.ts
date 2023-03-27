@@ -1,7 +1,13 @@
 //removed useQuery import for the time being
 import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
-import { COLLECTION_ID_PROJECT, COLLECTION_ID_PROJECT_TASKS } from "@env";
+import {
+  COLLECTION_ID_PROJECT,
+  COLLECTION_ID_PROJECT_TASKS,
+  COLLECTION_ID_USERS,
+} from "@env";
 import api from "../appwrite/api";
+import { useEffect, useState } from "react";
+import { Query } from "appwrite";
 
 //to be defined
 interface Project {}
@@ -77,9 +83,44 @@ const useCreateNewTask = () => {
   });
 };
 
+const useAllMembersInfo = (listOfMembers: any) => {
+  const [allMembers, setAllMembers] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const membersList = listOfMembers;
+
+        // Looping through list of members
+        for (let index in membersList) {
+          const response = await api.listDocuments(COLLECTION_ID_USERS, [
+            Query.equal("userID", membersList[index]),
+          ]);
+
+          const data = await Promise.all(
+            response?.documents?.map(async (doc) => ({
+              username: doc.username,
+              profilePicture: doc.imageURL,
+              xp: doc.xp,
+              userID: doc.userID,
+            }))
+          );
+          setAllMembers((oldArray) => [...oldArray, data[0]]); // pushing to array
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchInfo();
+  }, [listOfMembers]);
+
+  return allMembers; // returning array of all members for specific project
+};
+
 export {
   useDeleteProject,
   useListProjectsPaginated,
   useCreateNewTask,
   useCreateNewProject,
+  useAllMembersInfo,
 };
