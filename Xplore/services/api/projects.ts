@@ -5,7 +5,7 @@ import {
   useQueryClient,
   useQuery,
 } from "react-query";
-import { COLLECTION_ID_PROJECT, PROJECT_PICTURES_BUCKET_ID } from "@env";
+import { COLLECTION_ID_PROJECT, BUCKET_PROJECT_PIC } from "@env";
 import api from "../appwrite/api";
 
 //to be defined
@@ -57,7 +57,7 @@ const useDeleteProject = (documentId: string) => {
 const useUploadProjectPicture = async (projectPicture: any) => {
   return useQuery({
     queryKey: ["projectPicture", projectPicture],
-    queryFn: () => api.uploadImage(PROJECT_PICTURES_BUCKET_ID, projectPicture),
+    queryFn: () => api.uploadImage(BUCKET_PROJECT_PIC, projectPicture),
   });
 };
 
