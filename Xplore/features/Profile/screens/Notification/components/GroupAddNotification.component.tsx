@@ -29,7 +29,7 @@ export const GroupAddNotification = (props: NotificationProps) => {
       </View>
       <View style={styles.chipButton}>
         <ChipButton
-          label="Message"
+          label="View"
           onPress={() => {
             props.navigation.navigate("ChatDetails", {
               chatID: props.chatID,
