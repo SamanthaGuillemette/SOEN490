@@ -12,7 +12,7 @@ interface LinearProgressBarProps {
 }
 
 export const LinearProgressBar = (props: LinearProgressBarProps) => {
-  const { color = "primary", progress = 0.8, style } = props;
+  const { color = "primary", progress, style } = props;
   const customProgressColor = useThemeColor(color);
   const background = useThemeColor("background");
 

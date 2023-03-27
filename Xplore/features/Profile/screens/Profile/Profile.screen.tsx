@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Image,
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar } from "../../../../components";
@@ -101,6 +102,7 @@ const Profile = (props: ProfileProps) => {
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
+  const newNotifsCount = useNewNotificationsCount(userdata?.$id);
 
   return status === "loading" ? (
     <Spinner visible={true} />
@@ -162,6 +164,12 @@ const Profile = (props: ProfileProps) => {
             }}
           >
             <Icon name="bell" color="primary" size="large" />
+            {newNotifsCount > 0 ? (
+              <Image
+                source={require("../../../../assets/newNotifs.png")}
+                style={styles.newNotificationIcon}
+              />
+            ) : null}
           </TouchableOpacity>
         </View>
 

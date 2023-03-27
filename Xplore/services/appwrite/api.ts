@@ -11,8 +11,8 @@ import {
 
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
-export const account = new Account(client);
-export const database = new Databases(client);
+const account = new Account(client);
+const database = new Databases(client);
 const storage = new Storage(client);
 
 const api = {
@@ -96,9 +96,25 @@ const api = {
     return database.deleteDocument(DATABASE_ID, collectionId, documentId);
   },
 
-  uploadImage: async (bucketId: string, image: any) => {
-    const res = await storage.createFile(bucketId, ID.unique(), image);
-    return storage.getFilePreview(bucketId, res.$id);
+  createFile: (bucket: string, userId: string, file: File) => {
+    // return storage.createFile(bucket, `${userId}-${ID.unique()}`, file);
+    return storage.createFile(bucket, `${ID.unique()}`, file);
+  },
+
+  getFilePreview: (bucket: string, fileId: string) => {
+    return storage.getFilePreview(bucket, fileId);
+  },
+
+  listFiles: (
+    bucket: string,
+    queries: string[] | undefined = undefined,
+    search?: string
+  ) => {
+    return storage.listFiles(bucket, queries, search);
+  },
+
+  deleteFile: (bucket: string, fileId: string) => {
+    return storage.deleteFile(bucket, fileId);
   },
 };
 

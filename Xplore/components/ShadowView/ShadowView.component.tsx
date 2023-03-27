@@ -56,7 +56,7 @@ export const ShadowView = (props: ShadowViewProps) => {
   ) : (
     <InsetShadow
       shadowColor={customShadowColor}
-      containerStyle={[style, { backgroundColor: bgColor }]}
+      containerStyle={{ style, backgroundColor: bgColor }}
       shadowOffset={shadowOffset}
     >
       <RNView>{children}</RNView>

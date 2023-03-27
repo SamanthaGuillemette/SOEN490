@@ -5,11 +5,23 @@ import {
   useQueryClient,
   useQuery,
 } from "react-query";
-import { COLLECTION_ID_PROJECT, BUCKET_PROJECT_PIC } from "@env";
+import { COLLECTION_ID_PROJECT } from "@env";
 import api from "../appwrite/api";
 
 //to be defined
 interface Project {}
+
+const useNewProjects = () => {
+  const LIMIT = 5;
+  return useQuery({
+    queryKey: ["newProjects"],
+    queryFn: () =>
+      api.listDocuments(COLLECTION_ID_PROJECT, [
+        api.query.limit(LIMIT),
+        api.query.orderAsc("startDate"),
+      ]),
+  });
+};
 
 const useListProjectsPaginated = () => {
   const LIMIT = 5;
@@ -54,17 +66,9 @@ const useDeleteProject = (documentId: string) => {
   });
 };
 
-const useUploadProjectPicture = async (projectPicture: any) => {
-  return useQuery({
-    queryKey: ["projectPicture", projectPicture],
-    queryFn: () => api.uploadImage(BUCKET_PROJECT_PIC, projectPicture),
-  });
-};
-
 export {
   useCreateProject,
   useDeleteProject,
   useListProjectsPaginated,
-  useFetchUserProjects,
-  useUploadProjectPicture,
+  useNewProjects,
 };

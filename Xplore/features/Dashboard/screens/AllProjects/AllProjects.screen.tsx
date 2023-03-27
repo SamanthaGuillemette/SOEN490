@@ -3,14 +3,15 @@ import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   CategoryScrollBar,
+  ProjectCard,
   SearchBar,
   Text,
   View,
 } from "../../../../components";
-import { AllProjectsCard } from "../../components";
 import styles from "./AllProjects.styles";
 import { useListProjectsPaginated } from "../../../../services/api/projects";
 import { Models } from "appwrite";
+import { NavigationProp } from "@react-navigation/native";
 
 interface ProjectData extends Models.Document {
   name: string;
@@ -31,8 +32,10 @@ const formatProjectData = (data: ProjectData | undefined) => {
   );
   return formattedData;
 };
-
-const ExploreProjects = () => {
+interface ExploreProjectsProps {
+  navigation: NavigationProp<any>;
+}
+const ExploreProjects = (props: ExploreProjectsProps) => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
   const { data, fetchNextPage } = useListProjectsPaginated();
 
@@ -59,7 +62,9 @@ const ExploreProjects = () => {
 
       <FlashList
         data={formatProjectData(data as any)}
-        renderItem={({ item }) => <AllProjectsCard item={item} />}
+        renderItem={({ item }) => (
+          <ProjectCard navigation={props.navigation} item={item} />
+        )}
         estimatedItemSize={350}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flashListContainer}

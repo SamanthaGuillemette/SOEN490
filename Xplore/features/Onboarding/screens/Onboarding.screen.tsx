@@ -10,31 +10,22 @@ import { deviceScreenWidth } from "../../../constants";
 const onboardingImages = [
   {
     img: require("../../../assets/Onboarding1.png"),
-    // message: "Xplore is an application that focuses on project-based learning.",
     message: "Xplorify focuses on project-based learning",
   },
   {
     img: require("../../../assets/Onboarding2.png"),
-    // message:
-    //   "This application allows a user to explore or start new exciting projects.",
     message: "Discover or create your own amazing project ideas",
   },
   {
     img: require("../../../assets/Onboarding3.png"),
-    // message:
-    //   "The application also enables users to chat with other users on the platform.",
     message: "Communicate with your team members in real-time",
   },
   {
     img: require("../../../assets/Onboarding4.png"),
-    // message:
-    //   "Upon project completion, users will accumulate points and/or badges.",
     message: "Earn rewards upon project completion",
   },
   {
     img: require("../../../assets/Onboarding5.png"),
-    // message:
-    //   "A leaderboard featuring the top contributing users will be displayed.",
     message: "Stay engaged with the leaderboard",
   },
 ];
@@ -52,7 +43,7 @@ const Onboarding = (props: OnboardingProps) => {
     inputRange: [0, deviceScreenWidth],
     outputRange: [0, 18], // 18 = margin + width of dot = (5+5) + 8
   });
-
+  
   return (
     <SafeAreaView
       style={[styles.safeAreaContainer, { backgroundColor: whiteBackground }]}
