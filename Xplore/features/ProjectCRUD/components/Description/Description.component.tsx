@@ -16,13 +16,16 @@ import { useQuery } from "react-query";
 interface DescriptionProps {
   setDescription: (desc: string) => void;
   setProjectName: (name: string) => void;
-  setImageURL: (url: string) => void;
+  setImageURL?: (url: string) => void;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
 }
 
 export const Description = (props: DescriptionProps) => {
   const [date, setDate] = useState("");
   const [localImage, setLocalImage] = useState<string>();
   const [uploadedImageId, setUploadedImageId] = useState();
+  const { setStartDate, setEndDate } = props;
 
   const { data } = useQuery("projectImage", () =>
     api.getFilePreview(BUCKET_PROJECT_PIC, uploadedImageId || "")
@@ -57,6 +60,13 @@ export const Description = (props: DescriptionProps) => {
       // Handle the error here, e.g. show an error message to the user.
     }
   };
+  const handleStartDate = (startDate: string) => {
+    props.setStartDate(startDate);
+  };
+
+  const handleEndDate = (endDate: string) => {
+    props.setEndDate(endDate);
+  };
 
   return (
     <View style={styles.container}>
@@ -75,7 +85,18 @@ export const Description = (props: DescriptionProps) => {
             onChangeText={(projName) => props.setProjectName(projName)}
           />
         </View>
-        <DatePicker title="Start" style={styles.dateAlign} setDate={setDate} />
+        <View style={styles.alignDatePicker}>
+          <DatePicker
+            title="Start Date"
+            style={styles.dateAlign}
+            setDate={handleStartDate}
+          />
+          <DatePicker
+            title="End Date"
+            style={styles.dateAlign}
+            setDate={handleEndDate}
+          />
+        </View>
         <View style={styles.containerTextInputDesc}>
           <InputField
             placeHolder="Project description"

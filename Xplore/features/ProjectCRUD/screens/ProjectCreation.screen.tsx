@@ -27,6 +27,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [buildProject, setBuildProject] = useState(false);
   // const [imageURL, setImageURL] = useState("");
   const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const newProject = useCreateNewProject();
   const date = new Date().toISOString();
   const { data: userdata } = useQuery("user data", () => api.getAccount());
@@ -48,8 +49,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         name: projName,
         description: description,
         category: category,
-        startDate: date,
-        endDate: date,
+        startDate: startDate,
+        endDate: endDate,
         goals: projectGoals,
         members: allMembers,
         percentComplete: 0,
@@ -59,9 +60,9 @@ const ProjectCreation = (props: ProjectCreationProps) => {
     });
     setBuildProject(false);
   }
-  console.log(projName, "projectName");
-  console.log(allMembers);
   console.log(newProject.data);
+  console.log("startDate:", startDate);
+  console.log("endDate:", endDate);
 
   return (
     <StepIndicator
@@ -78,6 +79,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         <Description
           setProjectName={setProjectName}
           setDescription={setDescription}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
           // setImageURL={setImageURL}
         />,
         <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
