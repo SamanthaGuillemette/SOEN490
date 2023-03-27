@@ -121,10 +121,23 @@ const useListNotifications = (userID: any) => {
   return notifs;
 };
 
+const markAsSeen = async (userID: any) => {
+  const notifs = await getNotifs(userID);
+  const updatePromises = notifs
+    .filter((notif) => !notif.seen)
+    .map((notif) =>
+      api.updateDocument(COLLECTION_ID_NOTIFICATIONS, notif.id, {
+        seen: true,
+      })
+    );
+  await Promise.all(updatePromises);
+};
+
 export {
   createBadgeNotif,
   createGroupAddNotif,
   createRequestJoinNotif,
   createAcceptJoinNotif,
   useListNotifications,
+  markAsSeen,
 };

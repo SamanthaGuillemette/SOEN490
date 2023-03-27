@@ -12,7 +12,10 @@ import { BadgeNotification } from "./components/BadgeNotification.component";
 import { GroupAddNotification } from "./components/GroupAddNotification.component";
 import { JoinRequestNotification } from "./components/JoinRequestNotification.component";
 import { AcceptRequestNotification } from "./components/AcceptRequestNotification.component";
-import { useListNotifications } from "../../../../services/api/notifications";
+import {
+  markAsSeen,
+  useListNotifications,
+} from "../../../../services/api/notifications";
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Notification.styles";
@@ -82,7 +85,11 @@ const Notification = (props: NotificationProps) => {
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.notificationIconContainer}
-          onPress={() => navigation.goBack()}
+          onPress={() => {
+            navigation.goBack();
+            markAsSeen(userId);
+            console.log("return");
+          }}
         >
           {colorScheme === "dark" ? (
             <Image
