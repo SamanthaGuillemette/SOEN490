@@ -22,7 +22,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const avatars: any = useListAvatars(chatID, chatType);
-
+  console.log(username);
   return (
     <SafeAreaView
       edges={["top", "left", "right"]}
@@ -38,7 +38,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
             <AvatarGroup usersAvatars={avatars} />
           </View>
           {chatType === "group" ? (
-            <AdminSettings chatID={chatID} />
+            <AdminSettings chatID={chatID} chatName={username} />
           ) : (
             <PrivateChatSettings contactName={chatID} chatID={chatID} />
           )}
