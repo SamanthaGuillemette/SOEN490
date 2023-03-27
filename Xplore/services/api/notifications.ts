@@ -1,4 +1,5 @@
 import { COLLECTION_ID_NOTIFICATIONS } from "@env";
+import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
 import api from "../appwrite/api";
@@ -134,19 +135,21 @@ const markAsSeen = async (userID: any) => {
 };
 
 const useNewNotificationsCount = (userID: any) => {
+  const isFocused = useIsFocused();
   const [newNotificationsCount, setNewNotificationsCount] = useState(0);
 
   useEffect(() => {
     const getNewNotificationsCount = async () => {
-      const notifs = await getNotifs(userID);
-      const count = notifs.filter((notif) => !notif.seen).length;
-      setNewNotificationsCount(count);
+      if (isFocused) { 
+        const notifs = await getNotifs(userID);
+        const count = notifs.filter((notif) => !notif.seen).length;
+        setNewNotificationsCount(count);
+      }
     };
-
     if (userID) {
       getNewNotificationsCount();
     }
-  }, [userID]);
+  }, [isFocused, userID]);
 
   return newNotificationsCount;
 };
