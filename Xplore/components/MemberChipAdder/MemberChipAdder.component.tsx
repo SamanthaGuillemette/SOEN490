@@ -23,6 +23,9 @@ export const MemberChipAdder = () => {
 
   const [addMemberModalVisible, setAddMemberModalVisible] =
     useState<any>(false);
+  const [allMembers, setAllMembers] = useState<any[]>([]);
+
+  console.log(allMembers);
 
   return (
     <View style={styles.containerParticipants}>
@@ -47,10 +50,14 @@ export const MemberChipAdder = () => {
           />
         )}
       </TouchableOpacity>
-      {allMembers.map((member: any, index) => {
-        console.log(member.name); // add this line to log the value of member
+      {useAllMembersInfo(allMembers).map((member: any, index) => {
+        console.log(member.username); // add this line to log the value of member
         return (
-          <MemberChip key={index} username={member} avatar={member.avatar} />
+          <MemberChip
+            key={index}
+            userName={member.username}
+            avatar={member.profilepicture}
+          />
         );
       })}
     </View>

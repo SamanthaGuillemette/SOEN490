@@ -1,5 +1,10 @@
 //removed useQuery import for the time being
-import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 import {
   COLLECTION_ID_PROJECT,
   COLLECTION_ID_PROJECT_TASKS,
@@ -82,6 +87,35 @@ const useCreateNewTask = () => {
     },
   });
 };
+
+// const useFetchUserInfo = (userIds: string[]) => {
+//   const [users, setUsers] = useState<
+//     { userId: string; profilePicture: string }[]
+//   >([]);
+
+//   useEffect(() => {
+//     const fetchInfo = async () => {
+//       try {
+//         const response = await api.listDocuments(COLLECTION_ID_USERS, [
+//           Query.in("userId", userIds),
+//         ]);
+
+//         const data = await Promise.all(
+//           response?.documents?.map(async (doc) => ({
+//             userId: doc.userId,
+//             profilePicture: doc.imageURL,
+//           })) || []
+//         );
+//         setUsers(data);
+//       } catch (e) {
+//         console.log(e);
+//       }
+//     };
+//     fetchInfo();
+//   }, [userIds]);
+
+//   return users;
+// };
 
 const useAllMembersInfo = (listOfMembers: any) => {
   const [allMembers, setAllMembers] = useState<any[]>([]);
