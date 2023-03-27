@@ -25,6 +25,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [projName, setProjectName] = useState("");
   const [projectGoals, setGoals] = useState<string[]>([]);
   const [buildProject, setBuildProject] = useState(false);
+  // const [imageURL, setImageURL] = useState("");
+  const [startDate, setStartDate] = useState("");
   const newProject = useCreateNewProject();
   const date = new Date().toISOString();
   const { data: userdata } = useQuery("user data", () => api.getAccount());
@@ -76,6 +78,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         <Description
           setProjectName={setProjectName}
           setDescription={setDescription}
+          // setImageURL={setImageURL}
         />,
         <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
         <AllTasks
