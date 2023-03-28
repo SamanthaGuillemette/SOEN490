@@ -11,12 +11,7 @@ import { useAuth, useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";
 import { BUCKET_PROFILE_PIC, COLLECTION_ID_USERS } from "@env";
 import { uploadImageToServer } from "../../../../utils";
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import styles from "./Settings.styles";
 import { Query } from "appwrite";
 
@@ -31,8 +26,7 @@ const Settings = (props: SettingsProps) => {
   const [userId] = useState<string>(sessionToken?.userId!);
   const [userDocumentId, setUserDocumentId] = useState<string>();
   const [profilePictureId, setProfilePictureId] = useState<string>();
-  const [localImage, setLocalImage] = useState<any>();
-  // const [latestProfileImageId, setLatestProfileImageId] = useState();
+  const [localProfilePic, setLocalProfilePic] = useState<URL>();
 
   // TODO: Move this function to a separate file later
   const getUserInfo = async (userID: string) => {
@@ -65,29 +59,20 @@ const Settings = (props: SettingsProps) => {
 
   const { data: profilePicture } = useQuery(
     "profile picture",
-    // () => api.getFilePreview(BUCKET_PROFILE_PIC, userObject?.profilePicture),
     () =>
       api.getFilePreview(
         BUCKET_PROFILE_PIC,
         profilePictureId ?? "63edd6618559f6420892"
       ),
     {
-      // This query will only run if "userObject.profilePicture" is valid
-      // enabled: !!userObject?.profilePicture,
+      // This query will only run if "profilePictureId" is valid
       enabled: !!profilePictureId,
     }
   );
 
   useEffect(() => {
-    console.log(
-      "====> INSIDE Settings.screen - profilePicture: ",
-      profilePicture
-    );
+    setLocalProfilePic(profilePicture);
   }, [profilePicture]);
-
-  // useEffect(() => {
-  //   setLocalImage(profileImage);
-  // }, [profileImage]);
 
   const queryClient = useQueryClient();
   const mutation = useMutation(
@@ -97,7 +82,7 @@ const Settings = (props: SettingsProps) => {
       });
     },
     {
-      // On success of this action, invalidate & refetch the "user" query
+      // On success of this action, invalidate & refetch the "user" query & "profile picture" query
       onSuccess: () => {
         queryClient.invalidateQueries("user");
         queryClient.invalidateQueries("profile picture");
@@ -113,48 +98,25 @@ const Settings = (props: SettingsProps) => {
       aspect: [3, 3],
       quality: 1,
     });
-    // console.log(JSON.stringify(pickedImage, null, 2));
 
     if (!pickedImage.cancelled) {
-      // setLocalImage(pickedImage.uri); // Set local image so that the picture is displayed right away.
+      setLocalProfilePic(pickedImage.uri as any); // Set local image so that the picture is displayed right away.
 
       const uploadedImageResult: any = await uploadImageToServer(
         pickedImage.uri,
         BUCKET_PROFILE_PIC
       );
-      console.log(
-        "======> uploadedImageResult",
-        JSON.stringify(uploadedImageResult, null, 2)
-      );
+      // console.log(
+      //   "======> uploadedImageResult",
+      //   JSON.stringify(uploadedImageResult, null, 2)
+      // );
 
-      // setLatestProfileImageId(uploadedImageResult?.$id); // Capture the uploaded image id
-
+      // Need to check "userDocumentId" -> use inside the mutate function
       if (userDocumentId) {
         mutation.mutate(uploadedImageResult?.$id);
       }
     }
   };
-
-  // useEffect(() => {
-  //   if (latestProfileImageId && userDocumentId) {
-  //     console.log("====> latestProfileImageId: ", latestProfileImageId);
-
-  //     mutation.mutate(latestProfileImageId);
-
-  //     // updateUserInfo(userDocumentId, {
-  //     //   profilePicture: latestProfileImageId,
-  //     // })
-  //     //   .then((result) => {
-  //     //     console.log("====> uploaded profile pic result: ", result);
-  //     //   })
-  //     //   .catch((error) => {
-  //     //     console.log("====> Update profile picture error: ", error);
-  //     //   });
-  //   }
-  //   // }, [latestProfileImageId, userDocumentId]);
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [latestProfileImageId, userDocumentId]);
 
   return (
     <>
@@ -175,8 +137,7 @@ const Settings = (props: SettingsProps) => {
           </View>
 
           <View style={styles.avatarContainer}>
-            {/* <Avatar size={135} name="user avatar" imageURL={localImage} /> */}
-            <Avatar size={135} name="user avatar" imageURL={profilePicture} />
+            <Avatar size={135} name="user avatar" imageURL={localProfilePic} />
             <TouchableOpacity
               style={styles.editAvatarButton}
               onPress={handleUploadImage}
