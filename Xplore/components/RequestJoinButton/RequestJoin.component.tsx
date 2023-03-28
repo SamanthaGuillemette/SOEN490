@@ -9,18 +9,29 @@ import { useThemeColor } from "../../hooks";
 import { View } from "../View";
 import { Text } from "../Text";
 import styles from "./RequestJoin.styles";
+import {
+  createRequestJoinNotif,
+  deleteRequestJoinNotif,
+} from "../../services/api/notifications";
 
 interface RequestJoinProps extends TouchableOpacityProps {
   style?: StyleProp<ViewStyle>;
+  userID: string;
+  projectID: string;
+  projectName: string;
 }
 
 export const RequestJoin = (props: RequestJoinProps) => {
-  const { style } = props;
+  const { style, userID, projectID, projectName } = props;
   const [clicked, setClicked] = useState(false);
 
   const primary = useThemeColor("primary");
   const success = useThemeColor("success");
   const bg = useThemeColor("background");
+
+  /*clicked === true
+    ? createRequestJoinNotif(userID, projectID, projectName)
+    : deleteRequestJoinNotif(userID, projectID, projectName);*/
 
   return (
     <View>

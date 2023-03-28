@@ -20,19 +20,13 @@ export const Tasks = (props: TasksProps) => {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {allTasks.map((singleTask, i) => (
-            <TaskCard
-              taskType={singleTask.category}
-              taskName={singleTask.name}
-              taskDate={singleTask.endDate.substring(
-                0,
-                singleTask.endDate.indexOf("T")
-              )}
-              navigation={navigation}
-              taskInfo={singleTask}
-              key={i}
-            />
-          ))}
+          {allTasks.map((singleTask, i) =>
+            singleTask.completed === false ? (
+              <TaskCard navigation={navigation} taskInfo={singleTask} key={i} />
+            ) : (
+              <></>
+            )
+          )}
         </View>
       </ScrollView>
     </View>

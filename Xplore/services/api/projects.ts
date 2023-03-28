@@ -103,11 +103,13 @@ const useAllTasksInfo = (listOfTasks: any) => {
           );
 
           const data = {
+            taskID: tasksList[index],
             name: response.name,
             category: response.category,
             description: response.description,
             startDate: response.startDate,
             endDate: response.endDate,
+            completed: response.completed,
           };
           setAllTasks((oldArray) => [...oldArray, data]); // pushing to array
         }
@@ -119,6 +121,26 @@ const useAllTasksInfo = (listOfTasks: any) => {
   }, [listOfTasks]);
 
   return allTasks; // returning array of all tasks for specific project
+};
+
+// To update task as completed
+const setTaskCompleted = async (taskID: any) => {
+  try {
+    await api.updateDocument(COLLECTION_ID_PROJECT_TASKS, taskID, {
+      completed: true,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// To delete task
+const deleteTask = async (taskID: any) => {
+  try {
+    await api.deleteDocument(COLLECTION_ID_PROJECT_TASKS, taskID);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 // Getting information for all members in a project
@@ -209,4 +231,6 @@ export {
   useAllTasksInfo,
   useAllMembersInfo,
   useNewProjects,
+  setTaskCompleted,
+  deleteTask,
 };

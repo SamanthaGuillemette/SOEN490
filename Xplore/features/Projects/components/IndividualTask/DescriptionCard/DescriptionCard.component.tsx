@@ -1,7 +1,6 @@
 import styles from "./DescriptionCard.styles";
 import { useThemeColor } from "../../../../../hooks";
 import { Text, View } from "../../../../../components";
-import { Member } from "../../../../../components/Member";
 import { useRoute } from "@react-navigation/native";
 
 export const DescriptionCard = () => {
@@ -50,19 +49,6 @@ export const DescriptionCard = () => {
               {endDate}
             </Text>
           </View>
-        </View>
-      </View>
-      <View style={styles.OuterContainer}>
-        <Text variant="h3" color="titleText">
-          Participants
-        </Text>
-      </View>
-      <View style={styles.MemberContainer}>
-        <View>
-          <Member userName="Amy" avatar="https://picsum.photos/200" />
-        </View>
-        <View style={styles.Member}>
-          <Member userName="Bernice" avatar="https://picsum.photos/201" />
         </View>
       </View>
     </View>
