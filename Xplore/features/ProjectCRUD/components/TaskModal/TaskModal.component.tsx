@@ -29,11 +29,16 @@ export const TaskModal = (props: TaskModalProps) => {
   // const [setTask] = useState("");
   // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+  const formattedToday = yyyy + "-" + mm + "-" + dd;
 
   const [btnClicked, setBtnClicked] = useState(false);
   const { onPress, tasks, setTasks } = props;
   const [categoryText, setCategoryText] = useState("Category");
-  
+
   const options = [
     { label: "Meeting", value: "option1" },
     { label: "Planning-Research", value: "option2" },
@@ -70,9 +75,20 @@ export const TaskModal = (props: TaskModalProps) => {
     setCategoryText(selectedOption?.label || "Category");
   };
 
-  const handleEmptyValues = (taskName: any, taskDesc: any, categoryText: any, startDate: any, endDate: any) => {
-    if (taskName.trim().length === 0 || taskDesc.trim().length === 0 || categoryText === "Category" || 
-    startDate.trim().length === 0 || endDate.trim().length === 0 ) {
+  const handleEmptyValues = (
+    taskName: any,
+    taskDesc: any,
+    categoryText: any,
+    startDate: any,
+    endDate: any
+  ) => {
+    if (
+      taskName.trim().length === 0 ||
+      taskDesc.trim().length === 0 ||
+      categoryText === "Category" ||
+      startDate.trim().length === 0 ||
+      endDate.trim().length === 0
+    ) {
       Alert.alert("You are missing required fields!");
     } else {
       added();
@@ -87,6 +103,38 @@ export const TaskModal = (props: TaskModalProps) => {
       console.log(newTask);
       setTasks([...tasks, newTask]);
       console.log(tasks);
+    }
+  };
+
+  const handleStartDate = (sDate: string) => {
+    if (sDate < formattedToday) {
+      Alert.alert("Invalid start date. Must occur today or in the future.");
+      setStartDate("");
+    } else if (endDate !== "") {
+      if (sDate > endDate) {
+        Alert.alert("Invalid start date. Must occur before end date.");
+        setStartDate("");
+      } else {
+        setStartDate(sDate);
+      }
+    } else {
+      setStartDate(sDate);
+    }
+  };
+
+  const handleEndDate = (eDate: string) => {
+    if (eDate <= formattedToday) {
+      Alert.alert("Invalid end date. Must occur after today.");
+      setEndDate("");
+    } else if (startDate !== "") {
+      if (eDate > startDate) {
+        setEndDate(eDate);
+      } else {
+        Alert.alert("Invalid end date. Must occur after start date.");
+        setEndDate("");
+      }
+    } else {
+      setEndDate(eDate);
     }
   };
 
@@ -123,8 +171,8 @@ export const TaskModal = (props: TaskModalProps) => {
         </View>
       </View>
       <View style={styles.alignDatePicker}>
-        <DatePicker title="Starts" setDate={setStartDate} />
-        <DatePicker title="Ends" setDate={setEndDate} />
+        <DatePicker title="Starts" setDate={handleStartDate} />
+        <DatePicker title="Ends" setDate={handleEndDate} />
       </View>
 
       <ShadowView style={[styles.button]}>
@@ -134,7 +182,13 @@ export const TaskModal = (props: TaskModalProps) => {
             styles.alignTouchable,
           ]}
           onPress={async () => {
-            handleEmptyValues(taskName, taskDesc, categoryText, startDate, endDate)
+            handleEmptyValues(
+              taskName,
+              taskDesc,
+              categoryText,
+              startDate,
+              endDate
+            );
           }}
         >
           <Icon

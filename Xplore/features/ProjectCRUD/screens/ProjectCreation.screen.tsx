@@ -7,7 +7,10 @@ import {
   CategoryNGoals,
 } from "../components";
 import { useState } from "react";
-import { useCreateNewProject } from "../../../services/api/projects";
+import {
+  useCreateNewProject,
+  updateUserProjList,
+} from "../../../services/api/projects";
 import { useQuery } from "react-query";
 import api from "../../../services/appwrite/api";
 import { Alert } from "react-native";
@@ -68,7 +71,22 @@ const ProjectCreation = (props: ProjectCreationProps) => {
     });
     setBuildProject(true);
     Alert.alert("Project Created successfully");
+    resetValues();
+    //updateUserProjList(allMembers);
     return true;
+  };
+
+  const resetValues = () => {
+    setDescription("");
+    setCategory("");
+    setTasks([]);
+    setAllMembers([]);
+    setProjectName("");
+    setGoals([]);
+    setBuildProject(false);
+    setImageURL("");
+    setStartDate("");
+    setEndDate("");
   };
 
   const submitMsg = buildProject ? "Project Created!" : "Project Not Created!";

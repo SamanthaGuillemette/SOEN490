@@ -77,6 +77,33 @@ const useDeleteProject = (documentId: string) => {
   });
 };
 
+// To update the list of projects per user once project is created
+const updateUserProjList = async (memberList: any, projectID: any) => {
+  try {
+    let allMembers: any = [];
+
+    memberList.forEach((memberID: any) => {
+      allMembers.push(memberID);
+    });
+
+    for (const memberID of allMembers) {
+      const response = await api.listDocuments(COLLECTION_ID_USERS, [
+        Query.equal("userID", memberID),
+      ]);
+      response?.documents?.map((doc: any) => {
+        let projects = doc.projects;
+        projects.push(projectID);
+
+        api.updateDocument(COLLECTION_ID_USERS, doc.$id, {
+          projects: projects,
+        });
+      });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const useCreateNewTask = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -157,4 +184,5 @@ export {
   useCreateNewTask,
   useCreateNewProject,
   useAllMembersInfo,
+  updateUserProjList,
 };

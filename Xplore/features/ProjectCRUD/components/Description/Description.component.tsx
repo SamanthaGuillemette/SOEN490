@@ -12,6 +12,7 @@ import * as ImagePicker from "expo-image-picker";
 import api from "../../../../services/appwrite/api";
 import { BUCKET_PROJECT_PIC } from "@env";
 import { useQuery } from "react-query";
+import { Alert } from "react-native";
 
 interface DescriptionProps {
   setDescription: (desc: string) => void;
@@ -22,10 +23,16 @@ interface DescriptionProps {
 }
 
 export const Description = (props: DescriptionProps) => {
-  const [date, setDate] = useState("");
   const [localImage, setLocalImage] = useState<string>();
   const [uploadedImageId, setUploadedImageId] = useState();
-  const { setStartDate, setEndDate, setImageURL } = props;
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+  const formattedToday = yyyy + "-" + mm + "-" + dd;
+  const [sDate, setSDate] = useState("");
+  const [eDate, setEDate] = useState("");
+  const { setImageURL } = props;
 
   const { data } = useQuery("projectImage", () =>
     api.getFilePreview(BUCKET_PROJECT_PIC, uploadedImageId || "")
@@ -72,11 +79,43 @@ export const Description = (props: DescriptionProps) => {
   };
 
   const handleStartDate = (startDate: string) => {
-    props.setStartDate(startDate);
+    if (startDate < formattedToday) {
+      Alert.alert("Invalid start date. Must occur today or in the future.");
+      props.setStartDate("");
+      setSDate("");
+    } else if (eDate !== "") {
+      if (startDate > eDate) {
+        Alert.alert("Invalid start date. Must occur before end date.");
+        props.setStartDate("");
+        setSDate("");
+      } else {
+        props.setStartDate(startDate);
+        setSDate(startDate);
+      }
+    } else {
+      props.setStartDate(startDate);
+      setSDate(startDate);
+    }
   };
 
   const handleEndDate = (endDate: string) => {
-    props.setEndDate(endDate);
+    if (endDate <= formattedToday) {
+      Alert.alert("Invalid end date. Must occur after today.");
+      props.setEndDate("");
+      setEDate("");
+    } else if (sDate !== "") {
+      if (endDate > sDate) {
+        props.setEndDate(endDate);
+        setEDate(endDate);
+      } else {
+        Alert.alert("Invalid end date. Must occur after start date.");
+        props.setEndDate("");
+        setEDate("");
+      }
+    } else {
+      props.setEndDate(endDate);
+      setEDate(endDate);
+    }
   };
 
   return (
