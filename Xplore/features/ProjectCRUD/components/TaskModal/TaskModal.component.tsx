@@ -70,8 +70,9 @@ export const TaskModal = (props: TaskModalProps) => {
     setCategoryText(selectedOption?.label || "Category");
   };
 
-  const handleEmptyValues = (taskName: any, taskDesc: any, categoryText: any) => {
-    if (taskName.trim().length === 0 || taskDesc.trim().length === 0 || categoryText === "Category") {
+  const handleEmptyValues = (taskName: any, taskDesc: any, categoryText: any, startDate: any, endDate: any) => {
+    if (taskName.trim().length === 0 || taskDesc.trim().length === 0 || categoryText === "Category" || 
+    startDate.trim().length === 0 || endDate.trim().length === 0 ) {
       Alert.alert("You are missing required fields!");
     } else {
       added();
@@ -133,7 +134,7 @@ export const TaskModal = (props: TaskModalProps) => {
             styles.alignTouchable,
           ]}
           onPress={async () => {
-            handleEmptyValues(taskName, taskDesc, categoryText)
+            handleEmptyValues(taskName, taskDesc, categoryText, startDate, endDate)
           }}
         >
           <Icon
