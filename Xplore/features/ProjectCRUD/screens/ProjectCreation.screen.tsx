@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useCreateNewProject } from "../../../services/api/projects";
 import { useQuery } from "react-query";
 import api from "../../../services/appwrite/api";
+import { Alert } from "react-native";
 
 interface ProjectCreationProps {
   navigation: NavigationProp<any>;
@@ -29,11 +30,16 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const newProject = useCreateNewProject();
-  const date = new Date().toISOString();
+
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
-  if (buildProject) {
+  const handleBuildProject = () => {
+    if (projName === "" || description === "" || category === "") {
+      Alert.alert("You are missing required fields");
+      return false;
+    }
+
     console.log({
       name: projName,
       description: description,
@@ -44,6 +50,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       goals: projectGoals,
       members: allMembers,
     });
+
     newProject.mutateAsync({
       project: {
         name: projName,
@@ -60,14 +67,15 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       tasks: tasks,
     });
     setBuildProject(false);
-  }
+  };
+
   console.log(newProject.data);
   console.log("startDate:", startDate);
   console.log("endDate:", endDate);
 
   return (
     <StepIndicator
-      setBuildProject={setBuildProject}
+      setBuildProject={handleBuildProject}
       headerTitle={"Create Projects"}
       stepLabels={[
         "Description",
