@@ -25,7 +25,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [projName, setProjectName] = useState("");
   const [projectGoals, setGoals] = useState<string[]>([]);
   const [buildProject, setBuildProject] = useState(false);
-  // const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const newProject = useCreateNewProject();
@@ -55,6 +55,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         members: allMembers,
         percentComplete: 0,
         projectOwner: userId,
+        imageURL: imageURL,
       },
       tasks: tasks,
     });
@@ -81,7 +82,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           setDescription={setDescription}
           setStartDate={setStartDate}
           setEndDate={setEndDate}
-          // setImageURL={setImageURL}
+          setImageURL={setImageURL}
         />,
         <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
         <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,

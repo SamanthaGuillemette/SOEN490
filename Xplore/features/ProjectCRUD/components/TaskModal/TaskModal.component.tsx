@@ -25,6 +25,7 @@ export const TaskModal = (props: TaskModalProps) => {
   const [taskCategory, setTaskCategory] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [allMembers, setAllMembers] = useState<any[]>([]);
   // const [setTask] = useState("");
   // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
@@ -106,12 +107,7 @@ export const TaskModal = (props: TaskModalProps) => {
         <DatePicker title="Starts" setDate={setStartDate} />
         <DatePicker title="Ends" setDate={setEndDate} />
       </View>
-      <View style={styles.textViewParticipant}>
-        <Text color="titleText" variant="h3">
-          Participants
-        </Text>
-      </View>
-      <MemberChipAdder />
+
       <ShadowView style={[styles.button]}>
         <TouchableOpacity
           style={[

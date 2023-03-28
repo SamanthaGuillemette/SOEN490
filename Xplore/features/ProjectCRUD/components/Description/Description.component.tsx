@@ -16,7 +16,7 @@ import { useQuery } from "react-query";
 interface DescriptionProps {
   setDescription: (desc: string) => void;
   setProjectName: (name: string) => void;
-  setImageURL?: (url: string) => void;
+  setImageURL: (url: string) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
 }
@@ -25,7 +25,7 @@ export const Description = (props: DescriptionProps) => {
   const [date, setDate] = useState("");
   const [localImage, setLocalImage] = useState<string>();
   const [uploadedImageId, setUploadedImageId] = useState();
-  const { setStartDate, setEndDate } = props;
+  const { setStartDate, setEndDate, setImageURL } = props;
 
   const { data } = useQuery("projectImage", () =>
     api.getFilePreview(BUCKET_PROJECT_PIC, uploadedImageId || "")
@@ -33,33 +33,40 @@ export const Description = (props: DescriptionProps) => {
   console.log("====> React Query data: ", data);
 
   const handleUploadImage = async () => {
-    try {
-      // No permissions request is necessary for launching the image library
-      let pickedImage = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [3, 3],
-        quality: 1,
-      });
+    // No permissions request is necessary for launching the image library
+    let pickedImage = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [3, 3],
+      quality: 1,
+    });
 
-      if (!pickedImage.cancelled) {
-        setLocalImage(pickedImage.uri);
+    if (!pickedImage.cancelled) {
+      setLocalImage(pickedImage.uri);
 
-        const uploadedImageResult = await uploadImageToServer(
-          pickedImage.uri,
-          BUCKET_PROJECT_PIC
+      const uploadedImageResult: any = await uploadImageToServer(
+        pickedImage.uri,
+        BUCKET_PROJECT_PIC
+      );
+
+      setUploadedImageId(uploadedImageResult?.$id);
+
+      if (uploadedImageId) {
+        const imagePreview = api.getFilePreview(
+          BUCKET_PROJECT_PIC,
+          uploadedImageId
         );
+        props.setImageURL(imagePreview.toString());
+        setLocalImage(imagePreview.toString());
 
-        const imageURL = uploadedImageResult?.url; // Assuming the URL is returned by the uploadImageToServer function
-
-        setUploadedImageId(uploadedImageResult?.$id);
-        props.setImageURL(imageURL); // Pass the imageURL to the setImageURL function
+        // if (props.setImageURL) {
+        //   // Check if setImageURL is defined before calling it
+        //   props.setImageURL(imagePreview.toString());
+        // }
       }
-    } catch (error) {
-      console.error("Error uploading image: ", error);
-      // Handle the error here, e.g. show an error message to the user.
     }
   };
+
   const handleStartDate = (startDate: string) => {
     props.setStartDate(startDate);
   };
