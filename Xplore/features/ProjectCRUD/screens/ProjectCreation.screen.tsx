@@ -1,7 +1,6 @@
 import { StepIndicator } from "../../../components";
 import { NavigationProp } from "@react-navigation/native";
 import {
-  AddLinks,
   AddMembers,
   AllTasks,
   Description,
@@ -22,7 +21,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [category, setCategory] = useState("");
   const [tasks, setTasks] = useState<Object[]>([]);
   const [allMembers, setAllMembers] = useState<any[]>([]);
-  // const [allLinks, setAllLinks] = useState([]);
   const [projName, setProjectName] = useState("");
   const [projectGoals, setGoals] = useState<string[]>([]);
   const [buildProject, setBuildProject] = useState(false);
@@ -36,7 +34,9 @@ const ProjectCreation = (props: ProjectCreationProps) => {
 
   const handleBuildProject = () => {
     if (projName === "" || description === "" || category === "") {
-      Alert.alert("You are missing required fields");
+      Alert.alert(
+        "Project not created, you are missing required field(s): name, description or category"
+      );
       return false;
     }
 
@@ -66,8 +66,15 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       },
       tasks: tasks,
     });
-    setBuildProject(false);
+    setBuildProject(true);
+    Alert.alert("Project Created successfully");
+    return true;
   };
+
+  const submitMsg = buildProject ? "Project Created!" : "Project Not Created!";
+
+  console.log(buildProject);
+  console.log(submitMsg);
 
   console.log(newProject.data);
   console.log("startDate:", startDate);
@@ -101,7 +108,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         />,
       ]}
       navigation={props.navigation}
-      onSubmitMsg={"Project Created!"}
+      // onSubmitMsg={submitMsg}
     />
   );
 };

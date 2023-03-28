@@ -15,7 +15,7 @@ interface StepIndicatorProps {
   numOfSteps: number;
   stepLabels: Array<String>;
   screens: Array<JSX.Element>;
-  onSubmitMsg: string;
+  onSubmitMsg?: string;
   navigation: NavigationProp<any>;
   setBuildProject: (value: boolean) => void;
 }
