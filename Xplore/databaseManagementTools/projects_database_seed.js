@@ -11,8 +11,6 @@ const projects = [
       "Develop a user-friendly interface for users to enter text and customize styling options",
       "Implement algorithms for generating unique and creative text effects",
       "Integrate with existing CSS libraries to provide additional styling options",
-      "Optimize the tool's performance by minimizing the amount of generated code",
-      "Provide detailed documentation and support for users to learn about CSS and text styling",
     ],
   },
   {
@@ -27,8 +25,6 @@ const projects = [
       "Implement secure authentication and encryption protocols to protect user data",
       "Integrate with major cryptocurrency exchanges to provide access to a wide range of trading options",
       "Develop a user-friendly interface for users to buy, sell, and trade cryptocurrency",
-      "Provide real-time market data and analysis to help users make informed trading decisions",
-      "Implement automated trading algorithms to help users optimize their trading strategies",
     ],
   },
   {
@@ -43,8 +39,6 @@ const projects = [
       "Implement machine learning algorithms to automatically identify trends and anomalies in large datasets",
       "Develop a user-friendly interface for users to upload and analyze their data",
       "Provide real-time visualization and insights to help users understand their data",
-      "Integrate with popular data sources such as SQL databases and CSV files",
-      "Optimize the tool's performance by analyzing user data and feedback",
     ],
   },
   {
@@ -59,8 +53,6 @@ const projects = [
       "Learn about common cryptographic algorithms and how they work.",
       "Develop an understanding of public and private key encryption.",
       "Understand how to securely store and transmit encrypted data.",
-      "Learn about different types of attacks on cryptographic systems.",
-      "Develop practical experience in implementing cryptography tools.",
     ],
   },
   {
@@ -75,8 +67,6 @@ const projects = [
       "Gain practical experience in building a web app using modern web development tools.",
       "Learn about APIs for music streaming and sharing services.",
       "Develop skills in front-end and back-end development.",
-      "Understand how to implement user authentication and authorization.",
-      "Learn about best practices for deploying and scaling web apps.",
     ],
   },
   {
@@ -91,8 +81,6 @@ const projects = [
       "Develop an understanding of common code optimization techniques.",
       "Learn how to use profiling and benchmarking tools to measure code performance.",
       "Gain practical experience in analyzing and optimizing code.",
-      "Understand how to write optimized code that is maintainable and readable.",
-      "Develop an appreciation for the trade-offs between performance and readability in software development.",
     ],
   },
   {
@@ -107,8 +95,6 @@ const projects = [
       "Develop practical experience in game design and development.",
       "Understand the basics of game physics and mechanics.",
       "Gain practical experience in building interactive user interfaces.",
-      "Develop an understanding of the psychology of gaming and user engagement.",
-      "Learn about best practices for game testing and deployment.",
     ],
   },
   {
@@ -123,8 +109,6 @@ const projects = [
       "Implement user authentication and authorization",
       "Add a search feature for finding code snippets by keyword",
       "Integrate with a syntax highlighting library for improved code readability",
-      "Implement commenting and liking functionality",
-      "Improve performance and scalability by optimizing database queries",
     ],
   },
   {
@@ -138,8 +122,6 @@ const projects = [
       "Understand how to create chatbots with React.",
       "Learn how to integrate chatbots with customer service systems.",
       "Develop user-friendly interfaces for chatbots.",
-      "Improve knowledge of front-end development.",
-      "Enhance problem-solving skills in programming.",
     ],
   },
   {
@@ -153,8 +135,6 @@ const projects = [
       "Understand how blockchain technology works.",
       "Learn how to develop smart contracts.",
       "Implement secure document verification using blockchain.",
-      "Gain knowledge in cryptography and security.",
-      "Improve problem-solving skills in programming.",
     ],
   },
   {
@@ -169,8 +149,6 @@ const projects = [
       "Understand how to control drones with Python.",
       "Learn how to program autonomous flight paths.",
       "Implement real-time image processing for aerial photography.",
-      "Gain knowledge in embedded systems and control theory.",
-      "Improve problem-solving skills in programming.",
     ],
   },
   {
@@ -184,8 +162,6 @@ const projects = [
       "Understand how to work with large datasets in web development.",
       "Learn how to create interactive data visualizations.",
       "Implement data filtering and sorting functionality.",
-      "Gain knowledge in data analysis and visualization techniques.",
-      "Improve problem-solving skills in programming.",
     ],
   },
 ];
