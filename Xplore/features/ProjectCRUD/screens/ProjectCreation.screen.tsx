@@ -38,7 +38,9 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const handleBuildProject = () => {
     if (projName === "" || description === "" || category === "") {
       Alert.alert(
-        "Project not created, you are missing required field(s): name, description or category"
+        "Error",
+        "Project not created, you are missing required field(s): name, description or category",
+        [{ text: "OK", onPress: () => props.navigation.navigate("Home") }]
       );
       return false;
     }
@@ -70,7 +72,9 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       tasks: tasks,
     });
     setBuildProject(true);
-    Alert.alert("Project Created successfully");
+    Alert.alert("Success", "Project created successfully", [
+      { text: "OK", onPress: () => props.navigation.navigate("Home") },
+    ]);
     resetValues();
     //updateUserProjList(allMembers);
     return true;

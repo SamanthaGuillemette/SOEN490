@@ -80,12 +80,15 @@ export const Description = (props: DescriptionProps) => {
 
   const handleStartDate = (startDate: string) => {
     if (startDate < formattedToday) {
-      Alert.alert("Invalid start date. Must occur today or in the future.");
+      Alert.alert(
+        "Error",
+        "Invalid start date. Must occur today or in the future."
+      );
       props.setStartDate("");
       setSDate("");
     } else if (eDate !== "") {
       if (startDate > eDate) {
-        Alert.alert("Invalid start date. Must occur before end date.");
+        Alert.alert("Error", "Invalid start date. Must occur before end date.");
         props.setStartDate("");
         setSDate("");
       } else {
@@ -100,7 +103,7 @@ export const Description = (props: DescriptionProps) => {
 
   const handleEndDate = (endDate: string) => {
     if (endDate <= formattedToday) {
-      Alert.alert("Invalid end date. Must occur after today.");
+      Alert.alert("Error", "Invalid end date. Must occur after today.");
       props.setEndDate("");
       setEDate("");
     } else if (sDate !== "") {
@@ -108,7 +111,7 @@ export const Description = (props: DescriptionProps) => {
         props.setEndDate(endDate);
         setEDate(endDate);
       } else {
-        Alert.alert("Invalid end date. Must occur after start date.");
+        Alert.alert("Error", "Invalid end date. Must occur after start date.");
         props.setEndDate("");
         setEDate("");
       }

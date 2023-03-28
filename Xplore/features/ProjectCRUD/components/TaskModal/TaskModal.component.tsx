@@ -89,7 +89,7 @@ export const TaskModal = (props: TaskModalProps) => {
       startDate.trim().length === 0 ||
       endDate.trim().length === 0
     ) {
-      Alert.alert("You are missing required fields!");
+      Alert.alert("Error", "You are missing required fields!");
     } else {
       added();
       reset();
@@ -108,11 +108,14 @@ export const TaskModal = (props: TaskModalProps) => {
 
   const handleStartDate = (sDate: string) => {
     if (sDate < formattedToday) {
-      Alert.alert("Invalid start date. Must occur today or in the future.");
+      Alert.alert(
+        "Error",
+        "Invalid start date. Must occur today or in the future."
+      );
       setStartDate("");
     } else if (endDate !== "") {
       if (sDate > endDate) {
-        Alert.alert("Invalid start date. Must occur before end date.");
+        Alert.alert("Error", "Invalid start date. Must occur before end date.");
         setStartDate("");
       } else {
         setStartDate(sDate);
@@ -124,13 +127,13 @@ export const TaskModal = (props: TaskModalProps) => {
 
   const handleEndDate = (eDate: string) => {
     if (eDate <= formattedToday) {
-      Alert.alert("Invalid end date. Must occur after today.");
+      Alert.alert("Error", "Invalid end date. Must occur after today.");
       setEndDate("");
     } else if (startDate !== "") {
       if (eDate > startDate) {
         setEndDate(eDate);
       } else {
-        Alert.alert("Invalid end date. Must occur after start date.");
+        Alert.alert("Error", "Invalid end date. Must occur after start date.");
         setEndDate("");
       }
     } else {
