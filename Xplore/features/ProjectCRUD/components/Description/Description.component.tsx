@@ -147,11 +147,13 @@ export const Description = (props: DescriptionProps) => {
             title="Start Date"
             style={styles.dateAlign}
             setDate={handleStartDate}
+            shouldDisplayDate={sDate !== ""}
           />
           <DatePicker
             title="End Date"
             style={styles.dateAlign}
             setDate={handleEndDate}
+            shouldDisplayDate={eDate !== ""}
           />
         </View>
         <View style={styles.containerTextInputDesc}>

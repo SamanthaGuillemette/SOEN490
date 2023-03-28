@@ -11,6 +11,7 @@ interface DatePickerProps {
   title: string;
   style?: StyleProp<ViewStyle>;
   setDate: (date: string) => void;
+  shouldDisplayDate?: boolean;
 }
 
 export const DatePicker = (props: DatePickerProps) => {
@@ -21,7 +22,7 @@ export const DatePicker = (props: DatePickerProps) => {
   const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
   const titleText = useThemeColor("titleText");
   const generalGray = useThemeColor("generalGray");
-  const { title, style, setDate } = props;
+  const { title, style, setDate, shouldDisplayDate } = props;
 
   return (
     <View>
@@ -32,7 +33,7 @@ export const DatePicker = (props: DatePickerProps) => {
 
         <View style={styles.alignRow}>
           <Text color="bodyText" variant="label">
-            {tempDate}
+            {shouldDisplayDate === true ? tempDate : "YYYY-MM-DD"}
           </Text>
 
           <TouchableWithoutFeedback

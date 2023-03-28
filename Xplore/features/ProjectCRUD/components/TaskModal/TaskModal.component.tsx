@@ -174,8 +174,16 @@ export const TaskModal = (props: TaskModalProps) => {
         </View>
       </View>
       <View style={styles.alignDatePicker}>
-        <DatePicker title="Starts" setDate={handleStartDate} />
-        <DatePicker title="Ends" setDate={handleEndDate} />
+        <DatePicker
+          title="Starts"
+          setDate={handleStartDate}
+          shouldDisplayDate={startDate !== ""}
+        />
+        <DatePicker
+          title="Ends"
+          setDate={handleEndDate}
+          shouldDisplayDate={endDate !== ""}
+        />
       </View>
 
       <ShadowView style={[styles.button]}>
