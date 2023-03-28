@@ -1,8 +1,37 @@
 import { COLLECTION_ID_USERS } from "@env";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
+import { Query } from "appwrite";
 import { useIsFocused } from "@react-navigation/native";
 import api from "../appwrite/api";
+
+const useGetUserInfo = (userID: any) => {
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.listDocuments(COLLECTION_ID_USERS, [
+          Query.equal("userID", userID),
+        ]);
+        const res: any = response?.documents?.map((doc) => {
+          return {
+            id: doc.userID,
+            username: doc.username,
+            avatar: doc.profilePicture,
+            xp: doc.xp,
+          };
+        });
+        setUser(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [userID]);
+
+  return user;
+};
 
 const useListUsers = () => {
   const isFocused = useIsFocused();
@@ -43,4 +72,4 @@ const useListUsers = () => {
   return users;
 };
 
-export { useListUsers };
+export { useListUsers, useGetUserInfo };

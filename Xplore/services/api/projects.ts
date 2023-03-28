@@ -1,5 +1,10 @@
 //removed useQuery import for the time being
-import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+  useQuery,
+} from "react-query";
 import {
   COLLECTION_ID_PROJECT,
   COLLECTION_ID_PROJECT_TASKS,
@@ -151,6 +156,18 @@ const useAllMembersInfo = (listOfMembers: any) => {
   return allMembers; // returning array of all members for specific project
 };
 
+const useNewProjects = () => {
+  const LIMIT = 5;
+  return useQuery({
+    queryKey: ["newProjects"],
+    queryFn: () =>
+      api.listDocuments(COLLECTION_ID_PROJECT, [
+        api.query.limit(LIMIT),
+        api.query.orderAsc("startDate"),
+      ]),
+  });
+};
+
 const useListProjectsPaginated = () => {
   const LIMIT = 5;
   return useInfiniteQuery({
@@ -191,4 +208,5 @@ export {
   useProjectCardInfo,
   useAllTasksInfo,
   useAllMembersInfo,
+  useNewProjects,
 };

@@ -44,4 +44,10 @@ export default StyleSheet.create({
     alignItems: "center",
     marginTop: 50,
   },
+  newNotificationIcon: {
+    height: 6,
+    width: 6,
+    bottom: 20,
+    left: 15,
+  },
 });

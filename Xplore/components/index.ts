@@ -26,7 +26,7 @@ export * from "./RequestJoinButton";
 export * from "./SquaredButton";
 export * from "./ChipButton";
 export * from "./SearchBar";
-export * from "./NextButton";
+export * from "./SaveButton";
 export * from "./ConfirmationModal";
 export * from "./AlertModal";
 export * from "./User";

@@ -6,6 +6,7 @@ import {
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
+import { createGroupAddNotif } from "./notifications";
 import api from "../appwrite/api";
 
 interface Chat {
@@ -72,6 +73,7 @@ const createNewGroupChat = async (chatData: any) => {
       seen: false,
       lastModifiedAt: new Date().toISOString(),
     });
+    createGroupAddNotif(userID, chatID, "My Group Chat");
   }
 };
 
