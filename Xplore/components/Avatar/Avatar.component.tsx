@@ -9,7 +9,7 @@ interface AvatarProps extends ViewProps {
   name: string;
   groupChat?: boolean;
   avatarCount?: number;
-  imageURL?: string;
+  imageURL?: URL;
   size?: number;
   style?: StyleProp<ViewStyle>;
 }
