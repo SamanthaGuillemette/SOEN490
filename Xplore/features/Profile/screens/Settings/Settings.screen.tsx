@@ -36,23 +36,9 @@ const Settings = (props: SettingsProps) => {
     return response?.documents[0];
   };
 
-  // TODO: Move this function to a separate file later
-  const updateUserInfo = async (userID: string, data: any) => {
-    const response = await api.updateDocument(
-      COLLECTION_ID_USERS,
-      userID,
-      data
-    );
-    return response;
-  };
-
   const { data: userObject } = useQuery("user", () => getUserInfo(userId));
 
   useEffect(() => {
-    console.log(
-      "====> INSIDE Settings.screen - userObject: ",
-      JSON.stringify(userObject, null, 2)
-    );
     setUserDocumentId(userObject?.$id); // This is the actual document Id - DIFFERENT from the 'userId'
     setProfilePictureId(userObject?.profilePicture);
   }, [userObject]);
@@ -76,9 +62,9 @@ const Settings = (props: SettingsProps) => {
 
   const queryClient = useQueryClient();
   const mutation = useMutation(
-    (updatedProfieImageId: string) => {
-      return updateUserInfo(userDocumentId!, {
-        profilePicture: updatedProfieImageId,
+    (updatedProfiePictureId: string) => {
+      return api.updateDocument(COLLECTION_ID_USERS, userDocumentId!, {
+        profilePicture: updatedProfiePictureId,
       });
     },
     {
@@ -106,10 +92,6 @@ const Settings = (props: SettingsProps) => {
         pickedImage.uri,
         BUCKET_PROFILE_PIC
       );
-      // console.log(
-      //   "======> uploadedImageResult",
-      //   JSON.stringify(uploadedImageResult, null, 2)
-      // );
 
       // Need to check "userDocumentId" -> use inside the mutate function
       if (userDocumentId) {
