@@ -23,7 +23,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [tasks, setTasks] = useState<Object[]>([]);
-  const [allMembers, setAllMembers] = useState<any[]>([]);
   const [projName, setProjectName] = useState("");
   const [projectGoals, setGoals] = useState<string[]>([]);
   const [buildProject, setBuildProject] = useState(false);
@@ -34,6 +33,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
 
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
+
+  const [allMembers, setAllMembers] = useState<any[]>([userId]);
 
   const handleBuildProject = () => {
     if (projName === "" || description === "" || category === "") {
@@ -94,6 +95,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   };
 
   const submitMsg = buildProject ? "Project Created!" : "Project Not Created!";
+
+  console.log(allMembers);
 
   console.log(buildProject);
   console.log(submitMsg);

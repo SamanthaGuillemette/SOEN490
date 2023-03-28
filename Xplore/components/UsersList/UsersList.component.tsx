@@ -6,6 +6,8 @@ import styles from "./UsersList.styles";
 import { Icon } from "../Icon";
 import { MessageMember } from "../MessageMember";
 import { NavigationProp } from "@react-navigation/native";
+import { useQuery } from "react-query";
+import api from "../../services/appwrite/api";
 
 interface UsersItemSelectProps {
   userID: string;
@@ -86,24 +88,32 @@ interface UsersListProps {
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
   const { setAllMembers, allMembers } = props;
+
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+
   return (
     <ScrollView
       pagingEnabled={true}
       onMomentumScrollBegin={props.fetchMoreUsers}
     >
       {props.selectUserList
-        ? props.data.map((user: any, index) => (
-            <UserItemSelect
-              setAllMembers={setAllMembers}
-              allMembers={allMembers}
-              key={index}
-              username={user.username}
-              profilepicture={user.profilepicture}
-              xp={user.xp}
-              userID={user.userID}
-              navigation={props.navigation}
-            />
-          ))
+        ? props.data.map((user: any, index) =>
+            user.userID !== userId ? (
+              <UserItemSelect
+                setAllMembers={setAllMembers}
+                allMembers={allMembers}
+                key={index}
+                username={user.username}
+                profilepicture={user.profilepicture}
+                xp={user.xp}
+                userID={user.userID}
+                navigation={props.navigation}
+              />
+            ) : (
+              <></>
+            )
+          )
         : null}
       {props.messageUserList
         ? props.data.map((user: any, index) => (
