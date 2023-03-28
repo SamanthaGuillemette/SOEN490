@@ -78,8 +78,14 @@ const useDeleteProject = (documentId: string) => {
 };
 
 // To update the list of projects per user once project is created
-const updateUserProjList = async (memberList: any, projectID: any) => {
+const updateUserProjList = async (memberList: any) => {
   try {
+    const lastCreatedDoc = await api.listDocuments(COLLECTION_ID_PROJECT, [
+      Query.orderDesc(""),
+      Query.limit(1),
+    ]);
+
+    const lastProjectID = lastCreatedDoc.documents[0].$id;
     let allMembers: any = [];
 
     memberList.forEach((memberID: any) => {
@@ -92,7 +98,7 @@ const updateUserProjList = async (memberList: any, projectID: any) => {
       ]);
       response?.documents?.map((doc: any) => {
         let projects = doc.projects;
-        projects.push(projectID);
+        projects.push(lastProjectID);
 
         api.updateDocument(COLLECTION_ID_USERS, doc.$id, {
           projects: projects,

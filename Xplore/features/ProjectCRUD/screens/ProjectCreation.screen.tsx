@@ -57,27 +57,28 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       members: allMembers,
     });
 
-    newProject.mutateAsync({
-      project: {
-        name: projName,
-        description: description,
-        category: category,
-        startDate: startDate,
-        endDate: endDate,
-        goals: projectGoals,
-        members: allMembers,
-        percentComplete: 0,
-        projectOwner: userId,
-        imageURL: imageURL,
-      },
-      tasks: tasks,
-    });
+    newProject
+      .mutateAsync({
+        project: {
+          name: projName,
+          description: description,
+          category: category,
+          startDate: startDate,
+          endDate: endDate,
+          goals: projectGoals,
+          members: allMembers,
+          percentComplete: 0,
+          projectOwner: userId,
+          imageURL: imageURL,
+        },
+        tasks: tasks,
+      })
+      .then(() => updateUserProjList(allMembers));
     setBuildProject(true);
     Alert.alert("Success", "Project created successfully", [
       { text: "OK", onPress: () => props.navigation.navigate("Home") },
     ]);
     resetValues();
-    //updateUserProjList(allMembers);
     return true;
   };
 
