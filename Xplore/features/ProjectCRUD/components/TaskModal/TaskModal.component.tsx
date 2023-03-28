@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import styles from "./TaskModal.styles";
 import { TouchableOpacity } from "react-native";
 import {
@@ -32,6 +32,22 @@ export const TaskModal = (props: TaskModalProps) => {
 
   const [btnClicked, setBtnClicked] = useState(false);
   const { onPress, tasks, setTasks } = props;
+  const [categoryText, setCategoryText] = useState("Category");
+  
+  const options = [
+    { label: "Meeting", value: "option1" },
+    { label: "Planning-Research", value: "option2" },
+    { label: "Planning-Budget", value: "option3" },
+    { label: "Design-UI design", value: "option4" },
+    { label: "Design-Brainstorming", value: "option5" },
+    { label: "Development-Frontend", value: "option6" },
+    { label: "Development-Backend", value: "option7" },
+    { label: "Testing-unit testing", value: "option8" },
+    { label: "Testing-System Testing", value: "option9" },
+    { label: "Deployment", value: "option10" },
+  ];
+
+  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
 
   const added = () => {
     setBtnClicked(true);
@@ -48,28 +64,30 @@ export const TaskModal = (props: TaskModalProps) => {
     setTaskCategory("");
   };
 
-  const [categoryText, setCategoryText] = useState("Category");
-
   const handleValueChange = (label: string) => {
     setTaskCategory(label);
     const selectedOption = options.find((option) => option.label === label);
     setCategoryText(selectedOption?.label || "Category");
   };
 
-  const options = [
-    { label: "Meeting", value: "option1" },
-    { label: "Planning-Research", value: "option2" },
-    { label: "Planning-Budget", value: "option3" },
-    { label: "Design-UI design", value: "option4" },
-    { label: "Design-Brainstorming", value: "option5" },
-    { label: "Development-Frontend", value: "option6" },
-    { label: "Development-Backend", value: "option7" },
-    { label: "Testing-unit testing", value: "option8" },
-    { label: "Testing-System Testing", value: "option9" },
-    { label: "Deployment", value: "option10" },
-  ];
-
-  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
+  const handleEmptyValues = (taskName: any, taskDesc: any, categoryText: any) => {
+    if (taskName.trim().length === 0 || taskDesc.trim().length === 0 || categoryText === "Category") {
+      Alert.alert("You are missing required fields!");
+    } else {
+      added();
+      reset();
+      const newTask = {
+        name: taskName,
+        description: taskDesc,
+        category: taskCategory,
+        startDate: startDate,
+        endDate: endDate,
+      };
+      console.log(newTask);
+      setTasks([...tasks, newTask]);
+      console.log(tasks);
+    }
+  };
 
   // const { data, status } = useCreateNewTask();
   return (
@@ -115,18 +133,7 @@ export const TaskModal = (props: TaskModalProps) => {
             styles.alignTouchable,
           ]}
           onPress={async () => {
-            added();
-            reset();
-            const newTask = {
-              name: taskName,
-              description: taskDesc,
-              category: taskCategory,
-              startDate: startDate,
-              endDate: endDate,
-            };
-            console.log(newTask);
-            setTasks([...tasks, newTask]);
-            console.log(tasks);
+            handleEmptyValues(taskName, taskDesc, categoryText)
           }}
         >
           <Icon
