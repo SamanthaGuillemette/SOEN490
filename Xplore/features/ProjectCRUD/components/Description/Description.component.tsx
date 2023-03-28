@@ -1,4 +1,4 @@
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Image } from "react-native";
 import styles from "./Description.styles";
 import {
   DatePicker,
@@ -41,8 +41,12 @@ export const Description = (props: DescriptionProps) => {
       quality: 1,
     });
 
+    console.log(pickedImage);
+
     if (!pickedImage.cancelled) {
       setLocalImage(pickedImage.uri);
+      setImageURL(pickedImage.uri);
+      console.log(localImage);
 
       const uploadedImageResult: any = await uploadImageToServer(
         pickedImage.uri,
@@ -56,7 +60,7 @@ export const Description = (props: DescriptionProps) => {
           BUCKET_PROJECT_PIC,
           uploadedImageId
         );
-        props.setImageURL(imagePreview.toString());
+        // props.setImageURL(imagePreview.toString());
         setLocalImage(imagePreview.toString());
 
         // if (props.setImageURL) {
@@ -80,7 +84,11 @@ export const Description = (props: DescriptionProps) => {
       <View style={styles.editImageContainer}>
         <TouchableOpacity onPress={() => handleUploadImage()}>
           <ShadowView style={styles.circle}>
-            <Icon name="image" size="x-large" style={styles.alignImage} />
+            {localImage ? (
+              <Image source={{ uri: localImage }} style={styles.alignImage} />
+            ) : (
+              <Icon name="image" size="x-large" style={styles.alignImage} />
+            )}
           </ShadowView>
         </TouchableOpacity>
       </View>
