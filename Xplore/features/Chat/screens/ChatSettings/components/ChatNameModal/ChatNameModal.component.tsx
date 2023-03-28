@@ -21,6 +21,7 @@ export const ChatNameModal = ({
 }: ChatNameModalProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const bodyText = useThemeColor("bodyText");
   const [name, setName] = useState("");
 
   function handleIndexSelect() {
@@ -44,7 +45,7 @@ export const ChatNameModal = ({
               placeHolder="Group Name"
               iconName="user"
               onChangeText={(thisName) => setName(thisName)}
-              style={styles.textInput}
+              style={[styles.textInput, { color: bodyText }]}
             />
             <PrimaryButton
               label="Change Name"

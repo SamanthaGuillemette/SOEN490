@@ -10,6 +10,7 @@ import { useQuery } from "react-query";
 import api from "../../services/appwrite/api";
 import { createNewGroupChat } from "../../services/api/chats";
 import { addToChat, removeFromChat } from "../../services/api/chatSettings";
+import { createGroupAddNotif } from "../../services/api/notifications";
 import styles from "./MembersActionsModal.styles";
 
 interface MembersActionsModalProps {
@@ -17,6 +18,7 @@ interface MembersActionsModalProps {
   action: string; // this is used to label primary action button
   users: any;
   chatID?: string;
+  chatName?: string;
 }
 
 export const MembersActionsModal = ({
@@ -24,6 +26,7 @@ export const MembersActionsModal = ({
   action,
   users,
   chatID,
+  chatName,
 }: MembersActionsModalProps) => {
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
@@ -44,6 +47,9 @@ export const MembersActionsModal = ({
     }
     if (action === "Add Members" && selectedUsers.length > 0) {
       addToChat(selectedUsers, chatID);
+      for (const userID of selectedUsers) {
+        createGroupAddNotif(userID, chatID, chatName);
+      }
     }
     if (action === "Remove Members" && selectedUsers) {
       removeFromChat(selectedUsers, chatID);

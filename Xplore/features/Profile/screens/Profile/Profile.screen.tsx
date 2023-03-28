@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Image,
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar } from "../../../../components";
@@ -20,6 +21,7 @@ import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
+import { useNewNotificationsCount } from "../../../../services/api/notifications";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -76,6 +78,7 @@ const Profile = (props: ProfileProps) => {
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
+  const newNotifsCount = useNewNotificationsCount(userdata?.$id);
 
   return (
     <SafeAreaView
@@ -130,6 +133,12 @@ const Profile = (props: ProfileProps) => {
             }}
           >
             <Icon name="bell" color="primary" size="large" />
+            {newNotifsCount > 0 ? (
+              <Image
+                source={require("../../../../assets/newNotifs.png")}
+                style={styles.newNotificationIcon}
+              />
+            ) : null}
           </TouchableOpacity>
         </View>
 
