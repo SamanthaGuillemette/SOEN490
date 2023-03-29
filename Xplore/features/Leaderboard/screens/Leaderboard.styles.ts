@@ -10,10 +10,11 @@ export default StyleSheet.create({
   },
   leaderboardContainer: {
     flex: 1,
-    marginHorizontal: 20,
+    marginHorizontal: 30,
     marginVertical: 45,
     marginBottom: 90,
-    paddingHorizontal: 2,
+    paddingHorizontal: 30,
+    paddingVertical: 25,
     borderRadius: 8,
     overflow: "hidden",
   },

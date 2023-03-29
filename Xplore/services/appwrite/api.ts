@@ -17,6 +17,7 @@ const storage = new Storage(client);
 
 const api = {
   query: Query,
+
   createAccount: (email: string, password: string, name: string) => {
     return account.create(ID.unique(), email, password, name);
   },

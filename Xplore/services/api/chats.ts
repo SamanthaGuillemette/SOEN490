@@ -6,6 +6,7 @@ import {
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
+import { createGroupAddNotif } from "./notifications";
 import api from "../appwrite/api";
 
 interface Chat {
@@ -62,6 +63,20 @@ const createNewChat = async (chatData: any) => {
   });
 };
 
+const createNewGroupChat = async (chatData: any) => {
+  const chatID = generateRandomChatID();
+  for (const userID of chatData) {
+    await api.createDocument(COLLECTION_ID_GROUP_CHATS, {
+      userID,
+      chatID,
+      chatName: "My Group Chat",
+      seen: false,
+      lastModifiedAt: new Date().toISOString(),
+    });
+    createGroupAddNotif(userID, chatID, "My Group Chat");
+  }
+};
+
 const getChats = async (collectionId: any, userId: any) => {
   const response = await api.listDocuments(collectionId, [
     Query.equal("userID", userId),
@@ -73,32 +88,31 @@ const getChats = async (collectionId: any, userId: any) => {
       if (collectionId === COLLECTION_ID_DIRECT_CHATS) {
         contactInfo = await getContactInfo(doc.contactID);
       }
-
-      // filter out chats with seen=false and lastMessage="Start chatting!"
-      if (doc.lastMessage !== "Start chatting!") {
-        return {
-          chatIndex: doc.$id,
-          chatID: doc.chatID,
-          userID: doc.userID,
-          chatType:
-            collectionId === COLLECTION_ID_DIRECT_CHATS ? "direct" : "group",
-          chatName:
-            collectionId === COLLECTION_ID_GROUP_CHATS
-              ? doc.chatName
-              : contactInfo && contactInfo[0]?.username,
-          contactAvatar: contactInfo && contactInfo[0]?.avatar,
-          lastMessage: doc.lastMessage,
-          seen: doc.seen,
-          lastModifiedAt: doc.lastModifiedAt,
-        };
-      } else {
-        return null; // filter out unwanted chats
-      }
+      return {
+        chatIndex: doc.$id,
+        chatID: doc.chatID,
+        userID: doc.userID,
+        chatType:
+          collectionId === COLLECTION_ID_DIRECT_CHATS ? "direct" : "group",
+        chatName:
+          collectionId === COLLECTION_ID_GROUP_CHATS
+            ? doc.chatName
+            : contactInfo && contactInfo[0]?.username,
+        contactAvatar: contactInfo && contactInfo[0]?.avatar,
+        lastMessage: doc.lastMessage,
+        seen: doc.seen,
+        lastModifiedAt: doc.lastModifiedAt,
+      };
     })
   );
 
-  // filter out null values
-  return chats.filter((chat) => chat !== null);
+  const filteredChats = chats.filter(
+    (chat) =>
+      chat.chatType === "group" ||
+      (chat.chatType === "direct" && chat.lastMessage !== "Start chatting!")
+  );
+
+  return filteredChats;
 };
 
 const useListChats = (userId: any) => {
@@ -156,6 +170,7 @@ const markAsSeen = async (chatType: string, chatID: any, userId: any) => {
 export {
   useListChats,
   createNewChat,
+  createNewGroupChat,
   generateRandomChatID,
   markAsSeen,
   getContactInfo,

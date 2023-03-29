@@ -12,7 +12,7 @@ const styles = {
 describe("InputField", () => {
   it("should render Testing123", () => {
     const { queryByPlaceholder } = render(
-      <InputField placeHolder="Testing123" style={styles.InputField} />
+      <InputField placeHolder="Testing123" />
     );
     expect(queryByPlaceholder("Testing123")).not.toBeNull();
   });
