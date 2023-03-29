@@ -9,6 +9,7 @@ import {
 import styles from "./SignIn.styles";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { useAuth } from "../../../../hooks";
+import { Alert } from "react-native";
 interface SignInProps {
   navigation: NavigationProp<any>;
 }
@@ -19,6 +20,22 @@ const SignIn = (props: SignInProps) => {
   const [password, setPassword] = React.useState("");
 
   const { signIn, loading } = useAuth();
+
+  const handleLoginValues = (
+    email: any,
+    password: any,
+  ) => {
+    if (
+      email.trim().length === 0 ||
+      password.trim().length === 0
+    ) {
+      Alert.alert("Error", "You are missing required fields!");
+    } else {
+      signIn(email, password);
+      setEmail("");
+      setPassword("");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -43,9 +60,7 @@ const SignIn = (props: SignInProps) => {
         label="SIGN IN"
         style={styles.PrimaryButton}
         onPress={() => {
-          signIn(email, password);
-          setEmail("");
-          setPassword("");
+          handleLoginValues(email, password);
         }}
       />
       <SecondaryButton
