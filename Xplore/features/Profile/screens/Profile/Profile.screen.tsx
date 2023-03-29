@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Animated,
   SafeAreaView,
@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar } from "../../../../components";
-import { useThemeColor } from "../../../../hooks";
+import { useAuth, useThemeColor } from "../../../../hooks";
 import { deviceScreenWidth } from "../../../../constants";
 import {
   Badges,
@@ -20,6 +20,8 @@ import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
+import { getUserInfo } from "../../api/user";
+import { BUCKET_PROFILE_PIC } from "@env";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -33,6 +35,9 @@ const Profile = (props: ProfileProps) => {
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
+  const { sessionToken } = useAuth();
+  const [userId] = useState<string>(sessionToken?.userId!);
+  const [profilePictureId, setProfilePictureId] = useState<string>();
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const offset = headerHeight - headerFinalHeight;
@@ -72,9 +77,27 @@ const Profile = (props: ProfileProps) => {
   });
 
   // Get user data from DB, renamed 'data' to 'userdata' to avoid confusion
-  const { data: userdata } = useQuery("user data", () => api.getAccount());
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
+  );
+
+  const { data: userObject } = useQuery("user", () => getUserInfo(userId));
+
+  useEffect(() => {
+    setProfilePictureId(userObject?.profilePicture);
+  }, [userObject]);
+
+  const { data: profilePicture } = useQuery(
+    "profile picture",
+    () =>
+      api.getFilePreview(
+        BUCKET_PROFILE_PIC,
+        profilePictureId ?? "642349fae9ecff15d018"
+      ),
+    {
+      // This query will only run if "profilePictureId" is valid
+      enabled: !!profilePictureId,
+    }
   );
 
   return (
@@ -144,11 +167,7 @@ const Profile = (props: ProfileProps) => {
             },
           ]}
         >
-          <Avatar
-            size={135}
-            name="user avatar"
-            imageURL="https://picsum.photos/200"
-          />
+          <Avatar size={135} name="user avatar" imageURL={profilePicture} />
         </Animated.View>
 
         <Animated.View
@@ -163,7 +182,7 @@ const Profile = (props: ProfileProps) => {
           ]}
         >
           <Text variant="h2" color="titleText" style={styles.userName}>
-            {userdata?.name}
+            {userObject?.username}
           </Text>
           <View style={styles.userInfoDetails}>
             <Icon

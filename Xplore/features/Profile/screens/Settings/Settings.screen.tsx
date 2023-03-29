@@ -13,7 +13,7 @@ import { BUCKET_PROFILE_PIC, COLLECTION_ID_USERS } from "@env";
 import { uploadImageToServer } from "../../../../utils";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import styles from "./Settings.styles";
-import { Query } from "appwrite";
+import { getUserInfo } from "../../api/user";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -28,14 +28,6 @@ const Settings = (props: SettingsProps) => {
   const [profilePictureId, setProfilePictureId] = useState<string>();
   const [localProfilePic, setLocalProfilePic] = useState<URL>();
 
-  // TODO: Move this function to a separate file later
-  const getUserInfo = async (userID: string) => {
-    const response = await api.listDocuments(COLLECTION_ID_USERS, [
-      Query.equal("userID", userID),
-    ]);
-    return response?.documents[0];
-  };
-
   const { data: userObject } = useQuery("user", () => getUserInfo(userId));
 
   useEffect(() => {
@@ -48,7 +40,7 @@ const Settings = (props: SettingsProps) => {
     () =>
       api.getFilePreview(
         BUCKET_PROFILE_PIC,
-        profilePictureId ?? "63edd6618559f6420892"
+        profilePictureId ?? "642349fae9ecff15d018"
       ),
     {
       // This query will only run if "profilePictureId" is valid
