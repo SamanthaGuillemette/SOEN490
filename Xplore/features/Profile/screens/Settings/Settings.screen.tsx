@@ -4,7 +4,7 @@ import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Avatar, Icon, ShadowView } from "../../../../components";
-import { EditButton } from "../../components";
+import { EditButton, GobackButton } from "../../components";
 import { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useAuth, useThemeColor } from "../../../../hooks";
@@ -100,15 +100,7 @@ const Settings = (props: SettingsProps) => {
         style={styles.safeAreaStyle}
       >
         <ScrollView>
-          <View style={styles.backButton}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.goBack();
-              }}
-            >
-              <Icon name="chevron-left" color="primary" />
-            </TouchableOpacity>
-          </View>
+          <GobackButton navigation={navigation} />
 
           <View style={styles.avatarContainer}>
             <Avatar size={135} name="user avatar" imageURL={localProfilePic} />

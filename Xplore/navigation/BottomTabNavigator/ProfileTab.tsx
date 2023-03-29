@@ -3,8 +3,8 @@ import {
   Notification,
   Profile,
   Settings,
+  UpdatePassword,
 } from "../../features/Profile/screens";
-import UpdatePassword from "../../features/Profile/screens/Settings/UpdatePassword.screen";
 
 const ProfileStack = createNativeStackNavigator();
 

@@ -1,15 +1,9 @@
 import { useState } from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
-import {
-  Icon,
-  PrimaryButton,
-  Text,
-  TextInput,
-  View,
-} from "../../../../components";
+import { ScrollView } from "react-native";
+import { PrimaryButton, Text, TextInput, View } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";
-import { ProfileModal } from "../../components";
+import { GobackButton, ProfileModal } from "../../components";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./UpdatePassword.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -55,15 +49,7 @@ const UpdatePassword = (props: UpdatePasswordProps) => {
   return (
     <SafeAreaView edges={["top", "left", "right"]} style={styles.safeAreaStyle}>
       <ScrollView>
-        <View style={styles.backButton}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
-            <Icon name="chevron-left" color="primary" />
-          </TouchableOpacity>
-        </View>
+        <GobackButton navigation={navigation} />
 
         <View style={styles.container}>
           <View style={styles.textItems}>

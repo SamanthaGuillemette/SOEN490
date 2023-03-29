@@ -5,12 +5,6 @@ export default StyleSheet.create({
   safeAreaStyle: {
     flex: 1,
   },
-  backButton: {
-    paddingTop: 25,
-    paddingLeft: 23,
-    paddingBottom: 16,
-    width: 80,
-  },
   avatarContainer: {
     alignItems: "center",
   },
