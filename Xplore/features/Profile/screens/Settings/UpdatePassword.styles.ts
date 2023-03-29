@@ -1,10 +1,18 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  safeAreaStyle: {
+    flex: 1,
+  },
   container: {
-    paddingTop: "25%",
     alignItems: "center",
     paddingHorizontal: "10%",
+  },
+  backButton: {
+    paddingTop: 25,
+    paddingLeft: 23,
+    paddingBottom: 16,
+    width: 80,
   },
   textItems: {
     marginVertical: "20%",
