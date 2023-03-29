@@ -81,7 +81,7 @@ const formatUserListData = (data: any) => {
   data?.pages.forEach((page: { projects: any }) =>
     page.projects.forEach((project: any) => formattedData.push(project as any))
   );
-  // console.log(formattedData[1]);
+
   return formattedData;
 };
 

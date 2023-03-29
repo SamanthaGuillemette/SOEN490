@@ -105,7 +105,6 @@ export const DatePicker = (props: DatePickerProps) => {
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
               onPress={() => {
-                console.log("temp date", tempDate);
                 setDate(tempDate);
                 setOpenCalendar(!openCalendar);
               }}

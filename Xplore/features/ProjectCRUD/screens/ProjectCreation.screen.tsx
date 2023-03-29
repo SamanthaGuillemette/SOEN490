@@ -46,17 +46,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       return false;
     }
 
-    console.log({
-      name: projName,
-      description: description,
-      category: category,
-      tasks: tasks,
-      startDate: Date.now().toString(),
-      endDate: Date.now().toString(),
-      goals: projectGoals,
-      members: allMembers,
-    });
-
     newProject
       .mutateAsync({
         project: {
@@ -95,17 +84,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
     setEndDate("");
   };
 
-  const submitMsg = buildProject ? "Project Created!" : "Project Not Created!";
-
-  console.log(allMembers);
-
-  console.log(buildProject);
-  console.log(submitMsg);
-
-  console.log(newProject.data);
-  console.log("startDate:", startDate);
-  console.log("endDate:", endDate);
-
   return (
     <StepIndicator
       setBuildProject={handleBuildProject}
@@ -134,7 +112,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         />,
       ]}
       navigation={props.navigation}
-      // onSubmitMsg={submitMsg}
     />
   );
 };

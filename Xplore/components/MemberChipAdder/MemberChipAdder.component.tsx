@@ -25,8 +25,6 @@ export const MemberChipAdder = () => {
     useState<any>(false);
   const [allMembers, setAllMembers] = useState<any[]>([]);
 
-  console.log(allMembers);
-
   return (
     <View style={styles.containerParticipants}>
       <TouchableOpacity
@@ -51,7 +49,6 @@ export const MemberChipAdder = () => {
         )}
       </TouchableOpacity>
       {useAllMembersInfo(allMembers).map((member: any, index) => {
-        console.log(member.username); // add this line to log the value of member
         return (
           <MemberChip
             key={index}

@@ -48,12 +48,9 @@ export const Description = (props: DescriptionProps) => {
       quality: 1,
     });
 
-    console.log(pickedImage);
-
     if (!pickedImage.cancelled) {
       setLocalImage(pickedImage.uri);
       setImageURL(pickedImage.uri);
-      console.log(localImage);
 
       const uploadedImageResult: any = await uploadImageToServer(
         pickedImage.uri,
@@ -67,13 +64,7 @@ export const Description = (props: DescriptionProps) => {
           BUCKET_PROJECT_PIC,
           uploadedImageId
         );
-        // props.setImageURL(imagePreview.toString());
         setLocalImage(imagePreview.toString());
-
-        // if (props.setImageURL) {
-        //   // Check if setImageURL is defined before calling it
-        //   props.setImageURL(imagePreview.toString());
-        // }
       }
     }
   };

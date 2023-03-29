@@ -100,9 +100,7 @@ export const TaskModal = (props: TaskModalProps) => {
         startDate: startDate,
         endDate: endDate,
       };
-      console.log(newTask);
       setTasks([...tasks, newTask]);
-      console.log(tasks);
     }
   };
 
