@@ -32,9 +32,7 @@ const ProjectDescription = () => {
               projectID={item.$id}
               projectName={item.name}
             />
-          ) : (
-            <></>
-          )}
+          ) : null}
         </View>
       </ScrollView>
     </View>

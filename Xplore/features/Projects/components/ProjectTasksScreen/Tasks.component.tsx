@@ -23,9 +23,7 @@ export const Tasks = (props: TasksProps) => {
           {allTasks.map((singleTask, i) =>
             singleTask.completed === false ? (
               <TaskCard navigation={navigation} taskInfo={singleTask} key={i} />
-            ) : (
-              <></>
-            )
+            ) : null
           )}
         </View>
       </ScrollView>
