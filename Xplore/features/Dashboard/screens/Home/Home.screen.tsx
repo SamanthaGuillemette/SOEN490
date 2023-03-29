@@ -36,6 +36,8 @@ const Home = (props: HomeProps) => {
 
     setIsButtonExpanded(currentScrollPosition <= 0);
   };
+  //deleteAllDocuments(COLLECTION_ID_USERS);
+  //seedUsersFromAuth();
 
   return (
     <SafeAreaView
