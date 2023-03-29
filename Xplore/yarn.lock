@@ -1490,7 +1490,7 @@
     "@expo/ngrok-bin-win32-ia32" "2.3.40"
     "@expo/ngrok-bin-win32-x64" "2.3.40"
 
-"@expo/ngrok@^4.1.0":
+"@expo/ngrok@4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@expo/ngrok/-/ngrok-4.1.0.tgz#d013ecc694c69132ba72d56562c42f7dc22bd517"
   integrity sha512-PrtWxBt/SnOF1jZkf7oWznhEPFrmYKKeJPLVRKnEBd/y4eUYfoiNIXOzflIzhdrMubjWVI+pFuPJ6nkjVL95/Q==

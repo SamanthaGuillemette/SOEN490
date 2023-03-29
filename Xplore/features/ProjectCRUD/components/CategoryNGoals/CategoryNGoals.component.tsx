@@ -54,9 +54,6 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
     props.setGoals([goal1, goal2, goal3]);
   };
 
-  console.log(goal1, goal2, goal3);
-  console.log(setTaskCategory);
-
   return (
     <View style={styles.container}>
       <View style={styles.containerTech}>

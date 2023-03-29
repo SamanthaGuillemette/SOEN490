@@ -1,7 +1,18 @@
 //removed useQuery import for the time being
-import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
-import { COLLECTION_ID_PROJECT, COLLECTION_ID_PROJECT_TASKS } from "@env";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
+import {
+  COLLECTION_ID_PROJECT,
+  COLLECTION_ID_PROJECT_TASKS,
+  COLLECTION_ID_USERS,
+} from "@env";
 import api from "../appwrite/api";
+import { useEffect, useState } from "react";
+import { Query } from "appwrite";
 
 //to be defined
 interface Project {}
@@ -25,17 +36,34 @@ const useListProjectsPaginated = () => {
   });
 };
 
-const useCreateProject = (data: Project) => {
-  return useMutation(() => api.createDocument(COLLECTION_ID_PROJECT, data));
-};
-
 const useCreateNewProject = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: any) => api.createDocument(COLLECTION_ID_PROJECT, data),
+    mutationFn: async (data: any) => {
+      console.log(data);
+      let taskIDs: string[] = [];
+      for (const task of data.tasks) {
+        try {
+          const res = await api.createDocument(
+            COLLECTION_ID_PROJECT_TASKS,
+            task
+          );
+          taskIDs.push(res.$id);
+        } catch (e) {
+          console.log(
+            "shit got fucked up yo, this is what the server said: ${e}"
+          );
+        }
+      }
+      return api.createDocument(COLLECTION_ID_PROJECT, {
+        ...data.project,
+        tasks: taskIDs,
+      });
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["projects"] });
     },
+    retry: 2,
   });
 };
 
@@ -49,6 +77,39 @@ const useDeleteProject = (documentId: string) => {
   });
 };
 
+// To update the list of projects per user once project is created
+const updateUserProjList = async (memberList: any) => {
+  try {
+    const lastCreatedDoc = await api.listDocuments(COLLECTION_ID_PROJECT, [
+      Query.orderDesc(""),
+      Query.limit(1),
+    ]);
+
+    const lastProjectID = lastCreatedDoc.documents[0].$id;
+    let allMembers: any = [];
+
+    memberList.forEach((memberID: any) => {
+      allMembers.push(memberID);
+    });
+
+    for (const memberID of allMembers) {
+      const response = await api.listDocuments(COLLECTION_ID_USERS, [
+        Query.equal("userID", memberID),
+      ]);
+      response?.documents?.map((doc: any) => {
+        let projects = doc.projects;
+        projects.push(lastProjectID);
+
+        api.updateDocument(COLLECTION_ID_USERS, doc.$id, {
+          projects: projects,
+        });
+      });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const useCreateNewTask = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -60,10 +121,74 @@ const useCreateNewTask = () => {
   });
 };
 
+// const useFetchUserInfo = (userIds: string[]) => {
+//   const [users, setUsers] = useState<
+//     { userId: string; profilePicture: string }[]
+//   >([]);
+
+//   useEffect(() => {
+//     const fetchInfo = async () => {
+//       try {
+//         const response = await api.listDocuments(COLLECTION_ID_USERS, [
+//           Query.in("userId", userIds),
+//         ]);
+
+//         const data = await Promise.all(
+//           response?.documents?.map(async (doc) => ({
+//             userId: doc.userId,
+//             profilePicture: doc.imageURL,
+//           })) || []
+//         );
+//         setUsers(data);
+//       } catch (e) {
+//         console.log(e);
+//       }
+//     };
+//     fetchInfo();
+//   }, [userIds]);
+
+//   return users;
+// };
+
+const useAllMembersInfo = (listOfMembers: any) => {
+  const [allMembers, setAllMembers] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const membersList = listOfMembers;
+
+        // Looping through list of members
+        for (let index in membersList) {
+          const response = await api.listDocuments(COLLECTION_ID_USERS, [
+            Query.equal("userID", membersList[index]),
+          ]);
+
+          const data = await Promise.all(
+            response?.documents?.map(async (doc) => ({
+              username: doc.username,
+              profilePicture: doc.imageURL,
+              xp: doc.xp,
+              userID: doc.userID,
+            }))
+          );
+          setAllMembers((oldArray) => [...oldArray, data[0]]); // pushing to array
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchInfo();
+  }, [listOfMembers]);
+
+  return allMembers; // returning array of all members for specific project
+};
+
 export {
-  useCreateProject,
   useDeleteProject,
   useListProjectsPaginated,
   useCreateNewTask,
   useCreateNewProject,
+  useAllMembersInfo,
+  updateUserProjList,
 };

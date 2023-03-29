@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import styles from "./TaskModal.styles";
 import { TouchableOpacity } from "react-native";
 import {
@@ -7,7 +7,7 @@ import {
   DatePicker,
   Icon,
   InputField,
-  //MemberChipAdder,
+  MemberChipAdder,
   ShadowView,
   Text,
 } from "../../../../components";
@@ -25,12 +25,34 @@ export const TaskModal = (props: TaskModalProps) => {
   const [taskCategory, setTaskCategory] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [allMembers, setAllMembers] = useState<any[]>([]);
   // const [setTask] = useState("");
   // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+  const formattedToday = yyyy + "-" + mm + "-" + dd;
 
   const [btnClicked, setBtnClicked] = useState(false);
   const { onPress, tasks, setTasks } = props;
+  const [categoryText, setCategoryText] = useState("Category");
+
+  const options = [
+    { label: "Meeting", value: "option1" },
+    { label: "Planning-Research", value: "option2" },
+    { label: "Planning-Budget", value: "option3" },
+    { label: "Design-UI design", value: "option4" },
+    { label: "Design-Brainstorming", value: "option5" },
+    { label: "Development-Frontend", value: "option6" },
+    { label: "Development-Backend", value: "option7" },
+    { label: "Testing-unit testing", value: "option8" },
+    { label: "Testing-System Testing", value: "option9" },
+    { label: "Deployment", value: "option10" },
+  ];
+
+  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
 
   const added = () => {
     setBtnClicked(true);
@@ -47,28 +69,75 @@ export const TaskModal = (props: TaskModalProps) => {
     setTaskCategory("");
   };
 
-  const [categoryText, setCategoryText] = useState("Category");
-
   const handleValueChange = (label: string) => {
     setTaskCategory(label);
     const selectedOption = options.find((option) => option.label === label);
     setCategoryText(selectedOption?.label || "Category");
   };
 
-  const options = [
-    { label: "Project Planning", value: "option1" },
-    { label: "Development", value: "option2" },
-    { label: "Testing", value: "option3" },
-    { label: "Deployment", value: "option4" },
-    { label: "Documentation", value: "option5" },
-    { label: "Maintenance", value: "option6" },
-    { label: "Meetings", value: "option7" },
-    { label: "Research", value: "option8" },
-    { label: "Training", value: "option9" },
-    { label: "other", value: "option10" },
-  ];
+  const handleEmptyValues = (
+    taskName: any,
+    taskDesc: any,
+    categoryText: any,
+    startDate: any,
+    endDate: any
+  ) => {
+    if (
+      taskName.trim().length === 0 ||
+      taskDesc.trim().length === 0 ||
+      categoryText === "Category" ||
+      startDate.trim().length === 0 ||
+      endDate.trim().length === 0
+    ) {
+      Alert.alert("Error", "You are missing required fields!");
+    } else {
+      added();
+      reset();
+      const newTask = {
+        name: taskName,
+        description: taskDesc,
+        category: taskCategory,
+        startDate: startDate,
+        endDate: endDate,
+      };
+      setTasks([...tasks, newTask]);
+    }
+  };
 
-  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
+  const handleStartDate = (sDate: string) => {
+    if (sDate < formattedToday) {
+      Alert.alert(
+        "Error",
+        "Invalid start date. Must occur today or in the future."
+      );
+      setStartDate("");
+    } else if (endDate !== "") {
+      if (sDate > endDate) {
+        Alert.alert("Error", "Invalid start date. Must occur before end date.");
+        setStartDate("");
+      } else {
+        setStartDate(sDate);
+      }
+    } else {
+      setStartDate(sDate);
+    }
+  };
+
+  const handleEndDate = (eDate: string) => {
+    if (eDate <= formattedToday) {
+      Alert.alert("Error", "Invalid end date. Must occur after today.");
+      setEndDate("");
+    } else if (startDate !== "") {
+      if (eDate > startDate) {
+        setEndDate(eDate);
+      } else {
+        Alert.alert("Error", "Invalid end date. Must occur after start date.");
+        setEndDate("");
+      }
+    } else {
+      setEndDate(eDate);
+    }
+  };
 
   // const { data, status } = useCreateNewTask();
   return (
@@ -103,15 +172,18 @@ export const TaskModal = (props: TaskModalProps) => {
         </View>
       </View>
       <View style={styles.alignDatePicker}>
-        <DatePicker title="Starts" setDate={setStartDate} />
-        <DatePicker title="Ends" setDate={setEndDate} />
+        <DatePicker
+          title="Starts"
+          setDate={handleStartDate}
+          shouldDisplayDate={startDate !== ""}
+        />
+        <DatePicker
+          title="Ends"
+          setDate={handleEndDate}
+          shouldDisplayDate={endDate !== ""}
+        />
       </View>
-      <View style={styles.textViewParticipant}>
-        {/* <Text color="titleText" variant="h3">
-          Participants
-        </Text> */}
-      </View>
-      {/* <MemberChipAdder /> */}
+
       <ShadowView style={[styles.button]}>
         <TouchableOpacity
           style={[
@@ -119,18 +191,13 @@ export const TaskModal = (props: TaskModalProps) => {
             styles.alignTouchable,
           ]}
           onPress={async () => {
-            added();
-            reset();
-            const newTask = {
-              name: taskName,
-              description: taskDesc,
-              category: taskCategory,
-              startDate: startDate,
-              endDate: endDate,
-            };
-            console.log(newTask);
-            setTasks([...tasks, newTask]);
-            console.log(tasks);
+            handleEmptyValues(
+              taskName,
+              taskDesc,
+              categoryText,
+              startDate,
+              endDate
+            );
           }}
         >
           <Icon

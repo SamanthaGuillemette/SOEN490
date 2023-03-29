@@ -11,6 +11,13 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  alignDatePicker: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    paddingHorizontal: 15,
+    marginBottom: 10,
+  },
   circle: {
     width: 127,
     height: 127,
