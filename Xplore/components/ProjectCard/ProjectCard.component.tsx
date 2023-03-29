@@ -12,10 +12,10 @@ interface ProjectCardProps {
   item: {
     name: string;
     description: string;
-    projectImage?: string;
-    tasks?: number;
+    imageURL?: string;
+    tasks?: string[];
     conversation?: number;
-    members?: number;
+    members?: string[];
     percentComplete: number;
   };
 }
@@ -24,7 +24,9 @@ export const ProjectCard = (props: ProjectCardProps) => {
 
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate("ProjectDetails")}
+      onPress={() =>
+        props.navigation.navigate("ProjectDetails", { item: item })
+      }
     >
       <ShadowView
         backgroundColor="backgroundSecondary"
@@ -32,7 +34,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
         key={item.name}
       >
         <Image
-          source={{ uri: "https://picsum.photos/200" }}
+          source={{ uri: item.imageURL !== "" ? item.imageURL : undefined }}
           style={styles.projectImage}
         />
 
@@ -59,21 +61,14 @@ export const ProjectCard = (props: ProjectCardProps) => {
             <View style={styles.statIcon}>
               <Icon name="file-text" size="medium" style={styles.icon} />
               <Text variant="smBody" color="bodyText">
-                {item.tasks}
-              </Text>
-            </View>
-
-            <View style={styles.statIcon}>
-              <Icon name="message-circle" size="medium" style={styles.icon} />
-              <Text variant="smBody" color="bodyText">
-                {item.conversation}
+                {item.tasks?.length}
               </Text>
             </View>
 
             <View style={styles.statIcon}>
               <Icon name="users" size="medium" style={styles.icon} />
               <Text variant="smBody" color="bodyText">
-                {item.members}
+                {item.members?.length}
               </Text>
             </View>
           </View>
