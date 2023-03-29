@@ -14,7 +14,7 @@ interface LeaderboardProps {
 const Leaderboard = (props: LeaderboardProps) => {
   const { navigation } = props;
   const backgroundSecondary = useThemeColor("backgroundSecondary");
-  const users = useListUsers();
+  const users = useListUsers(true);
   users.sort((a, b) => b.xp - a.xp);
 
   return (
