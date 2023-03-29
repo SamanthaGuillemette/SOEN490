@@ -42,6 +42,16 @@ const useListProjectsPaginated = () => {
   });
 };
 
+const useFetchUserProjects = (projectIDs: string[]) =>
+  useQuery({
+    queryKey: ["projects", projectIDs],
+    queryFn: () =>
+      api.listDocuments(COLLECTION_ID_PROJECT, [
+        api.query.equal("$id", [...projectIDs]),
+      ]),
+    retry: 2,
+  });
+
 const useCreateProject = (data: Project) => {
   return useMutation(() => api.createDocument(COLLECTION_ID_PROJECT, data));
 };
@@ -61,4 +71,5 @@ export {
   useDeleteProject,
   useListProjectsPaginated,
   useNewProjects,
+  useFetchUserProjects,
 };

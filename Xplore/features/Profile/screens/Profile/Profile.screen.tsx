@@ -21,11 +21,35 @@ import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
+import { useFetchUserDetails } from "../../../../services/api/userProfile";
 import { useNewNotificationsCount } from "../../../../services/api/notifications";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
 const imageSize = (headerHeight / 3) * 2;
+
+const getUserXPlevel = (xp: number) => {
+  if (xp >= 250 && xp < 500) {
+    return 1;
+  } else if (xp >= 500 && xp < 1000) {
+    return 2;
+  } else if (xp >= 1000 && xp < 2500) {
+    return 3;
+  } else if (xp >= 2500 && xp < 5000) {
+    return 4;
+  } else if (xp >= 5000 && xp < 10000) {
+    return 5;
+  } else if (xp >= 10000 && xp < 25000) {
+    return 6;
+  } else if (xp >= 25000 && xp < 50000) {
+    return 7;
+  } else if (xp >= 50000) {
+    return 8;
+  } else {
+    return 0;
+  }
+};
 
 interface ProfileProps {
   navigation: NavigationProp<any>;
@@ -73,14 +97,17 @@ const Profile = (props: ProfileProps) => {
     extrapolate: "clamp",
   });
 
-  // Get user data from DB, renamed 'data' to 'userdata' to avoid confusion
-  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  const { data, status } = useFetchUserDetails();
+  const userDetails = data?.documents[0];
+  const XPlevel = getUserXPlevel(userDetails?.xp);
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
-  const newNotifsCount = useNewNotificationsCount(userdata?.$id);
+  const newNotifsCount = useNewNotificationsCount(userPrefs?.$id);
 
-  return (
+  return status === "loading" ? (
+    <Spinner visible={true} />
+  ) : (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: whiteBackground }]}
     >
@@ -95,10 +122,15 @@ const Profile = (props: ProfileProps) => {
       >
         {/* THIS IS EVERYTHING BELOW THE ANIMATED HEADER */}
         <View style={styles.belowHeaderContainer}>
-          <UserProgress />
-          <StatBoxes />
-          <Badges />
-          <ProjectSlider />
+          <UserProgress xp={userDetails?.xp} />
+          <StatBoxes
+            numBadges={XPlevel}
+            numProjects={userDetails?.projects.length}
+            xpLevel={XPlevel}
+          />
+          <Badges xpLevel={XPlevel} />
+          <ProjectSlider projectIDs={userDetails?.projects} />
+
           <View style={styles.logoutButton}>
             <LogoutButton />
           </View>
@@ -172,7 +204,7 @@ const Profile = (props: ProfileProps) => {
           ]}
         >
           <Text variant="h2" color="titleText" style={styles.userName}>
-            {userdata?.name}
+            {userDetails?.username}
           </Text>
           <View style={styles.userInfoDetails}>
             <Icon
@@ -190,7 +222,7 @@ const Profile = (props: ProfileProps) => {
               size="small"
               style={styles.userInfoIcon}
             />
-            <Text variant="smBody">103,597 XP</Text>
+            <Text variant="smBody">{userDetails?.xp} XP</Text>
           </View>
         </Animated.View>
       </Animated.View>
