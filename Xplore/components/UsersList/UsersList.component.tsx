@@ -110,9 +110,7 @@ export const UsersList = (props: UsersListProps) => {
                 userID={user.userID}
                 navigation={props.navigation}
               />
-            ) : (
-              <></>
-            )
+            ) : null
           )
         : null}
       {props.messageUserList

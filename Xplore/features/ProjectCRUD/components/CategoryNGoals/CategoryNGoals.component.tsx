@@ -65,7 +65,7 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
           options={sortedOptions}
           onValueChange={handleValueChange}
           setCategory={setTaskCategory}
-          onChangeText={(taskCategory) => props.setCategory(taskCategory)}
+          onChangeText={(category) => props.setCategory(category)}
         />
       </View>
 
@@ -73,21 +73,21 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
         <InputField
           placeHolder="Project Goal #1"
           styleText={styles.styleTextGoals}
-          onChangeText={(goal1) => handleGoalChange(1, goal1)}
+          onChangeText={(goal) => handleGoalChange(1, goal)}
         />
       </View>
       <View style={styles.containerGoal}>
         <InputField
           placeHolder="Project Goal #2"
           styleText={styles.styleTextGoals}
-          onChangeText={(goal2) => handleGoalChange(2, goal2)}
+          onChangeText={(goal) => handleGoalChange(2, goal)}
         />
       </View>
       <View style={styles.containerGoal}>
         <InputField
           placeHolder="Project Goal #3"
           styleText={styles.styleTextGoals}
-          onChangeText={(goal3) => handleGoalChange(3, goal3)}
+          onChangeText={(goal) => handleGoalChange(3, goal)}
         />
       </View>
     </View>

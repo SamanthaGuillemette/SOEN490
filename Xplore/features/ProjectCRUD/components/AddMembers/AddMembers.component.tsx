@@ -34,6 +34,7 @@ export const AddMembers = (props: AddMembersProps) => {
         <Spinner visible={true} />
       ) : (
         <UsersList
+          key={20}
           setAllMembers={setAllMembers}
           allMembers={allMembers}
           fetchMoreUsers={fetchNextPage}
