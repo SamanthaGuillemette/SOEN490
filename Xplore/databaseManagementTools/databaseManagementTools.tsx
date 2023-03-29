@@ -1,9 +1,14 @@
 import api from "../services/appwrite/api";
-import { COLLECTION_ID_PROJECT, COLLECTION_ID_USERS } from "@env";
+import {
+  COLLECTION_ID_PROJECT,
+  COLLECTION_ID_PROJECT_TASKS,
+  COLLECTION_ID_USERS,
+} from "@env";
 import { Button, Text } from "react-native";
-import { projects } from "./projects_database_seed";
+import { projects } from "./projects";
 // import { users } from "./users_database_seed";
 let userDataJSON = require("./users.json");
+import { tasks } from "./tasks";
 
 export const deleteAllDocuments = async (collectionId: string) => {
   const data = await api.listDocuments(collectionId);
@@ -16,8 +21,20 @@ export const deleteAllDocuments = async (collectionId: string) => {
 
 export const seedProjects = async () => {
   for (const p of projects) {
+    let taskIDs = [];
     try {
-      await api.createDocument(COLLECTION_ID_PROJECT, p);
+      for (const t of tasks) {
+        try {
+          const res = await api.createDocument(COLLECTION_ID_PROJECT_TASKS, t);
+          taskIDs.push(res.$id);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      await api.createDocument(COLLECTION_ID_PROJECT, {
+        ...p,
+        tasks: taskIDs,
+      });
     } catch (e) {
       console.log(e);
     }
@@ -47,7 +64,24 @@ export const seedUsersFromAuth = async () => {
   }
 };
 
-//DO NOT USE
+const seedDatabase = async () => {
+  const collectionIDs = [
+    COLLECTION_ID_PROJECT,
+    COLLECTION_ID_PROJECT_TASKS,
+    COLLECTION_ID_USERS,
+  ];
+  for (const cid of collectionIDs) {
+    try {
+      await deleteAllDocuments(cid);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  await seedProjects();
+  await seedUsersFromAuth();
+};
+
+//DO NOT USE. ONLY FOR CREATING USERS IN APPWRITES USER DATABASE, AND NOT THE "USERS" COLLECTION WE CREATED OURSELVES
 //
 // const seedAuthUsers = async () => {
 //   for (const user of users) {
@@ -59,22 +93,11 @@ export const seedUsersFromAuth = async () => {
 //   }
 // };
 
-// export const seedDatabase = async () => {
-//   await deleteAllDocuments(COLLECTION_ID_USERS);
-//   await seedProjects();
-//   await seedUsersFromAuth();
-// };
-
 export const DatabaseApiTesting = () => {
   return (
     <>
       <Text>---------------database tools------------</Text>
-      <Button title="seed" onPress={() => seedProjects()} />
-      <Button title="seed users" onPress={() => seedUsersFromAuth()} />
-      <Button
-        title="delete all projects"
-        onPress={() => deleteAllDocuments(COLLECTION_ID_PROJECT)}
-      />
+      <Button title="build database" onPress={() => seedDatabase()} />
       <Text>-------------------------------------------</Text>
     </>
   );
@@ -82,7 +105,7 @@ export const DatabaseApiTesting = () => {
 
 export default {
   DatabaseApiTesting,
-  seedProjects,
-  deleteAllDocuments,
   seedUsersFromAuth,
+  deleteAllDocuments,
+  seedProjects,
 };

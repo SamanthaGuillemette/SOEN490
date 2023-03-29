@@ -46,8 +46,8 @@ const projects = [
     description:
       "A suite of cryptography tools for encrypting and decrypting messages and files.",
     category: "Security",
-    startDate: "2023-03-01 00:00:00",
-    endDate: "2023-06-01 00:00:00",
+    startDate: "2022-02-19 09:00:00",
+    endDate: "2022-08-19 09:00:00",
     percentComplete: 11,
     goals: [
       "Learn about common cryptographic algorithms and how they work.",
@@ -60,8 +60,8 @@ const projects = [
     description:
       "A web app for streaming and sharing music playlists with friends.",
     category: "Web Development",
-    startDate: "2023-04-01 00:00:00",
-    endDate: "2023-09-01 00:00:00",
+    startDate: "2022-02-19 09:00:00",
+    endDate: "2022-08-19 09:00:00",
     percentComplete: 35,
     goals: [
       "Gain practical experience in building a web app using modern web development tools.",
@@ -74,8 +74,8 @@ const projects = [
     description:
       "A code optimization tool that analyzes and optimizes code for performance and efficiency.",
     category: "Software Optimization",
-    startDate: "2023-05-01 00:00:00",
-    endDate: "2023-08-01 00:00:00",
+    startDate: "2022-02-19 09:00:00",
+    endDate: "2022-08-19 09:00:00",
     percentComplete: 74,
     goals: [
       "Develop an understanding of common code optimization techniques.",
@@ -88,8 +88,8 @@ const projects = [
     description:
       "A simulation game that allows players to simulate life in a virtual world.",
     category: "Game Development",
-    startDate: "2023-06-01 00:00:00",
-    endDate: "2023-11-01 00:00:00",
+    startDate: "2022-02-19 09:00:00",
+    endDate: "2022-08-19 09:00:00",
     percentComplete: 94,
     goals: [
       "Develop practical experience in game design and development.",
@@ -115,8 +115,8 @@ const projects = [
     name: "ReactoBot",
     description: "A chatbot made with React for customer service inquiries.",
     category: "web",
-    startDate: "2023-03-01 09:00:00",
-    endDate: "2023-04-30 17:00:00",
+    startDate: "2022-02-19 09:00:00",
+    endDate: "2022-08-19 09:00:00",
     percentComplete: 55,
     goals: [
       "Understand how to create chatbots with React.",
@@ -128,8 +128,8 @@ const projects = [
     name: "BlockChainz",
     description: "A blockchain-based system for secure document verification.",
     category: "security",
-    startDate: "2023-02-15 10:00:00",
-    endDate: "2023-06-15 18:00:00",
+    startDate: "2022-02-19 09:00:00",
+    endDate: "2022-08-19 09:00:00",
     percentComplete: 66,
     goals: [
       "Understand how blockchain technology works.",
@@ -142,8 +142,8 @@ const projects = [
     description:
       "A Python-based drone flight controller for aerial photography.",
     category: "embedded",
-    startDate: "2023-05-01 08:00:00",
-    endDate: "2023-08-30 16:00:00",
+    startDate: "2022-02-19 09:00:00",
+    endDate: "2022-08-19 09:00:00",
     percentComplete: 76,
     goals: [
       "Understand how to control drones with Python.",
@@ -155,8 +155,8 @@ const projects = [
     name: "DataFlowz",
     description: "A web-based data visualization tool for large datasets.",
     category: "data",
-    startDate: "2023-04-01 11:00:00",
-    endDate: "2023-08-31 19:00:00",
+    startDate: "2022-02-19 09:00:00",
+    endDate: "2022-08-19 09:00:00",
     percentComplete: 34,
     goals: [
       "Understand how to work with large datasets in web development.",
