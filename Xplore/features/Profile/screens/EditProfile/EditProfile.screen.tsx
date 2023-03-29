@@ -1,4 +1,5 @@
 import { NavigationProp } from "@react-navigation/native";
+// import { useState } from "react";
 import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { PrimaryButton, Text, TextInput, View } from "../../../../components";
@@ -11,6 +12,9 @@ interface EditProfileProps {
 
 const EditProfile = (props: EditProfileProps) => {
   const { navigation } = props;
+  // const [userName, setUserName] = useState<string>("");
+  // const [location, setLocation] = useState<string>("");
+  // const [email, setEmail] = useState<string>("");
 
   return (
     <SafeAreaView edges={["top", "left", "right"]} style={styles.safeAreaStyle}>
@@ -26,9 +30,20 @@ const EditProfile = (props: EditProfileProps) => {
           </View>
 
           <TextInput
-            placeHolder="New password"
-            iconName="lock"
-            secureTextEntry
+            placeHolder="Full Name"
+            iconName="user"
+            onChangeText={() => {}}
+          />
+
+          <TextInput
+            placeHolder="Location"
+            iconName="map-pin"
+            onChangeText={() => {}}
+          />
+
+          <TextInput
+            placeHolder="Email"
+            iconName="mail"
             onChangeText={() => {}}
           />
 
