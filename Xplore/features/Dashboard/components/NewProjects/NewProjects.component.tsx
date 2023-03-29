@@ -8,7 +8,6 @@ import { deviceScreenWidth } from "../../../../constants";
 import { ProjectCardLarge } from "../ProjectCardLarge/ProjectCardLarge.component";
 import styles from "./NewProjects.styles";
 import { useNewProjects } from "../../../../services/api/projects";
-import { DateTime } from "luxon";
 
 const indicators = ["brown", "orange", "red", "blue", "green"];
 
@@ -63,10 +62,9 @@ export const NewProjects = (props: NewProjectsProps) => {
                   .slice(0, 5)
                   .join(" ")}...`}
                 duration={Math.ceil(
-                  DateTime.fromISO(project.endDate).diff(
-                    DateTime.fromISO(project.startDate),
-                    "days"
-                  ).days
+                  (new Date(project.endDate).getTime() -
+                    new Date(project.startDate).getTime()) /
+                    (1000 * 3600 * 24)
                 )}
                 members={project.members.length}
                 //the url will be replaced once project creation is complete
