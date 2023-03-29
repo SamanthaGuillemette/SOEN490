@@ -6,6 +6,7 @@ import { NavigationProp, useRoute } from "@react-navigation/native";
 import styles from "./ChatSettings.styles";
 import AdminSettings from "./screens/AdminSettings.screen";
 import PrivateChatSettings from "./screens/PrivateChatSettings.screen";
+import { useListAvatars } from "../../../../services/api/chatSettings";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 interface ChatSettingsProps {
@@ -20,6 +21,8 @@ const ChatSettings = (props: ChatSettingsProps) => {
   let { chatID, username, chatType }: any = route.params;
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
+  const avatars: any = useListAvatars(chatID, chatType);
+  console.log(username);
   return (
     <SafeAreaView
       edges={["top", "left", "right"]}
@@ -32,18 +35,10 @@ const ChatSettings = (props: ChatSettingsProps) => {
             {username}
           </Text>
           <View style={styles.avatarGroup}>
-            <AvatarGroup
-              usersAvatars={[
-                "https://picsum.photos/200",
-                "https://picsum.photos/200",
-                "https://picsum.photos/200",
-                "https://picsum.photos/200",
-                "https://picsum.photos/200",
-              ]}
-            />
+            <AvatarGroup usersAvatars={avatars} />
           </View>
           {chatType === "group" ? (
-            <AdminSettings chatID={chatID} />
+            <AdminSettings chatID={chatID} chatName={username} />
           ) : (
             <PrivateChatSettings contactName={chatID} chatID={chatID} />
           )}

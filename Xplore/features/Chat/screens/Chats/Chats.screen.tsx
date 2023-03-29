@@ -30,7 +30,11 @@ const Chats = (props: ChatsProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
-      <TopHeader screenName={"Messages"} navigation={navigation} />
+      <TopHeader
+        screenName={"Messages"}
+        navigation={navigation}
+        name={"group_chat"}
+      />
       <ScrollView
         style={[styles.chat_scrollView, { backgroundColor: background }]}
       >
@@ -39,10 +43,8 @@ const Chats = (props: ChatsProps) => {
             chats.map((chat: any) => (
               <ChatBox
                 key={chat.chatIndex}
-                image="https://picsum.photos/200"
-                username={
-                  chat.chatType === "direct" ? chat.contactID : chat.chatName
-                }
+                image={chat.contactAvatar}
+                username={chat.chatName}
                 chatType={chat.chatType}
                 lastText={chat.lastMessage}
                 seen={chat.seen}
@@ -60,10 +62,7 @@ const Chats = (props: ChatsProps) => {
                     props.navigation.navigate("ChatDetails", {
                       chatID: chat.chatID,
                       chatType: chat.chatType,
-                      username:
-                        chat.chatType === "direct"
-                          ? chat.contactID
-                          : chat.chatName,
+                      username: chat.chatName,
                     });
                   } catch (error) {
                     console.log("Error marking chat as seen: ", error);

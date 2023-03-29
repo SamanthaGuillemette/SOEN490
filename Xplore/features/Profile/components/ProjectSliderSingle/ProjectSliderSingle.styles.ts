@@ -23,7 +23,7 @@ export default StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 3,
     letterSpacing: 0.2,
-    width: 70,
+    width: 72,
     marginBottom: 8,
   },
 });

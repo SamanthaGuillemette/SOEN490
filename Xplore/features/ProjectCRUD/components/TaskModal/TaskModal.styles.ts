@@ -17,6 +17,7 @@ export default StyleSheet.create({
     width: 337,
     height: 45,
     marginTop: 5,
+    marginBottom: 10,
   },
 
   alignDatePicker: {

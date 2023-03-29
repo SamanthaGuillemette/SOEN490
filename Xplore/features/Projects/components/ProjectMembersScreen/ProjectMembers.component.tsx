@@ -1,5 +1,5 @@
 import { ScrollView } from "react-native";
-import { MessageMember, SquaredButton, View } from "../../../../components";
+import { MessageMember, View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
 import { NavigationProp } from "@react-navigation/native";
 
@@ -39,7 +39,6 @@ const ProjectMembers = (props: ProjectMembersProps) => {
             xp={103597}
             navigation={props.navigation}
           />
-          <SquaredButton iconName="plus" />
         </View>
       </ScrollView>
     </View>

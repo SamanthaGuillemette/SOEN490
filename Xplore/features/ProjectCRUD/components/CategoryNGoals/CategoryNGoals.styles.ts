@@ -9,14 +9,19 @@ export default StyleSheet.create({
   containerTech: {
     width: 337,
     marginTop: 23,
+    marginBottom: 10,
   },
   containerGoal: {
     marginTop: 5,
     width: 337,
-    height: 200,
+    height: 45,
   },
 
   styleTextGoals: {
     marginTop: 7,
+  },
+
+  categoryTitle: {
+    marginBottom: 10,
   },
 });

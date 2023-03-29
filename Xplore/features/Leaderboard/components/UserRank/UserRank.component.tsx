@@ -6,16 +6,17 @@ interface UserRankProps {
   username: string;
   xp: number;
   rank: number;
+  id: string;
 }
 
 const UserRank = (props: UserRankProps) => {
-  const { avatar, username, xp, rank } = props;
+  const { avatar, username, xp, rank, id } = props;
   return (
     <View style={styles.userRankContainer}>
-      <Text style={styles.userRank} color="titleText">
+      <Text style={styles.userRank} color="primary">
         {rank}
       </Text>
-      <User avatar={avatar} username={username} xp={xp} />
+      <User id={id} avatar={avatar} username={username} xp={xp} />
     </View>
   );
 };

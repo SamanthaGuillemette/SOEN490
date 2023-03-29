@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Image,
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar } from "../../../../components";
@@ -22,6 +23,10 @@ import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
 import { getUserInfo } from "../../api/user";
 import { BUCKET_PROFILE_PIC } from "@env";
+import { useFetchUserDetails } from "../../../../services/api/userProfile";
+import { useNewNotificationsCount } from "../../../../services/api/notifications";
+import Spinner from "react-native-loading-spinner-overlay/lib";
+import { getUserXPlevel } from "../../../../utils/getUserXPlevel";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -76,10 +81,13 @@ const Profile = (props: ProfileProps) => {
     extrapolate: "clamp",
   });
 
-  // Get user data from DB, renamed 'data' to 'userdata' to avoid confusion
+  const { data, status } = useFetchUserDetails();
+  const userDetails = data?.documents[0];
+  const XPlevel = getUserXPlevel(userDetails?.xp);
   const { data: userPrefs } = useQuery("user prefs", () =>
     api.getUserPreferences()
   );
+  const newNotifsCount = useNewNotificationsCount(userPrefs?.$id);
 
   const { data: userObject } = useQuery("user", () => getUserInfo(userId));
 
@@ -100,7 +108,9 @@ const Profile = (props: ProfileProps) => {
     }
   );
 
-  return (
+  return status === "loading" ? (
+    <Spinner visible={true} />
+  ) : (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: whiteBackground }]}
     >
@@ -115,10 +125,15 @@ const Profile = (props: ProfileProps) => {
       >
         {/* THIS IS EVERYTHING BELOW THE ANIMATED HEADER */}
         <View style={styles.belowHeaderContainer}>
-          <UserProgress />
-          <StatBoxes />
-          <Badges />
-          <ProjectSlider />
+          <UserProgress xp={userDetails?.xp} />
+          <StatBoxes
+            numBadges={XPlevel}
+            numProjects={userDetails?.projects.length}
+            xpLevel={XPlevel}
+          />
+          <Badges xpLevel={XPlevel} />
+          <ProjectSlider projectIDs={userDetails?.projects} />
+
           <View style={styles.logoutButton}>
             <LogoutButton />
           </View>
@@ -153,6 +168,12 @@ const Profile = (props: ProfileProps) => {
             }}
           >
             <Icon name="bell" color="primary" size="large" />
+            {newNotifsCount > 0 ? (
+              <Image
+                source={require("../../../../assets/newNotifs.png")}
+                style={styles.newNotificationIcon}
+              />
+            ) : null}
           </TouchableOpacity>
         </View>
 
@@ -182,7 +203,7 @@ const Profile = (props: ProfileProps) => {
           ]}
         >
           <Text variant="h2" color="titleText" style={styles.userName}>
-            {userObject?.username}
+            {userDetails?.username}
           </Text>
           <View style={styles.userInfoDetails}>
             <Icon
@@ -200,7 +221,7 @@ const Profile = (props: ProfileProps) => {
               size="small"
               style={styles.userInfoIcon}
             />
-            <Text variant="smBody">103,597 XP</Text>
+            <Text variant="smBody">{userDetails?.xp} XP</Text>
           </View>
         </Animated.View>
       </Animated.View>

@@ -6,7 +6,6 @@ import {
   Settings,
   UpdatePassword,
 } from "../../features/Profile/screens";
-
 const ProfileStack = createNativeStackNavigator();
 
 const ProfileTab = () => {

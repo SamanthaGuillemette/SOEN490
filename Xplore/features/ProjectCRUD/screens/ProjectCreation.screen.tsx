@@ -5,7 +5,7 @@ import {
   AddMembers,
   AllTasks,
   Description,
-  TechNGoals,
+  CategoryNGoals,
 } from "../components";
 interface ProjectCreationProps {
   navigation: NavigationProp<any>;
@@ -17,7 +17,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       headerTitle={"Create Projects"}
       stepLabels={[
         "Description",
-        "Tech & Goals",
+        "Category & Goals",
         "All Tasks",
         "Add Members",
         "Add Links",
@@ -25,7 +25,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
       numOfSteps={5}
       screens={[
         <Description />,
-        <TechNGoals />,
+        <CategoryNGoals />,
         <AllTasks navigation={props.navigation} />,
         <AddMembers />,
         <AddLinks />,

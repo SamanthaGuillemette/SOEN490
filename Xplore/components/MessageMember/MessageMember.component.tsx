@@ -1,18 +1,24 @@
+import { COLLECTION_ID_DIRECT_CHATS } from "@env";
 import { NavigationProp } from "@react-navigation/native";
 import { useQuery } from "react-query";
-import { COLLECTION_ID_DIRECT_CHATS } from "@env";
 import api from "../../services/appwrite/api";
 import { Query } from "appwrite";
+import {
+  markAsSeen,
+  getContactInfo,
+  createNewChat,
+} from "../../services/api/chats";
 import { View } from "../View";
 import { User } from "../User";
 import { ChipButton } from "../ChipButton";
 import styles from "./MessageMember.styles";
 
 interface MemberProps {
-  navigation: NavigationProp<any>;
+  navigation?: NavigationProp<any>;
+  id: string;
   avatar: string;
   username: string;
-  email: string;
+  email?: string;
   xp: number;
 }
 
@@ -21,40 +27,53 @@ export const MessageMember = (props: MemberProps) => {
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
-  // Define chat data to be created
-  const chatData = {
-    userID: userId,
-    contactID: props.email,
+  const onMessageClick = async () => {
+    try {
+      const chatData = await api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
+        Query.equal("userID", userId),
+        Query.equal("contactID", props.id),
+      ]);
+      const chatExists = chatData.total === 1;
+      const chatID = chatExists ? chatData.documents[0].chatID : null;
+      const username = chatExists
+        ? props.username
+        : (await getContactInfo(props.id))[0].username;
+      const chatInfo = {
+        chatID,
+        chatType: "direct",
+        username,
+      };
+      if (chatExists) {
+        await markAsSeen("direct", chatID, userId);
+      } else {
+        await createNewChat({
+          userID: userId,
+          contactID: props.id,
+        });
+        const newChatData = await api.listDocuments(
+          COLLECTION_ID_DIRECT_CHATS,
+          [Query.equal("userID", userId), Query.equal("contactID", props.id)]
+        );
+        chatInfo.chatID = newChatData.documents[0].chatID;
+      }
+      props.navigation?.navigate("ChatDetails", chatInfo);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  // // Check if the chat exist
-  // const response = api.listDocuments(COLLECTION_ID_DIRECT_CHATS, [
-  //   // TO BE FIXED
-  //   Query.equal("userEmail", userId),
-  //   Query.equal("contactEmail", props.email),
-  // ]);
-
-  // // onMessageClick Function
-  // const onMessageClick = () => {
-  //   // If a chat already exist
-  //   response.then(function (res) {
-  //     if (res.total === 0) {
-  //       api.createDocument(COLLECTION_ID_DIRECT_CHATS, chatData);
-  //     }
-  //   });
-  //   props.navigation.navigate("ChatDetails", { name: props.username });
-  // };
 
   return (
     <View style={styles.user_container}>
       <View style={styles.usr}>
-        <User avatar={props.avatar} username={props.username} xp={props.xp} />
+        <User
+          id={props.id}
+          avatar={props.avatar}
+          username={props.username}
+          xp={props.xp}
+        />
       </View>
       <View style={styles.msg_button}>
-        <ChipButton
-          label="Message"
-          // onPress={onMessageClick}
-        />
+        <ChipButton label="Message" onPress={onMessageClick} />
       </View>
     </View>
   );
