@@ -121,7 +121,7 @@ const Settings = (props: SettingsProps) => {
             <EditButton
               iconName="user"
               label="Edit Profile"
-              onPress={() => alert("pressed!")}
+              onPress={() => navigation.navigate("EditProfile")}
             />
             <EditButton
               iconName="lock"

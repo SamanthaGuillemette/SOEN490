@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
+  EditProfile,
   Notification,
   Profile,
   Settings,
@@ -19,6 +20,7 @@ const ProfileTab = () => {
       <ProfileStack.Screen name="Settings" component={Settings} />
       <ProfileStack.Screen name="Notification" component={Notification} />
       <ProfileStack.Screen name="UpdatePassword" component={UpdatePassword} />
+      <ProfileStack.Screen name="EditProfile" component={EditProfile} />
     </ProfileStack.Navigator>
   );
 };

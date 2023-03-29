@@ -53,7 +53,7 @@ const UpdatePassword = (props: UpdatePasswordProps) => {
 
         <View style={styles.container}>
           <View style={styles.textItems}>
-            <Text variant="h2">Change password</Text>
+            <Text variant="h2">Change Password</Text>
             <Text variant="body" color="bodyText" style={styles.subTitleText}>
               Enter a new password below
             </Text>
