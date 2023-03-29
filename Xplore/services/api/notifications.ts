@@ -7,6 +7,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
 import api from "../appwrite/api";
+import ConfirmationModalStyles from "../../components/ConfirmationModal/ConfirmationModal.styles";
 
 // notificationType should be "badge" | "groupAdd" | "joinRequest" | "joinAccept"
 interface Notifications {
@@ -58,28 +59,49 @@ const createRequestJoinNotif = async (
   });
 };
 
-const deleteRequestJoinNotif = async (
-  userID: any,
-  projectID: any,
-  projectName: any
-) => {
-  /*const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
+// Method to see if user has already requested to join the specified project
+const useUserAlreadyRequested = (userID: any, projectID: any) => {
+  const [alreadyRequested, setAlreadyRequested] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
+          Query.equal("userID", userID),
+          Query.equal("projectID", projectID),
+          Query.equal("notificationType", "joinRequest"),
+        ]);
+        response.total > 0
+          ? setAlreadyRequested(true)
+          : setAlreadyRequested(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [userID, projectID]);
+
+  return alreadyRequested;
+};
+
+const deleteRequestJoinNotif = async (userID: any, projectID: any) => {
+  const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
     Query.equal("userID", userID),
     Query.equal("projectID", projectID),
-    Query.equal("projectName", projectName),
+    Query.equal("notificationType", "joinRequest"),
   ]);
 
   response?.documents.forEach((doc: any) => {
     api.deleteDocument(COLLECTION_ID_NOTIFICATIONS, doc.$id);
-  });*/
+  });
 };
 
 // To update the list of members for a project once request is accepted
-const updateProjMemberList = async (projectID: any, memberID: any) => {
+const updateProjMemberList = async (userId: any, projectID: any) => {
   try {
     const response = await api.getDocument(COLLECTION_ID_PROJECT, projectID);
     let members = response.members;
-    members.push(memberID);
+    members.push(userId);
 
     await api.updateDocument(COLLECTION_ID_PROJECT, projectID, {
       members: members,
@@ -111,16 +133,20 @@ const updateUserProjList = async (userId: any, projectID: any) => {
 const createAcceptJoinNotif = async (
   userID: any,
   projectID: any,
-  projectName: any
+  projectName: any,
+  memberAcceptedRequestID: any
 ) => {
   await api.createDocument(COLLECTION_ID_NOTIFICATIONS, {
     userID: userID, // user whose request got accepted
-    memberAcceptedRequestID: userID, // admin who accepted the request
+    memberAcceptedRequestID: memberAcceptedRequestID, // admin who accepted the request
     notificationType: "joinAccept",
     projectID: projectID,
     projectName: projectName,
     createdAt: new Date().toISOString(),
   });
+
+  updateUserProjList(userID, projectID); // update user's project list
+  updateProjMemberList(userID, projectID); // updating list of members for the project
 };
 
 const getNotifs = async (userID: any) => {
@@ -217,4 +243,5 @@ export {
   markAsSeen,
   useNewNotificationsCount,
   deleteRequestJoinNotif,
+  useUserAlreadyRequested,
 };

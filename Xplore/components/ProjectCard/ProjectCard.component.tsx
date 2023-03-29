@@ -33,7 +33,10 @@ export const ProjectCard = (props: ProjectCardProps) => {
         style={styles.cardContainer}
         key={item.name}
       >
-        <Image source={{ uri: item.imageURL }} style={styles.projectImage} />
+        <Image
+          source={{ uri: item.imageURL !== "" ? item.imageURL : undefined }}
+          style={styles.projectImage}
+        />
 
         <View style={styles.projectInfo}>
           <Text

@@ -13,7 +13,7 @@ export const FeaturedImage = (props: ShadowImageProps) => {
   return (
     <ShadowView backgroundColor="primary" style={styles.container}>
       <ImageBackground
-        source={{ uri: source }}
+        source={{ uri: source !== "" ? source : undefined }}
         imageStyle={styles.imageBgContainer}
       >
         <View style={styles.thirdContainer}>

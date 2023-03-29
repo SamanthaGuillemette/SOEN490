@@ -12,6 +12,7 @@ import styles from "./RequestJoin.styles";
 import {
   createRequestJoinNotif,
   deleteRequestJoinNotif,
+  useUserAlreadyRequested,
 } from "../../services/api/notifications";
 
 interface RequestJoinProps extends TouchableOpacityProps {
@@ -24,14 +25,13 @@ interface RequestJoinProps extends TouchableOpacityProps {
 export const RequestJoin = (props: RequestJoinProps) => {
   const { style, userID, projectID, projectName } = props;
   const [clicked, setClicked] = useState(false);
-
   const primary = useThemeColor("primary");
   const success = useThemeColor("success");
   const bg = useThemeColor("background");
 
-  /*clicked === true
+  clicked === true
     ? createRequestJoinNotif(userID, projectID, projectName)
-    : deleteRequestJoinNotif(userID, projectID, projectName);*/
+    : deleteRequestJoinNotif(userID, projectID);
 
   return (
     <View>
