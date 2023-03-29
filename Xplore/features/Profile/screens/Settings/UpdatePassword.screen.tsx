@@ -3,12 +3,15 @@ import { ScrollView } from "react-native";
 import { PrimaryButton, Text, TextInput, View } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";
+import { ProfileModal } from "../../components";
 import styles from "./UpdatePassword.styles";
 
 const UpdatePassword = () => {
+  const [oldPassword, setOldPassword] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordReentered, setReenteredPassword] = useState<string>("");
-  const [buttonLabel, setButtonLabel] = useState<string>("SAVE");
+  const [actionMessage, setActionMessage] = useState<string>("");
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const errorColor = useThemeColor("error");
 
   const renderErrorText = () => {
@@ -24,11 +27,16 @@ const UpdatePassword = () => {
 
   const handleUpdatePassword = async () => {
     try {
-      await api.updatePassword(password);
-    } catch (error) {
-      alert(error);
+      const result = await api.updatePassword(password, oldPassword);
+      setActionMessage(
+        "Password updated successfully on\n " +
+          new Date(result?.$updatedAt).toUTCString()
+      );
+      setModalVisible(true);
+    } catch (error: any) {
+      setActionMessage(error.message);
+      setModalVisible(true);
     }
-    setTimeout(() => setButtonLabel("UPDATING..."), 300);
   };
 
   return (
@@ -39,6 +47,15 @@ const UpdatePassword = () => {
           <Text variant="body" color="bodyText" style={styles.subTitleText}>
             Enter a new password below
           </Text>
+        </View>
+
+        <View style={styles.oldPwInput}>
+          <TextInput
+            placeHolder="Current password"
+            iconName="shield"
+            secureTextEntry
+            onChangeText={(pw: string) => setOldPassword(pw)}
+          />
         </View>
 
         <TextInput
@@ -57,10 +74,19 @@ const UpdatePassword = () => {
         {renderErrorText()}
 
         <PrimaryButton
-          label={buttonLabel}
+          label="SAVE"
           style={styles.primaryButton}
           onPress={handleUpdatePassword}
         />
+
+        <ProfileModal modalVisible={modalVisible}>
+          <Text variant="body">{actionMessage}</Text>
+          <PrimaryButton
+            style={styles.okayButton}
+            label="Okay"
+            onPress={() => setModalVisible(false)}
+          />
+        </ProfileModal>
       </View>
     </ScrollView>
   );

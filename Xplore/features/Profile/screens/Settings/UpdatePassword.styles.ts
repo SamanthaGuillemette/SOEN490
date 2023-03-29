@@ -19,4 +19,10 @@ export default StyleSheet.create({
     marginTop: "20%",
     marginBottom: 25,
   },
+  oldPwInput: {
+    paddingBottom: 30,
+  },
+  okayButton: {
+    marginTop: 40,
+  },
 });
