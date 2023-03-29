@@ -98,7 +98,7 @@ export const UsersList = (props: UsersListProps) => {
       onMomentumScrollBegin={props.fetchMoreUsers}
     >
       {props.selectUserList
-        ? props.data.map((user: any, index) =>
+        ? props.data.map((user: any, index: number) =>
             user.userID !== userId ? (
               <UserItemSelect
                 setAllMembers={setAllMembers}
@@ -116,7 +116,7 @@ export const UsersList = (props: UsersListProps) => {
           )
         : null}
       {props.messageUserList
-        ? props.data.map((user: any, index) => (
+        ? props.data.map((user: any, index: number) => (
             <UserItemMessage
               key={index}
               username={user.username}

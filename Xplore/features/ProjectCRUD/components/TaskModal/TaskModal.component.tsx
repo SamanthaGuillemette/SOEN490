@@ -40,16 +40,16 @@ export const TaskModal = (props: TaskModalProps) => {
   const [categoryText, setCategoryText] = useState("Category");
 
   const options = [
-    { label: "Meeting", value: "option1" },
-    { label: "Planning-Research", value: "option2" },
-    { label: "Planning-Budget", value: "option3" },
-    { label: "Design-UI design", value: "option4" },
-    { label: "Design-Brainstorming", value: "option5" },
-    { label: "Development-Frontend", value: "option6" },
-    { label: "Development-Backend", value: "option7" },
-    { label: "Testing-unit testing", value: "option8" },
-    { label: "Testing-System Testing", value: "option9" },
-    { label: "Deployment", value: "option10" },
+    { label: "Project Planning", value: "option1" },
+    { label: "Design", value: "option2" },
+    { label: "Development", value: "option3" },
+    { label: "Testing", value: "option4" },
+    { label: "Deployment", value: "option5" },
+    { label: "Documentation", value: "option6" },
+    { label: "Maintenance", value: "option7" },
+    { label: "Meetings", value: "option8" },
+    { label: "Research", value: "option9" },
+    { label: "Training", value: "option10" },
   ];
 
   const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
