@@ -7,7 +7,7 @@ import {
   DatePicker,
   Icon,
   InputField,
-  MemberChipAdder,
+  //MemberChipAdder,
   ShadowView,
   Text,
 } from "../../../../components";
@@ -25,7 +25,7 @@ export const TaskModal = (props: TaskModalProps) => {
   const [taskCategory, setTaskCategory] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [allMembers, setAllMembers] = useState<any[]>([]);
+  //const [allMembers, setAllMembers] = useState<any[]>([]);
   // const [setTask] = useState("");
   // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
