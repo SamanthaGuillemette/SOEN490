@@ -1,19 +1,28 @@
 import { useQuery } from "react-query";
 import { Text, View } from "../../../../components";
-import { useProjectCardInfo } from "../../../../services/api/projects";
+import {
+  useCompletedTasks,
+  useProjectCardInfo,
+} from "../../../../services/api/projects";
 import { StatBoxLarge } from "../StatBoxLarge";
 import { StatBoxSmall } from "../StatBoxSmall";
 import styles from "./TodayStats.styles";
 import api from "../../../../services/appwrite/api";
 
 export const TodayStats = () => {
-  var allProjectCard: any;
+  var allProjectInfo: any;
 
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
-  allProjectCard = useProjectCardInfo(userId);
+  allProjectInfo = useProjectCardInfo(userId);
+
+  const tasksCompleted =
+    useCompletedTasks(allProjectInfo[1]) + useCompletedTasks(allProjectInfo[0]);
+  // const tasksActive =
+  //   useCompletedTasks(allProjectInfo[1])[1] +
+  //   useCompletedTasks(allProjectInfo[0])[1];
 
   return (
     <View style={styles.container}>
@@ -24,12 +33,12 @@ export const TodayStats = () => {
         <View style={styles.leftPanel}>
           <StatBoxLarge
             title="In Progress"
-            subTitle={allProjectCard[0]?.length + " Projects"}
+            subTitle={allProjectInfo[0]?.length + " Projects"}
             iconName="refresh-ccw"
           />
           <StatBoxSmall
             title="Completed"
-            subTitle="20 Tasks"
+            subTitle={tasksCompleted + " Tasks"}
             iconName="check-circle"
           />
         </View>

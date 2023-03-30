@@ -44,6 +44,47 @@ const getProjectsList = async (contactID: any) => {
   return data[0].project; // returning list of projects
 };
 
+//Get number of tasks completed
+const useCompletedTasks = (projects: any) => {
+  const [completedTasks, setcompletedTasks] = useState<any>();
+  //const [activeTasks, setActiveTasks] = useState<any>();
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const userProjects = projects; // Looping through list of projects
+        var completedTask = 0;
+        //var activeTask = 0;
+
+        for (const project of userProjects) {
+          // Looping through list of tasks
+          for (let index in project.tasks) {
+            const response = await api.getDocument(
+              COLLECTION_ID_PROJECT_TASKS,
+              project.tasks[index]
+            );
+
+            const data = {
+              taskID: project.tasks[index],
+
+              endDate: response.endDate,
+              completed: response.completed,
+            };
+            data.completed === true ? completedTask++ : null; //increase number of user tasks completed
+          }
+        }
+        setcompletedTasks(completedTask);
+        //setActiveTasks(activeTask);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchInfo();
+  }, [projects, completedTasks]);
+
+  return completedTasks;
+};
+
 // Getting information to display on the Project Card
 const useProjectCardInfo = (contactID: any) => {
   const [completedProjects, setCompletedProjects] = useState<Project[]>([]);
@@ -244,4 +285,5 @@ export {
   setTaskCompleted,
   deleteTask,
   useFetchUserProjects,
+  useCompletedTasks,
 };
