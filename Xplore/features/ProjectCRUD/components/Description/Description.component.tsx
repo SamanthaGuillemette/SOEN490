@@ -1,4 +1,5 @@
 import { TouchableOpacity, View } from "react-native";
+import { useState } from "react";
 import styles from "./Description.styles";
 import {
   DatePicker,
@@ -6,10 +7,23 @@ import {
   InputField,
   ShadowView,
 } from "../../../../components";
+import { useRoute } from "@react-navigation/native";
 
 export const Description = () => {
-  // const [projName, setProjName] = useState("");
-  // const [projDesc, setProjDesc] = useState("");
+  const route = useRoute();
+  let { projectInfo }: any = route.params;
+  const [projName, setProjName] = useState(projectInfo.name);
+  const [projDesc, setProjDesc] = useState(projectInfo.description);
+  const [startDate, setStartDate] = useState(
+    projectInfo.startDate !== ""
+      ? projectInfo.startDate.substring(0, projectInfo.startDate.indexOf("T"))
+      : "YYYY-MM-DD"
+  );
+  const [endDate, setEndDate] = useState(
+    projectInfo.endDate !== ""
+      ? projectInfo.endDate.substring(0, projectInfo.endDate.indexOf("T"))
+      : "YYYY-MM-DD"
+  );
 
   return (
     <View style={styles.container}>
@@ -25,17 +39,28 @@ export const Description = () => {
           <InputField
             placeHolder="Project name"
             styleText={styles.styleText}
-            // onChangeText={(name) => setProjName(name)}
+            value={projName}
+            onChangeText={(name) => setProjName(name)}
           />
         </View>
 
-        <DatePicker title="Start" style={styles.dateAlign} />
+        <DatePicker
+          title="Start"
+          defaultDate={startDate}
+          style={styles.dateAlign}
+        />
+        <DatePicker
+          title="End"
+          defaultDate={endDate}
+          style={styles.dateAlign}
+        />
 
         <View style={styles.containerTextInputDesc}>
           <InputField
             placeHolder="Project description"
             styleText={styles.styleText}
-            // onChangeText={(desc) => setProjDesc(desc)}
+            value={projDesc}
+            onChangeText={(desc) => setProjDesc(desc)}
           />
         </View>
       </View>

@@ -38,7 +38,7 @@ const TopHeader = (props: TopHeaderProps) => {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate("ProjectEdit", {
-                projectInfo: projectInfo.isOwner,
+                projectInfo: projectInfo,
               })
             }
           >
