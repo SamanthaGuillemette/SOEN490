@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar } from "../../../../components";
-import { useAuth, useThemeColor } from "../../../../hooks";
+import { useThemeColor } from "../../../../hooks";
 import { deviceScreenWidth } from "../../../../constants";
 import {
   Badges,
@@ -21,12 +21,12 @@ import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
-import { getUserInfo } from "../../api/user";
 import { BUCKET_PROFILE_PIC } from "@env";
-import { useFetchUserDetails } from "../../../../services/api/userProfile";
 import { useNewNotificationsCount } from "../../../../services/api/notifications";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { getUserXPlevel } from "../../../../utils/getUserXPlevel";
+import { useFetchUserDetails } from "../../hooks/useFetchUserDetails";
+import { useFetchUserPrefs } from "../../hooks/useFetchUserPrefs";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -40,8 +40,8 @@ const Profile = (props: ProfileProps) => {
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
-  const { sessionToken } = useAuth();
-  const [userId] = useState<string>(sessionToken?.userId!);
+  // const { accountToken } = useAuth();
+  // const [userId] = useState<string>(accountToken?.$id!);
   const [profilePictureId, setProfilePictureId] = useState<string>();
 
   const scrollY = useRef(new Animated.Value(0)).current;
@@ -81,15 +81,16 @@ const Profile = (props: ProfileProps) => {
     extrapolate: "clamp",
   });
 
-  const { data, status } = useFetchUserDetails();
-  const userDetails = data?.documents[0];
-  const XPlevel = getUserXPlevel(userDetails?.xp);
-  const { data: userPrefs } = useQuery("user prefs", () =>
-    api.getUserPreferences()
-  );
-  const newNotifsCount = useNewNotificationsCount(userPrefs?.$id);
+  // const { data, status } = useFetchUserDetails();
+  const { data: userObject, status } = useFetchUserDetails();
 
-  const { data: userObject } = useQuery("user", () => getUserInfo(userId));
+  // const userDetails = data?.documents[0];
+  // const XPlevel = getUserXPlevel(userDetails?.xp);
+  const XPlevel = getUserXPlevel(userObject?.xp);
+
+  const userPrefs = useFetchUserPrefs();
+
+  const newNotifsCount = useNewNotificationsCount(userPrefs?.$id);
 
   useEffect(() => {
     setProfilePictureId(userObject?.profilePicture);
@@ -125,14 +126,14 @@ const Profile = (props: ProfileProps) => {
       >
         {/* THIS IS EVERYTHING BELOW THE ANIMATED HEADER */}
         <View style={styles.belowHeaderContainer}>
-          <UserProgress xp={userDetails?.xp} />
+          <UserProgress xp={userObject?.xp} />
           <StatBoxes
             numBadges={XPlevel}
-            numProjects={userDetails?.projects.length}
+            numProjects={userObject?.projects.length}
             xpLevel={XPlevel}
           />
           <Badges xpLevel={XPlevel} />
-          <ProjectSlider projectIDs={userDetails?.projects} />
+          <ProjectSlider projectIDs={userObject?.projects} />
 
           <View style={styles.logoutButton}>
             <LogoutButton />
@@ -188,7 +189,11 @@ const Profile = (props: ProfileProps) => {
             },
           ]}
         >
-          <Avatar size={135} name="user avatar" imageURL={profilePicture} />
+          <Avatar
+            size={135}
+            name={userObject?.username}
+            imageURL={profilePicture}
+          />
         </Animated.View>
 
         <Animated.View
@@ -203,7 +208,7 @@ const Profile = (props: ProfileProps) => {
           ]}
         >
           <Text variant="h2" color="titleText" style={styles.userName}>
-            {userDetails?.username}
+            {userObject?.username}
           </Text>
           <View style={styles.userInfoDetails}>
             <Icon
@@ -221,7 +226,7 @@ const Profile = (props: ProfileProps) => {
               size="small"
               style={styles.userInfoIcon}
             />
-            <Text variant="smBody">{userDetails?.xp} XP</Text>
+            <Text variant="smBody">{userObject?.xp} XP</Text>
           </View>
         </Animated.View>
       </Animated.View>

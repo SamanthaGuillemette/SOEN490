@@ -7,13 +7,14 @@ import { Avatar, Icon, ShadowView } from "../../../../components";
 import { EditButton, GobackButton } from "../../components";
 import { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import { useAuth, useThemeColor } from "../../../../hooks";
+import { useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";
 import { BUCKET_PROFILE_PIC, COLLECTION_ID_USERS } from "@env";
 import { uploadImageToServer } from "../../../../utils";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import styles from "./Settings.styles";
-import { getUserInfo } from "../../api/user";
+import { useFetchUserDetails } from "../../hooks/useFetchUserDetails";
+import { useFetchProfilePicture } from "../../hooks/useFetchProfilePicture";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -21,32 +22,18 @@ interface SettingsProps {
 
 const Settings = (props: SettingsProps) => {
   const { navigation } = props;
-  const { sessionToken } = useAuth();
   const statusBarBg = useThemeColor("background");
-  const [userId] = useState<string>(sessionToken?.userId!);
   const [userDocumentId, setUserDocumentId] = useState<string>();
   const [profilePictureId, setProfilePictureId] = useState<string>();
   const [localProfilePic, setLocalProfilePic] = useState<URL>();
-
-  const { data: userObject } = useQuery("user", () => getUserInfo(userId));
+  const { data: userObject } = useFetchUserDetails();
 
   useEffect(() => {
     setUserDocumentId(userObject?.$id); // This is the actual document Id - DIFFERENT from the 'userId'
     setProfilePictureId(userObject?.profilePicture);
   }, [userObject]);
 
-  const { data: profilePicture } = useQuery(
-    "profile picture",
-    () =>
-      api.getFilePreview(
-        BUCKET_PROFILE_PIC,
-        profilePictureId ?? "642349fae9ecff15d018"
-      ),
-    {
-      // This query will only run if "profilePictureId" is valid
-      enabled: !!profilePictureId,
-    }
-  );
+  const profilePicture = useFetchProfilePicture(profilePictureId ?? "");
 
   useEffect(() => {
     setLocalProfilePic(profilePicture);
@@ -103,7 +90,11 @@ const Settings = (props: SettingsProps) => {
           <GobackButton navigation={navigation} />
 
           <View style={styles.avatarContainer}>
-            <Avatar size={135} name="user avatar" imageURL={localProfilePic} />
+            <Avatar
+              size={135}
+              name={userObject?.username}
+              imageURL={localProfilePic}
+            />
             <TouchableOpacity
               style={styles.editAvatarButton}
               onPress={handleUploadImage}
