@@ -21,12 +21,8 @@ export const TodayStats = () => {
   const tasksCompleted =
     useCompletedTasks(allProjectInfo[1])[0] +
     useCompletedTasks(allProjectInfo[0])[0];
-  const tasksActive =
-    useCompletedTasks(allProjectInfo[1])[1] +
-    useCompletedTasks(allProjectInfo[0])[1];
-  const tasksOverdue =
-    useCompletedTasks(allProjectInfo[1])[2] +
-    useCompletedTasks(allProjectInfo[0])[2];
+  const tasksActive = useCompletedTasks(allProjectInfo[0])[1];
+  const tasksOverdue = useCompletedTasks(allProjectInfo[0])[2];
 
   return (
     <View style={styles.container}>
