@@ -1,0 +1,1 @@
+export * from "./GobackButton.component";
