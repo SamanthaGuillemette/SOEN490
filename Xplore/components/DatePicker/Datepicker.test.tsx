@@ -62,25 +62,19 @@ describe("DatePicker should be able to select a date", () => {
 
     let date = new Date();
     let year = date.getFullYear();
-    let day = date.getDate();
     let month = date.getMonth() + 1;
     let monthNumber = month.toString();
-    let dayNumber = day.toString();
+
     if (month < 10) {
       monthNumber = "0" + month.toString();
     }
 
-    if (day < 10) {
-      dayNumber = "0" + date.toString();
-    }
-
-    let todaysDate =
-      year.toString() + "-" + monthNumber + "-" + dayNumber.toString();
+    let todaysDate = year.toString() + "-" + monthNumber + "-" + "15";
 
     expect(queryByText("Cancel")).toBeNull();
     expect(queryByText("Ok")).toBeNull();
     fireEvent.press(getByTestId("calendar"));
-    fireEvent.press(getByText(day.toString()));
+    fireEvent.press(getByText("15"));
     fireEvent.press(getByText("Ok"));
     expect(queryByText(todaysDate)).not.toBeNull();
   });
