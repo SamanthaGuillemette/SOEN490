@@ -1,7 +1,9 @@
+AddMembers;
 import styles from "./AddMembers.styles";
 import { SearchBar, UsersList, View } from "../../../../components";
 import { useListUsersPaginated } from "../../../../services/api/userProfile";
 import Spinner from "react-native-loading-spinner-overlay/lib";
+import { useState } from "react";
 
 // interface UsersType {
 //   id: string;
@@ -23,24 +25,27 @@ const formatUserListData = (data: any) => {
 };
 
 export const AddMembers = (props: AddMembersProps) => {
-  const { setAllMembers, allMembers } = props;
+  const { setAllMembers, allMembers = [] } = props;
   const { data, isLoading, fetchNextPage } = useListUsersPaginated();
+  const [query, setQuery] = useState<string>("");
+
+  // Filter the Users array based on the search query
+  const filteredUsers = formatUserListData(data).filter((user: any) =>
+    user.username.toLowerCase().includes(query.toLowerCase())
+  );
   return (
     <View style={styles.container}>
       {/* Needed components */}
 
-      <SearchBar style={styles.searchBar} />
+      <SearchBar style={styles.searchBar} onQueryChange={setQuery} />
       {isLoading ? (
         <Spinner visible={true} />
       ) : (
         <UsersList
-          key={20}
-          setAllMembers={setAllMembers}
-          allMembers={allMembers}
-          fetchMoreUsers={fetchNextPage}
-          data={formatUserListData(data)}
-          messageUserList={false}
+          data={filteredUsers}
           selectUserList={true}
+          messageUserList={false}
+          onSelect={(id: string) => setAllMembers([...allMembers, id])}
         />
       )}
     </View>

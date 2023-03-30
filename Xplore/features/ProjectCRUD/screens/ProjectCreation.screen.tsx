@@ -84,6 +84,8 @@ const ProjectCreation = (props: ProjectCreationProps) => {
     setEndDate("");
   };
 
+  console.log(allMembers);
+
   return (
     <StepIndicator
       setBuildProject={handleBuildProject}
