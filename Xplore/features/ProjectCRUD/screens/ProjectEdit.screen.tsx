@@ -7,12 +7,18 @@ import {
   Description,
   CategoryNGoals,
 } from "../components";
+import { useRoute } from "@react-navigation/native";
 
 interface ProjectEditProps {
   navigation: NavigationProp<any>;
 }
 
 const ProjectEdit = (props: ProjectEditProps) => {
+  const route = useRoute();
+  let { projectInfo }: any = route.params;
+
+  //console.log(projectInfo);
+
   return (
     <StepIndicator
       headerTitle={"Edit Projects"}

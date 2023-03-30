@@ -16,6 +16,8 @@ import { useState, useEffect } from "react";
 
 //to be defined
 interface Project {
+  projectID?: string;
+  isOwner?: boolean;
   name: string;
   description: string;
   imageURL?: string;
@@ -58,6 +60,8 @@ const useProjectCardInfo = (contactID: any) => {
         for (const docID of projectList) {
           const response = await api.getDocument(COLLECTION_ID_PROJECT, docID);
           const data: Project = {
+            projectID: docID,
+            isOwner: response.projectOwner === contactID,
             name: response.name,
             description: response.description,
             imageURL: response.imageURL,
