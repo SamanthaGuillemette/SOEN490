@@ -18,15 +18,13 @@ import {
   StatBoxes,
 } from "../../components";
 import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.component";
-import { useQuery } from "react-query";
-import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
-import { BUCKET_PROFILE_PIC } from "@env";
 import { useNewNotificationsCount } from "../../../../services/api/notifications";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { getUserXPlevel } from "../../../../utils/getUserXPlevel";
 import { useFetchUserDetails } from "../../hooks/useFetchUserDetails";
 import { useFetchUserPrefs } from "../../hooks/useFetchUserPrefs";
+import { useFetchProfilePicture } from "../../hooks/useFetchProfilePicture";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -40,8 +38,6 @@ const Profile = (props: ProfileProps) => {
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
-  // const { accountToken } = useAuth();
-  // const [userId] = useState<string>(accountToken?.$id!);
   const [profilePictureId, setProfilePictureId] = useState<string>();
 
   const scrollY = useRef(new Animated.Value(0)).current;
@@ -81,33 +77,17 @@ const Profile = (props: ProfileProps) => {
     extrapolate: "clamp",
   });
 
-  // const { data, status } = useFetchUserDetails();
   const { data: userObject, status } = useFetchUserDetails();
-
-  // const userDetails = data?.documents[0];
-  // const XPlevel = getUserXPlevel(userDetails?.xp);
   const XPlevel = getUserXPlevel(userObject?.xp);
 
   const userPrefs = useFetchUserPrefs();
-
   const newNotifsCount = useNewNotificationsCount(userPrefs?.$id);
 
   useEffect(() => {
     setProfilePictureId(userObject?.profilePicture);
   }, [userObject]);
 
-  const { data: profilePicture } = useQuery(
-    "profile picture",
-    () =>
-      api.getFilePreview(
-        BUCKET_PROFILE_PIC,
-        profilePictureId ?? "642349fae9ecff15d018"
-      ),
-    {
-      // This query will only run if "profilePictureId" is valid
-      enabled: !!profilePictureId,
-    }
-  );
+  const profilePicture = useFetchProfilePicture(profilePictureId ?? "");
 
   return status === "loading" ? (
     <Spinner visible={true} />
