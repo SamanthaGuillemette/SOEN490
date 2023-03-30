@@ -8,7 +8,7 @@ import { MessageMember } from "../MessageMember";
 import { NavigationProp } from "@react-navigation/native";
 
 interface UsersType {
-  userID: string;
+  id: string;
   username: string;
   avatar: string;
   xp: number;
@@ -21,7 +21,7 @@ interface UsersListProps {
   messageUserList: boolean;
   selectUserList: boolean;
   navigation?: NavigationProp<any>;
-  onSelect: (userId: string, isSelected: boolean) => void;
+  setList: any;
 }
 
 //  UsersItem component creates user and sets selected to false initially
@@ -29,7 +29,7 @@ export const UserItemSelect = (
   props: UsersType & { onSelect: (id: string) => void }
 ) => {
   const [selected, setSelected] = useState(false);
-  const { onSelect, userID: id } = props;
+  const { onSelect, id } = props;
 
   const handleSelect = () => {
     setSelected(!selected);
@@ -43,7 +43,7 @@ export const UserItemSelect = (
           avatar={props.avatar}
           username={props.username}
           xp={props.xp}
-          id={props.userID}
+          id={props.id}
           style={styles.user}
         />
         {selected ? (
@@ -71,7 +71,7 @@ export const UserItemMessage = (props: UsersType) => {
   return (
     <View>
       <MessageMember
-        id={props.userID}
+        id={props.id}
         avatar={props.avatar}
         username={props.username}
         xp={props.xp}
@@ -88,38 +88,40 @@ export const UsersList = (props: UsersListProps) => {
   const handleUserSelect = (userId: string, isSelected: boolean) => {
     if (isSelected) {
       setSelectedUsers([...selectedUsers, userId]);
+      console.log("SELECTED", selectedUsers);
+      console.log("ID", userId);
     } else {
       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
     }
-    props.onSelect(userId, isSelected);
+    //props.setList(selectedUsers);
   };
 
   return (
     <ScrollView pagingEnabled={true}>
       {props.selectUserList
-        ? props.data.map((user: UsersType, index) => (
+        ? props.data.map((user: UsersType) => (
             <UserItemSelect
-              key={index}
+              key={user.id}
               username={user.username}
               avatar={user.avatar}
               xp={user.xp}
-              userID={user.userID}
+              id={user.id}
               navigation={props.navigation}
-              selected={selectedUsers.includes(user.userID)}
+              selected={selectedUsers.includes(user.id)}
               onSelect={(isSelected) =>
-                handleUserSelect(user.userID, Boolean(isSelected))
+                handleUserSelect(user.id, !selectedUsers.includes(isSelected))
               }
             />
           ))
         : null}
       {props.messageUserList
-        ? props.data.map((user: UsersType, index) => (
+        ? props.data.map((user: UsersType) => (
             <UserItemMessage
-              key={index}
+              key={user.id}
               username={user.username}
               avatar={user.avatar}
               xp={user.xp}
-              userID={user.userID}
+              id={user.id}
               navigation={props.navigation}
             />
           ))

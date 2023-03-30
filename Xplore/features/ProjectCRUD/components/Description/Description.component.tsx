@@ -37,7 +37,6 @@ export const Description = (props: DescriptionProps) => {
   const { data } = useQuery("projectImage", () =>
     api.getFilePreview(BUCKET_PROJECT_PIC, uploadedImageId || "")
   );
-  console.log("====> React Query data: ", data);
 
   const handleUploadImage = async () => {
     // No permissions request is necessary for launching the image library

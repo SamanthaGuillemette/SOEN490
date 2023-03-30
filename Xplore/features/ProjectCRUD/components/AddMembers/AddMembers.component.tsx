@@ -1,9 +1,12 @@
-AddMembers;
 import styles from "./AddMembers.styles";
-import { SearchBar, UsersList, View } from "../../../../components";
+import { SearchBar, UsersList, ShadowView } from "../../../../components";
 import { useListUsersPaginated } from "../../../../services/api/userProfile";
+import { useListUsers } from "../../../../services/api/search";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { useState } from "react";
+import { Modal, View } from "react-native";
+import { useQuery } from "react-query";
+import api from "../../../../services/appwrite/api";
 
 // interface UsersType {
 //   id: string;
@@ -16,38 +19,37 @@ interface AddMembersProps {
   allMembers: any;
 }
 
-const formatUserListData = (data: any) => {
-  const formattedData: any = [];
-  data?.pages.forEach((page: { projects: any }) =>
-    page.projects.forEach((project: any) => formattedData.push(project as any))
-  );
-  return formattedData;
-};
-
 export const AddMembers = (props: AddMembersProps) => {
-  const { setAllMembers, allMembers = [] } = props;
-  const { data, isLoading, fetchNextPage } = useListUsersPaginated();
+  //const { setAllMembers, allMembers = [] } = props;
   const [query, setQuery] = useState<string>("");
+  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  const users = useListUsers();
 
   // Filter the Users array based on the search query
-  const filteredUsers = formatUserListData(data).filter((user: any) =>
+  const filteredUsers = users.filter((user: any) =>
     user.username.toLowerCase().includes(query.toLowerCase())
   );
-  return (
-    <View style={styles.container}>
-      {/* Needed components */}
 
-      <SearchBar style={styles.searchBar} onQueryChange={setQuery} />
-      {isLoading ? (
-        <Spinner visible={true} />
-      ) : (
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+
+  function handleIndexSelect() {
+    const groupMembers = [...selectedUsers, userId];
+    console.log("MEMBERS", groupMembers);
+  }
+
+  return (
+    <View style={styles.fullView}>
+      <View style={styles.centeredView}>
+        <SearchBar style={styles.searchBar} onQueryChange={setQuery} />
         <UsersList
           data={filteredUsers}
           selectUserList={true}
           messageUserList={false}
-          onSelect={(id: string) => setAllMembers([...allMembers, id])}
+          setList={props.setAllMembers}
         />
-      )}
+      </View>
     </View>
   );
 };

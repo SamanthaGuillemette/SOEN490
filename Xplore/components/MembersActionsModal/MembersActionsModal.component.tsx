@@ -43,7 +43,8 @@ export const MembersActionsModal = ({
     setActionsModalVisible(!modalVisible);
     if (action === "Create Group" && selectedUsers.length > 0) {
       const groupMembers = [...selectedUsers, userId];
-      createNewGroupChat(groupMembers);
+      //createNewGroupChat(groupMembers);
+      //console.log("MEMBERS", selectedUsers);
     }
     if (action === "Add Members" && selectedUsers.length > 0) {
       addToChat(selectedUsers, chatID);
@@ -80,12 +81,7 @@ export const MembersActionsModal = ({
               data={filteredUsers}
               selectUserList={true}
               messageUserList={false}
-              onSelect={(id: string) =>
-                setSelectedUsers((prevSelectedUsers) => [
-                  ...prevSelectedUsers,
-                  id,
-                ])
-              }
+              setList={setSelectedUsers}
             />
             <View style={styles.buttons}>
               <PrimaryButton

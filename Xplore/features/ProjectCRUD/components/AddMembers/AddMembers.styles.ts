@@ -1,11 +1,16 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
-    marginTop: 50,
+  fullView: {
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
   },
+  centeredView: {
+    flex: 1,
+    paddingVertical: 80,
+  },
   searchBar: {
-    width: 320,
+    width: 280,
   },
 });
