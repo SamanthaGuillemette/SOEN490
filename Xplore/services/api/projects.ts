@@ -46,16 +46,18 @@ const getProjectsList = async (contactID: any) => {
 
 //Get number of tasks completed
 const useTaskStats = (projects: any) => {
-  const [completedTasks, setcompletedTasks] = useState<any>();
+  const [completedTasks, setCompletedTasks] = useState<any>();
   const [activeTasks, setActiveTasks] = useState<any>();
+  const [overdueTasks, setOverdueTasks] = useState<any>();
 
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const userProjects = projects; // Looping through list of projects
-        var completedTask = 0;
+        const userProjects = projects;
         var activeTask = 0;
-
+        var overdueTask = 0;
+        // Looping through list of projects
+        var completedTask = 0;
         for (const project of userProjects) {
           // Looping through list of tasks
           for (let index in project.tasks) {
@@ -66,23 +68,26 @@ const useTaskStats = (projects: any) => {
 
             const data = {
               taskID: project.tasks[index],
-
               endDate: response.endDate,
               completed: response.completed,
             };
             data.completed === true ? completedTask++ : activeTask++; //increase number of user tasks completed
+            new Date(project.endDate) < new Date() && data.completed === false
+              ? overdueTask++
+              : null;
           }
         }
-        setcompletedTasks(completedTask);
+        setCompletedTasks(completedTask);
         setActiveTasks(activeTask);
+        setOverdueTasks(overdueTask);
       } catch (e) {
         console.log(e);
       }
     };
     fetchInfo();
-  }, [projects, completedTasks]);
+  }, [projects, completedTasks, activeTasks, overdueTasks]);
 
-  return [completedTasks, activeTasks];
+  return [completedTasks, activeTasks, overdueTasks];
 };
 
 // Getting information to display on the Project Card

@@ -24,6 +24,9 @@ export const TodayStats = () => {
   const tasksActive =
     useCompletedTasks(allProjectInfo[1])[1] +
     useCompletedTasks(allProjectInfo[0])[1];
+  const tasksOverdue =
+    useCompletedTasks(allProjectInfo[1])[2] +
+    useCompletedTasks(allProjectInfo[0])[2];
 
   return (
     <View style={styles.container}>
@@ -49,7 +52,11 @@ export const TodayStats = () => {
             subTitle={tasksActive + " Tasks"}
             iconName="zap"
           />
-          <StatBoxLarge title="Overdue" subTitle="6 Tasks" iconName="clock" />
+          <StatBoxLarge
+            title="Overdue"
+            subTitle={tasksOverdue + " Tasks"}
+            iconName="clock"
+          />
         </View>
       </View>
     </View>
