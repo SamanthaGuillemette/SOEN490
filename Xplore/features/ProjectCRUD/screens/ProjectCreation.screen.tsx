@@ -34,7 +34,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
-  const [allMembers, setAllMembers] = useState<any[]>([userId]);
+  const [allMembers, setAllMembers] = useState<string[]>([]);
 
   const handleBuildProject = () => {
     if (projName === "" || description === "" || category === "") {
@@ -84,8 +84,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
     setEndDate("");
   };
 
-  console.log(allMembers);
-
   return (
     <StepIndicator
       setBuildProject={handleBuildProject}
@@ -106,7 +104,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           setImageURL={setImageURL}
         />,
         <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
-        <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,
+        <AddMembers setAllMembers={setAllMembers} />,
         <AllTasks
           navigation={props.navigation}
           setTasks={setTasks}

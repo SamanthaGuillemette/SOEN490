@@ -6,6 +6,8 @@ import styles from "./UsersList.styles";
 import { Icon } from "../Icon";
 import { MessageMember } from "../MessageMember";
 import { NavigationProp } from "@react-navigation/native";
+import { useQuery } from "react-query";
+import api from "../../services/appwrite/api";
 
 interface UsersType {
   id: string;
@@ -21,7 +23,7 @@ interface UsersListProps {
   messageUserList: boolean;
   selectUserList: boolean;
   navigation?: NavigationProp<any>;
-  setList: any;
+  setList?: any;
 }
 
 //  UsersItem component creates user and sets selected to false initially
@@ -83,22 +85,24 @@ export const UserItemMessage = (props: UsersType) => {
 
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
+  const { setList } = props;
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
 
   const handleUserSelect = (userId: string, isSelected: boolean) => {
     if (isSelected) {
       setSelectedUsers([...selectedUsers, userId]);
-      // console.log("SELECTED", selectedUsers);
-      console.log("ID", userId);
     } else {
       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
     }
-    //props.setList(selectedUsers);
   };
 
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userID: string = userdata?.$id as string;
+
   useEffect(() => {
-    console.log("SELECTED", selectedUsers);
-  }, [selectedUsers]);
+    setList([...selectedUsers, userID]);
+  }, [selectedUsers, setList, userID]);
 
   return (
     <ScrollView pagingEnabled={true}>

@@ -28,10 +28,6 @@ export const MembersActionsModal = ({
   chatID,
   chatName,
 }: MembersActionsModalProps) => {
-  // Quering current user's data
-  const { data: userdata } = useQuery("user data", () => api.getAccount());
-  let userId: string = userdata?.$id as string;
-
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
@@ -42,9 +38,7 @@ export const MembersActionsModal = ({
     setModalVisible(!modalVisible);
     setActionsModalVisible(!modalVisible);
     if (action === "Create Group" && selectedUsers.length > 0) {
-      const groupMembers = [...selectedUsers, userId];
-      //createNewGroupChat(groupMembers);
-      //console.log("MEMBERS", selectedUsers);
+      createNewGroupChat(selectedUsers);
     }
     if (action === "Add Members" && selectedUsers.length > 0) {
       addToChat(selectedUsers, chatID);
