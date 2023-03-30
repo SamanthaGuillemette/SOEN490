@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchableOpacity, ScrollView } from "react-native";
 import { View } from "../View";
 import { User } from "../User";
@@ -88,13 +88,17 @@ export const UsersList = (props: UsersListProps) => {
   const handleUserSelect = (userId: string, isSelected: boolean) => {
     if (isSelected) {
       setSelectedUsers([...selectedUsers, userId]);
-      console.log("SELECTED", selectedUsers);
+      // console.log("SELECTED", selectedUsers);
       console.log("ID", userId);
     } else {
       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
     }
     //props.setList(selectedUsers);
   };
+
+  useEffect(() => {
+    console.log("SELECTED", selectedUsers);
+  }, [selectedUsers]);
 
   return (
     <ScrollView pagingEnabled={true}>
