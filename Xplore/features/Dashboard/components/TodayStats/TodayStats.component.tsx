@@ -19,10 +19,11 @@ export const TodayStats = () => {
   allProjectInfo = useProjectCardInfo(userId);
 
   const tasksCompleted =
-    useCompletedTasks(allProjectInfo[1]) + useCompletedTasks(allProjectInfo[0]);
-  // const tasksActive =
-  //   useCompletedTasks(allProjectInfo[1])[1] +
-  //   useCompletedTasks(allProjectInfo[0])[1];
+    useCompletedTasks(allProjectInfo[1])[0] +
+    useCompletedTasks(allProjectInfo[0])[0];
+  const tasksActive =
+    useCompletedTasks(allProjectInfo[1])[1] +
+    useCompletedTasks(allProjectInfo[0])[1];
 
   return (
     <View style={styles.container}>
@@ -43,7 +44,11 @@ export const TodayStats = () => {
           />
         </View>
         <View style={styles.rightPanel}>
-          <StatBoxSmall title="Active" subTitle="15 Tasks" iconName="zap" />
+          <StatBoxSmall
+            title="Active"
+            subTitle={tasksActive + " Tasks"}
+            iconName="zap"
+          />
           <StatBoxLarge title="Overdue" subTitle="6 Tasks" iconName="clock" />
         </View>
       </View>
