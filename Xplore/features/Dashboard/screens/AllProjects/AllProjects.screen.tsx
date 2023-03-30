@@ -1,5 +1,5 @@
 import { FlashList } from "@shopify/flash-list";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   CategoryScrollBar,
@@ -50,13 +50,10 @@ const formatProjectData = (data: ProjectData | undefined, userID: any) => {
   formattedData.forEach((project) => {
     let memberList = project.members;
     let foundUser = false;
-
-    // Looping through member list and setting foundUser
     memberList.forEach(
       (memberID) => (memberID === userID ? (foundUser = true) : "") // if userID is found in list of members
     );
-
-    project["requestJoin"] = !foundUser;
+    project.requestJoin = !foundUser;
   });
   return formattedData;
 };
@@ -66,11 +63,40 @@ interface ExploreProjectsProps {
 }
 const ExploreProjects = (props: ExploreProjectsProps) => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
-  const { data, fetchNextPage } = useListProjectsPaginated();
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState<ProjectData[]>([]);
 
-  // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
+
+  const { data, status, fetchNextPage } = useListProjectsPaginated();
+
+  let projectData = useRef([] as ProjectData[]);
+  if (status === "success") {
+    projectData.current = formatProjectData(data as any, userId);
+    console.log(projectData.current.length);
+  }
+
+  useEffect(() => {
+    console.log("updated cat filter", categoryFilter);
+    projectData.current = projectData.current.filter(
+      (project) => project.category === categoryFilter
+    );
+    console.log("len cat filt", projectData.current.length);
+    setFilteredData(projectData.current);
+  }, [categoryFilter]);
+
+  useEffect(() => {
+    console.log("updated s query", searchQuery);
+    projectData.current = projectData.current.filter(
+      (project) =>
+        project.description.includes(searchQuery) ||
+        project.name.includes(searchQuery)
+    );
+    setFilteredData(projectData.current);
+    console.log("len query", projectData.current.length);
+  }, [searchQuery]);
 
   return (
     <SafeAreaView edges={["top"]} style={styles.mainContainer}>
@@ -84,17 +110,22 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
           showFilterButton={true}
           onFilterButtonPress={setIsCategoryListVisible}
           style={styles.searchBar}
+          onQueryChange={setSearchQuery}
         />
       </View>
 
       {/* This horizontal scrollbar is hidden by default.
       When the user clicks on the filter button, "isCategoryListVisible" === true */}
       {isCategoryListVisible && (
-        <CategoryScrollBar style={styles.categoryBar} categories={categories} />
+        <CategoryScrollBar
+          style={styles.categoryBar}
+          categories={categories}
+          setCategory={setCategoryFilter}
+        />
       )}
 
       <FlashList
-        data={formatProjectData(data as any, userId)}
+        data={filteredData.length !== 0 ? filteredData : projectData.current}
         renderItem={({ item }) => (
           <ProjectCard navigation={props.navigation} item={item} />
         )}
