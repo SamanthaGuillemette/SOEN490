@@ -19,7 +19,7 @@ const SignIn = (props: SignInProps) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const { signIn, loading } = useAuth();
+  const { signIn, loading, loginStatus } = useAuth();
 
   const handleLoginValues = (
     email: any,
@@ -32,8 +32,12 @@ const SignIn = (props: SignInProps) => {
       Alert.alert("Error", "You are missing required fields!");
     } else {
       signIn(email, password);
-      setEmail("");
-      setPassword("");
+      if (
+        loginStatus !== "error"
+      ) {
+        setEmail("");
+        setPassword("");
+      }
     }
   };
 
