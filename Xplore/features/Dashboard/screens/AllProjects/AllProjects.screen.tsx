@@ -91,8 +91,8 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
     console.log("updated s query", searchQuery);
     projectData.current = projectData.current.filter(
       (project) =>
-        project.description.includes(searchQuery) ||
-        project.name.includes(searchQuery)
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredData(projectData.current);
     console.log("len query", projectData.current.length);
