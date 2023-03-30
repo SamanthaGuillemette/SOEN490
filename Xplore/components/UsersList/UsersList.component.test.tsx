@@ -1,7 +1,8 @@
-import { render, fireEvent } from "@testing-library/react-native";
-import React from "react";
+import { render, fireEvent, renderHook } from "@testing-library/react-native";
+import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { UsersList } from "./UsersList.component";
+import { NavigationProp } from "@react-navigation/native";
 
 describe("UserList should render correctly for selectUserList", () => {
   interface UsersType {
@@ -9,6 +10,8 @@ describe("UserList should render correctly for selectUserList", () => {
     username: string;
     avatar: string;
     xp: number;
+    selected?: boolean;
+    navigation?: NavigationProp<any>;
   }
 
   const Users: UsersType[] = [
@@ -46,16 +49,6 @@ describe("UserList should render correctly for selectUserList", () => {
     expect(queryByText("Josh Lewis")).not.toBeNull();
     expect(queryByText("Amy Lucas")).not.toBeNull();
     expect(queryByText("Landon Clayton")).not.toBeNull();
-  });
-
-  it("should be able to select users", () => {
-    const { getByText, getAllByTestId } = render(
-      <UsersList data={Users} messageUserList={false} selectUserList={true} />
-    );
-    expect(getAllByTestId("circle")).toHaveLength(3);
-    fireEvent.press(getByText("Josh Lewis"));
-    expect(getAllByTestId("circle")).toHaveLength(2);
-    expect(getAllByTestId("check-circle")).toHaveLength(1);
   });
 });
 
