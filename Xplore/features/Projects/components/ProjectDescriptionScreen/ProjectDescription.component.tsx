@@ -1,27 +1,38 @@
 import { ScrollView } from "react-native-gesture-handler";
 import { View, RequestJoin } from "../../../../components";
 import Accordion from "../../../../components/Accordion/Accordion.component";
-import { NavigationProp } from "@react-navigation/native";
 import ProjectStatusBox from "./ProjectStatusBox.Component";
 import styles from "./ProjectDescription.styles";
-
-interface ProjectDescription {
-  navigation: NavigationProp<any>;
-}
+import { useRoute } from "@react-navigation/native";
+import api from "../../../../services/appwrite/api";
+import { useQuery } from "react-query";
 
 const ProjectDescription = () => {
+  const route = useRoute();
+  let { item }: any = route.params;
+  const endDate = item.endDate.substring(0, item.endDate.indexOf("T"));
+
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <ProjectStatusBox
-            tasks={"13"}
-            conversations={"20"}
-            date={"August 12, 2022"}
-            percent={63}
+            tasks={item.tasks.length}
+            date={endDate}
+            percent={item.percentComplete}
           />
-          <Accordion />
-          <RequestJoin />
+          <Accordion item={item} />
+          {item.requestJoin ? (
+            <RequestJoin
+              userID={userId}
+              projectID={item.$id}
+              projectName={item.name}
+            />
+          ) : null}
         </View>
       </ScrollView>
     </View>

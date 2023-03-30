@@ -1,8 +1,13 @@
-import { COLLECTION_ID_NOTIFICATIONS } from "@env";
+import {
+  COLLECTION_ID_NOTIFICATIONS,
+  COLLECTION_ID_PROJECT,
+  COLLECTION_ID_USERS,
+} from "@env";
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
 import api from "../appwrite/api";
+import ConfirmationModalStyles from "../../components/ConfirmationModal/ConfirmationModal.styles";
 
 // notificationType should be "badge" | "groupAdd" | "joinRequest" | "joinAccept"
 interface Notifications {
@@ -54,19 +59,94 @@ const createRequestJoinNotif = async (
   });
 };
 
+// Method to see if user has already requested to join the specified project
+const useUserAlreadyRequested = (userID: any, projectID: any) => {
+  const [alreadyRequested, setAlreadyRequested] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
+          Query.equal("userID", userID),
+          Query.equal("projectID", projectID),
+          Query.equal("notificationType", "joinRequest"),
+        ]);
+        response.total > 0
+          ? setAlreadyRequested(true)
+          : setAlreadyRequested(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [userID, projectID]);
+
+  return alreadyRequested;
+};
+
+const deleteRequestJoinNotif = async (userID: any, projectID: any) => {
+  const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
+    Query.equal("userID", userID),
+    Query.equal("projectID", projectID),
+    Query.equal("notificationType", "joinRequest"),
+  ]);
+
+  response?.documents.forEach((doc: any) => {
+    api.deleteDocument(COLLECTION_ID_NOTIFICATIONS, doc.$id);
+  });
+};
+
+// To update the list of members for a project once request is accepted
+const updateProjMemberList = async (userId: any, projectID: any) => {
+  try {
+    const response = await api.getDocument(COLLECTION_ID_PROJECT, projectID);
+    let members = response.members;
+    members.push(userId);
+
+    await api.updateDocument(COLLECTION_ID_PROJECT, projectID, {
+      members: members,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// To update the list of projects for the user once request is accepted
+const updateUserProjList = async (userId: any, projectID: any) => {
+  try {
+    const response = await api.listDocuments(COLLECTION_ID_USERS, [
+      Query.equal("userID", userId),
+    ]);
+    response?.documents?.map((doc: any) => {
+      let projects = doc.projects;
+      projects.push(projectID);
+
+      api.updateDocument(COLLECTION_ID_USERS, doc.$id, {
+        projects: projects,
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const createAcceptJoinNotif = async (
   userID: any,
   projectID: any,
-  projectName: any
+  projectName: any,
+  memberAcceptedRequestID: any
 ) => {
   await api.createDocument(COLLECTION_ID_NOTIFICATIONS, {
     userID: userID, // user whose request got accepted
-    memberAcceptedRequestID: userID, // admin who accepted the request
+    memberAcceptedRequestID: memberAcceptedRequestID, // admin who accepted the request
     notificationType: "joinAccept",
     projectID: projectID,
     projectName: projectName,
     createdAt: new Date().toISOString(),
   });
+
+  updateUserProjList(userID, projectID); // update user's project list
+  updateProjMemberList(userID, projectID); // updating list of members for the project
 };
 
 const getNotifs = async (userID: any) => {
@@ -140,7 +220,7 @@ const useNewNotificationsCount = (userID: any) => {
 
   useEffect(() => {
     const getNewNotificationsCount = async () => {
-      if (isFocused) { 
+      if (isFocused) {
         const notifs = await getNotifs(userID);
         const count = notifs.filter((notif) => !notif.seen).length;
         setNewNotificationsCount(count);
@@ -162,4 +242,6 @@ export {
   useListNotifications,
   markAsSeen,
   useNewNotificationsCount,
+  deleteRequestJoinNotif,
+  useUserAlreadyRequested,
 };

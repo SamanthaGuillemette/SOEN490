@@ -39,7 +39,9 @@ export const MemberChipAdder = () => {
           style={styles.iconAdder}
         />
         {addMemberModalVisible === true && (
-          <MembersActionsModal setActionsModalVisible={setAddMemberModalVisible} />
+          <MembersActionsModal
+            setActionsModalVisible={setAddMemberModalVisible}
+          />
         )}
       </TouchableOpacity>
       <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
