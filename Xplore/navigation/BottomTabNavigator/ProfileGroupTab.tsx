@@ -4,7 +4,6 @@ import {
   Profile,
   Settings,
 } from "../../features/Profile/screens";
-
 const ProfileStack = createNativeStackNavigator();
 
 const ProfileTab = () => {

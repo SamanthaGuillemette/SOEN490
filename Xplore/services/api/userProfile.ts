@@ -5,6 +5,8 @@ Such services might include "getProfileById", and other related functions
 import { COLLECTION_ID_USERS } from "@env";
 import api from "../appwrite/api";
 import { useInfiniteQuery } from "react-query";
+import { useQuery } from "react-query";
+import { useAuth } from "../../hooks";
 
 const useListUsersPaginated = () => {
   const LIMIT = 15;
@@ -25,4 +27,15 @@ const useListUsersPaginated = () => {
   });
 };
 
-export { useListUsersPaginated };
+const useFetchUserDetails = () => {
+  const { accountToken } = useAuth();
+  return useQuery({
+    queryKey: ["userDetails", accountToken?.$id],
+    queryFn: () =>
+      api.listDocuments(COLLECTION_ID_USERS, [
+        api.query.equal("userID", accountToken!.$id),
+      ]),
+  });
+};
+
+export { useFetchUserDetails, useListUsersPaginated };

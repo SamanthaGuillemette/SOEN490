@@ -9,7 +9,7 @@ import { Icon } from "../Icon";
 import { View } from "../View";
 import { MemberChip } from "../MemberChip";
 import styles from "./MemberChipAdder.styles";
-import { AddMemberModal } from "../AddMemberModal";
+import { MembersActionsModal } from "../MembersActionsModal";
 import { useState } from "react";
 import { useAllMembersInfo } from "../../services/api/projects";
 
@@ -41,10 +41,8 @@ export const MemberChipAdder = () => {
           style={styles.iconAdder}
         />
         {addMemberModalVisible === true && (
-          <AddMemberModal
-            setAllMembers={setAllMembers}
-            allMembers={allMembers}
-            setAddModalVisible={setAddMemberModalVisible}
+          <MembersActionsModal
+            setActionsModalVisible={setAddMemberModalVisible}
           />
         )}
       </TouchableOpacity>

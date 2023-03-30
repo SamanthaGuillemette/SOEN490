@@ -28,7 +28,8 @@ export default StyleSheet.create({
     marginLeft: 32,
   },
   taskInfoIcon: {
-    marginLeft: 180,
+    position: "absolute",
+    right: 10,
   },
   taskName: {
     marginLeft: 32,
