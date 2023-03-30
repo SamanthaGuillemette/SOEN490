@@ -28,6 +28,18 @@ interface ProjectData extends Models.Document {
   goals: string[];
 }
 
+const categories = [
+  { name: "Data Science" },
+  { name: "Web Development" },
+  { name: "Embedded Systems" },
+  { name: "Security Systems" },
+  { name: "Social Networking" },
+  { name: "Game Development" },
+  { name: "Software Optimization" },
+  { name: "Finance/Blockchain" },
+  { name: "Mobile Development" },
+];
+
 const formatProjectData = (data: ProjectData | undefined, userID: any) => {
   const formattedData: ProjectData[] = [];
   data?.pages.forEach((page: { projects: ProjectData[] }) =>
@@ -35,8 +47,6 @@ const formatProjectData = (data: ProjectData | undefined, userID: any) => {
       formattedData.push(project as ProjectData)
     )
   );
-
-  // For each project add key "requestJoin" and its value
   formattedData.forEach((project) => {
     let memberList = project.members;
     let foundUser = false;
@@ -98,13 +108,3 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
 };
 
 export default ExploreProjects;
-
-const categories = [
-  // TODO: we may not need the "isActive" property
-  { name: "All", isActive: true },
-  { name: "Web Dev", isActive: false },
-  { name: "Mobile Dev", isActive: false },
-  { name: "Frontend", isActive: false },
-  { name: "Backend", isActive: false },
-  { name: "DSA", isActive: false },
-];

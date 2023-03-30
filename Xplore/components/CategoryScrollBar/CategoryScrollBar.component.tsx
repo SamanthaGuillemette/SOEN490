@@ -7,7 +7,6 @@ import styles from "./CategoryScrollBar.styles";
 
 interface Category {
   name: string;
-  isActive: boolean; // TODO: We may not need this property
 }
 
 interface CategoryScrollBarProps {
