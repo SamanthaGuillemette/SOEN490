@@ -21,6 +21,7 @@ interface Project {
   imageURL?: string;
   tasks: string[];
   members: string[];
+  totalMembers: number;
   percentComplete: number;
   category: string;
   startDate: string;
@@ -62,6 +63,7 @@ const useProjectCardInfo = (contactID: any) => {
             description: response.description,
             imageURL: response.imageURL,
             members: response.members,
+            totalMembers: response.totalMembers,
             percentComplete: response.percentComplete,
             category: response.category,
             startDate: response.startDate,
@@ -190,6 +192,17 @@ const useNewProjects = () => {
   });
 };
 
+const usePopularProjects = () => {
+  const LIMIT = 5;
+  return useQuery({
+    queryKey: ["popularProjects"],
+    queryFn: () =>
+      api.listDocuments(COLLECTION_ID_PROJECT, [
+        api.query.limit(LIMIT),
+      ]),
+  });
+};
+
 const useListProjectsPaginated = () => {
   const LIMIT = 5;
   return useInfiniteQuery({
@@ -241,6 +254,7 @@ export {
   useAllTasksInfo,
   useAllMembersInfo,
   useNewProjects,
+  usePopularProjects,
   setTaskCompleted,
   deleteTask,
   useFetchUserProjects,
