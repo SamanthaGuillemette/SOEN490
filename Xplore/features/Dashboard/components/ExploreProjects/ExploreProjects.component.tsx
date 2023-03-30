@@ -2,6 +2,7 @@ import { NavigationProp } from "@react-navigation/native";
 import { FlatList } from "react-native";
 import { LinkButton, Text, View } from "../../../../components";
 import { ProjectCardSmall } from "../ProjectCardSmall";
+import { usePopularProjects } from "../../../../services/api/projects";
 import styles from "./ExploreProjects.styles";
 
 interface FakeProjectsType {
@@ -72,6 +73,8 @@ export const ExploreProjects = (props: ExploreProjectsProps) => {
     );
   };
 
+  const { data } = usePopularProjects();
+
   return (
     <View style={styles.exploreContainer}>
       <Text variant="h2" color="titleText">
@@ -85,10 +88,18 @@ export const ExploreProjects = (props: ExploreProjectsProps) => {
       </View>
 
       <FlatList
+        data={data?.documents}
+        renderItem={({ item, index }: any) => (
+          <ProjectCardSmall
+            key={item}
+            projectName={item.name}
+            index={index}
+            // url to be replaced once project creation is complete
+            imageURL="https://picsum.photos/300/200"
+          />
+        )}
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={fakeProjects}
-        renderItem={renderProjectCards}
         keyExtractor={({ id }) => id}
         style={styles.flatListStyle}
       />
