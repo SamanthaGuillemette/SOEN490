@@ -76,7 +76,7 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
 
   useEffect(() => {
     setDataToDisplay(projectData.current);
-  }, [status]);
+  }, [status, isCategoryListVisible]);
 
   useEffect(() => {
     const filtered = projectData.current.filter(
