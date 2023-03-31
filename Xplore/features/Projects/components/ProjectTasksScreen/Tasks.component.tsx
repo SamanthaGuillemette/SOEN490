@@ -16,19 +16,21 @@ export const Tasks = (props: TasksProps) => {
   const { navigation } = props;
   const allTasks = useAllTasksInfo(item.tasks);
 
+  console.log(allTasks);
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {allTasks.map((singleTask, i) =>
-            singleTask.completed === false ? (
+          {allTasks.map((singleTask, i) => {
+            return singleTask.completed === false ? (
               <TaskCardSwipeable
                 navigation={navigation}
                 taskInfo={singleTask}
                 key={i}
               />
-            ) : null
-          )}
+            ) : null;
+          })}
         </View>
       </ScrollView>
     </View>
