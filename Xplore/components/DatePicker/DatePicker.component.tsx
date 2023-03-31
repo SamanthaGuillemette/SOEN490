@@ -11,12 +11,14 @@ interface DatePickerProps {
   title: string;
   style?: StyleProp<ViewStyle>;
   defaultDate?: string;
+  setDate: (date: string) => void;
+  shouldDisplayDate?: boolean;
 }
 
 export const DatePicker = (props: DatePickerProps) => {
-  const [date, setDate] = useState(
+  /*const [date, setDate] = useState(
     props.defaultDate === undefined ? "YYYY-MM-DD" : props.defaultDate
-  );
+  );*/
   const [tempDate, setTempDate] = useState("YYYY-MM-DD");
   const [openCalendar, setOpenCalendar] = useState(false);
   const primary = useThemeColor("primary");
@@ -24,7 +26,7 @@ export const DatePicker = (props: DatePickerProps) => {
   const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
   const titleText = useThemeColor("titleText");
   const generalGray = useThemeColor("generalGray");
-  const { title, style } = props;
+  const { title, style, setDate, shouldDisplayDate } = props;
 
   return (
     <View>
@@ -35,7 +37,7 @@ export const DatePicker = (props: DatePickerProps) => {
 
         <View style={styles.alignRow}>
           <Text color="bodyText" variant="label">
-            {date}
+            {shouldDisplayDate === true ? tempDate : "YYYY-MM-DD"}
           </Text>
 
           <TouchableWithoutFeedback
@@ -86,7 +88,7 @@ export const DatePicker = (props: DatePickerProps) => {
             textMonthFontSize: 20,
           }}
           markedDates={{
-            [date]: { selected: true, selectedColor: primary },
+            [tempDate]: { selected: true, selectedColor: primary },
           }}
         />
         <View

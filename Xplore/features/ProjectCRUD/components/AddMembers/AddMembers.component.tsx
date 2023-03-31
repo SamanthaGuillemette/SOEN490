@@ -1,71 +1,39 @@
 import styles from "./AddMembers.styles";
-import { SearchBar, UsersList, View } from "../../../../components";
-
-interface UsersType {
-  id: string;
-  username: string;
-  avatar: string;
-  xp: number;
+import { SearchBar, UsersList } from "../../../../components";
+import { useListUsers } from "../../../../services/api/search";
+import Spinner from "react-native-loading-spinner-overlay/lib";
+import { useState } from "react";
+import { View } from "react-native";
+import { ScrollView } from "react-native";
+interface AddMembersProps {
+  setAllMembers: (value: any[]) => void;
 }
 
-const Users: UsersType[] = [
-  {
-    id: "1",
-    username: "Josh Lewis",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "2",
-    username: "Amy Lucas",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "3",
-    username: "Landon Clayton",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "4",
-    username: "Elva Moore",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "5",
-    username: "Martin Garza",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "6",
-    username: "Bernice Lewis",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "7",
-    username: "Landon Clayton",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-  {
-    id: "8",
-    username: "Martin Garza",
-    avatar: "https://picsum.photos/200",
-    xp: 103597,
-  },
-];
+export const AddMembers = (props: AddMembersProps) => {
+  //const { setAllMembers, allMembers = [] } = props;
+  const [query, setQuery] = useState<string>("");
+  const users = useListUsers();
 
-export const AddMembers = () => {
+  // Filter the Users array based on the search query
+  const filteredUsers = users.filter((user: any) =>
+    user.username.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
-    <View style={styles.container}>
-      {/* Needed components */}
-
-      <SearchBar style={styles.searchBar} />
-      <UsersList data={Users} messageUserList={false} selectUserList={true} />
+    <View style={styles.fixedHeight}>
+      <View style={styles.fullView}>
+        <View style={styles.centeredView}>
+          <SearchBar style={styles.searchBar} onQueryChange={setQuery} />
+          <ScrollView style={styles.scrollView}>
+            <UsersList
+              data={filteredUsers}
+              selectUserList={true}
+              messageUserList={false}
+              setList={props.setAllMembers}
+            />
+          </ScrollView>
+        </View>
+      </View>
     </View>
   );
 };

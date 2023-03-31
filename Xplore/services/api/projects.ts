@@ -31,6 +31,108 @@ interface Project {
   requestJoin?: boolean;
 }
 
+const useCreateNewProject = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: any) => {
+      console.log(data);
+      let taskIDs: string[] = [];
+      for (const task of data.tasks) {
+        try {
+          const res = await api.createDocument(
+            COLLECTION_ID_PROJECT_TASKS,
+            task
+          );
+          taskIDs.push(res.$id);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      return api.createDocument(COLLECTION_ID_PROJECT, {
+        ...data.project,
+        tasks: taskIDs,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+    },
+    retry: 2,
+  });
+};
+
+const useCreateNewTask = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: any) =>
+      api.createDocument(COLLECTION_ID_PROJECT_TASKS, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    },
+  });
+};
+
+// To update the list of projects per user once project is created
+const updateUserProjList = async (memberList: any) => {
+  try {
+    const lastCreatedDoc = await api.listDocuments(COLLECTION_ID_PROJECT, [
+      Query.orderDesc(""),
+      Query.limit(1),
+    ]);
+
+    const lastProjectID = lastCreatedDoc.documents[0].$id;
+    let allMembers: any = [];
+
+    memberList.forEach((memberID: any) => {
+      allMembers.push(memberID);
+    });
+
+    for (const memberID of allMembers) {
+      const response = await api.listDocuments(COLLECTION_ID_USERS, [
+        Query.equal("userID", memberID),
+      ]);
+      response?.documents?.map((doc: any) => {
+        let projects = doc.projects;
+        projects.push(lastProjectID);
+
+        api.updateDocument(COLLECTION_ID_USERS, doc.$id, {
+          projects: projects,
+        });
+      });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// const useFetchUserInfo = (userIds: string[]) => {
+//   const [users, setUsers] = useState<
+//     { userId: string; profilePicture: string }[]
+//   >([]);
+
+//   useEffect(() => {
+//     const fetchInfo = async () => {
+//       try {
+//         const response = await api.listDocuments(COLLECTION_ID_USERS, [
+//           Query.in("userId", userIds),
+//         ]);
+
+//         const data = await Promise.all(
+//           response?.documents?.map(async (doc) => ({
+//             userId: doc.userId,
+//             profilePicture: doc.imageURL,
+//           })) || []
+//         );
+//         setUsers(data);
+//       } catch (e) {
+//         console.log(e);
+//       }
+//     };
+//     fetchInfo();
+//   }, [userIds]);
+
+//   return users;
+// };
+
 // Getting all projects assigned to logged in user
 const getProjectsList = async (contactID: any) => {
   const response = await api.listDocuments(COLLECTION_ID_USERS, [
@@ -248,4 +350,7 @@ export {
   setTaskCompleted,
   deleteTask,
   useFetchUserProjects,
+  useCreateNewTask,
+  useCreateNewProject,
+  updateUserProjList,
 };

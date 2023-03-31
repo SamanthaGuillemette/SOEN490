@@ -1,5 +1,5 @@
 import { FlashList } from "@shopify/flash-list";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   CategoryScrollBar,
@@ -14,6 +14,7 @@ import { Models } from "appwrite";
 import { NavigationProp } from "@react-navigation/native";
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
+import { useThemeColor } from "../../../../hooks/useThemeColor";
 
 interface ProjectData extends Models.Document {
   name: string;
@@ -28,6 +29,18 @@ interface ProjectData extends Models.Document {
   goals: string[];
 }
 
+const categories = [
+  { name: "Data Science" },
+  { name: "Web Development" },
+  { name: "Embedded Systems" },
+  { name: "Security Systems" },
+  { name: "Social Networking" },
+  { name: "Game Development" },
+  { name: "Software Optimization" },
+  { name: "Finance/Blockchain" },
+  { name: "Mobile Development" },
+];
+
 const formatProjectData = (data: ProjectData | undefined, userID: any) => {
   const formattedData: ProjectData[] = [];
   data?.pages.forEach((page: { projects: ProjectData[] }) =>
@@ -35,32 +48,54 @@ const formatProjectData = (data: ProjectData | undefined, userID: any) => {
       formattedData.push(project as ProjectData)
     )
   );
-
-  // For each project add key "requestJoin" and its value
   formattedData.forEach((project) => {
     let memberList = project.members;
     let foundUser = false;
-
-    // Looping through member list and setting foundUser
     memberList.forEach(
       (memberID) => (memberID === userID ? (foundUser = true) : "") // if userID is found in list of members
     );
-
-    project["requestJoin"] = !foundUser;
+    project.requestJoin = !foundUser;
   });
   return formattedData;
 };
-
 interface ExploreProjectsProps {
   navigation: NavigationProp<any>;
 }
 const ExploreProjects = (props: ExploreProjectsProps) => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
-  const { data, fetchNextPage } = useListProjectsPaginated();
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [dataToDisplay, setDataToDisplay] = useState<ProjectData[]>([]);
 
-  // Quering current user's data
+  const noResultsColor = useThemeColor("bodyText");
+
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
+
+  const { data, status, fetchNextPage } = useListProjectsPaginated();
+
+  let projectData = useRef([] as ProjectData[]);
+  projectData.current = formatProjectData(data as any, userId);
+
+  useEffect(() => {
+    setDataToDisplay(projectData.current);
+  }, [status, isCategoryListVisible]);
+
+  useEffect(() => {
+    const filtered = projectData.current.filter(
+      (project) => project.category === categoryFilter
+    );
+    setDataToDisplay(filtered);
+  }, [categoryFilter]);
+
+  useEffect(() => {
+    const filtered = projectData.current.filter(
+      (project) =>
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setDataToDisplay(filtered);
+  }, [searchQuery]);
 
   return (
     <SafeAreaView edges={["top"]} style={styles.mainContainer}>
@@ -74,37 +109,35 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
           showFilterButton={true}
           onFilterButtonPress={setIsCategoryListVisible}
           style={styles.searchBar}
+          onQueryChange={setSearchQuery}
         />
       </View>
 
-      {/* This horizontal scrollbar is hidden by default.
-      When the user clicks on the filter button, "isCategoryListVisible" === true */}
       {isCategoryListVisible && (
-        <CategoryScrollBar style={styles.categoryBar} categories={categories} />
+        <CategoryScrollBar
+          style={styles.categoryBar}
+          categories={categories}
+          setCategory={setCategoryFilter}
+        />
       )}
-
-      <FlashList
-        data={formatProjectData(data as any, userId)}
-        renderItem={({ item }) => (
-          <ProjectCard navigation={props.navigation} item={item} />
-        )}
-        estimatedItemSize={350}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.flashListContainer}
-        onEndReached={fetchNextPage}
-      />
+      {dataToDisplay.length === 0 ? (
+        <Text style={[styles.noResults, { color: noResultsColor }]}>
+          no results
+        </Text>
+      ) : (
+        <FlashList
+          data={dataToDisplay}
+          renderItem={({ item }) => (
+            <ProjectCard navigation={props.navigation} item={item} />
+          )}
+          estimatedItemSize={350}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.flashListContainer}
+          onEndReached={fetchNextPage}
+        />
+      )}
     </SafeAreaView>
   );
 };
 
 export default ExploreProjects;
-
-const categories = [
-  // TODO: we may not need the "isActive" property
-  { name: "All", isActive: true },
-  { name: "Web Dev", isActive: false },
-  { name: "Mobile Dev", isActive: false },
-  { name: "Frontend", isActive: false },
-  { name: "Backend", isActive: false },
-  { name: "DSA", isActive: false },
-];

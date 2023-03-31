@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.1",
-    "@expo/ngrok": "^4.1.0",
+    "@expo/ngrok": "4.1.0",
     "@react-native-community/datetimepicker": "6.2.0",
     "@react-native-picker/picker": "2.4.2",
     "@react-navigation/bottom-tabs": "^6.4.0",
@@ -41,7 +41,7 @@
     "react-native-calendars": "^1.1293.0",
     "react-native-date-picker": "^4.2.6",
     "react-native-datepicker": "^1.7.2",
-    "react-native-dotenv": "^3.4.7",
+    "react-native-dotenv": "^3.4.8",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-inset-shadow": "^1.0.3",
     "react-native-loading-spinner-overlay": "^3.0.1",
