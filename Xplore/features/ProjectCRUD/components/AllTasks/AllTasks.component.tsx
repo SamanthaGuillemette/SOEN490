@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, SquaredButton } from "../../../../components";
-import { TaskCardSwipeable } from "../../../../components/TaskCardSwipeable";
+import { TaskCard } from "../../../../components/TaskCard";
 
 import { TaskModal } from "../TaskModal";
 import { NavigationProp } from "@react-navigation/native";
@@ -27,13 +27,7 @@ export const AllTasks = (props: AllTasksProps) => {
 
       <View style={styles.content}>
         {tasks.map((task: any, index) => (
-          <TaskCardSwipeable
-            key={index}
-            taskCategory={task.category}
-            taskName={task.name}
-            taskDate={task.startDate}
-            navigation={navigation}
-          />
+          <TaskCard key={index} taskInfo={task} navigation={navigation} />
         ))}
       </View>
 

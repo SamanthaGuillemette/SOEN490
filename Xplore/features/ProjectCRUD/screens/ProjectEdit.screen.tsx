@@ -15,6 +15,7 @@ interface ProjectEditProps {
 
 const ProjectEdit = (props: ProjectEditProps) => {
   const [description, setDescription] = useState("");
+  const [tasks, setTasks] = useState<Object[]>([]);
   const [allTasks, setAllTasks] = useState([]);
   const [allMembers, setAllMembers] = useState([]);
   const [allLinks, setAllLinks] = useState([]);
@@ -38,7 +39,11 @@ const ProjectEdit = (props: ProjectEditProps) => {
           setDescription={setDescription}
         />,
         <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
-        <AllTasks navigation={props.navigation} />,
+        <AllTasks
+          navigation={props.navigation}
+          setTasks={setTasks}
+          tasks={tasks}
+        />,
         <AddMembers />,
         <AddLinks />,
       ]}
