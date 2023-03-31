@@ -241,9 +241,17 @@ const setTaskCompleted = async (taskID: any) => {
 };
 
 // To delete task
-const deleteTask = async (taskID: any) => {
+const deleteTask = async (taskID: any, projectID: any) => {
   try {
+    // Delete the task document from the project tasks collection
     await api.deleteDocument(COLLECTION_ID_PROJECT_TASKS, taskID);
+
+    // Remove the task ID from the project document's tasks array
+    await api.updateDocument(COLLECTION_ID_PROJECT, projectID, {
+      $pull: {
+        tasks: taskID,
+      },
+    });
   } catch (e) {
     console.log(e);
   }
