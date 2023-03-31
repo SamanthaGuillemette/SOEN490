@@ -12,11 +12,10 @@ interface AllTasksProps {
   navigation: NavigationProp<any>;
   setTasks: (value: Object[]) => void;
   tasks: Object[];
-  isProjectEdit?: boolean;
 }
 
 export const AllTasks = (props: AllTasksProps) => {
-  const { navigation, tasks, setTasks, isProjectEdit } = props;
+  const { navigation, tasks, setTasks } = props;
   const [showModal, setShowModal] = useState<any>(false);
 
   return (
@@ -29,12 +28,7 @@ export const AllTasks = (props: AllTasksProps) => {
 
       <View style={styles.content}>
         {tasks.map((task: any, index) => (
-          <TaskCard
-            key={index}
-            taskInfo={task}
-            navigation={navigation}
-            isProjectEdit={isProjectEdit}
-          />
+          <TaskCard key={index} taskInfo={task} navigation={navigation} />
         ))}
       </View>
 
