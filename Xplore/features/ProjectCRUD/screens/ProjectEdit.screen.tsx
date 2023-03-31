@@ -18,14 +18,27 @@ const ProjectEdit = (props: ProjectEditProps) => {
   const route = useRoute();
   let { projectInfo }: any = route.params;
 
-  const [description, setDescription] = useState("");
-  const [tasks, setTasks] = useState<Object[]>([]);
-  const [allTasks, setAllTasks] = useState([]);
-  const [allMembers, setAllMembers] = useState([]);
-  const [allLinks, setAllLinks] = useState([]);
-  const [projName, setProjectName] = useState("");
-  const [projectGoals, setGoals] = useState<string[]>([]);
+  // project image
+  const [imageURL, setImageURL] = useState(projectInfo.imageURL);
+  const [projName, setProjectName] = useState(projectInfo.name);
+  const [startDate, setStartDate] = useState(
+    projectInfo.startDate !== ""
+      ? projectInfo.startDate.substring(0, projectInfo.startDate.indexOf("T"))
+      : "YYYY-MM-DD"
+  );
+  const [endDate, setEndDate] = useState(
+    projectInfo.endDate !== ""
+      ? projectInfo.endDate.substring(0, projectInfo.endDate.indexOf("T"))
+      : "YYYY-MM-DD"
+  );
+  const [description, setDescription] = useState(projectInfo.description);
+
   const [projectCategory, setCategory] = useState("");
+  const [projectGoals, setGoals] = useState<string[]>([]);
+
+  //const [tasks, setTasks] = useState<Object[]>(projectInfo.tasks);
+  //const [allMembers, setAllMembers] = useState(projectInfo.description);
+
   return (
     <StepIndicator
       headerTitle={"Edit Projects"}
@@ -40,14 +53,21 @@ const ProjectEdit = (props: ProjectEditProps) => {
         <Description
           setProjectName={setProjectName}
           setDescription={setDescription}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+          projName={projName}
+          startDate={startDate}
+          endDate={endDate}
+          description={description}
+          setImageURL={setImageURL}
         />,
-        <CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
+        /*<CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
         <AllTasks
           navigation={props.navigation}
-          setTasks={setTasks}
-          tasks={tasks}
+          //setTasks={setTasks}
+          //tasks={tasks}
         />,
-        <AddMembers />,
+        <AddMembers />*/
       ]}
       navigation={props.navigation}
       onSubmitMsg={"Project Updated!"}

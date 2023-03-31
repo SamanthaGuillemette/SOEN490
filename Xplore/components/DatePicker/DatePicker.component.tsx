@@ -16,10 +16,9 @@ interface DatePickerProps {
 }
 
 export const DatePicker = (props: DatePickerProps) => {
-  /*const [date, setDate] = useState(
+  const [tempDate, setTempDate] = useState(
     props.defaultDate === undefined ? "YYYY-MM-DD" : props.defaultDate
-  );*/
-  const [tempDate, setTempDate] = useState("YYYY-MM-DD");
+  );
   const [openCalendar, setOpenCalendar] = useState(false);
   const primary = useThemeColor("primary");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
