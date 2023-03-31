@@ -7,7 +7,7 @@ import HomeTab from "./HomeTab";
 import ProjectTab from "./ProjectTab";
 import ChatTab from "./ChatTab";
 import LeaderTab from "./LeaderTab";
-import ProfileTab from "./ProfileGroupTab";
+import ProfileTab from "./ProfileTab";
 
 const BottomTab = createBottomTabNavigator();
 

@@ -14,7 +14,6 @@ interface UserProjectsProps {
 }
 
 const UserProjects = (props: UserProjectsProps) => {
-  const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const [screen, setScreen] = useState(0);
   var allProjectCard: any;
@@ -27,7 +26,7 @@ const UserProjects = (props: UserProjectsProps) => {
 
   return (
     <SafeAreaView
-      style={[styles.safeAreaStyle, { backgroundColor: background }]}
+      style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
       <TopHeader screenName={"Projects"} navigation={props.navigation} />
       <View
