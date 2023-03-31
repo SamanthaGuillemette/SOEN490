@@ -33,8 +33,8 @@ const ProjectEdit = (props: ProjectEditProps) => {
   );
   const [description, setDescription] = useState(projectInfo.description);
 
-  const [projectCategory, setCategory] = useState("");
-  const [projectGoals, setGoals] = useState<string[]>([]);
+  const [category, setCategory] = useState(projectInfo.category);
+  const [goals, setGoals] = useState<string[]>(projectInfo.goals);
 
   //const [tasks, setTasks] = useState<Object[]>(projectInfo.tasks);
   //const [allMembers, setAllMembers] = useState(projectInfo.description);
@@ -48,7 +48,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
         "All Tasks",
         "Add Members",
       ]}
-      numOfSteps={5}
+      numOfSteps={4}
       screens={[
         <Description
           setProjectName={setProjectName}
@@ -61,8 +61,13 @@ const ProjectEdit = (props: ProjectEditProps) => {
           description={description}
           setImageURL={setImageURL}
         />,
-        /*<CategoryNGoals setCategory={setCategory} setGoals={setGoals} />,
-        <AllTasks
+        <CategoryNGoals
+          setCategory={setCategory}
+          setGoals={setGoals}
+          category={category}
+          goals={goals}
+        />,
+        /*<AllTasks
           navigation={props.navigation}
           //setTasks={setTasks}
           //tasks={tasks}
@@ -70,7 +75,6 @@ const ProjectEdit = (props: ProjectEditProps) => {
         <AddMembers />*/
       ]}
       navigation={props.navigation}
-      onSubmitMsg={"Project Updated!"}
     />
   );
 };

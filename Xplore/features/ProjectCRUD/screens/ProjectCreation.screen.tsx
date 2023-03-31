@@ -86,7 +86,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
 
   return (
     <StepIndicator
-      setBuildProject={handleBuildProject}
+      setSubmit={handleBuildProject}
       headerTitle={"Create Projects"}
       stepLabels={[
         "Description",

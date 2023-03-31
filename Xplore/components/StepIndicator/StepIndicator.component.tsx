@@ -17,7 +17,7 @@ interface StepIndicatorProps {
   screens: Array<JSX.Element>;
   onSubmitMsg?: string;
   navigation: NavigationProp<any>;
-  setBuildProject: (value: boolean) => void;
+  setSubmit: (value: boolean) => void;
 }
 
 export const StepIndicator = (props: StepIndicatorProps) => {
@@ -38,7 +38,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
     stepLabels,
     screens,
     onSubmitMsg,
-    setBuildProject,
+    setSubmit,
   } = props;
 
   const onActiveIndexChanged = (activeInd: number) => {
@@ -99,7 +99,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
           style={styles.btn}
           onPress={() => {
             if (activeIndex === numOfSteps - 1) {
-              setBuildProject(true);
+              setSubmit(true);
               goToNextStep();
             } else {
               goToNextStep();
