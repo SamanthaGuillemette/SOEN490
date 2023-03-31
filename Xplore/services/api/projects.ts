@@ -233,10 +233,32 @@ const useDeleteProject = (documentId: string) => {
   });
 };
 
+const useSearchProjectsPaginated = (query: string) => {
+  const LIMIT = 15;
+  return useInfiniteQuery({
+    queryKey: "projects",
+    queryFn: async ({ pageParam = 0 }) => {
+      const res = await api.listDocuments(COLLECTION_ID_PROJECT, [
+        api.query.offset(LIMIT * pageParam),
+        api.query.limit(LIMIT),
+        api.query.search("description", query),
+        api.query.search("name", query),
+      ]);
+      return {
+        projects: res.documents,
+        nextOffset: ++pageParam,
+      };
+    },
+    getNextPageParam: (lastPage) => lastPage.nextOffset,
+    retry: 2,
+  });
+};
+
 export {
   useCreateProject,
   useDeleteProject,
   useListProjectsPaginated,
+  useSearchProjectsPaginated,
   useProjectCardInfo,
   useAllTasksInfo,
   useAllMembersInfo,
