@@ -1,11 +1,17 @@
 import { CategoryScrollBar } from "./CategoryScrollBar.component";
-import { fireEvent, render } from "@testing-library/react-native";
+import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
 const category1 = { name: "category1", isActive: true };
 const category2 = { name: "category2", isActive: true };
 const category3 = { name: "category3", isActive: true };
 const category4 = { name: "category4", isActive: true };
 const categories = [category1, category2, category3, category4];
+
+afterEach(() => {
+  cleanup();
+});
+
+const category = jest.fn();
 
 describe("CategoryScrollBar should render correctly", () => {
   it("should render correctly", () => {
@@ -17,7 +23,7 @@ describe("CategoryScrollBar should render correctly", () => {
 describe("Category should render the category list", () => {
   it("should render the category list correctly", () => {
     const { queryByText } = render(
-      <CategoryScrollBar categories={categories} />
+      <CategoryScrollBar categories={categories} setCategory={category} />
     );
     expect(queryByText("category1")).not.toBeNull();
     expect(queryByText("category2")).not.toBeNull();
@@ -28,10 +34,11 @@ describe("Category should render the category list", () => {
 
 describe("categoryScrollBar should be clickable", () => {
   it("category1 should be clickable", () => {
-    const { getByText } = render(<CategoryScrollBar categories={categories} />);
-    jest.spyOn(window, "alert").mockImplementation(() => {});
-    expect(window.alert).not.toHaveBeenCalled();
+    const { getByText } = render(
+      <CategoryScrollBar categories={categories} setCategory={category} />
+    );
+    expect(category).not.toBeCalled();
     fireEvent.press(getByText("category1"));
-    expect(window.alert).toHaveBeenCalled();
+    expect(category).toBeCalledTimes(1);
   });
 });

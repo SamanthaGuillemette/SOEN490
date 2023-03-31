@@ -16,7 +16,7 @@ import styles from "./MembersActionsModal.styles";
 interface MembersActionsModalProps {
   setActionsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   action: string; // this is used to label primary action button
-  users: any;
+  users: any[];
   chatID?: string;
   chatName?: string;
 }
@@ -59,7 +59,7 @@ export const MembersActionsModal = ({
   const [query, setQuery] = useState<string>("");
 
   // Filter the Users array based on the search query
-  const filteredUsers = users.filter((user: any) =>
+  const filteredUsers = users?.filter((user: any) =>
     user.username.toLowerCase().includes(query.toLowerCase())
   );
 

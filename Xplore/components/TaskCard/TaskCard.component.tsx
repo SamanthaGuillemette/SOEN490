@@ -13,7 +13,7 @@ interface taskContentProps {
   taskInfo: any;
 }
 
-export const actions = (props: any) => {
+const actions = (props: any) => {
   const taskID = props.taskID;
 
   return (
@@ -38,7 +38,7 @@ export const actions = (props: any) => {
   );
 };
 
-export const taskContent = (props: taskContentProps) => {
+const taskContent = (props: taskContentProps) => {
   const task = props.taskInfo;
 
   return (

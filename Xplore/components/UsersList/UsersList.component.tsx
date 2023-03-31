@@ -97,7 +97,7 @@ export const UsersList = (props: UsersListProps) => {
   return (
     <ScrollView pagingEnabled={true}>
       {props.selectUserList
-        ? props.data.map((user: UsersType) => (
+        ? props.data?.map((user: UsersType) => (
             <UserItemSelect
               key={user.id}
               username={user.username}

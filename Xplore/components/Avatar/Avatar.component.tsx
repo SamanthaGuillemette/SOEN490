@@ -91,6 +91,7 @@ export const Avatar = (props: AvatarProps) => {
             },
           ]}
           source={{ uri: `${imageURL}` }}
+          testID={imageURL.toString()}
         />
       ) : avatarCount ? (
         <View

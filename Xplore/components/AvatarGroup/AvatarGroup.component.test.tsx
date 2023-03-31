@@ -25,6 +25,9 @@ describe("AvatarGroup should change after rendering more than 4 avatars", () => 
     const avatarCount = [
       { avatar: "", username: "Testing123" },
       { avatar: "", username: "Testing123" },
+      { avatar: "", username: "Testing123" },
+      { avatar: "", username: "Testing123" },
+      { avatar: "", username: "Testing123" },
     ];
     const avatars = renderer.create(
       <AvatarGroup usersAvatars={avatarCount} />

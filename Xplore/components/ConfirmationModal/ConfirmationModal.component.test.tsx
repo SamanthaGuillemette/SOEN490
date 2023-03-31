@@ -1,23 +1,33 @@
 import React from "react";
 import { ConfirmationModal } from "./ConfirmationModal.component";
-import { render } from "react-native-testing-library";
-import { renderHook } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 
 describe("ConfirmationModalComponent should render correctly", () => {
+  const modal = jest.fn();
   it("should render correctly and show Testing123", () => {
-    const { modalVisible, setModalVisible } = renderHook(() =>
-      React.useState<Boolean>(true)
-    );
     const { queryByText } = render(
       <ConfirmationModal
         primaryText="Testing123"
         secondaryText="SecondaryTest"
         confirmMsg="ConfirmTest"
-        setConfirmModalVisible={modalVisible}
+        setConfirmModalVisible={modal}
       />
     );
     expect(queryByText("Testing123")).not.toBeNull();
     expect(queryByText("SecondaryTest")).not.toBeNull();
     expect(queryByText("ConfirmTest")).not.toBeNull();
+  });
+
+  it("should be able to click the primary button", () => {
+    const { getByText } = render(
+      <ConfirmationModal
+        primaryText="Testing123"
+        secondaryText="SecondaryTest"
+        confirmMsg="ConfirmTest"
+        setConfirmModalVisible={modal}
+      />
+    );
+    fireEvent.press(getByText("Testing123"));
+    expect(modal).toBeCalledTimes(1);
   });
 });
