@@ -7,6 +7,7 @@ import {
   DatePicker,
   Icon,
   InputField,
+  SecondaryButton,
   //MemberChipAdder,
   ShadowView,
   Text,
@@ -183,7 +184,6 @@ export const TaskModal = (props: TaskModalProps) => {
           shouldDisplayDate={endDate !== ""}
         />
       </View>
-
       <ShadowView style={[styles.button]}>
         <TouchableOpacity
           style={[
@@ -208,6 +208,9 @@ export const TaskModal = (props: TaskModalProps) => {
           />
         </TouchableOpacity>
       </ShadowView>
+      <View style={styles.secondaryButton}>
+        <SecondaryButton label="CANCEL" />
+      </View>
     </ShadowView>
   );
 };
