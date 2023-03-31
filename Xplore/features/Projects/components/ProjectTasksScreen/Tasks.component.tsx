@@ -22,15 +22,15 @@ export const Tasks = (props: TasksProps) => {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {allTasks.map((singleTask, i) => {
-            return singleTask.completed === false ? (
+          {allTasks
+            .filter((singleTask) => !singleTask.completed)
+            .map((singleTask, i) => (
               <TaskCardSwipeable
                 navigation={navigation}
                 taskInfo={singleTask}
                 key={i}
               />
-            ) : null;
-          })}
+            ))}
         </View>
       </ScrollView>
     </View>
