@@ -59,4 +59,9 @@ export default StyleSheet.create({
   deleteIcon: {
     marginTop: 16,
   },
+
+  iconsProjectEdit: {
+    marginLeft: 70,
+    marginTop: 25,
+  },
 });

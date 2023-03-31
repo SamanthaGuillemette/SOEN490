@@ -43,6 +43,7 @@ export const AllTasks = (props: AllTasksProps) => {
               key={index}
               taskInfo={task}
               navigation={navigation}
+              isProjectEdit={isProjectEdit}
             />
           )
         )}

@@ -12,12 +12,14 @@ import { TaskCard } from "../TaskCard/TaskCard.component";
 interface taskContentProps {
   navigation: NavigationProp<any>;
   taskInfo: any;
+  isProjectEdit?: boolean;
 }
 
 export const actions = (props: any) => {
   const taskID = props.taskID;
+  const isProjectEdit = props.isProjectEdit;
 
-  return (
+  return isProjectEdit === false ? (
     <View style={styles.icons}>
       <TouchableOpacity onPress={() => setTaskCompleted(taskID)}>
         <Icon
@@ -27,6 +29,17 @@ export const actions = (props: any) => {
           style={styles.infoIcon}
         />
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => deleteTask(taskID)}>
+        <Icon
+          color="error"
+          size="large"
+          name="trash-2"
+          style={styles.deleteIcon}
+        />
+      </TouchableOpacity>
+    </View>
+  ) : (
+    <View style={styles.iconsProjectEdit}>
       <TouchableOpacity onPress={() => deleteTask(taskID)}>
         <Icon
           color="error"
