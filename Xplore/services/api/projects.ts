@@ -142,7 +142,6 @@ const getProjectsList = async (contactID: any) => {
       project: doc.projects,
     }))
   );
-
   return data[0].project; // returning list of projects
 };
 
@@ -159,6 +158,7 @@ const useProjectCardInfo = (contactID: any) => {
         // Looping through list of projects
         for (const docID of projectList) {
           const response = await api.getDocument(COLLECTION_ID_PROJECT, docID);
+
           const data: Project = {
             name: response.name,
             description: response.description,
@@ -195,7 +195,8 @@ const useAllTasksInfo = (listOfTasks: any) => {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const tasksList = listOfTasks;
+        let tasksList = listOfTasks;
+        tasksList = tasksList.filter((taskID: any) => taskID !== "");
 
         // Looping through list of tasks
         for (let index in tasksList) {
@@ -252,7 +253,8 @@ const useAllMembersInfo = (listOfMembers: any) => {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const membersList = listOfMembers;
+        let membersList = listOfMembers;
+        membersList = membersList.filter((memberID: any) => memberID !== "");
 
         // Looping through list of members
         for (let index in membersList) {
