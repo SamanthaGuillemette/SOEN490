@@ -55,6 +55,10 @@ export default StyleSheet.create({
     overflow: "hidden",
     marginTop: 20,
   },
+  secondaryButton: {
+    marginTop: 10,
+    alignItems: "center",
+  },
   icon: {
     margin: 10,
   },
