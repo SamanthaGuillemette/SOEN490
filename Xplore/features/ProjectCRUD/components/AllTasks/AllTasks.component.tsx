@@ -2,7 +2,12 @@ import { Modal } from "react-native";
 import { useState } from "react";
 import styles from "./AllTasks.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, SquaredButton } from "../../../../components";
+import {
+  View,
+  Text,
+  SquaredButton,
+  TaskCardSwipeable,
+} from "../../../../components";
 import { TaskCard } from "../../../../components/TaskCard";
 
 import { TaskModal } from "../TaskModal";
@@ -30,9 +35,17 @@ export const AllTasks = (props: AllTasksProps) => {
       </Text>
 
       <View style={styles.content}>
-        {tasks.map((task: any, index) => (
-          <TaskCard key={index} taskInfo={task} navigation={navigation} />
-        ))}
+        {tasks.map((task: any, index) =>
+          isProjectEdit === undefined ? (
+            <TaskCard key={index} taskInfo={task} navigation={navigation} />
+          ) : (
+            <TaskCardSwipeable
+              key={index}
+              taskInfo={task}
+              navigation={navigation}
+            />
+          )
+        )}
       </View>
 
       <View style={styles.squareButton}>
