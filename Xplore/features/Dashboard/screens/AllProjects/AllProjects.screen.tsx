@@ -14,6 +14,7 @@ import { Models } from "appwrite";
 import { NavigationProp } from "@react-navigation/native";
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
+import { useThemeColor } from "../../../../hooks/useThemeColor";
 
 interface ProjectData extends Models.Document {
   name: string;
@@ -66,6 +67,8 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [dataToDisplay, setDataToDisplay] = useState<ProjectData[]>([]);
 
+  const noResultsColor = useThemeColor("bodyText");
+
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
 
@@ -117,17 +120,22 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
           setCategory={setCategoryFilter}
         />
       )}
-
-      <FlashList
-        data={dataToDisplay}
-        renderItem={({ item }) => (
-          <ProjectCard navigation={props.navigation} item={item} />
-        )}
-        estimatedItemSize={350}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.flashListContainer}
-        onEndReached={fetchNextPage}
-      />
+      {dataToDisplay.length === 0 ? (
+        <Text style={[styles.noResults, { color: noResultsColor }]}>
+          no results
+        </Text>
+      ) : (
+        <FlashList
+          data={dataToDisplay}
+          renderItem={({ item }) => (
+            <ProjectCard navigation={props.navigation} item={item} />
+          )}
+          estimatedItemSize={350}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.flashListContainer}
+          onEndReached={fetchNextPage}
+        />
+      )}
     </SafeAreaView>
   );
 };
