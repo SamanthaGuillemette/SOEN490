@@ -64,6 +64,11 @@ export const TaskModal = (props: TaskModalProps) => {
     }, 2000);
   };
 
+  const cancel = () => {
+    reset;
+    onPress === undefined ? "" : onPress();
+  };
+
   const reset = () => {
     setTaskName("");
     setTaskDesc("");
@@ -209,7 +214,7 @@ export const TaskModal = (props: TaskModalProps) => {
         </TouchableOpacity>
       </ShadowView>
       <View style={styles.secondaryButton}>
-        <SecondaryButton label="CANCEL" />
+        <SecondaryButton onPress={cancel} label="CANCEL" />
       </View>
     </ShadowView>
   );
