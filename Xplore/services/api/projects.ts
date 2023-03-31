@@ -180,6 +180,20 @@ const useAllMembersInfo = (listOfMembers: any) => {
   return allMembers; // returning array of all members for specific project
 };
 
+const setMemberCount = async () => {
+  try {
+    const response = await api.listDocuments(COLLECTION_ID_PROJECT, [
+    ])
+    response?.documents?.map((doc: any) => {
+      api.updateDocument(COLLECTION_ID_PROJECT, doc.$id, {
+        memberCount: doc.members.length,
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const useNewProjects = () => {
   const LIMIT = 5;
   return useQuery({
@@ -194,11 +208,14 @@ const useNewProjects = () => {
 
 const usePopularProjects = () => {
   const LIMIT = 5;
+  // Ensure memberCount is set before retrieving popular projects
+  setMemberCount()
   return useQuery({
     queryKey: ["popularProjects"],
     queryFn: () =>
       api.listDocuments(COLLECTION_ID_PROJECT, [
         api.query.limit(LIMIT),
+        api.query.orderDesc("memberCount"),
       ]),
   });
 };
