@@ -290,5 +290,5 @@ export {
   setTaskCompleted,
   deleteTask,
   useFetchUserProjects,
-  useTaskStats as useCompletedTasks,
+  useTaskStats,
 };

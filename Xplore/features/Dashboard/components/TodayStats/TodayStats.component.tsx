@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 import { Text, View } from "../../../../components";
 import {
-  useCompletedTasks,
   useProjectCardInfo,
+  useTaskStats,
 } from "../../../../services/api/projects";
 import { StatBoxLarge } from "../StatBoxLarge";
 import { StatBoxSmall } from "../StatBoxSmall";
@@ -18,11 +18,11 @@ export const TodayStats = () => {
 
   allProjectInfo = useProjectCardInfo(userId);
 
-  const tasksCompleted =
-    useCompletedTasks(allProjectInfo[1])[0] +
-    useCompletedTasks(allProjectInfo[0])[0];
-  const tasksActive = useCompletedTasks(allProjectInfo[0])[1];
-  const tasksOverdue = useCompletedTasks(allProjectInfo[0])[2];
+  const incompleteProjectTasks = useTaskStats(allProjectInfo[0]);
+  const completedProjectTasks = useTaskStats(allProjectInfo[1]);
+  const tasksCompleted = incompleteProjectTasks[0] + completedProjectTasks[0];
+  const tasksActive = incompleteProjectTasks[1];
+  const tasksOverdue = incompleteProjectTasks[2];
 
   return (
     <View style={styles.container}>
