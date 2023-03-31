@@ -12,18 +12,21 @@ interface AllTasksProps {
   navigation: NavigationProp<any>;
   setTasks: (value: Object[]) => void;
   tasks: Object[];
+  isProjectEdit?: boolean;
 }
 
 export const AllTasks = (props: AllTasksProps) => {
-  const { navigation, tasks, setTasks } = props;
+  const { navigation, tasks, setTasks, isProjectEdit } = props;
   const [showModal, setShowModal] = useState<any>(false);
 
   return (
     <View style={styles.mainContainer}>
       <Text color="titleText" variant="h3" style={styles.center}>
-        {tasks.length !== 0
-          ? "Click here to select a task"
-          : "Click on the plus icon below\n to create a task"}
+        {isProjectEdit === undefined
+          ? tasks.length !== 0
+            ? "Click here to select a task"
+            : "Click on the plus icon below\n to create a task"
+          : "Click to delete a task"}
       </Text>
 
       <View style={styles.content}>
