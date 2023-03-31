@@ -33,7 +33,6 @@ export const ExploreProjects = (props: ExploreProjectsProps) => {
             key={item}
             projectName={item.name}
             index={index}
-            // url to be replaced once project creation is complete
             imageURL="https://picsum.photos/300/200"
           />
         )}

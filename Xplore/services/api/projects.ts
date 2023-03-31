@@ -21,7 +21,6 @@ interface Project {
   imageURL?: string;
   tasks: string[];
   members: string[];
-  totalMembers: number;
   percentComplete: number;
   category: string;
   startDate: string;
@@ -63,7 +62,6 @@ const useProjectCardInfo = (contactID: any) => {
             description: response.description,
             imageURL: response.imageURL,
             members: response.members,
-            totalMembers: response.totalMembers,
             percentComplete: response.percentComplete,
             category: response.category,
             startDate: response.startDate,
