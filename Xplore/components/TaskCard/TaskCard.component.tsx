@@ -34,7 +34,9 @@ export const TaskCard = (props: taskContentProps) => {
         <View style={styles.dateContainer}>
           <Icon style={styles.calenderIcon} size="medium" name="calendar" />
           <Text style={styles.date} variant="smBody" color="bodyText">
-            {task.endDate.substring(0, task.endDate.indexOf("T"))}
+            {task.endDate.includes("T")
+              ? task.endDate.substring(0, task.endDate.indexOf("T"))
+              : task.endDate}
           </Text>
         </View>
       </TouchableOpacity>
