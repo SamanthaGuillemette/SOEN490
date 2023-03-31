@@ -7,6 +7,7 @@ import {
   Description,
   CategoryNGoals,
 } from "../components";
+import { useAllTasksInfo } from "../../../services/api/projects";
 import { useRoute } from "@react-navigation/native";
 import { useState } from "react";
 
@@ -36,7 +37,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
   const [category, setCategory] = useState(projectInfo.category);
   const [goals, setGoals] = useState<string[]>(projectInfo.goals);
 
-  //const [tasks, setTasks] = useState<Object[]>(projectInfo.tasks);
+  const [tasks, setTasks] = useState<Object[]>([]);
   //const [allMembers, setAllMembers] = useState(projectInfo.description);
 
   return (
@@ -67,12 +68,13 @@ const ProjectEdit = (props: ProjectEditProps) => {
           category={category}
           goals={goals}
         />,
-        /*<AllTasks
+        <AllTasks
           navigation={props.navigation}
-          //setTasks={setTasks}
-          //tasks={tasks}
+          setTasks={setTasks}
+          tasks={useAllTasksInfo(projectInfo.tasks)}
+          isProjectEdit={true}
         />,
-        <AddMembers />*/
+        //<AddMembers />
       ]}
       navigation={props.navigation}
     />

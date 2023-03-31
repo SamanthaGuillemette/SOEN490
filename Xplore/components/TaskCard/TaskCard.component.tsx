@@ -8,6 +8,7 @@ import { NavigationProp } from "@react-navigation/native";
 interface taskContentProps {
   navigation: NavigationProp<any>;
   taskInfo: any;
+  isProjectEdit?: boolean;
 }
 export const TaskCard = (props: taskContentProps) => {
   const task = props.taskInfo;
@@ -16,9 +17,11 @@ export const TaskCard = (props: taskContentProps) => {
     <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
       <TouchableOpacity
         onPress={() =>
-          props.navigation.navigate("IndividualTask", {
-            taskInfo: task,
-          })
+          props.isProjectEdit === undefined
+            ? props.navigation.navigate("IndividualTask", {
+                taskInfo: task,
+              })
+            : console.log("edit")
         }
       >
         <View style={styles.taskCardContainer}>
