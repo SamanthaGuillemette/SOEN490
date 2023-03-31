@@ -57,7 +57,6 @@ const formatProjectData = (data: ProjectData | undefined, userID: any) => {
   });
   return formattedData;
 };
-
 interface ExploreProjectsProps {
   navigation: NavigationProp<any>;
 }
@@ -65,7 +64,7 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredData, setFilteredData] = useState<ProjectData[]>([]);
+  const [dataToDisplay, setDataToDisplay] = useState<ProjectData[]>([]);
 
   const { data: userdata } = useQuery("user data", () => api.getAccount());
   let userId: string = userdata?.$id as string;
@@ -73,29 +72,26 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
   const { data, status, fetchNextPage } = useListProjectsPaginated();
 
   let projectData = useRef([] as ProjectData[]);
-  if (status === "success") {
-    projectData.current = formatProjectData(data as any, userId);
-    console.log(projectData.current.length);
-  }
+  projectData.current = formatProjectData(data as any, userId);
 
   useEffect(() => {
-    console.log("updated cat filter", categoryFilter);
-    projectData.current = projectData.current.filter(
+    setDataToDisplay(projectData.current);
+  }, [status]);
+
+  useEffect(() => {
+    const filtered = projectData.current.filter(
       (project) => project.category === categoryFilter
     );
-    console.log("len cat filt", projectData.current.length);
-    setFilteredData(projectData.current);
+    setDataToDisplay(filtered);
   }, [categoryFilter]);
 
   useEffect(() => {
-    console.log("updated s query", searchQuery);
-    projectData.current = projectData.current.filter(
+    const filtered = projectData.current.filter(
       (project) =>
         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    setFilteredData(projectData.current);
-    console.log("len query", projectData.current.length);
+    setDataToDisplay(filtered);
   }, [searchQuery]);
 
   return (
@@ -114,8 +110,6 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
         />
       </View>
 
-      {/* This horizontal scrollbar is hidden by default.
-      When the user clicks on the filter button, "isCategoryListVisible" === true */}
       {isCategoryListVisible && (
         <CategoryScrollBar
           style={styles.categoryBar}
@@ -125,7 +119,7 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
       )}
 
       <FlashList
-        data={filteredData.length !== 0 ? filteredData : projectData.current}
+        data={dataToDisplay}
         renderItem={({ item }) => (
           <ProjectCard navigation={props.navigation} item={item} />
         )}
