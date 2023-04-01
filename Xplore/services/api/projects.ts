@@ -246,11 +246,13 @@ const deleteTask = async (taskID: any, projectID: any) => {
     // Delete the task document from the project tasks collection
     await api.deleteDocument(COLLECTION_ID_PROJECT_TASKS, taskID);
 
-    // Remove the task ID from the project document's tasks array
+    const response = await api.getDocument(COLLECTION_ID_PROJECT, projectID);
+    let tasksList = response.tasks;
+    tasksList = tasksList.filter((ID: any) => ID !== taskID); // removing the task ID
+
+    // Overwriting the task attribute in the project's document
     await api.updateDocument(COLLECTION_ID_PROJECT, projectID, {
-      $pull: {
-        tasks: taskID,
-      },
+      tasks: tasksList,
     });
   } catch (e) {
     console.log(e);
