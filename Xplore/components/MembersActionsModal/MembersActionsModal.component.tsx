@@ -6,8 +6,6 @@ import { PrimaryButton } from "../PrimaryButton";
 import { SecondaryButton } from "../SecondaryButton";
 import { UsersList } from "../UsersList";
 import { SearchBar } from "../SearchBar";
-import { useQuery } from "react-query";
-import api from "../../services/appwrite/api";
 import { createNewGroupChat } from "../../services/api/chats";
 import { addToChat, removeFromChat } from "../../services/api/chatSettings";
 import { createGroupAddNotif } from "../../services/api/notifications";
@@ -28,22 +26,34 @@ export const MembersActionsModal = ({
   chatID,
   chatName,
 }: MembersActionsModalProps) => {
-  // Quering current user's data
-  const { data: userdata } = useQuery("user data", () => api.getAccount());
-  let userId: string = userdata?.$id as string;
-
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundSecondary = useThemeColor("backgroundSecondary");
 
   // Create a state variable to hold the selected users' ids
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
 
+  // function handleIndexSelect() {
+  //   setModalVisible(!modalVisible);
+  //   setActionsModalVisible(!modalVisible);
+  //   if (action === "Create Group" && selectedUsers.length > 0) {
+  //     const groupMembers = [...selectedUsers, userId];
+  //     createNewGroupChat(groupMembers);
+  //   }
+  //   if (action === "Add Members" && selectedUsers.length > 0) {
+  //     addToChat(selectedUsers, chatID);
+  //     for (const userID of selectedUsers) {
+  //       createGroupAddNotif(userID, chatID, chatName);
+  //     }
+  //   }
+  //   if (action === "Remove Members" && selectedUsers) {
+  //     removeFromChat(selectedUsers, chatID);
+  //   }
+  // }
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
     setActionsModalVisible(!modalVisible);
-    if (action === "Create Group" && selectedUsers.length > 0) {
-      const groupMembers = [...selectedUsers, userId];
-      createNewGroupChat(groupMembers);
+    if (action === "Create Group" && selectedUsers.length > 1) {
+      createNewGroupChat(selectedUsers);
     }
     if (action === "Add Members" && selectedUsers.length > 0) {
       addToChat(selectedUsers, chatID);
@@ -62,7 +72,6 @@ export const MembersActionsModal = ({
   const filteredUsers = users.filter((user: any) =>
     user.username.toLowerCase().includes(query.toLowerCase())
   );
-
   return (
     <Modal
       animationType="fade"
@@ -80,12 +89,7 @@ export const MembersActionsModal = ({
               data={filteredUsers}
               selectUserList={true}
               messageUserList={false}
-              onSelect={(id: string) =>
-                setSelectedUsers((prevSelectedUsers) => [
-                  ...prevSelectedUsers,
-                  id,
-                ])
-              }
+              setList={setSelectedUsers}
             />
             <View style={styles.buttons}>
               <PrimaryButton
@@ -95,7 +99,11 @@ export const MembersActionsModal = ({
               />
               <SecondaryButton
                 label="Cancel"
-                onPress={handleIndexSelect}
+                onPress={() => {
+                  setModalVisible(false);
+                  setSelectedUsers([]); // unselect the users
+                  setActionsModalVisible(false);
+                }}
                 style={styles.secondaryButton}
               />
             </View>

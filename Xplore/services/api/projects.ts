@@ -27,7 +27,110 @@ interface Project {
   endDate: string;
   goals: string[];
   requestJoin?: boolean;
+  projectOwner: string;
 }
+
+const useCreateNewProject = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: any) => {
+      console.log(data);
+      let taskIDs: string[] = [];
+      for (const task of data.tasks) {
+        try {
+          const res = await api.createDocument(
+            COLLECTION_ID_PROJECT_TASKS,
+            task
+          );
+          taskIDs.push(res.$id);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      return api.createDocument(COLLECTION_ID_PROJECT, {
+        ...data.project,
+        tasks: taskIDs,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+    },
+    retry: 2,
+  });
+};
+
+const useCreateNewTask = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: any) =>
+      api.createDocument(COLLECTION_ID_PROJECT_TASKS, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    },
+  });
+};
+
+// To update the list of projects per user once project is created
+const updateUserProjList = async (memberList: any) => {
+  try {
+    const lastCreatedDoc = await api.listDocuments(COLLECTION_ID_PROJECT, [
+      Query.orderDesc(""),
+      Query.limit(1),
+    ]);
+
+    const lastProjectID = lastCreatedDoc.documents[0].$id;
+    let allMembers: any = [];
+
+    memberList.forEach((memberID: any) => {
+      allMembers.push(memberID);
+    });
+
+    for (const memberID of allMembers) {
+      const response = await api.listDocuments(COLLECTION_ID_USERS, [
+        Query.equal("userID", memberID),
+      ]);
+      response?.documents?.map((doc: any) => {
+        let projects = doc.projects;
+        projects.push(lastProjectID);
+
+        api.updateDocument(COLLECTION_ID_USERS, doc.$id, {
+          projects: projects,
+        });
+      });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// const useFetchUserInfo = (userIds: string[]) => {
+//   const [users, setUsers] = useState<
+//     { userId: string; profilePicture: string }[]
+//   >([]);
+
+//   useEffect(() => {
+//     const fetchInfo = async () => {
+//       try {
+//         const response = await api.listDocuments(COLLECTION_ID_USERS, [
+//           Query.in("userId", userIds),
+//         ]);
+
+//         const data = await Promise.all(
+//           response?.documents?.map(async (doc) => ({
+//             userId: doc.userId,
+//             profilePicture: doc.imageURL,
+//           })) || []
+//         );
+//         setUsers(data);
+//       } catch (e) {
+//         console.log(e);
+//       }
+//     };
+//     fetchInfo();
+//   }, [userIds]);
+
+//   return users;
+// };
 
 // Getting all projects assigned to logged in user
 const getProjectsList = async (contactID: any) => {
@@ -41,7 +144,53 @@ const getProjectsList = async (contactID: any) => {
     }))
   );
 
-  return data[0].project; // returning list of projects
+  return data.length > 0 ? data[0].project : []; // return an empty array if data is empty or undefined
+};
+
+//Get number of tasks completed
+const useTaskStats = (projects: any) => {
+  const [completedTasks, setCompletedTasks] = useState<any>();
+  const [activeTasks, setActiveTasks] = useState<any>();
+  const [overdueTasks, setOverdueTasks] = useState<any>();
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const userProjects = projects;
+        var activeTask = 0;
+        var overdueTask = 0;
+        // Looping through list of projects
+        var completedTask = 0;
+        for (const project of userProjects) {
+          // Looping through list of tasks
+          for (let index in project.tasks) {
+            const response = await api.getDocument(
+              COLLECTION_ID_PROJECT_TASKS,
+              project.tasks[index]
+            );
+
+            const data = {
+              taskID: project.tasks[index],
+              endDate: response.endDate,
+              completed: response.completed,
+            };
+            data.completed === true ? completedTask++ : activeTask++; //increase number of user tasks completed
+            new Date(project.endDate) < new Date() && data.completed === false
+              ? overdueTask++
+              : null;
+          }
+        }
+        setCompletedTasks(completedTask);
+        setActiveTasks(activeTask);
+        setOverdueTasks(overdueTask);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchInfo();
+  }, [projects, completedTasks, activeTasks, overdueTasks]);
+
+  return [completedTasks, activeTasks, overdueTasks];
 };
 
 // Getting information to display on the Project Card
@@ -57,6 +206,7 @@ const useProjectCardInfo = (contactID: any) => {
         // Looping through list of projects
         for (const docID of projectList) {
           const response = await api.getDocument(COLLECTION_ID_PROJECT, docID);
+
           const data: Project = {
             name: response.name,
             description: response.description,
@@ -69,6 +219,7 @@ const useProjectCardInfo = (contactID: any) => {
             tasks: response.tasks,
             goals: response.goals,
             requestJoin: false,
+            projectOwner: response.projectOwner,
           };
 
           // Filling different array based on if completed or incomplete project
@@ -93,7 +244,8 @@ const useAllTasksInfo = (listOfTasks: any) => {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const tasksList = listOfTasks;
+        let tasksList = listOfTasks;
+        tasksList = tasksList.filter((taskID: any) => taskID !== "");
 
         // Looping through list of tasks
         for (let index in tasksList) {
@@ -150,7 +302,8 @@ const useAllMembersInfo = (listOfMembers: any) => {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const membersList = listOfMembers;
+        let membersList = listOfMembers;
+        membersList = membersList.filter((memberID: any) => memberID !== "");
 
         // Looping through list of members
         for (let index in membersList) {
@@ -178,6 +331,19 @@ const useAllMembersInfo = (listOfMembers: any) => {
   return allMembers; // returning array of all members for specific project
 };
 
+const setMemberCount = async () => {
+  try {
+    const response = await api.listDocuments(COLLECTION_ID_PROJECT, []);
+    response?.documents?.map((doc: any) => {
+      api.updateDocument(COLLECTION_ID_PROJECT, doc.$id, {
+        memberCount: doc.members.length,
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const useNewProjects = () => {
   const LIMIT = 5;
   return useQuery({
@@ -186,6 +352,20 @@ const useNewProjects = () => {
       api.listDocuments(COLLECTION_ID_PROJECT, [
         api.query.limit(LIMIT),
         api.query.orderAsc("startDate"),
+      ]),
+  });
+};
+
+const usePopularProjects = () => {
+  const LIMIT = 5;
+  // Ensure memberCount is set before retrieving popular projects
+  setMemberCount();
+  return useQuery({
+    queryKey: ["popularProjects"],
+    queryFn: () =>
+      api.listDocuments(COLLECTION_ID_PROJECT, [
+        api.query.limit(LIMIT),
+        api.query.orderDesc("memberCount"),
       ]),
   });
 };
@@ -241,7 +421,12 @@ export {
   useAllTasksInfo,
   useAllMembersInfo,
   useNewProjects,
+  usePopularProjects,
   setTaskCompleted,
   deleteTask,
   useFetchUserProjects,
+  useTaskStats,
+  useCreateNewTask,
+  useCreateNewProject,
+  updateUserProjList,
 };
