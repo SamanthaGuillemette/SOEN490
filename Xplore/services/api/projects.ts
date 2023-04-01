@@ -41,7 +41,7 @@ const getProjectsList = async (contactID: any) => {
     }))
   );
 
-  return data[0].project; // returning list of projects
+  return data.length > 0 ? data[0].project : []; // return an empty array if data is empty or undefined
 };
 
 //Get number of tasks completed
