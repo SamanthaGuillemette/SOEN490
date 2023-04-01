@@ -15,6 +15,7 @@ import { NavigationProp } from "@react-navigation/native";
 import { useQuery } from "react-query";
 import api from "../../../../services/appwrite/api";
 import { useThemeColor } from "../../../../hooks/useThemeColor";
+import { categories } from "../../../../constants";
 
 interface ProjectData extends Models.Document {
   name: string;
@@ -29,16 +30,17 @@ interface ProjectData extends Models.Document {
   goals: string[];
 }
 
-const categories = [
-  { name: "Data Science" },
-  { name: "Web Development" },
-  { name: "Embedded Systems" },
-  { name: "Security Systems" },
-  { name: "Social Networking" },
-  { name: "Game Development" },
-  { name: "Software Optimization" },
-  { name: "Finance/Blockchain" },
-  { name: "Mobile Development" },
+const allCategories = [
+  { name: categories.frontendDev },
+  { name: categories.backendDev },
+  { name: categories.algorithms },
+  { name: categories.webDev },
+  { name: categories.embeddedSystems },
+  { name: categories.mobileDev },
+  { name: categories.gameDev },
+  { name: categories.security },
+  { name: categories.softwareOptimization },
+  { name: categories.blockchain },
 ];
 
 const formatProjectData = (data: ProjectData | undefined, userID: any) => {
@@ -116,7 +118,7 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
       {isCategoryListVisible && (
         <CategoryScrollBar
           style={styles.categoryBar}
-          categories={categories}
+          categories={allCategories}
           setCategory={setCategoryFilter}
         />
       )}
