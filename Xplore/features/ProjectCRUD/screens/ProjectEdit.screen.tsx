@@ -38,7 +38,10 @@ const ProjectEdit = (props: ProjectEditProps) => {
   const [goals, setGoals] = useState<string[]>(projectInfo.goals);
 
   const [tasks, setTasks] = useState<Object[]>([]);
-  //const [allMembers, setAllMembers] = useState(projectInfo.description);
+  const [allMembers, setAllMembers] = useState(projectInfo.members);
+
+  console.log("Current project members", projectInfo.members);
+  console.log("All members array", allMembers);
 
   return (
     <StepIndicator
@@ -75,7 +78,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
           isProjectEdit={true}
           projectID={projectInfo.projectID}
         />,
-        //<AddMembers />
+        <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,
       ]}
       navigation={props.navigation}
     />

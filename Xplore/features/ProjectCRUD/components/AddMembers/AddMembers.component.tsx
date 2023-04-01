@@ -7,6 +7,7 @@ import { View } from "react-native";
 import { ScrollView } from "react-native";
 interface AddMembersProps {
   setAllMembers: (value: any[]) => void;
+  allMembers?: any[];
 }
 
 export const AddMembers = (props: AddMembersProps) => {
