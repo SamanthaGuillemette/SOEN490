@@ -1,12 +1,14 @@
 import { Models } from "appwrite";
 import React, { createContext, useState } from "react";
 import api from "../appwrite/api";
+import { Alert } from "react-native";
 
 // The "shape" of our AuthContext data
 export type AuthContextData = {
   sessionToken?: Models.Session | null;
   accountToken?: Models.Account<any> | null;
   loading: boolean;
+  loginStatus: any;
   signUp: (
     username: string,
     email: string,
@@ -35,6 +37,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     null
   );
   const [loading, setLoadingStatus] = useState<boolean>(false);
+  const [loginStatus, setLoginStatus] = useState<any>(null);
   //const [emailIsVerified, setVerifiedStatus] = useState<boolean>(false);
 
   const getSessionStatus = (sessionId: string) => {
@@ -76,13 +79,19 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setSessionToken(response);
         getAccountStatus();
         setLoadingStatus(false);
+        setLoginStatus("success")
         console.log(
           `===> Session created: ${JSON.stringify(response, null, 2)}`
         );
       },
       (err) => {
         setLoadingStatus(false);
+        setLoginStatus("error")
         console.log(err);
+        
+        if (loginStatus === "error") {
+          Alert.alert("Error", "Incorrect email or password!");
+        }
       }
     );
   };
@@ -210,6 +219,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         sessionToken,
         accountToken,
         loading,
+        loginStatus,
         signIn,
         signOut,
         signUp,
