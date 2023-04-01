@@ -2,7 +2,7 @@ import { User, Text, View } from "../../../../components";
 import styles from "./UserRank.styles";
 
 interface UserRankProps {
-  avatar: string;
+  avatar: URL;
   username: string;
   xp: number;
   rank: number;

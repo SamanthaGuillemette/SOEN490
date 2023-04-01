@@ -64,17 +64,21 @@ const Settings = (props: SettingsProps) => {
       quality: 1,
     });
 
-    if (!pickedImage.cancelled) {
-      setLocalProfilePic(pickedImage.uri as any); // Set local image so that the picture is displayed right away.
+    if (!pickedImage.canceled) {
+      setLocalProfilePic(pickedImage.assets[0].uri as any); // Set local image so that the picture is displayed right away.
 
-      const uploadedImageResult: any = await uploadImageToServer(
-        pickedImage.uri,
-        BUCKET_PROFILE_PIC
-      );
+      try {
+        const uploadedImageResult: any = await uploadImageToServer(
+          pickedImage.assets[0].uri,
+          BUCKET_PROFILE_PIC
+        );
 
-      // Need to check "userDocumentId" -> use inside the mutate function
-      if (userDocumentId) {
-        mutation.mutate(uploadedImageResult?.$id);
+        // Need to check "userDocumentId" -> use inside the mutate function
+        if (userDocumentId) {
+          mutation.mutate(uploadedImageResult?.$id);
+        }
+      } catch (error) {
+        console.log("===> Upload avatar failed: ", error);
       }
     }
   };

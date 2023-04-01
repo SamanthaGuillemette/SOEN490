@@ -15,6 +15,7 @@ const Leaderboard = (props: LeaderboardProps) => {
   const { navigation } = props;
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const users = useListUsers(true);
+  // console.log("========> users", JSON.stringify(users, null, 2));
   users.sort((a, b) => b.xp - a.xp);
 
   return (
