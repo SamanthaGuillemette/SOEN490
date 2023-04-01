@@ -1595,7 +1595,7 @@
     "@expo/ngrok-bin-win32-ia32" "2.3.40"
     "@expo/ngrok-bin-win32-x64" "2.3.40"
 
-"@expo/ngrok@^4.1.0":
+"@expo/ngrok@4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@expo/ngrok/-/ngrok-4.1.0.tgz#d013ecc694c69132ba72d56562c42f7dc22bd517"
   integrity sha512-PrtWxBt/SnOF1jZkf7oWznhEPFrmYKKeJPLVRKnEBd/y4eUYfoiNIXOzflIzhdrMubjWVI+pFuPJ6nkjVL95/Q==
@@ -8689,10 +8689,10 @@ react-native-datepicker@^1.7.2:
   dependencies:
     moment "^2.22.0"
 
-react-native-dotenv@^3.4.7:
-  version "3.4.7"
-  resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.4.7.tgz#131374dd5c22b1173f7025b2a3b4e124b0142e03"
-  integrity sha512-GqUDdmrtKw7qYS9jjQLipEPctMd0YuSBNVZBNlaHtaHMJ63iaB4FABO4uX0iSUJpgMwozZki4fRv4dDHmVUoLg==
+react-native-dotenv@^3.4.8:
+  version "3.4.8"
+  resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.4.8.tgz#42284070a9994076cd700805c2dd28051c9e1432"
+  integrity sha512-fg9F8X/cG1kDTwRLgLz3t+AMbsULoFHbUVltdQarmrJ3kNllD1Zq7ZgY85bp8BnPwk0DnYQzKbooiLsUoKd10w==
   dependencies:
     dotenv "^16.0.3"
 

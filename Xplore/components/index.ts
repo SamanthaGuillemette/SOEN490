@@ -33,7 +33,7 @@ export * from "./User";
 export * from "./UsersList";
 export * from "./Chips";
 export * from "./StepIndicator";
-export * from "./TaskCard";
+export * from "./TaskCardSwipeable";
 export * from "./CircularPercentageBar";
 export * from "./MessageMember";
 export * from "./MemberChip";

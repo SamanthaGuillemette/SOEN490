@@ -11,6 +11,7 @@ import { MemberChip } from "../MemberChip";
 import styles from "./MemberChipAdder.styles";
 import { MembersActionsModal } from "../MembersActionsModal";
 import { useState } from "react";
+import { useAllMembersInfo } from "../../services/api/projects";
 
 interface MemberChipAdderProps extends TouchableOpacityProps {
   style?: StyleProp<ViewStyle>;
@@ -22,6 +23,7 @@ export const MemberChipAdder = () => {
 
   const [addMemberModalVisible, setAddMemberModalVisible] =
     useState<any>(false);
+  const [allMembers, setAllMembers] = useState<any[]>([]);
 
   return (
     <View style={styles.containerParticipants}>
@@ -44,8 +46,15 @@ export const MemberChipAdder = () => {
           />
         )}
       </TouchableOpacity>
-      <MemberChip userName="Amy" avatar="https://picsum.photos/200" />
-      <MemberChip userName="Bernice" avatar="https://picsum.photos/201" />
+      {useAllMembersInfo(allMembers).map((member: any, index) => {
+        return (
+          <MemberChip
+            key={index}
+            userName={member.username}
+            avatar={member.profilepicture}
+          />
+        );
+      })}
     </View>
   );
 };

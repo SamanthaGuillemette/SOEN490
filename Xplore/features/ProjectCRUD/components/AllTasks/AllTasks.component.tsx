@@ -10,36 +10,25 @@ import { NavigationProp } from "@react-navigation/native";
 
 interface AllTasksProps {
   navigation: NavigationProp<any>;
+  setTasks: (value: Object[]) => void;
+  tasks: Object[];
 }
 
 export const AllTasks = (props: AllTasksProps) => {
-  const { navigation } = props;
+  const { navigation, tasks, setTasks } = props;
   const [showModal, setShowModal] = useState<any>(false);
   return (
     <View style={styles.mainContainer}>
-      <Text color="titleText" variant="h3" style={styles.alignLeft}>
-        Click here to select a task
+      <Text color="titleText" variant="h3" style={styles.center}>
+        {tasks.length !== 0
+          ? "Click here to select a task"
+          : "Click on the plus icon below\n to create a task"}
       </Text>
 
       <View style={styles.content}>
-        <TaskCard
-          taskType="Design"
-          taskName="UX Brainstorm"
-          taskDate="13/12/2022"
-          navigation={navigation}
-        />
-        <TaskCard
-          taskType="Meeting"
-          taskName="Finish App UI"
-          taskDate="13/12/2022"
-          navigation={navigation}
-        />
-        <TaskCard
-          taskType="Meeting"
-          taskName="Spring Meeting"
-          taskDate="13/12/2022"
-          navigation={navigation}
-        />
+        {tasks.map((task: any, index) => (
+          <TaskCard key={index} taskInfo={task} navigation={navigation} />
+        ))}
       </View>
 
       <View style={styles.squareButton}>
@@ -55,7 +44,11 @@ export const AllTasks = (props: AllTasksProps) => {
         onRequestClose={() => setShowModal(!showModal)}
       >
         <SafeAreaView edges={["top"]} style={styles.mainContainer}>
-          <TaskModal onPress={() => setShowModal(!showModal)} />
+          <TaskModal
+            onPress={() => setShowModal(!showModal)}
+            setTasks={setTasks}
+            tasks={tasks}
+          />
         </SafeAreaView>
       </Modal>
     </View>
