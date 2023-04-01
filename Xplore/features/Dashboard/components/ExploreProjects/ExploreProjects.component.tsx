@@ -38,7 +38,6 @@ export const ExploreProjects = (props: ExploreProjectsProps) => {
         )}
         horizontal
         showsHorizontalScrollIndicator={false}
-        keyExtractor={({ id }) => id}
         style={styles.flatListStyle}
       />
     </View>
