@@ -9,13 +9,7 @@ import {
 } from "react-native";
 import styles from "./Accordion.styles";
 
-const accordionNames = ["About", "Technologies", "Goals"];
-
-const accordionContent = [
-  "About accordion tab \n",
-  "Technologies accordion tab \n",
-  "Goals accordion tab \n",
-];
+const accordionNames = ["About", "Category", "Goals"];
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -23,19 +17,28 @@ if (Platform.OS === "android") {
   }
 }
 
-export default function Accordion() {
+export default function Accordion(item: any) {
+  let goals = item.item.goals;
+  let newGoals = goals.join("\n\n"); // adding new line after each goal
+
   const [active, setActive] = useState(null);
   return (
     <View backgroundColor="background">
       {[1, 2, 3].map((x, i) => (
-        <Item key={x} active={active} i={i} setActive={setActive} />
+        <Item
+          key={x}
+          active={active}
+          i={i}
+          setActive={setActive}
+          content={[item.item.description, item.item.category, newGoals]}
+        />
       ))}
     </View>
   );
 }
 
 function Item(props: any) {
-  const { i, active, setActive } = props;
+  const { i, active, setActive, content } = props;
   const onPress = () => {
     LayoutAnimation.easeInEaseOut();
     setActive(i === active ? null : i);
@@ -65,7 +68,12 @@ function Item(props: any) {
           )}
         </View>
       </View>
-      {open && <Text style={styles.subItem}> {accordionContent[i]} </Text>}
+      {open && (
+        <Text style={styles.subItem}>
+          {content[i]}
+          {"\n"}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 }

@@ -19,11 +19,11 @@ export default StyleSheet.create({
     bottom: 35,
   },
   completedLabel: {
-    paddingVertical: 5,
+    paddingVertical: 6,
     paddingHorizontal: 8,
     borderRadius: 3,
-    letterSpacing: 0.2,
-    width: 70,
+    letterSpacing: 0.1,
+    width: 75,
     marginBottom: 8,
   },
 });

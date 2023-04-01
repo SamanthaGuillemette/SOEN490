@@ -23,10 +23,10 @@ interface HomeProps {
 }
 
 const Home = (props: HomeProps) => {
-  const { navigation } = props;
   const homeBackground = useThemeColor("backgroundSecondary");
   const scrollViewBackground = useThemeColor("background");
   const [isButtonExpanded, setIsButtonExpanded] = useState(true);
+  const { navigation } = props;
 
   const onScroll = ({
     nativeEvent,
@@ -36,6 +36,8 @@ const Home = (props: HomeProps) => {
 
     setIsButtonExpanded(currentScrollPosition <= 0);
   };
+  //deleteAllDocuments(COLLECTION_ID_USERS);
+  //seedUsersFromAuth();
 
   return (
     <SafeAreaView
@@ -61,7 +63,7 @@ const Home = (props: HomeProps) => {
         icon={"plus"}
         label={"New Project"}
         extended={isButtonExpanded}
-        onPress={() => console.log("Pressed")}
+        onPress={() => navigation.navigate("ProjectCreation")}
         visible={true}
         animateFrom={"right"}
         iconMode={"dynamic"}

@@ -8,8 +8,24 @@ afterAll(() => {
 });
 
 describe("AvatarGroup should render correctly", () => {
-  it("should render correctly", () => {
-    const avatarCount = ["Avatar1", "Avatar2", "Avatar3"];
+  it("should render less than 4 avatars correctly", () => {
+    const avatarCount = [
+      { avatar: "", username: "Testing123" },
+      { avatar: "", username: "Testing123" },
+    ];
+    const avatars = renderer.create(
+      <AvatarGroup usersAvatars={avatarCount} />
+    ).toJSON;
+    expect(avatars).toMatchSnapshot();
+  });
+});
+
+describe("AvatarGroup should change after rendering more than 4 avatars", () => {
+  it("should render less than 5 avatars correctly", () => {
+    const avatarCount = [
+      { avatar: "", username: "Testing123" },
+      { avatar: "", username: "Testing123" },
+    ];
     const avatars = renderer.create(
       <AvatarGroup usersAvatars={avatarCount} />
     ).toJSON;

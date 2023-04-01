@@ -4,15 +4,16 @@ import styles from "./FeaturedImage.styles";
 
 interface ShadowImageProps {
   projectName: string;
+  source: string;
 }
 
 export const FeaturedImage = (props: ShadowImageProps) => {
-  const { projectName } = props;
+  const { projectName, source } = props;
 
   return (
     <ShadowView backgroundColor="primary" style={styles.container}>
       <ImageBackground
-        source={require("../../../../../../assets/SnakeRobot.png")}
+        source={{ uri: source !== "" ? source : undefined }}
         imageStyle={styles.imageBgContainer}
       >
         <View style={styles.thirdContainer}>

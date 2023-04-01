@@ -1,35 +1,33 @@
-import MessageMember from "../../../../components/MessageMember/MessageMember.component";
 import { ScrollView } from "react-native";
-import { SquaredButton, View } from "../../../../components";
+import { MessageMember, View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
+import { NavigationProp } from "@react-navigation/native";
+import { useAllMembersInfo } from "../../../../services/api/projects";
+import { useRoute } from "@react-navigation/native";
 
-interface ProjectMembers {}
-const ProjectMembers = () => {
+interface ProjectMembersProps {
+  navigation: NavigationProp<any>;
+}
+const ProjectMembers = (props: ProjectMembersProps) => {
+  const route = useRoute();
+  let { item }: any = route.params;
+  const { navigation } = props;
+  const allMembers = useAllMembersInfo(item.members);
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <MessageMember
-            avatar={"https://picsum.photos/200"}
-            username={"Josh Lewis"}
-            xp={103597}
-          />
-          <MessageMember
-            avatar={"https://picsum.photos/300"}
-            username={"Amy Lucas"}
-            xp={103597}
-          />
-          <MessageMember
-            avatar={"https://picsum.photos/400"}
-            username={"Elva Moore"}
-            xp={103597}
-          />
-          <MessageMember
-            avatar={"https://picsum.photos/500"}
-            username={"Bernice Lewis"}
-            xp={103597}
-          />
-          <SquaredButton iconName="plus" />
+          {allMembers.map((singleMember, i) => (
+            <MessageMember
+              id={singleMember.userID}
+              avatar={singleMember.profilePicture}
+              username={singleMember.username}
+              xp={singleMember.xp}
+              navigation={navigation}
+              key={i}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

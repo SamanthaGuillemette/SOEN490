@@ -1,19 +1,37 @@
 import { DATABASE_ID, ENDPOINT, PROJECT_ID } from "@env";
-import { Client, Databases, Account, ID, Models, Query } from "appwrite";
+import {
+  Client,
+  Databases,
+  Account,
+  ID,
+  Models,
+  Query,
+  Storage,
+} from "appwrite";
 
 const client = new Client();
 client.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
-export const account = new Account(client);
-export const database = new Databases(client);
+const account = new Account(client);
+const database = new Databases(client);
+const storage = new Storage(client);
 
 const api = {
   query: Query,
+
   createAccount: (email: string, password: string, name: string) => {
     return account.create(ID.unique(), email, password, name);
   },
 
   getAccount: () => {
     return account.get();
+  },
+
+  updateUsername: (newName: string) => {
+    return account.updateName(newName);
+  },
+
+  updatePassword: (newPassword: string, oldPassword: string) => {
+    return account.updatePassword(newPassword, oldPassword);
   },
 
   getSession: (sessionId: string) => {
@@ -84,6 +102,26 @@ const api = {
 
   deleteDocument: (collectionId: string, documentId: string) => {
     return database.deleteDocument(DATABASE_ID, collectionId, documentId);
+  },
+
+  createFile: (bucket: string, userId: string, file: File) => {
+    return storage.createFile(bucket, ID.unique(), file);
+  },
+
+  getFilePreview: (bucket: string, fileId: string) => {
+    return storage.getFilePreview(bucket, fileId);
+  },
+
+  listFiles: (
+    bucket: string,
+    queries: string[] | undefined = undefined,
+    search?: string
+  ) => {
+    return storage.listFiles(bucket, queries, search);
+  },
+
+  deleteFile: (bucket: string, fileId: string) => {
+    return storage.deleteFile(bucket, fileId);
   },
 };
 

@@ -13,10 +13,14 @@ interface ProjectSliderSingleProps {
   index: number;
   scrollY: Animated.SharedValue<number>;
   itemWidth: number;
+  name: string;
+  description: string;
+  percentComplete: number;
 }
 
 export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
-  const { index, scrollY, itemWidth } = props;
+  const { index, scrollY, itemWidth, name, description, percentComplete } =
+    props;
   const itemScaleStyle = useAnimatedStyle(() => {
     const input = [
       index * itemWidth - itemWidth,
@@ -59,13 +63,13 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
           darkColor={colors.dark.backgroundSecondary}
           lightColor={colors.light.backgroundSecondary}
         >
-          Completed
+          {percentComplete === 100 ? "Completed" : "Under development"}
         </Text>
         <Text variant="h3" color="generalGray">
-          Snake robot
+          {name}
         </Text>
         <Text variant="smBody" color="generalGray">
-          Unique soft robot
+          {description}
         </Text>
       </View>
     </Animated.View>

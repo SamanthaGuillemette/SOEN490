@@ -59,8 +59,8 @@ const Main = ({ colorScheme }: MainProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(
-    `sessionToken: ${JSON.stringify(sessionToken)}\n 
-    )}\n accountToken: ${JSON.stringify(accountToken)}\n`
+    `===> [sessionToken]: ${JSON.stringify(sessionToken, null, 2)}\n 
+    )}\n ===> [accountToken]: ${JSON.stringify(accountToken, null, 2)}\n`
   );
 
   return (

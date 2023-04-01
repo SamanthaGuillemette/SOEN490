@@ -4,33 +4,39 @@ import { ScrollView } from "react-native";
 import { useThemeColor } from "../../../../hooks";
 import styles from ".//Badges.styles";
 
-export const Badges = () => {
-  const generalGray = useThemeColor("generalGray");
+interface BadgesProps {
+  xpLevel: number;
+}
 
+export const Badges = (props: BadgesProps) => {
+  const generalGray = useThemeColor("generalGray");
   return (
     <View style={[styles.mainContainer, { borderTopColor: generalGray }]}>
       <View style={[styles.badgeTitleContainer]}>
         <Text variant="h3" color="titleText">
           BADGES
         </Text>
-        <LinkButton>View all</LinkButton>
+        {props.xpLevel > 0 ? <LinkButton>View all</LinkButton> : <></>}
       </View>
 
       <View>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.scrollViewContainer}
-        >
-          <Badge index={0} />
-          <Badge index={1} />
-          <Badge index={2} />
-          <Badge index={3} />
-          <Badge index={0} />
-          <Badge index={1} />
-          <Badge index={2} />
-          <Badge index={3} />
-        </ScrollView>
+        {props.xpLevel > 0 ? (
+          <>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.scrollViewContainer}
+            >
+              {Array(props.xpLevel)
+                .fill(0)
+                .map((_, i) => (
+                  <Badge xpLevel={i} key={i} />
+                ))}
+            </ScrollView>
+          </>
+        ) : (
+          <Text style={{ textAlign: "center" }}>no badges yet!</Text>
+        )}
       </View>
     </View>
   );

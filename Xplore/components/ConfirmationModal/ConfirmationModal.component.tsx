@@ -12,6 +12,7 @@ interface ConfirmationModalProps {
   primaryText: string;
   secondaryText: string;
   confirmMsg: string;
+  primaryAction?: () => Promise<any> | void;
 }
 
 export const ConfirmationModal = (props: ConfirmationModalProps) => {
@@ -39,7 +40,10 @@ export const ConfirmationModal = (props: ConfirmationModalProps) => {
             </Text>
             <PrimaryButton
               label={props.primaryText}
-              onPress={handleIndexSelect}
+              onPress={() => {
+                handleIndexSelect();
+                props.primaryAction?.();
+              }}
               style={styles.primaryButton}
             />
             <SecondaryButton

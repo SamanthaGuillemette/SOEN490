@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Animated,
   SafeAreaView,
   TouchableOpacity,
   View,
   ScrollView,
+  Image,
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Icon, Text, Avatar } from "../../../../components";
@@ -17,9 +18,13 @@ import {
   StatBoxes,
 } from "../../components";
 import { LogoutButton } from "../../components/Logout/LogoutButton/LogoutButton.component";
-import { useQuery } from "react-query";
-import api from "../../../../services/appwrite/api";
 import styles from "./Profile.styles";
+import { useNewNotificationsCount } from "../../../../services/api/notifications";
+import Spinner from "react-native-loading-spinner-overlay/lib";
+import { getUserXPlevel } from "../../../../utils/getUserXPlevel";
+import { useFetchUserDetails } from "../../hooks/useFetchUserDetails";
+import { useFetchUserPrefs } from "../../hooks/useFetchUserPrefs";
+import { useFetchProfilePicture } from "../../hooks/useFetchProfilePicture";
 
 const headerHeight = 300;
 const headerFinalHeight = 160;
@@ -33,6 +38,7 @@ const Profile = (props: ProfileProps) => {
   const { navigation } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
+  const [profilePictureId, setProfilePictureId] = useState<string>();
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const offset = headerHeight - headerFinalHeight;
@@ -71,13 +77,21 @@ const Profile = (props: ProfileProps) => {
     extrapolate: "clamp",
   });
 
-  // Get user data from DB, renamed 'data' to 'userdata' to avoid confusion
-  const { data: userdata } = useQuery("user data", () => api.getAccount());
-  const { data: userPrefs } = useQuery("user prefs", () =>
-    api.getUserPreferences()
-  );
+  const { data: userObject, status } = useFetchUserDetails();
+  const XPlevel = getUserXPlevel(userObject?.xp);
 
-  return (
+  const userPrefs = useFetchUserPrefs();
+  const newNotifsCount = useNewNotificationsCount(userPrefs?.$id);
+
+  useEffect(() => {
+    setProfilePictureId(userObject?.profilePicture);
+  }, [userObject]);
+
+  const profilePicture = useFetchProfilePicture(profilePictureId ?? "");
+
+  return status === "loading" ? (
+    <Spinner visible={true} />
+  ) : (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: whiteBackground }]}
     >
@@ -92,10 +106,15 @@ const Profile = (props: ProfileProps) => {
       >
         {/* THIS IS EVERYTHING BELOW THE ANIMATED HEADER */}
         <View style={styles.belowHeaderContainer}>
-          <UserProgress />
-          <StatBoxes />
-          <Badges />
-          <ProjectSlider />
+          <UserProgress xp={userObject?.xp} />
+          <StatBoxes
+            numBadges={XPlevel}
+            numProjects={userObject?.projects.length}
+            xpLevel={XPlevel}
+          />
+          <Badges xpLevel={XPlevel} />
+          <ProjectSlider projectIDs={userObject?.projects} />
+
           <View style={styles.logoutButton}>
             <LogoutButton />
           </View>
@@ -130,6 +149,12 @@ const Profile = (props: ProfileProps) => {
             }}
           >
             <Icon name="bell" color="primary" size="large" />
+            {newNotifsCount > 0 ? (
+              <Image
+                source={require("../../../../assets/newNotifs.png")}
+                style={styles.newNotificationIcon}
+              />
+            ) : null}
           </TouchableOpacity>
         </View>
 
@@ -146,8 +171,8 @@ const Profile = (props: ProfileProps) => {
         >
           <Avatar
             size={135}
-            name="user avatar"
-            imageURL="https://picsum.photos/200"
+            name={userObject?.username}
+            imageURL={profilePicture}
           />
         </Animated.View>
 
@@ -163,7 +188,7 @@ const Profile = (props: ProfileProps) => {
           ]}
         >
           <Text variant="h2" color="titleText" style={styles.userName}>
-            {userdata?.name}
+            {userObject?.username}
           </Text>
           <View style={styles.userInfoDetails}>
             <Icon
@@ -181,7 +206,7 @@ const Profile = (props: ProfileProps) => {
               size="small"
               style={styles.userInfoIcon}
             />
-            <Text variant="smBody">103,597 XP</Text>
+            <Text variant="smBody">{userObject?.xp} XP</Text>
           </View>
         </Animated.View>
       </Animated.View>

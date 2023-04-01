@@ -1,12 +1,9 @@
 import { StyleSheet } from "react-native";
-import {
-  deviceScreenWidth,
-  deviceScreenHeight,
-} from "../../../../../../constants";
+import { deviceScreenWidth } from "../../../../../../constants";
 
 export default StyleSheet.create({
   container: {
-    marginTop: -235,
+    marginTop: -220,
     width: deviceScreenWidth,
   },
   headerScroll: {
@@ -17,7 +14,8 @@ export default StyleSheet.create({
   headerItem: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 32,
   },
   headerActiveBar: {
     height: 2,
@@ -35,17 +33,9 @@ export default StyleSheet.create({
   },
   mainItem: {
     width: deviceScreenWidth,
+    borderTopWidth: 1,
+    alignItems: "center",
+    justifyContent: "space-evenly",
     height: "65%",
-    justifyContent: "space-evenly",
-    borderTopWidth: 1,
-    alignItems: "center",
-  },
-  discussion: {
-    flex: 1,
-    width: deviceScreenWidth,
-    height: deviceScreenHeight - 110,
-    justifyContent: "space-evenly",
-    borderTopWidth: 1,
-    alignItems: "center",
   },
 });

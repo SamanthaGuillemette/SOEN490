@@ -16,6 +16,7 @@ interface SearchBarProps {
   searchPlaceHolder?: string;
   showFilterButton?: boolean;
   onFilterButtonPress?: (isFilterButtonActive: boolean) => void;
+  onQueryChange?: (query: string) => void;
 }
 
 export const SearchBar = (props: SearchBarProps) => {
@@ -25,11 +26,16 @@ export const SearchBar = (props: SearchBarProps) => {
     searchPlaceHolder = "Search",
     showFilterButton = false,
     onFilterButtonPress,
+    onQueryChange,
   } = props;
 
   const bodyTextColor = useThemeColor("bodyText");
   const [isSearchInputActive, setIsSearchInputActive] = useState(false);
   const [isFilterButtonActive, setIsFilterButtonActive] = useState(false);
+
+  const handleQueryChange = (query: string) => {
+    onQueryChange && onQueryChange(query);
+  };
 
   return (
     <ShadowView
@@ -44,11 +50,12 @@ export const SearchBar = (props: SearchBarProps) => {
           color={isSearchInputActive ? "primary" : "smallText"}
         />
         <TextInput
-          style={styles.searchBoxInput}
+          style={[styles.searchBoxInput, { color: bodyTextColor }]}
           placeholderTextColor={bodyTextColor}
           placeholder={searchPlaceHolder}
           onFocus={() => setIsSearchInputActive(true)}
           onBlur={() => setIsSearchInputActive(false)}
+          onChangeText={handleQueryChange}
         />
       </View>
 
