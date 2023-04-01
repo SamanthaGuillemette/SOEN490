@@ -109,6 +109,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           navigation={props.navigation}
           setTasks={setTasks}
           tasks={tasks}
+          allowCompleteTask={false}
         />,
       ]}
       navigation={props.navigation}

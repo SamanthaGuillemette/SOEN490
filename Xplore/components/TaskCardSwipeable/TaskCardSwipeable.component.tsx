@@ -12,17 +12,43 @@ import { TaskCard } from "../TaskCard/TaskCard.component";
 interface taskContentProps {
   navigation: NavigationProp<any>;
   taskInfo: any;
-  isProjectEdit?: boolean;
-  projectID?: string; // TO FIX
+  allowCompleteTask?: boolean;
+  projectID?: string;
+  setTasks?: (value: Object[]) => void;
+  tasks?: Object[];
 }
 
 export const actions = (props: any) => {
   const taskID = props.taskInfo.taskID;
-  const isProjectEdit = props.isProjectEdit;
+  const allowCompleteTask = props.allowCompleteTask;
 
-  return isProjectEdit === false ? (
+  const handleOnDelete = () => {
+    //const newList = props.tasks.filter((task: any) => task.taskID !== taskID); // removing from tasks
+    //props.setTasks(newList); // overwriting old tasks list
+
+    // deleting from db if its project details or edit projects
+    if (props.projectID !== undefined) {
+      //deleteTask(taskID, props.projectID);
+    }
+  };
+
+  const handleOnComplete = () => {
+    props.tasks.forEach((task: any) => {
+      if (task.taskID === taskID) {
+        task.completed = true;
+      }
+    });
+
+    //console.log(oldList);
+    props.setTasks(props.tasks); // overwriting old tasks list
+
+    console.log(props.tasks);
+    //setTaskCompleted(taskID); // updating in db
+  };
+
+  return allowCompleteTask !== false ? (
     <View style={styles.icons}>
-      <TouchableOpacity onPress={() => setTaskCompleted(taskID)}>
+      <TouchableOpacity onPress={handleOnComplete}>
         <Icon
           color="success"
           size="large"
@@ -30,7 +56,7 @@ export const actions = (props: any) => {
           style={styles.infoIcon}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => deleteTask(taskID, props.projectID)}>
+      <TouchableOpacity onPress={handleOnDelete}>
         <Icon
           color="error"
           size="large"
@@ -41,7 +67,7 @@ export const actions = (props: any) => {
     </View>
   ) : (
     <View style={styles.iconsProjectEdit}>
-      <TouchableOpacity onPress={() => deleteTask(taskID, props.projectID)}>
+      <TouchableOpacity onPress={handleOnDelete}>
         <Icon
           color="error"
           size="large"

@@ -1,7 +1,6 @@
 import { StepIndicator } from "../../../components";
 import { NavigationProp } from "@react-navigation/native";
 import {
-  AddLinks,
   AddMembers,
   AllTasks,
   Description,
@@ -9,7 +8,7 @@ import {
 } from "../components";
 import { useAllTasksInfo } from "../../../services/api/projects";
 import { useRoute } from "@react-navigation/native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ProjectEditProps {
   navigation: NavigationProp<any>;
@@ -36,12 +35,16 @@ const ProjectEdit = (props: ProjectEditProps) => {
 
   const [category, setCategory] = useState(projectInfo.category);
   const [goals, setGoals] = useState<string[]>(projectInfo.goals);
-
+  const currentTasks = useAllTasksInfo(projectInfo.tasks);
   const [tasks, setTasks] = useState<Object[]>([]);
   const [allMembers, setAllMembers] = useState(projectInfo.members);
 
-  console.log("Current project members", projectInfo.members);
-  console.log("All members array", allMembers);
+  useEffect(() => {
+    setTasks(currentTasks);
+  }, [currentTasks]);
+
+  //console.log("Current project members", projectInfo.members);
+  //console.log("All members array", allMembers);
 
   return (
     <StepIndicator
@@ -74,8 +77,8 @@ const ProjectEdit = (props: ProjectEditProps) => {
         <AllTasks
           navigation={props.navigation}
           setTasks={setTasks}
-          tasks={useAllTasksInfo(projectInfo.tasks)}
-          isProjectEdit={true}
+          tasks={tasks}
+          allowCompleteTask={false}
           projectID={projectInfo.projectID}
         />,
         <AddMembers setAllMembers={setAllMembers} allMembers={allMembers} />,
