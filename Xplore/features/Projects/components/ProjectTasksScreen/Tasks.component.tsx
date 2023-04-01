@@ -28,6 +28,7 @@ export const Tasks = (props: TasksProps) => {
                 taskInfo={singleTask}
                 key={i}
                 projectID={item.projectID}
+                isProjectEdit={false}
               />
             ))}
         </View>
