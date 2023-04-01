@@ -27,6 +27,7 @@ interface Project {
   endDate: string;
   goals: string[];
   requestJoin?: boolean;
+  projectOwner: string;
 }
 
 const useCreateNewProject = () => {
@@ -218,6 +219,7 @@ const useProjectCardInfo = (contactID: any) => {
             tasks: response.tasks,
             goals: response.goals,
             requestJoin: false,
+            projectOwner: response.projectOwner,
           };
 
           // Filling different array based on if completed or incomplete project
