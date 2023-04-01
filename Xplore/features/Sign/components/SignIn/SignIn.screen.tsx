@@ -1,4 +1,5 @@
 import { NavigationProp } from "@react-navigation/native";
+import { useEffect } from "react";
 import * as React from "react";
 import {
   View,
@@ -21,6 +22,12 @@ const SignIn = (props: SignInProps) => {
 
   const { signIn, loading, loginStatus } = useAuth();
 
+  useEffect(() => {
+    if (loginStatus === "error") {
+      Alert.alert("Error", "Incorrect email or password!");
+    }
+  }, [loginStatus]);
+
   const handleLoginValues = (
     email: any,
     password: any,
@@ -33,7 +40,7 @@ const SignIn = (props: SignInProps) => {
     } else {
       signIn(email, password);
       if (
-        loginStatus !== "error"
+        loginStatus !== "error" && loginStatus !== null
       ) {
         setEmail("");
         setPassword("");
