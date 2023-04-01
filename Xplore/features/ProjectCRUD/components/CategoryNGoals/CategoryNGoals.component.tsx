@@ -2,6 +2,7 @@ import { View } from "react-native";
 import styles from "./CategoryNGoals.styles";
 import { CategoryModal, InputField, Text } from "../../../../components";
 import { useState } from "react";
+import { categories } from "../../../../constants";
 
 interface CategoryNGoalsProps {
   setCategory: (category: string) => void;
@@ -9,7 +10,6 @@ interface CategoryNGoalsProps {
 }
 
 export const CategoryNGoals = (props: CategoryNGoalsProps) => {
-  //const [selectedValue, setSelectedValue] = useState(""); dont need
 
   const [categoryText, setCategoryText] = useState("Category");
   const [goal1, setGoal1] = useState("");
@@ -25,15 +25,16 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
   };
 
   const options = [
-    { label: "Data Science", value: "option1" },
-    { label: "Web Development", value: "option2" },
-    { label: "Embedded Systems", value: "option3" },
-    { label: "Security Systems", value: "option4" },
-    { label: "Social Networking", value: "option5" },
-    { label: "Game Development", value: "option6" },
-    { label: "Software Optimization", value: "option7" },
-    { label: "Finance/Blockchain", value: "option8" },
-    { label: "Mobile Development", value: "option9" },
+    { label: categories.frontendDev, value: "option1" },
+    { label: categories.backendDev, value: "option2" },
+    { label: categories.webDev, value: "option3" },
+    { label: categories.mobileDev, value: "option4" },
+    { label: categories.gameDev, value: "option5" },
+    { label: categories.embeddedSystems, value: "option6" },
+    { label: categories.algorithms, value: "option7" },
+    { label: categories.softwareOptimization, value: "option8" },
+    { label: categories.security, value: "option9" },
+    { label: categories.blockchain, value: "option10" },
   ];
 
   const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
