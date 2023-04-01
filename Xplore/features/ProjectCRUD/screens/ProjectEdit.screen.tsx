@@ -73,6 +73,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
           setTasks={setTasks}
           tasks={useAllTasksInfo(projectInfo.tasks)}
           isProjectEdit={true}
+          projectID={projectInfo.projectID}
         />,
         //<AddMembers />
       ]}

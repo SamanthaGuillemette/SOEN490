@@ -16,8 +16,6 @@ export const Tasks = (props: TasksProps) => {
   const { navigation } = props;
   const allTasks = useAllTasksInfo(item.tasks);
 
-  console.log(allTasks);
-
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -29,6 +27,7 @@ export const Tasks = (props: TasksProps) => {
                 navigation={navigation}
                 taskInfo={singleTask}
                 key={i}
+                projectID={item.projectID}
               />
             ))}
         </View>

@@ -18,10 +18,11 @@ interface AllTasksProps {
   setTasks: (value: Object[]) => void;
   tasks: Object[];
   isProjectEdit?: boolean;
+  projectID?: string;
 }
 
 export const AllTasks = (props: AllTasksProps) => {
-  const { navigation, tasks, setTasks, isProjectEdit } = props;
+  const { navigation, tasks, setTasks, isProjectEdit, projectID } = props;
   const [showModal, setShowModal] = useState<any>(false);
 
   return (
@@ -44,6 +45,7 @@ export const AllTasks = (props: AllTasksProps) => {
               taskInfo={task}
               navigation={navigation}
               isProjectEdit={isProjectEdit}
+              projectID={projectID}
             />
           )
         )}

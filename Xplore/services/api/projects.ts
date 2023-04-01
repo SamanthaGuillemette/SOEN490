@@ -250,6 +250,8 @@ const deleteTask = async (taskID: any, projectID: any) => {
     let tasksList = response.tasks;
     tasksList = tasksList.filter((ID: any) => ID !== taskID); // removing the task ID
 
+    console.log(taskID);
+
     // Overwriting the task attribute in the project's document
     await api.updateDocument(COLLECTION_ID_PROJECT, projectID, {
       tasks: tasksList,

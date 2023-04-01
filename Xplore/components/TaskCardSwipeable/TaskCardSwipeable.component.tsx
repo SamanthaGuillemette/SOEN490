@@ -13,10 +13,11 @@ interface taskContentProps {
   navigation: NavigationProp<any>;
   taskInfo: any;
   isProjectEdit?: boolean;
+  projectID?: string; // TO FIX
 }
 
 export const actions = (props: any) => {
-  const taskID = props.taskID;
+  const taskID = props.taskInfo.taskID;
   const isProjectEdit = props.isProjectEdit;
 
   return isProjectEdit === false ? (
@@ -29,7 +30,7 @@ export const actions = (props: any) => {
           style={styles.infoIcon}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => deleteTask(taskID)}>
+      <TouchableOpacity onPress={() => deleteTask(taskID, props.projectID)}>
         <Icon
           color="error"
           size="large"
@@ -40,7 +41,7 @@ export const actions = (props: any) => {
     </View>
   ) : (
     <View style={styles.iconsProjectEdit}>
-      <TouchableOpacity onPress={() => deleteTask(taskID)}>
+      <TouchableOpacity onPress={() => deleteTask(taskID, props.projectID)}>
         <Icon
           color="error"
           size="large"
@@ -59,7 +60,7 @@ export const TaskCardSwipeable = (props: taskContentProps) => {
     <View style={styles.backgroundBox}>
       <ListItem.Swipeable
         rightWidth={28}
-        rightContent={actions(props.taskInfo)}
+        rightContent={actions(props)}
         rightStyle={[styles.righContentStyle, { backgroundColor: generalGray }]}
         containerStyle={styles.listContainer}
       >
