@@ -28,6 +28,7 @@ const ProjectDescription = () => {
           <Accordion item={item} />
           {item.requestJoin ? (
             <RequestJoin
+              projectOwnerID={item.projectOwner}
               userID={userId}
               projectID={item.$id}
               projectName={item.name}
