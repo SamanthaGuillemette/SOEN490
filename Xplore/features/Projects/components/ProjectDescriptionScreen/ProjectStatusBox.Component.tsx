@@ -9,17 +9,11 @@ import styles from "./ProjectStatusBox.styles";
 
 interface ProjectStats {
   tasks: string;
-  conversations: String;
   date: String;
   percent: number;
 }
 
-const ProjectStats = ({
-  tasks,
-  conversations,
-  date,
-  percent,
-}: ProjectStats) => {
+const ProjectStats = ({ tasks, date, percent }: ProjectStats) => {
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   return (
     <View
@@ -32,10 +26,6 @@ const ProjectStats = ({
         <Text style={styles.statusBox_text}>
           <Icon size="small" name="file-text" />
           {"   " + tasks} tasks
-        </Text>
-        <Text style={styles.statusBox_text}>
-          <Icon size="small" name="message-circle" />
-          {"   " + conversations} Conversations
         </Text>
         <Text style={styles.statusBox_text}>
           <Icon size="small" name="calendar" />

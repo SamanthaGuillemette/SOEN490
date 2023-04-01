@@ -33,7 +33,7 @@ const useGetUserInfo = (userID: any) => {
   return user;
 };
 
-const useListUsers = () => {
+const useListUsers = (includeCurrUser?: boolean) => {
   const isFocused = useIsFocused();
   // Quering current user's data
   const { data: userdata } = useQuery("user data", () => api.getAccount());
@@ -49,6 +49,14 @@ const useListUsers = () => {
           const usersList = response?.documents
             ?.map((doc) => {
               if (doc.userID === userId) {
+                if (includeCurrUser === true) {
+                  return {
+                    id: doc.userID,
+                    username: doc.username,
+                    avatar: doc.profilePicture,
+                    xp: doc.xp,
+                  };
+                }
                 return null; // skip this user
               } else {
                 return {
@@ -67,7 +75,7 @@ const useListUsers = () => {
       }
     };
     fetchData();
-  }, [isFocused, userId]);
+  }, [includeCurrUser, isFocused, userId]);
 
   return users;
 };

@@ -21,4 +21,8 @@ export default StyleSheet.create({
     paddingBottom: Platform.OS === "ios" ? 110 : 80,
     paddingTop: 5,
   },
+  noResults: {
+    textAlign: "center",
+    marginTop: "5%",
+  },
 });

@@ -13,6 +13,9 @@ export default StyleSheet.create({
   alignLeft: {
     alignItems: "flex-start",
   },
+  center: {
+    textAlign: "center",
+  },
   mainContainer: {
     marginTop: 50,
     flex: 1,

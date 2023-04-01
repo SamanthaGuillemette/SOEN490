@@ -22,7 +22,7 @@ const ChatSettings = (props: ChatSettingsProps) => {
   const background = useThemeColor("background");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const avatars: any = useListAvatars(chatID, chatType);
-  console.log(username);
+
   return (
     <SafeAreaView
       edges={["top", "left", "right"]}

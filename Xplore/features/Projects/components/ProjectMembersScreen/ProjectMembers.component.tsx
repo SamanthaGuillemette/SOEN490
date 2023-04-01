@@ -2,43 +2,32 @@ import { ScrollView } from "react-native";
 import { MessageMember, View } from "../../../../components";
 import styles from "./ProjectMembers.styles";
 import { NavigationProp } from "@react-navigation/native";
+import { useAllMembersInfo } from "../../../../services/api/projects";
+import { useRoute } from "@react-navigation/native";
 
 interface ProjectMembersProps {
   navigation: NavigationProp<any>;
 }
 const ProjectMembers = (props: ProjectMembersProps) => {
+  const route = useRoute();
+  let { item }: any = route.params;
+  const { navigation } = props;
+  const allMembers = useAllMembersInfo(item.members);
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <MessageMember
-            avatar={"https://picsum.photos/200"}
-            username={"Josh Lewis"}
-            email={"josh@gmail.com"}
-            xp={103597}
-            navigation={props.navigation}
-          />
-          <MessageMember
-            avatar={"https://picsum.photos/300"}
-            username={"Amy Lucas"}
-            email={"amy@gmail.com"}
-            xp={103597}
-            navigation={props.navigation}
-          />
-          <MessageMember
-            avatar={"https://picsum.photos/400"}
-            username={"Elva Moore"}
-            email={"elva@gmail.com"}
-            xp={103597}
-            navigation={props.navigation}
-          />
-          <MessageMember
-            avatar={"https://picsum.photos/500"}
-            username={"Bernice Lewis"}
-            email={"berince@gmail.com"}
-            xp={103597}
-            navigation={props.navigation}
-          />
+          {allMembers.map((singleMember, i) => (
+            <MessageMember
+              id={singleMember.userID}
+              avatar={singleMember.profilePicture}
+              username={singleMember.username}
+              xp={singleMember.xp}
+              navigation={navigation}
+              key={i}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

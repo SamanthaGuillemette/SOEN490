@@ -15,7 +15,7 @@ interface AvatarProps extends ViewProps {
   name: String;
   groupChat?: boolean;
   avatarCount?: number;
-  imageURL?: String;
+  imageURL?: URL;
   size?: number;
   style?: StyleProp<ViewStyle>;
 }
@@ -79,7 +79,7 @@ export const Avatar = (props: AvatarProps) => {
             },
           ]}
         />
-      ) : imageURL !== "null" && imageURL ? (
+      ) : imageURL ? (
         <Image
           style={[
             styles.avatar,

@@ -7,16 +7,16 @@ import styles from "./CategoryScrollBar.styles";
 
 interface Category {
   name: string;
-  isActive: boolean; // TODO: We may not need this property
 }
 
 interface CategoryScrollBarProps {
   categories: Category[];
   style?: StyleProp<ViewStyle>;
+  setCategory: (value: string) => void;
 }
 
 export const CategoryScrollBar = (props: CategoryScrollBarProps) => {
-  const { categories, style } = props;
+  const { categories, style, setCategory } = props;
   const primaryColor = useThemeColor("primary");
   const generalGrayColor = useThemeColor("generalGray");
   const [activeCategory, setActiveCategory] = useState(categories[0].name);
@@ -40,9 +40,8 @@ export const CategoryScrollBar = (props: CategoryScrollBarProps) => {
                 },
               ]}
               onPress={() => {
+                setCategory(item.name);
                 setActiveCategory(item.name);
-                // eslint-disable-next-line no-alert
-                alert(`category -- ${item.name} -- is selected`);
               }}
             >
               <Text

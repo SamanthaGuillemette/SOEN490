@@ -14,7 +14,8 @@ export default StyleSheet.create({
   headerItem: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 32,
   },
   headerActiveBar: {
     height: 2,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchableOpacity, ScrollView } from "react-native";
 import { View } from "../View";
 import { User } from "../User";
@@ -6,6 +6,8 @@ import styles from "./UsersList.styles";
 import { Icon } from "../Icon";
 import { MessageMember } from "../MessageMember";
 import { NavigationProp } from "@react-navigation/native";
+import { useQuery } from "react-query";
+import api from "../../services/appwrite/api";
 
 interface UsersType {
   id: string;
@@ -21,7 +23,7 @@ interface UsersListProps {
   messageUserList: boolean;
   selectUserList: boolean;
   navigation?: NavigationProp<any>;
-  onSelect: (userId: string, isSelected: boolean) => void;
+  setList?: any;
 }
 
 //  UsersItem component creates user and sets selected to false initially
@@ -83,6 +85,7 @@ export const UserItemMessage = (props: UsersType) => {
 
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
+  const { setList } = props;
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
 
   const handleUserSelect = (userId: string, isSelected: boolean) => {
@@ -91,8 +94,15 @@ export const UsersList = (props: UsersListProps) => {
     } else {
       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
     }
-    props.onSelect(userId, isSelected);
   };
+
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userID: string = userdata?.$id as string;
+
+  useEffect(() => {
+    setList([...selectedUsers, userID]);
+  }, [selectedUsers, setList, userID]);
 
   return (
     <ScrollView pagingEnabled={true}>
@@ -107,7 +117,7 @@ export const UsersList = (props: UsersListProps) => {
               navigation={props.navigation}
               selected={selectedUsers.includes(user.id)}
               onSelect={(isSelected) =>
-                handleUserSelect(user.id, Boolean(isSelected))
+                handleUserSelect(user.id, !selectedUsers.includes(isSelected))
               }
             />
           ))

@@ -1,18 +1,20 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Avatar, Icon, ShadowView } from "../../../../components";
-import { EditButton } from "../../components";
-import { deviceScreenWidth } from "../../../../constants";
-import { useState } from "react";
+import { EditButton, GobackButton } from "../../components";
+import { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useThemeColor } from "../../../../hooks";
 import api from "../../../../services/appwrite/api";
-import { BUCKET_PROFILE_PIC } from "@env";
+import { BUCKET_PROFILE_PIC, COLLECTION_ID_USERS } from "@env";
 import { uploadImageToServer } from "../../../../utils";
-import { useQuery } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
+import styles from "./Settings.styles";
+import { useFetchUserDetails } from "../../hooks/useFetchUserDetails";
+import { useFetchProfilePicture } from "../../hooks/useFetchProfilePicture";
 
 interface SettingsProps {
   navigation: NavigationProp<any>;
@@ -20,45 +22,59 @@ interface SettingsProps {
 
 const Settings = (props: SettingsProps) => {
   const { navigation } = props;
-  const statusBarBg = useThemeColor("background"); // Status bar background (only required for Android)
-  const [localImage, setLocalImage] = useState<string>();
-  const [uploadedImageId, setUploadedImageId] = useState();
+  const statusBarBg = useThemeColor("background");
+  const [userDocumentId, setUserDocumentId] = useState<string>();
+  const [profilePictureId, setProfilePictureId] = useState<string>();
+  const [localProfilePic, setLocalProfilePic] = useState<URL>();
+  const { data: userObject } = useFetchUserDetails();
 
-  const { data } = useQuery("profileImage", () =>
-    api.getFilePreview(BUCKET_PROFILE_PIC, uploadedImageId || "")
+  useEffect(() => {
+    setUserDocumentId(userObject?.$id); // This is the actual document Id - DIFFERENT from the 'userId'
+    setProfilePictureId(userObject?.profilePicture);
+  }, [userObject]);
+
+  const profilePicture = useFetchProfilePicture(profilePictureId ?? "");
+
+  useEffect(() => {
+    setLocalProfilePic(profilePicture);
+  }, [profilePicture]);
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    (updatedProfiePictureId: string) => {
+      return api.updateDocument(COLLECTION_ID_USERS, userDocumentId!, {
+        profilePicture: updatedProfiePictureId,
+      });
+    },
+    {
+      // On success of this action, invalidate & refetch the "user" query & "profile picture" query
+      onSuccess: () => {
+        queryClient.invalidateQueries("user");
+        queryClient.invalidateQueries("profile picture");
+      },
+    }
   );
-  console.log("====> React Query data: ", data);
 
   const handleUploadImage = async () => {
-    // No permissions request is necessary for launching the image library
+    // No permissions request is necessary for launching the image gallery
     let pickedImage = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [3, 3],
       quality: 1,
     });
-    // console.log(JSON.stringify(pickedImage, null, 2));
 
     if (!pickedImage.cancelled) {
-      setLocalImage(pickedImage.uri); // Set local image so that the picture is displayed right away.
+      setLocalProfilePic(pickedImage.uri as any); // Set local image so that the picture is displayed right away.
 
       const uploadedImageResult: any = await uploadImageToServer(
         pickedImage.uri,
         BUCKET_PROFILE_PIC
       );
-      // console.log(
-      //   "======> uploadedImageResult",
-      //   JSON.stringify(uploadedImageResult, null, 2)
-      // );
 
-      setUploadedImageId(uploadedImageResult?.$id); // Capture the uploaded image id
-
-      if (uploadedImageId) {
-        // const imagePreview = api.getFilePreview(
-        //   BUCKET_PROFILE_PIC,
-        //   uploadedImageId
-        // );
-        // setLocalImage(imagePreview.toString());
+      // Need to check "userDocumentId" -> use inside the mutate function
+      if (userDocumentId) {
+        mutation.mutate(uploadedImageResult?.$id);
       }
     }
   };
@@ -71,18 +87,14 @@ const Settings = (props: SettingsProps) => {
         style={styles.safeAreaStyle}
       >
         <ScrollView>
-          <View style={styles.backButton}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.goBack();
-              }}
-            >
-              <Icon name="chevron-left" color="primary" />
-            </TouchableOpacity>
-          </View>
+          <GobackButton navigation={navigation} />
 
           <View style={styles.avatarContainer}>
-            <Avatar size={135} name="user avatar" imageURL={localImage} />
+            <Avatar
+              size={135}
+              name={userObject?.username}
+              imageURL={localProfilePic}
+            />
             <TouchableOpacity
               style={styles.editAvatarButton}
               onPress={handleUploadImage}
@@ -100,12 +112,12 @@ const Settings = (props: SettingsProps) => {
             <EditButton
               iconName="user"
               label="Edit Profile"
-              onPress={() => alert("pressed!")}
+              onPress={() => navigation.navigate("EditProfile")}
             />
             <EditButton
               iconName="lock"
               label="Change Password"
-              onPress={() => alert("pressed!")}
+              onPress={() => navigation.navigate("UpdatePassword")}
             />
             <EditButton
               iconName="smile"
@@ -122,32 +134,3 @@ const Settings = (props: SettingsProps) => {
 };
 
 export default Settings;
-
-const styles = StyleSheet.create({
-  safeAreaStyle: {
-    flex: 1,
-  },
-  backButton: {
-    paddingTop: 25,
-    paddingLeft: 23,
-    paddingBottom: 16,
-    width: 80,
-  },
-  avatarContainer: {
-    alignItems: "center",
-  },
-  editAvatarButton: {
-    position: "absolute",
-    bottom: 10,
-    right: deviceScreenWidth / 2 - 60,
-    zIndex: 1,
-  },
-  editAvatarButtonShadow: {
-    padding: 8,
-    borderRadius: 50,
-  },
-  settingButtonsContainer: {
-    marginTop: 75,
-    paddingHorizontal: 30,
-  },
-});

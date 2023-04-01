@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import styles from "./TaskModal.styles";
 import { TouchableOpacity } from "react-native";
 import {
@@ -7,7 +7,8 @@ import {
   DatePicker,
   Icon,
   InputField,
-  MemberChipAdder,
+  SecondaryButton,
+  //MemberChipAdder,
   ShadowView,
   Text,
 } from "../../../../components";
@@ -15,17 +16,44 @@ import { useThemeColor } from "../../../../hooks";
 
 interface TaskModalProps {
   onPress?: any;
+  setTasks: (value: Object[]) => void;
+  tasks: Object[];
 }
 
 export const TaskModal = (props: TaskModalProps) => {
   const [taskName, setTaskName] = useState("");
   const [taskDesc, setTaskDesc] = useState("");
   const [taskCategory, setTaskCategory] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  //const [allMembers, setAllMembers] = useState<any[]>([]);
+  // const [setTask] = useState("");
   // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+  const formattedToday = yyyy + "-" + mm + "-" + dd;
 
   const [btnClicked, setBtnClicked] = useState(false);
-  const { onPress } = props;
+  const { onPress, tasks, setTasks } = props;
+  const [categoryText, setCategoryText] = useState("Category");
+
+  const options = [
+    { label: "Project Planning", value: "option1" },
+    { label: "Design", value: "option2" },
+    { label: "Development", value: "option3" },
+    { label: "Testing", value: "option4" },
+    { label: "Deployment", value: "option5" },
+    { label: "Documentation", value: "option6" },
+    { label: "Maintenance", value: "option7" },
+    { label: "Meetings", value: "option8" },
+    { label: "Research", value: "option9" },
+    { label: "Training", value: "option10" },
+  ];
+
+  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
 
   const added = () => {
     setBtnClicked(true);
@@ -36,36 +64,88 @@ export const TaskModal = (props: TaskModalProps) => {
     }, 2000);
   };
 
+  const cancel = () => {
+    reset;
+    onPress === undefined ? "" : onPress();
+  };
+
   const reset = () => {
     setTaskName("");
     setTaskDesc("");
     setTaskCategory("");
   };
 
-  const [selectedValue, setSelectedValue] = useState("");
-  const [categoryText, setCategoryText] = useState("Category");
-
-  const handleValueChange = (value: string) => {
-    setSelectedValue(value);
-    const selectedOption = options.find((option) => option.value === value);
+  const handleValueChange = (label: string) => {
+    setTaskCategory(label);
+    const selectedOption = options.find((option) => option.label === label);
     setCategoryText(selectedOption?.label || "Category");
   };
 
-  const options = [
-    { label: "Meeting", value: "option1" },
-    { label: "Planning-Research", value: "option2" },
-    { label: "Planning-Budget", value: "option3" },
-    { label: "Design-UI design", value: "option4" },
-    { label: "Design-Brainstorming", value: "option5" },
-    { label: "Development-Frontend", value: "option6" },
-    { label: "Development-Backend", value: "option7" },
-    { label: "Testing-unit testing", value: "option8" },
-    { label: "Testing-System Testing", value: "option9" },
-    { label: "Deployment", value: "option10" },
-  ];
+  const handleEmptyValues = (
+    taskName: any,
+    taskDesc: any,
+    categoryText: any,
+    startDate: any,
+    endDate: any
+  ) => {
+    if (
+      taskName.trim().length === 0 ||
+      taskDesc.trim().length === 0 ||
+      categoryText === "Category" ||
+      startDate.trim().length === 0 ||
+      endDate.trim().length === 0
+    ) {
+      Alert.alert("Error", "You are missing required fields!");
+    } else {
+      added();
+      reset();
+      const newTask = {
+        name: taskName,
+        description: taskDesc,
+        category: taskCategory,
+        startDate: startDate,
+        endDate: endDate,
+      };
+      setTasks([...tasks, newTask]);
+    }
+  };
 
-  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label));
+  const handleStartDate = (sDate: string) => {
+    if (sDate < formattedToday) {
+      Alert.alert(
+        "Error",
+        "Invalid start date. Must occur today or in the future."
+      );
+      setStartDate("");
+    } else if (endDate !== "") {
+      if (sDate > endDate) {
+        Alert.alert("Error", "Invalid start date. Must occur before end date.");
+        setStartDate("");
+      } else {
+        setStartDate(sDate);
+      }
+    } else {
+      setStartDate(sDate);
+    }
+  };
 
+  const handleEndDate = (eDate: string) => {
+    if (eDate <= formattedToday) {
+      Alert.alert("Error", "Invalid end date. Must occur after today.");
+      setEndDate("");
+    } else if (startDate !== "") {
+      if (eDate > startDate) {
+        setEndDate(eDate);
+      } else {
+        Alert.alert("Error", "Invalid end date. Must occur after start date.");
+        setEndDate("");
+      }
+    } else {
+      setEndDate(eDate);
+    }
+  };
+
+  // const { data, status } = useCreateNewTask();
   return (
     <ShadowView style={styles.shadowView}>
       <View style={styles.textViewAbout}>
@@ -93,28 +173,36 @@ export const TaskModal = (props: TaskModalProps) => {
             label={categoryText}
             options={sortedOptions}
             onValueChange={handleValueChange}
+            setCategory={setTaskCategory}
           />
         </View>
       </View>
       <View style={styles.alignDatePicker}>
-        <DatePicker title="Starts" />
-        <DatePicker title="Ends" />
+        <DatePicker
+          title="Starts"
+          setDate={handleStartDate}
+          shouldDisplayDate={startDate !== ""}
+        />
+        <DatePicker
+          title="Ends"
+          setDate={handleEndDate}
+          shouldDisplayDate={endDate !== ""}
+        />
       </View>
-      <View style={styles.textViewParticipant}>
-        <Text color="titleText" variant="h3">
-          Participants
-        </Text>
-      </View>
-      <MemberChipAdder />
       <ShadowView style={[styles.button]}>
         <TouchableOpacity
           style={[
             { backgroundColor: primaryBackground },
             styles.alignTouchable,
           ]}
-          onPress={() => {
-            added();
-            reset();
+          onPress={async () => {
+            handleEmptyValues(
+              taskName,
+              taskDesc,
+              categoryText,
+              startDate,
+              endDate
+            );
           }}
         >
           <Icon
@@ -125,6 +213,9 @@ export const TaskModal = (props: TaskModalProps) => {
           />
         </TouchableOpacity>
       </ShadowView>
+      <View style={styles.secondaryButton}>
+        <SecondaryButton onPress={cancel} label="CANCEL" />
+      </View>
     </ShadowView>
   );
 };
