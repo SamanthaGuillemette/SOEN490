@@ -65,10 +65,10 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
         >
           {percentComplete === 100 ? "Completed" : "Under development"}
         </Text>
-        <Text variant="h3" color="generalGray">
+        <Text variant="h3" color="white">
           {name}
         </Text>
-        <Text variant="smBody" color="generalGray">
+        <Text variant="smBody" color="white">
           {description}
         </Text>
       </View>

@@ -17,13 +17,14 @@ export default StyleSheet.create({
     position: "absolute",
     left: 25,
     bottom: 35,
+    alignSelf: "flex-start",
   },
   completedLabel: {
     paddingVertical: 6,
     paddingHorizontal: 8,
     borderRadius: 3,
     letterSpacing: 0.1,
-    width: 75,
     marginBottom: 8,
+    textAlign: "center",
   },
 });
