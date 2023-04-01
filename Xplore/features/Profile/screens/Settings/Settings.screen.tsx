@@ -25,32 +25,23 @@ const Settings = (props: SettingsProps) => {
   const statusBarBg = useThemeColor("background");
   const [userDocumentId, setUserDocumentId] = useState<string>();
   const [profilePictureId, setProfilePictureId] = useState<string>();
-  const [localProfilePic, setLocalProfilePic] = useState<URL>();
   const { data: userObject } = useFetchUserDetails();
 
   useEffect(() => {
-    setUserDocumentId(userObject?.$id); // This is the actual document Id - DIFFERENT from the 'userId'
-    setProfilePictureId(userObject?.profilePicture);
+    setUserDocumentId(userObject?.$id); // Actual document Id - DIFFERENT from 'userObject?.userId'
   }, [userObject]);
-
-  const profilePicture = useFetchProfilePicture(profilePictureId ?? "");
-
-  useEffect(() => {
-    setLocalProfilePic(profilePicture);
-  }, [profilePicture]);
 
   const queryClient = useQueryClient();
   const mutation = useMutation(
-    (updatedProfiePictureId: string) => {
+    (profilePictureURL: string) => {
       return api.updateDocument(COLLECTION_ID_USERS, userDocumentId!, {
-        profilePicture: updatedProfiePictureId,
+        profilePicture: profilePictureURL,
       });
     },
     {
-      // On success of this action, invalidate & refetch the "user" query & "profile picture" query
+      // On success of this action, invalidate & refetch the "user" query - useFetchUserDetails()
       onSuccess: () => {
         queryClient.invalidateQueries("user");
-        queryClient.invalidateQueries("profile picture");
       },
     }
   );
@@ -65,23 +56,28 @@ const Settings = (props: SettingsProps) => {
     });
 
     if (!pickedImage.canceled) {
-      setLocalProfilePic(pickedImage.assets[0].uri as any); // Set local image so that the picture is displayed right away.
-
       try {
         const uploadedImageResult: any = await uploadImageToServer(
           pickedImage.assets[0].uri,
           BUCKET_PROFILE_PIC
         );
 
-        // Need to check "userDocumentId" -> use inside the mutate function
-        if (userDocumentId) {
-          mutation.mutate(uploadedImageResult?.$id);
-        }
+        setProfilePictureId(uploadedImageResult?.$id);
       } catch (error) {
         console.log("===> Upload avatar failed: ", error);
       }
     }
   };
+
+  const profilePictureURL = useFetchProfilePicture(profilePictureId ?? "");
+
+  useEffect(() => {
+    // Need to check "userDocumentId" -> use inside the mutate function
+    if (profilePictureURL && userDocumentId) {
+      mutation.mutate(profilePictureURL.toString());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profilePictureId, profilePictureURL, userDocumentId]);
 
   return (
     <>
@@ -97,7 +93,7 @@ const Settings = (props: SettingsProps) => {
             <Avatar
               size={135}
               name={userObject?.username}
-              imageURL={localProfilePic}
+              imageURL={userObject?.profilePicture}
             />
             <TouchableOpacity
               style={styles.editAvatarButton}

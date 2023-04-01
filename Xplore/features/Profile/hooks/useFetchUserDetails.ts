@@ -13,14 +13,6 @@ const getUserInfo = async (userID: string) => {
 
 export const useFetchUserDetails = () => {
   const { accountToken } = useAuth();
-  // return useQuery({
-  //   queryKey: ["userDetails", accountToken?.$id],
-  //   queryFn: () =>
-  //     api.listDocuments(COLLECTION_ID_USERS, [
-  //       api.query.equal("userID", accountToken!.$id),
-  //     ]),
-  // });
-
   const { data, status } = useQuery("user", () =>
     getUserInfo(accountToken?.$id!)
   );
