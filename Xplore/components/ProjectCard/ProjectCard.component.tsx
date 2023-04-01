@@ -20,6 +20,7 @@ interface ProjectCardProps {
     percentComplete: number;
   };
 }
+
 export const ProjectCard = (props: ProjectCardProps) => {
   const { item } = props;
   const colorScheme = useColorScheme();
@@ -35,31 +36,16 @@ export const ProjectCard = (props: ProjectCardProps) => {
         style={styles.cardContainer}
         key={item.name}
       >
-        {colorScheme === "dark" ? (
-          item.imageURL !== "" || item.imageURL !== null ? (
-            <Image
-              source={{
-                uri: item.imageURL,
-              }}
-              style={styles.projectImage}
-            />
-          ) : (
-            <Image
-              style={styles.projectImage}
-              source={require("../../assets/logo_dark.png")}
-            />
-          )
-        ) : item.imageURL !== "" || item.imageURL !== null ? (
-          <Image
-            source={{
-              uri: item.imageURL,
-            }}
-            style={styles.projectImage}
-          />
+        {item.imageURL ? (
+          <Image source={{ uri: item.imageURL }} style={styles.projectImage} />
         ) : (
           <Image
+            source={
+              colorScheme === "dark"
+                ? require("../../assets/logo_dark.png")
+                : require("../../assets/logo_light.png")
+            }
             style={styles.projectImage}
-            source={require("../../assets/logo_light.png")}
           />
         )}
         <View style={styles.projectInfo}>
