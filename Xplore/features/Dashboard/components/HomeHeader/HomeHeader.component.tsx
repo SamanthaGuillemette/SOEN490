@@ -5,9 +5,13 @@ import {
   Text,
   View,
 } from "../../../../components";
+import { useFetchUserDetails } from "../../../Profile/hooks/useFetchUserDetails";
 import styles from "./HomeHeader.styles";
 
 export const HomeHeader = () => {
+
+  const { data: userObject } = useFetchUserDetails();
+  
   return (
     <ShadowView
       shadowOffset={4}
@@ -16,7 +20,7 @@ export const HomeHeader = () => {
     >
       <View>
         <Text variant="h1" color="titleText">
-          Hi Josh,
+          {userObject?.username},
         </Text>
         <Text variant="body" color="bodyText">
           Ready for a new challenge?
