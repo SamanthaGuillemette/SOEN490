@@ -16,7 +16,7 @@ export const Tasks = (props: TasksProps) => {
   const { navigation } = props;
   const allTasks = useAllTasksInfo(item.tasks);
 
-  console.log(allTasks);
+  //console.log(allTasks);
 
   return (
     <View style={styles.container}>

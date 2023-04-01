@@ -67,7 +67,7 @@ export const Chips = (props: ChipsProps) => {
               )(newChips);
 
               setChips(newChips);
-              console.log(newChips);
+              //console.log(newChips);
             }}
           />
         </View>

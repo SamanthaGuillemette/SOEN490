@@ -188,7 +188,6 @@ const useTaskStats = (projects: any) => {
     };
     fetchInfo();
   }, [projects, completedTasks, activeTasks, overdueTasks]);
-  console.log(completedTasks, activeTasks, overdueTasks);
 
   return [completedTasks, activeTasks, overdueTasks];
 };
