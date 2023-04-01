@@ -79,6 +79,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setSessionToken(response);
         getAccountStatus();
         setLoadingStatus(false);
+        setLoginStatus("success")
         console.log(
           `===> Session created: ${JSON.stringify(response, null, 2)}`
         );
@@ -87,10 +88,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoadingStatus(false);
         setLoginStatus("error")
         console.log(err);
-
-        if (
-          loginStatus === "error"
-        ) {
+        
+        if (loginStatus === "error") {
           Alert.alert("Error", "Incorrect email or password!");
         }
       }

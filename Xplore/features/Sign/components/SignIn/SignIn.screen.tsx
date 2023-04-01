@@ -28,7 +28,7 @@ const SignIn = (props: SignInProps) => {
     }
   }, [loginStatus]);
 
-  const handleLoginValues = (
+  const handleLoginInput = (
     email: any,
     password: any,
   ) => {
@@ -71,7 +71,7 @@ const SignIn = (props: SignInProps) => {
         label="SIGN IN"
         style={styles.PrimaryButton}
         onPress={() => {
-          handleLoginValues(email, password);
+          handleLoginInput(email, password);
         }}
       />
       <SecondaryButton
