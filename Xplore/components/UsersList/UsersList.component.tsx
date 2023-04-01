@@ -101,7 +101,9 @@ export const UsersList = (props: UsersListProps) => {
   let userID: string = userdata?.$id as string;
 
   useEffect(() => {
-    setList([...selectedUsers, userID]);
+    if (setList !== undefined) {
+      setList([...selectedUsers, userID]);
+    }
   }, [selectedUsers, setList, userID]);
 
   return (
