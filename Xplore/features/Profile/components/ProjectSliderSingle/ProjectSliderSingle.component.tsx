@@ -56,7 +56,7 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
       />
       <View style={[styles.overlay, styles.sideProject]} />
 
-      <View style={styles.textContent}>
+      <View style={styles.projectTag}>
         <Text
           variant="smLabel"
           style={[styles.completedLabel, { backgroundColor: successColor }]}
@@ -65,6 +65,8 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
         >
           {percentComplete === 100 ? "Completed" : "Under development"}
         </Text>
+      </View>
+      <View style={styles.textContent}>
         <Text variant="h3" color="white">
           {name}
         </Text>
