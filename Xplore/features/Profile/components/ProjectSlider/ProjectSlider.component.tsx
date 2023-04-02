@@ -26,7 +26,6 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
   const generalGray = useThemeColor("generalGray");
 
   const { data } = useFetchUserProjects(projectIDs);
-  //console.log(JSON.stringify(data, null, 4));
 
   return (
     <View style={[styles.mainContainer, { borderTopColor: generalGray }]}>
@@ -44,7 +43,6 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
           data={data?.documents}
           renderItem={({ item, index }: any) => (
             <ProjectSliderSingle
-              // style={[{ marginTop: 2 }]}
               key={item}
               index={index}
               scrollY={scrollY}

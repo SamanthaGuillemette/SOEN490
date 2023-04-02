@@ -38,7 +38,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
   const [loading, setLoadingStatus] = useState<boolean>(false);
   const [loginStatus, setLoginStatus] = useState<any>(null);
-  //const [emailIsVerified, setVerifiedStatus] = useState<boolean>(false);
 
   const getSessionStatus = (sessionId: string) => {
     const status = api.getSession(sessionId);
