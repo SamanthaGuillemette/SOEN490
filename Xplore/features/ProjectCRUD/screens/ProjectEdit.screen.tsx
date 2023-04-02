@@ -6,9 +6,10 @@ import {
   Description,
   CategoryNGoals,
 } from "../components";
-import { useAllTasksInfo } from "../../../services/api/projects";
+import { useAllTasksInfo, updateProject } from "../../../services/api/projects";
 import { useRoute } from "@react-navigation/native";
 import { useState, useEffect } from "react";
+import { Alert } from "react-native";
 
 interface ProjectEditProps {
   navigation: NavigationProp<any>;
@@ -17,19 +18,17 @@ interface ProjectEditProps {
 const ProjectEdit = (props: ProjectEditProps) => {
   const route = useRoute();
   let { projectInfo }: any = route.params;
-
-  // project image
   const [imageURL, setImageURL] = useState(projectInfo.imageURL);
   const [projName, setProjectName] = useState(projectInfo.name);
   const [startDate, setStartDate] = useState(
     projectInfo.startDate !== ""
       ? projectInfo.startDate.substring(0, projectInfo.startDate.indexOf("T"))
-      : "YYYY-MM-DD"
+      : ""
   );
   const [endDate, setEndDate] = useState(
     projectInfo.endDate !== ""
       ? projectInfo.endDate.substring(0, projectInfo.endDate.indexOf("T"))
-      : "YYYY-MM-DD"
+      : ""
   );
   const [description, setDescription] = useState(projectInfo.description);
   const [category, setCategory] = useState(projectInfo.category);
@@ -42,9 +41,44 @@ const ProjectEdit = (props: ProjectEditProps) => {
     setTasks(currentTasks);
   }, [currentTasks]);
 
+  const handleEditProject = () => {
+    if (projName === "" || description === "" || category === "") {
+      Alert.alert(
+        "Error",
+        "Project not created, you are missing required field(s): name, description or category",
+        [{ text: "OK", onPress: () => props.navigation.navigate("Home") }]
+      );
+      return false;
+    }
+
+    // Getting only new tasks
+    const newTasks = tasks.filter(
+      (singleTask: any) =>
+        !Object.values(projectInfo.tasks).includes(singleTask.taskID)
+    );
+
+    let values = [
+      projName,
+      description,
+      category,
+      startDate,
+      endDate,
+      goals,
+      allMembers,
+      newTasks,
+    ];
+
+    updateProject(projectInfo.projectID, values);
+    Alert.alert("Success", "Project edited successfully", [
+      { text: "OK", onPress: () => props.navigation.navigate("Home") },
+    ]);
+    return true;
+  };
+
   return (
     <StepIndicator
-      headerTitle={"Edit Projects"}
+      handleSubmit={handleEditProject}
+      headerTitle={"Edit Project"}
       stepLabels={[
         "Description",
         "Category & Goals",

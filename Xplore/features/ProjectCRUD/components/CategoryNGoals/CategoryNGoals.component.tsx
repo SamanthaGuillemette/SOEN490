@@ -12,11 +12,17 @@ interface CategoryNGoalsProps {
 
 export const CategoryNGoals = (props: CategoryNGoalsProps) => {
   const [categoryText, setCategoryText] = useState("Category");
-  const [goal1, setGoal1] = useState("");
-  const [goal2, setGoal2] = useState("");
-  const [goal3, setGoal3] = useState("");
-  const [taskCategory, setTaskCategory] = useState("");
   const { goals, category, setGoals } = props;
+  const [goal1, setGoal1] = useState(
+    goals === undefined || goals[0] === undefined ? "" : goals[0]
+  );
+  const [goal2, setGoal2] = useState(
+    goals === undefined || goals[1] === undefined ? "" : goals[1]
+  );
+  const [goal3, setGoal3] = useState(
+    goals === undefined || goals[2] === undefined ? "" : goals[2]
+  );
+  const [taskCategory, setTaskCategory] = useState("");
 
   const handleValueChange = (label: string) => {
     props.setCategory(label);
