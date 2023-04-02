@@ -17,7 +17,7 @@ const projects = [
     name: "Cryptohub",
     description:
       "A platform for securely buying, selling, and trading cryptocurrency.",
-    category: "Finance/Blockchain",
+    category: "Blockchain",
     startDate: "2022-02-19 09:00:00",
     endDate: "2022-08-19 09:00:00",
     percentComplete: 89,
@@ -31,7 +31,7 @@ const projects = [
     name: "DataChomp",
     description:
       "A data analytics tool that provides real-time insights and visualization for large datasets.",
-    category: "Data Science",
+    category: "Software Optimization",
     startDate: "2022-02-19 09:00:00",
     endDate: "2022-08-19 09:00:00",
     percentComplete: 54,
@@ -101,7 +101,7 @@ const projects = [
     name: "CodeBites",
     description:
       "A social platform for sharing code snippets and getting feedback from other developers.",
-    category: "Social Networking",
+    category: "Web Development",
     startDate: "2022-02-19 09:00:00",
     endDate: "2022-08-19 09:00:00",
     percentComplete: 24,
@@ -114,7 +114,7 @@ const projects = [
   {
     name: "ReactoBot",
     description: "A chatbot made with React for customer service inquiries.",
-    category: "web",
+    category: "Web Development",
     startDate: "2023-03-01 09:00:00",
     endDate: "2023-04-30 17:00:00",
     percentComplete: 55,
@@ -127,7 +127,7 @@ const projects = [
   {
     name: "BlockChainz",
     description: "A blockchain-based system for secure document verification.",
-    category: "security",
+    category: "Security",
     startDate: "2023-02-15 10:00:00",
     endDate: "2023-06-15 18:00:00",
     percentComplete: 66,
@@ -141,7 +141,7 @@ const projects = [
     name: "PyxieCopter",
     description:
       "A Python-based drone flight controller for aerial photography.",
-    category: "embedded",
+    category: "Embedded Systems",
     startDate: "2023-05-01 08:00:00",
     endDate: "2023-08-30 16:00:00",
     percentComplete: 76,
@@ -154,7 +154,7 @@ const projects = [
   {
     name: "DataFlowz",
     description: "A web-based data visualization tool for large datasets.",
-    category: "data",
+    category: "Web Development",
     startDate: "2023-04-01 11:00:00",
     endDate: "2023-08-31 19:00:00",
     percentComplete: 34,
