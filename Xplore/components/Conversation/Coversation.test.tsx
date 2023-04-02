@@ -7,29 +7,38 @@ const useQuery = new QueryClient();
 jest.mock("../../services/api/chatMessages", () => ({
   useListMessages: jest.fn(),
 }));
+jest.mock("../../services/appwrite/api", () => ({
+  getAccount: jest.fn().mockReturnValue("12345"),
+}));
 
 afterEach(() => {
   cleanup();
 });
 
+useListMessages.mockReturnValue([
+  {
+    data: [
+      {
+        id: "1",
+        chatID: "12345",
+        userID: "12345",
+        message: "hello",
+        username: "testuser1",
+      },
+      {
+        id: "2",
+        chatID: "12345",
+        userID: "12345",
+        message: "Testing123",
+        username: "testuser2",
+      },
+    ],
+    title: "2023-03-19",
+  },
+]);
+
 describe("Conversation should render correctly", () => {
   it("should render correctly", () => {
-    useListMessages.mockReturnValue({
-      messages: [
-        {
-          id: "1",
-          user: "left",
-          text: "hello",
-          image: "https://picsum.photos/200",
-        },
-        {
-          id: "2",
-          user: "left",
-          text: "It's Meeee",
-          image: "https://picsum.photos/200",
-        },
-      ],
-    });
     const { container } = render(
       <QueryClientProvider client={useQuery}>
         <Conversation chatID="12345" />
@@ -41,27 +50,6 @@ describe("Conversation should render correctly", () => {
 
 describe("The correct conversation should be visible", () => {
   it("Should render the example conversation correctly", () => {
-    useListMessages.mockReturnValue([
-      {
-        data: [
-          {
-            id: "1",
-            chatID: "12345",
-            userID: "12345",
-            message: "hello",
-            username: "testuser1",
-          },
-          {
-            id: "2",
-            chatID: "12345",
-            userID: "12345",
-            message: "Testing123",
-            username: "testuser2",
-          },
-        ],
-        title: "2023-03-19",
-      },
-    ]);
     const { queryByText } = render(
       <QueryClientProvider client={useQuery}>
         <Conversation chatID="12345" />
