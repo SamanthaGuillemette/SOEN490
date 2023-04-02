@@ -8,11 +8,13 @@ import {
 } from "../../../../../components";
 import { useGetUserInfo } from "../../../../../services/api/search";
 import styles from "./Notif.styles";
+import { createAcceptJoinNotif } from "../../../../../services/api/notifications";
 
 interface NotificationProps {
   projectID?: any;
   memberRequestingID?: any;
   projectName?: any;
+  userID?: any;
 }
 
 export const JoinRequestNotification = (props: NotificationProps) => {
@@ -66,7 +68,14 @@ export const JoinRequestNotification = (props: NotificationProps) => {
           }
           primaryText="Accept Request"
           secondaryText="Deny Request"
-          primaryAction={() => console.log("action")}
+          primaryAction={() =>
+            createAcceptJoinNotif(
+              userRequestingInfo[0].id,
+              props.projectID,
+              props.projectName,
+              props.userID
+            )
+          }
         />
       )}
     </View>
