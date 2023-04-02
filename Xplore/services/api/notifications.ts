@@ -86,7 +86,7 @@ const useUserAlreadyRequested = (userID: any, projectID: any) => {
 
 const deleteRequestJoinNotif = async (userID: any, projectID: any) => {
   const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
-    Query.equal("userID", userID),
+    Query.equal("memberRequestingID", userID),
     Query.equal("projectID", projectID),
     Query.equal("notificationType", "joinRequest"),
   ]);

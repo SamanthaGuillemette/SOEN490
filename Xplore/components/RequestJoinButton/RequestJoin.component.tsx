@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   StyleProp,
   ViewStyle,
@@ -12,6 +12,7 @@ import styles from "./RequestJoin.styles";
 import {
   createRequestJoinNotif,
   deleteRequestJoinNotif,
+  useUserAlreadyRequested,
 } from "../../services/api/notifications";
 
 interface RequestJoinProps extends TouchableOpacityProps {
@@ -24,10 +25,15 @@ interface RequestJoinProps extends TouchableOpacityProps {
 
 export const RequestJoin = (props: RequestJoinProps) => {
   const { style, userID, projectID, projectName, projectOwnerID } = props;
+  const hasAlreadyRequested = useUserAlreadyRequested(userID, projectID);
   const [clicked, setClicked] = useState(false);
   const primary = useThemeColor("primary");
   const success = useThemeColor("success");
   const bg = useThemeColor("background");
+
+  useEffect(() => {
+    setClicked(hasAlreadyRequested);
+  }, [hasAlreadyRequested]);
 
   clicked === true
     ? createRequestJoinNotif(userID, projectID, projectName, projectOwnerID)
