@@ -43,9 +43,9 @@ const ProjectEdit = (props: ProjectEditProps) => {
     setTasks(currentTasks);
   }, [currentTasks]);
 
-  //console.log("Current project members", projectInfo.members);
-  //console.log("All members array", allMembers);
+  console.log("ALL MEMBERS", allMembers);
 
+  //ALL MEMBERS ["63c9eb6acc2800870801", "64122d5d3b705750006c", "6414f71a243677a72a85"]
   return (
     <StepIndicator
       headerTitle={"Edit Projects"}

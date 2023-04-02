@@ -1,7 +1,6 @@
 import styles from "./AddMembers.styles";
 import { SearchBar, UsersList } from "../../../../components";
 import { useListUsers } from "../../../../services/api/search";
-import Spinner from "react-native-loading-spinner-overlay/lib";
 import { useState } from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native";
@@ -11,7 +10,6 @@ interface AddMembersProps {
 }
 
 export const AddMembers = (props: AddMembersProps) => {
-  //const { setAllMembers, allMembers = [] } = props;
   const [query, setQuery] = useState<string>("");
   const users = useListUsers();
 
@@ -19,6 +17,24 @@ export const AddMembers = (props: AddMembersProps) => {
   const filteredUsers = users.filter((user: any) =>
     user.username.toLowerCase().includes(query.toLowerCase())
   );
+
+  console.log("HUH", props.allMembers);
+
+  /*if (props.allMembers !== undefined) {
+  const allMembers = props.allMembers;
+
+  users.forEach((singleUser: any) => {
+      if (
+        allMembers.some((singleMember: any) => singleMember === singleUser.id)
+      ) {
+        singleUser.isAlreadyAMember = true;
+      } else {
+        singleUser.isAlreadyAMember = false;
+      }
+    });
+  }*/
+
+  //console.log(users);
 
   return (
     <View style={styles.fixedHeight}>
