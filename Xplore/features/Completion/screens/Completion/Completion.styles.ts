@@ -1,13 +1,16 @@
-import { StyleSheet } from "react-native";
-import { deviceScreenWidth } from "../../../../constants";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  greenCheck: {
-    marginTop: 30,
-    width: deviceScreenWidth,
+  checkContainer: {
+    paddingTop: Platform.OS === "ios" ? "20%" : "10%",
+    alignItems: "center",
+  },
+  successCheck: {
+    width: 300,
+    resizeMode: "contain",
   },
   bottomHalfContainer: {
     position: "absolute",

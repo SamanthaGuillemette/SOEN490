@@ -8,7 +8,7 @@ let userDataJSON = require("./users.json");
 export const deleteAllDocuments = async (collectionId: string) => {
   const data = await api.listDocuments(collectionId);
   const IDs = data.documents.map((el) => el.$id);
-  console.log("Ids", IDs);
+  //console.log("Ids", IDs);
   for (const id of IDs) {
     await api.deleteDocument(collectionId, id);
   }

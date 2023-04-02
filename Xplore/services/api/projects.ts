@@ -29,6 +29,7 @@ interface Project {
   endDate: string;
   goals: string[];
   requestJoin?: boolean;
+  projectOwner: string;
 }
 
 const useCreateNewProject = () => {
@@ -171,7 +172,53 @@ const getProjectsList = async (contactID: any) => {
     }))
   );
 
-  return data[0].project; // returning list of projects
+  return data.length > 0 ? data[0].project : []; // return an empty array if data is empty or undefined
+};
+
+//Get number of tasks completed
+const useTaskStats = (projects: any) => {
+  const [completedTasks, setCompletedTasks] = useState<any>();
+  const [activeTasks, setActiveTasks] = useState<any>();
+  const [overdueTasks, setOverdueTasks] = useState<any>();
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const userProjects = projects;
+        var activeTask = 0;
+        var overdueTask = 0;
+        // Looping through list of projects
+        var completedTask = 0;
+        for (const project of userProjects) {
+          // Looping through list of tasks
+          for (let index in project.tasks) {
+            const response = await api.getDocument(
+              COLLECTION_ID_PROJECT_TASKS,
+              project.tasks[index]
+            );
+
+            const data = {
+              taskID: project.tasks[index],
+              endDate: response.endDate,
+              completed: response.completed,
+            };
+            data.completed === true ? completedTask++ : activeTask++; //increase number of user tasks completed
+            new Date(project.endDate) < new Date() && data.completed === false
+              ? overdueTask++
+              : null;
+          }
+        }
+        setCompletedTasks(completedTask);
+        setActiveTasks(activeTask);
+        setOverdueTasks(overdueTask);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchInfo();
+  }, [projects, completedTasks, activeTasks, overdueTasks]);
+
+  return [completedTasks, activeTasks, overdueTasks];
 };
 
 // Getting information to display on the Project Card
@@ -187,6 +234,7 @@ const useProjectCardInfo = (contactID: any) => {
         // Looping through list of projects
         for (const docID of projectList) {
           const response = await api.getDocument(COLLECTION_ID_PROJECT, docID);
+
           const data: Project = {
             projectID: docID,
             isOwner: response.projectOwner === contactID,
@@ -201,6 +249,7 @@ const useProjectCardInfo = (contactID: any) => {
             tasks: response.tasks,
             goals: response.goals,
             requestJoin: false,
+            projectOwner: response.projectOwner,
           };
 
           // Filling different array based on if completed or incomplete project
@@ -225,7 +274,8 @@ const useAllTasksInfo = (listOfTasks: any) => {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const tasksList = listOfTasks;
+        let tasksList = listOfTasks;
+        tasksList = tasksList.filter((taskID: any) => taskID !== "");
 
         // Looping through list of tasks
         for (let index in tasksList) {
@@ -294,7 +344,8 @@ const useAllMembersInfo = (listOfMembers: any) => {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const membersList = listOfMembers;
+        let membersList = listOfMembers;
+        membersList = membersList.filter((memberID: any) => memberID !== "");
 
         // Looping through list of members
         for (let index in membersList) {
@@ -322,6 +373,19 @@ const useAllMembersInfo = (listOfMembers: any) => {
   return allMembers; // returning array of all members for specific project
 };
 
+const setMemberCount = async () => {
+  try {
+    const response = await api.listDocuments(COLLECTION_ID_PROJECT, []);
+    response?.documents?.map((doc: any) => {
+      api.updateDocument(COLLECTION_ID_PROJECT, doc.$id, {
+        memberCount: doc.members.length,
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const useNewProjects = () => {
   const LIMIT = 5;
   return useQuery({
@@ -330,6 +394,20 @@ const useNewProjects = () => {
       api.listDocuments(COLLECTION_ID_PROJECT, [
         api.query.limit(LIMIT),
         api.query.orderAsc("startDate"),
+      ]),
+  });
+};
+
+const usePopularProjects = () => {
+  const LIMIT = 5;
+  // Ensure memberCount is set before retrieving popular projects
+  setMemberCount();
+  return useQuery({
+    queryKey: ["popularProjects"],
+    queryFn: () =>
+      api.listDocuments(COLLECTION_ID_PROJECT, [
+        api.query.limit(LIMIT),
+        api.query.orderDesc("memberCount"),
       ]),
   });
 };
@@ -385,9 +463,11 @@ export {
   useAllTasksInfo,
   useAllMembersInfo,
   useNewProjects,
+  usePopularProjects,
   setTaskCompleted,
   deleteTask,
   useFetchUserProjects,
+  useTaskStats,
   useCreateNewTask,
   useCreateNewProject,
   updateUserProjList,
