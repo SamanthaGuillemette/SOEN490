@@ -45,8 +45,8 @@ const ProjectEdit = (props: ProjectEditProps) => {
     if (projName === "" || description === "" || category === "") {
       Alert.alert(
         "Error",
-        "Project not created, you are missing required field(s): name, description or category",
-        [{ text: "OK", onPress: () => props.navigation.navigate("Home") }]
+        "Project not edited, you are missing required field(s): name, description or category",
+        [{ text: "OK", onPress: () => props.navigation.goBack() }]
       );
       return false;
     }
@@ -70,7 +70,7 @@ const ProjectEdit = (props: ProjectEditProps) => {
 
     updateProject(projectInfo.projectID, values);
     Alert.alert("Success", "Project edited successfully", [
-      { text: "OK", onPress: () => props.navigation.navigate("Home") },
+      { text: "OK", onPress: () => props.navigation.goBack() },
     ]);
     return true;
   };
