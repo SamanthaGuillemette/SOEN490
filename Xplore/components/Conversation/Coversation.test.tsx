@@ -8,7 +8,7 @@ jest.mock("../../services/api/chatMessages", () => ({
   useListMessages: jest.fn(),
 }));
 jest.mock("../../services/appwrite/api", () => ({
-  getAccount: jest.fn().mockReturnValue("12345"),
+  getAccount: jest.fn().mockReturnValue({ id: "12345" }),
 }));
 
 afterEach(() => {
@@ -21,7 +21,7 @@ useListMessages.mockReturnValue([
       {
         id: "1",
         chatID: "12345",
-        userID: "12345",
+        userID: "12346",
         message: "hello",
         username: "testuser1",
       },

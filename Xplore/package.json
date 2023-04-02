@@ -93,7 +93,10 @@
       "!**/node_modules/**",
       "!**/babel.config.js",
       "!**/jest.setup.js",
-      "!**/index.ts"
+      "!**/index.ts",
+      "!**/constants/**",
+      "!**/Xplore/databaseManagementTools/**",
+      "!**/services/**"
     ]
   },
   "private": true

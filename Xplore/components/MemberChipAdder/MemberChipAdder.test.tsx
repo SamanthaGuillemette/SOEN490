@@ -1,5 +1,5 @@
 import { MemberChipAdder } from "./MemberChipAdder.component";
-import { render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 
 jest.mock("react-query", () => ({
   useQuery: jest.fn().mockReturnValue([
@@ -37,5 +37,11 @@ describe("MemberChipAdder component should render the plus icon", () => {
   it("should have a plus icon", () => {
     const { queryByTestId } = render(<MemberChipAdder />);
     expect(queryByTestId("plus")).not.toBeNull();
+  });
+
+  it("should be clickable", () => {
+    const { queryByTestId, getByTestId } = render(<MemberChipAdder />);
+    expect(queryByTestId("plus")).not.toBeNull();
+    fireEvent.press(getByTestId("plus"));
   });
 });
