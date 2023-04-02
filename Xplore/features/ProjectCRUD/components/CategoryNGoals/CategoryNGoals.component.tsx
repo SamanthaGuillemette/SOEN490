@@ -1,20 +1,28 @@
 import { View } from "react-native";
 import styles from "./CategoryNGoals.styles";
 import { CategoryModal, InputField, Text } from "../../../../components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { categories } from "../../../../constants";
 
 interface CategoryNGoalsProps {
   setCategory: (category: string) => void;
   setGoals: (value: string[]) => void;
+  category?: string;
+  goals?: string[];
 }
 
 export const CategoryNGoals = (props: CategoryNGoalsProps) => {
-
   const [categoryText, setCategoryText] = useState("Category");
-  const [goal1, setGoal1] = useState("");
-  const [goal2, setGoal2] = useState("");
-  const [goal3, setGoal3] = useState("");
+  const { goals, category, setGoals } = props;
+  const [goal1, setGoal1] = useState(
+    goals === undefined || goals[0] === undefined ? "" : goals[0]
+  );
+  const [goal2, setGoal2] = useState(
+    goals === undefined || goals[1] === undefined ? "" : goals[1]
+  );
+  const [goal3, setGoal3] = useState(
+    goals === undefined || goals[2] === undefined ? "" : goals[2]
+  );
   const [taskCategory, setTaskCategory] = useState("");
 
   const handleValueChange = (label: string) => {
@@ -52,8 +60,11 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
         setGoal3(goalValue);
         break;
     }
-    props.setGoals([goal1, goal2, goal3]);
   };
+
+  useEffect(() => {
+    setGoals([goal1, goal2, goal3]);
+  }, [setGoals, goal1, goal2, goal3]);
 
   return (
     <View style={styles.container}>
@@ -62,35 +73,90 @@ export const CategoryNGoals = (props: CategoryNGoalsProps) => {
           Category
         </Text>
         <CategoryModal
-          label={categoryText}
+          label={category === undefined ? categoryText : category}
           options={sortedOptions}
           onValueChange={handleValueChange}
           setCategory={setTaskCategory}
-          onChangeText={(category) => props.setCategory(category)}
+          onChangeText={(value) => props.setCategory(value)}
         />
       </View>
 
-      <View style={styles.containerGoal}>
-        <InputField
-          placeHolder="Project Goal #1"
-          styleText={styles.styleTextGoals}
-          onChangeText={(goal) => handleGoalChange(1, goal)}
-        />
-      </View>
-      <View style={styles.containerGoal}>
-        <InputField
-          placeHolder="Project Goal #2"
-          styleText={styles.styleTextGoals}
-          onChangeText={(goal) => handleGoalChange(2, goal)}
-        />
-      </View>
-      <View style={styles.containerGoal}>
-        <InputField
-          placeHolder="Project Goal #3"
-          styleText={styles.styleTextGoals}
-          onChangeText={(goal) => handleGoalChange(3, goal)}
-        />
-      </View>
+      {goals === undefined ? (
+        <>
+          <View style={styles.containerGoal}>
+            <InputField
+              placeHolder="Project Goal #1"
+              styleText={styles.styleTextGoals}
+              onChangeText={(goal) => handleGoalChange(1, goal)}
+            />
+          </View>
+          <View style={styles.containerGoal}>
+            <InputField
+              placeHolder="Project Goal #2"
+              styleText={styles.styleTextGoals}
+              onChangeText={(goal) => handleGoalChange(2, goal)}
+            />
+          </View>
+          <View style={styles.containerGoal}>
+            <InputField
+              placeHolder="Project Goal #3"
+              styleText={styles.styleTextGoals}
+              onChangeText={(goal) => handleGoalChange(3, goal)}
+            />
+          </View>
+        </>
+      ) : (
+        <>
+          <View style={styles.containerGoal}>
+            {goals[0] === undefined ? (
+              <InputField
+                placeHolder="Project Goal #1"
+                styleText={styles.styleTextGoals}
+                onChangeText={(goal) => handleGoalChange(1, goal)}
+              />
+            ) : (
+              <InputField
+                placeHolder="Project Goal #1"
+                styleText={styles.styleTextGoals}
+                onChangeText={(goal) => handleGoalChange(1, goal)}
+                value={goals[0]}
+              />
+            )}
+          </View>
+          <View style={styles.containerGoal}>
+            {goals[1] === undefined ? (
+              <InputField
+                placeHolder="Project Goal #2"
+                styleText={styles.styleTextGoals}
+                onChangeText={(goal) => handleGoalChange(2, goal)}
+              />
+            ) : (
+              <InputField
+                placeHolder="Project Goal #2"
+                styleText={styles.styleTextGoals}
+                onChangeText={(goal) => handleGoalChange(2, goal)}
+                value={goals[1]}
+              />
+            )}
+          </View>
+          <View style={styles.containerGoal}>
+            {goals[2] === undefined ? (
+              <InputField
+                placeHolder="Project Goal #3"
+                styleText={styles.styleTextGoals}
+                onChangeText={(goal) => handleGoalChange(3, goal)}
+              />
+            ) : (
+              <InputField
+                placeHolder="Project Goal #3"
+                styleText={styles.styleTextGoals}
+                onChangeText={(goal) => handleGoalChange(3, goal)}
+                value={goals[2]}
+              />
+            )}
+          </View>
+        </>
+      )}
     </View>
   );
 };

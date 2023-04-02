@@ -16,6 +16,7 @@ interface UsersType {
   xp: number;
   selected?: boolean;
   navigation?: NavigationProp<any>;
+  isEditProject?: boolean;
 }
 
 interface UsersListProps {
@@ -24,13 +25,16 @@ interface UsersListProps {
   selectUserList: boolean;
   navigation?: NavigationProp<any>;
   setList?: any;
+  selectedUsers?: string[];
 }
 
 //  UsersItem component creates user and sets selected to false initially
 export const UserItemSelect = (
   props: UsersType & { onSelect: (id: string) => void }
 ) => {
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(
+    props.isEditProject === false ? false : props.selected
+  );
   const { onSelect, id } = props;
 
   const handleSelect = () => {
@@ -86,7 +90,9 @@ export const UserItemMessage = (props: UsersType) => {
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
   const { setList } = props;
-  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  const [selectedUsers, setSelectedUsers] = useState<string[]>(
+    props.selectedUsers === undefined ? [] : props.selectedUsers
+  );
 
   const handleUserSelect = (userId: string, isSelected: boolean) => {
     if (isSelected) {
@@ -101,8 +107,15 @@ export const UsersList = (props: UsersListProps) => {
   let userID: string = userdata?.$id as string;
 
   useEffect(() => {
-    setList([...selectedUsers, userID]);
-  }, [selectedUsers, setList, userID]);
+    if (setList !== undefined) {
+      // if not edit project
+      if (props.selectedUsers === undefined) {
+        setList([...selectedUsers, userID]); // adding logged in user
+      } else {
+        setList(selectedUsers);
+      }
+    }
+  }, [selectedUsers, setList, userID, props.selectedUsers]);
 
   return (
     <ScrollView pagingEnabled={true}>
@@ -116,6 +129,7 @@ export const UsersList = (props: UsersListProps) => {
               id={user.id}
               navigation={props.navigation}
               selected={selectedUsers.includes(user.id)}
+              isEditProject={props.selectedUsers === undefined ? false : true}
               onSelect={(isSelected) =>
                 handleUserSelect(user.id, !selectedUsers.includes(isSelected))
               }

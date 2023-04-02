@@ -16,6 +16,8 @@ import { useState, useEffect } from "react";
 
 //to be defined
 interface Project {
+  projectID?: string;
+  isOwner?: boolean;
   name: string;
   description: string;
   imageURL?: string;
@@ -34,7 +36,6 @@ const useCreateNewProject = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      console.log(data);
       let taskIDs: string[] = [];
       for (const task of data.tasks) {
         try {
@@ -98,6 +99,33 @@ const updateUserProjList = async (memberList: any) => {
         });
       });
     }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// To update the project upon edit
+const updateProject = async (projectID: any, values: any[]) => {
+  try {
+    const response = await api.getDocument(COLLECTION_ID_PROJECT, projectID);
+    let taskIDs = response.tasks; // getting old task ids from db
+
+    for (const task of values[7]) {
+      const res = await api.createDocument(COLLECTION_ID_PROJECT_TASKS, task);
+      taskIDs.push(res.$id);
+    }
+
+    api.updateDocument(COLLECTION_ID_PROJECT, projectID, {
+      name: values[0],
+      description: values[1],
+      category: values[2],
+      startDate: values[3],
+      endDate: values[4],
+      goals: values[5],
+      members: values[6],
+      tasks: taskIDs,
+      //imageURL: imageURL,
+    });
   } catch (e) {
     console.log(e);
   }
@@ -208,6 +236,8 @@ const useProjectCardInfo = (contactID: any) => {
           const response = await api.getDocument(COLLECTION_ID_PROJECT, docID);
 
           const data: Project = {
+            projectID: docID,
+            isOwner: response.projectOwner === contactID,
             name: response.name,
             description: response.description,
             imageURL: response.imageURL,
@@ -287,9 +317,21 @@ const setTaskCompleted = async (taskID: any) => {
 };
 
 // To delete task
-const deleteTask = async (taskID: any) => {
+const deleteTask = async (taskID: any, projectID: any) => {
   try {
+    // Delete the task document from the project tasks collection
     await api.deleteDocument(COLLECTION_ID_PROJECT_TASKS, taskID);
+
+    const response = await api.getDocument(COLLECTION_ID_PROJECT, projectID);
+    let tasksList = response.tasks;
+    tasksList = tasksList.filter((ID: any) => ID !== taskID); // removing the task ID
+
+    console.log(taskID);
+
+    // Overwriting the task attribute in the project's document
+    await api.updateDocument(COLLECTION_ID_PROJECT, projectID, {
+      tasks: tasksList,
+    });
   } catch (e) {
     console.log(e);
   }
@@ -429,4 +471,5 @@ export {
   useCreateNewTask,
   useCreateNewProject,
   updateUserProjList,
+  updateProject,
 };

@@ -10,12 +10,15 @@ import { Calendar } from "react-native-calendars";
 interface DatePickerProps {
   title: string;
   style?: StyleProp<ViewStyle>;
+  defaultDate?: string;
   setDate: (date: string) => void;
   shouldDisplayDate?: boolean;
 }
 
 export const DatePicker = (props: DatePickerProps) => {
-  const [tempDate, setTempDate] = useState("YYYY-MM-DD");
+  const [tempDate, setTempDate] = useState(
+    props.defaultDate === undefined ? "YYYY-MM-DD" : props.defaultDate
+  );
   const [openCalendar, setOpenCalendar] = useState(false);
   const primary = useThemeColor("primary");
   const backgroundSecondary = useThemeColor("backgroundSecondary");

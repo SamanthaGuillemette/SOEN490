@@ -18,6 +18,7 @@ const prefix = Linking.createURL("/");
 
 const linking = {
   prefixes: [prefix],
+
   config: {
     screens: {
       ResetPassword: {
