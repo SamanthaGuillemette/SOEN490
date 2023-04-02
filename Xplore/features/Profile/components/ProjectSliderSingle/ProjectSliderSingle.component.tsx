@@ -1,4 +1,4 @@
-import { Image, View } from "react-native";
+import { Image, TouchableOpacityProps, View } from "react-native";
 import Animated, {
   Extrapolate,
   interpolate,
@@ -9,7 +9,7 @@ import { colors } from "../../../../constants";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./ProjectSliderSingle.styles";
 
-interface ProjectSliderSingleProps {
+interface ProjectSliderSingleProps extends TouchableOpacityProps {
   index: number;
   scrollY: Animated.SharedValue<number>;
   itemWidth: number;
@@ -19,8 +19,15 @@ interface ProjectSliderSingleProps {
 }
 
 export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
-  const { index, scrollY, itemWidth, name, description, percentComplete } =
-    props;
+  const {
+    index,
+    scrollY,
+    itemWidth,
+    name,
+    description,
+    percentComplete,
+    ...restOfProps
+  } = props;
   const itemScaleStyle = useAnimatedStyle(() => {
     const input = [
       index * itemWidth - itemWidth,
@@ -62,6 +69,7 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
           style={[styles.completedLabel, { backgroundColor: successColor }]}
           darkColor={colors.dark.backgroundSecondary}
           lightColor={colors.light.backgroundSecondary}
+          {...restOfProps}
         >
           {percentComplete === 100 ? "Completed" : "Under development"}
         </Text>

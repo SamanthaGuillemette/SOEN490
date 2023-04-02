@@ -13,6 +13,15 @@ import { NavigationProp } from "@react-navigation/native";
 interface ProjectSliderProps {
   projectIDs: string[];
   navigation: NavigationProp<any>;
+  item: {
+    name: string;
+    description: string;
+    imageURL?: string;
+    tasks?: string[];
+    conversation?: number;
+    members?: string[];
+    percentComplete: number;
+  };
 }
 
 export const ProjectSlider = (props: ProjectSliderProps) => {
@@ -51,6 +60,9 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
               name={item.name}
               description={item.description}
               percentComplete={item.percentComplete}
+              onPress={() =>
+                navigation.navigate("ProjectDetails", { item: item })
+              }
             />
           )}
           horizontal
