@@ -8,12 +8,22 @@ import {
 } from "../../../../components";
 import { useFetchUserDetails } from "../../../Profile/hooks/useFetchUserDetails";
 import styles from "./HomeHeader.styles";
+import { useFetchProfilePicture } from "../../../Profile/hooks/useFetchProfilePicture";
+import { useEffect, useState } from "react";
 interface HomeHeaderProps {
   navigation: NavigationProp<any>;
 }
 export const HomeHeader = (props: HomeHeaderProps) => {
   const { data: userObject } = useFetchUserDetails();
   const { navigation } = props;
+  const [profilePictureId, setProfilePictureId] = useState<string>();
+  const name =
+    userObject?.username === undefined ? "undefined" : userObject.username;
+
+  useEffect(() => {
+    setProfilePictureId(userObject?.profilePicture);
+  }, [userObject]);
+  const profilePicture = useFetchProfilePicture(profilePictureId ?? "");
   return (
     <ShadowView
       shadowOffset={4}
@@ -35,7 +45,7 @@ export const HomeHeader = (props: HomeHeaderProps) => {
         </LinkButton>
       </View>
       <View>
-        <Avatar name="Josh" imageURL="https://picsum.photos/200" size={60} />
+        <Avatar name={name} imageURL={profilePicture} size={60} />
       </View>
     </ShadowView>
   );
