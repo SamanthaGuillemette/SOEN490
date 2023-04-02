@@ -53,6 +53,7 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
           data={data?.documents}
           renderItem={({ item, index }: any) => (
             <ProjectSliderSingle
+              // style={[{ marginTop: 2 }]}
               key={item}
               index={index}
               scrollY={scrollY}

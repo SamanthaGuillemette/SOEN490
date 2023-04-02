@@ -22,14 +22,14 @@ export default StyleSheet.create({
   textContent: {
     position: "absolute",
     left: 25,
-    bottom: 35,
+    bottom: 25,
   },
   completedLabel: {
     paddingVertical: 6,
     paddingHorizontal: 8,
     borderRadius: 3,
     letterSpacing: 0.1,
-    marginBottom: 8,
+    marginBottom: 15,
     textAlign: "center",
   },
 });
