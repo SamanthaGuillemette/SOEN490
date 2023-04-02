@@ -1,6 +1,5 @@
 import { fireEvent, render } from "@testing-library/react-native";
-import React from "react";
-import { TaskCard } from "./TaskCard.component";
+import { TaskCard } from "../TaskCard/TaskCard.component";
 
 const taskInfo = {
   category: "Meeting",

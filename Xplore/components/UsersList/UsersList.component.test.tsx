@@ -1,8 +1,9 @@
-import { render, fireEvent, renderHook } from "@testing-library/react-native";
-import React, { useState } from "react";
+import { render } from "@testing-library/react-native";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { UsersList } from "./UsersList.component";
 import { NavigationProp } from "@react-navigation/native";
+
+const useQuery = new QueryClient();
 
 describe("UserList should render correctly for selectUserList", () => {
   interface UsersType {
@@ -37,22 +38,24 @@ describe("UserList should render correctly for selectUserList", () => {
 
   it("should render correctly", () => {
     const userList = render(
-      <UsersList data={Users} messageUserList={false} selectUserList={true} />
+      <QueryClientProvider client={useQuery}>
+        <UsersList data={Users} messageUserList={false} selectUserList={true} />
+      </QueryClientProvider>
     );
     expect(userList).toBeTruthy();
   });
 
   it("should render UserList correctly", () => {
     const { queryByText } = render(
-      <UsersList data={Users} messageUserList={false} selectUserList={true} />
+      <QueryClientProvider client={useQuery}>
+        <UsersList data={Users} messageUserList={false} selectUserList={true} />
+      </QueryClientProvider>
     );
     expect(queryByText("Josh Lewis")).not.toBeNull();
     expect(queryByText("Amy Lucas")).not.toBeNull();
     expect(queryByText("Landon Clayton")).not.toBeNull();
   });
 });
-
-const useQuery = new QueryClient();
 
 describe("UserList should render correctly for messageUserList", () => {
   interface UsersType {

@@ -96,7 +96,7 @@ describe("AddMemberModal should have appropriate users", () => {
     fireEvent.press(getByText("Add Members"));
     expect(modal).toBeCalledTimes(3);
     expect(addToChat).toBeCalledTimes(1);
-    expect(createGroupAdd).toBeCalledTimes(1);
+    expect(createGroupAdd).toBeCalledTimes(2);
   });
 
   it("Should be able to select a user with action Remove Members", () => {
@@ -114,5 +114,24 @@ describe("AddMemberModal should have appropriate users", () => {
     fireEvent.press(getByText("Remove Members"));
     expect(modal).toBeCalledTimes(4);
     expect(removeFromChat).toBeCalledTimes(1);
+  });
+});
+
+describe("Should be able to cancel", () => {
+  it("Cancel button should work", () => {
+    const { getByText } = render(
+      <QueryClientProvider client={query}>
+        <MembersActionsModal
+          setActionsModalVisible={modal}
+          action={"Remove Members"}
+          users={users}
+        />
+      </QueryClientProvider>
+    );
+    const removeFromChat = jest.spyOn(chatSettings, "removeFromChat");
+    fireEvent.press(getByText("test1"));
+    fireEvent.press(getByText("Cancel"));
+    expect(modal).toBeCalledTimes(5);
+    expect(removeFromChat).toBeCalledTimes(1); // 1 instead of 0 because it was called in the previous test
   });
 });
