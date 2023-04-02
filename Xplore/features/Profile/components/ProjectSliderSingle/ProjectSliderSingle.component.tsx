@@ -75,10 +75,10 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
         </Text>
       </View>
       <View style={styles.textContent}>
-        <Text variant="h3" color="white">
+        <Text variant="h3" color="white" {...restOfProps}>
           {name}
         </Text>
-        <Text variant="smBody" color="white">
+        <Text variant="smBody" color="white" {...restOfProps}>
           {description}
         </Text>
       </View>
