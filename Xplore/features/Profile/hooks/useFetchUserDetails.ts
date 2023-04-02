@@ -21,8 +21,9 @@ export const useFetchUserDetails = () => {
   //     ]),
   // });
 
-  const { data, status } = useQuery("user", () =>
-    getUserInfo(accountToken?.$id!)
+  const { data, status } = useQuery(
+    "user",
+    async () => await getUserInfo(accountToken?.$id!)
   );
   return { data, status };
 };

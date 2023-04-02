@@ -23,7 +23,7 @@ export default StyleSheet.create({
     textAlignVertical: "center",
   },
   projectName: {
-    mtextAlign: "center",
+    textAlign: "center",
     fontSize: 18,
     marginTop: 100,
   },

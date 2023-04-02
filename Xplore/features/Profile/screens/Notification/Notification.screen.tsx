@@ -27,6 +27,7 @@ interface NotificationProps {
 interface NotificationComponentProps {
   navigation: NavigationProp<any>;
   notif: any;
+  userID?: any;
 }
 
 const NotificationComponent = ({
@@ -47,6 +48,7 @@ const NotificationComponent = ({
     case "joinRequest":
       return (
         <JoinRequestNotification
+          userID={notif.userID}
           projectID={notif.projectID}
           projectName={notif.projectName}
           memberRequestingID={notif.memberRequestingID}

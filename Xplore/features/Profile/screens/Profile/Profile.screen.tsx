@@ -32,10 +32,19 @@ const imageSize = (headerHeight / 3) * 2;
 
 interface ProfileProps {
   navigation: NavigationProp<any>;
+  item: {
+    name: string;
+    description: string;
+    imageURL?: string;
+    tasks?: string[];
+    conversation?: number;
+    members?: string[];
+    percentComplete: number;
+  };
 }
 
 const Profile = (props: ProfileProps) => {
-  const { navigation } = props;
+  const { navigation, item } = props;
   const whiteBackground = useThemeColor("backgroundSecondary");
   const generalGray = useThemeColor("generalGray");
   const [profilePictureId, setProfilePictureId] = useState<string>();
@@ -113,7 +122,11 @@ const Profile = (props: ProfileProps) => {
             xpLevel={XPlevel}
           />
           <Badges xpLevel={XPlevel} />
-          <ProjectSlider projectIDs={userObject?.projects} />
+          <ProjectSlider
+            navigation={navigation}
+            projectIDs={userObject?.projects}
+            item={item}
+          />
 
           <View style={styles.logoutButton}>
             <LogoutButton />

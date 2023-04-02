@@ -8,14 +8,17 @@ import { useThemeColor } from "../../../../hooks";
 import { ProjectSliderSingle } from "../ProjectSliderSingle";
 import styles from "./ProjectSlider.styles";
 import { useFetchUserProjects } from "../../../../services/api/projects";
+import { NavigationProp } from "@react-navigation/native";
 
 interface ProjectSliderProps {
   projectIDs: string[];
+  navigation: NavigationProp<any>;
 }
 
 export const ProjectSlider = (props: ProjectSliderProps) => {
   const itemWidth = deviceScreenWidth / 1.4;
   const { projectIDs } = props;
+  const { navigation } = props;
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.x;
@@ -23,7 +26,6 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
   const generalGray = useThemeColor("generalGray");
 
   const { data } = useFetchUserProjects(projectIDs);
-  console.log(JSON.stringify(data, null, 4));
 
   return (
     <View style={[styles.mainContainer, { borderTopColor: generalGray }]}>
@@ -31,7 +33,9 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
         <Text variant="h3" color="titleText">
           PROJECTS
         </Text>
-        <LinkButton>View all</LinkButton>
+        <LinkButton onPress={() => navigation.navigate("UserProjects")}>
+          View all
+        </LinkButton>
       </View>
 
       <View>
@@ -44,8 +48,14 @@ export const ProjectSlider = (props: ProjectSliderProps) => {
               scrollY={scrollY}
               itemWidth={itemWidth}
               name={item.name}
-              description={item.description}
+              description={`${item.description
+                .split(" ")
+                .slice(0, 5)
+                .join(" ")}...`}
               percentComplete={item.percentComplete}
+              onPress={() =>
+                navigation.navigate("ProjectDetails", { item: item })
+              }
             />
           )}
           horizontal

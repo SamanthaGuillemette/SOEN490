@@ -15,14 +15,13 @@ interface StepIndicatorProps {
   numOfSteps: number;
   stepLabels: Array<String>;
   screens: Array<JSX.Element>;
-  onSubmitMsg: string;
   navigation: NavigationProp<any>;
+  handleSubmit: (value: boolean) => void;
 }
 
 export const StepIndicator = (props: StepIndicatorProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [completedStepIndex, setCompletedStepIndex] = useState(-1);
-  const [submissionMsg, setSubmissionMsg] = useState("");
   const bodyText = useThemeColor("bodyText");
   const primary = useThemeColor("primary");
   const success = useThemeColor("success");
@@ -36,7 +35,7 @@ export const StepIndicator = (props: StepIndicatorProps) => {
     numOfSteps,
     stepLabels,
     screens,
-    onSubmitMsg,
+    handleSubmit,
   } = props;
 
   const onActiveIndexChanged = (activeInd: number) => {
@@ -46,10 +45,6 @@ export const StepIndicator = (props: StepIndicatorProps) => {
   const reset = () => {
     setActiveIndex(0);
     setCompletedStepIndex(-1);
-    setSubmissionMsg(onSubmitMsg);
-    setTimeout(() => {
-      setSubmissionMsg("");
-    }, 2000);
   };
 
   const goToNextStep = () => {
@@ -95,7 +90,14 @@ export const StepIndicator = (props: StepIndicatorProps) => {
           textColor="generalGray"
           borderColor="primary"
           style={styles.btn}
-          onPress={goToNextStep}
+          onPress={() => {
+            if (activeIndex === numOfSteps - 1) {
+              handleSubmit(true);
+              goToNextStep();
+            } else {
+              goToNextStep();
+            }
+          }}
         />
       </View>
     );
@@ -190,22 +192,6 @@ export const StepIndicator = (props: StepIndicatorProps) => {
         {renderCurrentStep()}
         <RNView style={styles.spacingBottom} />
       </ScrollView>
-      {!_.isNil(submissionMsg) && (
-        <Toast
-          testID={"projectSubmissionMsg"}
-          visible={submissionMsg === "" ? false : true}
-          position="bottom"
-          size="small"
-          message={submissionMsg}
-          style={[
-            {
-              backgroundColor: primary,
-              height: 50,
-            },
-            styles.spacingToast,
-          ]}
-        />
-      )}
     </SafeAreaView>
   );
 };

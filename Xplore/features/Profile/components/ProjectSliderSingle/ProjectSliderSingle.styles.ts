@@ -13,17 +13,23 @@ export default StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
     position: "absolute",
   },
+  projectTag: {
+    position: "absolute",
+    left: 25,
+    bottom: 80,
+    alignSelf: "flex-start",
+  },
   textContent: {
     position: "absolute",
     left: 25,
-    bottom: 35,
+    bottom: 25,
   },
   completedLabel: {
-    paddingVertical: 5,
+    paddingVertical: 6,
     paddingHorizontal: 8,
     borderRadius: 3,
-    letterSpacing: 0.2,
-    width: 72,
-    marginBottom: 8,
+    letterSpacing: 0.1,
+    marginBottom: 15,
+    textAlign: "center",
   },
 });

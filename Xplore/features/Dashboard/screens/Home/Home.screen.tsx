@@ -50,7 +50,7 @@ const Home = (props: HomeProps) => {
         onScroll={onScroll}
         scrollEventThrottle={32}
       >
-        <HomeHeader />
+        <HomeHeader navigation={navigation} />
         <View style={styles.mainScreen}>
           <TodayStats />
           <ExploreProjects navigation={navigation} />

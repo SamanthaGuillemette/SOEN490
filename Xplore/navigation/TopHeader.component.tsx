@@ -14,10 +14,11 @@ interface TopHeaderProps {
   screenName: String;
   navigation: NavigationProp<any>;
   name?: string; // Optional name property
+  projectInfo?: any;
 }
 
 const TopHeader = (props: TopHeaderProps) => {
-  const { navigation } = props;
+  const { navigation, projectInfo } = props;
   const [createGroupVisible, setCreateGroupVisible] = useState<any>(false);
   const users = useListUsers();
   return (
@@ -32,11 +33,20 @@ const TopHeader = (props: TopHeaderProps) => {
         </TouchableOpacity>
         <Text variant="h2">{props.screenName}</Text>
       </View>
-      {props.name === "edit" && (
-        <TouchableOpacity onPress={() => navigation.navigate("ProjectEdit")}>
-          <Icon name="edit" style={styles.editIcon} />
-        </TouchableOpacity>
-      )}
+      {props.name === "edit" &&
+        (projectInfo.isOwner === true ? (
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("ProjectEdit", {
+                projectInfo: projectInfo,
+              })
+            }
+          >
+            <Icon name="edit" style={styles.editIcon} />
+          </TouchableOpacity>
+        ) : (
+          <></>
+        ))}
       {props.name === "group_chat" && (
         <TouchableOpacity onPress={() => setCreateGroupVisible(true)}>
           <Icon name="plus" style={styles.editIcon} />

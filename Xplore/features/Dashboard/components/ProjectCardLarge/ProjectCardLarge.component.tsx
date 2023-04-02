@@ -1,8 +1,9 @@
 import { ImageBackground, View as RNView } from "react-native";
 import { Icon, ShadowView, Text, View } from "../../../../components";
 import styles from "./ProjectCardLarge.styles";
+import { TouchableOpacityProps } from "react-native";
 
-interface ProjectCardLargeProps {
+interface ProjectCardLargeProps extends TouchableOpacityProps {
   projectName: string;
   imageURL: string;
   goal: string;
@@ -11,7 +12,8 @@ interface ProjectCardLargeProps {
 }
 
 export const ProjectCardLarge = (props: ProjectCardLargeProps) => {
-  const { projectName, imageURL, goal, duration, members } = props;
+  const { projectName, imageURL, goal, duration, members, ...restOfProps } =
+    props;
 
   return (
     <ShadowView backgroundColor="primary" style={styles.container}>
@@ -22,13 +24,18 @@ export const ProjectCardLarge = (props: ProjectCardLargeProps) => {
         <View style={styles.thirdContainer}>
           <RNView style={styles.overlay} />
 
-          <Text variant="h3" style={[styles.whiteText, styles.projectName]}>
+          <Text
+            variant="h3"
+            style={[styles.whiteText, styles.projectName]}
+            {...restOfProps}
+          >
             {projectName}
           </Text>
 
           <View style={styles.textIconLine}>
             <Icon name="award" color="white" />
             <Text
+              {...restOfProps}
               variant="smBody"
               style={[styles.whiteText, styles.textContent]}
             >
@@ -39,6 +46,7 @@ export const ProjectCardLarge = (props: ProjectCardLargeProps) => {
           <View style={styles.textIconLine}>
             <Icon name="clock" color="white" />
             <Text
+              {...restOfProps}
               variant="smBody"
               style={[styles.whiteText, styles.textContent]}
             >
@@ -49,6 +57,7 @@ export const ProjectCardLarge = (props: ProjectCardLargeProps) => {
           <View style={styles.textIconLine}>
             <Icon name="users" color="white" />
             <Text
+              {...restOfProps}
               variant="smBody"
               style={[styles.whiteText, styles.textContent]}
             >

@@ -1,4 +1,4 @@
-import { Image, View } from "react-native";
+import { Image, TouchableOpacityProps, View } from "react-native";
 import Animated, {
   Extrapolate,
   interpolate,
@@ -9,7 +9,7 @@ import { colors } from "../../../../constants";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./ProjectSliderSingle.styles";
 
-interface ProjectSliderSingleProps {
+interface ProjectSliderSingleProps extends TouchableOpacityProps {
   index: number;
   scrollY: Animated.SharedValue<number>;
   itemWidth: number;
@@ -19,8 +19,15 @@ interface ProjectSliderSingleProps {
 }
 
 export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
-  const { index, scrollY, itemWidth, name, description, percentComplete } =
-    props;
+  const {
+    index,
+    scrollY,
+    itemWidth,
+    name,
+    description,
+    percentComplete,
+    ...restOfProps
+  } = props;
   const itemScaleStyle = useAnimatedStyle(() => {
     const input = [
       index * itemWidth - itemWidth,
@@ -56,19 +63,22 @@ export const ProjectSliderSingle = (props: ProjectSliderSingleProps) => {
       />
       <View style={[styles.overlay, styles.sideProject]} />
 
-      <View style={styles.textContent}>
+      <View style={styles.projectTag}>
         <Text
           variant="smLabel"
           style={[styles.completedLabel, { backgroundColor: successColor }]}
           darkColor={colors.dark.backgroundSecondary}
           lightColor={colors.light.backgroundSecondary}
+          {...restOfProps}
         >
           {percentComplete === 100 ? "Completed" : "Under development"}
         </Text>
-        <Text variant="h3" color="generalGray">
+      </View>
+      <View style={styles.textContent}>
+        <Text variant="h3" color="white" {...restOfProps}>
           {name}
         </Text>
-        <Text variant="smBody" color="generalGray">
+        <Text variant="smBody" color="white" {...restOfProps}>
           {description}
         </Text>
       </View>

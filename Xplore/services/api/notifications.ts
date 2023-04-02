@@ -7,7 +7,6 @@ import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Query } from "appwrite";
 import api from "../appwrite/api";
-import ConfirmationModalStyles from "../../components/ConfirmationModal/ConfirmationModal.styles";
 
 // notificationType should be "badge" | "groupAdd" | "joinRequest" | "joinAccept"
 interface Notifications {
@@ -47,10 +46,11 @@ const createGroupAddNotif = async (
 const createRequestJoinNotif = async (
   userID: any,
   projectID: any,
-  projectName: any
+  projectName: any,
+  projectOwnerID: string
 ) => {
   await api.createDocument(COLLECTION_ID_NOTIFICATIONS, {
-    userID: userID, // project owner
+    userID: projectOwnerID, // project owner
     memberRequestingID: userID, // member who sent the request
     notificationType: "joinRequest",
     projectID: projectID,
@@ -67,7 +67,7 @@ const useUserAlreadyRequested = (userID: any, projectID: any) => {
     const fetchData = async () => {
       try {
         const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
-          Query.equal("userID", userID),
+          Query.equal("memberRequestingID", userID),
           Query.equal("projectID", projectID),
           Query.equal("notificationType", "joinRequest"),
         ]);
@@ -86,7 +86,7 @@ const useUserAlreadyRequested = (userID: any, projectID: any) => {
 
 const deleteRequestJoinNotif = async (userID: any, projectID: any) => {
   const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
-    Query.equal("userID", userID),
+    Query.equal("memberRequestingID", userID),
     Query.equal("projectID", projectID),
     Query.equal("notificationType", "joinRequest"),
   ]);
@@ -161,6 +161,7 @@ const getNotifs = async (userID: any) => {
         notificationType: doc.notificationType,
         createdAt: doc.createdAt,
         seen: doc.seen,
+        userID: doc.userID,
 
         //for group chats add
         groupName: doc.groupName,
