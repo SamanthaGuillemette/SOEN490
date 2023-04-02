@@ -44,9 +44,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const status = api.getSession(sessionId);
     status.then(
       (response) => {
-        console.log(
-          `===> Session retrieved: ${JSON.stringify(response, null, 2)}`
-        );
+        // console.log(
+        //   `===> Session retrieved: ${JSON.stringify(response, null, 2)}`
+        // );
         setSessionToken(response);
       },
       (error) => {
@@ -59,9 +59,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const status = api.getAccount();
     status.then(
       (response) => {
-        console.log(
-          `===> Account data retrieved: ${JSON.stringify(response, null, 2)}`
-        );
+        // console.log(
+        //   `===> Account data retrieved: ${JSON.stringify(response, null, 2)}`
+        // );
         setAccountToken(response);
       },
       (error) => {
@@ -79,16 +79,16 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setSessionToken(response);
         getAccountStatus();
         setLoadingStatus(false);
-        setLoginStatus("success")
-        console.log(
-          `===> Session created: ${JSON.stringify(response, null, 2)}`
-        );
+        setLoginStatus("success");
+        // console.log(
+        //   `===> Session created: ${JSON.stringify(response, null, 2)}`
+        // );
       },
       (err) => {
         setLoadingStatus(false);
-        setLoginStatus("error")
+        setLoginStatus("error");
         console.log(err);
-        
+
         if (loginStatus === "error") {
           Alert.alert("Error", "Incorrect email or password!");
         }
@@ -132,14 +132,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       Promise.all([accountObj, sessionObj, emailVerificationObj]);
       api.deleteCurrentSession();
       setLoadingStatus(false);
-      console.log(
-        accountObj ??
-          `===> Account created: ${JSON.stringify(
-            accountObj,
-            null,
-            2
-          )} and Verification email sent!`
-      );
+      // console.log(
+      //   accountObj ??
+      //     `===> Account created: ${JSON.stringify(
+      //       accountObj,
+      //       null,
+      //       2
+      //     )} and Verification email sent!`
+      // );
     } catch (error) {
       console.log("Sign up error: ", error);
     }
@@ -153,14 +153,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       );
 
       Promise.all([emailVerificationObj]);
-      console.log(
-        emailVerificationObj ??
-          `===> Email is verified: ${JSON.stringify(
-            emailVerificationObj,
-            null,
-            2
-          )}`
-      );
+      // console.log(
+      //   emailVerificationObj ??
+      //     `===> Email is verified: ${JSON.stringify(
+      //       emailVerificationObj,
+      //       null,
+      //       2
+      //     )}`
+      // );
     } catch (error) {
       console.log(error);
     }
@@ -174,14 +174,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       );
 
       Promise.all([passwordVerificationObj]);
-      console.log(
-        passwordVerificationObj ??
-          `===> Password recovery email sent: ${JSON.stringify(
-            passwordVerificationObj,
-            null,
-            2
-          )}`
-      );
+      // console.log(
+      //   passwordVerificationObj ??
+      //     `===> Password recovery email sent: ${JSON.stringify(
+      //       passwordVerificationObj,
+      //       null,
+      //       2
+      //     )}`
+      // );
     } catch (error) {
       console.log(error);
     }
@@ -200,14 +200,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       );
 
       Promise.all([passwordVerificationObj]);
-      console.log(
-        passwordVerificationObj ??
-          `===> Password recovery email sent: ${JSON.stringify(
-            passwordVerificationObj,
-            null,
-            2
-          )}`
-      );
+      // console.log(
+      //   passwordVerificationObj ??
+      //     `===> Password recovery email sent: ${JSON.stringify(
+      //       passwordVerificationObj,
+      //       null,
+      //       2
+      //     )}`
+      // );
     } catch (error) {
       console.log(error);
     }
