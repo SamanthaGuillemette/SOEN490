@@ -23,27 +23,19 @@ export const actions = (props: any) => {
   const allowCompleteTask = props.allowCompleteTask;
 
   const handleOnDelete = () => {
-    //const newList = props.tasks.filter((task: any) => task.taskID !== taskID); // removing from tasks
-    //props.setTasks(newList); // overwriting old tasks list
+    const newList = props.tasks.filter((task: any) => task.taskID !== taskID); // removing from tasks
+    props.setTasks(newList); // overwriting old tasks list
 
     // deleting from db if its project details or edit projects
     if (props.projectID !== undefined) {
-      //deleteTask(taskID, props.projectID);
+      deleteTask(taskID, props.projectID);
     }
   };
 
   const handleOnComplete = () => {
-    props.tasks.forEach((task: any) => {
-      if (task.taskID === taskID) {
-        task.completed = true;
-      }
-    });
-
-    //console.log(oldList);
-    props.setTasks(props.tasks); // overwriting old tasks list
-
-    console.log(props.tasks);
-    //setTaskCompleted(taskID); // updating in db
+    const newList = props.tasks.filter((task: any) => task.taskID !== taskID); // removing from tasks
+    props.setTasks(newList); // overwriting old tasks list
+    setTaskCompleted(taskID); // updating in db
   };
 
   return allowCompleteTask !== false ? (
