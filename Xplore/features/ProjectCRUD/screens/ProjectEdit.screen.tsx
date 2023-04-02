@@ -32,20 +32,16 @@ const ProjectEdit = (props: ProjectEditProps) => {
       : "YYYY-MM-DD"
   );
   const [description, setDescription] = useState(projectInfo.description);
-
   const [category, setCategory] = useState(projectInfo.category);
   const [goals, setGoals] = useState<string[]>(projectInfo.goals);
   const currentTasks = useAllTasksInfo(projectInfo.tasks);
   const [tasks, setTasks] = useState<Object[]>([]);
-  const [allMembers, setAllMembers] = useState(projectInfo.members);
+  const [allMembers, setAllMembers] = useState<string[]>(projectInfo.members);
 
   useEffect(() => {
     setTasks(currentTasks);
   }, [currentTasks]);
 
-  console.log("ALL MEMBERS", allMembers);
-
-  //ALL MEMBERS ["63c9eb6acc2800870801", "64122d5d3b705750006c", "6414f71a243677a72a85"]
   return (
     <StepIndicator
       headerTitle={"Edit Projects"}
