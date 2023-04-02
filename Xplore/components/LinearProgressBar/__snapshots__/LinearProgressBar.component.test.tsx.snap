@@ -3,9 +3,9 @@
 exports[`LinearProgressBar should render should render the progress bar 1`] = `
 <View
   style={
-    Array [
+    [
       undefined,
-      Object {
+      {
         "backgroundColor": "transparent",
       },
     ]
@@ -14,12 +14,12 @@ exports[`LinearProgressBar should render should render the progress bar 1`] = `
   <View
     accessibilityRole="progressbar"
     accessibilityState={
-      Object {
+      {
         "busy": true,
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": 100,
         "min": 0,
         "now": 0.2,
@@ -31,7 +31,7 @@ exports[`LinearProgressBar should render should render the progress bar 1`] = `
     <View
       collapsable={false}
       style={
-        Object {
+        {
           "backgroundColor": "#F5F5F5",
           "borderColor": "#F5F5F5",
           "borderRadius": 8,
@@ -49,9 +49,9 @@ exports[`LinearProgressBar should render should render the progress bar 1`] = `
 exports[`LinearProgressBar should render should render the progress bar with a different color 1`] = `
 <View
   style={
-    Array [
+    [
       undefined,
-      Object {
+      {
         "backgroundColor": "transparent",
       },
     ]
@@ -60,12 +60,12 @@ exports[`LinearProgressBar should render should render the progress bar with a d
   <View
     accessibilityRole="progressbar"
     accessibilityState={
-      Object {
+      {
         "busy": true,
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": 100,
         "min": 0,
         "now": 0.2,
@@ -77,7 +77,7 @@ exports[`LinearProgressBar should render should render the progress bar with a d
     <View
       collapsable={false}
       style={
-        Object {
+        {
           "backgroundColor": "#F5F5F5",
           "borderColor": "#F5F5F5",
           "borderRadius": 8,

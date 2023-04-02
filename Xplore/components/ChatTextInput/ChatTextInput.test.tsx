@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import * as chat from "../../services/api/chatMessages";
 
 const queryClient = new QueryClient();
-
+const mockFn = jest.spyOn(chat, "createMessage");
 describe("ChatTextInput should render correctly", () => {
   it("should render correctly", () => {
     const { container } = render(
@@ -29,7 +29,6 @@ describe("ChatTextInput textInput should have the placeholder", () => {
 
 describe("ChatTextInput textInput should be inputable", () => {
   it("should be able to enter and send text", async () => {
-    const mockFn = jest.spyOn(chat, "createMessage");
     const { getByPlaceholderText, findByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <ChatTextInput chatID="testChatID" chatType="group" />
