@@ -34,6 +34,9 @@ export const ExploreProjects = (props: ExploreProjectsProps) => {
             projectName={item.name}
             index={index}
             imageURL="https://picsum.photos/300/200"
+            onPress={() =>
+              navigation.navigate("ProjectDetails", { item: item })
+            }
           />
         )}
         horizontal
