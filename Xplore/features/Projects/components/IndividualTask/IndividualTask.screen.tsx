@@ -8,21 +8,19 @@ import { DescriptionCard } from "./DescriptionCard/DescriptionCard.component";
 import { View } from "../../../../components";
 interface IndividualTaskScreenProps {
   navigation: NavigationProp<any>;
-  taskName: string;
 }
 
 const IndividualTask = (props: IndividualTaskScreenProps) => {
   const { navigation } = props;
   const route = useRoute();
   const homeBackground = useThemeColor("backgroundSecondary");
-
-  let { taskName }: any = route.params;
+  let { taskInfo }: any = route.params;
 
   return (
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: homeBackground }]}
     >
-      <TopHeader screenName={taskName} navigation={navigation} />
+      <TopHeader screenName={taskInfo.name} navigation={navigation} />
       <ScrollView>
         <View style={styles.viewMain}>
           <TaskIllustration />

@@ -17,12 +17,21 @@ const storage = new Storage(client);
 
 const api = {
   query: Query,
+
   createAccount: (email: string, password: string, name: string) => {
     return account.create(ID.unique(), email, password, name);
   },
 
   getAccount: () => {
     return account.get();
+  },
+
+  updateUsername: (newName: string) => {
+    return account.updateName(newName);
+  },
+
+  updatePassword: (newPassword: string, oldPassword: string) => {
+    return account.updatePassword(newPassword, oldPassword);
   },
 
   getSession: (sessionId: string) => {
@@ -96,8 +105,7 @@ const api = {
   },
 
   createFile: (bucket: string, userId: string, file: File) => {
-    // return storage.createFile(bucket, `${userId}-${ID.unique()}`, file);
-    return storage.createFile(bucket, `${ID.unique()}`, file);
+    return storage.createFile(bucket, ID.unique(), file);
   },
 
   getFilePreview: (bucket: string, fileId: string) => {

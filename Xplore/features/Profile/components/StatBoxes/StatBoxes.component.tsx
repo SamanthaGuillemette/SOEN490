@@ -3,22 +3,29 @@ import { Text } from "../../../../components";
 import { useThemeColor } from "../../../../hooks";
 import styles from "./StatBoxes.styles";
 
-export const StatBoxes = () => {
+interface StatBoxProps {
+  numProjects: number;
+  numBadges: number;
+  xpLevel: number;
+}
+
+export const StatBoxes = (props: StatBoxProps) => {
+  const { numProjects, numBadges, xpLevel } = props;
   const badgeBackground = useThemeColor("background");
 
   return (
     <View style={styles.mainContainer}>
       <View style={[styles.badgeBox, { backgroundColor: badgeBackground }]}>
         <Text variant="h2" color="titleText">
-          5
+          {xpLevel}
         </Text>
         <Text variant="smBody" color="bodyText">
-          Levels
+          Level
         </Text>
       </View>
       <View style={[styles.badgeBox, { backgroundColor: badgeBackground }]}>
         <Text variant="h2" color="titleText">
-          8
+          {numBadges}
         </Text>
         <Text variant="smBody" color="bodyText">
           Badges
@@ -26,7 +33,7 @@ export const StatBoxes = () => {
       </View>
       <View style={[styles.badgeBox, { backgroundColor: badgeBackground }]}>
         <Text variant="h2" color="titleText">
-          12
+          {numProjects}
         </Text>
         <Text variant="smBody" color="bodyText">
           Projects

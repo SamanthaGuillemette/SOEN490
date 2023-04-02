@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchableOpacity, ScrollView } from "react-native";
 import { View } from "../View";
 import { User } from "../User";
@@ -6,21 +6,45 @@ import styles from "./UsersList.styles";
 import { Icon } from "../Icon";
 import { MessageMember } from "../MessageMember";
 import { NavigationProp } from "@react-navigation/native";
+import { useQuery } from "react-query";
+import api from "../../services/appwrite/api";
 
 interface UsersType {
   id: string;
   username: string;
   avatar: string;
   xp: number;
+  selected?: boolean;
   navigation?: NavigationProp<any>;
+  isEditProject?: boolean;
+}
+
+interface UsersListProps {
+  data: UsersType[];
+  messageUserList: boolean;
+  selectUserList: boolean;
+  navigation?: NavigationProp<any>;
+  setList?: any;
+  selectedUsers?: string[];
 }
 
 //  UsersItem component creates user and sets selected to false initially
-export const UserItemSelect = (props: UsersType) => {
-  const [selected, setSelected] = useState(false);
+export const UserItemSelect = (
+  props: UsersType & { onSelect: (id: string) => void }
+) => {
+  const [selected, setSelected] = useState(
+    props.isEditProject === false ? false : props.selected
+  );
+  const { onSelect, id } = props;
+
+  const handleSelect = () => {
+    setSelected(!selected);
+    onSelect(id);
+  };
+
   return (
     <View style={styles.listContainer}>
-      <TouchableOpacity onPress={() => setSelected(!selected)}>
+      <TouchableOpacity onPress={handleSelect}>
         <User
           avatar={props.avatar}
           username={props.username}
@@ -63,15 +87,36 @@ export const UserItemMessage = (props: UsersType) => {
   );
 };
 
-interface UsersListProps {
-  data: any;
-  messageUserList: boolean;
-  selectUserList: boolean;
-  navigation?: NavigationProp<any>;
-}
-
 // UsersList renders users
 export const UsersList = (props: UsersListProps) => {
+  const { setList } = props;
+  const [selectedUsers, setSelectedUsers] = useState<string[]>(
+    props.selectedUsers === undefined ? [] : props.selectedUsers
+  );
+
+  const handleUserSelect = (userId: string, isSelected: boolean) => {
+    if (isSelected) {
+      setSelectedUsers([...selectedUsers, userId]);
+    } else {
+      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    }
+  };
+
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userID: string = userdata?.$id as string;
+
+  useEffect(() => {
+    if (setList !== undefined) {
+      // if not edit project
+      if (props.selectedUsers === undefined) {
+        setList([...selectedUsers, userID]); // adding logged in user
+      } else {
+        setList(selectedUsers);
+      }
+    }
+  }, [selectedUsers, setList, userID, props.selectedUsers]);
+
   return (
     <ScrollView pagingEnabled={true}>
       {props.selectUserList
@@ -83,6 +128,11 @@ export const UsersList = (props: UsersListProps) => {
               xp={user.xp}
               id={user.id}
               navigation={props.navigation}
+              selected={selectedUsers.includes(user.id)}
+              isEditProject={props.selectedUsers === undefined ? false : true}
+              onSelect={(isSelected) =>
+                handleUserSelect(user.id, !selectedUsers.includes(isSelected))
+              }
             />
           ))
         : null}

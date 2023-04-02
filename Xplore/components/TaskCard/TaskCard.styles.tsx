@@ -1,11 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  backgroundBox: {
-    marginTop: 20,
-    height: 105,
-    width: 320,
-  },
   innerBox: {
     justifyContent: "space-between",
     borderRadius: 8,
@@ -15,20 +10,17 @@ export default StyleSheet.create({
     paddingTop: 13,
     paddingBottom: 13,
   },
-  listContainer: {
-    height: 110,
-    paddingBottom: 12,
-    backgroundColor: "transparent",
-  },
+
   /** task style */
-  taskContentContainer: {
+  taskCardContainer: {
     flexDirection: "row",
   },
-  taskType: {
+  taskCategory: {
     marginLeft: 32,
   },
   taskInfoIcon: {
-    marginLeft: 180,
+    position: "absolute",
+    right: 10,
   },
   taskName: {
     marginLeft: 32,
@@ -42,20 +34,5 @@ export default StyleSheet.create({
   },
   date: {
     marginTop: 2,
-  },
-  /** right content style */
-  righContentStyle: {
-    height: 105,
-    width: 100,
-    borderRadius: 8,
-  },
-  icons: {
-    marginLeft: 70,
-  },
-  infoIcon: {
-    marginTop: 15,
-  },
-  deleteIcon: {
-    marginTop: 16,
   },
 });

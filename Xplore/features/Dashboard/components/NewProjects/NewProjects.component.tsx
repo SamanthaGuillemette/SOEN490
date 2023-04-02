@@ -7,8 +7,9 @@ import { LinkButton, Text, View } from "../../../../components";
 import { deviceScreenWidth } from "../../../../constants";
 import { ProjectCardLarge } from "../ProjectCardLarge/ProjectCardLarge.component";
 import styles from "./NewProjects.styles";
+import { useNewProjects } from "../../../../services/api/projects";
 
-const data = ["brown", "orange", "red", "blue", "green"];
+const indicators = ["brown", "orange", "red", "blue", "green"];
 
 interface NewProjectsProps {
   navigation: NavigationProp<any>;
@@ -21,6 +22,8 @@ export const NewProjects = (props: NewProjectsProps) => {
     inputRange: [0, deviceScreenWidth - 40],
     outputRange: [0, 18],
   });
+
+  const { data, status } = useNewProjects();
 
   return (
     <View style={styles.container}>
@@ -50,20 +53,35 @@ export const NewProjects = (props: NewProjectsProps) => {
             { useNativeDriver: false }
           )}
         >
-          {data.map((projectDetail) => (
-            <ProjectCardLarge
-              projectName="100 Python challenges"
-              goal="Gain fundamental understanding"
-              duration={100}
-              members={8}
-              imageURL="https://picsum.photos/300/200"
-              key={projectDetail}
-            />
-          ))}
+          {status === "success" ? (
+            data.documents.map((project) => (
+              <ProjectCardLarge
+                onPress={() =>
+                  navigation.navigate("ProjectDetails", { item: project })
+                }
+                projectName={project.name}
+                goal={`${project.description
+                  .split(" ")
+                  .slice(0, 5)
+                  .join(" ")}...`}
+                duration={Math.ceil(
+                  (new Date(project.endDate).getTime() -
+                    new Date(project.startDate).getTime()) /
+                    (1000 * 3600 * 24)
+                )}
+                members={project.members.length}
+                //the url will be replaced once project creation is complete
+                imageURL="https://picsum.photos/300/200"
+                key={project.name}
+              />
+            ))
+          ) : (
+            <></>
+          )}
         </ScrollView>
 
-        <RNView style={theme.indicatorConatiner} pointerEvents="none">
-          {data.map((x) => (
+        <RNView style={theme.indicatorContainer} pointerEvents="none">
+          {indicators.map((x) => (
             <Indicator key={x} />
           ))}
           <Animated.View
@@ -83,7 +101,7 @@ function Indicator() {
 }
 
 const theme = StyleSheet.create({
-  indicatorConatiner: {
+  indicatorContainer: {
     alignSelf: "center",
     position: "relative",
     bottom: 25,

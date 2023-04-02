@@ -1,5 +1,5 @@
 import { FlashList } from "@shopify/flash-list";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   CategoryScrollBar,
@@ -12,24 +12,52 @@ import styles from "./AllProjects.styles";
 import { useListProjectsPaginated } from "../../../../services/api/projects";
 import { Models } from "appwrite";
 import { NavigationProp } from "@react-navigation/native";
+import { useQuery } from "react-query";
+import api from "../../../../services/appwrite/api";
+import { useThemeColor } from "../../../../hooks/useThemeColor";
+import { categories } from "../../../../constants";
 
 interface ProjectData extends Models.Document {
   name: string;
   description: string;
-  projectImage?: string;
-  tasks?: number;
-  conversations?: number;
-  members?: number;
+  imageURL?: string;
+  tasks: string[];
+  members: string[];
   percentComplete: number;
+  category: string;
+  startDate: string;
+  endDate: string;
+  goals: string[];
 }
 
-const formatProjectData = (data: ProjectData | undefined) => {
+const allCategories = [
+  { name: categories.frontendDev },
+  { name: categories.backendDev },
+  { name: categories.algorithms },
+  { name: categories.webDev },
+  { name: categories.embeddedSystems },
+  { name: categories.mobileDev },
+  { name: categories.gameDev },
+  { name: categories.security },
+  { name: categories.softwareOptimization },
+  { name: categories.blockchain },
+];
+
+const formatProjectData = (data: ProjectData | undefined, userID: any) => {
   const formattedData: ProjectData[] = [];
   data?.pages.forEach((page: { projects: ProjectData[] }) =>
     page.projects.forEach((project: ProjectData) =>
       formattedData.push(project as ProjectData)
     )
   );
+  formattedData.forEach((project) => {
+    let memberList = project.members;
+    let foundUser = false;
+    memberList.forEach(
+      (memberID) => (memberID === userID ? (foundUser = true) : "") // if userID is found in list of members
+    );
+    project.requestJoin = !foundUser;
+  });
   return formattedData;
 };
 interface ExploreProjectsProps {
@@ -37,7 +65,39 @@ interface ExploreProjectsProps {
 }
 const ExploreProjects = (props: ExploreProjectsProps) => {
   const [isCategoryListVisible, setIsCategoryListVisible] = useState(false);
-  const { data, fetchNextPage } = useListProjectsPaginated();
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [dataToDisplay, setDataToDisplay] = useState<ProjectData[]>([]);
+
+  const noResultsColor = useThemeColor("bodyText");
+
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+
+  const { data, status, fetchNextPage } = useListProjectsPaginated();
+
+  let projectData = useRef([] as ProjectData[]);
+  projectData.current = formatProjectData(data as any, userId);
+
+  useEffect(() => {
+    setDataToDisplay(projectData.current);
+  }, [status, isCategoryListVisible]);
+
+  useEffect(() => {
+    const filtered = projectData.current.filter(
+      (project) => project.category === categoryFilter
+    );
+    setDataToDisplay(filtered);
+  }, [categoryFilter]);
+
+  useEffect(() => {
+    const filtered = projectData.current.filter(
+      (project) =>
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setDataToDisplay(filtered);
+  }, [searchQuery]);
 
   return (
     <SafeAreaView edges={["top"]} style={styles.mainContainer}>
@@ -51,87 +111,35 @@ const ExploreProjects = (props: ExploreProjectsProps) => {
           showFilterButton={true}
           onFilterButtonPress={setIsCategoryListVisible}
           style={styles.searchBar}
+          onQueryChange={setSearchQuery}
         />
       </View>
 
-      {/* This horizontal scrollbar is hidden by default.
-      When the user clicks on the filter button, "isCategoryListVisible" === true */}
       {isCategoryListVisible && (
-        <CategoryScrollBar style={styles.categoryBar} categories={categories} />
+        <CategoryScrollBar
+          style={styles.categoryBar}
+          categories={allCategories}
+          setCategory={setCategoryFilter}
+        />
       )}
-
-      <FlashList
-        data={formatProjectData(data as any)}
-        renderItem={({ item }) => (
-          <ProjectCard navigation={props.navigation} item={item} />
-        )}
-        estimatedItemSize={350}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.flashListContainer}
-        onEndReached={fetchNextPage}
-      />
+      {dataToDisplay.length === 0 ? (
+        <Text style={[styles.noResults, { color: noResultsColor }]}>
+          no results
+        </Text>
+      ) : (
+        <FlashList
+          data={dataToDisplay}
+          renderItem={({ item }) => (
+            <ProjectCard navigation={props.navigation} item={item} />
+          )}
+          estimatedItemSize={350}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.flashListContainer}
+          onEndReached={fetchNextPage}
+        />
+      )}
     </SafeAreaView>
   );
 };
 
 export default ExploreProjects;
-
-export const fakeProjectData = [
-  {
-    title: "Snake Robot",
-    description: "World's first unique soft robot",
-    projectImage: "https://picsum.photos/200",
-    tasks: 12,
-    conversation: 38,
-    members: 5,
-    progress: 0.8,
-  },
-  {
-    title: "UX for Seniors",
-    description: "Designing for the elderly",
-    projectImage: "https://picsum.photos/200",
-    tasks: 10,
-    conversation: 57,
-    members: 8,
-    progress: 0.6,
-  },
-  {
-    title: "Visual Software Tester",
-    description: "Build simple visual QA tool",
-    projectImage: "https://picsum.photos/200",
-    tasks: 8,
-    conversation: 12,
-    members: 3,
-    progress: 0.4,
-  },
-  {
-    title: "Train Ticketing System",
-    description: "A new way to buy train tickets",
-    projectImage: "https://picsum.photos/200",
-    tasks: 12,
-    conversation: 38,
-    members: 5,
-    progress: 0.8,
-  },
-  {
-    title: "UX for Seniors 2",
-    description: "Designing for the elderly....",
-    projectImage: "https://picsum.photos/200",
-    tasks: 10,
-    conversation: 57,
-    members: 8,
-    progress: 0.6,
-  },
-];
-
-// These fake data will be replaced by data pulled from the backend later.
-
-const categories = [
-  // TODO: we may not need the "isActive" property
-  { name: "All", isActive: true },
-  { name: "Web Dev", isActive: false },
-  { name: "Mobile Dev", isActive: false },
-  { name: "Frontend", isActive: false },
-  { name: "Backend", isActive: false },
-  { name: "DSA", isActive: false },
-];

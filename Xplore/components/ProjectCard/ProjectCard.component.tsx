@@ -6,36 +6,48 @@ import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { LinearProgressBar } from "../LinearProgressBar";
 import { NavigationProp } from "@react-navigation/native";
+import { useColorScheme } from "../../hooks";
 
 interface ProjectCardProps {
   navigation: NavigationProp<any>;
   item: {
     name: string;
     description: string;
-    projectImage?: string;
-    tasks?: number;
+    imageURL?: string;
+    tasks?: string[];
     conversation?: number;
-    members?: number;
+    members?: string[];
     percentComplete: number;
   };
 }
+
 export const ProjectCard = (props: ProjectCardProps) => {
   const { item } = props;
+  const colorScheme = useColorScheme();
 
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate("ProjectDetails")}
+      onPress={() =>
+        props.navigation.navigate("ProjectDetails", { item: item })
+      }
     >
       <ShadowView
         backgroundColor="backgroundSecondary"
         style={styles.cardContainer}
         key={item.name}
       >
-        <Image
-          source={{ uri: "https://picsum.photos/200" }}
-          style={styles.projectImage}
-        />
-
+        {item.imageURL ? (
+          <Image source={{ uri: item.imageURL }} style={styles.projectImage} />
+        ) : (
+          <Image
+            source={
+              colorScheme === "dark"
+                ? require("../../assets/logo_dark.png")
+                : require("../../assets/logo_light.png")
+            }
+            style={styles.projectImage}
+          />
+        )}
         <View style={styles.projectInfo}>
           <Text
             variant="h3"
@@ -59,21 +71,14 @@ export const ProjectCard = (props: ProjectCardProps) => {
             <View style={styles.statIcon}>
               <Icon name="file-text" size="medium" style={styles.icon} />
               <Text variant="smBody" color="bodyText">
-                {item.tasks}
-              </Text>
-            </View>
-
-            <View style={styles.statIcon}>
-              <Icon name="message-circle" size="medium" style={styles.icon} />
-              <Text variant="smBody" color="bodyText">
-                {item.conversation}
+                {item.tasks?.length}
               </Text>
             </View>
 
             <View style={styles.statIcon}>
               <Icon name="users" size="medium" style={styles.icon} />
               <Text variant="smBody" color="bodyText">
-                {item.members}
+                {item.members?.length}
               </Text>
             </View>
           </View>

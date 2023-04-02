@@ -1,10 +1,19 @@
 import styles from "./DescriptionCard.styles";
 import { useThemeColor } from "../../../../../hooks";
 import { Text, View } from "../../../../../components";
-import { Member } from "../../../../../components/Member";
+import { useRoute } from "@react-navigation/native";
 
 export const DescriptionCard = () => {
   const bgColor = useThemeColor("backgroundSecondary");
+  const route = useRoute();
+  let { taskInfo }: any = route.params;
+  const endDate = taskInfo.endDate.includes("T")
+    ? taskInfo.endDate.substring(0, taskInfo.endDate.indexOf("T"))
+    : taskInfo.endDate;
+  const startDate = taskInfo.startDate.includes("T")
+    ? taskInfo.startDate.substring(0, taskInfo.endDate.indexOf("T"))
+    : taskInfo.startDate;
+
   return (
     <View style={[styles.MainContainer, { borderTopColor: bgColor }]}>
       <View style={styles.OuterContainer}>
@@ -12,10 +21,7 @@ export const DescriptionCard = () => {
           Description
         </Text>
         <Text variant="body" color="bodyText" style={{ textAlign: "justify" }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          {taskInfo.description}
         </Text>
       </View>
       <View style={styles.OuterContainer}>
@@ -23,7 +29,7 @@ export const DescriptionCard = () => {
           Category
         </Text>
         <Text variant="body" color="bodyText">
-          Design
+          {taskInfo.category}
         </Text>
       </View>
       <View style={styles.OuterContainer}>
@@ -33,7 +39,7 @@ export const DescriptionCard = () => {
               Starts
             </Text>
             <Text variant="body" color="bodyText" style={styles.OuterContainer}>
-              13/12/2022
+              {startDate}
             </Text>
           </View>
           <View style={{ marginLeft: 108 }}>
@@ -41,22 +47,9 @@ export const DescriptionCard = () => {
               Ends
             </Text>
             <Text variant="body" color="bodyText" style={styles.OuterContainer}>
-              18/12/2022
+              {endDate}
             </Text>
           </View>
-        </View>
-      </View>
-      <View style={styles.OuterContainer}>
-        <Text variant="h3" color="titleText">
-          Participants
-        </Text>
-      </View>
-      <View style={styles.MemberContainer}>
-        <View>
-          <Member userName="Amy" avatar="https://picsum.photos/200" />
-        </View>
-        <View style={styles.Member}>
-          <Member userName="Bernice" avatar="https://picsum.photos/201" />
         </View>
       </View>
     </View>

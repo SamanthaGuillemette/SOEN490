@@ -3,19 +3,20 @@ import { Avatar } from "../Avatar";
 import styles from "./AvatarGroup.styles";
 
 interface AvatarGroupProps {
-  usersAvatars: string[];
+  usersAvatars: any[];
 }
 
 export const AvatarGroup = (props: AvatarGroupProps) => {
-  const avatarCount = props.usersAvatars.length - 3;
+  const usersAvatarsArray = Object.values(props.usersAvatars);
+  const avatarCount = usersAvatarsArray.length - 3;
   return (
     <View>
-      {props.usersAvatars.length > 4 ? (
+      {usersAvatarsArray.length > 4 ? (
         <View style={styles.groupAvatarContainer}>
-          {props.usersAvatars.slice(0, 3).map((avatar, key) => (
+          {usersAvatarsArray.slice(0, 3).map(({ avatar, username }, index) => (
             <Avatar
-              key={key}
-              name="Username"
+              key={index}
+              name={username}
               imageURL={avatar}
               size={60}
               style={styles.singleAvatar}
@@ -30,10 +31,10 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
         </View>
       ) : (
         <View style={styles.groupAvatarContainer}>
-          {props.usersAvatars.map((avatar, key) => (
+          {usersAvatarsArray.map(({ avatar, username }, index) => (
             <Avatar
-              key={key}
-              name="Username"
+              key={index}
+              name={username}
               imageURL={avatar}
               size={60}
               style={styles.singleAvatar}

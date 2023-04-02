@@ -10,18 +10,22 @@ import { Calendar } from "react-native-calendars";
 interface DatePickerProps {
   title: string;
   style?: StyleProp<ViewStyle>;
+  defaultDate?: string;
+  setDate: (date: string) => void;
+  shouldDisplayDate?: boolean;
 }
 
 export const DatePicker = (props: DatePickerProps) => {
-  const [date, setDate] = useState("YYYY-MM-DD");
-  const [tempDate, setTempDate] = useState("YYYY-MM-DD");
+  const [tempDate, setTempDate] = useState(
+    props.defaultDate === undefined ? "YYYY-MM-DD" : props.defaultDate
+  );
   const [openCalendar, setOpenCalendar] = useState(false);
   const primary = useThemeColor("primary");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
   const primaryBackgroundOpaque = useThemeColor("primaryBackgroundOpaque");
   const titleText = useThemeColor("titleText");
   const generalGray = useThemeColor("generalGray");
-  const { title, style } = props;
+  const { title, style, setDate, shouldDisplayDate } = props;
 
   return (
     <View>
@@ -32,7 +36,7 @@ export const DatePicker = (props: DatePickerProps) => {
 
         <View style={styles.alignRow}>
           <Text color="bodyText" variant="label">
-            {date}
+            {shouldDisplayDate === true ? tempDate : "YYYY-MM-DD"}
           </Text>
 
           <TouchableWithoutFeedback
@@ -83,7 +87,7 @@ export const DatePicker = (props: DatePickerProps) => {
             textMonthFontSize: 20,
           }}
           markedDates={{
-            [date]: { selected: true, selectedColor: primary },
+            [tempDate]: { selected: true, selectedColor: primary },
           }}
         />
         <View

@@ -18,7 +18,6 @@ interface MemberProps {
   id: string;
   avatar: string;
   username: string;
-  email?: string;
   xp: number;
 }
 

@@ -6,6 +6,7 @@ import TopHeader from "../../../../navigation/TopHeader.component";
 import { NavigationProp } from "@react-navigation/native";
 import styles from "./ProjectDetails.styles";
 import { TouchableOpacity } from "react-native-ui-lib";
+import { useRoute } from "@react-navigation/native";
 
 interface ProjectsProps {
   navigation: NavigationProp<any>;
@@ -13,6 +14,8 @@ interface ProjectsProps {
 
 const ProjectDetails = (props: ProjectsProps) => {
   const homeBackground = useThemeColor("backgroundSecondary");
+  const route = useRoute();
+  let { item }: any = route.params;
 
   return (
     <SafeAreaView
@@ -22,6 +25,7 @@ const ProjectDetails = (props: ProjectsProps) => {
         screenName={"Projects"}
         navigation={props.navigation}
         name="edit"
+        projectInfo={item}
       />
       <TouchableOpacity
         onPress={() => props.navigation.navigate("ProfileEdit")}

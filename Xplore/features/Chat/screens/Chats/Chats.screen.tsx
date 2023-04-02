@@ -30,7 +30,11 @@ const Chats = (props: ChatsProps) => {
     <SafeAreaView
       style={[styles.safeAreaStyle, { backgroundColor: backgroundSecondary }]}
     >
-      <TopHeader screenName={"Messages"} navigation={navigation} />
+      <TopHeader
+        screenName={"Messages"}
+        navigation={navigation}
+        name={"group_chat"}
+      />
       <ScrollView
         style={[styles.chat_scrollView, { backgroundColor: background }]}
       >

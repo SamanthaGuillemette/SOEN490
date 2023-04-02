@@ -1,4 +1,5 @@
 import { NavigationProp } from "@react-navigation/native";
+import { useEffect } from "react";
 import * as React from "react";
 import {
   View,
@@ -9,6 +10,7 @@ import {
 import styles from "./SignIn.styles";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { useAuth } from "../../../../hooks";
+import { Alert } from "react-native";
 interface SignInProps {
   navigation: NavigationProp<any>;
 }
@@ -18,7 +20,33 @@ const SignIn = (props: SignInProps) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const { signIn, loading } = useAuth();
+  const { signIn, loading, loginStatus } = useAuth();
+
+  useEffect(() => {
+    if (loginStatus === "error") {
+      Alert.alert("Error", "Incorrect email or password!");
+    }
+  }, [loginStatus]);
+
+  const handleLoginInput = (
+    email: any,
+    password: any,
+  ) => {
+    if (
+      email.trim().length === 0 ||
+      password.trim().length === 0
+    ) {
+      Alert.alert("Error", "You are missing required fields!");
+    } else {
+      signIn(email, password);
+      if (
+        loginStatus !== "error" && loginStatus !== null
+      ) {
+        setEmail("");
+        setPassword("");
+      }
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -43,9 +71,7 @@ const SignIn = (props: SignInProps) => {
         label="SIGN IN"
         style={styles.PrimaryButton}
         onPress={() => {
-          signIn(email, password);
-          setEmail("");
-          setPassword("");
+          handleLoginInput(email, password);
         }}
       />
       <SecondaryButton
