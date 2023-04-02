@@ -5,8 +5,8 @@ import { useState } from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native";
 interface AddMembersProps {
-  setAllMembers: (value: any[]) => void;
-  allMembers?: any[];
+  setAllMembers: (value: string[]) => void;
+  allMembers?: string[];
 }
 
 export const AddMembers = (props: AddMembersProps) => {
@@ -17,24 +17,6 @@ export const AddMembers = (props: AddMembersProps) => {
   const filteredUsers = users.filter((user: any) =>
     user.username.toLowerCase().includes(query.toLowerCase())
   );
-
-  console.log("HUH", props.allMembers);
-
-  /*if (props.allMembers !== undefined) {
-  const allMembers = props.allMembers;
-
-  users.forEach((singleUser: any) => {
-      if (
-        allMembers.some((singleMember: any) => singleMember === singleUser.id)
-      ) {
-        singleUser.isAlreadyAMember = true;
-      } else {
-        singleUser.isAlreadyAMember = false;
-      }
-    });
-  }*/
-
-  //console.log(users);
 
   return (
     <View style={styles.fixedHeight}>
@@ -47,6 +29,7 @@ export const AddMembers = (props: AddMembersProps) => {
               selectUserList={true}
               messageUserList={false}
               setList={props.setAllMembers}
+              selectedUsers={props.allMembers}
             />
           </ScrollView>
         </View>

@@ -3,12 +3,12 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   scrollView: {
     marginTop: 10,
-    minHeight: 300,
+    minHeight: 200,
   },
   fixedHeight: {
     justifyContent: "center",
-    maxHeight: 400,
-    minHeight: 400,
+    maxHeight: 300,
+    minHeight: 300,
   },
   searchBar: {
     width: 280,
