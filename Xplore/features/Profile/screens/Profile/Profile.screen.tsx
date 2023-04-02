@@ -113,7 +113,10 @@ const Profile = (props: ProfileProps) => {
             xpLevel={XPlevel}
           />
           <Badges xpLevel={XPlevel} />
-          <ProjectSlider projectIDs={userObject?.projects} />
+          <ProjectSlider
+            navigation={navigation}
+            projectIDs={userObject?.projects}
+          />
 
           <View style={styles.logoutButton}>
             <LogoutButton />
