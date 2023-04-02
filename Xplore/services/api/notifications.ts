@@ -161,6 +161,7 @@ const getNotifs = async (userID: any) => {
         notificationType: doc.notificationType,
         createdAt: doc.createdAt,
         seen: doc.seen,
+        userID: doc.userID,
 
         //for group chats add
         groupName: doc.groupName,

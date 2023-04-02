@@ -1,16 +1,15 @@
 import styles from "./AddMembers.styles";
 import { SearchBar, UsersList } from "../../../../components";
 import { useListUsers } from "../../../../services/api/search";
-import Spinner from "react-native-loading-spinner-overlay/lib";
 import { useState } from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native";
 interface AddMembersProps {
-  setAllMembers: (value: any[]) => void;
+  setAllMembers: (value: string[]) => void;
+  allMembers?: string[];
 }
 
 export const AddMembers = (props: AddMembersProps) => {
-  //const { setAllMembers, allMembers = [] } = props;
   const [query, setQuery] = useState<string>("");
   const users = useListUsers();
 
@@ -30,6 +29,7 @@ export const AddMembers = (props: AddMembersProps) => {
               selectUserList={true}
               messageUserList={false}
               setList={props.setAllMembers}
+              selectedUsers={props.allMembers}
             />
           </ScrollView>
         </View>

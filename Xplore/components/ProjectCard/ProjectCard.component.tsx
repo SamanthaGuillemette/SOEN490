@@ -6,6 +6,7 @@ import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { LinearProgressBar } from "../LinearProgressBar";
 import { NavigationProp } from "@react-navigation/native";
+import { useColorScheme } from "../../hooks";
 
 interface ProjectCardProps {
   navigation: NavigationProp<any>;
@@ -19,8 +20,10 @@ interface ProjectCardProps {
     percentComplete: number;
   };
 }
+
 export const ProjectCard = (props: ProjectCardProps) => {
   const { item } = props;
+  const colorScheme = useColorScheme();
 
   return (
     <TouchableOpacity
@@ -33,11 +36,18 @@ export const ProjectCard = (props: ProjectCardProps) => {
         style={styles.cardContainer}
         key={item.name}
       >
-        <Image
-          source={{ uri: item.imageURL !== "" ? item.imageURL : undefined }}
-          style={styles.projectImage}
-        />
-
+        {item.imageURL ? (
+          <Image source={{ uri: item.imageURL }} style={styles.projectImage} />
+        ) : (
+          <Image
+            source={
+              colorScheme === "dark"
+                ? require("../../assets/logo_dark.png")
+                : require("../../assets/logo_light.png")
+            }
+            style={styles.projectImage}
+          />
+        )}
         <View style={styles.projectInfo}>
           <Text
             variant="h3"
