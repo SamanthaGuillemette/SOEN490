@@ -14,4 +14,11 @@ describe("LinearProgressBar should render", () => {
     const bar = renderer.create(<LinearProgressBar progress={0.2} />);
     expect(bar).toMatchSnapshot();
   });
+
+  it("should render the progress bar with a different color", () => {
+    const bar = renderer.create(
+      <LinearProgressBar progress={0.2} color={"success"} />
+    );
+    expect(bar).toMatchSnapshot();
+  });
 });

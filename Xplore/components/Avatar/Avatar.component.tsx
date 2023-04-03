@@ -57,7 +57,7 @@ export const Avatar = (props: AvatarProps) => {
 
   const primary = useThemeColor("primary");
   const backgroundSecondary = useThemeColor("backgroundSecondary");
-  const avatarDisplayName = name.charAt(0).toUpperCase();
+  const avatarDisplayName = name?.charAt(0).toUpperCase();
   const avatarColor = getColorFromName(name);
 
   return (
@@ -91,6 +91,7 @@ export const Avatar = (props: AvatarProps) => {
             },
           ]}
           source={{ uri: `${imageURL}` }}
+          testID={imageURL.toString()}
         />
       ) : avatarCount ? (
         <View
