@@ -41,7 +41,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const status = api.getSession(sessionId);
     status.then(
       (response) => {
-        console.log(`===> Session retrieved: ${JSON.stringify(response)}`);
+        //console.log(`===> Session retrieved: ${JSON.stringify(response)}`);
         setSessionToken(response);
       },
       (error) => {
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const status = api.getAccount();
     status.then(
       (response) => {
-        console.log(`===> Account data retrieved: ${JSON.stringify(response)}`);
+        //console.log(`===> Account data retrieved: ${JSON.stringify(response)}`);
         setAccountToken(response);
       },
       (error) => {
@@ -117,12 +117,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       Promise.all([accountObj, sessionObj, emailVerificationObj]);
       api.deleteCurrentSession();
       setLoadingStatus(false);
-      console.log(
-        accountObj ??
-          `===> Account created: ${JSON.stringify(
-            accountObj
-          )} and Verification email sent!`
-      );
+      // console.log(
+      //   accountObj ??
+      //     `===> Account created: ${JSON.stringify(
+      //       accountObj
+      //     )} and Verification email sent!`
+      // );
     } catch (error) {
       console.log("Sign up error: ", error);
     }

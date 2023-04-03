@@ -34,10 +34,16 @@ export const seedProjects = async () => {
       let users = await api.listDocuments(COLLECTION_ID_USERS, [
         api.query.limit(100),
       ]);
-      let userIDs = users.documents.filter((u) => u.$id);
-      console.log(userIDs);
+      let userIDs = users.documents.map((u) => u.$id);
+      let randomStartIndex = Math.floor(Math.random() * userIDs.length);
+      let randomEndIndex =
+        Math.floor(Math.random() * (userIDs.length - randomStartIndex)) +
+        randomStartIndex;
+      let memberIDs = userIDs.slice(randomStartIndex, randomEndIndex + 1);
       await api.createDocument(COLLECTION_ID_PROJECT, {
         ...p,
+        members: memberIDs,
+        projectOwner: memberIDs[Math.floor(Math.random() * memberIDs.length)],
         tasks: taskIDs,
       });
     } catch (e) {
@@ -45,6 +51,22 @@ export const seedProjects = async () => {
     }
   }
 };
+
+async function test() {
+  let users = await api.listDocuments(COLLECTION_ID_USERS, [
+    api.query.limit(100),
+  ]);
+  let userIDs = users.documents.map((u) => u.$id);
+  let randomStartIndex = Math.floor(Math.random() * userIDs.length);
+  let randomEndIndex =
+    Math.floor(Math.random() * (userIDs.length - randomStartIndex)) +
+    randomStartIndex;
+  let randomSubArray = userIDs.slice(randomStartIndex, randomEndIndex + 1);
+  console.log(randomSubArray);
+  console.log(
+    randomSubArray[Math.floor(Math.random() * randomSubArray.length)]
+  );
+}
 
 export const seedUsersFromAuth = async () => {
   const projects_ = await api.listDocuments(COLLECTION_ID_PROJECT);
@@ -69,7 +91,7 @@ export const seedUsersFromAuth = async () => {
   }
 };
 
-const seedDatabase = async () => {
+const deleteAllCollections = async () => {
   const collectionIDs = [
     COLLECTION_ID_PROJECT,
     COLLECTION_ID_PROJECT_TASKS,
@@ -82,8 +104,6 @@ const seedDatabase = async () => {
       console.log(e);
     }
   }
-  await seedProjects();
-  await seedUsersFromAuth();
 };
 
 //DO NOT USE. ONLY FOR CREATING USERS IN APPWRITES USER DATABASE, AND NOT THE "USERS" COLLECTION WE CREATED OURSELVES
@@ -102,7 +122,24 @@ export const DatabaseApiTesting = () => {
   return (
     <>
       <Text>---------------database tools------------</Text>
-      <Button title="build database" onPress={() => seedDatabase()} />
+      <Button
+        title="delete users"
+        onPress={() => deleteAllDocuments(COLLECTION_ID_USERS)}
+      />
+      <Button
+        title="delete projects"
+        onPress={() => deleteAllDocuments(COLLECTION_ID_PROJECT)}
+      />
+      <Button
+        title="delete project tasks"
+        onPress={() => deleteAllDocuments(COLLECTION_ID_PROJECT_TASKS)}
+      />
+      <Button
+        title="seed users from auth"
+        onPress={() => seedUsersFromAuth()}
+      />
+      <Button title="test" onPress={() => test()} />
+      <Button title="delete collections" onPress={() => seedProjects()} />
       <Text>-------------------------------------------</Text>
     </>
   );

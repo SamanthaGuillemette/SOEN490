@@ -17,6 +17,8 @@ import {
   NewProjects,
 } from "../../components";
 import styles from "./Home.styles";
+import { DatabaseApiTesting } from "../../../../databaseManagementTools/databaseManagementTools";
+
 
 interface HomeProps {
   navigation: NavigationProp<any>;
@@ -36,8 +38,6 @@ const Home = (props: HomeProps) => {
 
     setIsButtonExpanded(currentScrollPosition <= 0);
   };
-  //deleteAllDocuments(COLLECTION_ID_USERS);
-  //seedUsersFromAuth();
 
   return (
     <SafeAreaView
@@ -53,6 +53,7 @@ const Home = (props: HomeProps) => {
         <HomeHeader />
         <View style={styles.mainScreen}>
           <TodayStats />
+          <DatabaseApiTesting />
           <ExploreProjects navigation={navigation} />
           <NewProjects navigation={navigation} />
         </View>
