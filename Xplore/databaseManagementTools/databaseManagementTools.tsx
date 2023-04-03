@@ -138,7 +138,10 @@ export const DatabaseApiTesting = () => {
         title="seed users from auth"
         onPress={() => seedUsersFromAuth()}
       />
+<<<<<<< Updated upstream
       <Button title="test" onPress={() => test()} />
+=======
+>>>>>>> Stashed changes
       <Button title="delete collections" onPress={() => seedProjects()} />
       <Text>-------------------------------------------</Text>
     </>
