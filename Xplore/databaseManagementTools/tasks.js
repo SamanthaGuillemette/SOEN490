@@ -6,6 +6,7 @@ export const tasks = [
     category: "Design",
     startDate: "2022-02-19 09:00:00",
     endDate: "2022-02-23 09:00:00",
+    completed: true,
   },
   {
     name: "Backend Development",
@@ -14,6 +15,7 @@ export const tasks = [
     category: "Development",
     startDate: "2022-03-19 09:00:00",
     endDate: "2022-03-20 09:00:00",
+    completed: true,
   },
   {
     name: "Unit Testing",
@@ -22,6 +24,7 @@ export const tasks = [
     category: "Testing",
     startDate: "2022-05-05 09:00:00",
     endDate: "2022-05-10 09:00:00",
+    completed: false,
   },
   {
     name: "Deployment",
@@ -30,6 +33,7 @@ export const tasks = [
     category: "Deployment",
     startDate: "2022-07-01 09:00:00",
     endDate: "2022-07-02 09:00:00",
+    completed: false,
   },
   {
     name: "User Documentation",
@@ -38,5 +42,6 @@ export const tasks = [
     category: "Documentation",
     startDate: "2022-05-01 09:00:00",
     endDate: "2022-05-14 09:00:00",
+    completed: false,
   },
 ];

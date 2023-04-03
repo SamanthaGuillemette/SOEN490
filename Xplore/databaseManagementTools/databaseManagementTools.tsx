@@ -40,10 +40,11 @@ export const seedProjects = async () => {
         Math.floor(Math.random() * (userIDs.length - randomStartIndex)) +
         randomStartIndex;
       let memberIDs = userIDs.slice(randomStartIndex, randomEndIndex + 1);
+      let owner = memberIDs[Math.floor(Math.random() * memberIDs.length)];
       await api.createDocument(COLLECTION_ID_PROJECT, {
         ...p,
         members: memberIDs,
-        projectOwner: memberIDs[Math.floor(Math.random() * memberIDs.length)],
+        projectOwner: owner,
         tasks: taskIDs,
       });
     } catch (e) {
@@ -52,21 +53,35 @@ export const seedProjects = async () => {
   }
 };
 
-async function test() {
+export const assignProjectsToUsers = async () => {
+  const projs = await api.listDocuments(COLLECTION_ID_PROJECT, [
+    api.query.limit(100),
+  ]);
   let users = await api.listDocuments(COLLECTION_ID_USERS, [
     api.query.limit(100),
   ]);
   let userIDs = users.documents.map((u) => u.$id);
-  let randomStartIndex = Math.floor(Math.random() * userIDs.length);
-  let randomEndIndex =
-    Math.floor(Math.random() * (userIDs.length - randomStartIndex)) +
-    randomStartIndex;
-  let randomSubArray = userIDs.slice(randomStartIndex, randomEndIndex + 1);
-  console.log(randomSubArray);
-  console.log(
-    randomSubArray[Math.floor(Math.random() * randomSubArray.length)]
-  );
-}
+
+  for (const uid of userIDs) {
+    let userProjs = [];
+    try {
+      for (const proj of projs.documents) {
+        try {
+          if (proj.members.includes(uid)) {
+            userProjs.push(proj.$id);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+        await api.updateDocument(COLLECTION_ID_USERS, uid, {
+          projects: userProjs,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+};
 
 export const seedUsersFromAuth = async () => {
   const projects_ = await api.listDocuments(COLLECTION_ID_PROJECT);
@@ -91,33 +106,6 @@ export const seedUsersFromAuth = async () => {
   }
 };
 
-const deleteAllCollections = async () => {
-  const collectionIDs = [
-    COLLECTION_ID_PROJECT,
-    COLLECTION_ID_PROJECT_TASKS,
-    COLLECTION_ID_USERS,
-  ];
-  for (const cid of collectionIDs) {
-    try {
-      await deleteAllDocuments(cid);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-};
-
-//DO NOT USE. ONLY FOR CREATING USERS IN APPWRITES USER DATABASE, AND NOT THE "USERS" COLLECTION WE CREATED OURSELVES
-//
-// const seedAuthUsers = async () => {
-//   for (const user of users) {
-//     try {
-//       await api.createAccount(user.email, user.password, user.username);
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   }
-// };
-
 export const DatabaseApiTesting = () => {
   return (
     <>
@@ -134,15 +122,17 @@ export const DatabaseApiTesting = () => {
         title="delete project tasks"
         onPress={() => deleteAllDocuments(COLLECTION_ID_PROJECT_TASKS)}
       />
+      <Text>-------------------------------------------</Text>
+
       <Button
         title="seed users from auth"
         onPress={() => seedUsersFromAuth()}
       />
-<<<<<<< Updated upstream
-      <Button title="test" onPress={() => test()} />
-=======
->>>>>>> Stashed changes
-      <Button title="delete collections" onPress={() => seedProjects()} />
+      <Button title="seed projects" onPress={() => seedProjects()} />
+      <Button
+        title="assign projects to users"
+        onPress={() => assignProjectsToUsers()}
+      />
       <Text>-------------------------------------------</Text>
     </>
   );
@@ -154,3 +144,15 @@ export default {
   deleteAllDocuments,
   seedProjects,
 };
+
+//DO NOT USE. ONLY FOR CREATING USERS IN APPWRITES USER DATABASE, AND NOT THE "USERS" COLLECTION WE CREATED OURSELVES
+//
+// const seedAuthUsers = async () => {
+//   for (const user of users) {
+//     try {
+//       await api.createAccount(user.email, user.password, user.username);
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   }
+// };
