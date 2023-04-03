@@ -31,6 +31,11 @@ export const seedProjects = async () => {
           console.log(e);
         }
       }
+      let users = await api.listDocuments(COLLECTION_ID_USERS, [
+        api.query.limit(100),
+      ]);
+      let userIDs = users.documents.filter((u) => u.$id);
+      console.log(userIDs);
       await api.createDocument(COLLECTION_ID_PROJECT, {
         ...p,
         tasks: taskIDs,
