@@ -96,7 +96,9 @@
       "!**/index.ts",
       "!**/constants/**",
       "!**/Xplore/databaseManagementTools/**",
-      "!**/services/**"
+      "!**/services/**",
+      "!**/utils/**",
+      "!**/navigation/**"
     ]
   },
   "private": true
