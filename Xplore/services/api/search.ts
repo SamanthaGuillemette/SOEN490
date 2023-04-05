@@ -1,9 +1,9 @@
 import { COLLECTION_ID_USERS } from "@env";
 import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
 import { Query } from "appwrite";
 import { useIsFocused } from "@react-navigation/native";
 import api from "../appwrite/api";
+import { useAuth } from "../../hooks";
 
 const useGetUserInfo = (userID: any) => {
   const [user, setUser] = useState<any>(null);
@@ -36,8 +36,10 @@ const useGetUserInfo = (userID: any) => {
 const useListUsers = (includeCurrUser?: boolean) => {
   const isFocused = useIsFocused();
   // Quering current user's data
-  const { data: userdata } = useQuery("user data", () => api.getAccount());
-  let userId: string = userdata?.$id as string;
+  // const { data: userdata } = useQuery("user data", () => api.getAccount());
+  // let userId: string = userdata?.$id as string;
+  const { accountToken } = useAuth(); // useAuth hook al ready have user's data, no need to query again
+  let userId = accountToken?.$id;
 
   const [users, setUsers] = useState<any[]>([]);
 

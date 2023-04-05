@@ -7,7 +7,7 @@ import styles from "./User.styles";
 
 interface UserProps {
   id: string;
-  avatar: string;
+  avatar: URL;
   username: string;
   xp: number;
   style?: StyleProp<ViewStyle>;

@@ -12,7 +12,7 @@ import api from "../../services/appwrite/api";
 interface UsersType {
   id: string;
   username: string;
-  avatar: string;
+  avatar: URL;
   xp: number;
   selected?: boolean;
   navigation?: NavigationProp<any>;
