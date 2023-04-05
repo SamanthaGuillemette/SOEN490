@@ -10,6 +10,8 @@ import { createNewGroupChat } from "../../services/api/chats";
 import { addToChat, removeFromChat } from "../../services/api/chatSettings";
 import { createGroupAddNotif } from "../../services/api/notifications";
 import styles from "./MembersActionsModal.styles";
+import { useQuery } from "react-query";
+import api from "../../services/appwrite/api";
 
 interface MembersActionsModalProps {
   setActionsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -49,6 +51,11 @@ export const MembersActionsModal = ({
   //     removeFromChat(selectedUsers, chatID);
   //   }
   // }
+
+  // Quering current user's data
+  const { data: userdata } = useQuery("user data", () => api.getAccount());
+  let userId: string = userdata?.$id as string;
+
   function handleIndexSelect() {
     setModalVisible(!modalVisible);
     setActionsModalVisible(!modalVisible);
@@ -56,13 +63,15 @@ export const MembersActionsModal = ({
       createNewGroupChat(selectedUsers);
     }
     if (action === "Add Members" && selectedUsers.length > 0) {
-      addToChat(selectedUsers, chatID);
-      for (const userID of selectedUsers) {
+      const addMembers = selectedUsers.filter((id) => id !== userId);
+      addToChat(addMembers, chatID);
+      for (const userID of addMembers) {
         createGroupAddNotif(userID, chatID, chatName);
       }
     }
     if (action === "Remove Members" && selectedUsers) {
-      removeFromChat(selectedUsers, chatID);
+      const removeMembers = selectedUsers.filter((id) => id !== userId);
+      removeFromChat(removeMembers, chatID);
     }
   }
 
