@@ -86,7 +86,7 @@ const useUserAlreadyRequested = (userID: any, projectID: any) => {
 
 const deleteRequestJoinNotif = async (userID: any, projectID: any) => {
   const response = await api.listDocuments(COLLECTION_ID_NOTIFICATIONS, [
-    Query.equal("userID", userID),
+    Query.equal("memberRequestingID", userID),
     Query.equal("projectID", projectID),
     Query.equal("notificationType", "joinRequest"),
   ]);
@@ -161,6 +161,7 @@ const getNotifs = async (userID: any) => {
         notificationType: doc.notificationType,
         createdAt: doc.createdAt,
         seen: doc.seen,
+        userID: doc.userID,
 
         //for group chats add
         groupName: doc.groupName,

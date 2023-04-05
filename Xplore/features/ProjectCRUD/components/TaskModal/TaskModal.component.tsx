@@ -8,7 +8,6 @@ import {
   Icon,
   InputField,
   SecondaryButton,
-  //MemberChipAdder,
   ShadowView,
   Text,
 } from "../../../../components";
@@ -26,9 +25,6 @@ export const TaskModal = (props: TaskModalProps) => {
   const [taskCategory, setTaskCategory] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  //const [allMembers, setAllMembers] = useState<any[]>([]);
-  // const [setTask] = useState("");
-  // const userName = useState("");
   const primaryBackground = useThemeColor("primaryBackground");
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
@@ -145,7 +141,6 @@ export const TaskModal = (props: TaskModalProps) => {
     }
   };
 
-  // const { data, status } = useCreateNewTask();
   return (
     <ShadowView style={styles.shadowView}>
       <View style={styles.textViewAbout}>

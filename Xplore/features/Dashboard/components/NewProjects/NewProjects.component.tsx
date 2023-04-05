@@ -56,6 +56,9 @@ export const NewProjects = (props: NewProjectsProps) => {
           {status === "success" ? (
             data.documents.map((project) => (
               <ProjectCardLarge
+                onPress={() =>
+                  navigation.navigate("ProjectDetails", { item: project })
+                }
                 projectName={project.name}
                 goal={`${project.description
                   .split(" ")

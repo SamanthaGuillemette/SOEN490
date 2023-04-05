@@ -25,7 +25,6 @@ const ProjectCreation = (props: ProjectCreationProps) => {
   const [tasks, setTasks] = useState<Object[]>([]);
   const [projName, setProjectName] = useState("");
   const [projectGoals, setGoals] = useState<string[]>([]);
-  const [buildProject, setBuildProject] = useState(false);
   const [imageURL, setImageURL] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -63,30 +62,15 @@ const ProjectCreation = (props: ProjectCreationProps) => {
         tasks: tasks,
       })
       .then(() => updateUserProjList(allMembers));
-    setBuildProject(true);
     Alert.alert("Success", "Project created successfully", [
       { text: "OK", onPress: () => props.navigation.navigate("Home") },
     ]);
-    resetValues();
     return true;
-  };
-
-  const resetValues = () => {
-    setDescription("");
-    setCategory("");
-    setTasks([]);
-    setAllMembers([]);
-    setProjectName("");
-    setGoals([]);
-    setBuildProject(false);
-    setImageURL("");
-    setStartDate("");
-    setEndDate("");
   };
 
   return (
     <StepIndicator
-      setBuildProject={handleBuildProject}
+      handleSubmit={handleBuildProject}
       headerTitle={"Create Projects"}
       stepLabels={[
         "Description",
@@ -109,6 +93,7 @@ const ProjectCreation = (props: ProjectCreationProps) => {
           navigation={props.navigation}
           setTasks={setTasks}
           tasks={tasks}
+          allowCompleteTask={false}
         />,
       ]}
       navigation={props.navigation}

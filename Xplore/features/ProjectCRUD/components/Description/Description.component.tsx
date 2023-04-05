@@ -13,13 +13,17 @@ import api from "../../../../services/appwrite/api";
 import { BUCKET_PROJECT_PIC } from "@env";
 import { useQuery } from "react-query";
 import { Alert } from "react-native";
-
 interface DescriptionProps {
   setDescription: (desc: string) => void;
   setProjectName: (name: string) => void;
   setImageURL: (url: string) => void;
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
+  description?: string;
+  projName?: string;
+  image?: string;
+  startDate?: string;
+  endDate?: string;
 }
 
 export const Description = (props: DescriptionProps) => {
@@ -32,7 +36,7 @@ export const Description = (props: DescriptionProps) => {
   const formattedToday = yyyy + "-" + mm + "-" + dd;
   const [sDate, setSDate] = useState("");
   const [eDate, setEDate] = useState("");
-  const { setImageURL } = props;
+  const { setImageURL, projName, startDate, endDate, description } = props;
 
   const { data } = useQuery("projectImage", () =>
     api.getFilePreview(BUCKET_PROJECT_PIC, uploadedImageId || "")
@@ -126,32 +130,71 @@ export const Description = (props: DescriptionProps) => {
       </View>
       <View>
         <View style={[styles.containerTextInputName, styles.alignProjectName]}>
-          <InputField
-            placeHolder="Project name"
-            styleText={styles.styleText}
-            onChangeText={(projName) => props.setProjectName(projName)}
-          />
+          {projName === undefined ? (
+            <InputField
+              placeHolder="Project name"
+              styleText={styles.styleText}
+              onChangeText={(projectName) => props.setProjectName(projectName)}
+            />
+          ) : (
+            <InputField
+              placeHolder="Project name"
+              styleText={styles.styleText}
+              onChangeText={(projectName) => props.setProjectName(projectName)}
+              value={projName}
+            />
+          )}
         </View>
         <View style={styles.alignDatePicker}>
-          <DatePicker
-            title="Start Date"
-            style={styles.dateAlign}
-            setDate={handleStartDate}
-            shouldDisplayDate={sDate !== ""}
-          />
-          <DatePicker
-            title="End Date"
-            style={styles.dateAlign}
-            setDate={handleEndDate}
-            shouldDisplayDate={eDate !== ""}
-          />
+          {startDate === undefined ? (
+            <DatePicker
+              title="Start Date"
+              style={styles.dateAlign}
+              setDate={handleStartDate}
+              shouldDisplayDate={sDate !== ""}
+            />
+          ) : (
+            <DatePicker
+              title="Start Date"
+              style={styles.dateAlign}
+              setDate={handleStartDate}
+              shouldDisplayDate={startDate !== ""}
+              defaultDate={startDate}
+            />
+          )}
+
+          {endDate === undefined ? (
+            <DatePicker
+              title="End Date"
+              style={styles.dateAlign}
+              setDate={handleEndDate}
+              shouldDisplayDate={eDate !== ""}
+            />
+          ) : (
+            <DatePicker
+              title="End Date"
+              style={styles.dateAlign}
+              setDate={handleEndDate}
+              shouldDisplayDate={endDate !== ""}
+              defaultDate={endDate}
+            />
+          )}
         </View>
         <View style={styles.containerTextInputDesc}>
-          <InputField
-            placeHolder="Project description"
-            styleText={styles.styleText}
-            onChangeText={(desc) => props.setDescription(desc)}
-          />
+          {description === undefined ? (
+            <InputField
+              placeHolder="Project description"
+              styleText={styles.styleText}
+              onChangeText={(desc) => props.setDescription(desc)}
+            />
+          ) : (
+            <InputField
+              placeHolder="Project description"
+              styleText={styles.styleText}
+              onChangeText={(desc) => props.setDescription(desc)}
+              value={description}
+            />
+          )}
         </View>
       </View>
     </View>

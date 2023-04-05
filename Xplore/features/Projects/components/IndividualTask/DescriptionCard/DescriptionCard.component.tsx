@@ -7,11 +7,12 @@ export const DescriptionCard = () => {
   const bgColor = useThemeColor("backgroundSecondary");
   const route = useRoute();
   let { taskInfo }: any = route.params;
-  const endDate = taskInfo.endDate.substring(0, taskInfo.endDate.indexOf("T"));
-  const startDate = taskInfo.startDate.substring(
-    0,
-    taskInfo.startDate.indexOf("T")
-  );
+  const endDate = taskInfo.endDate.includes("T")
+    ? taskInfo.endDate.substring(0, taskInfo.endDate.indexOf("T"))
+    : taskInfo.endDate;
+  const startDate = taskInfo.startDate.includes("T")
+    ? taskInfo.startDate.substring(0, taskInfo.endDate.indexOf("T"))
+    : taskInfo.startDate;
 
   return (
     <View style={[styles.MainContainer, { borderTopColor: bgColor }]}>

@@ -1,5 +1,5 @@
 import { View } from "../View";
-import { Text } from "../Text";
+
 import { Icon } from "../Icon";
 import { TouchableOpacity } from "react-native";
 import { ListItem } from "@rneui/themed";
@@ -12,14 +12,35 @@ import { TaskCard } from "../TaskCard/TaskCard.component";
 interface taskContentProps {
   navigation: NavigationProp<any>;
   taskInfo: any;
+  allowCompleteTask?: boolean;
+  projectID?: string;
+  setTasks?: (value: Object[]) => void;
+  tasks?: Object[];
 }
 
 export const actions = (props: any) => {
-  const taskID = props.taskID;
+  const taskID = props.taskInfo.taskID;
+  const allowCompleteTask = props.allowCompleteTask;
 
-  return (
+  const handleOnDelete = () => {
+    const newList = props.tasks.filter((task: any) => task.taskID !== taskID); // removing from tasks
+    props.setTasks(newList); // overwriting old tasks list
+
+    // deleting from db if its project details or edit projects
+    if (props.projectID !== undefined) {
+      deleteTask(taskID, props.projectID);
+    }
+  };
+
+  const handleOnComplete = () => {
+    const newList = props.tasks.filter((task: any) => task.taskID !== taskID); // removing from tasks
+    props.setTasks(newList); // overwriting old tasks list
+    setTaskCompleted(taskID); // updating in db
+  };
+
+  return allowCompleteTask !== false ? (
     <View style={styles.icons}>
-      <TouchableOpacity onPress={() => setTaskCompleted(taskID)}>
+      <TouchableOpacity onPress={handleOnComplete}>
         <Icon
           color="success"
           size="large"
@@ -27,7 +48,18 @@ export const actions = (props: any) => {
           style={styles.infoIcon}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => deleteTask(taskID)}>
+      <TouchableOpacity onPress={handleOnDelete}>
+        <Icon
+          color="error"
+          size="large"
+          name="trash-2"
+          style={styles.deleteIcon}
+        />
+      </TouchableOpacity>
+    </View>
+  ) : (
+    <View style={styles.iconsProjectEdit}>
+      <TouchableOpacity onPress={handleOnDelete}>
         <Icon
           color="error"
           size="large"
@@ -39,38 +71,6 @@ export const actions = (props: any) => {
   );
 };
 
-export const taskContent = (props: taskContentProps) => {
-  const task = props.taskInfo;
-
-  return (
-    <View backgroundColor="backgroundSecondary" style={styles.innerBox}>
-      <TouchableOpacity
-        onPress={() =>
-          props.navigation.navigate("IndividualTask", {
-            taskInfo: task,
-          })
-        }
-      >
-        <View style={styles.taskContentContainer}>
-          <Text style={styles.taskCategory} variant="h4" color="linkText">
-            {task.category}
-          </Text>
-
-          <Icon style={styles.taskInfoIcon} size="medium" name="help-circle" />
-        </View>
-        <Text style={styles.taskName} variant="h2" color="titleText">
-          {task.name}
-        </Text>
-        <View style={styles.dateContainer}>
-          <Icon style={styles.calenderIcon} size="medium" name="calendar" />
-          <Text style={styles.date} variant="smBody" color="bodyText">
-            {task.endDate.substring(0, task.endDate.indexOf("T"))}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
-};
 export const TaskCardSwipeable = (props: taskContentProps) => {
   const generalGray = useThemeColor("generalGray");
 
@@ -78,7 +78,7 @@ export const TaskCardSwipeable = (props: taskContentProps) => {
     <View style={styles.backgroundBox}>
       <ListItem.Swipeable
         rightWidth={28}
-        rightContent={actions(props.taskInfo)}
+        rightContent={actions(props)}
         rightStyle={[styles.righContentStyle, { backgroundColor: generalGray }]}
         containerStyle={styles.listContainer}
       >
